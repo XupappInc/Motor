@@ -31,7 +31,6 @@ bld/
 [Ll]og/
 [Ll]ogs/
 [Tt]emp/
-[Ee]xes/.exe
 [Ee]xes/*
 ![Ee]xes/assets
 ![Ee]xes/.cfg
@@ -355,3 +354,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+*.exe
