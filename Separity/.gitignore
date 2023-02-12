@@ -36,6 +36,7 @@ bld/
 ![Ee]xes/*.cfg
 [Dd]ependencias/Ogre/Build
 [Ll]ib
+![Dd]ependencias/CMake/bin
 [Dd]ependencias/bullet3d/Build/
 
 # Visual Studio 2015/2017 cache/options directory
