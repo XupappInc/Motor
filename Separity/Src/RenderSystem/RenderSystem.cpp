@@ -6,7 +6,8 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Ogre::Root* root;
+	root = new Ogre::Root();
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
