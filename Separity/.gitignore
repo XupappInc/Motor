@@ -35,6 +35,7 @@ bld/
 ![Ee]xes/assets
 ![Ee]xes/*.cfg
 [Dd]ependencias/Ogre/Build
+[Dd]ependencias/ImGUI/build
 [Ll]ib
 ![Dd]ependencias/CMake/bin
 [Dd]ependencias/bullet3d/Build/
@@ -357,3 +358,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+## Dear ImGui artifacts
+imgui.ini
