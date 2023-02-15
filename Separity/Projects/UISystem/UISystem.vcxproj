@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\RenderSystem\RenderSystem.cpp" />
+    <ClCompile Include="..\..\Src\UISystem\UISystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8345d80d-3b1b-47fa-b148-8e85f601fa3c}</ProjectGuid>
+    <ProjectGuid>{2148D811-4EFA-4F2B-94CE-CFE41B003792}</ProjectGuid>
     <RootNamespace>RenderSystem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
