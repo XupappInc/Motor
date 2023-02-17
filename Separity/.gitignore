@@ -37,6 +37,7 @@ bld/
 [Dd]ependencias/Ogre/Build
 [Dd]ependencias/ImGUI/build
 [Dd]ependencias/LuaBridge/build
+[Dd]ependencias/SDL/build
 [Ll]ib
 ![Dd]ependencias/CMake/bin
 [Dd]ependencias/bullet3d/Build/
