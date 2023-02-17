@@ -10,7 +10,7 @@ int main()
 {
 	Ogre::Root* root;
 	root = new Ogre::Root();
-
+	btVector3 s = btVector3(2, 3, 4);
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
