@@ -41,6 +41,8 @@ bld/
 [Ll]ib
 ![Dd]ependencias/CMake/bin
 [Dd]ependencias/bullet3d/Build/
+![Dd]ependencias/FMOD/lib/
+
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
