@@ -32,15 +32,14 @@ bld/
 [Ll]ogs/
 [Tt]emp/
 [Ee]xes/*
+[Ll]ib
 ![Ee]xes/assets
 ![Ee]xes/*.cfg
 [Dd]ependencias/Ogre/Build
 [Dd]ependencias/ImGUI/build
 [Dd]ependencias/LuaBridge/build
 [Dd]ependencias/SDL/build
-![Dd]ependencias/FMOD/lib/x64/*.lib
-![Dd]ependencias/FMOD/lib/x64/*.dll
-[Ll]ib
+![Dd]ependencias/FMOD/build/*
 ![Dd]ependencias/CMake/bin
 [Dd]ependencias/bullet3d/Build/
 
