@@ -38,10 +38,11 @@ bld/
 [Dd]ependencias/ImGUI/build
 [Dd]ependencias/LuaBridge/build
 [Dd]ependencias/SDL/build
+![Dd]ependencias/FMOD/lib/x64/*.lib
+![Dd]ependencias/FMOD/lib/x64/*.dll
 [Ll]ib
 ![Dd]ependencias/CMake/bin
 [Dd]ependencias/bullet3d/Build/
-![Dd]ependencias/FMOD/lib/
 
 
 # Visual Studio 2015/2017 cache/options directory
