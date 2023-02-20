@@ -1,14 +1,13 @@
-// RenderSystem.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
+// PruebaSystem.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
 //
 
 #include <iostream>
-#include <OgreRoot.h>
 
 
 int main()
 {
-	Ogre::Root* root;
-	root = new Ogre::Root();
+    std::cout << "Hello World!\n";
+
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
