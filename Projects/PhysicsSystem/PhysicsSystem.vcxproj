@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\PhysicsSystem\PhysicsSystem.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\PhysicsSystem\PhysicsEngine.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
