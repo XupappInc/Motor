@@ -2,12 +2,11 @@
 //
 
 #include <iostream>
-#include <OgreRoot.h>
+#include "imgui.h"
 
 int main()
 {
-	Ogre::Root* root;
-	root = new Ogre::Root();
+
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
