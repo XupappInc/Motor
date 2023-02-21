@@ -33,9 +33,10 @@ class PhysicsEngine {
   virtual btBoxShape* createCollider(PhysicsShape* shape){
   //world_->
   };
+  static PhysicsEngine* GetInstance();
   private:
 	  btDiscreteDynamicsWorld* world_;
-	  std::unique_ptr<PhysicsEngine> instance;
+	  static std::unique_ptr<PhysicsEngine> instance;
 
 };
 
