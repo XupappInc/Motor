@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="..\..\Src\EntityComponent\Component.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="ec.h">
+    <ClInclude Include="..\..\Src\EntityComponent\ec.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
+    <ClInclude Include="..\..\Src\EntityComponent\ec_defs.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="ec_defs.h">
+    <ClInclude Include="..\..\Src\EntityComponent\Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
