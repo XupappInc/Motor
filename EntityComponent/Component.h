@@ -4,17 +4,12 @@
 
 namespace ec {
 
-	/*
-	 * Classes that inherit from Component must define a field
-	 *
-	 *   	constexpr static ec::cmpId_type id = value;
-	 *
-	 * where value is from the enum ec::cmpId (see ec.h). This
-	 * how we assign numeric identifiers to components (so we can
-	 * easily put them in an array). The list of possible identifiers
-	 * is defined as an enum in ec.h
-	 *
-	 */
+	/// <summary>
+	/// <para>Clase que representa un componente</para>
+	/// <para>Las clases que heredan de Component debe definir un Id en el
+	/// archivo ec_defs.h, para así poder asignarlos con facilidad a un
+	/// array</para>
+	/// </summary>
 	class Component {
 		public:
 		Component()
@@ -22,43 +17,42 @@ namespace ec {
 		      mngr_()  //
 		{}
 
-		// Destroys the component.
-		// Careful! ent_ and mngr_ should not be destroyed
-		//
-		virtual ~Component() {}
+		/// <summary>
+		/// Destruye el componente y lo borra de su manager
+		/// </summary>
+		virtual ~Component() {
+			// mngr_()->deleteCmp(&this);
+		}
 
-		// This method is used to set the context, which is a
-		// reference to the entity in which the component is
-		// installed and a reference to the manager. It will
-		// be called by Entity when adding a component.
-		//
+		/// <summary>
+		/// Este método se usa para asignar el contexto
+		/// </summary>
+		/// <param name="ent">Entidad a la que pertenece el componente</param>
+		/// <param name="mngr">Manager al que pertenece el componente</param>
 		inline void setContext(Entity* ent, Manager* mngr) {
 			ent_ = ent;
 			mngr_ = mngr;
 		}
 
-		// We assume that initComponent will be called when adding a
-		// component to an entity, immediately after setContext.
-		//
+		/// <summary>
+		/// Metodo que inicializa el componente, debe de ser llamado justo
+		/// depues de setContext
+		/// </summary>
 		virtual void initComponent() {}
 
-		// A component has an update method, and by default it
-		// does nothing -- some components will not override this
-		// method.
-		//
+		/// <summary>
+		/// Metodo update del componente, por defecto no hace nada
+		/// </summary>
 		virtual void update() {}
 
-		// A component has a render method, and by default it
-		// does nothing -- some components will not override this
-		// method.
-		//
+		/// <summary>
+		/// Metodo render del componente, por defecto no hace nada
+		/// </summary>
 		virtual void render() {}
 
-		protected:       // we allow direct use these fields from subclasses
-		Entity* ent_;    // a pointer to the entity, should not be deleted on
-		                 // destruction
-		Manager* mngr_;  //  a pointer to the manager, should not be deleted on
-		                 //  destruction
+		protected:
+		Entity* ent_;
+		Manager* mngr_;
 	};
 
 }  // namespace ec

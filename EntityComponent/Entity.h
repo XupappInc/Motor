@@ -9,15 +9,15 @@
 
 namespace ec {
 
+	/// <summary>
+	/// <para>Clase que representa una entidad.</para>
+	/// <para>Cada entidad puede contener una serie de componentes y debe de
+	/// pertenecer a un manager.</para>
+	/// </summary>
 	class Entity {
 		public:
 		Entity(ec::grpId_type gId)
-		    : mngr_(nullptr),  
-		      cmps_(),         
-		      currCmps_(),     
-		      alive_(),        
-		      gId_(gId)        
-		{
+		    : mngr_(nullptr), cmps_(), currCmps_(), alive_(), gId_(gId) {
 			// Reservamos espacio para el numero maximo de componentes.
 			// Esto puede evitar que se tenga que redimensionar el vector
 			currCmps_.reserve(ec::maxComponentId);
