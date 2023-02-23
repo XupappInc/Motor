@@ -12,11 +12,11 @@ namespace ec {
 	class Entity {
 		public:
 		Entity(ec::grpId_type gId)
-		    : mngr_(nullptr),  //
-		      cmps_(),         //
-		      currCmps_(),     //
-		      alive_(),        //
-		      gId_(gId)        //
+		    : mngr_(nullptr),  
+		      cmps_(),         
+		      currCmps_(),     
+		      alive_(),        
+		      gId_(gId)        
 		{
 			// Reservamos espacio para el numero maximo de componentes.
 			// Esto puede evitar que se tenga que redimensionar el vector

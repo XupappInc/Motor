@@ -8,18 +8,13 @@ namespace ec {
 	class Entity;
 	class Component;
 
-	// We define type for the identifiers so we can change them easily.
-	// For example, if we have less than 256 components we can use one
-	// byte, i.e. uint8_t, if we have up to 512 we can use uint16_t,
-	// and so on ...
-	//
+	// Definimos tipo para los identificadores para poder cambiarlos facilmente.
+	// Por ejemplo, si tenemos menos de 256 componentes podemos usar uint8_t, si tenemos
+	// hasta 512 podemos usar uint16.
 	using cmpId_type = uint8_t;
 	using grpId_type = uint8_t;
 	using hdlrId_type = uint8_t;
 
-// You should define a file ../game/ec_defs.h with the list of your
-// components, groups, and handlers.
-//
 #if __has_include("../ec_defs.h")
 #include "../ec_defs.h"
 #else
@@ -28,28 +23,34 @@ namespace ec {
 #define _HDLRS_LIST_ _HDLR_1
 #endif
 
-	// list of component identifiers
+	/// <summary>
+	/// Lista de los identificadores de componente
+	/// </summary>
 	enum cmpId : cmpId_type {
-		_CMPS_LIST_, /* taken from ../ec_defs */
+		_CMPS_LIST_, /* obtenido de ec_defs */
 
-		// do not remove this
+		// no borrar esto
 		_LAST_CMP_ID
 	};
 
-	// list of group identifiers
+	/// <summary>
+	/// Lista de los indentificadores de grupo
+	/// </summary>
 	enum grpId : cmpId_type {
 		_grp_GENERAL,
-		_GRPS_LIST_, /* taken from ../ec_defs */
+		_GRPS_LIST_, /* obtenido de ec_defs */
 
-		// do not remove this
+		// no borrar esto
 		_LAST_GRP_ID
 	};
 
-	// list of handler identifiers
+	/// <summary>
+	/// Lista de los identificadores de handler
+	/// </summary>
 	enum hdlrId : hdlrId_type {
-		_HDLRS_LIST_, /* taken from ../game/ec_defs */
+		_HDLRS_LIST_, /* obtenido de ec_defs */
 
-		// do not remove this
+		// no borrar esto
 		_LAST_HDLR_ID
 	};
 
@@ -57,11 +58,12 @@ namespace ec {
 	constexpr cmpId_type maxGroupId = grpId::_LAST_GRP_ID;
 	constexpr hdlrId_type maxHdlrId = hdlrId::_LAST_HDLR_ID;
 
-// a macro for component identifier declaration, e.g.,
-// __CMPID_DECL__(ec::_TRANSFORM) expands to:
-//
-//   constexpr static ec::cmpId_type id = ec::_TRANSFORM;
-//
+/// <summary>
+/// Un macro para la declaracion del identificador de componente. Por ejemplo:
+/// __CMPID_DECL__(ec::_TRANSFORM) se expande a:
+/// 
+/// constexpr static ec::cmpId_type id = ec::_TRANSFORM;
+/// </summary>
 #define __CMPID_DECL__(cId) constexpr static ec::cmpId_type id = cId;
 
 }  // namespace ec
