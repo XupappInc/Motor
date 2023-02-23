@@ -18,120 +18,109 @@ namespace ec {
 		      alive_(),        //
 		      gId_(gId)        //
 		{
-			// We reserve the a space for the maximum number of
-			// components. This way we avoid resizing the vector.
-			//
+			// Reservamos espacio para el numero maximo de componentes.
+			// Esto puede evitar que se tenga que redimensionar el vector
 			currCmps_.reserve(ec::maxComponentId);
 		}
 
-		// we delete the copy constructor/assignment because it is
-		// not clear how to copy the components
-		//
+		// borramos el constructor por copia/asignamiento porque no está claro
+		// como copiar los componentes
 		Entity(const Entity&) = delete;
 		Entity& operator=(const Entity&) = delete;
 
-		// Exercise: define move constructor/assignment for class Entity
-
-		// Destroys the entity
-		//
+		/// <summary>
+		/// Destruye la entidad
+		/// </summary>
 		virtual ~Entity() {
-			// we delete all available components
-			//
+			// borramos todos los componentes disponibles
 			for(auto c : currCmps_) delete c;
 		}
 
-		// Each entity knows to which manager it belongs, we use
-		// this method to set the context
-		//
+		/// <summary>
+		/// Cada entidad sabe el manager al que pertenece, usamos este metodos
+		/// para asignar el contexto
+		/// </summary>
+		/// <param name="mngr">Manager al que pertence la entidad</param>
 		inline void setContext(Manager* mngr) { mngr_ = mngr; }
 
-		// Setting the state of the entity (alive or dead)
-		//
+		/// <summary>
+		/// Asigna el valor de alive
+		/// </summary>
+		/// <param name="alive">Si está viva (true) o no (false)</param>
 		inline void setAlive(bool alive) { alive_ = alive; }
 
-		// Returns the state of the entity (alive o dead)
-		//
+		/// <summary>
+		/// Devuelve si la entidad está viva o muerta
+		/// </summary>
+		/// <returns>True si está viva, false en caso contrario</returns>
 		inline bool isAlive() { return alive_; }
 
-		// Setting the state of the entity (active or not)
-		//
+		/// <summary>
+		/// Asigna el valor de active de la entidad
+		/// </summary>
+		/// <param name="active">Si está activa (true) o no (false)</param>
 		inline void setActive(bool active) { active_ = active; }
 
-		// Returns the state of the entity (active o not)
-		//
+		/// <summary>
+		/// Devuelve si la entidad está activa o no
+		/// </summary>
+		/// <returns>True si está activa, false en caso contrario</returns>
 		inline bool isActive() { return active_; }
 
-		// Updating  an entity simply calls the update of all
-		// components
-		//
-		void update() {
-			auto n = currCmps_.size();
-			for(auto i = 0u; i < n; i++) currCmps_[i]->update();
-		}
-
-		// Rendering an entity simply calls the render of all
-		// components
-		//
-		void render() {
-			auto n = currCmps_.size();
-			for(auto i = 0u; i < n; i++) currCmps_[i]->render();
-		}
-
-		// Adds a component. It receives the type T (to be created), and the
-		// list of arguments (if any) to be passed to the constructor.
-		// The component identifier 'cId' is taken from T::id.
-		//
+		/// <summary>
+		/// Añade un componente. Recibe el tipo T del componente y una lista de
+		/// argumentos (si hay) para ser pasados al constructor. El
+		/// identificador de componente 'cId' se obtiene de T::id
+		/// </summary>
 		template<typename T, typename... Ts>
 		inline T* addComponent(Ts&&... args) {
 			constexpr cmpId_type cId = T::id;
 			assert(cId < ec::maxComponentId);
 
-			// delete the current component, if any
-			//
+			// borra el componente actual si existe uno del mismo tipo
 			removeComponent<T>();
 
-			// create, initialise and install the new component
-			//
+			// crea, inicializa y añade el nuevo componente
 			Component* c = new T(std::forward<Ts>(args)...);
 			c->setContext(this, mngr_);
 			c->initComponent();
 			cmps_[cId] = c;
 			currCmps_.push_back(c);
 
-			// return it to the user so i can be initialised if needed
+			// lo devuelve al usuario
 			return static_cast<T*>(c);
 		}
 
-		// Removes the components at position T::id.
-		//
+		/// <summary>
+		/// Borra el componente de la posición T::id
+		/// </summary>
 		template<typename T> inline void removeComponent() {
 			constexpr cmpId_type cId = T::id;
 			assert(cId < ec::maxComponentId);
 
 			if(cmps_[cId] != nullptr) {
-				// find the element that is equal tocmps_[cId] (returns an
-				// iterator)
-				//
+				// encuentra el elemento que es igual a tocmps_[cId]
+				// (devuelve un iterador)
 				auto iter =
 				    std::find(currCmps_.begin(), currCmps_.end(), cmps_[cId]);
 
-				// and then remove it
+				// y lo borra
 				currCmps_.erase(iter);
 
-				// destroy it
-				//
+				// lo destruye
 				delete cmps_[cId];
 
-				// remove the pointer
-				//
+				// borra el puntero
 				cmps_[cId] = nullptr;
 			}
 		}
 
-		// Returns the component that corresponds to position T::id, casting it
-		// to T*. The casting is done just for ease of use, to avoid casting
-		// outside.
-		//
+		/// <summary>
+		/// Devuelve el componente correspondiente a la posicion T::id,
+		/// casteandolo a T*. El casteo se hace por facilidad de uso, para
+		/// evitar tenerlo que castear fuera
+		/// </summary>
+		/// <returns>El componente ya casteado a su tipo</returns>
 		template<typename T> inline T* getComponent() {
 			constexpr cmpId_type cId = T::id;
 			assert(cId < ec::maxComponentId);
@@ -139,8 +128,11 @@ namespace ec {
 			return static_cast<T*>(cmps_[cId]);
 		}
 
-		// return true if there is a component with identifier T::id
-		//
+		/// <summary>
+		/// Devuelve si existe un componente con el identificador T::id
+		/// </summary>
+		/// <returns>True si existe el componente, false en caso
+		/// contrario</returns>
 		template<typename T> inline bool hasComponent() {
 			constexpr cmpId_type cId = T::id;
 			assert(cId < ec::maxComponentId);
@@ -148,8 +140,10 @@ namespace ec {
 			return cmps_[cId] != nullptr;
 		}
 
-		// returns the entity's group 'gId'
-		//
+		/// <summary>
+		/// Devuelve el grupo de la entidad
+		/// </summary>
+		/// <returns>El grupo al que pertenece la entidad (gId)</returns>
 		inline ec::grpId_type groupId() { return gId_; }
 
 		private:
