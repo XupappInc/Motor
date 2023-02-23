@@ -13,7 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SoundSystem", "Projects\Sou
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsSystem", "Projects\PhysicsSystem\PhysicsSystem.vcxproj", "{80D74851-5B1E-4E94-AFC3-1A47DC02B746}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EntityComponent", "EntityComponent\EntityComponent.vcxproj", "{329EBB57-BBE0-45CE-861B-A6D9A3D28279}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EntityComponent", "Projects\EntityComponent\EntityComponent.vcxproj", "{329EBB57-BBE0-45CE-861B-A6D9A3D28279}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
