@@ -8,6 +8,8 @@ class ManagerTemplate {
 	*/
 	static ManagerTemplate* getInstance();
 
+	virtual void update();
+
 	private:
 	/*
 	 * Constructor/destructor de la clases con singleton privados
