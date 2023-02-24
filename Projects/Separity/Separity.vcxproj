@@ -19,16 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Separity\ManagerTemplate.cpp" />
     <ClCompile Include="..\..\Src\Separity\Separity.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Src\Separity\ManagerTemplate.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RenderEngine\RenderEngine.vcxproj">
-      <Project>{8345d80d-3b1b-47fa-b148-8e85f601fa3c}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
