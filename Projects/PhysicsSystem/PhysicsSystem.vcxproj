@@ -30,6 +30,7 @@
     <ProjectGuid>{80d74851-5b1e-4e94-afc3-1a47dc02b746}</ProjectGuid>
     <RootNamespace>PhysicsSystem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>PhysicsEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
