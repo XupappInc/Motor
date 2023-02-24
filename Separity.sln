@@ -15,6 +15,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderEngine", "Projects\Re
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsEngine", "Projects\PhysicsEngine\PhysicsEngine.vcxproj", "{80D74851-5B1E-4E94-AFC3-1A47DC02B746}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaEngine", "Projects\LuaEngine\LuaEngine.vcxproj", "{7399CFD5-AB3D-4FF8-9F8E-1F65DF3D20B6}"
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputEngine", "Projects\InputEngine\InputEngine.vcxproj", "{1814229A-90CD-4E29-AD55-9F4B3469FEBA}"
 EndProject
 Global
@@ -73,6 +74,14 @@ Global
 		{80D74851-5B1E-4E94-AFC3-1A47DC02B746}.Release|x64.Build.0 = Release|x64
 		{80D74851-5B1E-4E94-AFC3-1A47DC02B746}.Release|x86.ActiveCfg = Release|Win32
 		{80D74851-5B1E-4E94-AFC3-1A47DC02B746}.Release|x86.Build.0 = Release|Win32
+		{7399CFD5-AB3D-4FF8-9F8E-1F65DF3D20B6}.Debug|x64.ActiveCfg = Debug|x64
+		{7399CFD5-AB3D-4FF8-9F8E-1F65DF3D20B6}.Debug|x64.Build.0 = Debug|x64
+		{7399CFD5-AB3D-4FF8-9F8E-1F65DF3D20B6}.Debug|x86.ActiveCfg = Debug|Win32
+		{7399CFD5-AB3D-4FF8-9F8E-1F65DF3D20B6}.Debug|x86.Build.0 = Debug|Win32
+		{7399CFD5-AB3D-4FF8-9F8E-1F65DF3D20B6}.Release|x64.ActiveCfg = Release|x64
+		{7399CFD5-AB3D-4FF8-9F8E-1F65DF3D20B6}.Release|x64.Build.0 = Release|x64
+		{7399CFD5-AB3D-4FF8-9F8E-1F65DF3D20B6}.Release|x86.ActiveCfg = Release|Win32
+		{7399CFD5-AB3D-4FF8-9F8E-1F65DF3D20B6}.Release|x86.Build.0 = Release|Win32
 		{1814229A-90CD-4E29-AD55-9F4B3469FEBA}.Debug|x64.ActiveCfg = Debug|x64
 		{1814229A-90CD-4E29-AD55-9F4B3469FEBA}.Debug|x64.Build.0 = Debug|x64
 		{1814229A-90CD-4E29-AD55-9F4B3469FEBA}.Debug|x86.ActiveCfg = Debug|Win32
