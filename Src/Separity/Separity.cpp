@@ -2,11 +2,12 @@
 //
 
 #include <iostream>
+#include "RenderEngine.h"
 
-int main()
-{
-    
+
+int main() {
     std::cout << "Hello World!\n";
+	return RenderEngine::foo();
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
