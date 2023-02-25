@@ -3,5 +3,7 @@
 #define __INPUT_MANAGER_H__
 
 //#include "EntityComponent/ManagerTemplate"
-class InputManager {};
-#endif  //!__INPUT_MANAGER_H__
+class InputManager {
+
+};
+#endif  __INPUT_MANAGER_H__
