@@ -1,16 +1,29 @@
 #include "Transform.h"
-
-Transform::Transform() {
+#include"Vector.h"
+#include <btBulletDynamicsCommon.h>
+Transform::Transform():positition_(0,0,0) {
 	btQuaternion quat(0, 0, 0);
 	
 	tr_ = new btTransform(quat);
 }
 
-void Transform::setPosition(btVector3 vec) { tr_->setOrigin(vec); }
-
-void Transform::setPosition(float x, float y, float z) {
-	btVector3 vec(x, y, z);
-	setPosition(vec);
+void Transform::setPosition(spyutils::Vector3<float> other) {
+	btVector3 vec(other.x,other.y, other.z);
+	tr_->setOrigin(vec);
+	positition_ = other;
 }
 
-btVector3 Transform::getPosition() { return tr_->getOrigin(); }
+void Transform::setPosition(float x, float y, float z) {
+	setPosition(spyutils::Vector3<float>(x, y, z));
+}
+
+void Transform::translate(spyutils::Vector3<float> other) {
+	positition_ += other;
+
+}
+
+
+
+
+
+

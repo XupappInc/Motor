@@ -1,16 +1,20 @@
 #pragma once
 #include "Component.h"
 #include <btBulletDynamicsCommon.h>
-
+#include"Vector.h"
 class Transform : public ec::Component {
 	public:
 	Transform();
-	void setPosition(btVector3 vec);
+	void setPosition(spyutils::Vector3<float> other);
 	void setPosition(float x, float y, float z);
-	btVector3 getPosition();
+	void translate(spyutils::Vector3<float> other);
+	spyutils::Vector3<float> getPosition();
 	void setRotation();
-	float& operator.() {return}
 
 	private:
 	btTransform* tr_;
+	spyutils::Vector3<float> positition_;
+	spyutils::Vector3<float> rotation_;
+	spyutils::Vector3<float> scale_;
+
 };

@@ -1,4 +1,5 @@
 #include "PhysicsEngine.h"
+#include <btBulletDynamicsCommon.h>
 void PhysicsEngine::start() {
 
 	//world_ = new btDiscreteDynamicsWorld(dispatcher_, broadphaseInterface_,
