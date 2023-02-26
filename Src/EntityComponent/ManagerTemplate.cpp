@@ -31,3 +31,7 @@ void ManagerTemplate::removeComponent(Component* cmp) {
 
 	cmps_.erase(iter);
 }
+
+ManagerTemplate::ManagerTemplate() {}
+
+ManagerTemplate::~ManagerTemplate() {}
