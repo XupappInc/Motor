@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\PhysicsEngine\Componets\Transform.cpp" />
+    <ClCompile Include="..\..\Src\PhysicsEngine\Components\Transform.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsEngine.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\PhysicsEngine\Componets\Transform.h" />
+    <ClInclude Include="..\..\Src\PhysicsEngine\Components\Transform.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsEngine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

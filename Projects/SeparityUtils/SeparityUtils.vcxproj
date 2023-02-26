@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\SeparityUtils\spyMath.h" />
     <ClInclude Include="..\..\Src\SeparityUtils\Vector.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
