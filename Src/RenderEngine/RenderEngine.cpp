@@ -2,50 +2,97 @@
 // programa comienza y termina ahí.
 //
 
+#include <OgreCamera.h>
+#include <OgreRenderWindow.h>
 #include <OgreRoot.h>
+#include <OgreSceneManager.h>
+#include <OgreViewport.h>
 #include <SDL.h>
-#include <wtypes.h>
 #include <SDL_syswm.h>
+#include <wtypes.h>
 
 int main(int argc, char* argv[]) {
 	// Crear raiz de Ogre
-	Ogre::Root* root;
-	root = new Ogre::Root();
+	Ogre::Root* mRoot;
+	mRoot = new Ogre::Root();
 
 	// Inicializar SDL
 	if(!SDL_WasInit(SDL_INIT_VIDEO))
 		SDL_InitSubSystem(SDL_INIT_VIDEO);
 
-	//Crear ventana de SDL
+	// Crear ventana de SDL
 	int screenW = 1024, screenH = 768;
 
-	SDL_Window* sdlWindow = SDL_CreateWindow("Separity", SDL_WINDOWPOS_UNDEFINED,
-	                                      SDL_WINDOWPOS_UNDEFINED, screenW,
-	                                      screenH, SDL_WINDOW_SHOWN);
+	SDL_Window* sdlWindow = SDL_CreateWindow(
+	    "Separity", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenW,
+	    screenH, SDL_WINDOW_SHOWN);
 
-	// Crear render window de ogre
-
-	Ogre::RenderWindow* mWindow;
-
-	//Si hay una configuración de antes se utiliza esa y si no se muestra un diálogo para configuración
-	if(!(root->restoreConfig() || root->showConfigDialog(nullptr)))
+	// Si hay una configuración de antes se utiliza esa y si no se muestra un
+	// diálogo para configuración
+	if(!(mRoot->restoreConfig() || mRoot->showConfigDialog(nullptr)))
 		return false;
 
-	//Creamos un render system cogiendo el primer renderer de los que hay disponibles
-	Ogre::RenderSystem* sys = root->getAvailableRenderers().front();
-	root->setRenderSystem(sys);
-	root->initialise(false);
+	// Creamos un render system cogiendo el primer renderer de los que hay
+	// disponibles
+	Ogre::RenderSystem* sys = mRoot->getAvailableRenderers().front();
+	mRoot->setRenderSystem(sys);
+	mRoot->initialise(false);
 
-	//Queremos asignar a la ventana de renderizado la ventana que hemos creado con SDL
+	// Queremos asignar a la ventana de renderizado la ventana que hemos creado
+	// con SDL
 	SDL_SysWMinfo wmInfo;
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(sdlWindow, &wmInfo);
 
 	Ogre::NameValuePairList misc;
-	misc["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
+	misc["externalWindowHandle"] =
+	    Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
 
-	Ogre::RenderWindow* win =root->createRenderWindow("Ogre Render", screenW, screenH, false, &misc);
-	
+	// Crear render window de ogre
+	Ogre::RenderWindow* mWindow;
+	mWindow = mRoot->initialise(false, "Ogre Render");
+	mWindow = mRoot->createRenderWindow("Ogre Render", screenW, screenH, false,
+	                                    &misc);
+
+	// Creamos un scene manager para poder añadir una cámara
+	Ogre::SceneManager* mSceneMgr;
+	mSceneMgr = mRoot->createSceneManager();
+
+	// Añadimos la cámara
+	Ogre::Camera* mCamera = mSceneMgr->createCamera("Cam");
+
+	// Configuramos propiedades de la cámara
+
+	mCamera->setNearClipDistance(1);
+	mCamera->setFarClipDistance(10000);
+	mCamera->setAutoAspectRatio(true);
+
+	// Añadimos dicha cámara a un nodo
+	Ogre::SceneNode* mCamNode =
+	    mSceneMgr->getRootSceneNode()->createChildSceneNode("nCam");
+	mCamNode->attachObject(mCamera);
+
+	// Posicionamos el nodo
+	mCamNode->setPosition(0, 0, 1000);
+	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+
+	// Creamos viewport que muestre aquello que ve la cámara
+	Ogre::Viewport* vp = mWindow->addViewport(mCamera);
+	vp->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));
+
+	// Añadimos luz para que no se vea en negro
+	Ogre::Light* luz = mSceneMgr->createLight("Luz");
+	luz->setType(Ogre::Light::LT_DIRECTIONAL);
+	luz->setDiffuseColour(0.75, 0.75, 0.75);
+
+	// Metemos la luz en un nodo
+	Ogre::SceneNode* mLightNode =
+	    mSceneMgr->getRootSceneNode()->createChildSceneNode("nLuz");
+
+	mLightNode->attachObject(luz);
+	mLightNode->setDirection(Ogre::Vector3(0, -1, -1));  // vec3.normalise();
+	mLightNode->setPosition(0, 0, 2000);
+
 	// Bucle principal
 	SDL_Event event;
 	bool quit = false;
@@ -57,6 +104,8 @@ int main(int argc, char* argv[]) {
 					break;
 			}
 		}
+		if(!mRoot->renderOneFrame())
+			quit = true;
 	}
 	// Liberar recursos y cerrar SDL
 	SDL_DestroyWindow(sdlWindow);
