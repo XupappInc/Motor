@@ -18,7 +18,7 @@
     <ClInclude Include="..\..\Src\SeparityUtils\Vector.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\SeparityUtils\Math.h">
+    <ClInclude Include="..\..\Src\SeparityUtils\spyMath.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
