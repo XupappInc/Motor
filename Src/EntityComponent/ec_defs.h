@@ -7,8 +7,20 @@
 /// Lista de componentes, debe de tener al menos 1 elemento
 /// </summary>
 #define _CMPS_LIST_ \ 
-		_EXAMPLE1, \ 
-		_EXAMPLE2
+		_MESH_RENDERER, \ 
+		_TRANSFORM
+
+/// <summary>
+/// Lista tipos de componentes, debe de tener al menos 1 elemento
+/// </summary>
+#define _CMPS_TYPES_                                                            \
+	\ 
+		_RENDER, \ 
+		_PHYSICS, \
+		_INPUT, \
+		_UI, \
+		_SOUND, \
+		_SCRIPT
 
 /// <summary>
 /// Lista de grupos, debe de tener al menos 1 elemento

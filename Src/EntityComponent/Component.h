@@ -20,19 +20,14 @@ namespace ec {
 		/// <summary>
 		/// Destruye el componente y lo borra de su manager
 		/// </summary>
-		virtual ~Component() {
-			// mngr_()->deleteCmp(&this);
-		}
+		virtual ~Component();
 
 		/// <summary>
 		/// Este método se usa para asignar el contexto
 		/// </summary>
 		/// <param name="ent">Entidad a la que pertenece el componente</param>
 		/// <param name="mngr">Manager al que pertenece el componente</param>
-		inline void setContext(Entity* ent, Manager* mngr) {
-			ent_ = ent;
-			mngr_ = mngr;
-		}
+		inline void setContext(Entity* ent, ManagerTemplate* mngr);
 
 		/// <summary>
 		/// Metodo que inicializa el componente, debe de ser llamado justo
@@ -52,7 +47,7 @@ namespace ec {
 
 		protected:
 		Entity* ent_;
-		Manager* mngr_;
+		ManagerTemplate* mngr_;
 	};
 
 }  // namespace ec
