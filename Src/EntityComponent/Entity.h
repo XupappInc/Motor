@@ -83,30 +83,30 @@ namespace ec {
 			// crea, inicializa y añade el nuevo componente
 			Component* c = new T(std::forward<Ts>(args)...);
 
-			ManagerTemplate* componentManager = nullptr;
-			constexpr cmpType_type cType = T::type;
-			switch(cType) {
-				case _RENDER:
-					componentManager = RenderManager::getInstance();
-					break;
-				/*case _PHYSICS:
-					componentManager = PhysicsManager::getInstance();
-					break;
-				case _INPUT:
-					componentManager = InputManager::getInstance();
-					break;
-				case _UI:
-					componentManager = UIManager::getInstance();
-					break;
-				case _SOUND:
-					componentManager = SoundManager::getInstance();
-					break;
-				case _SCRIPT:
-					componentManager = LuaManager::getInstance();
-					break;*/
-				default:
-					break;
-			}
+			/*ManagerTemplate* componentManager = nullptr;
+			constexpr cmpType_type cType = T::type;*/
+			//switch(cType) {
+			//	case _RENDER:
+			//		componentManager = RenderManager::getInstance();
+			//		break;
+			//	/*case _PHYSICS:
+			//		componentManager = PhysicsManager::getInstance();
+			//		break;
+			//	case _INPUT:
+			//		componentManager = InputManager::getInstance();
+			//		break;
+			//	case _UI:
+			//		componentManager = UIManager::getInstance();
+			//		break;
+			//	case _SOUND:
+			//		componentManager = SoundManager::getInstance();
+			//		break;
+			//	case _SCRIPT:
+			//		componentManager = LuaManager::getInstance();
+			//		break;*/
+			//	default:
+			//		break;
+			//}
 
 			c->setContext(this, mngr_);
 			c->initComponent();
