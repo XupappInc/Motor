@@ -4,11 +4,13 @@
 #include "ManagerTemplate.h"
 class RenderManager : ManagerTemplate {
 	public:
-
 	inline RenderManager();
 	virtual ~RenderManager();
 
-	// render
+	/// <summary>
+	/// Método encargado de renderizar todos los componentes
+	/// dentro de la lista de componentes
+	/// </summary>
 	void render();
 };
 #endif __RENDER_MANAGER_H__
