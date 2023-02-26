@@ -41,7 +41,7 @@ namespace ec {
 		/// para asignar el contexto
 		/// </summary>
 		/// <param name="mngr">Manager al que pertence la entidad</param>
-		inline void setContext(Manager* mngr) { mngr_ = mngr; }
+		inline void setContext(ManagerTemplate* mngr) { mngr_ = mngr; }
 
 		/// <summary>
 		/// Asigna el valor de alive
@@ -82,6 +82,32 @@ namespace ec {
 
 			// crea, inicializa y añade el nuevo componente
 			Component* c = new T(std::forward<Ts>(args)...);
+
+			/*ManagerTemplate* componentManager = nullptr;
+			constexpr cmpType_type cType = T::type;*/
+			//switch(cType) {
+			//	case _RENDER:
+			//		componentManager = RenderManager::getInstance();
+			//		break;
+			//	/*case _PHYSICS:
+			//		componentManager = PhysicsManager::getInstance();
+			//		break;
+			//	case _INPUT:
+			//		componentManager = InputManager::getInstance();
+			//		break;
+			//	case _UI:
+			//		componentManager = UIManager::getInstance();
+			//		break;
+			//	case _SOUND:
+			//		componentManager = SoundManager::getInstance();
+			//		break;
+			//	case _SCRIPT:
+			//		componentManager = LuaManager::getInstance();
+			//		break;*/
+			//	default:
+			//		break;
+			//}
+
 			c->setContext(this, mngr_);
 			c->initComponent();
 			cmps_[cId] = c;
@@ -147,7 +173,7 @@ namespace ec {
 		inline ec::grpId_type groupId() { return gId_; }
 
 		private:
-		Manager* mngr_;
+		ManagerTemplate* mngr_;
 		std::array<Component*, maxComponentId> cmps_;
 		std::vector<Component*> currCmps_;
 		bool alive_;
