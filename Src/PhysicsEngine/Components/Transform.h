@@ -9,7 +9,10 @@ class Transform : public ec::Component {
 	void setPosition(float x, float y, float z);
 	void translate(spyutils::Vector3<float> other);
 	spyutils::Vector3<float> getPosition();
-	void setRotation();
+	void setRotation(float rotationX, float rotationY, float rotationZ);
+	void pitch(float degree);
+	void yaw(float degree);
+	void roll(float degree);
 
 	private:
 	btTransform* tr_;
