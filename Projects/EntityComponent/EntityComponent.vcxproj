@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\EntityComponent\Component.cpp" />
+    <ClCompile Include="..\..\Src\EntityComponent\EntityComponentMain.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\ManagerTemplate.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -16,8 +16,8 @@ namespace ec {
 	using grpId_type = uint8_t;
 	using hdlrId_type = uint8_t;
 
-#if __has_include("../ec_defs.h")
-#include "../ec_defs.h"
+#if __has_include("ec_defs.h")
+#include "ec_defs.h";
 #else
 #define _CMPS_LIST_ _CMP_1
 #define _CMPS_TYPES_ _CMPT_1

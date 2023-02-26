@@ -6,16 +6,16 @@
 /// <summary>
 /// Lista de componentes, debe de tener al menos 1 elemento
 /// </summary>
-#define _CMPS_LIST_ \ 
-		_MESH_RENDERER, \ 
-		_TRANSFORM
+#define _CMPS_LIST_ \
+		_MESH_RENDERER, \
+		_TRANSFORM 
+		 
 
 /// <summary>
 /// Lista tipos de componentes, debe de tener al menos 1 elemento
 /// </summary>
-#define _CMPS_TYPES_                                                            \
-	\ 
-		_RENDER, \ 
+#define _CMPS_TYPES_ \
+		_RENDER, \
 		_PHYSICS, \
 		_INPUT, \
 		_UI, \
