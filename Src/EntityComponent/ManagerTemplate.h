@@ -2,8 +2,7 @@
 #ifndef __MANAGER_TEMPLATE_H__
 #define __MANAGER_TEMPLATE_H__
 #include "Component.h"
-
-#include <list>
+#include <vector>
 using namespace ec;
 class ManagerTemplate {
 	public:
@@ -13,7 +12,17 @@ class ManagerTemplate {
 	 */
 	static ManagerTemplate* getInstance();
 
+	/// <summary>
+	/// Llama al update de todos los componentes del manager
+	/// </summary>
 	virtual void update();
+	/// <summary>
+	/// Llama al render de todos los componentes del manager
+	/// </summary>
+	virtual void render();
+	
+	void addComponent(Component* cmp);
+	void removeComponent(Component* cmp);
 
 	protected:
 	/*
@@ -24,5 +33,7 @@ class ManagerTemplate {
 	~ManagerTemplate();
 	// Instancia de si mismo para pasarle al resto de componentes
 	static ManagerTemplate* mngr;
+	
+	std::vector<Component*> cmps_;
 };
 #endif  //!__MANAGER_TEMPLATE_H__
