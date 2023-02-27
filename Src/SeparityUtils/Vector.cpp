@@ -1,5 +1,5 @@
 #include "Vector.h"
-
+#include <cmath>
 spyutils::Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 
 float& spyutils::Vector3::operator[](int index) {
@@ -38,10 +38,19 @@ spyutils::Vector3 spyutils::Vector3::operator-(Vector3 const& other) {
 	    ;
 }
 
-bool spyutils::Vector3::operator==(Vector3 const& other) {
+void spyutils::Vector3::operator-=(Vector3 const& other) {
+	    this->x -= other.x;
+	    this->y -= other.y;
+	    this->z -= other.z;
+};
+
+bool spyutils::Vector3::operator ==(spyutils::Vector3 const& other) {
 	    return ((this->x == other.x) && (this->y == other.y) &&
 	            (this->z == other.z));
+	
 }
+
+
 
 bool spyutils::Vector3::operator!=(Vector3 const& other) {
 	    return ((this->x != other.x) || (this->y != other.y) ||

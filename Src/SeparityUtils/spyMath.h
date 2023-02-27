@@ -7,9 +7,9 @@ namespace spyutils {
 		public:
 		static const double PI;
 
-		static float toRadians(float degrees) { return ((degrees * PI) / 180); }
+		static float toRadians(float degrees);
 	};
-	const double PI = 3.14159265358979323846;
+	
 
 
 }  // namespace spyutils

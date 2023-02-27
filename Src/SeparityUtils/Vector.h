@@ -45,11 +45,7 @@ namespace spyutils {
 		/// Resta de otro vector al propio.
 		/// </summary>
 		/// <param name="other">Vector que se restará</param>
-		void operator-=(Vector3 const& other) {
-			this->x -= other.x;
-			this->y -= other.y;
-			this->z -= other.z;
-		}
+		void operator-=(Vector3 const& other);
 		/// <summary>
 		/// Igualdad de dos vectores
 		/// </summary>
