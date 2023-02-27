@@ -13,7 +13,7 @@ namespace ec {
 		/// instancia del manager
 		/// </summary>
 		/// <returns></returns>
-		static ManagerTemplate* getInstance();
+		ManagerTemplate* getInstance();
 
 		/// <summary>
 		/// Llama al update de todos los componentes del manager
@@ -48,7 +48,7 @@ namespace ec {
 		/// </summary>
 		~ManagerTemplate();
 		// Instancia de si mismo para pasarle al resto de componentes
-		static ManagerTemplate* mngr;
+		ManagerTemplate* mngr;
 
 		std::vector<Component*> cmps_;
 	};

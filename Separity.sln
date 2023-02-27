@@ -12,6 +12,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SoundEngine", "Projects\SoundEngine\SoundEngine.vcxproj", "{DF088ADE-5655-4282-BCB8-F9BF9BAB9ACD}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderEngine", "Projects\RenderEngine\RenderEngine.vcxproj", "{8345D80D-3B1B-47FA-B148-8E85F601FA3C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{329EBB57-BBE0-45CE-861B-A6D9A3D28279} = {329EBB57-BBE0-45CE-861B-A6D9A3D28279}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsEngine", "Projects\PhysicsEngine\PhysicsEngine.vcxproj", "{80D74851-5B1E-4E94-AFC3-1A47DC02B746}"
 EndProject
