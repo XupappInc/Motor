@@ -22,6 +22,10 @@
     <ClInclude Include="..\..\Src\SeparityUtils\spyMath.h" />
     <ClInclude Include="..\..\Src\SeparityUtils\Vector.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Src\SeparityUtils\spyMath.cpp" />
+    <ClCompile Include="..\..\Src\SeparityUtils\Vector.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

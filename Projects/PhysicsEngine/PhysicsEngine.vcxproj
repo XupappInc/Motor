@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\PhysicsEngine\Components\RigidBody.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\Components\Transform.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsEngine.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsManager.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\PhysicsEngine\Components\RigidBody.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\Components\Transform.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsEngine.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsManager.h" />

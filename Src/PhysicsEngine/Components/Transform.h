@@ -2,8 +2,8 @@
 #include "Component.h"
 #include "Vector.h"
 
-#include <btBulletDynamicsCommon.h>
 using namespace ec;
+class btTransform;
 class Transform : public ec::Component {
 	public:
 	__CMPTYPE_DECL__(ec::_PHYSICS)

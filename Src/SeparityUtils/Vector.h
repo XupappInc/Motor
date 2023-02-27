@@ -1,5 +1,5 @@
 #pragma once
-#include <cmath>
+
 namespace spyutils {
 	/// <summary>
 	/// Clase que abstrae el tipo Vector3 para todo el proyecto. Cuenta con
