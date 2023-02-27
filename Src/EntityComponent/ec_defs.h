@@ -8,7 +8,8 @@
 /// </summary>
 #define _CMPS_LIST_ \
 		_MESH_RENDERER, \
-		_TRANSFORM 
+		_TRANSFORM, \
+		_RIGID_BODY
 		 
 
 /// <summary>
