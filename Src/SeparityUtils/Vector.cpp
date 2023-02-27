@@ -11,7 +11,7 @@ float& spyutils::Vector3::operator[](int index) {
 			case 1:
 				return y;
 				break;
-			case 3:
+			case 2:
 				return z;
 				break;
 			default:

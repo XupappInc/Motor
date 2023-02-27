@@ -28,6 +28,14 @@
     <ClInclude Include="..\..\Src\RenderEngine\RenderEngine.h" />
     <ClInclude Include="..\..\Src\RenderEngine\RenderManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityComponent\EntityComponent.vcxproj">
+      <Project>{329ebb57-bbe0-45ce-861b-a6d9a3d28279}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PhysicsEngine\PhysicsEngine.vcxproj">
+      <Project>{80d74851-5b1e-4e94-afc3-1a47dc02b746}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -105,7 +113,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-debug;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\PhysicsEngine\Components;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-debug;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-release;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\PhysicsEngine\Components;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-release;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,7 +147,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-debug;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\PhysicsEngine\Components;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-debug;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,7 +164,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-release;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\PhysicsEngine\Components;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-release;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

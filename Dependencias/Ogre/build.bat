@@ -22,3 +22,5 @@ XCOPY /y /s .\build\bin\debug\zlib.dll %EXES%
 XCOPY /y /s .\build\bin\release\Codec_STBI.dll %EXES%
 XCOPY /y /s .\build\bin\release\RenderSystem_GL3Plus.dll %EXES%
 XCOPY /y /s .\build\bin\release\OgreMain.dll %EXES%
+
+XCOPY /y /s .\build\bin\release\SDL2.dll %EXES%
