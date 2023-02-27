@@ -8,22 +8,22 @@ Transform::Transform() : positition_(0, 0, 0) {
 	tr_ = new btTransform(quat);
 }
 
-void Transform::setPosition(spyutils::Vector3<float> other) {
+void Transform::setPosition(spyutils::Vector3 other) {
 	btVector3 vec(other.x, other.y, other.z);
 	tr_->setOrigin(vec);
 	positition_ = other;
 }
 
 void Transform::setPosition(float x, float y, float z) {
-	setPosition(spyutils::Vector3<float>(x, y, z));
+	setPosition(spyutils::Vector3(x, y, z));
 }
 
-void Transform::translate(spyutils::Vector3<float> other) {
+void Transform::translate(spyutils::Vector3 other) {
 	positition_ += other;
 }
 
-spyutils::Vector3<float> Transform::getPosition() {
-	return spyutils::Vector3<float>();
+spyutils::Vector3 Transform::getPosition() {
+	return spyutils::Vector3();
 }
 
 void Transform::setRotation(float rotationX, float rotationY, float rotationZ) {
