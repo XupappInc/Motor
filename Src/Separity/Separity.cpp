@@ -2,17 +2,14 @@
 // programa comienza y termina ahí.
 //
 
-#include "MeshRenderer.h"
 #include "RenderEngine.h"
 
 #include <iostream>
-
+using namespace RenderEngine;
 int main() {
-	std::cout << "Hello World!\n";
 
-	RenderEngine::foo();  // esto es un ejemplo de uso, borrar. Pertenece al
-	                      // archivo RenderEngine.h
-
+	SeparityRender *s = new SeparityRender();
+	s->renderOgre();
 	/*RenderEngine::MeshRenderer* mr =
 	    new RenderEngine::MeshRenderer(nullptr, "");*/
 

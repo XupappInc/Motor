@@ -1,6 +1,7 @@
 // RenderSystem.cpp : Este archivo contiene la función "main". La ejecución del
 // programa comienza y termina ahí.
 //
+#include "RenderEngine.h"
 
 #include <OgreCamera.h>
 #include <OgreRenderWindow.h>
@@ -11,7 +12,7 @@
 #include <SDL_syswm.h>
 #include <wtypes.h>
 
-int main(int argc, char* argv[]) {
+int RenderEngine::SeparityRender::renderOgre() {
 	// Crear raiz de Ogre
 	Ogre::Root* mRoot;
 	mRoot = new Ogre::Root();

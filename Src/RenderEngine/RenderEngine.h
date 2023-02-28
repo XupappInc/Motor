@@ -1,6 +1,9 @@
 #pragma once
 
-
 namespace RenderEngine {
-	int foo() { return 0; }
+	class SeparityRender {
+		public:
+		int renderOgre();
+	};
+
 }  // namespace RenderEngine
