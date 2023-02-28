@@ -1,7 +1,7 @@
 #include "MeshRenderer.h"
 
 #include "Entity.h"
-#include "Transform.h"
+#include "components/Transform.h"
 
 #include <cassert>
 
@@ -28,11 +28,12 @@ ec:
 	meshRenderer_->setPosition(tr->getPosition()[0], tr->getPosition()[1],
 	                           tr->getPosition()[2]);
 
-	meshRenderer_->setOrientation(Ogre::Quaternion(
-	    tr->getPosition()[0], tr->getPosition()[1], tr->getPosition()[2]));
+	meshRenderer_->lookAt(
+	    {tr->getRotation()[0], tr->getRotation()[1], tr->getRotation()[2]},
+	    Ogre::Node::TS_WORLD);
 
-	meshRenderer_->setScale(tr->getPosition()[0], tr->getPosition()[1],
-	                        tr->getPosition()[2]);
+	meshRenderer_->setScale(tr->getScale()[0], tr->getScale()[1],
+	                        tr->getScale()[2]);
 }
 
 void RenderEngine::MeshRenderer::setActive(bool set) {
