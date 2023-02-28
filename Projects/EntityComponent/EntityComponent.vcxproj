@@ -23,12 +23,12 @@
     <ClInclude Include="..\..\Src\EntityComponent\ec.h" />
     <ClInclude Include="..\..\Src\EntityComponent\ec_defs.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Entity.h" />
-    <ClInclude Include="..\..\Src\EntityComponent\ManagerTemplate.h" />
+    <ClInclude Include="..\..\Src\EntityComponent\Manager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\EntityComponent\Component.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\EntityComponentMain.cpp" />
-    <ClCompile Include="..\..\Src\EntityComponent\ManagerTemplate.cpp" />
+    <ClCompile Include="..\..\Src\EntityComponent\Manager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
