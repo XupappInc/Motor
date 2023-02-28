@@ -4,7 +4,7 @@
 
 namespace ec {
 
-	class ManagerTemplate;
+	class Manager;
 	class Entity;
 	class Component;
 

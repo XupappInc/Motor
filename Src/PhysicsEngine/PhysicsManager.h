@@ -1,9 +1,9 @@
 #pragma once
 #ifndef __PHYSICS_MANAGER_H__
 #define __PHYSICS_MANAGER_H__
-#include "ManagerTemplate.h"
+#include "Manager.h"
 class btDiscreteDynamicsWorld;
-class PhysicsManager : ManagerTemplate {
+class PhysicsManager : Manager {
 	public:
 	
 	void initWorld();

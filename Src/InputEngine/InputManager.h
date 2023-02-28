@@ -2,7 +2,7 @@
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
 
-//#include "EntityComponent/ManagerTemplate"
+//#include "EntityComponent/Manager"
 
 #include <SDL.h>
 #include <array>

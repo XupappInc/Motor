@@ -41,7 +41,7 @@ namespace ec {
 		/// para asignar el contexto
 		/// </summary>
 		/// <param name="mngr">Manager al que pertence la entidad</param>
-		inline void setContext(ManagerTemplate* mngr) { mngr_ = mngr; }
+		inline void setContext(Manager* mngr) { mngr_ = mngr; }
 
 		/// <summary>
 		/// Asigna el valor de alive
@@ -83,7 +83,7 @@ namespace ec {
 			// crea, inicializa y añade el nuevo componente
 			Component* c = new T(std::forward<Ts>(args)...);
 
-			/*ManagerTemplate* componentManager = nullptr;
+			/*Manager* componentManager = nullptr;
 			constexpr cmpType_type cType = T::type;*/
 			//switch(cType) {
 			//	case _RENDER:
@@ -173,7 +173,7 @@ namespace ec {
 		inline ec::grpId_type groupId() { return gId_; }
 
 		private:
-		ManagerTemplate* mngr_;
+		Manager* mngr_;
 		std::array<Component*, maxComponentId> cmps_;
 		std::vector<Component*> currCmps_;
 		bool alive_;

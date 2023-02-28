@@ -27,7 +27,7 @@ namespace ec {
 		/// </summary>
 		/// <param name="ent">Entidad a la que pertenece el componente</param>
 		/// <param name="mngr">Manager al que pertenece el componente</param>
-		inline void setContext(Entity* ent, ManagerTemplate* mngr);
+		inline void setContext(Entity* ent, Manager* mngr);
 
 		/// <summary>
 		/// Metodo que inicializa el componente, debe de ser llamado justo
@@ -47,7 +47,7 @@ namespace ec {
 
 		protected:
 		Entity* ent_;
-		ManagerTemplate* mngr_;
+		Manager* mngr_;
 	};
 
 }  // namespace ec
