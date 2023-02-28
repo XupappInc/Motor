@@ -1,4 +1,6 @@
 #pragma once
+#ifndef __RIGIDBODY_H__
+#define __RIGIDBODY_H__
 #include "Component.h"
 #include "Vector.h"
 
@@ -29,3 +31,4 @@ class RigidBody : public ec::Component {
 	float mass_;
 	typeRb tipo_;
 };
+#endif __RIGIDBODY_H__
