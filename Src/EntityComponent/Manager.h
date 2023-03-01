@@ -9,8 +9,8 @@
 class ec::Component;
 
 namespace ec {
-	template<typename T>
-	class Manager : public Singleton<T> {
+
+	class Manager : public Singleton<ec::Manager> {
 		friend Singleton<ec::Manager>;
 
 		public:
