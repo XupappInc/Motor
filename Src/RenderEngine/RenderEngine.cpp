@@ -1,7 +1,5 @@
-// RenderSystem.cpp : Este archivo contiene la función "main". La ejecución del
-// programa comienza y termina ahí.
-//
 #include "RenderEngine.h"
+#include <Ogre.h>
 #include <OgreCamera.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
@@ -14,10 +12,9 @@
 #include <OgreConfigFile.h>
 #include <OgreFileSystemLayer.h>
 
-int RenderEngine::SeparityRender::renderOgre() {
+int Separity::SeparityRender::renderOgre() {
 
 	/// create root
-	Ogre::Root* mRoot;
 	mRoot = new Ogre::Root("plugins.cfg", "ogre.cfg", "Ogre.log");
 
 	///createWindow
@@ -131,26 +128,24 @@ int RenderEngine::SeparityRender::renderOgre() {
 	Ogre::Entity* cube = mSceneMgr->createEntity("Sinbad.mesh");
 	nCube->attachObject(cube);
 
-	// Bucle principal
-	SDL_Event event;
-	bool quit = false;
+	//// Bucle principal
+	//SDL_Event event;
+	//bool quit = false;
+	//
+	//while(!quit) {
+	//	while(SDL_PollEvent(&event)) {
+	//		switch(event.type) {
+	//			case SDL_QUIT:
+	//				quit = true;
+	//				break;
+	//		}
+	//	}
+	//	mRoot->renderOneFrame();
+	//}
+	//// Liberar recursos y cerrar SDL
+	//SDL_DestroyWindow(sdlWindow);
+	//SDL_Quit();
 	
-	while(!quit) {
-		while(SDL_PollEvent(&event)) {
-			switch(event.type) {
-				case SDL_QUIT:
-					quit = true;
-					break;
-			}
-		}
-		mRoot->renderOneFrame();
-	}
-	// Liberar recursos y cerrar SDL
-	SDL_DestroyWindow(sdlWindow);
-	SDL_Quit();
-	
-
-
 	
 	return 0;
 }

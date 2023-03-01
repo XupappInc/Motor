@@ -2,12 +2,16 @@
 #ifndef __RENDER_ENGINE_H
 #define __RENDER_ENGINE_H
 
-namespace RenderEngine {
+namespace Ogre {
+	class Root;
+}  // namespace Ogre
+
+namespace Separity {
 	class SeparityRender {
 		public:
 		int renderOgre();
+		Ogre::Root* mRoot;
 	};
-
-}  // namespace RenderEngine
+}  // namespace Separity
 
 #endif  // !__RENDER_ENGINE_H

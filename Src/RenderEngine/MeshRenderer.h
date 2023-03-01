@@ -3,23 +3,51 @@
 #define __MESH_RENDERER_H__
 
 #include "Component.h"
-#include "Ogre.h"
-using namespace ec;
 
-namespace RenderEngine {
+#include <string>
+
+namespace Ogre {
+	class SceneManager;
+	class SceneNode;
+}  // namespace Ogre
+
+namespace Separity {
+	/// <summary>
+	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
+	/// </summary>
 	class MeshRenderer : public ec::Component {
 		public:
 		__CMPTYPE_DECL__(ec::_RENDER)
 		__CMPID_DECL__(ec::_MESH_RENDERER)
+
+		/// <summary>
+		/// <para>Construye una entidad con la malla "meshName" y lo
+		/// añade a un nodo hijo del nodo principal para su renderización</para>
+		/// </summary>
+		/// <param name="sceneManager">Manager de la escena</param>
+		/// <param name="meshName">Nombre de la malla</param>
 		MeshRenderer(Ogre::SceneManager* sceneManager, std::string meshName);
+
+		/// <summary>
+		/// <para>Destruye el nodo que contiene la entidad creada a partir de la malla</para>
+		/// </summary>
 		~MeshRenderer();
-		void render() override;
-		void setActive(bool set);
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		void render() override;
+		
+		/// <summary>
+		/// <para>Activa/desactiva el nodo que contiene la malla para parar su renderización</para>
+		/// </summary>
+		/// <param name="set">Indica si se va activar/desactivar la renderización del nodo</param>
+		void setActive(bool set);
+
 		private:
 		Ogre::SceneNode* meshRenderer_;
 		Ogre::SceneManager* sceneManager_;
 	};
-}  // namespace RenderEngine
+}  // namespace Separity
 
 #endif /*__MESH_RENDERER_H__*/

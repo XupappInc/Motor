@@ -4,19 +4,46 @@
 
 #include "RenderEngine.h"
 #include "InputManager.h"
-
-
+#include "MeshRenderer.h"
+#include <Ogre.h>
 
 
 #include <iostream>
-using namespace RenderEngine;
+using namespace std;
+using namespace Separity;
 int main() {
-
 
 	SeparityRender *s = new SeparityRender();
 	s->renderOgre();
-	/*RenderEngine::MeshRenderer* mr =
-	    new RenderEngine::MeshRenderer(nullptr, "");*/
+	/*MeshRenderer* mr =
+	    new MeshRenderer(nullptr, "");*/
+
+
+	InputManager* inputManger = new InputManager();
+
+	// Bucle principal
+	bool quit = false;
+	while(!quit) {
+		inputManger->update();
+		if(inputManger->isKeyDown('q')) {
+			quit = true;
+		} else {
+			if(inputManger->isKeyDown('w')) {
+				cout << "Tecla w Pulsada\n";
+			}
+			if(inputManger->isMouseButtonDown(InputManager::LEFT)) {
+				cout << "Click\n";
+			}
+			if(inputManger->isMouseButtonHeld(InputManager::LEFT)) {
+				cout << "Hold\n";
+			}
+			if(inputManger->isMouseButtonUp(InputManager::LEFT)) {
+				cout << "Release\n";
+			}
+		}
+		s->mRoot->renderOneFrame();
+
+	}
 
 	return 0;
 }

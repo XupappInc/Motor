@@ -3,23 +3,24 @@
 #include "Entity.h"
 #include "Transform.h"
 
+#include <Ogre.h>
 #include <cassert>
 
-RenderEngine::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
-                                         std::string meshName)
+Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
+                                     std::string meshName)
     : sceneManager_(sceneManager) {
 	meshRenderer_ = sceneManager_->getRootSceneNode()->createChildSceneNode();
 	Ogre::Entity* entity = sceneManager_->createEntity(meshName);
 	meshRenderer_->attachObject(entity);
 }
 
-RenderEngine::MeshRenderer::~MeshRenderer() {
+Separity::MeshRenderer::~MeshRenderer() {
 	sceneManager_->destroySceneNode(meshRenderer_);
 	meshRenderer_ = nullptr;
 	sceneManager_ = nullptr;
 }
 
-void RenderEngine::MeshRenderer::render() {
+void Separity::MeshRenderer::render() {
 ec:
 	Transform* tr = ent_->getComponent<Transform>();
 
@@ -36,7 +37,7 @@ ec:
 	                        tr->getScale()[2]);
 }
 
-void RenderEngine::MeshRenderer::setActive(bool set) {
+void Separity::MeshRenderer::setActive(bool set) {
 	// ec:Component::setActive(set);
 	meshRenderer_->setVisible(set);
 }
