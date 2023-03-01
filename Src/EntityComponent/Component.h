@@ -12,10 +12,7 @@ namespace ec {
 	/// </summary>
 	class Component {
 		public:
-		Component()
-		    : ent_(),  //
-		      mngr_()  //
-		{}
+		Component();
 
 		/// <summary>
 		/// Destruye el componente y lo borra de su manager
@@ -33,17 +30,17 @@ namespace ec {
 		/// Metodo que inicializa el componente, debe de ser llamado justo
 		/// depues de setContext
 		/// </summary>
-		virtual void initComponent() {}
+		virtual void initComponent();
 
 		/// <summary>
 		/// Metodo update del componente, por defecto no hace nada
 		/// </summary>
-		virtual void update() {}
+		virtual void update();
 
 		/// <summary>
 		/// Metodo render del componente, por defecto no hace nada
 		/// </summary>
-		virtual void render() {}
+		virtual void render();
 
 		protected:
 		Entity* ent_;
