@@ -13,15 +13,14 @@
 #include <OgreEntity.h>
 #include <OgreConfigFile.h>
 #include <OgreFileSystemLayer.h>
-#include <OgreRTShaderSystem.h>
 
 int RenderEngine::SeparityRender::renderOgre() {
 
-	// Crear raiz de Ogre
+	/// create root
 	Ogre::Root* mRoot;
-	mRoot = new Ogre::Root();
-	Ogre::RTShader::ShaderGenerator::initialize();
+	mRoot = new Ogre::Root("plugins.cfg", "ogre.cfg", "Ogre.log");
 
+	///createWindow
 	// Inicializar SDL
 	if(!SDL_WasInit(SDL_INIT_VIDEO))
 		SDL_InitSubSystem(SDL_INIT_VIDEO);
@@ -37,39 +36,6 @@ int RenderEngine::SeparityRender::renderOgre() {
 	// diálogo para configuración
 	if(!(mRoot->restoreConfig() || mRoot->showConfigDialog(nullptr)))
 		return false;
-	//Cargar recursos
-	Ogre::ConfigFile cf;
-	cf.load("resources.cfg");
-
-	Ogre::String sec, type, arch;
-	Ogre::ConfigFile::SettingsBySection_::const_iterator seci;
-
-	// Cargar los recursos
-	// Configuración de rendereizado
-	Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsl");
-
-	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-	for(seci = cf.getSettingsBySection().begin();
-	    seci != cf.getSettingsBySection().end(); ++seci) {
-		sec = seci->first;
-		const Ogre::ConfigFile::SettingsMultiMap& settings = seci->second;
-		Ogre::ConfigFile::SettingsMultiMap::const_iterator i;
-
-		// go through all resource paths
-		for(i = settings.begin(); i != settings.end(); i++) {
-			type = i->first;
-			arch = Ogre::FileSystemLayer::resolveBundlePath(i->second);
-			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-			    arch, type, sec);
-		}
-	}
-
-	// Creamos un render system cogiendo el primer renderer de los que hay
-	// disponibles
-	Ogre::RenderSystem* sys = mRoot->getAvailableRenderers().front();
-	mRoot->setRenderSystem(sys);
-	mRoot->initialise(false);
-
 	// Queremos asignar a la ventana de renderizado la ventana que hemos creado
 	// con SDL
 	SDL_SysWMinfo wmInfo;
@@ -86,10 +52,45 @@ int RenderEngine::SeparityRender::renderOgre() {
 	mWindow = mRoot->createRenderWindow("Ogre Render", screenW, screenH, false,
 	                                    &misc);
 
-	// Creamos un scene manager para poder añadir una cámara
+
+
+	///locateResources
+	//Cargar recursos
+	Ogre::ConfigFile cf;
+	cf.load("resources.cfg");
+
+	Ogre::String sec, type, arch;
+	Ogre::ConfigFile::SettingsBySection_::const_iterator seci;
+
+	// Cargar los recursos
+
+	for(seci = cf.getSettingsBySection().begin();
+	    seci != cf.getSettingsBySection().end(); ++seci) {
+		sec = seci->first;
+		const Ogre::ConfigFile::SettingsMultiMap& settings = seci->second;
+		Ogre::ConfigFile::SettingsMultiMap::const_iterator i;
+
+		// go through all resource paths
+		for(i = settings.begin(); i != settings.end(); i++) {
+			type = i->first;
+			arch = Ogre::FileSystemLayer::resolveBundlePath(i->second);
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+			    arch, type, sec);
+		}
+	}
+
+	/// initialiseRTShaderSystem
+	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	// Creamos un render system cogiendo el primer renderer de los que hay
+	// disponibles
+	Ogre::RenderSystem* sys = mRoot->getAvailableRenderers().front();
+	mRoot->setRenderSystem(sys);
+	
+
+	
+		// Creamos un scene manager para poder añadir una cámara
 	Ogre::SceneManager* mSceneMgr;
 	mSceneMgr = mRoot->createSceneManager();
-
 	// Añadimos la cámara
 	Ogre::Camera* mCamera = mSceneMgr->createCamera("Cam");
 
@@ -105,7 +106,7 @@ int RenderEngine::SeparityRender::renderOgre() {
 	mCamNode->attachObject(mCamera);
 
 	// Posicionamos el nodo
-	mCamNode->setPosition(0, 0, 1000);
+	mCamNode->setPosition(0, 0, 15);
 	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
 	// Creamos viewport que muestre aquello que ve la cámara
@@ -127,7 +128,7 @@ int RenderEngine::SeparityRender::renderOgre() {
 
 	//Creamos entidad con mesh de sinbad
 	Ogre::SceneNode* nCube = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-	Ogre::Entity* cube = mSceneMgr->createEntity("cube.mesh");
+	Ogre::Entity* cube = mSceneMgr->createEntity("Sinbad.mesh");
 	nCube->attachObject(cube);
 
 	// Bucle principal
@@ -142,12 +143,15 @@ int RenderEngine::SeparityRender::renderOgre() {
 					break;
 			}
 		}
-		//mRoot->renderOneFrame();
+		mRoot->renderOneFrame();
 	}
 	// Liberar recursos y cerrar SDL
 	SDL_DestroyWindow(sdlWindow);
 	SDL_Quit();
+	
 
+
+	
 	return 0;
 }
 

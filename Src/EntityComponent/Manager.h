@@ -19,9 +19,9 @@ namespace ec {
 		/// </summary>
 		virtual void update();
 		/// <summary>
-		/// Añade un componente al manager
+		/// Aï¿½ade un componente al manager
 		/// </summary>
-		/// <param name="cmp">Componente que se quiere añadir</param>
+		/// <param name="cmp">Componente que se quiere aï¿½adir</param>
 		void addComponent(ec::Component* cmp);
 		/// <summary>
 		/// Quita un componente del manager
@@ -29,20 +29,18 @@ namespace ec {
 		/// <param name="cmp">Componente que se quiere quitar del
 		/// manager</param>
 		void removeComponent(ec::Component* cmp);
-
+		/// <summary>
+		/// Destructor de la clase, protected
+		/// para que puedan acceder los otros managers que hereden de esta clase
+		/// </summary>
 		~Manager();
-
 		protected:
 		/// <summary>
 		/// Constructor de la clase, protected
 		/// para que puedan acceder los otros managers que hereden de esta clase
 		/// </summary>
 		Manager();
-		/// <summary>
-		/// Destructor de la clase, protected
-		/// para que puedan acceder los otros managers que hereden de esta clase
-		/// </summary>
-		
+	
 
 		// Componentes del manager
 		std::vector<ec::Component*> cmps_;

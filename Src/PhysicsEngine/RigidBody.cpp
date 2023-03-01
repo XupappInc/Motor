@@ -10,8 +10,11 @@
 RigidBody::RigidBody() {}
 
 RigidBody::RigidBody(typeRb tipo, float mass) : mass_(mass), tipo_(tipo) {
-	tr_ = ent_->getComponent<Transform>();
 
+	tr_ = ent_->getComponent<Transform>();
+	assert(
+	    __nullptr &&
+	    "Tr es nullptr,la entidad necesita un Transform para usar RigidBody");
 	btTransform nuevoTr;
 	nuevoTr.setIdentity();
 	nuevoTr.setOrigin(tr_->getBulletTransform()->getOrigin());
@@ -60,4 +63,15 @@ void RigidBody::applyTorque(spyutils::Vector3 torq) {
 void RigidBody::setGravity(spyutils::Vector3 g) {
 	btVector3 fuerza(g.x, g.y, g.z);
 	rb_->setGravity(fuerza);
+}
+
+void RigidBody::update() {
+	if(tipo_ == STATIC)
+		return;
+	btScalar pitchx, yawy, rollz;
+	btVector3 pos;
+	pos= rb_->getWorldTransform().getOrigin();
+	rb_->getWorldTransform().getRotation().getEulerZYX(rollz, yawy, pitchx);
+	tr_->setPosition(pos.x(), pos.y(), pos.z());
+	tr_->setRotation(pitchx, yawy, rollz);
 }
