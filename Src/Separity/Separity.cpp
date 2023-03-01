@@ -3,6 +3,7 @@
 //
 
 #include "RenderEngine.h"
+#include "InputManager.h"
 
 
 #include <iostream>

@@ -4,8 +4,8 @@
 
 //#include "EntityComponent/Manager"
 
+#define SDL_MAIN_HANDLED
 #include <array>
-#include <SDL_main.h>
 #include <SDL.h>
 
 class InputManager {
