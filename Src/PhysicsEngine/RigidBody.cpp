@@ -29,9 +29,8 @@ RigidBody::RigidBody(typeRb tipo, float mass) : mass_(mass), tipo_(tipo) {
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(
 	    mass_, motionState, collisionShape, localInertia);
 	rb_ = new btRigidBody(rbInfo);
-
-	// auto dynamicsWorld = PhysicsManager::getWorld;
-	// dynamicsWorld->addRigidBody(rigidBody);
+	PhysicsManager* s = PhysicsManager::getInstance();
+	s->getWorld()->addRigidBody(rb_);
 }
 
 RigidBody::~RigidBody() { delete rb_; }

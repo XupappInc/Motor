@@ -3,13 +3,14 @@
 #define __PHYSICS_MANAGER_H__
 #include "Manager.h"
 class btDiscreteDynamicsWorld;
-class PhysicsManager : ec::Manager {
+class PhysicsManager : public ec::Manager {
+	friend Singleton<PhysicsManager>;
+
 	public:
-	
 	void initWorld();
 	virtual void update() override;
 	btDiscreteDynamicsWorld* getWorld();
-
+	static PhysicsManager* getInstance();
 
 	private:
 	inline PhysicsManager();
