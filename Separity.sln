@@ -24,7 +24,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaEngine", "Projects\LuaEn
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputEngine", "Projects\InputEngine\InputEngine.vcxproj", "{1814229A-90CD-4E29-AD55-9F4B3469FEBA}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestProyect", "Projects\TestProyect\TestProyect\TestProyect.vcxproj", "{940359CA-ACC6-4289-92B4-C51E5AC0460F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestProyect", "Projects\TestProyect\TestProyect.vcxproj", "{940359CA-ACC6-4289-92B4-C51E5AC0460F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
