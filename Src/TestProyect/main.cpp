@@ -1,12 +1,7 @@
-
-
 #include <iostream>
-
-
-#include "InputManager.h"
-
 using namespace std;
 
+#include "InputManager.h"
 
 int main() {
 	// Inicializar SDL

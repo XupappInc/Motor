@@ -6,9 +6,12 @@
 #include "InputManager.h"
 
 
+
+
 #include <iostream>
 using namespace RenderEngine;
 int main() {
+
 
 	SeparityRender *s = new SeparityRender();
 	s->renderOgre();

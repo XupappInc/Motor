@@ -5,8 +5,9 @@
 //#include "EntityComponent/Manager"
 
 #define SDL_MAIN_HANDLED
-#include <array>
 #include <SDL.h>
+
+#include <array>
 
 class InputManager {
 
@@ -14,32 +15,32 @@ public:
 	enum MOUSEBUTTON : uint8_t { LEFT = 0, MIDDLE = 1, RIGHT = 2 };
 
 	InputManager();
-	virtual ~InputManager();
+	~InputManager();
 
 	// update
-	inline void update();
+	void update();
 
 	// keyboard
-	inline bool keyDownEvent();
+	bool keyDownEvent();
 
-	inline bool keyUpEvent();
+	bool keyUpEvent();
 
-	inline bool isKeyDown(char key);
+	bool isKeyDown(char key);
 
-	inline bool isKeyUp(char key);
+	bool isKeyUp(char key);
 
 	// mouse
-	inline bool mouseMotionEvent();
+	bool mouseMotionEvent();
 
-	inline bool mouseButtonEvent();
+	bool mouseButtonEvent();
 
-	inline const std::pair<Sint32, Sint32>& getMousePos() { return mousePos_; }
+	const std::pair<Sint32, Sint32>& getMousePos() { return mousePos_; }
 
-	inline bool isMouseButtonDown(MOUSEBUTTON b);
+	bool isMouseButtonDown(MOUSEBUTTON b);
 
-	inline bool isMouseButtonHeld(MOUSEBUTTON b);
+	bool isMouseButtonHeld(MOUSEBUTTON b);
 
-	inline bool isMouseButtonUp(MOUSEBUTTON b);
+	bool isMouseButtonUp(MOUSEBUTTON b);
 
 	// TODO add support for Joystick, see Chapter 4 of
 	// the book 'SDL Game Development'
@@ -53,19 +54,19 @@ private:
 	};
 	
 	// clear the state
-	inline void clearState();
+	void clearState();
 
-	inline void onKeyDown();
+	void onKeyDown();
 
-	inline void onKeyUp();
+	void onKeyUp();
 
-	inline bool isKeyDown(SDL_Scancode key);
+	bool isKeyDown(SDL_Scancode key);
 
-	inline bool isKeyUp(SDL_Scancode key);
+	bool isKeyUp(SDL_Scancode key);
 
-	inline void onMouseMotion();
+	void onMouseMotion();
 
-	inline void onMouseButtonChange(MOUSESTATE mouseState);
+	void onMouseButtonChange(MOUSESTATE mouseState);
 
 	bool isKeyUpEvent_;
 	bool isKeyDownEvent_;

@@ -1,8 +1,8 @@
 #include "InputManager.h"
 
 #include <iostream>
-using namespace std;
 
+using namespace std;
 
 InputManager::InputManager() : event() {
 	kbState_ = SDL_GetKeyboardState(0);
@@ -11,7 +11,7 @@ InputManager::InputManager() : event() {
 
 InputManager::~InputManager() {}
 
-inline void InputManager::update() {
+void InputManager::update() {
 	clearState();
 	while(SDL_PollEvent(&event)) {
 		switch(event.type) {
@@ -36,43 +36,43 @@ inline void InputManager::update() {
 	}
 }
 
-inline bool InputManager::keyDownEvent() { 
+bool InputManager::keyDownEvent() { 
 	return isKeyDownEvent_; 
 }
 
-inline bool InputManager::keyUpEvent() { 
+bool InputManager::keyUpEvent() { 
 	return isKeyUpEvent_; 
 }
 
-inline bool InputManager::isKeyDown(char key) {
+bool InputManager::isKeyDown(char key) {
 	return isKeyDown(SDL_GetScancodeFromKey(key));
 }
 
-inline bool InputManager::isKeyUp(char key) {
+bool InputManager::isKeyUp(char key) {
 	return isKeyUp(SDL_GetScancodeFromKey(key));
 }
 
-inline bool InputManager::mouseMotionEvent() { 
+bool InputManager::mouseMotionEvent() { 
 	return isMouseMotionEvent_; 
 }
 
-inline bool InputManager::mouseButtonEvent() { 
+bool InputManager::mouseButtonEvent() { 
 	return isMouseButtonEvent_; 
 }
 
-inline bool InputManager::isMouseButtonDown(MOUSEBUTTON b) {
+bool InputManager::isMouseButtonDown(MOUSEBUTTON b) {
 	return mbState_[b] == DOWN;
 }
 
-inline bool InputManager::isMouseButtonHeld(MOUSEBUTTON b) {
+bool InputManager::isMouseButtonHeld(MOUSEBUTTON b) {
 	return mbState_[b] == DOWN || mbState_[b] == HELD;
 }
 
-inline bool InputManager::isMouseButtonUp(MOUSEBUTTON b) {
+bool InputManager::isMouseButtonUp(MOUSEBUTTON b) {
 	return mbState_[b] == RELEASED;
 }
 
-inline void InputManager::clearState() {
+void InputManager::clearState() {
 	isKeyDownEvent_ = false;
 	isKeyUpEvent_ = false;
 	isMouseButtonEvent_ = false;
@@ -85,29 +85,29 @@ inline void InputManager::clearState() {
 	}
 }
 
-inline void InputManager::onKeyDown() { 
+void InputManager::onKeyDown() { 
 	isKeyDownEvent_ = true; 
 }
 
-inline void InputManager::onKeyUp() { 
+void InputManager::onKeyUp() { 
 	isKeyUpEvent_ = true; 
 }
 
-inline bool InputManager::isKeyDown(SDL_Scancode key) {
+bool InputManager::isKeyDown(SDL_Scancode key) {
 	return keyDownEvent() && kbState_[key] == 1;
 }
 
-inline bool InputManager::isKeyUp(SDL_Scancode key) {
+bool InputManager::isKeyUp(SDL_Scancode key) {
 	return keyUpEvent() && kbState_[key] == 0;
 }
 
-inline void InputManager::onMouseMotion() {
+void InputManager::onMouseMotion() {
 	isMouseMotionEvent_ = true;
 	mousePos_.first = event.motion.x;
 	mousePos_.second = event.motion.y;
 }
 
-inline void InputManager::onMouseButtonChange(MOUSESTATE mouseState) {
+void InputManager::onMouseButtonChange(MOUSESTATE mouseState) {
 	isMouseButtonEvent_ = true;
 	switch(event.button.button) {
 		case SDL_BUTTON_LEFT:
