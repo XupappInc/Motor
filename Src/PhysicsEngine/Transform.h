@@ -4,7 +4,6 @@
 #include "Component.h"
 #include "Vector.h"
 
-
 class btTransform;
 class Transform : public ec::Component {
 	public:
@@ -12,6 +11,11 @@ class Transform : public ec::Component {
 	__CMPID_DECL__(ec::_TRANSFORM)
 	Transform();
 	~Transform();
+	/// <summary>
+	/// El transform de la clase bullet directamente
+	/// </summary>
+	/// <returns>el btTransform</returns>
+	btTransform* getBulletTransform();
 	/// <summary>
 	/// Setear la posición del componente tranform
 	/// </summary>

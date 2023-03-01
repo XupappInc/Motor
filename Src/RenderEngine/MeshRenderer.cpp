@@ -1,7 +1,7 @@
 #include "MeshRenderer.h"
 
 #include "Entity.h"
-#include "components/Transform.h"
+#include "Transform.h"
 
 #include <cassert>
 

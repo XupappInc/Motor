@@ -12,6 +12,8 @@ Transform::Transform()
 
 Transform::~Transform() { delete tr_; }
 
+btTransform* Transform::getBulletTransform() { return tr_; }
+
 void Transform::setPosition(spyutils::Vector3 other) {
 	btVector3 vec(other.x, other.y, other.z);
 	tr_->setOrigin(vec);
