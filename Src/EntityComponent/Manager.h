@@ -30,6 +30,8 @@ namespace ec {
 		/// manager</param>
 		void removeComponent(ec::Component* cmp);
 
+		~Manager();
+
 		protected:
 		/// <summary>
 		/// Constructor de la clase, protected
@@ -40,7 +42,7 @@ namespace ec {
 		/// Destructor de la clase, protected
 		/// para que puedan acceder los otros managers que hereden de esta clase
 		/// </summary>
-		~Manager();
+		
 
 		// Componentes del manager
 		std::vector<ec::Component*> cmps_;

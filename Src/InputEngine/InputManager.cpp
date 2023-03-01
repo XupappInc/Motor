@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+
 InputManager::InputManager() : event() {
 	kbState_ = SDL_GetKeyboardState(0);
 	clearState();
@@ -123,41 +124,4 @@ inline void InputManager::onMouseButtonChange(MOUSESTATE mouseState) {
 	}
 }
 
-int main(int argc, char* argv[]) {
-	// Inicializar SDL
-	SDL_Init(SDL_INIT_VIDEO);
 
-	// Crear una ventana
-	SDL_Window* window =
-	    SDL_CreateWindow("Ejemplo de Input con SDL", SDL_WINDOWPOS_UNDEFINED,
-	                     SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
-
-	InputManager* inputManger = new InputManager();
-
-	// Bucle principal
-	bool quit = false;
-	while(!quit) {
-		inputManger->update();
-		if(inputManger->isKeyDown('q')) {
-			quit = true;
-		} else {
-			if(inputManger->isKeyDown('w')) {
-				cout << "Tecla w Pulsada\n";
-			}
-			if(inputManger->isMouseButtonDown(InputManager::LEFT)) {
-				cout << "Click\n";
-			}
-			if(inputManger->isMouseButtonHeld(InputManager::LEFT)) {
-				cout << "Hold\n";
-			}
-			if(inputManger->isMouseButtonUp(InputManager::LEFT)) {
-				cout << "Release\n";
-			}
-		}
-	}
-
-	// Liberar recursos y cerrar SDL
-	SDL_DestroyWindow(window);
-	SDL_Quit();
-	return 0;
-}
