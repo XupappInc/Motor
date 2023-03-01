@@ -7,6 +7,7 @@ namespace spyutils {
 	class Vector3;
 }
 class Transform;
+class btRigidBody;
 enum typeRb {
 	DYNAMIC,
 	KINEMATIC,
