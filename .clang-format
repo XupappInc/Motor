@@ -1,4 +1,4 @@
-AccessModifierOffset: '0'
+﻿AccessModifierOffset: '0'
 AlignAfterOpenBracket: Align
 AlignConsecutiveMacros: 'false'
 AlignConsecutiveAssignments: 'false'
@@ -7,12 +7,10 @@ AlignOperands: 'true'
 AllowAllArgumentsOnNextLine: 'false'
 AllowAllConstructorInitializersOnNextLine: 'false'
 AllowAllParametersOfDeclarationOnNextLine: 'false'
-AllowShortBlocksOnASingleLine: 'true'
 AllowShortCaseLabelsOnASingleLine: 'false'
-AllowShortFunctionsOnASingleLine: All
-AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: 'true'
 AlwaysBreakBeforeMultilineStrings: 'false'
+AlwaysBreakTemplateDeclarations: 'Yes'
 BinPackArguments: 'true'
 BinPackParameters: 'true'
 BreakBeforeTernaryOperators: 'true'
