@@ -30,7 +30,7 @@ class RigidBody : public ec::Component {
 	void setAngularVelocity(spyutils::Vector3 vel);
 	void applyTorque(spyutils::Vector3 torq);
 	void setGravity(spyutils::Vector3 g);
-
+	void update() override;
 	private:
 	Transform* tr_;
 	float mass_;

@@ -14,7 +14,7 @@ class PhysicsManager : public ec::Manager {
 
 	private:
 	inline PhysicsManager();
-	virtual ~PhysicsManager();
+	virtual ~PhysicsManager()override;
 	btDiscreteDynamicsWorld* world_;
 };
 #endif __PHYSICS_MANAGER_H__
