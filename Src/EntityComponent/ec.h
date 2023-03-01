@@ -1,5 +1,6 @@
 #pragma once
-
+#ifndef __EC_H__
+#define __EC_H__
 #include <cstdint>
 
 namespace ec {
@@ -9,8 +10,8 @@ namespace ec {
 	class Component;
 
 	// Definimos tipo para los identificadores para poder cambiarlos facilmente.
-	// Por ejemplo, si tenemos menos de 256 componentes podemos usar uint8_t, si tenemos
-	// hasta 512 podemos usar uint16.
+	// Por ejemplo, si tenemos menos de 256 componentes podemos usar uint8_t, si
+	// tenemos hasta 512 podemos usar uint16.
 	using cmpId_type = uint8_t;
 	using cmpType_type = uint8_t;
 	using grpId_type = uint8_t;
@@ -74,7 +75,7 @@ namespace ec {
 /// <summary>
 /// Un macro para la declaracion del identificador de componente. Por ejemplo:
 /// __CMPID_DECL__(ec::_TRANSFORM) se expande a:
-/// 
+///
 /// constexpr static ec::cmpId_type id = ec::_TRANSFORM;
 /// </summary>
 #define __CMPID_DECL__(cId) constexpr static ec::cmpId_type id = cId;
@@ -88,3 +89,4 @@ namespace ec {
 #define __CMPTYPE_DECL__(cType) constexpr static ec::cmpType_type type = cType;
 
 }  // namespace ec
+#endif  // !__EC_H__

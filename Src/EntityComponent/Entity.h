@@ -1,4 +1,7 @@
 #pragma once
+#ifndef __ENTITY_H__
+#define __ENTITY_H__
+
 #include "Component.h"
 #include "ec.h"
 
@@ -108,3 +111,4 @@ namespace ec {
 		ec::grpId_type gId_;
 	};
 }  // namespace ec
+#endif  // !__ENTITY_H__

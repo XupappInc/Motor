@@ -1,4 +1,7 @@
 #pragma once
+#ifndef __SPYMATH_H__
+#define __SPYMATH_H__
+
 namespace spyutils {
 	/// <summary>
 	/// Clase que abstrae algunas operaciones matemáticas para todo el proyecto.
@@ -15,3 +18,4 @@ namespace spyutils {
 	};
 
 }  // namespace spyutils
+#endif  // !__SPYMATH_H__

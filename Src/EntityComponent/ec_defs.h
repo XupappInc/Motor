@@ -2,6 +2,8 @@
 // se usa #define, si lo quitas tendrias que poner todo en la misma linea
 
 #pragma once
+#ifndef __EC_DEFS_H__
+#define __EC_DEFS_H__
 
 /// <summary>
 /// Lista de componentes, debe de tener al menos 1 elemento
@@ -36,3 +38,5 @@
 #define _HDLRS_LIST_ \
 		_HDLR_EXAMPLE1, \
 		_HDLR_EXAMPLE2
+
+#endif  // !__EC_DEFS_H__

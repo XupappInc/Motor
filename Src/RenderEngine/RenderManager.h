@@ -13,4 +13,4 @@ class RenderManager/* : Manager*/ {
 	/// </summary>
 	void render();
 };
-#endif __RENDER_MANAGER_H__
+#endif// !__RENDER_MANAGER_H__

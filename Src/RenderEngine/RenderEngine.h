@@ -1,6 +1,6 @@
 #pragma once
-
-
+#ifndef __RENDER_ENGINE_H
+#define __RENDER_ENGINE_H
 
 namespace RenderEngine {
 	class SeparityRender {
@@ -9,3 +9,5 @@ namespace RenderEngine {
 	};
 
 }  // namespace RenderEngine
+
+#endif  // !__RENDER_ENGINE_H
