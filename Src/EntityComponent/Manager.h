@@ -2,12 +2,17 @@
 #ifndef __MANAGER_TEMPLATE_H__
 #define __MANAGER_TEMPLATE_H__
 
-class ec::Component {};
-
+#include "Singleton.h"
+#include "ec.h"
 #include <vector>
+
+class ec::Component;
+
 namespace ec {
 
-	class Manager {
+	class Manager : public Singleton<ec::Manager> {
+		friend Singleton<ec::Manager>;
+
 		public:
 		/// <summary>
 		/// Llama al update de todos los componentes del manager

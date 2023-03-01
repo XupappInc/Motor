@@ -1,9 +1,14 @@
 #include "Manager.h"
+
 #include "Component.h"
+
 #include <cassert>
 
+
 void ec::Manager::update() {
-	for(ec::Component* c : cmps_) { c->update(); }
+	for(ec::Component* c : cmps_) {
+		c->update();
+	}
 }
 
 void ec::Manager::addComponent(ec::Component* cmp) {
@@ -21,3 +26,6 @@ void ec::Manager::removeComponent(ec::Component* cmp) {
 ec::Manager::Manager() {}
 
 ec::Manager::~Manager() {}
+
+template<typename T>
+std::unique_ptr<T> Singleton<T>::_INSTANCE_;

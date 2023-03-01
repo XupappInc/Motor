@@ -3,7 +3,7 @@
 #define __PHYSICS_MANAGER_H__
 #include "Manager.h"
 class btDiscreteDynamicsWorld;
-class PhysicsManager : Manager {
+class PhysicsManager : ec::Manager {
 	public:
 	
 	void initWorld();

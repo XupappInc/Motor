@@ -1,4 +1,6 @@
 #pragma once
+#ifndef __VECTOR3_H__
+#define __VECTOR3_H__
 
 namespace spyutils {
 	/// <summary>
@@ -93,3 +95,4 @@ namespace spyutils {
 	};
 
 }  // namespace spyutils
+#endif  // !__VECTOR3_H__

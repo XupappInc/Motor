@@ -1,4 +1,6 @@
 #pragma once
+#ifndef __COMPONENT_H__
+#define __COMPONENT_H__
 
 #include "ec.h"
 
@@ -48,3 +50,4 @@ namespace ec {
 	};
 
 }  // namespace ec
+#endif  // !__COMPONENT_H__
