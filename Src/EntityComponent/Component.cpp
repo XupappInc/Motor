@@ -2,7 +2,7 @@
 
 #include "Manager.h"
 
-ec::Component::Component() : ent_(nullptr), mngr_(nullptr) {}
+ec::Component::Component() : ent_(nullptr), mngr_(nullptr), active_(true) {}
 
 ec::Component::~Component() {
 	// mngr_->removeComponent(this);

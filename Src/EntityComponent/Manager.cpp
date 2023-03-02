@@ -4,7 +4,6 @@
 
 #include <cassert>
 
-
 void ec::Manager::update() {
 	for(ec::Component* c : cmps_) {
 		c->update();

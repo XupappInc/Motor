@@ -4,11 +4,12 @@
 
 #include "Singleton.h"
 #include "ec.h"
+
 #include <vector>
 
-class ec::Component;
-
 namespace ec {
+
+	class Component;
 
 	class Manager : public Singleton<ec::Manager> {
 		friend Singleton<ec::Manager>;
@@ -19,7 +20,7 @@ namespace ec {
 		/// </summary>
 		virtual void update();
 		/// <summary>
-		/// A�ade un componente al manager
+		/// Añade un componente al manager
 		/// </summary>
 		/// <param name="cmp">Componente que se quiere a�adir</param>
 		void addComponent(ec::Component* cmp);
@@ -34,13 +35,13 @@ namespace ec {
 		/// para que puedan acceder los otros managers que hereden de esta clase
 		/// </summary>
 		~Manager();
+
 		protected:
 		/// <summary>
 		/// Constructor de la clase, protected
 		/// para que puedan acceder los otros managers que hereden de esta clase
 		/// </summary>
 		Manager();
-	
 
 		// Componentes del manager
 		std::vector<ec::Component*> cmps_;

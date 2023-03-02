@@ -1,5 +1,7 @@
 #include "Entity.h"
 
+#include "Manager.h"
+
 ec::Entity::Entity(ec::grpId_type gId)
     : mngr_(nullptr), cmps_(), currCmps_(), alive_(), gId_(gId) {
 	// Reservamos espacio para el numero maximo de componentes.
@@ -30,30 +32,30 @@ inline T* ec::Entity::addComponent(Ts&&... args) {
 	// crea, inicializa y añade el nuevo componente
 	Component* c = new T(std::forward<Ts>(args)...);
 
-	/*Manager* componentManager = nullptr;
-	constexpr cmpType_type cType = T::type;*/
-	// switch(cType) {
-	//	case _RENDER:
-	//		componentManager = RenderManager::getInstance();
-	//		break;
-	//	/*case _PHYSICS:
-	//		componentManager = PhysicsManager::getInstance();
-	//		break;
-	//	case _INPUT:
-	//		componentManager = InputManager::getInstance();
-	//		break;
-	//	case _UI:
-	//		componentManager = UIManager::getInstance();
-	//		break;
-	//	case _SOUND:
-	//		componentManager = SoundManager::getInstance();
-	//		break;
-	//	case _SCRIPT:
-	//		componentManager = LuaManager::getInstance();
-	//		break;*/
-	//	default:
-	//		break;
-	// }
+	Manager* componentManager = nullptr;
+	constexpr cmpType_type cType = T::type;
+	switch(cType) {
+		case _RENDER:
+			//componentManager = Separity::RenderManager::instance();
+			break;
+		/*case _PHYSICS:
+			componentManager = PhysicsManager::getInstance();
+			break;
+		case _INPUT:
+			componentManager = InputManager::getInstance();
+			break;
+		case _UI:
+			componentManager = UIManager::getInstance();
+			break;
+		case _SOUND:
+			componentManager = SoundManager::getInstance();
+			break;
+		case _SCRIPT:
+			componentManager = LuaManager::getInstance();
+			break;*/
+		default:
+			break;
+	}
 
 	c->setContext(this, mngr_);
 	c->initComponent();
