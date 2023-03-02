@@ -38,13 +38,13 @@ class Singleton {
 	///  no. Comprueban si la instancia es null y la "resetea", generándola
 	///  desde 0 para luego devolverla
 	///  </summary>
-	inline static T* init(Targs&&... args) {
+	static T* init(Targs&&... args) {
 		assert(_INSTANCE_.get() == nullptr);
 		_INSTANCE_.reset(new T(std::forward<Targs>(args)...));
 		return _INSTANCE_.get();
 	}
 
-	inline static T* instance() {
+	static T* instance() {
 		if(_INSTANCE_.get() != nullptr) {
 			init();
 		}
@@ -53,7 +53,7 @@ class Singleton {
 	///< summary>
 	/// Método para cerrar en orden los singleton que dependan unos de otros
 	///  </summary>
-	inline static void close() { _INSTANCE_.reset(); }
+	static void close() { _INSTANCE_.reset(); }
 
 	private:
 	///< summary>
