@@ -22,11 +22,23 @@ namespace ec {
 		virtual ~Component();
 
 		/// <summary>
-		/// Este método se usa para asignar el contexto
+		/// Este metodo se usa para asignar el contexto
 		/// </summary>
 		/// <param name="ent">Entidad a la que pertenece el componente</param>
 		/// <param name="mngr">Manager al que pertenece el componente</param>
 		inline void setContext(Entity* ent, Manager* mngr);
+
+		/// <summary>
+		/// Metodo que activa o desactiva el componente
+		/// </summary>
+		/// <param name="set">True para activar el componente, false para desactivarlo</param>
+		void setActive(bool set);
+
+		/// <summary>
+		/// Metodo que devuelve si el componente esta activo
+		/// </summary>
+		/// <returns></returns>
+		bool isActive();
 
 		/// <summary>
 		/// Metodo que inicializa el componente, debe de ser llamado justo
@@ -47,6 +59,8 @@ namespace ec {
 		protected:
 		Entity* ent_;
 		Manager* mngr_;
+
+		bool active_;
 	};
 
 }  // namespace ec

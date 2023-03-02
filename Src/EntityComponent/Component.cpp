@@ -15,6 +15,10 @@ inline void ec::Component::setContext(Entity* ent, Manager* mngr) {
 	mngr_ = mngr;
 }
 
+void ec::Component::setActive(bool set) { active_ = set; }
+
+bool ec::Component::isActive() { return active_; }
+
 void ec::Component::initComponent() {}
 
 void ec::Component::update() {}
