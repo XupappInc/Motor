@@ -39,31 +39,31 @@ namespace ec {
 		/// para asignar el contexto
 		/// </summary>
 		/// <param name="mngr">Manager al que pertence la entidad</param>
-		inline void setContext(Manager* mngr);
+		void setContext(Manager* mngr);
 
 		/// <summary>
 		/// Asigna el valor de alive
 		/// </summary>
 		/// <param name="alive">Si está viva (true) o no (false)</param>
-		inline void setAlive(bool alive);
+		void setAlive(bool alive);
 
 		/// <summary>
 		/// Devuelve si la entidad está viva o muerta
 		/// </summary>
 		/// <returns>True si está viva, false en caso contrario</returns>
-		inline bool isAlive();
+		bool isAlive();
 
 		/// <summary>
 		/// Asigna el valor de active de la entidad
 		/// </summary>
 		/// <param name="active">Si está activa (true) o no (false)</param>
-		inline void setActive(bool active);
+		void setActive(bool active);
 
 		/// <summary>
 		/// Devuelve si la entidad está activa o no
 		/// </summary>
 		/// <returns>True si está activa, false en caso contrario</returns>
-		inline bool isActive();
+		bool isActive();
 
 		/// <summary>
 		/// Añade un componente. Recibe el tipo T del componente y una lista de
@@ -71,13 +71,13 @@ namespace ec {
 		/// identificador de componente 'cId' se obtiene de T::id
 		/// </summary>
 		template<typename T, typename... Ts>
-		inline T* addComponent(Ts&&... args);
+		T* addComponent(Ts&&... args);
 
 		/// <summary>
 		/// Borra el componente de la posición T::id
 		/// </summary>
 		template<typename T>
-		inline void removeComponent();
+		void removeComponent();
 
 		/// <summary>
 		/// Devuelve el componente correspondiente a la posicion T::id,
@@ -86,7 +86,7 @@ namespace ec {
 		/// </summary>
 		/// <returns>El componente ya casteado a su tipo</returns>
 		template<typename T>
-		inline T* getComponent();
+		T* getComponent();
 
 		/// <summary>
 		/// Devuelve si existe un componente con el identificador T::id
@@ -94,13 +94,13 @@ namespace ec {
 		/// <returns>True si existe el componente, false en caso
 		/// contrario</returns>
 		template<typename T>
-		inline bool hasComponent();
+		bool hasComponent();
 
 		/// <summary>
 		/// Devuelve el grupo de la entidad
 		/// </summary>
 		/// <returns>El grupo al que pertenece la entidad (gId)</returns>
-		inline ec::grpId_type getGroupId();
+		ec::grpId_type getGroupId();
 
 		private:
 		Manager* mngr_;

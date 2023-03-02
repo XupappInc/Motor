@@ -9,20 +9,20 @@ ec::Entity::Entity(ec::grpId_type gId)
 	currCmps_.reserve(ec::maxComponentId);
 }
 
-inline void ec::Entity::setContext(Manager* mngr) { mngr_ = mngr; }
+void ec::Entity::setContext(Manager* mngr) { mngr_ = mngr; }
 
-inline void ec::Entity::setAlive(bool alive) { alive_ = alive; }
+void ec::Entity::setAlive(bool alive) { alive_ = alive; }
 
-inline bool ec::Entity::isAlive() { return alive_; }
+bool ec::Entity::isAlive() { return alive_; }
 
-inline void ec::Entity::setActive(bool active) { active_ = active; }
+void ec::Entity::setActive(bool active) { active_ = active; }
 
-inline bool ec::Entity::isActive() { return active_; }
+bool ec::Entity::isActive() { return active_; }
 
-inline ec::grpId_type ec::Entity::getGroupId() { return gId_; }
+ec::grpId_type ec::Entity::getGroupId() { return gId_; }
 
 template<typename T, typename... Ts>
-inline T* ec::Entity::addComponent(Ts&&... args) {
+T* ec::Entity::addComponent(Ts&&... args) {
 	constexpr cmpId_type cId = T::id;
 	assert(cId < ec::maxComponentId);
 
@@ -67,7 +67,7 @@ inline T* ec::Entity::addComponent(Ts&&... args) {
 }
 
 template<typename T>
-inline void ec::Entity::removeComponent() {
+void ec::Entity::removeComponent() {
 	constexpr cmpId_type cId = T::id;
 	assert(cId < ec::maxComponentId);
 
@@ -88,7 +88,7 @@ inline void ec::Entity::removeComponent() {
 }
 
 template<typename T>
-inline T* ec::Entity::getComponent() {
+T* ec::Entity::getComponent() {
 	constexpr cmpId_type cId = T::id;
 	assert(cId < ec::maxComponentId);
 
@@ -96,7 +96,7 @@ inline T* ec::Entity::getComponent() {
 }
 
 template<typename T>
-inline bool ec::Entity::hasComponent() {
+bool ec::Entity::hasComponent() {
 	constexpr cmpId_type cId = T::id;
 	assert(cId < ec::maxComponentId);
 
