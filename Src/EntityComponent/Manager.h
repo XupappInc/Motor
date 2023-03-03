@@ -7,7 +7,7 @@
 
 #include <vector>
 
-namespace Separity{
+namespace Separity {
 
 	class Component;
 
