@@ -11,5 +11,5 @@ cd .\build
 
 msbuild "LuaBridge.sln" /p:configuration=Debug
 msbuild "LuaBridge.sln" /p:configuration=Release
-pause
+
 cd ..

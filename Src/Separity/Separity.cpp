@@ -7,12 +7,11 @@
 #include "MeshRenderer.h"
 #include <Ogre.h>
 
-
 #include <iostream>
 using namespace std;
 using namespace Separity;
 int main() {
-
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	SeparityRender *s = new SeparityRender();
 	s->renderOgre();
 	/*MeshRenderer* mr =

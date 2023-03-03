@@ -45,7 +45,7 @@ class Singleton {
 	}
 
 	static T* instance() {
-		if(_INSTANCE_.get() != nullptr) {
+		if(_INSTANCE_.get() == nullptr) {
 			init();
 		}
 		return _INSTANCE_.get();
