@@ -6,12 +6,16 @@
 #include "InputManager.h"
 #include "MeshRenderer.h"
 #include <Ogre.h>
+#include "SoundEngine.h"
 
 
 #include <iostream>
 using namespace std;
 using namespace Separity;
 int main() {
+
+	a* cv = new a();
+	cv->b();
 
 	SeparityRender *s = new SeparityRender();
 	s->renderOgre();
