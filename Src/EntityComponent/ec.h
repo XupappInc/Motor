@@ -3,7 +3,7 @@
 #define __EC_H__
 #include <cstdint>
 
-namespace ec {
+namespace Separity {
 
 	class Manager;
 	class Entity;
@@ -74,19 +74,19 @@ namespace ec {
 
 /// <summary>
 /// Un macro para la declaracion del identificador de componente. Por ejemplo:
-/// __CMPID_DECL__(ec::_TRANSFORM) se expande a:
+/// __CMPID_DECL__(Separity::_TRANSFORM) se expande a:
 ///
-/// constexpr static ec::cmpId_type id = ec::_TRANSFORM;
+/// constexpr static Separity::cmpId_type id = Separity::_TRANSFORM;
 /// </summary>
-#define __CMPID_DECL__(cId) constexpr static ec::cmpId_type id = cId;
+#define __CMPID_DECL__(cId) constexpr static Separity::cmpId_type id = cId;
 
 /// <summary>
 /// Un macro para la declaracion del tipo de componente. Por ejemplo:
-/// __CMPTYPE_DECL__(ec::_RENDER) se expande a:
+/// __CMPTYPE_DECL__(Separity::_RENDER) se expande a:
 ///
-/// constexpr static ec::cmpType_type type = ec::_RENDER;
+/// constexpr static Separity::cmpType_type type = Separity::_RENDER;
 /// </summary>
-#define __CMPTYPE_DECL__(cType) constexpr static ec::cmpType_type type = cType;
+#define __CMPTYPE_DECL__(cType) constexpr static Separity::cmpType_type type = cType;
 
-}  // namespace ec
+}  // namespace Separity
 #endif  // !__EC_H__

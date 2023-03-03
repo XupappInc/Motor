@@ -17,10 +17,10 @@ struct rbParams {
 	float mass = 1.0;
 	typeRb tipo;
 };
-class RigidBody : public ec::Component {
+class RigidBody : public Separity::Component {
 	public:
-	__CMPTYPE_DECL__(ec::_PHYSICS)
-	__CMPID_DECL__(ec::_RIGID_BODY)
+	__CMPTYPE_DECL__(Separity::_PHYSICS)
+	__CMPID_DECL__(Separity::_RIGID_BODY)
 	RigidBody();
 	RigidBody(typeRb tipo, float mass = 0);
 	~RigidBody();

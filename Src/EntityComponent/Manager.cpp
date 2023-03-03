@@ -4,27 +4,27 @@
 
 #include <cassert>
 
-void ec::Manager::update() {
-	for(ec::Component* c : cmps_) {
+void Separity::Manager::update() {
+	for(Separity::Component* c : cmps_) {
 		c->update();
 	}
 }
 
-void ec::Manager::addComponent(ec::Component* cmp) {
+void Separity::Manager::addComponent(Separity::Component* cmp) {
 	assert(cmp != nullptr);
 	cmps_.push_back(cmp);
 }
 
-void ec::Manager::removeComponent(ec::Component* cmp) {
+void Separity::Manager::removeComponent(Separity::Component* cmp) {
 	assert(cmp != nullptr);
 	auto iter = std::find(cmps_.begin(), cmps_.end(), cmp);
 
 	cmps_.erase(iter);
 }
 
-ec::Manager::Manager() {}
+Separity::Manager::Manager() {}
 
-ec::Manager::~Manager() {}
+Separity::Manager::~Manager() {}
 
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;

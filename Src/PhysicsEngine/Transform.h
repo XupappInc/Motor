@@ -5,10 +5,10 @@
 #include "Vector.h"
 
 class btTransform;
-class Transform : public ec::Component {
+class Transform : public Separity::Component {
 	public:
-	__CMPTYPE_DECL__(ec::_PHYSICS)
-	__CMPID_DECL__(ec::_TRANSFORM)
+	__CMPTYPE_DECL__(Separity::_PHYSICS)
+	__CMPID_DECL__(Separity::_TRANSFORM)
 	Transform();
 	~Transform();
 	/// <summary>

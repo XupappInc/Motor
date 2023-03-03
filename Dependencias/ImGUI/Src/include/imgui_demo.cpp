@@ -3623,8 +3623,8 @@ static void ShowDemoWindowPopups()
 namespace
 {
 // We are passing our own identifier to TableSetupColumn() to facilitate identifying columns in the sorting code.
-// This identifier will be passed down into ImGuiTableSortSpec::ColumnUserID.
-// But it is possible to omit the user id parameter of TableSetupColumn() and just use the column index instead! (ImGuiTableSortSpec::ColumnIndex)
+// This identifier will be passed down into ImGuiTableSortSpSeparity::ColumnUserID.
+// But it is possible to omit the user id parameter of TableSetupColumn() and just use the column index instead! (ImGuiTableSortSpSeparity::ColumnIndex)
 // If you don't use sorting, you will generally never care about giving column an ID!
 enum MyItemColumnID
 {

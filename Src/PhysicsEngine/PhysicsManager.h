@@ -3,7 +3,7 @@
 #define __PHYSICS_MANAGER_H__
 #include "Manager.h"
 class btDiscreteDynamicsWorld;
-class PhysicsManager : public ec::Manager {
+class PhysicsManager : public Separity::Manager {
 	friend Singleton<PhysicsManager>;
 
 	public:
