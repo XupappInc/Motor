@@ -31,7 +31,7 @@ RigidBody::RigidBody(typeRb tipo, float mass) : mass_(mass), tipo_(tipo) {
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(
 	    mass_, motionState, collisionShape, localInertia);
 	rb_ = new btRigidBody(rbInfo);
-	separity::PhysicsManager* s = separity::PhysicsManager::getInstance();
+	Separity::PhysicsManager* s = Separity::PhysicsManager::getInstance();
 	s->getWorld()->addRigidBody(rb_);
 	delete collisionShape;
 	delete motionState;

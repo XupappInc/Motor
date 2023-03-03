@@ -3,15 +3,10 @@
 #define __PHYSICS_MANAGER_H__
 #include "Manager.h"
 class btDiscreteDynamicsWorld;
-<<<<<<< Updated upstream
-class PhysicsManager : public Separity::Manager {
-	friend Singleton<PhysicsManager>;
-=======
-namespace separity {
-	class PhysicsManager : public ec::Manager {
-		friend Singleton<PhysicsManager>;
->>>>>>> Stashed changes
 
+namespace Separity {
+	class PhysicsManager : public Separity::Manager {
+		friend Singleton<PhysicsManager>;
 		public:
 		void initWorld();
 		virtual void update() override;

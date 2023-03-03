@@ -3,7 +3,7 @@
 #include <btBulletDynamicsCommon.h>
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
-using namespace separity;
+using namespace Separity;
 PhysicsManager::PhysicsManager() {}
 
 PhysicsManager::~PhysicsManager() {}
