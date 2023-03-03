@@ -2,16 +2,28 @@
 
 #include <iostream>
 
-using namespace std;
+using namespace Separity;
 
-InputManager::InputManager() : event() {
+template<typename T>
+std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+
+InputManager* InputManager::getInstance() {
+	return static_cast<InputManager*>(instance());
+}
+
+void Separity::InputManager::init() {
+	//event = SDL_Event();
 	kbState_ = SDL_GetKeyboardState(0);
 	clearState();
 }
 
 InputManager::~InputManager() {}
 
-void InputManager::update() {
+void InputManager::update() { 
+	std::cout << "Estoy llamando al InputManager\n"; 
+}
+
+void Separity::InputManager::refresh() {
 	clearState();
 	while(SDL_PollEvent(&event)) {
 		switch(event.type) {
@@ -71,6 +83,8 @@ bool InputManager::isMouseButtonHeld(MOUSEBUTTON b) {
 bool InputManager::isMouseButtonUp(MOUSEBUTTON b) {
 	return mbState_[b] == RELEASED;
 }
+
+
 
 void InputManager::clearState() {
 	isKeyDownEvent_ = false;

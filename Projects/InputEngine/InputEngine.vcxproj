@@ -24,6 +24,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\InputEngine\InputManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityComponent\EntityComponent.vcxproj">
+      <Project>{329ebb57-bbe0-45ce-861b-a6d9a3d28279}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SeparityUtils\SeparityUtils.vcxproj">
+      <Project>{7731a740-4db7-4577-b8ca-b5379736c8ec}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -101,7 +109,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-debug;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,7 +126,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-release;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,7 +143,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-debug;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,7 +160,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-release;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
