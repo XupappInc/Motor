@@ -2,13 +2,14 @@
 // programa comienza y termina ahí.
 //
 
-#include "RenderEngine.h"
 #include "InputManager.h"
 #include "MeshRenderer.h"
-#include <Ogre.h>
+#include "RenderEngine.h"
 #include "SoundEngine.h"
+#include "fmod.hpp"
+#include "fmod_errors.h"
 
-
+#include <Ogre.h>
 #include <iostream>
 using namespace std;
 using namespace Separity;
@@ -16,11 +17,10 @@ int main() {
 	SoundEngine* soundEngine_ = new SoundEngine();
 	soundEngine_->initSoundSystem();
 
-	SeparityRender *s = new SeparityRender();
+	SeparityRender* s = new SeparityRender();
 	s->renderOgre();
 	/*MeshRenderer* mr =
 	    new MeshRenderer(nullptr, "");*/
-
 
 	InputManager* inputManger = new InputManager();
 

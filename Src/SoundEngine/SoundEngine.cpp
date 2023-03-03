@@ -69,27 +69,6 @@ int SoundEngine::initSoundSystem() {
 		return 0;
 	}
 
-	// Wait for the sound to finish playing
-	bool isPlaying = true;
-	while (isPlaying)
-	{
-		system->update();
-		result = channel->isPlaying(&isPlaying);
-		if (result != FMOD_OK)
-		{
-			printf("FMOD error: %s\n", FMOD_ErrorString(result));
-			break;
-		}
-	}
-
-	// Clean up
-	channel->stop();
-	sound->release();
-	delete[] buffer;
-	system->release();
-
-	isPlaying = true;
-
 	return 0;
 }
 
@@ -98,6 +77,7 @@ void SoundEngine::playSound() {
 	// Wait for the sound to finish playing	
 	system->update();
 	result = channel->isPlaying(&isPlaying);
+	std::cout << result;
 	if(result != FMOD_OK) {
 		printf("FMOD error: %s\n", FMOD_ErrorString(result));	
 	}	
