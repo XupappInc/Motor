@@ -4,7 +4,7 @@
 
 #include "ec.h"
 
-namespace ec {
+namespace Separity{
 
 	/// <summary>
 	/// <para>Clase que representa un componente</para>
@@ -63,5 +63,5 @@ namespace ec {
 		bool active_;
 	};
 
-}  // namespace ec
+}  // namespace Separity
 #endif  // !__COMPONENT_H__

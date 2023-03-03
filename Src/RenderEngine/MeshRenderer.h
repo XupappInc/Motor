@@ -15,10 +15,10 @@ namespace Separity {
 	/// <summary>
 	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
 	/// </summary>
-	class MeshRenderer : public ec::Component {
+	class MeshRenderer : public Separity::Component {
 		public:
-		__CMPTYPE_DECL__(ec::_RENDER)
-		__CMPID_DECL__(ec::_MESH_RENDERER)
+		__CMPTYPE_DECL__(Separity::_RENDER)
+		__CMPID_DECL__(Separity::_MESH_RENDERER)
 
 		/// <summary>
 		/// <para>Construye una entidad con la malla "meshName" y lo

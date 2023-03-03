@@ -3,6 +3,7 @@
 #include <btBulletDynamicsCommon.h>
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+using namespace Separity;
 PhysicsManager::PhysicsManager() {}
 
 PhysicsManager::~PhysicsManager() {}
@@ -19,10 +20,10 @@ void PhysicsManager::initWorld() {
 	                                     collisionConfiguration);
 }
 
-void PhysicsManager::update() { world_->stepSimulation(0.02); }
+void PhysicsManager::update() { world_->stepSimulation(btScalar(0.02)); }
 
- btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return world_; }
+btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return world_; }
 
 PhysicsManager* PhysicsManager::getInstance() {
 	return static_cast<PhysicsManager*>(instance());
- }
+}

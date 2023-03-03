@@ -2,29 +2,29 @@
 
 #include "Manager.h"
 
-ec::Entity::Entity(ec::grpId_type gId)
+Separity::Entity::Entity(Separity::grpId_type gId)
     : mngr_(nullptr), cmps_(), currCmps_(), alive_(), gId_(gId) {
 	// Reservamos espacio para el numero maximo de componentes.
 	// Esto puede evitar que se tenga que redimensionar el vector
-	currCmps_.reserve(ec::maxComponentId);
+	currCmps_.reserve(Separity::maxComponentId);
 }
 
-void ec::Entity::setContext(Manager* mngr) { mngr_ = mngr; }
+void Separity::Entity::setContext(Manager* mngr) { mngr_ = mngr; }
 
-void ec::Entity::setAlive(bool alive) { alive_ = alive; }
+void Separity::Entity::setAlive(bool alive) { alive_ = alive; }
 
-bool ec::Entity::isAlive() { return alive_; }
+bool Separity::Entity::isAlive() { return alive_; }
 
-void ec::Entity::setActive(bool active) { active_ = active; }
+void Separity::Entity::setActive(bool active) { active_ = active; }
 
-bool ec::Entity::isActive() { return active_; }
+bool Separity::Entity::isActive() { return active_; }
 
-ec::grpId_type ec::Entity::getGroupId() { return gId_; }
+Separity::grpId_type Separity::Entity::getGroupId() { return gId_; }
 
 template<typename T, typename... Ts>
-T* ec::Entity::addComponent(Ts&&... args) {
+T* Separity::Entity::addComponent(Ts&&... args) {
 	constexpr cmpId_type cId = T::id;
-	assert(cId < ec::maxComponentId);
+	assert(cId < Separity::maxComponentId);
 
 	// borra el componente actual si existe uno del mismo tipo
 	removeComponent<T>();
@@ -67,9 +67,9 @@ T* ec::Entity::addComponent(Ts&&... args) {
 }
 
 template<typename T>
-void ec::Entity::removeComponent() {
+void Separity::Entity::removeComponent() {
 	constexpr cmpId_type cId = T::id;
-	assert(cId < ec::maxComponentId);
+	assert(cId < Separity::maxComponentId);
 
 	if(cmps_[cId] != nullptr) {
 		// encuentra el elemento que es igual a tocmps_[cId]
@@ -88,17 +88,17 @@ void ec::Entity::removeComponent() {
 }
 
 template<typename T>
-T* ec::Entity::getComponent() {
+T* Separity::Entity::getComponent() {
 	constexpr cmpId_type cId = T::id;
-	assert(cId < ec::maxComponentId);
+	assert(cId < Separity::maxComponentId);
 
 	return static_cast<T*>(cmps_[cId]);
 }
 
 template<typename T>
-bool ec::Entity::hasComponent() {
+bool Separity::Entity::hasComponent() {
 	constexpr cmpId_type cId = T::id;
-	assert(cId < ec::maxComponentId);
+	assert(cId < Separity::maxComponentId);
 
 	return cmps_[cId] != nullptr;
 }

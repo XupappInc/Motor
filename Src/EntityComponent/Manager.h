@@ -7,12 +7,12 @@
 
 #include <vector>
 
-namespace ec {
+namespace Separity {
 
 	class Component;
 
-	class Manager : public Singleton<ec::Manager> {
-		friend Singleton<ec::Manager>;
+	class Manager : public Singleton<Separity::Manager> {
+		friend Singleton<Separity::Manager>;
 
 		public:
 		/// <summary>
@@ -23,13 +23,13 @@ namespace ec {
 		/// Añade un componente al manager
 		/// </summary>
 		/// <param name="cmp">Componente que se quiere a�adir</param>
-		void addComponent(ec::Component* cmp);
+		void addComponent(Separity::Component* cmp);
 		/// <summary>
 		/// Quita un componente del manager
 		/// </summary>
 		/// <param name="cmp">Componente que se quiere quitar del
 		/// manager</param>
-		void removeComponent(ec::Component* cmp);
+		void removeComponent(Separity::Component* cmp);
 		/// <summary>
 		/// Destructor de la clase, protected
 		/// para que puedan acceder los otros managers que hereden de esta clase
@@ -44,8 +44,8 @@ namespace ec {
 		Manager();
 
 		// Componentes del manager
-		std::vector<ec::Component*> cmps_;
+		std::vector<Separity::Component*> cmps_;
 	};
-};  // namespace ec
+};  // namespace Separity
 
 #endif  //!__MANAGER_TEMPLATE_H__

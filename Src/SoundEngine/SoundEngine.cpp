@@ -1,12 +1,12 @@
 // SoundSystem.cpp
-
+#include "SoundEngine.h"
 #include <iostream>
 #include "fmod.hpp"
 #include "fmod_errors.h"
 
 #define M_PI 3.141592
 
-int main()
+int a::b()
 {
 	// Create an instance of the FMOD system
 	FMOD::System* system;
@@ -47,7 +47,7 @@ int main()
 	// Create a sound from the generated buffer
 	FMOD::Sound* sound;
 	result = system->createSound(
-		"mysound.wav",
+		"Assets//theme.mp3",
 		FMOD_DEFAULT,
 		nullptr,
 		&sound

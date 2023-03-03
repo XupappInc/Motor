@@ -10,7 +10,7 @@
 #include <cassert>
 #include <vector>
 
-namespace ec {
+namespace Separity{
 
 	/// <summary>
 	/// <para>Clase que representa una entidad.</para>
@@ -19,7 +19,7 @@ namespace ec {
 	/// </summary>
 	class Entity {
 		public:
-		Entity(ec::grpId_type gId);
+		Entity(Separity::grpId_type gId);
 
 		// borramos el constructor por copia/asignamiento porque no está claro
 		// como copiar los componentes
@@ -100,7 +100,7 @@ namespace ec {
 		/// Devuelve el grupo de la entidad
 		/// </summary>
 		/// <returns>El grupo al que pertenece la entidad (gId)</returns>
-		ec::grpId_type getGroupId();
+		Separity::grpId_type getGroupId();
 
 		private:
 		Manager* mngr_;
@@ -108,7 +108,7 @@ namespace ec {
 		std::vector<Component*> currCmps_;
 		bool alive_;
 		bool active_;
-		ec::grpId_type gId_;
+		Separity::grpId_type gId_;
 	};
-}  // namespace ec
+}  // namespace Separity
 #endif  // !__ENTITY_H__

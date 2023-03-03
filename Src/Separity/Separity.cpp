@@ -6,12 +6,17 @@
 #include "InputManager.h"
 #include "MeshRenderer.h"
 #include <Ogre.h>
+#include "SoundEngine.h"
 
 #include <iostream>
 using namespace std;
 using namespace Separity;
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	a* cv = new a();
+	cv->b();
+
 	SeparityRender *s = new SeparityRender();
 	s->renderOgre();
 	/*MeshRenderer* mr =
