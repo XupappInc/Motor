@@ -11,8 +11,8 @@ InputManager* InputManager::getInstance() {
 	return static_cast<InputManager*>(instance());
 }
 
-void Separity::InputManager::init() {
-	//event = SDL_Event();
+Separity::InputManager::InputManager() : Manager(), Singleton<InputManager>() {
+	event = SDL_Event();
 	kbState_ = SDL_GetKeyboardState(0);
 	clearState();
 }
@@ -20,10 +20,8 @@ void Separity::InputManager::init() {
 InputManager::~InputManager() {}
 
 void InputManager::update() { 
-	std::cout << "Estoy llamando al InputManager\n"; 
-}
+	Manager::update();
 
-void Separity::InputManager::refresh() {
 	clearState();
 	while(SDL_PollEvent(&event)) {
 		switch(event.type) {

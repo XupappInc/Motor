@@ -9,16 +9,12 @@
 #include "Manager.h"
 
 namespace Separity {
-	class InputManager : public Separity::Manager {
-		friend Singleton<InputManager>;
+	class InputManager : public Separity::Manager,
+	                     public Singleton<Separity::InputManager> {
+		friend Singleton<Separity::InputManager>;
 
 		public:
 		enum MOUSEBUTTON : uint8_t { LEFT = 0, MIDDLE = 1, RIGHT = 2 };
-
-		void refresh();
-
-		// update
-		virtual void update() override;
 
 		// keyboard
 		bool keyDownEvent();
@@ -42,11 +38,16 @@ namespace Separity {
 
 		bool isMouseButtonUp(MOUSEBUTTON b);
 
+		// update
+		virtual void update() override;
+
 		static InputManager* getInstance();
 
-		void init();
-
 		virtual ~InputManager() override;
+
+		protected:
+
+		InputManager();
 
 		private:
 		enum MOUSESTATE : uint8_t {

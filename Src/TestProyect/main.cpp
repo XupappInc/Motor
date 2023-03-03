@@ -13,13 +13,12 @@ int main() {
 	                     SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
 
 	Separity::InputManager* inputManger = Separity::InputManager::getInstance();
-	inputManger->init();
 
 	// Bucle principal
 	bool quit = false;
 	while(!quit) {
 		inputManger->update();
-		inputManger->refresh();
+
 		if(inputManger->isKeyDown('q')) {
 			quit = true;
 		} else {

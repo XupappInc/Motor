@@ -11,8 +11,7 @@ namespace Separity {
 
 	class Component;
 
-	class Manager : public Singleton<Separity::Manager> {
-		friend Singleton<Separity::Manager>;
+	class Manager  {
 
 		public:
 		/// <summary>

@@ -5,17 +5,19 @@
 class btDiscreteDynamicsWorld;
 
 namespace Separity {
-	class PhysicsManager : public Separity::Manager {
+	class PhysicsManager : public Separity::Manager,
+	                       public Singleton<Separity::PhysicsManager> {
 		friend Singleton<PhysicsManager>;
 		public:
 		void initWorld();
 		virtual void update() override;
 		btDiscreteDynamicsWorld* getWorld();
 		static PhysicsManager* getInstance();
+		virtual ~PhysicsManager() override;
 
 		private:
 		inline PhysicsManager();
-		virtual ~PhysicsManager() override;
+		
 		btDiscreteDynamicsWorld* world_;
 	};
 }

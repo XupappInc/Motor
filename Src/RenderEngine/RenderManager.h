@@ -4,7 +4,8 @@
 #include "Manager.h"
 
 namespace Separity {
-	class RenderManager : public Separity::Manager {
+	class RenderManager : public Separity::Manager,	    
+	                      public Singleton<Separity::RenderManager> {
 		friend Singleton<RenderManager>;
 
 		public:
