@@ -13,9 +13,8 @@
 using namespace std;
 using namespace Separity;
 int main() {
-
-	a* cv = new a();
-	cv->b();
+	SoundEngine* soundEngine_ = new SoundEngine();
+	soundEngine_->initSoundSystem();
 
 	SeparityRender *s = new SeparityRender();
 	s->renderOgre();
@@ -46,7 +45,7 @@ int main() {
 			}
 		}
 		s->mRoot->renderOneFrame();
-
+		soundEngine_->playSound();
 	}
 
 	return 0;
