@@ -7,7 +7,6 @@
 
 #include <btBulletDynamicsCommon.h>
 
-RigidBody::RigidBody() {}
 
 RigidBody::RigidBody(typeRb tipo, float mass) : mass_(mass), tipo_(tipo) {
 
@@ -32,8 +31,10 @@ RigidBody::RigidBody(typeRb tipo, float mass) : mass_(mass), tipo_(tipo) {
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(
 	    mass_, motionState, collisionShape, localInertia);
 	rb_ = new btRigidBody(rbInfo);
-	PhysicsManager* s = PhysicsManager::getInstance();
+	separity::PhysicsManager* s = separity::PhysicsManager::getInstance();
 	s->getWorld()->addRigidBody(rb_);
+	delete collisionShape;
+	delete motionState;
 }
 
 RigidBody::~RigidBody() { delete rb_; }
@@ -63,6 +64,14 @@ void RigidBody::applyTorque(spyutils::Vector3 torq) {
 void RigidBody::setGravity(spyutils::Vector3 g) {
 	btVector3 fuerza(g.x, g.y, g.z);
 	rb_->setGravity(fuerza);
+}
+
+void RigidBody::scaleRb(spyutils::Vector3 s) {
+	btVector3 vec(s.x,s.y,s.z);
+	auto collisionShape = rb_->getCollisionShape();
+	collisionShape->setLocalScaling(vec);
+	btVector3 inertia(0, 0, 0);
+	collisionShape->calculateLocalInertia(mass_,inertia);
 }
 
 void RigidBody::update() {

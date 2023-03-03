@@ -1,6 +1,7 @@
 #include "Transform.h"
-
+#include"Entity.h"
 #include "Vector.h"
+#include"RigidBody.h"
 
 #include <btBulletDynamicsCommon.h>
 Transform::Transform()
@@ -54,6 +55,9 @@ void Transform::roll(float degree) {
 
 void Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 	scale_ = spyutils::Vector3(scaleX, scaleY, scaleZ);
+	auto rb=ent_->getComponent<RigidBody>();
+	if(rb) {
+	}
 }
 void Transform::setScale(float scale) { setScale(scale, scale, scale); }
 
