@@ -11,7 +11,8 @@
 #define _CMPS_LIST_ \
 		_MESH_RENDERER, \
 		_TRANSFORM, \
-		_RIGID_BODY
+		_RIGID_BODY, \
+		_COLLIDER
 		 
 
 /// <summary>

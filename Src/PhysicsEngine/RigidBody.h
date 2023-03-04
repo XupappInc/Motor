@@ -21,23 +21,9 @@ namespace Separity {
 		STATIC,
 	};
 
-	/// <summary>
-	/// Formas basicas del collider
-	/// </summary>
-	enum colliderShape { CUBE, SPHERE, CAPSULE, CYLINDER, CONE };
-
 	struct rbParams {
 		float mass = 1.0;
 		typeRb tipo;
-	};
-
-	/// <summary>
-	/// Parametros usados para crear un collider
-	/// </summary>
-	struct colliderParams {
-		colliderShape colShape;
-		float height, width, depth;
-		float offsetX, offsetY, offsetZ;
 	};
 
 	class RigidBody : public Separity::Component {
@@ -55,12 +41,6 @@ namespace Separity {
 		void setGravity(spyutils::Vector3 g);
 		void scaleRb(spyutils::Vector3 s);
 		void update() override;
-
-		/// <summary>
-		/// Crea un collider para el rigidbody
-		/// </summary>
-		/// <param name="params">Parametros para la creacion del collider</param>
-		void createCollider(colliderParams params);
 
 		private:
 		Transform* tr_;
