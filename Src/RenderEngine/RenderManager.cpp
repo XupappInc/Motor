@@ -62,8 +62,7 @@ void Separity::RenderManager::loadResources() {
 		}
 	}
 
-	
-	
+	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
 void Separity::RenderManager::render() {}
@@ -138,7 +137,6 @@ void Separity::RenderManager::createSDLWindow() {
 	misc["externalWindowHandle"] =
 	    Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
 
-	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 	// Creamos un render system cogiendo el primer renderer de los que hay
 	// disponibles
 	Ogre::RenderSystem* sys = ogreRoot_->getAvailableRenderers().front();
