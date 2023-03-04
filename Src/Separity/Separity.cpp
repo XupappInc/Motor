@@ -6,9 +6,11 @@
 #include "InputManager.h"
 #include "MeshRenderer.h"
 #include "SoundEngine.h"
+#include "checkML.h"
 #include <Ogre.h>
 
 #include <iostream>
+
 using namespace std;
 using namespace Separity;
 int main() {

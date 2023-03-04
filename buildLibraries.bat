@@ -16,3 +16,4 @@ cd ..\FMOD\
 call %BAT%
 
 cd..
+cd..

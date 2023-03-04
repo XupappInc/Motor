@@ -1,6 +1,7 @@
 #include "Entity.h"
 
 #include "Manager.h"
+#include "checkML.h"
 
 Separity::Entity::Entity(Separity::grpId_type gId)
     : mngr_(nullptr), cmps_(), currCmps_(), alive_(), gId_(gId) {

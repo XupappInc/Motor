@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "checkML.h"
+
 using namespace Separity;
 
 template<typename T>
