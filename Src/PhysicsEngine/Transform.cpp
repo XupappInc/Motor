@@ -4,61 +4,70 @@
 #include"RigidBody.h"
 //#include "checkML.h"
 #include <btBulletDynamicsCommon.h>
-Transform::Transform()
+Separity::Transform::Transform()
     : positition_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0) {
 	btQuaternion quat(0, 0, 0);
 
 	tr_ = new btTransform(quat);
 }
 
-Transform::~Transform() { delete tr_; }
+Separity::Transform::~Transform() { delete tr_; }
 
-btTransform* Transform::getBulletTransform() { return tr_; }
+btTransform* Separity::Transform::getBulletTransform() { return tr_; }
 
-void Transform::setPosition(spyutils::Vector3 other) {
+void Separity::Transform::setPosition(spyutils::Vector3 other) {
 	btVector3 vec(other.x, other.y, other.z);
 	tr_->setOrigin(vec);
 	positition_ = other;
 }
 
-void Transform::setPosition(float x, float y, float z) {
+void Separity::Transform::setPosition(float x, float y, float z) {
 	setPosition(spyutils::Vector3(x, y, z));
 }
 
-void Transform::translate(spyutils::Vector3 other) { positition_ += other; }
+void Separity::Transform::translate(spyutils::Vector3 other) {
+	positition_ += other;
+}
 
-spyutils::Vector3 Transform::getPosition() { return spyutils::Vector3(); }
+spyutils::Vector3 Separity::Transform::getPosition() {
+	return spyutils::Vector3();
+}
 
-void Transform::setRotation(float rotationX, float rotationY, float rotationZ) {
+void Separity::Transform::setRotation(float rotationX, float rotationY,
+                                      float rotationZ) {
 	btQuaternion quat((btScalar) rotationX, (btScalar) rotationY,
 	                  (btScalar) rotationZ);
 	rotation_ = spyutils::Vector3(rotationX, rotationY, rotationZ);
 	tr_->setRotation(quat);
 }
 
-spyutils::Vector3 Transform::getRotation() { return rotation_; }
+spyutils::Vector3 Separity::Transform::getRotation() { return rotation_; }
 
-void Transform::pitch(float degree) {
+void Separity::Transform::pitch(float degree) {
 	spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x + degree, rot.y, rot.z);
 }
 
-void Transform::yaw(float degree) {
+void Separity::Transform::yaw(float degree) {
 	spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x, rot.y + degree, rot.z);
 }
 
-void Transform::roll(float degree) {
+void Separity::Transform::roll(float degree) {
 	spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x, rot.y, rot.z + degree);
 }
 
-void Transform::setScale(float scaleX, float scaleY, float scaleZ) {
+void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 	scale_ = spyutils::Vector3(scaleX, scaleY, scaleZ);
 	auto rb=ent_->getComponent<RigidBody>();
 	if(rb) {
 	}
 }
-void Transform::setScale(float scale) { setScale(scale, scale, scale); }
+void Separity::Transform::setScale(float scale) {
+	setScale(scale, scale, scale);
+}
 
-spyutils::Vector3 Transform::getScale() { return spyutils::Vector3(); }
+spyutils::Vector3 Separity::Transform::getScale() {
+	return spyutils::Vector3();
+}
