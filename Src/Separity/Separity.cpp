@@ -2,11 +2,13 @@
 // programa comienza y termina ahí.
 //
 
-#include "RenderEngine.h"
 #include "InputManager.h"
 #include "MeshRenderer.h"
+#include "RenderEngine.h"
 #include "SoundEngine.h"
 #include "checkML.h"
+#include "fmod.hpp"
+#include "fmod_errors.h"
 #include <Ogre.h>
 
 #include <iostream>
@@ -15,11 +17,10 @@ using namespace std;
 using namespace Separity;
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	SoundEngine* soundEngine_ = new SoundEngine();
+	soundEngine_->initSoundSystem();
 
-	a* cv = new a();
-	cv->b();
-
-	SeparityRender *s = new SeparityRender();
+	SeparityRender* s = new SeparityRender();
 	s->renderOgre();
 	//MeshRenderer* mr =
 	//    new MeshRenderer(nullptr, "");
@@ -48,7 +49,7 @@ int main() {
 			}
 		}
 		s->mRoot->renderOneFrame();
-
+		soundEngine_->playSound();
 	}
 
 	return 0;

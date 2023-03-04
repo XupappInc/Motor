@@ -6,11 +6,9 @@
 #include "checkML.h"
 #define M_PI 3.141592
 
-int a::b()
-{
+int SoundEngine::initSoundSystem() {
 	// Create an instance of the FMOD system
-	FMOD::System* system;
-	FMOD_RESULT result = FMOD::System_Create(&system);
+    result = FMOD::System_Create(&system);
 	if (result != FMOD_OK)
 	{
 		printf("FMOD error: %s\n", FMOD_ErrorString(result));
@@ -35,7 +33,7 @@ int a::b()
 	const int numChannels = 1; // mono sound
 	const int bytesPerSample = sizeof(float);
 	const int bufferSize = numSamples * numChannels * bytesPerSample;
-	float* buffer = new float[numSamples];
+	buffer = new float[numSamples];
 
 	// Generate a sine wave
 	for (int i = 0; i < numSamples; i++)
@@ -45,7 +43,6 @@ int a::b()
 	}
 
 	// Create a sound from the generated buffer
-	FMOD::Sound* sound;
 	result = system->createSound(
 		"Assets//theme.mp3",
 		FMOD_DEFAULT,
@@ -72,25 +69,25 @@ int a::b()
 		return 0;
 	}
 
-	// Wait for the sound to finish playing
-	bool isPlaying = true;
-	while (isPlaying)
-	{
-		system->update();
-		result = channel->isPlaying(&isPlaying);
-		if (result != FMOD_OK)
-		{
-			printf("FMOD error: %s\n", FMOD_ErrorString(result));
-			break;
-		}
-	}
+	return 0;
+}
 
+void SoundEngine::playSound() {
+	
+	// Wait for the sound to finish playing	
+	system->update();
+	result = channel->isPlaying(&isPlaying);
+	std::cout << result;
+	if(result != FMOD_OK) {
+		printf("FMOD error: %s\n", FMOD_ErrorString(result));	
+	}	
+}
+
+void SoundEngine::stopPlaying() {
 	// Clean up
 	channel->stop();
 	sound->release();
 	delete[] buffer;
 	system->release();
-
-	return 0;
 }
 
