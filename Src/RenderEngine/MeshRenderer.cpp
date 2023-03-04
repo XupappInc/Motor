@@ -6,6 +6,7 @@
 #include <Ogre.h>
 #include <cassert>
 
+
 Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
                                      std::string meshName)
     : sceneManager_(sceneManager) {
@@ -21,7 +22,7 @@ Separity::MeshRenderer::~MeshRenderer() {
 }
 
 void Separity::MeshRenderer::render() {
-ec:
+
 	Transform* tr = ent_->getComponent<Transform>();
 
 	assert(tr != nullptr);

@@ -98,7 +98,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\lua-5.4.4\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\lua-5.4.4\src;$(SolutionDir)Src\Separity</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,7 +115,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\lua-5.4.4\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\lua-5.4.4\src;$(SolutionDir)Src\Separity</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,7 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\lua-5.4.4\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\lua-5.4.4\src;$(SolutionDir)Src\Separity</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,7 +149,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\lua-5.4.4\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\lua-5.4.4\src;$(SolutionDir)Src\Separity</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

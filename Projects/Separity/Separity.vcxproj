@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Separity\Component.cpp" />
+    <ClCompile Include="..\..\Src\Separity\Entity.cpp" />
+    <ClCompile Include="..\..\Src\Separity\Manager.cpp" />
     <ClCompile Include="..\..\Src\Separity\Separity.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EntityComponent\EntityComponent.vcxproj">
-      <Project>{329ebb57-bbe0-45ce-861b-a6d9a3d28279}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\InputEngine\InputEngine.vcxproj">
       <Project>{1814229a-90cd-4e29-ad55-9f4b3469feba}</Project>
     </ProjectReference>
@@ -46,6 +46,13 @@
     <ProjectReference Include="..\UIEngine\UIEngine.vcxproj">
       <Project>{cc70ea3d-ae4a-4198-9a29-39dff9d166c9}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\Separity\Component.h" />
+    <ClInclude Include="..\..\Src\Separity\ec.h" />
+    <ClInclude Include="..\..\Src\Separity\ec_defs.h" />
+    <ClInclude Include="..\..\Src\Separity\Entity.h" />
+    <ClInclude Include="..\..\Src\Separity\Manager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -124,7 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,7 +148,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,7 +165,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -175,7 +182,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

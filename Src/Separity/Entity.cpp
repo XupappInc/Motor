@@ -2,6 +2,7 @@
 
 #include "Manager.h"
 #include "checkML.h"
+#include "../RenderEngine/MeshRenderer.h"
 
 Separity::Entity::Entity(Separity::grpId_type gId)
     : mngr_(nullptr), cmps_(), currCmps_(), alive_(), gId_(gId) {
@@ -66,7 +67,6 @@ T* Separity::Entity::addComponent(Ts&&... args) {
 	// lo devuelve al usuario
 	return static_cast<T*>(c);
 }
-
 template<typename T>
 void Separity::Entity::removeComponent() {
 	constexpr cmpId_type cId = T::id;
@@ -96,6 +96,9 @@ T* Separity::Entity::getComponent() {
 	return static_cast<T*>(cmps_[cId]);
 }
 
+//template Separity::MeshRenderer*
+//Separity::Entity::getComponent<Separity::MeshRenderer>();
+
 template<typename T>
 bool Separity::Entity::hasComponent() {
 	constexpr cmpId_type cId = T::id;
@@ -103,3 +106,4 @@ bool Separity::Entity::hasComponent() {
 
 	return cmps_[cId] != nullptr;
 }
+

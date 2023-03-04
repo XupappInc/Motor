@@ -2,8 +2,8 @@
 // programa comienza y termina ahí.
 //
 
+#include "RenderEngine.h"
 #include "InputManager.h"
-#include "MeshRenderer.h"
 #include "RenderEngine.h"
 #include "SoundEngine.h"
 #include "checkML.h"
@@ -15,8 +15,10 @@
 
 using namespace std;
 using namespace Separity;
+
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	
 	SoundEngine* soundEngine_ = new SoundEngine();
 	soundEngine_->initSoundSystem();
 	soundEngine_->createSound("Assets//theme.mp3");
@@ -24,10 +26,7 @@ int main() {
 
 	SeparityRender* s = new SeparityRender();
 	s->renderOgre();
-	//MeshRenderer* mr =
-	//    new MeshRenderer(nullptr, "");
-
-
+	
 	InputManager* inputManger = Separity::InputManager::getInstance();
 
 	// Bucle principal
