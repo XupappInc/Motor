@@ -23,6 +23,7 @@ namespace Separity {
 		colliderShape colShape;
 		float height, width, depth, radius;
 		float offsetX, offsetY, offsetZ;
+		bool isTrigger;
 	};
 
 	class Collider : public Separity::Component {

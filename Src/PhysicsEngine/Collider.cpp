@@ -30,6 +30,8 @@ Separity::Collider::Collider(colliderParams params) {
 
 	offset_ =
 	    new spyutils::Vector3(params.offsetX, params.offsetY, params.offsetZ);
+
+	trigger_ = params.isTrigger;
 }
 
 Separity::Collider::~Collider() {
