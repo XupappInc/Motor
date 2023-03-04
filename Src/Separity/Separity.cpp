@@ -2,9 +2,9 @@
 // programa comienza y termina ahí.
 //
 
-#include "RenderEngine.h"
+//#include "RenderEngine.h"
 #include "InputManager.h"
-#include "RenderEngine.h"
+#include "RenderManager.h"
 #include "SoundEngine.h"
 #include "checkML.h"
 #include "fmod.hpp"
@@ -24,9 +24,12 @@ int main() {
 	soundEngine_->createSound("Assets//theme.mp3");
 	soundEngine_->playSound();
 
-	SeparityRender* s = new SeparityRender();
-	s->renderOgre();
-	
+	/*SeparityRender* s = new SeparityRender();
+	s->renderOgre();*/
+	//SeparityRender 
+	RenderManager* renderManager = Separity::RenderManager::getInstance();
+	renderManager->createTestScene();
+
 	InputManager* inputManger = Separity::InputManager::getInstance();
 
 	// Bucle principal
@@ -49,7 +52,7 @@ int main() {
 				cout << "Release\n";
 			}
 		}
-		s->mRoot->renderOneFrame();
+		renderManager->getOgreRoot()->renderOneFrame();
 		soundEngine_->updateSoundEngine();
 	}
 
