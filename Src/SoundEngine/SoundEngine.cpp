@@ -6,22 +6,20 @@
 #include "checkML.h"
 #define M_PI 3.141592
 
-int SoundEngine::initSoundSystem() {
+void SoundEngine::initSoundSystem() {
 	// Create an instance of the FMOD system
-    result = FMOD::System_Create(&system);
-	if (result != FMOD_OK)
+    result_ = FMOD::System_Create(&system_);
+	if (result_ != FMOD_OK)
 	{
-		printf("FMOD error: %s\n", FMOD_ErrorString(result));
-		return 0;
+		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
 	}
 
 	// Initialize the FMOD system with 32 channels and normal settings
-	result = system->init(32, FMOD_INIT_NORMAL, 0);
-	if (result != FMOD_OK)
+	result_ = system_->init(32, FMOD_INIT_NORMAL, 0);
+	if (result_ != FMOD_OK)
 	{
-		printf("FMOD error: %s\n", FMOD_ErrorString(result));
-		system->release();
-		return 0;
+		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
+		system_->release();;
 	}
 
 	// Set the sound parameters
@@ -41,24 +39,23 @@ int SoundEngine::initSoundSystem() {
 		float t = static_cast<float>(i) / sampleRate;
 		buffer[i] = amplitude * std::sin(2.0f * M_PI * frequency * t);
 	}
-	return 0;
 }
 
 void SoundEngine::playSound() {
 	
 	FMOD::Channel* channel;
-	result = system->playSound(sound, nullptr, false, &channel);
-	if(result != FMOD_OK) {
-		printf("FMOD error: %s\n", FMOD_ErrorString(result));
-		sound->release();
+	result_ = system_->playSound(sound_, nullptr, false, &channel);
+	if(result_ != FMOD_OK) {
+		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
+		sound_->release();
 		delete[] buffer;
-		system->release();
+		system_->release();
 	}
 }
 
 void SoundEngine::updateSoundEngine() {
 	// Wait for the sound to finish playing
-	system->update();
+	system_->update();
 	//result = channel->isPlaying(&isPlaying);
 	//std::cout << result;
 	//if(result != FMOD_OK) {
@@ -68,20 +65,20 @@ void SoundEngine::updateSoundEngine() {
 
 void SoundEngine::stopPlaying() {
 	// Clean up
-	channel->stop();
-	sound->release();
+	channel_->stop();
+	sound_->release();
 	delete[] buffer;
-	system->release();
+	system_->release();
 }
 
 void SoundEngine::createSound(const char* songName) {
-	result =
-	    system->createSound(songName, FMOD_DEFAULT, nullptr, &sound);
+	result_ =
+	    system_->createSound(songName, FMOD_DEFAULT, nullptr, &sound_);
 
-	if(result != FMOD_OK) {
-		printf("FMOD error: %s\n", FMOD_ErrorString(result));
+	if(result_ != FMOD_OK) {
+		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
 		delete[] buffer;
-		system->release();
+		system_->release();
 	}
 }
 
