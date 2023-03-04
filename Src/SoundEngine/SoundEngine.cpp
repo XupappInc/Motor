@@ -41,46 +41,29 @@ int SoundEngine::initSoundSystem() {
 		float t = static_cast<float>(i) / sampleRate;
 		buffer[i] = amplitude * std::sin(2.0f * M_PI * frequency * t);
 	}
-
-	// Create a sound from the generated buffer
-	result = system->createSound(
-		"Assets//theme.mp3",
-		FMOD_DEFAULT,
-		nullptr,
-		&sound
-	);
-	if (result != FMOD_OK)
-	{
-		printf("FMOD error: %s\n", FMOD_ErrorString(result));
-		delete[] buffer;
-		system->release();
-		return 0;
-	}
-
-	// Play the sound
-	FMOD::Channel* channel;
-	result = system->playSound(sound, nullptr, false, &channel);
-	if (result != FMOD_OK)
-	{
-		printf("FMOD error: %s\n", FMOD_ErrorString(result));
-		sound->release();
-		delete[] buffer;
-		system->release();
-		return 0;
-	}
-
 	return 0;
 }
 
 void SoundEngine::playSound() {
 	
-	// Wait for the sound to finish playing	
-	system->update();
-	result = channel->isPlaying(&isPlaying);
-	std::cout << result;
+	FMOD::Channel* channel;
+	result = system->playSound(sound, nullptr, false, &channel);
 	if(result != FMOD_OK) {
-		printf("FMOD error: %s\n", FMOD_ErrorString(result));	
-	}	
+		printf("FMOD error: %s\n", FMOD_ErrorString(result));
+		sound->release();
+		delete[] buffer;
+		system->release();
+	}
+}
+
+void SoundEngine::updateSoundEngine() {
+	// Wait for the sound to finish playing
+	system->update();
+	//result = channel->isPlaying(&isPlaying);
+	//std::cout << result;
+	//if(result != FMOD_OK) {
+	//	printf("FMOD error: %s\n", FMOD_ErrorString(result));
+	//}
 }
 
 void SoundEngine::stopPlaying() {
@@ -89,5 +72,16 @@ void SoundEngine::stopPlaying() {
 	sound->release();
 	delete[] buffer;
 	system->release();
+}
+
+void SoundEngine::createSound(const char* songName) {
+	result =
+	    system->createSound(songName, FMOD_DEFAULT, nullptr, &sound);
+
+	if(result != FMOD_OK) {
+		printf("FMOD error: %s\n", FMOD_ErrorString(result));
+		delete[] buffer;
+		system->release();
+	}
 }
 

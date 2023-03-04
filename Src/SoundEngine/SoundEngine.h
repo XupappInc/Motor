@@ -4,7 +4,9 @@
 class SoundEngine {
 	public:
 	int initSoundSystem();
+	void createSound(const char* songName);
 	void playSound();
+	void updateSoundEngine();
 	void stopPlaying();
 
 	private:

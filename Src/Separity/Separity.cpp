@@ -16,6 +16,8 @@ using namespace Separity;
 int main() {
 	SoundEngine* soundEngine_ = new SoundEngine();
 	soundEngine_->initSoundSystem();
+	soundEngine_->createSound("Assets//theme.mp3");
+	soundEngine_->playSound();
 
 	SeparityRender* s = new SeparityRender();
 	s->renderOgre();
@@ -45,7 +47,7 @@ int main() {
 			}
 		}
 		s->mRoot->renderOneFrame();
-		soundEngine_->playSound();
+		soundEngine_->updateSoundEngine();
 	}
 
 	return 0;
