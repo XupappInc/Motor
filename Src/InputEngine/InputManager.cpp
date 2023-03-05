@@ -42,6 +42,9 @@ void InputManager::update() {
 			case SDL_MOUSEBUTTONUP:
 				onMouseButtonChange(RELEASED);
 				break;
+			case SDL_WINDOWEVENT:
+				handleWindowEvent();
+				break;
 			default:
 				break;
 		}
@@ -84,13 +87,16 @@ bool InputManager::isMouseButtonUp(MOUSEBUTTON b) {
 	return mbState_[b] == RELEASED;
 }
 
-
+bool Separity::InputManager::closeWindowEvent() { 
+	return isCloseWindowEvent_; 
+}
 
 void InputManager::clearState() {
 	isKeyDownEvent_ = false;
 	isKeyUpEvent_ = false;
 	isMouseButtonEvent_ = false;
 	isMouseMotionEvent_ = false;
+	isCloseWindowEvent_ = false;
 	for(auto i = 0u; i < 3; i++) {
 		if(mbState_[i] == DOWN)
 			mbState_[i] = HELD;
@@ -138,4 +144,13 @@ void InputManager::onMouseButtonChange(MOUSESTATE mouseState) {
 	}
 }
 
+void Separity::InputManager::handleWindowEvent() {
+	switch(event.window.event) {
+		case SDL_WINDOWEVENT_CLOSE:
+			isCloseWindowEvent_ = true;
+			break;
+		default:
+			break;
+	}
+}
 
