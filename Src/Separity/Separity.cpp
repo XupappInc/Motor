@@ -33,9 +33,6 @@ int main() {
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->createTestScene();
 
-	Entity* mono = new Entity(_grp_GENERAL);
-	mono->addComponent<Transform()>();
-
 	InputManager* inputManger = Separity::InputManager::getInstance();
 
 	// Bucle principal
