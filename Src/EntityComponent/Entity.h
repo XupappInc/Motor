@@ -71,13 +71,74 @@ namespace Separity{
 		/// identificador de componente 'cId' se obtiene de T::id
 		/// </summary>
 		template<typename T, typename... Ts>
-		T* addComponent(Ts&&... args);
+		T* addComponent(Ts&&... args) {
+			constexpr cmpId_type cId = T::id;
+			assert(cId < Separity::maxComponentId);
+
+			// borra el componente actual si existe uno del mismo tipo
+			removeComponent<T>();
+
+			// crea, inicializa y añade el nuevo componente
+			Component* c = new T(std::forward<Ts>(args)...);
+
+			Manager* componentManager = nullptr;
+			constexpr cmpType_type cType = T::type;
+			switch(cType) {
+				case _RENDER:
+					// componentManager = Separity::RenderManager::instance();
+					break;
+				/*case _PHYSICS:
+					componentManager = PhysicsManager::getInstance();
+					break;
+				case _INPUT:
+					componentManager = InputManager::getInstance();
+					break;
+				case _UI:
+					componentManager = UIManager::getInstance();
+					break;
+				case _SOUND:
+					componentManager = SoundManager::getInstance();
+					break;
+				case _SCRIPT:
+					componentManager = LuaManager::getInstance();
+					break;*/
+				default:
+					break;
+			}
+
+			c->setContext(this, mngr_);
+			c->initComponent();
+			cmps_[cId] = c;
+			currCmps_.push_back(c);
+
+			// lo devuelve al usuario
+			return static_cast<T*>(c);
+		}
 
 		/// <summary>
 		/// Borra el componente de la posición T::id
 		/// </summary>
 		template<typename T>
-		void removeComponent();
+		void removeComponent() {
+			constexpr cmpId_type cId = T::id;
+			assert(cId < Separity::maxComponentId);
+
+			if(cmps_[cId] != nullptr) {
+				// encuentra el elemento que es igual a tocmps_[cId]
+				// (devuelve un iterador)
+				auto iter =
+				    std::find(currCmps_.begin(), currCmps_.end(), cmps_[cId]);
+
+				// y lo borra
+				currCmps_.erase(iter);
+
+				// lo destruye
+				delete cmps_[cId];
+
+				// borra el puntero
+				cmps_[cId] = nullptr;
+			}
+		}
 
 		/// <summary>
 		/// Devuelve el componente correspondiente a la posicion T::id,
@@ -86,15 +147,24 @@ namespace Separity{
 		/// </summary>
 		/// <returns>El componente ya casteado a su tipo</returns>
 		template<typename T>
-		T* getComponent();
+		T* getComponent() {
+			constexpr cmpId_type cId = T::id;
+			assert(cId < Separity::maxComponentId);
 
+			return static_cast<T*>(cmps_[cId]);
+		}
 		/// <summary>
 		/// Devuelve si existe un componente con el identificador T::id
 		/// </summary>
 		/// <returns>True si existe el componente, false en caso
 		/// contrario</returns>
 		template<typename T>
-		bool hasComponent();
+		bool hasComponent() {
+			constexpr cmpId_type cId = T::id;
+			assert(cId < Separity::maxComponentId);
+
+			return cmps_[cId] != nullptr;
+		}
 
 		/// <summary>
 		/// Devuelve el grupo de la entidad

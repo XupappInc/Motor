@@ -26,7 +26,7 @@ namespace Separity{
 		/// </summary>
 		/// <param name="ent">Entidad a la que pertenece el componente</param>
 		/// <param name="mngr">Manager al que pertenece el componente</param>
-		inline void setContext(Entity* ent, Manager* mngr);
+		void setContext(Entity* ent, Manager* mngr);
 
 		/// <summary>
 		/// Metodo que activa o desactiva el componente

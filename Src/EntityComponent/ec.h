@@ -50,8 +50,8 @@ namespace Separity {
 	/// Lista de los indentificadores de grupo
 	/// </summary>
 	enum grpId : cmpId_type {
-		_grp_GENERAL,/* obtenido de ec_defs */
-		_GRPS_LIST_, 
+		_grp_GENERAL,
+		_GRPS_LIST_, /* obtenido de ec_defs */
 
 		// no borrar esto
 		_LAST_GRP_ID

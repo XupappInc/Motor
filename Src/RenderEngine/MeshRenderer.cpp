@@ -5,8 +5,11 @@
 
 #include <Ogre.h>
 #include <cassert>
+#include "Transform.h"
 
+using namespace Separity;
 
+template Transform* Separity::Entity::getComponent<Transform>();
 Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
                                      std::string meshName)
     : sceneManager_(sceneManager) {

@@ -11,7 +11,7 @@ Separity::Component::~Component() {
 	mngr_ = nullptr;
 }
 
-inline void Separity::Component::setContext(Entity* ent, Manager* mngr) {
+void Separity::Component::setContext(Entity* ent, Manager* mngr) {
 	ent_ = ent;
 	mngr_ = mngr;
 }
