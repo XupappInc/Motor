@@ -13,42 +13,10 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Archivos de origen\ec">
-      <UniqueIdentifier>{a53e6d00-cf9e-4642-8f71-2c146c801c5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\ec">
-      <UniqueIdentifier>{99f9fc14-a7c7-4e72-8d98-ee538c631caf}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Separity\Separity.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Separity\Component.cpp">
-      <Filter>Archivos de origen\ec</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Separity\Entity.cpp">
-      <Filter>Archivos de origen\ec</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Separity\Manager.cpp">
-      <Filter>Archivos de origen\ec</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Src\Separity\Component.h">
-      <Filter>Archivos de encabezado\ec</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Separity\ec.h">
-      <Filter>Archivos de encabezado\ec</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Separity\ec_defs.h">
-      <Filter>Archivos de encabezado\ec</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Separity\Entity.h">
-      <Filter>Archivos de encabezado\ec</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Separity\Manager.h">
-      <Filter>Archivos de encabezado\ec</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

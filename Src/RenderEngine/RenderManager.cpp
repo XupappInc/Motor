@@ -9,6 +9,7 @@
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <OgreConfigFile.h>
+#include "MeshRenderer.h"
 
 
 template<typename T>
