@@ -5,13 +5,17 @@
 //#include "RenderEngine.h"
 #include "InputManager.h"
 #include "RenderManager.h"
+#include"PhysicsManager.h"
 #include "SoundEngine.h"
 #include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
 #include <Ogre.h>
-
+#include"Entity.h"
 #include <iostream>
+#include<Transform.h>
+#include<MeshRenderer.h>
+#include"RigidBody.h"
 
 
 using namespace std;
@@ -25,9 +29,15 @@ int main() {
 	
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->createTestScene();
-
+	PhysicsManager* physManager = Separity::PhysicsManager::getInstance();
+	physManager->initWorld();
 	InputManager* inputManger = Separity::InputManager::getInstance();
-
+	Entity* mono = new Entity(_grp_GENERAL);
+	auto tr=mono->addComponent<Transform>();
+	tr->translate(Spyutils::Vector3(100, 1000, 0));
+	//mono->addComponent<RigidBody>(DYNAMIC,10);
+	mono->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	                                "Sinbad.mesh");
 	// Bucle principal
 	bool quit = false;
 	while(!quit) {
@@ -49,7 +59,9 @@ int main() {
 			}
 		}
 		renderManager->update();
+		renderManager->render();
 		soundEngine_->updateSoundEngine();
+		physManager->update();
 	}
 
 	return 0;
