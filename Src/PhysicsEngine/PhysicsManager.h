@@ -3,7 +3,10 @@
 #define __PHYSICS_MANAGER_H__
 #include "Manager.h"
 class btDiscreteDynamicsWorld;
-
+class btBroadphaseInterface;
+class btCollisionDispatcher;
+class btSequentialImpulseConstraintSolver;
+class btDefaultCollisionConfiguration;
 namespace Separity {
 	class PhysicsManager : public Separity::Manager,
 	                       public Singleton<Separity::PhysicsManager> {
