@@ -39,7 +39,7 @@ int main() {
 	bool quit = false;
 	while(!quit) {
 		inputManger->update();
-		if(inputManger->isKeyDown('q')) {
+		if(inputManger->isKeyDown('q') || inputManger->closeWindowEvent()) {
 			quit = true;
 		} else {
 			if(inputManger->isKeyDown('w')) {

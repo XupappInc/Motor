@@ -38,6 +38,9 @@ namespace Separity {
 
 		bool isMouseButtonUp(MOUSEBUTTON b);
 
+		// close window event
+		bool closeWindowEvent();
+
 		// update
 		virtual void update() override;
 
@@ -72,10 +75,13 @@ namespace Separity {
 
 		void onMouseButtonChange(MOUSESTATE mouseState);
 
+		void handleWindowEvent();
+
 		bool isKeyUpEvent_;
 		bool isKeyDownEvent_;
 		bool isMouseMotionEvent_;
 		bool isMouseButtonEvent_;
+		bool isCloseWindowEvent_;
 		std::pair<Sint32, Sint32> mousePos_;
 		std::array<uint8_t, 3> mbState_;
 		const Uint8* kbState_;
