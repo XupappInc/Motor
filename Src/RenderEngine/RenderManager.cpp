@@ -9,6 +9,8 @@
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <OgreConfigFile.h>
+
+#include "Entity.h"
 #include "MeshRenderer.h"
 
 
@@ -70,7 +72,9 @@ void Separity::RenderManager::render() {}
 
 void Separity::RenderManager::update() 
 {
-	nSinbad_->yaw(Ogre::Degree(-0.2));
+	entity_->getComponent<Separity::MeshRenderer>()->getNode()->yaw(
+	    Ogre::Degree(-0.2));
+	ogreRoot_->renderOneFrame();
 }
 
 void Separity::RenderManager::createTestScene() {
@@ -116,10 +120,8 @@ void Separity::RenderManager::createTestScene() {
 	mLightNode->setPosition(0, 0, 2000);
 
 	// Creamos entidad con mesh de sinbad
-	nSinbad_ =
-	    sceneMgr_->getRootSceneNode()->createChildSceneNode();
-	Ogre::Entity* sinbad = sceneMgr_->createEntity("Sinbad.mesh");
-	nSinbad_->attachObject(sinbad);
+	entity_ = new Entity(_grp_GENERAL);
+	entity_->addComponent<MeshRenderer>(getSceneManager(), "Sinbad.mesh");
 }
 
 Separity::RenderManager* Separity::RenderManager::getInstance() {

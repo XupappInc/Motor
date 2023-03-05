@@ -45,3 +45,5 @@ void Separity::MeshRenderer::setActive(bool set) {
 	// ec:Component::setActive(set);
 	meshRenderer_->setVisible(set);
 }
+
+Ogre::SceneNode* Separity::MeshRenderer::getNode() { return meshRenderer_; }

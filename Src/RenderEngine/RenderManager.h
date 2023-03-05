@@ -14,7 +14,8 @@ namespace Ogre {
 class SDL_Window;
 
 namespace Separity {
-	class RenderManager : public Separity::Manager,	    
+	
+	class RenderManager : public Separity::Manager,
 	                      public Singleton<Separity::RenderManager> {
 		friend Singleton<RenderManager>;
 
@@ -43,11 +44,11 @@ namespace Separity {
 		Ogre::Root* ogreRoot_;
 		Ogre::SceneManager* sceneMgr_;
 		Ogre::ConfigFile* configFile_;
-		Ogre::SceneNode* nSinbad_;
+
 		float screenW_;
 		float screenH_;
-
-
+		
+		Separity::Entity* entity_;
 	};
 }  // namespace Separity
 

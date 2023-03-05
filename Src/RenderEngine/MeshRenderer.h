@@ -45,6 +45,12 @@ namespace Separity {
 		/// <param name="set">Indica si se va activar/desactivar la renderización del nodo</param>
 		void setActive(bool set);
 
+		/// <summary>
+		/// <para>Getter del nodo que contiene la entidad</para>
+		/// </summary>
+		/// <returns>Devuelve el nodo</returns>
+		Ogre::SceneNode* getNode();
+
 		private:
 		Ogre::SceneNode* meshRenderer_;
 		Ogre::SceneManager* sceneManager_;

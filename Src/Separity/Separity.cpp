@@ -49,7 +49,6 @@ int main() {
 			}
 		}
 		renderManager->update();
-		renderManager->getOgreRoot()->renderOneFrame();
 		soundEngine_->updateSoundEngine();
 	}
 
