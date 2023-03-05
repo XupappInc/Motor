@@ -13,8 +13,6 @@
 
 #include <iostream>
 
-#include "MeshRenderer.h"
-#include "Entity.h"
 
 using namespace std;
 using namespace Separity;
@@ -24,8 +22,6 @@ int main() {
 	soundEngine_->initSoundSystem();
 	soundEngine_->createSound("Assets//theme.mp3");
 	soundEngine_->playSound();
-
-	MeshRenderer* meshRenderer = new MeshRenderer(nullptr,"cube.mesh");
 	
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->createTestScene();
