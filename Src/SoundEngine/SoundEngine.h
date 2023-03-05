@@ -30,8 +30,8 @@ class SoundEngine {
 	void stopPlaying();
 
 	private:
-	float* buffer;
-	bool isPlaying;
+	float* buffer_;
+	bool isPlaying_;
 	FMOD::System* system_;
 	FMOD::Sound* sound_;
 	FMOD_RESULT result_;

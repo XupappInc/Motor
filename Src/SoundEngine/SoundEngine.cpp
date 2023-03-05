@@ -31,13 +31,13 @@ void SoundEngine::initSoundSystem() {
 	const int numChannels = 1; // mono sound
 	const int bytesPerSample = sizeof(float);
 	const int bufferSize = numSamples * numChannels * bytesPerSample;
-	buffer = new float[numSamples];
+	buffer_ = new float[numSamples];
 
 	// Generate a sine wave
 	for (int i = 0; i < numSamples; i++)
 	{
 		float t = static_cast<float>(i) / sampleRate;
-		buffer[i] = amplitude * std::sin(2.0f * M_PI * frequency * t);
+		buffer_[i] = amplitude * std::sin(2.0f * M_PI * frequency * t);
 	}
 }
 
@@ -48,7 +48,7 @@ void SoundEngine::playSound() {
 	if(result_ != FMOD_OK) {
 		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
 		sound_->release();
-		delete[] buffer;
+		delete[] buffer_;
 		system_->release();
 	}
 }
@@ -67,7 +67,7 @@ void SoundEngine::stopPlaying() {
 	// Clean up
 	channel_->stop();
 	sound_->release();
-	delete[] buffer;
+	delete[] buffer_;
 	system_->release();
 }
 
@@ -77,7 +77,7 @@ void SoundEngine::createSound(const char* songName) {
 
 	if(result_ != FMOD_OK) {
 		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
-		delete[] buffer;
+		delete[] buffer_;
 		system_->release();
 	}
 }
