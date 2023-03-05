@@ -1,4 +1,7 @@
 #pragma once
+#ifndef __SOUND_ENGINE_H__
+#define __SOUND_ENGINE_H__
+
 #include "fmod.hpp"
 #include "fmod_errors.h"
 class SoundEngine {
@@ -34,3 +37,4 @@ class SoundEngine {
 	FMOD_RESULT result_;
 	FMOD::Channel* channel_;
 };
+#endif  // !__COMPONENT_H__
