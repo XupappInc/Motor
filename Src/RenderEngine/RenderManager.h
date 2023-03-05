@@ -8,6 +8,7 @@ namespace Ogre {
 	class RenderWindow;
 	class SceneManager;
 	class ConfigFile;
+	class SceneNode;
 }  // namespace Ogre
 
 class SDL_Window;
@@ -26,6 +27,7 @@ namespace Separity {
 		void createSDLWindow();
 		void loadResources();
 		void render();
+		void update();
 		void createTestScene();
 		SDL_Window* getSDLWindow();
 		Ogre::Root* getOgreRoot();
@@ -41,6 +43,7 @@ namespace Separity {
 		Ogre::Root* ogreRoot_;
 		Ogre::SceneManager* sceneMgr_;
 		Ogre::ConfigFile* configFile_;
+		Ogre::SceneNode* nSinbad_;
 		float screenW_;
 		float screenH_;
 

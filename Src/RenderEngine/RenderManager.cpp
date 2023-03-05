@@ -67,6 +67,11 @@ void Separity::RenderManager::loadResources() {
 
 void Separity::RenderManager::render() {}
 
+void Separity::RenderManager::update() 
+{
+	nSinbad_->yaw(Ogre::Degree(-0.2));
+}
+
 void Separity::RenderManager::createTestScene() {
 	init();
 	createSDLWindow();
@@ -110,10 +115,10 @@ void Separity::RenderManager::createTestScene() {
 	mLightNode->setPosition(0, 0, 2000);
 
 	// Creamos entidad con mesh de sinbad
-	Ogre::SceneNode* nSinbad =
+	nSinbad_ =
 	    sceneMgr_->getRootSceneNode()->createChildSceneNode();
 	Ogre::Entity* sinbad = sceneMgr_->createEntity("Sinbad.mesh");
-	nSinbad->attachObject(sinbad);
+	nSinbad_->attachObject(sinbad);
 }
 
 Separity::RenderManager* Separity::RenderManager::getInstance() {

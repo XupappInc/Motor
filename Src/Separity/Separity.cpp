@@ -55,6 +55,7 @@ int main() {
 				cout << "Release\n";
 			}
 		}
+		renderManager->update();
 		renderManager->getOgreRoot()->renderOneFrame();
 		soundEngine_->updateSoundEngine();
 	}
