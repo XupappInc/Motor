@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsEngine.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsSystem.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -35,9 +29,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsEngine.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>

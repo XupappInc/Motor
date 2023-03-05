@@ -2,7 +2,7 @@
 #ifndef __VECTOR3_H__
 #define __VECTOR3_H__
 
-namespace spyutils {
+namespace Spyutils {
 	/// <summary>
 	/// Clase que abstrae el tipo Vector3 para todo el proyecto. Cuenta con
 	/// operaciones básicas de asignación y operaciones aritméticas de uso
@@ -94,5 +94,5 @@ namespace spyutils {
 		void normalize();
 	};
 
-}  // namespace spyutils
+}  // namespace Spyutils
 #endif  // !__VECTOR3_H__

@@ -11,6 +11,9 @@
 #include "fmod_errors.h"
 #include <Ogre.h>
 
+#include "Entity.h"
+#include "Transform.h"
+
 #include <iostream>
 
 using namespace std;
@@ -29,6 +32,9 @@ int main() {
 	//SeparityRender 
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->createTestScene();
+
+	Entity* mono = new Entity(_grp_GENERAL);
+	mono->addComponent<Transform()>();
 
 	InputManager* inputManger = Separity::InputManager::getInstance();
 

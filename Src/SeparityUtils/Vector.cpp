@@ -1,8 +1,8 @@
 #include "Vector.h"
 #include <cmath>
-spyutils::Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
+Spyutils::Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 
-float& spyutils::Vector3::operator[](int index) {
+float& Spyutils::Vector3::operator[](int index) {
 	
 		switch(index) {
 			case 0:
@@ -19,32 +19,32 @@ float& spyutils::Vector3::operator[](int index) {
 		}
 }
 
-spyutils::Vector3 spyutils::Vector3::operator*(spyutils::Vector3 const& other) {
+Spyutils::Vector3 Spyutils::Vector3::operator*(Spyutils::Vector3 const& other) {
 	    return Vector3(this->x * other.x, this->y * other.y, this->z * other.z);
 }
 
-spyutils::Vector3 spyutils::Vector3::operator+(Vector3 const& other) {
+Spyutils::Vector3 Spyutils::Vector3::operator+(Vector3 const& other) {
 	    return Vector3(this->x + other.x, this->y + other.y, this->z + other.z);
 }
 
-void spyutils::Vector3::operator+=(Vector3 const& other) {
+void Spyutils::Vector3::operator+=(Vector3 const& other) {
 	    this->x += other.x;
 	    this->y += other.y;
 	    this->z += other.z;
 }
 
-spyutils::Vector3 spyutils::Vector3::operator-(Vector3 const& other) {
+Spyutils::Vector3 Spyutils::Vector3::operator-(Vector3 const& other) {
 	    return Vector3(this->x - other.x, this->y - other.y, this->z - other.z);
 	    ;
 }
 
-void spyutils::Vector3::operator-=(Vector3 const& other) {
+void Spyutils::Vector3::operator-=(Vector3 const& other) {
 	    this->x -= other.x;
 	    this->y -= other.y;
 	    this->z -= other.z;
 };
 
-bool spyutils::Vector3::operator ==(spyutils::Vector3 const& other) {
+bool Spyutils::Vector3::operator==(Spyutils::Vector3 const& other) {
 	    return ((this->x == other.x) && (this->y == other.y) &&
 	            (this->z == other.z));
 	
@@ -52,31 +52,31 @@ bool spyutils::Vector3::operator ==(spyutils::Vector3 const& other) {
 
 
 
-bool spyutils::Vector3::operator!=(Vector3 const& other) {
+bool Spyutils::Vector3::operator!=(Vector3 const& other) {
 	    return ((this->x != other.x) || (this->y != other.y) ||
 	            (this->z != other.z));
 }
 
-spyutils::Vector3 spyutils::Vector3::operator*(float const& other) {
+Spyutils::Vector3 Spyutils::Vector3::operator*(float const& other) {
 	    return Vector3(this->x * other, this->y * other, this->z * other);
 }
 
-void spyutils::Vector3::operator*=(Vector3 const& other) {
+void Spyutils::Vector3::operator*=(Vector3 const& other) {
 	    this->x *= other.x;
 	    this->y *= other.y;
 	    this->z *= other.z;
 }
 
-spyutils::Vector3 spyutils::Vector3::operator/(float const& other) {
+Spyutils::Vector3 Spyutils::Vector3::operator/(float const& other) {
 	return operator*(1 / other);
 }
 
-float spyutils::Vector3::magnitude() {
+float Spyutils::Vector3::magnitude() {
 	return std::sqrt(std::pow(this->x, 2) + std::pow(this->y, 2) +
 	                 std::pow(this->z, 2));
 }
 
-void spyutils::Vector3::normalize() {
+void Spyutils::Vector3::normalize() {
 	float magn = magnitude();
 	this->x /= magn;
 	this->y /= magn;

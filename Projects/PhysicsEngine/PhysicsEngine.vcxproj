@@ -20,15 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\PhysicsEngine\Collider.cpp" />
-    <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsEngine.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsManager.cpp" />
-    <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsSystem.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\RigidBody.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PhysicsEngine\Collider.h" />
-    <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsEngine.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsManager.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\RigidBody.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\Transform.h" />

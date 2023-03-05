@@ -29,7 +29,7 @@ Separity::Collider::Collider(colliderParams params) {
 	}
 
 	offset_ =
-	    new spyutils::Vector3(params.offsetX, params.offsetY, params.offsetZ);
+	    new Spyutils::Vector3(params.offsetX, params.offsetY, params.offsetZ);
 
 	trigger_ = params.isTrigger;
 }
@@ -43,6 +43,6 @@ btCollisionShape* Separity::Collider::getColliderShape() {
 	return colliderShape_;
 }
 
-spyutils::Vector3* Separity::Collider::getOffset() { return offset_; }
+Spyutils::Vector3* Separity::Collider::getOffset() { return offset_; }
 
 bool Separity::Collider::isTrigger() { return trigger_; }

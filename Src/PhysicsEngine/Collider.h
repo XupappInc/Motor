@@ -3,7 +3,7 @@
 #define __COLLIDER_H__
 #include "Component.h"
 
-namespace spyutils {
+namespace Spyutils {
 	class Vector3;
 }
 class btCollisionShape;
@@ -51,7 +51,7 @@ namespace Separity {
 		/// Devuelve el offset del collider respecto al objeto
 		/// </summary>
 		/// <returns>Un Vector3 que representa el offset del collider</returns>
-		spyutils::Vector3* getOffset();
+		Spyutils::Vector3* getOffset();
 
 		/// <summary>
 		/// Devuelve si el collider es un trigger
@@ -62,7 +62,7 @@ namespace Separity {
 		private:
 		btCollisionShape* colliderShape_;
 		bool trigger_;
-		spyutils::Vector3* offset_;
+		Spyutils::Vector3* offset_;
 	};
 }  // namespace Separity
 #endif __COLLIDER_H__

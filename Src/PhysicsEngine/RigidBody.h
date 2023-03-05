@@ -3,7 +3,7 @@
 #define __RIGIDBODY_H__
 #include "Component.h"
 
-namespace spyutils {
+namespace Spyutils {
 	class Vector3;
 }
 class btRigidBody;
@@ -21,11 +21,17 @@ namespace Separity {
 		STATIC,
 	};
 
+	/// <summary>
+	/// Parámetros para pasarle al rigidbody
+	/// </summary>
 	struct rbParams {
 		float mass = 1.0;
 		typeRb tipo;
 	};
 
+	/// <summary>
+	/// Componente rigidbody
+	/// </summary>
 	class RigidBody : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
@@ -33,13 +39,43 @@ namespace Separity {
 
 		RigidBody(typeRb tipo, float mass = 0);
 		~RigidBody();
-		void addForce(spyutils::Vector3 force);
+		/// <summary>
+		/// Añade una fuerza aplicada sobre el centro del rigidbody
+		/// </summary>
+		/// <param name="force">La fuerza que se aplica</param>
+		void addForce(Spyutils::Vector3 force);
+		/// <summary>
+		/// Borra todas las fuerzas que se están aplicando actualmente
+		/// </summary>
 		void clearForces();
-		void setLinearVelocity(spyutils::Vector3 vel);
-		void setAngularVelocity(spyutils::Vector3 vel);
-		void applyTorque(spyutils::Vector3 torq);
-		void setGravity(spyutils::Vector3 g);
-		void scaleRb(spyutils::Vector3 s);
+		/// <summary>
+		/// Establece una velocidad lineal
+		/// </summary>
+		/// <param name="vel">La velocidad que queremos que se aplique</param>
+		void setLinearVelocity(Spyutils::Vector3 vel);
+		/// <summary>
+		/// Establece una velocidad angular
+		/// </summary>
+		/// <param name="vel">La velocidad que queremos que se aplique</param>
+		void setAngularVelocity(Spyutils::Vector3 vel);
+		/// <summary>
+		/// Aplica una fuerza que no se aplica sobre el centro del rigidbody
+		/// </summary>
+		/// <param name="torq">La fuerza que se aplica</param>
+		void applyTorque(Spyutils::Vector3 torq);
+		/// <summary>
+		///	Establece la gravedad que afecta al rigidbody
+		/// </summary>
+		/// <param name="g">El vector que define la fuerza aplicada</param>
+		void setGravity(Spyutils::Vector3 g);
+		/// <summary>
+		/// Establece la escala del rigidbody
+		/// </summary>
+		/// <param name="s">Escala</param>
+		void scaleRb(Spyutils::Vector3 s);
+		/// <summary>
+		/// Método update heredado de Component
+		/// </summary>
 		void update() override;
 
 		private:

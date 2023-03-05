@@ -26,7 +26,7 @@ Separity::RigidBody::RigidBody(typeRb tipo, float mass)
 
 	btDefaultMotionState* motionState = new btDefaultMotionState(nuevoTr);
 
-	spyutils::Vector3 escala = tr_->getScale();
+	Spyutils::Vector3 escala = tr_->getScale();
 
 	// collider de bullet
 	btCollisionShape* collisionShape = collider->getColliderShape();
@@ -56,7 +56,7 @@ Separity::RigidBody::RigidBody(typeRb tipo, float mass)
 
 Separity::RigidBody::~RigidBody() { delete rb_; }
 
-void Separity::RigidBody::addForce(spyutils::Vector3 force) {
+void Separity::RigidBody::addForce(Spyutils::Vector3 force) {
 	btVector3 fuerza(force.x, force.y, force.z);
 	btVector3 posicion(0, 0, 0);
 	rb_->applyForce(fuerza, posicion);
@@ -64,26 +64,26 @@ void Separity::RigidBody::addForce(spyutils::Vector3 force) {
 
 void Separity::RigidBody::clearForces() { rb_->clearForces(); }
 
-void Separity::RigidBody::setLinearVelocity(spyutils::Vector3 vel) {
+void Separity::RigidBody::setLinearVelocity(Spyutils::Vector3 vel) {
 	btVector3 velocidad(vel.x, vel.y, vel.z);
 	rb_->setLinearVelocity(velocidad);
 }
 
-void Separity::RigidBody::setAngularVelocity(spyutils::Vector3 vel) {
+void Separity::RigidBody::setAngularVelocity(Spyutils::Vector3 vel) {
 	btVector3 velocidad(vel.x, vel.y, vel.z);
 	rb_->setAngularVelocity(velocidad);
 }
 
-void Separity::RigidBody::applyTorque(spyutils::Vector3 torq) {
+void Separity::RigidBody::applyTorque(Spyutils::Vector3 torq) {
 	btVector3 torque(torq.x, torq.y, torq.z);
 	rb_->applyTorque(torque);
 }
-void Separity::RigidBody::setGravity(spyutils::Vector3 g) {
+void Separity::RigidBody::setGravity(Spyutils::Vector3 g) {
 	btVector3 fuerza(g.x, g.y, g.z);
 	rb_->setGravity(fuerza);
 }
 
-void Separity::RigidBody::scaleRb(spyutils::Vector3 s) {
+void Separity::RigidBody::scaleRb(Spyutils::Vector3 s) {
 	btVector3 vec(s.x, s.y, s.z);
 	auto collisionShape = rb_->getCollisionShape();
 	collisionShape->setLocalScaling(vec);

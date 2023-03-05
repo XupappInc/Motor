@@ -22,7 +22,7 @@ namespace Separity {
 		/// Setear la posición del componente tranform
 		/// </summary>
 		/// <param name="other">Vector3 de la posición</param>
-		void setPosition(spyutils::Vector3 other);
+		void setPosition(Spyutils::Vector3 other);
 		/// <summary>
 		/// Setear la posición del componente tranform
 		/// </summary>
@@ -34,12 +34,12 @@ namespace Separity {
 		/// Transladar la posición del transform
 		/// </summary>
 		/// <param name="other">Vector3 para transladar</param>
-		void translate(spyutils::Vector3 other);
+		void translate(Spyutils::Vector3 other);
 		/// <summary>
 		/// Coger la posición del transform
 		/// </summary>
 		/// <returns></returns>
-		spyutils::Vector3 getPosition();
+		Spyutils::Vector3 getPosition();
 		/// <summary>
 		/// Setetar l posición del transform.
 		/// </summary>
@@ -51,7 +51,7 @@ namespace Separity {
 		/// geter de la rotación en un Vector3
 		/// </summary>
 		/// <returns></returns>
-		spyutils::Vector3 getRotation();
+		Spyutils::Vector3 getRotation();
 		/// <summary>
 		/// Rotacion en el eje x
 		/// </summary>
@@ -83,13 +83,13 @@ namespace Separity {
 		/// geter de la escala del transform
 		/// </summary>
 		/// <returns></returns>
-		spyutils::Vector3 getScale();
+		Spyutils::Vector3 getScale();
 
 		private:
 		btTransform* tr_;
-		spyutils::Vector3 positition_;
-		spyutils::Vector3 rotation_;
-		spyutils::Vector3 scale_;
+		Spyutils::Vector3 positition_;
+		Spyutils::Vector3 rotation_;
+		Spyutils::Vector3 scale_;
 	};
 }  // namespace Separity
 #endif __TRANSFORM_H__
