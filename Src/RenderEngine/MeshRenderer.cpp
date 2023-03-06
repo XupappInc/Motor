@@ -9,7 +9,6 @@
 
 using namespace Separity;
 
-template Transform* Separity::Entity::getComponent<Transform>();
 Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
                                      std::string meshName)
     : sceneManager_(sceneManager) {
