@@ -3,7 +3,7 @@
 #define __ENTITY_H__
 
 #include "Component.h"
-#include"Manager.h"
+#include "Manager.h"
 #include "ec.h"
 
 #include <array>
@@ -11,15 +11,16 @@
 #include <cassert>
 #include <vector>
 
-namespace Separity{
+namespace Separity {
 	class RenderManager;
-	
+	class PhysicsManager;
+
 	/// <summary>
 	/// <para>Clase que representa una entidad.</para>
 	/// <para>Cada entidad puede contener una serie de componentes y debe de
 	/// pertenecer a un manager.</para>
 	/// </summary>
-	/// 
+	///
 	class Entity {
 		public:
 		Entity(Separity::grpId_type gId);
@@ -88,13 +89,14 @@ namespace Separity{
 			constexpr cmpType_type cType = T::type;
 			switch(cType) {
 				case _RENDER:
-					 componentManager = Separity::RenderManager::getInstance();
+					componentManager = Separity::RenderManager::getInstance();
 					componentManager->addComponent(c);
 					break;
 				/*case _PHYSICS:
-					componentManager = PhysicsManager::getInstance();
-					break;
-				case _INPUT:
+					componentManager = Separity::PhysicsManager::getInstance();
+					componentManager->addComponent(c);
+					break;*/
+				/*case _INPUT:
 					componentManager = InputManager::getInstance();
 					break;
 				case _UI:

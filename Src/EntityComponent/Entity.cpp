@@ -1,6 +1,5 @@
 #include "Entity.h"
 
-#include "Manager.h"
 #include "checkML.h"
 
 Separity::Entity::Entity(Separity::grpId_type gId)

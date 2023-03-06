@@ -9,11 +9,15 @@
 #include <btBulletDynamicsCommon.h>
 
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
-    : mass_(mass), tipo_(tipo) {
+    : mass_(mass), tipo_(tipo), colliderShape_(nullptr) {
+}
+
+Separity::RigidBody::~RigidBody() { delete rb_; }
+
+void Separity::RigidBody::initComponent() 
+{
 	tr_ = ent_->getComponent<Transform>();
-	assert(
-	    __nullptr &&
-	    "Tr es nullptr,la entidad necesita un Transform para usar RigidBody");
+	assert(tr_ != nullptr);
 
 	auto collider = ent_->getComponent<Collider>();
 	assert(collider != nullptr);
@@ -40,7 +44,7 @@ Separity::RigidBody::RigidBody(typeRb tipo, float mass)
 	    mass_, motionState, collisionShape, localInertia);
 	rb_ = new btRigidBody(rbInfo);
 
-	//si el collider es un trigger desactiva el contacto
+	// si el collider es un trigger desactiva el contacto
 	if(collider->isTrigger()) {
 		rb_->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
 	}
@@ -48,13 +52,7 @@ Separity::RigidBody::RigidBody(typeRb tipo, float mass)
 	// alade el rigidbody al mundo fisico
 	Separity::PhysicsManager* s = Separity::PhysicsManager::getInstance();
 	s->getWorld()->addRigidBody(rb_);
-
-	// borra los punteros usados temporalmente
-	delete collisionShape;
-	delete motionState;
 }
-
-Separity::RigidBody::~RigidBody() { delete rb_; }
 
 void Separity::RigidBody::addForce(Spyutils::Vector3 force) {
 	btVector3 fuerza(force.x, force.y, force.z);

@@ -39,6 +39,8 @@ namespace Separity {
 
 		RigidBody(typeRb tipo, float mass = 0);
 		~RigidBody();
+
+		void initComponent() override;
 		/// <summary>
 		/// Añade una fuerza aplicada sobre el centro del rigidbody
 		/// </summary>

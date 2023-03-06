@@ -2,21 +2,22 @@
 // programa comienza y termina ahí.
 //
 
-//#include "RenderEngine.h"
+// #include "RenderEngine.h"
+#include "Entity.h"
 #include "InputManager.h"
+#include "PhysicsManager.h"
 #include "RenderManager.h"
-#include"PhysicsManager.h"
 #include "SoundEngine.h"
 #include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
-#include <Ogre.h>
-#include"Entity.h"
-#include <iostream>
-#include<Transform.h>
-#include<MeshRenderer.h>
-#include"RigidBody.h"
 
+#include <MeshRenderer.h>
+#include <RigidBody.h>
+#include <Ogre.h>
+#include <Transform.h>
+#include <Collider.h>
+#include <iostream>
 
 using namespace std;
 using namespace Separity;
@@ -26,18 +27,33 @@ int main() {
 	soundEngine_->initSoundSystem();
 	soundEngine_->createSound("Assets//theme.mp3");
 	soundEngine_->playSound();
-	
+
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->createTestScene();
 	PhysicsManager* physManager = Separity::PhysicsManager::getInstance();
 	physManager->initWorld();
 	InputManager* inputManger = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
-	auto tr=mono->addComponent<Transform>();
+	auto tr = mono->addComponent<Transform>();
 	tr->translate(Spyutils::Vector3(100, 1000, 0));
-	//mono->addComponent<RigidBody>(DYNAMIC,10);
+
+	//mesh renderer
 	mono->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	                                "Sinbad.mesh");
+	                                 "Sinbad.mesh");
+
+	//collider (antes de rigidvody siempre)
+	colliderParams params;
+	params.colShape = CUBE;
+	params.height = 1;
+	params.width = 1;
+	params.depth = 1;
+	params.isTrigger = false;
+
+	mono->addComponent<Collider>(params);
+
+	//rigidbody
+	mono->addComponent<RigidBody>(DYNAMIC, 10);
+	
 	// Bucle principal
 	bool quit = false;
 	while(!quit) {
@@ -58,10 +74,10 @@ int main() {
 				cout << "Release\n";
 			}
 		}
+		physManager->update();
 		renderManager->update();
 		renderManager->render();
 		soundEngine_->updateSoundEngine();
-		physManager->update();
 	}
 
 	return 0;
