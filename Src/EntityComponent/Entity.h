@@ -14,7 +14,6 @@
 namespace Separity {
 	class RenderManager;
 	class PhysicsManager;
-
 	/// <summary>
 	/// <para>Clase que representa una entidad.</para>
 	/// <para>Cada entidad puede contener una serie de componentes y debe de
@@ -92,10 +91,10 @@ namespace Separity {
 					componentManager = Separity::RenderManager::getInstance();
 					componentManager->addComponent(c);
 					break;
-				/*case _PHYSICS:
+				case _PHYSICS:
 					componentManager = Separity::PhysicsManager::getInstance();
 					componentManager->addComponent(c);
-					break;*/
+					break;
 				/*case _INPUT:
 					componentManager = InputManager::getInstance();
 					break;

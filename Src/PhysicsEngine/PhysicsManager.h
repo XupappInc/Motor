@@ -14,6 +14,15 @@ namespace Separity {
 
 		public:
 		/// <summary>
+		/// Constructor de la clase
+		/// </summary>
+		inline PhysicsManager();
+		/// <summary>
+		/// Obtiene la instancia del Manager de físicas
+		/// </summary>
+		/// <returns>La instancia del Manager</returns>
+		static PhysicsManager* getInstance();
+		/// <summary>
 		/// Crea un mundo dinámico discreto de bullet
 		/// </summary>
 		void initWorld();
@@ -31,20 +40,12 @@ namespace Separity {
 		/// <returns>El mundo donde sucede la simulación</returns>
 		btDiscreteDynamicsWorld* getWorld();
 		/// <summary>
-		/// Obtiene la instancia del Manager de físicas
-		/// </summary>
-		/// <returns>La instancia del Manager</returns>
-		static PhysicsManager* getInstance();
-		/// <summary>
 		/// El destructor heredado del Manager
 		/// </summary>
 		virtual ~PhysicsManager() override;
 
 		private:
-		/// <summary>
-		/// Constructor de la clase
-		/// </summary>
-		inline PhysicsManager();
+		
 
 		btDiscreteDynamicsWorld* world_;
 		btBroadphaseInterface* broadphase_;
