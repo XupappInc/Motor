@@ -19,7 +19,16 @@ std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
 Separity::RenderManager::RenderManager() {}
 
-Separity::RenderManager::~RenderManager() {}
+Separity::RenderManager::~RenderManager() 
+{
+	sdlWindow_=nullptr;
+	ogreWindow_=nullptr;
+	ogreRoot_=nullptr;
+	sceneMgr_=nullptr;
+	configFile_=nullptr;
+	entity_=nullptr;
+
+}
 
 void Separity::RenderManager::init() {
 	// Tamaño ventana
