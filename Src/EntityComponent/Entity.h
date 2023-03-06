@@ -10,10 +10,10 @@
 #include <bitset>
 #include <cassert>
 #include <vector>
-
+#include"PhysicsManager.h"
 namespace Separity {
 	class RenderManager;
-	class PhysicsManager;
+	/*class PhysicsManager;*/
 	/// <summary>
 	/// <para>Clase que representa una entidad.</para>
 	/// <para>Cada entidad puede contener una serie de componentes y debe de
@@ -23,7 +23,7 @@ namespace Separity {
 	class Entity {
 		public:
 		Entity(Separity::grpId_type gId);
-
+		int s;
 		// borramos el constructor por copia/asignamiento porque no está claro
 		// como copiar los componentes
 		Entity(const Entity&) = delete;
@@ -111,7 +111,7 @@ namespace Separity {
 					break;
 			}
 
-			c->setContext(this, mngr_);
+			c->setContext(this, componentManager);
 			c->initComponent();
 			cmps_[cId] = c;
 			currCmps_.push_back(c);

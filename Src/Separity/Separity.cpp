@@ -35,13 +35,13 @@ int main() {
 	InputManager* inputManger = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
-	tr->translate(Spyutils::Vector3(100, 1000, 0));
+	tr->translate(Spyutils::Vector3(0, 10, 0));
 
 	//mesh renderer
 	mono->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "Sinbad.mesh");
 
-	//collider (antes de rigidvody siempre)
+	//collider (antes de rigidbody siempre)
 	colliderParams params;
 	params.colShape = CUBE;
 	params.height = 1;
@@ -74,9 +74,10 @@ int main() {
 				cout << "Release\n";
 			}
 		}
+
 		physManager->update();
 		renderManager->update();
-		renderManager->render();
+		//renderManager->render();
 		soundEngine_->updateSoundEngine();
 	}
 

@@ -77,12 +77,16 @@ void Separity::RenderManager::loadResources() {
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void Separity::RenderManager::render() {}
+void Separity::RenderManager::render() {
+	for(Separity::Component* c : cmps_) {
+		c->render();
+	}
+}
 
 void Separity::RenderManager::update() 
 {
-	entity_->getComponent<Separity::MeshRenderer>()->getNode()->yaw(
-	    Ogre::Degree(-0.2));
+	/*entity_->getComponent<Separity::MeshRenderer>()->getNode()->yaw(
+	    Ogre::Degree(-0.2));*/
 	ogreRoot_->renderOneFrame();
 }
 
@@ -129,8 +133,8 @@ void Separity::RenderManager::createTestScene() {
 	mLightNode->setPosition(0, 0, 2000);
 
 	// Creamos entidad con mesh de sinbad
-	entity_ = new Entity(_grp_GENERAL);
-	entity_->addComponent<MeshRenderer>(getSceneManager(), "Sinbad.mesh");
+	//entity_ = new Entity(_grp_GENERAL);
+	//entity_->addComponent<MeshRenderer>(getSceneManager(), "Sinbad.mesh");
 }
 
 Separity::RenderManager* Separity::RenderManager::getInstance() {
