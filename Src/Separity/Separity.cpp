@@ -35,24 +35,25 @@ int main() {
 	InputManager* inputManger = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
-	tr->translate(Spyutils::Vector3(0, 10, 0));
-
+	//tr->translate(Spyutils::Vector3(-4, 2, 0));
+	tr->setScale(2);
+	tr->pitch(90);
 	//mesh renderer
 	mono->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "Sinbad.mesh");
 
 	//collider (antes de rigidbody siempre)
-	colliderParams params;
-	params.colShape = CUBE;
-	params.height = 1;
-	params.width = 1;
-	params.depth = 1;
-	params.isTrigger = false;
+	//colliderParams params;
+	//params.colShape = CUBE;
+	//params.height = 1;
+	//params.width = 1;
+	//params.depth = 1;
+	//params.isTrigger = false;
 
-	mono->addComponent<Collider>(params);
+	//mono->addComponent<Collider>(params);
 
-	//rigidbody
-	mono->addComponent<RigidBody>(DYNAMIC, 10);
+	////rigidbody
+	//mono->addComponent<RigidBody>(DYNAMIC, 10);
 	
 	// Bucle principal
 	bool quit = false;
@@ -77,7 +78,7 @@ int main() {
 
 		physManager->update();
 		renderManager->update();
-		//renderManager->render();
+		renderManager->render();
 		soundEngine_->updateSoundEngine();
 	}
 

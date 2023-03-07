@@ -1,14 +1,16 @@
 #include "Transform.h"
-#include"Entity.h"
+
+#include "Entity.h"
+#include "RigidBody.h"
 #include "Vector.h"
-#include"RigidBody.h"
-//#include "checkML.h"
+#include"spyMath.h"
+// #include "checkML.h"
 #include <btBulletDynamicsCommon.h>
 Separity::Transform::Transform()
     : positition_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0) {
 	btQuaternion quat(0, 0, 0);
 
-	tr_ = new btTransform(quat);
+	 tr_ = new btTransform(quat);
 }
 
 Separity::Transform::~Transform() { delete tr_; }
@@ -29,14 +31,13 @@ void Separity::Transform::translate(Spyutils::Vector3 other) {
 	positition_ += other;
 }
 
-Spyutils::Vector3 Separity::Transform::getPosition() {
-	return Spyutils::Vector3();
-}
+Spyutils::Vector3 Separity::Transform::getPosition() { return positition_; }
 
 void Separity::Transform::setRotation(float rotationX, float rotationY,
                                       float rotationZ) {
-	btQuaternion quat((btScalar) rotationX, (btScalar) rotationY,
-	                  (btScalar) rotationZ);
+	btQuaternion quat((btScalar) spyutils::Math::toRadians(rotationX),
+	                  (btScalar) spyutils::Math::toRadians(rotationY),
+	                  (btScalar) spyutils::Math::toRadians( rotationZ));
 	rotation_ = Spyutils::Vector3(rotationX, rotationY, rotationZ);
 	tr_->setRotation(quat);
 }
@@ -60,7 +61,7 @@ void Separity::Transform::roll(float degree) {
 
 void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 	scale_ = Spyutils::Vector3(scaleX, scaleY, scaleZ);
-	auto rb=ent_->getComponent<RigidBody>();
+	auto rb = ent_->getComponent<RigidBody>();
 	if(rb) {
 	}
 }
@@ -68,6 +69,4 @@ void Separity::Transform::setScale(float scale) {
 	setScale(scale, scale, scale);
 }
 
-Spyutils::Vector3 Separity::Transform::getScale() {
-	return Spyutils::Vector3();
-}
+Spyutils::Vector3 Separity::Transform::getScale() { return scale_; }

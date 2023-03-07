@@ -8,7 +8,7 @@ namespace spyutils {
 	/// </summary>
 	class Math {
 		public:
-		static const double PI;
+		//static const double PI;
 		/// <summary>
 		///	Conversión de grados a radianes
 		/// </summary>
