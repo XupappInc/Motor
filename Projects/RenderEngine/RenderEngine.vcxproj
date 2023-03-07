@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\RenderEngine\Light.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\MeshRenderer.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\RenderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\RenderEngine\Light.h" />
     <ClInclude Include="..\..\Src\RenderEngine\MeshRenderer.h" />
     <ClInclude Include="..\..\Src\RenderEngine\RenderManager.h" />
   </ItemGroup>

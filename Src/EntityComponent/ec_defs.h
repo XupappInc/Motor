@@ -12,7 +12,8 @@
 		_MESH_RENDERER, \
 		_TRANSFORM, \
 		_RIGID_BODY, \
-		_COLLIDER
+		_COLLIDER, \
+		_LIGHT
 		 
 
 /// <summary>

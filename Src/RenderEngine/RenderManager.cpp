@@ -120,17 +120,17 @@ void Separity::RenderManager::createTestScene() {
 	vp->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));
 
 	// Añadimos luz para que no se vea en negro
-	Ogre::Light* luz = sceneMgr_->createLight("Luz");
-	luz->setType(Ogre::Light::LT_DIRECTIONAL);
-	luz->setDiffuseColour(0.75, 0.75, 0.75);
+	//Ogre::Light* luz = sceneMgr_->createLight("Luz");
+	//luz->setType(Ogre::Light::LT_DIRECTIONAL);
+	//luz->setDiffuseColour(0.75, 0.75, 0.75);
 
-	// Metemos la luz en un nodo
-	Ogre::SceneNode* mLightNode =
-	    sceneMgr_->getRootSceneNode()->createChildSceneNode("nLuz");
+	//// Metemos la luz en un nodo
+	//Ogre::SceneNode* mLightNode =
+	//    sceneMgr_->getRootSceneNode()->createChildSceneNode("nLuz");
 
-	mLightNode->attachObject(luz);
-	mLightNode->setDirection(Ogre::Vector3(0, -1, -1));  // vec3.normalise();
-	mLightNode->setPosition(0, 0, 2000);
+	//mLightNode->attachObject(luz);
+	//mLightNode->setDirection(Ogre::Vector3(0, -1, -1));  // vec3.normalise();
+	//mLightNode->setPosition(0, 0, 2000);
 
 	// Creamos entidad con mesh de sinbad
 	//entity_ = new Entity(_grp_GENERAL);

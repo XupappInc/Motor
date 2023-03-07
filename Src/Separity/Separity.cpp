@@ -18,6 +18,7 @@
 #include <Transform.h>
 #include <Collider.h>
 #include <iostream>
+#include"Light.h"
 
 using namespace std;
 using namespace Separity;
@@ -36,11 +37,13 @@ int main() {
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
 	//tr->translate(Spyutils::Vector3(-4, 2, 0));
-	tr->setScale(2);
+	//tr->setScale(2);
 	tr->pitch(90);
 	//mesh renderer
 	mono->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "Sinbad.mesh");
+	auto luz=mono->addComponent<Light>(DIRECTIONAL_LIGHT);
+
 
 	//collider (antes de rigidbody siempre)
 	//colliderParams params;
