@@ -26,7 +26,7 @@
     <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_widgets.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\UIEngine\UIEngine.cpp">
+    <ClCompile Include="..\..\Src\UIEngine\UIManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,6 +47,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_truetype.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\UIEngine\UIManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

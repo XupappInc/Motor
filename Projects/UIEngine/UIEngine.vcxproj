@@ -24,7 +24,7 @@
     <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_draw.cpp" />
     <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_tables.cpp" />
     <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_widgets.cpp" />
-    <ClCompile Include="..\..\Src\UIEngine\UIEngine.cpp" />
+    <ClCompile Include="..\..\Src\UIEngine\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imconfig.h" />
@@ -33,6 +33,7 @@
     <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_rectpack.h" />
     <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_textedit.h" />
     <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_truetype.h" />
+    <ClInclude Include="..\..\Src\UIEngine\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -111,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\ImGUI\Src\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\ImGUI\Src\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,7 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\ImGUI\Src\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\ImGUI\Src\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,7 +146,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\ImGUI\Src\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\ImGUI\Src\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,7 +163,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\ImGUI\Src\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\ImGUI\Src\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

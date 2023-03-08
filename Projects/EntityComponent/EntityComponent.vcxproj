@@ -24,6 +24,7 @@
     <ClInclude Include="..\..\Src\EntityComponent\ec_defs.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Entity.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Manager.h" />
+    <ClInclude Include="..\..\Src\EntityComponent\Singleton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\EntityComponent\Component.cpp" />
