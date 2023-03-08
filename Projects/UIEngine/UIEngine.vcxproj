@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_draw.cpp" />
     <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_tables.cpp" />
     <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\Src\UIEngine\Button.cpp" />
     <ClCompile Include="..\..\Src\UIEngine\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +34,7 @@
     <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_rectpack.h" />
     <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_textedit.h" />
     <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_truetype.h" />
+    <ClInclude Include="..\..\Src\UIEngine\Button.h" />
     <ClInclude Include="..\..\Src\UIEngine\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

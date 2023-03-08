@@ -7,7 +7,7 @@
 namespace Separity {
 	class UIManager : public Separity::Manager,
 		public Singleton<Separity::UIManager> {
-
+		public:
 		/// <summary>
 		/// Constructora de la clase
 		/// </summary>
