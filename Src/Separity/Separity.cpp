@@ -43,8 +43,7 @@ int main() {
 	mono->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "Sinbad.mesh");
 	auto luz=mono->addComponent<Light>(DIRECTIONAL_LIGHT);
-
-
+	luz->setDiffuse(Spyutils::Vector3(1, 0, 0));
 	//collider (antes de rigidbody siempre)
 	//colliderParams params;
 	//params.colShape = CUBE;
@@ -56,8 +55,8 @@ int main() {
 	//mono->addComponent<Collider>(params);
 
 	////rigidbody
-	//mono->addComponent<RigidBody>(DYNAMIC, 10);
-	
+	//auto rb=mono->addComponent<RigidBody>(DYNAMIC, 10);
+	//rb->setGravity(Spyutils::Vector3(0, -1, 0));
 	// Bucle principal
 	bool quit = false;
 	while(!quit) {

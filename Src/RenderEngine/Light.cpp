@@ -1,18 +1,15 @@
 #include "Light.h"
 
+#include "Entity.h"
 #include "OgreLight.h"
 #include "OgreSceneManager.h"
 #include "RenderManager.h"
-#include"Entity.h"
-#include"Transform.h"
+#include "Transform.h"
 Separity::Light::Light(LightType type) : visible_(true) {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();
 	// se accede al sceneManager
 	Ogre::SceneManager* s = render->getSceneManager();
 	light_ = s->createLight();
-	light_->setDiffuseColour(0.75, 0.1, 1);
-
-	light_->setSpecularColour(0, 0, 1.0);
 	Ogre::Light::LightTypes typeLight;
 	// Se elige el tipo de Luz
 	switch(type) {
@@ -33,7 +30,7 @@ Separity::Light::Light(LightType type) : visible_(true) {
 	    render->getSceneManager()->getRootSceneNode()->createChildSceneNode();
 
 	lightNode_->attachObject(light_);
-	lightNode_->setDirection(-1, -1, 0);
+	 lightNode_->setDirection(-1, -1, 0);
 }
 
 Separity::Light::~Light() {
@@ -47,6 +44,7 @@ void Separity::Light::render() {
 		auto pos = tr_->getPosition();
 		lightNode_->setPosition(Ogre::Real(pos.x), Ogre::Real(pos.y),
 		                        Ogre::Real(pos.z));
+		
 	}
 }
 void Separity::Light::initComponent() {
@@ -56,9 +54,15 @@ void Separity::Light::initComponent() {
 		lightNode_->setPosition(Ogre::Real(pos.x), Ogre::Real(pos.y),
 		                        Ogre::Real(pos.z));
 	}
-	
-
 }
 
 void Separity::Light::setVisible(bool set) { light_->setVisible(set); }
 bool Separity::Light::isVisible() { return visible_; }
+
+void Separity::Light::setDiffuse(Spyutils::Vector3 dif) {
+	light_->setDiffuseColour(dif.x, dif.y, dif.z);
+}
+
+void Separity::Light::setSpecular(Spyutils::Vector3 specular) {
+	light_->setSpecularColour(specular.x, specular.y, specular.z);
+}

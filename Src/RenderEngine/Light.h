@@ -30,6 +30,8 @@ namespace Separity {
 	    void initComponent()override;
 		void setVisible(bool set);
 		bool isVisible();
+		void setDiffuse(Spyutils::Vector3 dif);
+		void setSpecular(Spyutils::Vector3 specular);
 		private:
 		Ogre::SceneNode* lightNode_;
 		Ogre::Light* light_;

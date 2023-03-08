@@ -1,6 +1,6 @@
 #include "PhysicsManager.h"
 // #include "checkML.h"
-
+#include"Component.h"
 #include <btBulletDynamicsCommon.h>
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
@@ -35,7 +35,12 @@ void Separity::PhysicsManager::deleteWorld() {
 	delete world_;
 }
 
-void PhysicsManager::update() { world_->stepSimulation(1.0 / 60.0, 10); }
+void PhysicsManager::update() {
+	for(Separity::Component* c : cmps_) {
+		c->update();
+	}
+	world_->stepSimulation(1.0 / 60.0, 10); 
+}
 
 btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return world_; }
 
