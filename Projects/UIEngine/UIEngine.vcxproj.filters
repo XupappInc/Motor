@@ -32,6 +32,9 @@
     <ClCompile Include="..\..\Src\UIEngine\Button.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Dependencias\ImGUI\Src\backends\imgui_impl_sdl2.cpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imconfig.h">
@@ -56,6 +59,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\UIEngine\Button.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencias\ImGUI\Src\backends\imgui_impl_sdl2.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
