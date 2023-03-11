@@ -13,7 +13,8 @@
 		_TRANSFORM, \
 		_RIGID_BODY, \
 		_COLLIDER, \
-		_LIGHT
+		_LIGHT,\
+		_AUDIO_SOURCE
 		 
 
 /// <summary>
