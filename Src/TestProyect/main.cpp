@@ -50,7 +50,7 @@ int main() {
 			if(iu->isControllerButtonHeld(InputManager::JOYSTICK_LEFT)) {
 				cout << "Boton a mantenido\n";
 			}
-			if(iu->isControllerButtonUp(InputManager::JOYSTICK_RIGHT)) {
+			if(iu->isControllerButtonUp(InputManager::A)) {
 				cout << "Boton a soltado\n";
 			}
 			if(iu->leftJoystickEvent()) {

@@ -185,6 +185,13 @@ void Separity::InputManager::onControllerAdded() {
 
 			std::cout << "El mando no me vale\n";
 			onControllerRemoved();			
+		} 
+		else {
+			// Imprimir información sobre el mando
+			std::cout << "Mando conectado: " 
+				<< SDL_GameControllerName(gamepad_) << "\n";		       
+			std::cout << "Numero de botones: " 
+				<< SDL_CONTROLLER_BUTTON_MAX << "\n";
 		}
 	}
 }
