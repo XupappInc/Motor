@@ -40,10 +40,10 @@ int main() {
 			if (iu->isControllerButtonDown(InputManager::GUIDE)) {
 				cout << "Boton a clicado\n";
 			}
-			if(iu->isControllerButtonHeld(InputManager::STICK_LEFT)) {
+			if(iu->isControllerButtonHeld(InputManager::JOYSTICK_LEFT)) {
 				cout << "Boton a mantenido\n";
 			}
-			if(iu->isControllerButtonUp(InputManager::STICK_RIGHT)) {
+			if(iu->isControllerButtonUp(InputManager::JOYSTICK_RIGHT)) {
 				cout << "Boton a soltado\n";
 			}
 			if(iu->leftJoystickEvent()) {
@@ -55,6 +55,19 @@ int main() {
 				cout << "JoyStick Dr: ";
 				cout << iu->getRightAxis().first << " "
 				     << iu->getRightAxis().second << "\n";
+			}
+			if(iu->isControllerButtonDown(InputManager::LT)) {
+				cout << "LT pulsado\n";
+			}
+			if(iu->isControllerButtonHeld(InputManager::LT) ||
+			   iu->isControllerButtonHeld(InputManager::RT)) {
+				//cout << "LT mantenido\n";
+				cout << iu->getTriggers().first << " "
+				     << iu->getTriggers().second
+				     << "\n";
+			}
+			if(iu->isControllerButtonUp(InputManager::LT)) {
+				cout << "LT soltado\n";
 			}
 		}
 	}

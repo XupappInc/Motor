@@ -22,7 +22,7 @@ namespace Separity {
 			MIDDLE = 1, 
 			RIGHT = 2 };
 
-		enum GAMEPADBUTTON {
+		enum GAMEPADBUTTON : uint8_t {
 			A = SDL_CONTROLLER_BUTTON_A,
 			B = SDL_CONTROLLER_BUTTON_B,
 			X = SDL_CONTROLLER_BUTTON_X,
@@ -30,14 +30,16 @@ namespace Separity {
 			BACK = SDL_CONTROLLER_BUTTON_BACK,
 			GUIDE = SDL_CONTROLLER_BUTTON_GUIDE,
 			START = SDL_CONTROLLER_BUTTON_START,
-			STICK_LEFT = SDL_CONTROLLER_BUTTON_LEFTSTICK,
-			STICK_RIGHT = SDL_CONTROLLER_BUTTON_RIGHTSTICK,
-			LS = SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
-			RS = SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+			JOYSTICK_LEFT = SDL_CONTROLLER_BUTTON_LEFTSTICK,
+			JOYSTICK_RIGHT = SDL_CONTROLLER_BUTTON_RIGHTSTICK,
+			LB = SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+			RB = SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
 			DPAD_UP = SDL_CONTROLLER_BUTTON_DPAD_UP,
 			DPAD_DOWN = SDL_CONTROLLER_BUTTON_DPAD_DOWN,
 			DPAD_LEFT = SDL_CONTROLLER_BUTTON_DPAD_LEFT,
 			DPAD_RIGHT = SDL_CONTROLLER_BUTTON_DPAD_RIGHT,
+			LT,
+			RT,
 			LAST
 		};
 
@@ -77,6 +79,8 @@ namespace Separity {
 		const std::pair<Sint16, Sint16>& getLeftAxis();
 
 		const std::pair<Sint16, Sint16>& getRightAxis();
+
+		const std::pair<Sint16, Sint16>& getTriggers();
 
 		// close window event
 		bool closeWindowEvent();
@@ -133,13 +137,16 @@ namespace Separity {
 		bool isMouseButtonEvent_;
 		std::pair<Sint32, Sint32> mousePos_;
 		std::array<uint8_t, 3> mbState_;
-
-		SDL_GameController* gamepad_;
+	
 		bool isLeftJoystickEvent_;
 		bool isRightJoystickEvent_;
+		Sint16 joystickDeadzone_;
 		std::pair<Sint16, Sint16> leftAxis_;
 		std::pair<Sint16, Sint16> rightAxis_;
+		Sint16 triggerDeadzone_;
+		std::pair<Sint16, Sint16> triggers_;
 		std::array<uint8_t, GAMEPADBUTTON::LAST> gpState_;
+		SDL_GameController* gamepad_;
 
 		bool isCloseWindowEvent_;
 

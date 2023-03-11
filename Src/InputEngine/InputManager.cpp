@@ -18,6 +18,10 @@ Separity::InputManager::InputManager() : Manager(), Singleton<InputManager>() {
 	kbState_ = SDL_GetKeyboardState(0);
 	gamepad_ = nullptr;
 	clearState();
+
+	joystickDeadzone_ = 0;
+	triggerDeadzone_ = 2000;
+
 }
 
 InputManager::~InputManager() {}
@@ -45,16 +49,15 @@ void InputManager::update() {
 				break;
 			case SDL_WINDOWEVENT:
 				handleWindowEvent();
-				break;
-
-			case SDL_CONTROLLERAXISMOTION:
-				onAxisMotion();
-				break;
+				break;		
 			case SDL_CONTROLLERBUTTONDOWN:
 				onControllerButtonChange(DOWN);
 				break;
 			case SDL_CONTROLLERBUTTONUP:
 				onControllerButtonChange(UP);
+				break;
+			case SDL_CONTROLLERAXISMOTION:
+				onAxisMotion();
 				break;
 			case SDL_CONTROLLERDEVICEADDED:
 				onControllerAdded();
@@ -217,6 +220,29 @@ void Separity::InputManager::onAxisMotion() {
 			rightAxis_.second = value;
 			isRightJoystickEvent_ = true;
 			break;
+		case SDL_CONTROLLER_AXIS_TRIGGERLEFT:
+			if(value > triggerDeadzone_) {
+				triggers_.first = value;
+				if(gpState_[LT] != HELD)
+					gpState_[LT] = DOWN;
+			} 
+			else {
+				triggers_.first = 0;
+				if(gpState_[LT] != RELEASED)
+					gpState_[LT] = UP;
+			}
+			break;
+		case SDL_CONTROLLER_AXIS_TRIGGERRIGHT:
+			if(value > triggerDeadzone_) {
+				triggers_.second = value;
+				if(gpState_[RT] != HELD)
+					gpState_[RT] = DOWN;
+			} else {
+				triggers_.second = 0;
+				if(gpState_[RT] != RELEASED)
+					gpState_[RT] = UP;
+			}
+			break;
 		default:
 			break;
 	}
@@ -246,6 +272,10 @@ const std::pair<Sint16, Sint16>& Separity::InputManager::getLeftAxis() {
 
 const std::pair<Sint16, Sint16>& Separity::InputManager::getRightAxis() {
 	return rightAxis_;
+}
+
+const std::pair<Sint16, Sint16>& Separity::InputManager::getTriggers() {
+	return triggers_;
 }
 
 
