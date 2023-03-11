@@ -47,6 +47,9 @@ void InputManager::update() {
 				handleWindowEvent();
 				break;
 
+			case SDL_CONTROLLERAXISMOTION:
+				onAxisMotion();
+				break;
 			case SDL_CONTROLLERBUTTONDOWN:
 				onControllerButtonChange(DOWN);
 				break;
@@ -64,8 +67,6 @@ void InputManager::update() {
 		}
 	}
 }
-
-
 
 bool InputManager::keyDownEvent() { 
 	return isKeyDownEvent_; 
@@ -108,6 +109,8 @@ void InputManager::clearState() {
 	isMouseButtonEvent_ = false;
 	isMouseMotionEvent_ = false;
 	isCloseWindowEvent_ = false;
+	isLeftJoystickEvent_ = false;
+	isRightJoystickEvent_ = false;
 
 	for(auto i = 0u; i < 3; i++) {
 		if(mbState_[i] == DOWN)
@@ -193,6 +196,32 @@ void Separity::InputManager::onControllerButtonChange(STATE state) {
 	gpState_[event.cbutton.button] = state;
 }
 
+void Separity::InputManager::onAxisMotion() {
+
+	Sint16 value = event.caxis.value;
+
+	switch(event.caxis.axis) {
+		case SDL_CONTROLLER_AXIS_LEFTX:
+			leftAxis_.first = value;
+			isLeftJoystickEvent_ = true;
+			break;
+		case SDL_CONTROLLER_AXIS_LEFTY:
+			leftAxis_.second = value;
+			isLeftJoystickEvent_ = true;
+			break;
+		case SDL_CONTROLLER_AXIS_RIGHTX:
+			rightAxis_.first = value;
+			isRightJoystickEvent_ = true;
+			break;
+		case SDL_CONTROLLER_AXIS_RIGHTY:
+			rightAxis_.second = value;
+			isRightJoystickEvent_ = true;
+			break;
+		default:
+			break;
+	}
+}
+
 bool Separity::InputManager::isControllerButtonDown(GAMEPADBUTTON b) {
 	return gpState_[b] == DOWN;
 }
@@ -204,6 +233,22 @@ bool Separity::InputManager::isControllerButtonHeld(GAMEPADBUTTON b) {
 bool Separity::InputManager::isControllerButtonUp(GAMEPADBUTTON b) {
 	return gpState_[b] == UP;
 }
+
+bool Separity::InputManager::leftJoystickEvent() { 
+	return isLeftJoystickEvent_; }
+
+bool Separity::InputManager::rightJoystickEvent() { 
+	return isRightJoystickEvent_; }
+
+const std::pair<Sint16, Sint16>& Separity::InputManager::getLeftAxis() {
+	return leftAxis_;
+}
+
+const std::pair<Sint16, Sint16>& Separity::InputManager::getRightAxis() {
+	return rightAxis_;
+}
+
+
 
 void Separity::InputManager::handleWindowEvent() {
 	switch(event.window.event) {

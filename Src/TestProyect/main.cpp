@@ -46,6 +46,16 @@ int main() {
 			if(iu->isControllerButtonUp(InputManager::STICK_RIGHT)) {
 				cout << "Boton a soltado\n";
 			}
+			if(iu->leftJoystickEvent()) {
+				cout << "JoyStick Iz: ";
+				cout << iu->getLeftAxis().first << " "
+				     << iu->getLeftAxis().second << "\n";
+			}
+			if(iu->rightJoystickEvent()) {
+				cout << "JoyStick Dr: ";
+				cout << iu->getRightAxis().first << " "
+				     << iu->getRightAxis().second << "\n";
+			}
 		}
 	}
 

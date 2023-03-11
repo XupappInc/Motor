@@ -63,11 +63,20 @@ namespace Separity {
 
 		bool isMouseButtonUp(MOUSEBUTTON b);
 
+		//gamecontroller
 		bool isControllerButtonDown(GAMEPADBUTTON b);
 
 		bool isControllerButtonHeld(GAMEPADBUTTON b);
 
 		bool isControllerButtonUp(GAMEPADBUTTON b);
+
+		bool leftJoystickEvent();
+
+		bool rightJoystickEvent();
+
+		const std::pair<Sint16, Sint16>& getLeftAxis();
+
+		const std::pair<Sint16, Sint16>& getRightAxis();
 
 		// close window event
 		bool closeWindowEvent();
@@ -114,6 +123,8 @@ namespace Separity {
 
 		void onControllerButtonChange(STATE state);
 
+		void onAxisMotion();
+
 		bool isKeyUpEvent_;
 		bool isKeyDownEvent_;
 		const Uint8* kbState_;
@@ -124,6 +135,10 @@ namespace Separity {
 		std::array<uint8_t, 3> mbState_;
 
 		SDL_GameController* gamepad_;
+		bool isLeftJoystickEvent_;
+		bool isRightJoystickEvent_;
+		std::pair<Sint16, Sint16> leftAxis_;
+		std::pair<Sint16, Sint16> rightAxis_;
 		std::array<uint8_t, GAMEPADBUTTON::LAST> gpState_;
 
 		bool isCloseWindowEvent_;
