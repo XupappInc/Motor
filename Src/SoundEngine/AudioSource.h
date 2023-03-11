@@ -8,8 +8,8 @@ namespace Separity {
 		public:
 		__CMPTYPE_DECL__(Separity::_SOUND)
 		__CMPID_DECL__(Separity::_AUDIO_SOURCE)
-		AudioSource();
+		AudioSource(const char* songName);
 		~AudioSource();
 	};
 }  // namespace Separity
-#endif __AUDIO_SOURCE_H__
+#endif // !__AUDIO_SOURCE_H__
