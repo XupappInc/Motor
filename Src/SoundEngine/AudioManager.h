@@ -4,6 +4,8 @@
 #include "Manager.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
+#include <unordered_map>
+
 
 namespace Separity {
 	class AudioManager : public Separity::Manager,
@@ -40,12 +42,18 @@ namespace Separity {
 		/// </summary>
 		void update();
 
+		FMOD::System* getSystem();
+		float* getBuffer();
+		std::unordered_map<const char*, FMOD::Sound*>* getSoundList();
+		std::unordered_map<const char*, FMOD::Sound*>* getMusicList();
+		FMOD_RESULT getResult();
 		private:
 		Separity::Entity* entity_;
 		float* buffer_;
 		bool isPlaying_;
 		FMOD::System* system_;
-		FMOD::Sound* sound_;
+		std::unordered_map<const char*, FMOD::Sound*>* sound_;
+		std::unordered_map<const char*, FMOD::Sound*>* music_;
 		FMOD_RESULT result_;
 		FMOD::Channel* channel_;
 	};

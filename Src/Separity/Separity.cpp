@@ -7,12 +7,14 @@
 #include "InputManager.h"
 #include "PhysicsManager.h"
 #include "RenderManager.h"
+#include "AudioManager.h"
 #include "SoundEngine.h"
 #include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
 
 #include <MeshRenderer.h>
+#include <AudioSource.h>
 #include <RigidBody.h>
 #include <Ogre.h>
 #include <Transform.h>
@@ -24,15 +26,21 @@ using namespace std;
 using namespace Separity;
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	SoundEngine* soundEngine_ = new SoundEngine();
+
+
+	/*SoundEngine* soundEngine_ = new SoundEngine();
 	soundEngine_->initSoundSystem();
 	soundEngine_->createSound("Assets//theme.mp3");
-	soundEngine_->playSound();
+	soundEngine_->playSound();*/
 
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->createTestScene();
 	PhysicsManager* physManager = Separity::PhysicsManager::getInstance();
 	physManager->initWorld();
+	AudioManager* audManager = Separity::AudioManager::getInstance();
+	audManager->initAudioSystem();
+	Entity* mono2 = new Entity(_grp_GENERAL);
+	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3", true);
 	InputManager* inputManger = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
@@ -81,7 +89,7 @@ int main() {
 		physManager->update();
 		renderManager->update();
 		renderManager->render();
-		soundEngine_->updateSoundEngine();
+		/*soundEngine_->updateSoundEngine();*/
 	}
 
 	return 0;

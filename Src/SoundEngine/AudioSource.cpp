@@ -1,16 +1,29 @@
 #include "AudioSource.h"
+
 #include "AudioManager.h"
-Separity::AudioSource::AudioSource(const char* songName) {
-	AudioManager *audioManager = AudioManager::getInstance();
+using namespace Separity;
 
-	//result_ = audioManager->getSystem()->createSound(songName, FMOD_DEFAULT,
-	//                                                 nullptr, &sound_);
+AudioSource::AudioSource(const char* songName, bool isMusic) {
+	AudioManager* audioManager = AudioManager::getInstance();
 
-	//if(result_ != FMOD_OK) {
-	//	printf("FMOD error: %s\n", FMOD_ErrorString(result_));
-	//	delete[] buffer_;
-	//	system_->release();
-	//}
+	/*audioManager->getSystem()->createSound(songName, FMOD_DEFAULT, nullptr,
+				                            &sound);*/
+	std::unordered_map<const char*, FMOD::Sound*>* lista = audioManager->getMusicList();
+	if(isMusic) {
+		/*audioManager->sound_[] = sound;*/
+		/*std::unordered_map<const char*, FMOD::Sound*>*::iterator it =
+		    audioManager->getMusicList().begin();*/
+		/*audioManager->getMusicList()->insert(
+		    std::pair<const char*, FMOD::Sound*>(songName, sound));*/
+	}
+	/*else
+		audioManager->getSoundList()->insert(
+		    std::pair<const char*, FMOD::Sound*>(songName, sound));*/
+
+	audioManager = nullptr;
 }
 
-Separity::AudioSource::~AudioSource() {}
+AudioSource::~AudioSource() {
+	//delete sound;
+	sound = nullptr;
+}
