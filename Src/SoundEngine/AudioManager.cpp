@@ -1,8 +1,11 @@
 #include "AudioManager.h"
-#include <iostream>
+
+#include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
-#include "checkML.h"
+
+#include <iostream>
+#include <unordered_map>
 #define M_PI 3.141592
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
@@ -10,10 +13,6 @@ std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 inline Separity::AudioManager::AudioManager() {}
 
 Separity::AudioManager::~AudioManager() {}
-
-Separity::AudioManager* Separity::AudioManager::getInstance() {
-	return static_cast<AudioManager*>(instance());
-}
 
 void Separity::AudioManager::initAudioSystem() {
 	// Create an instance of the FMOD system
@@ -49,14 +48,14 @@ void Separity::AudioManager::initAudioSystem() {
 }
 
 void Separity::AudioManager::playAudio() {
-	FMOD::Channel* channel;
-	result_ = system_->playSound(sound_, nullptr, false, &channel);
-	if(result_ != FMOD_OK) {
-		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
-		sound_->release();
-		delete[] buffer_;
-		system_->release();
-	}
+	//FMOD::Channel* channel;
+	//result_ = system_->playSound(sound_, nullptr, false, &channel);
+	//if(result_ != FMOD_OK) {
+	//	printf("FMOD error: %s\n", FMOD_ErrorString(result_));
+	//	sound_->release();
+	//	delete[] buffer_;
+	//	system_->release();
+	//}
 }
 
 void Separity::AudioManager::update() {
@@ -68,21 +67,40 @@ void Separity::AudioManager::update() {
 	//	printf("FMOD error: %s\n", FMOD_ErrorString(result));
 	// }
 }
-
 void Separity::AudioManager::stopPlaying() {
 	// Clean up
 	channel_->stop();
-	sound_->release();
+	/*sound_->release();*/
 	delete[] buffer_;
 	system_->release();
 }
 
 void Separity::AudioManager::createAudioSource(const char* songName) {
-	result_ = system_->createSound(songName, FMOD_DEFAULT, nullptr, &sound_);
+	// result_ = system_->createSound(songName, FMOD_DEFAULT, nullptr, &sound_);
 
-	if(result_ != FMOD_OK) {
-		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
-		delete[] buffer_;
-		system_->release();
-	}
+	// if(result_ != FMOD_OK) {
+	//	printf("FMOD error: %s\n", FMOD_ErrorString(result_));
+	//	delete[] buffer_;
+	//	system_->release();
+	// }
 }
+
+Separity::AudioManager* Separity::AudioManager::getInstance() {
+	return static_cast<AudioManager*>(instance());
+}
+
+FMOD::System* Separity::AudioManager::getSystem() { return system_; }
+
+float* Separity::AudioManager::getBuffer() { return buffer_; }
+
+std::unordered_map<const char*, FMOD::Sound*>* Separity::AudioManager::getSoundList() {
+	return sound_;
+}
+
+std::unordered_map<const char*, FMOD::Sound*>* Separity::AudioManager::getMusicList() {
+	return music_;
+}
+
+FMOD_RESULT Separity::AudioManager::getResult() { return result_; }
+
+
