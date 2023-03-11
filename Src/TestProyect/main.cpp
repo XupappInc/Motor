@@ -1,39 +1,50 @@
 #include <iostream>
-#include "checkML.h"
 using namespace std;
 
 #include "InputManager.h"
+using namespace Separity;
+
+// #include "checkML.h"
 
 int main() {
 	// Inicializar SDL
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER);
 
 	// Crear una ventana
 	SDL_Window* window =
 	    SDL_CreateWindow("Ejemplo de Input con SDL", SDL_WINDOWPOS_UNDEFINED,
 	                     SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
 
-	Separity::InputManager* inputManger = Separity::InputManager::getInstance();
+	InputManager* iu = InputManager::getInstance();
 
 	// Bucle principal
 	bool quit = false;
 	while(!quit) {
-		inputManger->update();
+		iu->update();
 
-		if(inputManger->isKeyDown('q')) {
+		if(iu->isKeyDown('q')) {
 			quit = true;
 		} else {
-			if(inputManger->isKeyDown('w')) {
+			if(iu->isKeyDown('w')) {
 				cout << "Tecla w Pulsada\n";
 			}
-			if(inputManger->isMouseButtonDown(Separity::InputManager::LEFT)) {
+			if(iu->isMouseButtonDown(InputManager::LEFT)) {
 				cout << "Click\n";
 			}
-			if(inputManger->isMouseButtonHeld(Separity::InputManager::LEFT)) {
+			if(iu->isMouseButtonHeld(InputManager::LEFT)) {
 				cout << "Hold\n";
 			}
-			if(inputManger->isMouseButtonUp(Separity::InputManager::LEFT)) {
+			if(iu->isMouseButtonUp(InputManager::LEFT)) {
 				cout << "Release\n";
+			}
+			if (iu->isControllerButtonDown(InputManager::GUIDE)) {
+				cout << "Boton a clicado\n";
+			}
+			if(iu->isControllerButtonHeld(InputManager::STICK_LEFT)) {
+				cout << "Boton a mantenido\n";
+			}
+			if(iu->isControllerButtonUp(InputManager::STICK_RIGHT)) {
+				cout << "Boton a soltado\n";
 			}
 		}
 	}

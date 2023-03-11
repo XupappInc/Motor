@@ -16,6 +16,7 @@ InputManager* InputManager::getInstance() {
 Separity::InputManager::InputManager() : Manager(), Singleton<InputManager>() {
 	event = SDL_Event();
 	kbState_ = SDL_GetKeyboardState(0);
+	gamepad_ = nullptr;
 	clearState();
 }
 
@@ -40,16 +41,31 @@ void InputManager::update() {
 				onMouseButtonChange(DOWN);
 				break;
 			case SDL_MOUSEBUTTONUP:
-				onMouseButtonChange(RELEASED);
+				onMouseButtonChange(UP);
 				break;
 			case SDL_WINDOWEVENT:
 				handleWindowEvent();
+				break;
+
+			case SDL_CONTROLLERBUTTONDOWN:
+				onControllerButtonChange(DOWN);
+				break;
+			case SDL_CONTROLLERBUTTONUP:
+				onControllerButtonChange(UP);
+				break;
+			case SDL_CONTROLLERDEVICEADDED:
+				onControllerAdded();
+				break;
+			case SDL_CONTROLLERDEVICEREMOVED:
+				onControllerRemoved();
 				break;
 			default:
 				break;
 		}
 	}
 }
+
+
 
 bool InputManager::keyDownEvent() { 
 	return isKeyDownEvent_; 
@@ -83,13 +99,8 @@ bool InputManager::isMouseButtonHeld(MOUSEBUTTON b) {
 	return mbState_[b] == DOWN || mbState_[b] == HELD;
 }
 
-bool InputManager::isMouseButtonUp(MOUSEBUTTON b) {
-	return mbState_[b] == RELEASED;
-}
-
-bool Separity::InputManager::closeWindowEvent() { 
-	return isCloseWindowEvent_; 
-}
+bool InputManager::isMouseButtonUp(MOUSEBUTTON b) { 
+	return mbState_[b] == UP; }
 
 void InputManager::clearState() {
 	isKeyDownEvent_ = false;
@@ -97,11 +108,19 @@ void InputManager::clearState() {
 	isMouseButtonEvent_ = false;
 	isMouseMotionEvent_ = false;
 	isCloseWindowEvent_ = false;
+
 	for(auto i = 0u; i < 3; i++) {
 		if(mbState_[i] == DOWN)
 			mbState_[i] = HELD;
-		else if(mbState_[i] == RELEASED)
-			mbState_[i] = a;
+		else if(mbState_[i] == UP)
+			mbState_[i] = RELEASED;
+	}
+
+	for(auto i = 0u; i < GAMEPADBUTTON::LAST; i++) {
+		if(gpState_[i] == DOWN)
+			gpState_[i] = HELD;
+		else if(gpState_[i] == UP)
+			gpState_[i] = RELEASED;		
 	}
 }
 
@@ -127,21 +146,63 @@ void InputManager::onMouseMotion() {
 	mousePos_.second = event.motion.y;
 }
 
-void InputManager::onMouseButtonChange(MOUSESTATE mouseState) {
+void InputManager::onMouseButtonChange(STATE state) {
 	isMouseButtonEvent_ = true;
 	switch(event.button.button) {
 		case SDL_BUTTON_LEFT:
-			mbState_[LEFT] = mouseState;
+			mbState_[LEFT] = state;
 			break;
 		case SDL_BUTTON_MIDDLE:
-			mbState_[MIDDLE] = mouseState;
+			mbState_[MIDDLE] = state;
 			break;
 		case SDL_BUTTON_RIGHT:
-			mbState_[RIGHT] = mouseState;
+			mbState_[RIGHT] = state;
 			break;
 		default:
 			break;
 	}
+}
+
+void Separity::InputManager::onControllerAdded() {
+
+	// Si conectamos un nuevo mando lo cogemos si no tenemos ninguno
+	if(gamepad_ == nullptr) {
+
+		std::cout << "Mando conectado\n";
+		gamepad_ = SDL_GameControllerOpen(0);
+
+		if(!SDL_IsGameController(0)) {
+
+			std::cout << "El mando no me vale\n";
+			onControllerRemoved();			
+		}
+	}
+}
+
+void Separity::InputManager::onControllerRemoved() {
+	// Si se desconecta el mando usado, lo cerramos
+	if(gamepad_ != nullptr) {
+
+		std::cout << "Mando desconectado\n";
+		SDL_GameControllerClose(gamepad_);
+		gamepad_ = nullptr;		
+	}
+}
+
+void Separity::InputManager::onControllerButtonChange(STATE state) {
+	gpState_[event.cbutton.button] = state;
+}
+
+bool Separity::InputManager::isControllerButtonDown(GAMEPADBUTTON b) {
+	return gpState_[b] == DOWN;
+}
+
+bool Separity::InputManager::isControllerButtonHeld(GAMEPADBUTTON b) {
+	return gpState_[b] == HELD || gpState_[b] == DOWN;
+}
+
+bool Separity::InputManager::isControllerButtonUp(GAMEPADBUTTON b) {
+	return gpState_[b] == UP;
 }
 
 void Separity::InputManager::handleWindowEvent() {
@@ -153,4 +214,7 @@ void Separity::InputManager::handleWindowEvent() {
 			break;
 	}
 }
+
+bool Separity::InputManager::closeWindowEvent() { 
+	return isCloseWindowEvent_; }
 
