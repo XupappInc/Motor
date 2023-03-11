@@ -4,12 +4,10 @@
 
 #include "checkML.h"
 
-using namespace Separity;
-
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
-InputManager* InputManager::getInstance() {
+Separity::InputManager* Separity::InputManager::getInstance() {
 	return static_cast<InputManager*>(instance());
 }
 
@@ -22,9 +20,9 @@ Separity::InputManager::InputManager() : Manager(), Singleton<InputManager>() {
 	clearState();
 }
 
-InputManager::~InputManager() {}
+Separity::InputManager::~InputManager() {}
 
-void InputManager::update() { 
+void Separity::InputManager::update() { 
 	Manager::update();
 
 	clearState();
@@ -69,42 +67,50 @@ void InputManager::update() {
 	}
 }
 
-bool InputManager::keyDownEvent() { 
+bool Separity::InputManager::keyDownEvent() { 
 	return isKeyDownEvent_; 
 }
 
-bool InputManager::keyUpEvent() { 
+bool Separity::InputManager::keyUpEvent() { 
 	return isKeyUpEvent_; 
 }
 
-bool InputManager::isKeyDown(char key) {
+bool Separity::InputManager::isKeyDown(char key) {
 	return isKeyDown(SDL_GetScancodeFromKey(key));
 }
 
-bool InputManager::isKeyUp(char key) {
+bool Separity::InputManager::isKeyUp(char key) {
 	return isKeyUp(SDL_GetScancodeFromKey(key));
 }
 
-bool InputManager::mouseMotionEvent() { 
+bool Separity::InputManager::isKeyDown(SPECIALKEY key) { 
+	return isKeyDown((SDL_Scancode) key); 
+}
+
+bool Separity::InputManager::isKeyUp(SPECIALKEY key) { 
+	return isKeyUp((SDL_Scancode) key);
+}
+
+bool Separity::InputManager::mouseMotionEvent() { 
 	return isMouseMotionEvent_; 
 }
 
-bool InputManager::mouseButtonEvent() { 
+bool Separity::InputManager::mouseButtonEvent() { 
 	return isMouseButtonEvent_; 
 }
 
-bool InputManager::isMouseButtonDown(MOUSEBUTTON b) {
+bool Separity::InputManager::isMouseButtonDown(MOUSEBUTTON b) {
 	return mbState_[b] == DOWN;
 }
 
-bool InputManager::isMouseButtonHeld(MOUSEBUTTON b) {
+bool Separity::InputManager::isMouseButtonHeld(MOUSEBUTTON b) {
 	return mbState_[b] == DOWN || mbState_[b] == HELD;
 }
 
-bool InputManager::isMouseButtonUp(MOUSEBUTTON b) { 
+bool Separity::InputManager::isMouseButtonUp(MOUSEBUTTON b) { 
 	return mbState_[b] == UP; }
 
-void InputManager::clearState() {
+void Separity::InputManager::clearState() {
 	isKeyDownEvent_ = false;
 	isKeyUpEvent_ = false;
 	isMouseButtonEvent_ = false;
@@ -128,29 +134,29 @@ void InputManager::clearState() {
 	}
 }
 
-void InputManager::onKeyDown() { 
+void Separity::InputManager::onKeyDown() { 
 	isKeyDownEvent_ = true; 
 }
 
-void InputManager::onKeyUp() { 
+void Separity::InputManager::onKeyUp() { 
 	isKeyUpEvent_ = true; 
 }
 
-bool InputManager::isKeyDown(SDL_Scancode key) {
+bool Separity::InputManager::isKeyDown(SDL_Scancode key) {
 	return keyDownEvent() && kbState_[key] == 1;
 }
 
-bool InputManager::isKeyUp(SDL_Scancode key) {
+bool Separity::InputManager::isKeyUp(SDL_Scancode key) {
 	return keyUpEvent() && kbState_[key] == 0;
 }
 
-void InputManager::onMouseMotion() {
+void Separity::InputManager::onMouseMotion() {
 	isMouseMotionEvent_ = true;
 	mousePos_.first = event.motion.x;
 	mousePos_.second = event.motion.y;
 }
 
-void InputManager::onMouseButtonChange(STATE state) {
+void Separity::InputManager::onMouseButtonChange(STATE state) {
 	isMouseButtonEvent_ = true;
 	switch(event.button.button) {
 		case SDL_BUTTON_LEFT:
@@ -243,10 +249,14 @@ void Separity::InputManager::onAxisMotion() {
 
 bool Separity::InputManager::deadzoneChecker(Sint16& data, Sint16 value, Sint16 deadzone) {
 
-	if(value < -deadzone || value > deadzone) {
+	if(value > deadzone) {
 		data = value;
 		return true;
 	} 
+	else if(value < -deadzone) {	
+		data = std::max((Sint16) (-SDL_MAX_SINT16), value);
+		return true;
+	}
 	else {
 		data = 0;
 		return false;
@@ -271,16 +281,19 @@ bool Separity::InputManager::leftJoystickEvent() {
 bool Separity::InputManager::rightJoystickEvent() { 
 	return isRightJoystickEvent_; }
 
-const std::pair<Sint16, Sint16>& Separity::InputManager::getLeftAxis() {
-	return leftAxis_;
+std::pair<float, float> Separity::InputManager::getLeftAxis() {
+	return {(float) leftAxis_.first / SDL_MAX_SINT16,
+	        (float) leftAxis_.second / SDL_MAX_SINT16};
 }
 
-const std::pair<Sint16, Sint16>& Separity::InputManager::getRightAxis() {
-	return rightAxis_;
+std::pair<float, float> Separity::InputManager::getRightAxis() {
+	return {(float) rightAxis_.first / SDL_MAX_SINT16,
+	        (float) rightAxis_.second / SDL_MAX_SINT16};
 }
 
-const std::pair<Sint16, Sint16>& Separity::InputManager::getTriggers() {
-	return triggers_;
+std::pair<float, float> Separity::InputManager::getTriggers() {
+	return {(float) triggers_.first / SDL_MAX_SINT16,
+	        (float) triggers_.second / SDL_MAX_SINT16};
 }
 
 void Separity::InputManager::setJoystickDeadzone(int deadzone) {

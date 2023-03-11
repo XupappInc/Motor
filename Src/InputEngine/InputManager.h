@@ -4,9 +4,7 @@
 
 #define SDL_MAIN_HANDLED
 #include <SDL.h>
-#include <SDL_gamecontroller.h>
 #include <array>
-
 
 #include "Manager.h"
 
@@ -43,6 +41,64 @@ namespace Separity {
 			LAST
 		};
 
+		enum SPECIALKEY : uint8_t {
+			RETURN = SDL_SCANCODE_RETURN,
+			ESCAPE = SDL_SCANCODE_ESCAPE,
+			BACKSPACE = SDL_SCANCODE_BACKSPACE,
+			TAB = SDL_SCANCODE_TAB,
+			SPACE = SDL_SCANCODE_SPACE,
+			MINUS = SDL_SCANCODE_MINUS,
+			EQUALS = SDL_SCANCODE_EQUALS,
+			LEFTBRACKET = SDL_SCANCODE_LEFTBRACKET,
+			RIGHTBRACKET = SDL_SCANCODE_RIGHTBRACKET,
+			BACKSLASH = SDL_SCANCODE_BACKSLASH,
+			NONUSHASH = SDL_SCANCODE_NONUSHASH,
+			SEMICOLON = SDL_SCANCODE_SEMICOLON,
+			APOSTROPHE = SDL_SCANCODE_APOSTROPHE,
+			GRAVE = SDL_SCANCODE_GRAVE,
+			COMMA = SDL_SCANCODE_COMMA,
+			PERIOD = SDL_SCANCODE_PERIOD,
+			SLASH = SDL_SCANCODE_SLASH,
+			CAPSLOCK = SDL_SCANCODE_CAPSLOCK,
+			F1 = SDL_SCANCODE_F1,
+			F2 = SDL_SCANCODE_F2,
+			F3 = SDL_SCANCODE_F3,
+			F4 = SDL_SCANCODE_F4,
+			F5 = SDL_SCANCODE_F5,
+			F6 = SDL_SCANCODE_F6,
+			F7 = SDL_SCANCODE_F7,
+			F8 = SDL_SCANCODE_F8,
+			F9 = SDL_SCANCODE_F9,
+			F10 = SDL_SCANCODE_F10,
+			F11 = SDL_SCANCODE_F11,
+			F12 = SDL_SCANCODE_F12,
+			PRINTSCREEN = SDL_SCANCODE_PRINTSCREEN,
+			SCROLLLOCK = SDL_SCANCODE_SCROLLLOCK,
+			PAUSE = SDL_SCANCODE_PAUSE,
+			INSERT = SDL_SCANCODE_INSERT,
+			HOME = SDL_SCANCODE_HOME,
+			PAGEUP = SDL_SCANCODE_PAGEUP,
+			DELETE = SDL_SCANCODE_DELETE,
+			END = SDL_SCANCODE_END,
+			PAGEDOWN = SDL_SCANCODE_PAGEDOWN,
+			ARROW_RIGHT = SDL_SCANCODE_RIGHT,
+			ARROW_LEFT = SDL_SCANCODE_LEFT,
+			ARROW_DOWN = SDL_SCANCODE_DOWN,
+			ARROW_UP = SDL_SCANCODE_UP,
+			NUMLOCKCLEAR = SDL_SCANCODE_NUMLOCKCLEAR,
+			KP_DIVIDE = SDL_SCANCODE_KP_DIVIDE,
+			KP_MULTIPLY = SDL_SCANCODE_KP_MULTIPLY,
+			KP_MINUS = SDL_SCANCODE_KP_MINUS,
+			KP_PLUS = SDL_SCANCODE_KP_PLUS, 
+			//Hay ciertos errores con las siguientes:
+			LCTRL = SDL_SCANCODE_LCTRL,
+			RCTRL = SDL_SCANCODE_RCTRL,
+			LSHIFT = SDL_SCANCODE_LSHIFT,
+			RSHIFT = SDL_SCANCODE_RSHIFT,
+			LALT = SDL_SCANCODE_LALT,
+			RALT = SDL_SCANCODE_RALT
+		};
+
 		// keyboard
 		bool keyDownEvent();
 
@@ -51,6 +107,10 @@ namespace Separity {
 		bool isKeyDown(char key);
 
 		bool isKeyUp(char key);
+
+		bool isKeyDown(SPECIALKEY key);
+
+		bool isKeyUp(SPECIALKEY key);
 
 		// mouse
 		bool mouseMotionEvent();
@@ -76,11 +136,11 @@ namespace Separity {
 
 		bool rightJoystickEvent();
 
-		const std::pair<Sint16, Sint16>& getLeftAxis();
+		std::pair<float, float> getLeftAxis();
 
-		const std::pair<Sint16, Sint16>& getRightAxis();
+		std::pair<float, float> getRightAxis();
 
-		const std::pair<Sint16, Sint16>& getTriggers();
+		std::pair<float, float> getTriggers();
 
 		void setJoystickDeadzone(int deadzone);
 
@@ -89,7 +149,6 @@ namespace Separity {
 		int getJoystickDeadzone();
 
 		int getTriggerDeadzone();
-
 
 		// close window event
 		bool closeWindowEvent();

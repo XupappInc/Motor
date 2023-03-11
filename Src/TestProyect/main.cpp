@@ -76,6 +76,9 @@ int main() {
 			if(iu->isControllerButtonUp(InputManager::LT)) {
 				cout << "LT soltado\n";
 			}
+			if(iu->isKeyDown(InputManager::SPACE)) {
+				cout << "tecla especial pulsada\n";
+			}
 		}
 	}
 
