@@ -17,6 +17,13 @@ int main() {
 
 	InputManager* iu = InputManager::getInstance();
 
+	iu->setTriggerDeadzone(1000);
+	iu->setJoystickDeadzone(7000);
+
+	cout << iu->getTriggerDeadzone() << "\n";
+	cout << iu->getJoystickDeadzone() << "\n";
+	
+
 	// Bucle principal
 	bool quit = false;
 	while(!quit) {

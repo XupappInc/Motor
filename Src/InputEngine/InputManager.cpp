@@ -17,11 +17,9 @@ Separity::InputManager::InputManager() : Manager(), Singleton<InputManager>() {
 	event = SDL_Event();
 	kbState_ = SDL_GetKeyboardState(0);
 	gamepad_ = nullptr;
-	clearState();
-
 	joystickDeadzone_ = 0;
-	triggerDeadzone_ = 2000;
-
+	triggerDeadzone_ = 0;
+	clearState();
 }
 
 InputManager::~InputManager() {}
@@ -205,46 +203,53 @@ void Separity::InputManager::onAxisMotion() {
 
 	switch(event.caxis.axis) {
 		case SDL_CONTROLLER_AXIS_LEFTX:
-			leftAxis_.first = value;
-			isLeftJoystickEvent_ = true;
+			isLeftJoystickEvent_ = 
+				deadzoneChecker(leftAxis_.first, value, joystickDeadzone_);
 			break;
 		case SDL_CONTROLLER_AXIS_LEFTY:
-			leftAxis_.second = value;
-			isLeftJoystickEvent_ = true;
+			isLeftJoystickEvent_ = 
+				deadzoneChecker(leftAxis_.second, value, joystickDeadzone_);
 			break;
 		case SDL_CONTROLLER_AXIS_RIGHTX:
-			rightAxis_.first = value;
-			isRightJoystickEvent_ = true;
+			isRightJoystickEvent_ = 
+				deadzoneChecker(rightAxis_.first, value, joystickDeadzone_);
 			break;
 		case SDL_CONTROLLER_AXIS_RIGHTY:
-			rightAxis_.second = value;
-			isRightJoystickEvent_ = true;
+			isRightJoystickEvent_ = 
+				deadzoneChecker(rightAxis_.second, value, joystickDeadzone_);
 			break;
 		case SDL_CONTROLLER_AXIS_TRIGGERLEFT:
-			if(value > triggerDeadzone_) {
-				triggers_.first = value;
+			if(deadzoneChecker(triggers_.first, value, triggerDeadzone_)) {
 				if(gpState_[LT] != HELD)
 					gpState_[LT] = DOWN;
 			} 
-			else {
-				triggers_.first = 0;
-				if(gpState_[LT] != RELEASED)
+			else if(gpState_[LT] != RELEASED) {
 					gpState_[LT] = UP;
 			}
 			break;
 		case SDL_CONTROLLER_AXIS_TRIGGERRIGHT:
-			if(value > triggerDeadzone_) {
-				triggers_.second = value;
+			if(deadzoneChecker(triggers_.second, value, triggerDeadzone_)) {
 				if(gpState_[RT] != HELD)
 					gpState_[RT] = DOWN;
-			} else {
-				triggers_.second = 0;
-				if(gpState_[RT] != RELEASED)
+			} 
+			else if(gpState_[RT] != RELEASED) {		
 					gpState_[RT] = UP;
 			}
 			break;
 		default:
 			break;
+	}
+}
+
+bool Separity::InputManager::deadzoneChecker(Sint16& data, Sint16 value, Sint16 deadzone) {
+
+	if(value < -deadzone || value > deadzone) {
+		data = value;
+		return true;
+	} 
+	else {
+		data = 0;
+		return false;
 	}
 }
 
@@ -278,7 +283,21 @@ const std::pair<Sint16, Sint16>& Separity::InputManager::getTriggers() {
 	return triggers_;
 }
 
+void Separity::InputManager::setJoystickDeadzone(int deadzone) {
+	joystickDeadzone_ = std::max(Sint16(0), (Sint16) deadzone);
+}
 
+void Separity::InputManager::setTriggerDeadzone(int deadzone) {
+	triggerDeadzone_ = std::max(Sint16(0), (Sint16) deadzone);
+}
+
+int Separity::InputManager::getJoystickDeadzone() { 
+	return joystickDeadzone_; 
+}
+
+int Separity::InputManager::getTriggerDeadzone() {
+	return triggerDeadzone_; 
+}
 
 void Separity::InputManager::handleWindowEvent() {
 	switch(event.window.event) {

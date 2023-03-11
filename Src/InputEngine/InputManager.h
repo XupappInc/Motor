@@ -82,6 +82,15 @@ namespace Separity {
 
 		const std::pair<Sint16, Sint16>& getTriggers();
 
+		void setJoystickDeadzone(int deadzone);
+
+		void setTriggerDeadzone(int deadzone);
+
+		int getJoystickDeadzone();
+
+		int getTriggerDeadzone();
+
+
 		// close window event
 		bool closeWindowEvent();
 
@@ -128,6 +137,8 @@ namespace Separity {
 		void onControllerButtonChange(STATE state);
 
 		void onAxisMotion();
+
+		bool deadzoneChecker(Sint16& data, Sint16 value, Sint16 deadzone);
 
 		bool isKeyUpEvent_;
 		bool isKeyDownEvent_;
