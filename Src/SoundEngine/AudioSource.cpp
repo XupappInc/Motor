@@ -19,7 +19,6 @@ AudioSource::AudioSource(const char* songRoute, std::string songName,
 }
 
 AudioSource::~AudioSource() {
-	//Se vacía el puntero de la clase
-	delete sound_;
+	//Pone a nullptr sound_
 	sound_ = nullptr;
 }

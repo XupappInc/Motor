@@ -44,21 +44,23 @@ namespace Separity {
 		/// sistema
 		/// </summary>
 		void stopPlaying();
+		void stopChannel(std::string audioName);
 		/// <summary>
 		/// Actualiza el sistema y reproduce los sonidos guardados en el sistema
 		/// </summary>
 		void update();
+		FMOD_RESULT getResult();
 
 		FMOD::System* system_;
 		std::unordered_map<std::string, FMOD::Sound*>* sounds_;
 		std::unordered_map<std::string, FMOD::Sound*>* musics_;
-		FMOD_RESULT getResult();
-
+		std::unordered_map<std::string, FMOD::Channel*>* channels_;	
 		private:
 		float* buffer_;
-
+		FMOD::SoundGroup* musicGroup_;
+		FMOD::SoundGroup* soundGroup_;
 		FMOD_RESULT result_;
-		FMOD::Channel* channel_;
+	
 	};
 }  // namespace Separity
 

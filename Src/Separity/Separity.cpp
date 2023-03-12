@@ -43,7 +43,8 @@ int main() {
 	Entity* mono2 = new Entity(_grp_GENERAL);
 	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
-	InputManager* im = Separity::InputManager::getInstance();
+	audManager->stopChannel(string("Pepe"));
+	InputManager* inputManger = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
 	// tr->translate(Spyutils::Vector3(-4, 2, 0));
