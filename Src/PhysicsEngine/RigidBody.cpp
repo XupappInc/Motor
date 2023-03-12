@@ -6,16 +6,13 @@
 #include "Transform.h"
 #include "Vector.h"
 // #include "checkML.h"
-#include <btBulletDynamicsCommon.h>
 
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
-    : mass_(mass), tipo_(tipo), colliderShape_(nullptr) {
-}
+    : mass_(mass), tipo_(tipo), colliderShape_(nullptr) {}
 
 Separity::RigidBody::~RigidBody() { delete rb_; }
 
-void Separity::RigidBody::initComponent() 
-{
+void Separity::RigidBody::initComponent() {
 	tr_ = ent_->getComponent<Transform>();
 	assert(tr_ != nullptr);
 
@@ -44,12 +41,15 @@ void Separity::RigidBody::initComponent()
 	    mass_, motionState, collisionShape, localInertia);
 	rb_ = new btRigidBody(rbInfo);
 
+	// anadimos una referncia a esta clase dentro del rb de Bullet
+	rb_->setUserPointer(this);
+
 	// si el collider es un trigger desactiva el contacto
 	if(collider->isTrigger()) {
 		rb_->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
 	}
 
-	// alade el rigidbody al mundo fisico
+	// anade el rigidbody al mundo fisico
 	Separity::PhysicsManager* s = Separity::PhysicsManager::getInstance();
 	s->getWorld()->addRigidBody(rb_);
 }
@@ -98,4 +98,47 @@ void Separity::RigidBody::update() {
 	rb_->getWorldTransform().getRotation().getEulerZYX(rollz, yawy, pitchx);
 	tr_->setPosition(pos.x(), pos.y(), pos.z());
 	tr_->setRotation(pitchx, yawy, rollz);
+
+	// OnCollisionStay
+	for(auto c : collisionObjects_) {
+		//c->OnCollisionStay(this);
+	}
+}
+
+btScalar Separity::RigidBody::addSingleResult(
+    btManifoldPoint& cp, const btCollisionObjectWrapper* colObj0Wrap,
+    int partId0, int index0, const btCollisionObjectWrapper* colObj1Wrap,
+    int partId1, int index1) {
+	if(colObj0Wrap->getCollisionObject() == rb_ ||
+	   colObj1Wrap->getCollisionObject() == rb_) {
+		btCollisionObject* otherObject = nullptr;
+		if(colObj0Wrap->getCollisionObject() == rb_) {
+			otherObject = const_cast<btCollisionObject*>(
+			    colObj1Wrap->getCollisionObject());
+		} else {
+			otherObject = const_cast<btCollisionObject*>(
+			    colObj0Wrap->getCollisionObject());
+		}
+
+		// referencia al rigidbody con el que ha colisionado
+		Separity::RigidBody* otherRB =
+		    static_cast<Separity::RigidBody*>(otherObject->getUserPointer());
+
+		// Esto es OnCollisionEnter
+		if(cp.getDistance() < 0) {
+			if(collisionObjects_.find(otherRB) == collisionObjects_.end()) {
+				collisionObjects_.insert(otherRB);
+				//OnCollisionEnter(otherRB);
+			}
+		}
+		// Esto es OnCollisionExit
+		else {
+			if(collisionObjects_.find(otherRB) != collisionObjects_.end()) {
+				collisionObjects_.erase(otherRB);
+				//OnCollisionExit(otherRB);
+			}
+		}
+	}
+
+	return 0;
 }
