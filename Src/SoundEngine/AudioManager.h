@@ -4,8 +4,9 @@
 #include "Manager.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
-#include <unordered_map>
 
+#include <iostream>
+#include <unordered_map>
 
 namespace Separity {
 	class AudioManager : public Separity::Manager,
@@ -13,21 +14,27 @@ namespace Separity {
 		friend Singleton<AudioManager>;
 
 		public:
+		/// <summary>
+		/// Constructor de AudioManager, inicializa todas las variables
+		/// </summary>
 		inline AudioManager();
+		/// <summary>
+		/// Destructor de AudioManager, pone punteros a null y vacía las
+		/// variables
+		/// </summary>
 		virtual ~AudioManager();
+		/// <summary>
+		/// Método que devuelve una instancia de si mismo, es decir
+		/// AudioManager, si ya existiera devuelve dicha instancia, si no
+		/// existiera aún devuelve una nueva instancia
+		/// </summary>
+		/// <returns></returns>
 		static AudioManager* getInstance();
-
-		public:
 		/// <summary>
 		/// Método iniciador del sistema de sonido, lo inicia y crea todas sus
 		/// caracteristicas
 		/// </summary>
 		void initAudioSystem();
-		/// <summary>
-		/// Crea un sonido a partir del texto que se le pase
-		/// </summary>
-		/// <param name="songName"></param>
-		void createAudioSource(const char* songName);
 		/// <summary>
 		/// Reproduce un sonido "sound" ya guardado creado en "createSound"
 		/// </summary>
@@ -42,18 +49,14 @@ namespace Separity {
 		/// </summary>
 		void update();
 
-		FMOD::System* getSystem();
-		float* getBuffer();
-		std::unordered_map<const char*, FMOD::Sound*>* getSoundList();
-		std::unordered_map<const char*, FMOD::Sound*>* getMusicList();
-		FMOD_RESULT getResult();
-		private:
-		Separity::Entity* entity_;
-		float* buffer_;
-		bool isPlaying_;
 		FMOD::System* system_;
-		std::unordered_map<const char*, FMOD::Sound*>* sound_;
-		std::unordered_map<const char*, FMOD::Sound*>* music_;
+		std::unordered_map<std::string, FMOD::Sound*>* sounds_;
+		std::unordered_map<std::string, FMOD::Sound*>* musics_;
+		FMOD_RESULT getResult();
+
+		private:
+		float* buffer_;
+
 		FMOD_RESULT result_;
 		FMOD::Channel* channel_;
 	};
