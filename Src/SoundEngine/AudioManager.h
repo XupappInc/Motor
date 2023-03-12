@@ -43,12 +43,14 @@ namespace Separity {
 		/// Para la reproducción del sonido, limpia los canales y limpia el
 		/// sistema
 		/// </summary>
-		void stopPlaying();
+		void stopAllChannels();
 		void stopChannel(std::string audioName);
 		/// <summary>
 		/// Actualiza el sistema y reproduce los sonidos guardados en el sistema
 		/// </summary>
 		void update();
+		void pauseAllChannels();
+		void resumeAllChannels();
 		FMOD_RESULT getResult();
 
 		FMOD::System* system_;

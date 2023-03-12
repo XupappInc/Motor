@@ -98,23 +98,38 @@ void Separity::AudioManager::playAudio(std::string audioName) {
 }
 
 void Separity::AudioManager::update() {
-
-
-
-	// Wait for the sound to finish playing
+	std::vector<std::unordered_map<std::string, FMOD::Channel*>::iterator>
+	    channelsWithoutSound;
+	// Comprueba todos los canales añadidos en el map, si no  tienen sonido los libera
+	for(auto itStart = channels_->begin(), itEnd = channels_->end();
+	    itStart != itEnd; itStart++) {
+		bool isPlaying = false;
+		itStart->second->isPlaying(&isPlaying);
+		if(!isPlaying) {
+			channelsWithoutSound.push_back(itStart);
+		}
+	}
+	// Si hay canales que no están sonando pero están el map los libera
+	for(auto& it : channelsWithoutSound) {
+		channels_->erase(it);
+	}
 	system_->update();
-	// result = channel->isPlaying(&isPlaying);
-	// std::cout << result;
-	// if(result != FMOD_OK) {
-	//	printf("FMOD error: %s\n", FMOD_ErrorString(result));
-	// }
 }
-void Separity::AudioManager::stopPlaying() {
-	// Clean up
-	// channel_->stop();
-	/*sound_->release();*/
+void Separity::AudioManager::pauseAllChannels() {
+	for(auto& channelMap : *channels_) {
+		channelMap.second->setPaused(true);
+	}
+}
+void Separity::AudioManager::resumeAllChannels() {
+	for(auto& channelMap : *channels_) {
+		channelMap.second->setPaused(false);
+	}
+}
 
-	// system_->release();
+void Separity::AudioManager::stopAllChannels() {
+	for(auto& channelMap : *channels_) {
+		channelMap.second->stop();
+	}
 }
 
 void Separity::AudioManager::stopChannel(std::string audioName) {

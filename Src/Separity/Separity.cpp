@@ -44,6 +44,7 @@ int main() {
 	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
 	audManager->playAudio(string("codigoLyoko"));
+
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
