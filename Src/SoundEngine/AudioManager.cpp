@@ -9,8 +9,8 @@ template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
 inline Separity::AudioManager::AudioManager() {
-	sound_ = new std::unordered_map<const char*, FMOD::Sound*>();
-	music_ = new std::unordered_map<const char*, FMOD::Sound*>();
+	sound_ = new std::unordered_map<std::string, FMOD::Sound*>();
+	music_ = new std::unordered_map<std::string, FMOD::Sound*>();
 }
 
 Separity::AudioManager::~AudioManager() {}
@@ -94,11 +94,11 @@ FMOD::System* Separity::AudioManager::getSystem() { return system_; }
 
 float* Separity::AudioManager::getBuffer() { return buffer_; }
 
-std::unordered_map<const char*, FMOD::Sound*>* Separity::AudioManager::getSoundList() {
+std::unordered_map<std::string, FMOD::Sound*>* Separity::AudioManager::getSoundList() {
 	return sound_;
 }
 
-std::unordered_map<const char*, FMOD::Sound*>* Separity::AudioManager::getMusicList() {
+std::unordered_map<std::string, FMOD::Sound*>* Separity::AudioManager::getMusicList() {
 	return music_;
 }
 

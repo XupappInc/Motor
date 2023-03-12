@@ -1,12 +1,12 @@
 #include "AudioSource.h"
-
 #include "AudioManager.h"
 using namespace Separity;
 
-AudioSource::AudioSource(const char* songName, bool isMusic) {
+AudioSource::AudioSource(const char* songRoute, std::string songName,
+                         bool isMusic) {
 	AudioManager* audioManager = AudioManager::getInstance();
 
-	audioManager->getSystem()->createSound(songName, FMOD_DEFAULT, nullptr,
+	audioManager->getSystem()->createSound(songRoute, FMOD_DEFAULT, nullptr,
 	                                       &sound);
 	// Añade el audio a la lista de sonidos de música o de sonidos dependiendo
 	// de un booleano
@@ -19,6 +19,6 @@ AudioSource::AudioSource(const char* songName, bool isMusic) {
 }
 
 AudioSource::~AudioSource() {
-	// delete sound;
+	delete sound;
 	sound = nullptr;
 }

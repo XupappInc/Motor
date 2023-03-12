@@ -4,6 +4,7 @@
 #include "Manager.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
+#include <iostream>
 #include <unordered_map>
 
 
@@ -44,15 +45,15 @@ namespace Separity {
 
 		FMOD::System* getSystem();
 		float* getBuffer();
-		std::unordered_map<const char*, FMOD::Sound*>* getSoundList();
-		std::unordered_map<const char*, FMOD::Sound*>* getMusicList();
+		std::unordered_map<std::string, FMOD::Sound*>* getSoundList();
+		std::unordered_map<std::string, FMOD::Sound*>* getMusicList();
 		FMOD_RESULT getResult();
 		private:
 		float* buffer_;
 		bool isPlaying_;
 		FMOD::System* system_;
-		std::unordered_map<const char*, FMOD::Sound*>* sound_;
-		std::unordered_map<const char*, FMOD::Sound*>* music_;
+		std::unordered_map<std::string, FMOD::Sound*>* sound_;
+		std::unordered_map<std::string, FMOD::Sound*>* music_;
 		FMOD_RESULT result_;
 		FMOD::Channel* channel_;
 	};
