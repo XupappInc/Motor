@@ -5,31 +5,39 @@
 #include <btBulletDynamicsCommon.h>
 
 Separity::Collider::Collider(colliderParams params) {
+
+	colliderShape_ = new btCompoundShape();
+
+	btCollisionShape* shape;
 	switch(params.colShape) {
 		case CUBE:
-			colliderShape_ = new btBoxShape(btVector3(
+			shape = new btBoxShape(btVector3(
 			    params.width / 2, params.height / 2, params.depth / 2));
 			break;
 		case SPHERE:
-			colliderShape_ = new btSphereShape(params.radius);
+			shape = new btSphereShape(params.radius);
 			break;
 		case CAPSULE:
-			colliderShape_ = new btCapsuleShape(params.radius, params.height);
+			shape = new btCapsuleShape(params.radius, params.height);
 			break;
 		case CYLINDER:
-			colliderShape_ = new btCylinderShape(btVector3(
+			shape = new btCylinderShape(btVector3(
 			    params.width / 2, params.height / 2, params.depth / 2));
 			break;
 		case CONE:
-			colliderShape_ = new btConeShape(params.radius, params.height);
+			shape = new btConeShape(params.radius, params.height);
 			break;
 		default:
-			colliderShape_ = new btBoxShape(btVector3(1, 1, 1));
+			shape = new btBoxShape(btVector3(1, 1, 1));
 			break;
 	}
 
-	offset_ =
-	    new Spyutils::Vector3(params.offsetX, params.offsetY, params.offsetZ);
+	offset_ = new Spyutils::Vector3(params.offsetX, params.offsetY, params.offsetZ);
+
+	btTransform offsetTransform;
+	offsetTransform.setIdentity();
+	offsetTransform.setOrigin(btVector3(offset_->x, offset_->y, offset_->z));
+	colliderShape_->addChildShape(offsetTransform, shape);
 
 	trigger_ = params.isTrigger;
 }
@@ -39,7 +47,7 @@ Separity::Collider::~Collider() {
 	delete offset_;
 }
 
-btCollisionShape* Separity::Collider::getColliderShape() {
+btCompoundShape* Separity::Collider::getColliderShape() {
 	return colliderShape_;
 }
 
