@@ -43,7 +43,7 @@ int main() {
 	Entity* mono2 = new Entity(_grp_GENERAL);
 	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
-	audManager->stopChannel(string("Pepe"));
+	audManager->playAudio(string("codigoLyoko"));
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
@@ -115,7 +115,7 @@ int main() {
 		physManager->update();
 		renderManager->update();
 		renderManager->render();
-		/*soundEngine_->updateSoundEngine();*/
+		audManager->update();
 	}
 
 	return 0;

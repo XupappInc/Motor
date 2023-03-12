@@ -38,7 +38,7 @@ namespace Separity {
 		/// <summary>
 		/// Reproduce un sonido "sound" ya guardado creado en "createSound"
 		/// </summary>
-		void playAudio();
+		void playAudio(std::string audioName);
 		/// <summary>
 		/// Para la reproducción del sonido, limpia los canales y limpia el
 		/// sistema

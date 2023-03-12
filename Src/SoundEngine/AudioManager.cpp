@@ -3,6 +3,7 @@
 #include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
+
 #include <unordered_map>
 #define M_PI 3.141592
 template<typename T>
@@ -81,47 +82,25 @@ Separity::AudioManager* Separity::AudioManager::getInstance() {
 
 FMOD_RESULT Separity::AudioManager::getResult() { return result_; }
 
-void Separity::AudioManager::playAudio() {
-	//int nChannelId = sgpImplementation->mnNextChannelId++;
-	//auto tFoundIt = sgpImplementation->mSounds.find(strSoundName);
-	//
-	//FMOD::Channel* pChannel = nullptr;
-	//ErrorCheck(sgpImplementation->mpSystem->playSound(tFoundIt->second, nullptr,
-	//                                                  true, &pChannel));
-	//if(pChannel) {
-	//	FMOD_MODE currMode;
-	//	tFoundIt->second->getMode(&currMode);
-	//	if(currMode & FMOD_3D) {
-	//		ErrorCheck(pChannel->set3DAttributes(&vPosition, nullptr));
-	//	}
-	//
-	//	ErrorCheck(pChannel->setVolume(fVolumedB));
-	//	
-	//	ErrorCheck(pChannel->setPaused(false));
-	//	sgpImplementation->mChannels[nChannelId] = pChannel;
-	//	if(isMusic) {
-	//		musicChannel = nChannelId;
-	//		moveChannel = pChannel;
-	//		// sgpImplementation->mChannels[musicChannel]->setVolume(musicVolume);
-	//	} else {
-	//		// sgpImplementation->mChannels[nChannelId]->setVolume(fxVolume);
-	//	}
-	//}
-	//return nChannelId;
-
-
-
-	// FMOD::Channel* channel;
-	// result_ = system_->playSound(sound_, nullptr, false, &channel);
-	// if(result_ != FMOD_OK) {
-	//	printf("FMOD error: %s\n", FMOD_ErrorString(result_));
-	//	sound_->release();
-	//	delete[] buffer_;
-	//	system_->release();
-	// }
+void Separity::AudioManager::playAudio(std::string audioName) {
+	FMOD::Channel* temporalChannel = nullptr;
+	FMOD::Sound* temporalSound = nullptr;
+	// Comprueba si está en la lista de sonidos o de música para coger dicho
+	// sonido y reproducirlo
+	if(sounds_->count(audioName))
+		temporalSound = sounds_->find(audioName)->second;
+	else if(musics_->count(audioName))
+		temporalSound = musics_->find(audioName)->second;
+	else
+		printf("No existe ese sonido");
+	system_->playSound(temporalSound, nullptr, true, &temporalChannel);
+	channels_->emplace(audioName, temporalChannel);
 }
 
 void Separity::AudioManager::update() {
+
+
+
 	// Wait for the sound to finish playing
 	system_->update();
 	// result = channel->isPlaying(&isPlaying);
@@ -137,17 +116,7 @@ void Separity::AudioManager::stopPlaying() {
 
 	// system_->release();
 }
-	
+
 void Separity::AudioManager::stopChannel(std::string audioName) {
-	//FMOD::Channel* chanel_ = channels_->find(audioName);
-	/*channels_*/
-	FMOD::Channel* pChannel = nullptr;
-	FMOD::Sound* pSound = nullptr;
-	system_->createSound("Assets//theme.mp3", FMOD_DEFAULT, nullptr,
-	                                   &pSound);
-	system_->playSound(pSound, nullptr, true, &pChannel);
-	channels_->emplace(audioName, pChannel);
-	auto dos = channels_->find(audioName);
+	channels_->find(audioName)->second->stop();
 }
-
-
