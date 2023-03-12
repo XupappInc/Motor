@@ -97,28 +97,6 @@ void Separity::RenderManager::createTestScene() {
 
 	sceneMgr_ = ogreRoot_->createSceneManager();
 
-	// Añadimos la cámara
-	Ogre::Camera* mCamera = sceneMgr_->createCamera("Cam");
-
-	// Configuramos propiedades de la cámara
-
-	mCamera->setNearClipDistance(1);
-	mCamera->setFarClipDistance(10000);
-	mCamera->setAutoAspectRatio(true);
-
-	// Añadimos dicha cámara a un nodo
-	Ogre::SceneNode* mCamNode =
-	    sceneMgr_->getRootSceneNode()->createChildSceneNode("nCam");
-	mCamNode->attachObject(mCamera);
-
-	// Posicionamos el nodo
-	mCamNode->setPosition(0, 0, 15);
-	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
-
-	// Creamos viewport que muestre aquello que ve la cámara
-	Ogre::Viewport* vp = ogreWindow_->addViewport(mCamera);
-	vp->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));
-
 	// Añadimos luz para que no se vea en negro
 	//Ogre::Light* luz = sceneMgr_->createLight("Luz");
 	//luz->setType(Ogre::Light::LT_DIRECTIONAL);
@@ -170,6 +148,10 @@ void Separity::RenderManager::createSDLWindow() {
 }
 
 SDL_Window* Separity::RenderManager::getSDLWindow() { return sdlWindow_; }
+
+Ogre::RenderWindow* Separity::RenderManager::getWindow() { 
+	return ogreWindow_; 
+}
 
 Ogre::Root* Separity::RenderManager::getOgreRoot() { return ogreRoot_; }
 
