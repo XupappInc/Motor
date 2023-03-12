@@ -10,10 +10,10 @@
 #include <bitset>
 #include <cassert>
 #include <vector>
-#include"PhysicsManager.h"
+//#include"PhysicsManager.h"
 namespace Separity {
 	class RenderManager;
-	/*class PhysicsManager;*/
+	class PhysicsManager;
 	/// <summary>
 	/// <para>Clase que representa una entidad.</para>
 	/// <para>Cada entidad puede contener una serie de componentes y debe de

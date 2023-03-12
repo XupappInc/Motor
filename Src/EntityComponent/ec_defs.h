@@ -15,7 +15,8 @@
 		_COLLIDER, \
 		_LIGHT,\
 		_AUDIO_SOURCE, \
-		_CAMERA
+		_CAMERA, \
+		_ANIMATOR
 		 
 
 /// <summary>

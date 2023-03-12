@@ -44,7 +44,7 @@ int main() {
 	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
 	audManager->stopChannel(string("Pepe"));
-	InputManager* inputManger = Separity::InputManager::getInstance();
+	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
 	// tr->translate(Spyutils::Vector3(-4, 2, 0));
@@ -77,36 +77,36 @@ int main() {
 
 	bool quit = false;
 	while(!quit) {
-		im->update();
-		if(im->isKeyDown('q') || im->closeWindowEvent()) {
+		inputManager->update();
+		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
 			quit = true;
 		} else {
-			if(im->isKeyDown('a')) {
+			if(inputManager->isKeyDown('a')) {
 				cam_tr->translate(Spyutils::Vector3(-1, 0, 0));
 			}
-			if(im->isKeyDown('d')) {
+			if(inputManager->isKeyDown('d')) {
 				cam_tr->translate(Spyutils::Vector3(1, 0, 0));
 			}
-			if(im->isKeyDown('w')) {
+			if(inputManager->isKeyDown('w')) {
 				//cam_tr->translate(Spyutils::Vector3(0, 1, 0));
 				cam_cam->zoom(-3);
 				std::cout << cam_cam->getZoom() << "\n";
 			}
-			if(im->isKeyDown('s')) {
+			if(inputManager->isKeyDown('s')) {
 				//cam_tr->translate(Spyutils::Vector3(0, -1, 0));
 				cam_cam->zoom(3);
 				std::cout << cam_cam->getZoom() << "\n";
 			}
-			if(im->isKeyDown(InputManager::ARROW_LEFT)) {
+			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
 				cam_tr->yaw(0.1);
 			}
-			if(im->isKeyDown(InputManager::ARROW_RIGHT)) {
+			if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
 				cam_tr->yaw(-0.1);
 			}
-			if(im->isKeyDown(InputManager::ARROW_UP)) {
+			if(inputManager->isKeyDown(InputManager::ARROW_UP)) {
 				cam_tr->pitch(0.1);
 			}
-			if(im->isKeyDown(InputManager::ARROW_DOWN)) {
+			if(inputManager->isKeyDown(InputManager::ARROW_DOWN)) {
 				cam_tr->pitch(-0.1);
 			}
 	
