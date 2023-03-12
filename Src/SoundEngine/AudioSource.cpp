@@ -5,20 +5,21 @@ using namespace Separity;
 AudioSource::AudioSource(const char* songRoute, std::string songName,
                          bool isMusic) {
 	AudioManager* audioManager = AudioManager::getInstance();
-
-	audioManager->getSystem()->createSound(songRoute, FMOD_DEFAULT, nullptr,
-	                                       &sound);
+	//Crea un audio con una songRoute y lo almacena en sound_
+	audioManager->system_->createSound(songRoute, FMOD_DEFAULT, nullptr,
+	                                       &sound_);
 	// Añade el audio a la lista de sonidos de música o de sonidos dependiendo
 	// de un booleano
 	if(isMusic)
-		audioManager->getMusicList()->emplace(songName, sound);
+		audioManager->musics_->emplace(songName, sound_);
 	else
-		audioManager->getSoundList()->emplace(songName, sound);
-
+		audioManager->sounds_->emplace(songName, sound_);
+	//Se pone el puntero a nullptr
 	audioManager = nullptr;
 }
 
 AudioSource::~AudioSource() {
-	delete sound;
-	sound = nullptr;
+	//Se vacía el puntero de la clase
+	delete sound_;
+	sound_ = nullptr;
 }
