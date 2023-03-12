@@ -8,9 +8,12 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
-inline Separity::AudioManager::AudioManager() {
-	sound_ = new std::unordered_map<std::string, FMOD::Sound*>();
-	music_ = new std::unordered_map<std::string, FMOD::Sound*>();
+inline Separity::AudioManager::AudioManager(){
+	result_ = FMOD_RESULT::FMOD_OK;
+	buffer_ = nullptr;
+	system_ = nullptr;
+	sounds_ = new std::unordered_map<std::string, FMOD::Sound*>();
+	musics_ = new std::unordered_map<std::string, FMOD::Sound*>();
 }
 
 Separity::AudioManager::~AudioManager() {}
@@ -76,30 +79,8 @@ void Separity::AudioManager::stopPlaying() {
 	system_->release();
 }
 
-void Separity::AudioManager::createAudioSource(const char* songName) {
-	// result_ = system_->createSound(songName, FMOD_DEFAULT, nullptr, &sound_);
-
-	// if(result_ != FMOD_OK) {
-	//	printf("FMOD error: %s\n", FMOD_ErrorString(result_));
-	//	delete[] buffer_;
-	//	system_->release();
-	// }
-}
-
 Separity::AudioManager* Separity::AudioManager::getInstance() {
 	return static_cast<AudioManager*>(instance());
-}
-
-FMOD::System* Separity::AudioManager::getSystem() { return system_; }
-
-float* Separity::AudioManager::getBuffer() { return buffer_; }
-
-std::unordered_map<std::string, FMOD::Sound*>* Separity::AudioManager::getSoundList() {
-	return sound_;
-}
-
-std::unordered_map<std::string, FMOD::Sound*>* Separity::AudioManager::getMusicList() {
-	return music_;
 }
 
 FMOD_RESULT Separity::AudioManager::getResult() { return result_; }

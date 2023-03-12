@@ -20,10 +20,13 @@ namespace Separity {
 		/// <param name="isMusic"></param>
 		AudioSource(const char* songRoute, std::string songName,
 		            bool isMusic = false);
+		/// <summary>
+		/// Método destructor de audio que vacía el componente
+		/// </summary>
 		~AudioSource();
 
 		private:
-		FMOD::Sound* sound;
+		FMOD::Sound* sound_;
 	};
 }  // namespace Separity
 #endif  // !__AUDIO_SOURCE_H__
