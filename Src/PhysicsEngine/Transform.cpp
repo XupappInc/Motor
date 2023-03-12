@@ -46,7 +46,7 @@ Spyutils::Vector3 Separity::Transform::getRotation() { return rotation_; }
 
 void Separity::Transform::pitch(float degree) {
 	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x + degree, rot.y, rot.z);
+	setRotation(rot.x, rot.y, rot.z + degree);
 }
 
 void Separity::Transform::yaw(float degree) {
@@ -56,13 +56,14 @@ void Separity::Transform::yaw(float degree) {
 
 void Separity::Transform::roll(float degree) {
 	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x, rot.y, rot.z + degree);
+	setRotation(rot.x + degree, rot.y, rot.z);
 }
 
 void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 	scale_ = Spyutils::Vector3(scaleX, scaleY, scaleZ);
 	auto rb = ent_->getComponent<RigidBody>();
 	if(rb) {
+		rb->scaleRb(scale_);
 	}
 }
 void Separity::Transform::setScale(float scale) {

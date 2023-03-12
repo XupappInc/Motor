@@ -33,7 +33,6 @@ Separity::Collider::Collider(colliderParams params) {
 	}
 
 	offset_ = new Spyutils::Vector3(params.offsetX, params.offsetY, params.offsetZ);
-
 	btTransform offsetTransform;
 	offsetTransform.setIdentity();
 	offsetTransform.setOrigin(btVector3(offset_->x, offset_->y, offset_->z));

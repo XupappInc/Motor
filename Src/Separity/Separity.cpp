@@ -48,28 +48,63 @@ int main() {
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
-	// tr->translate(Spyutils::Vector3(-4, 2, 0));
-	// tr->setScale(2);
+	 tr->translate(Spyutils::Vector3(0, 2, 0));
+	 tr->setScale(0.5);
+	//tr->roll(90);
 	// mesh renderer
 	mono->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "Sinbad.mesh");
 	auto luz = mono->addComponent<Light>(DIRECTIONAL_LIGHT);
-	luz->setDiffuse(Spyutils::Vector3(1, 0, 0));
+	luz->setDiffuse(Spyutils::Vector3(1, 1, 1));
 	luz->setDirection(Spyutils::Vector3(1, 0, 0));
-	// collider (antes de rigidbody siempre)
-	// colliderParams params;
-	// params.colShape = CUBE;
-	// params.height = 1;
-	// params.width = 1;
-	// params.depth = 1;
-	// params.isTrigger = false;
+	/* collider (antes de rigidbody siempre)*/
+	 colliderParams params;
+	 params.colShape = CUBE;
+	 params.height = 1;
+	 params.width = 1;
+	 params.depth = 1;
+	 params.isTrigger = false;
 
-	// mono->addComponent<Collider>(params);
+	 mono->addComponent<Collider>(params);
 
-	////rigidbody
-	// auto rb=mono->addComponent<RigidBody>(DYNAMIC, 10);
-	// rb->setGravity(Spyutils::Vector3(0, -1, 0));
-	//  Bucle principal
+	//rigidbody
+	 auto rb=mono->addComponent<RigidBody>(DYNAMIC, 10);
+	 rb->setGravity(Spyutils::Vector3(0, -1, 0));
+	rb->addForce(Spyutils::Vector3(1000, 1000, 0));
+	////  Bucle principal
+
+
+
+
+
+
+
+
+
+
+	 	Entity* mono1 = new Entity(_grp_GENERAL);
+	 auto tr1 = mono1->addComponent<Transform>();
+	 tr1->translate(Spyutils::Vector3(0, -10, -20));
+	 tr1->setScale(2);
+	 tr1->roll(90);
+	 //  mesh renderer
+	 mono1->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	                                  "Sinbad.mesh");
+	
+	 /* collider (antes de rigidbody siempre)*/
+	 colliderParams params1;
+	 params1.colShape = CUBE;
+	 params1.height = 1;
+	 params1.width = 1;
+	 params1.depth = 1;
+	 params1.isTrigger = false;
+
+	 mono1->addComponent<Collider>(params1);
+
+	 // rigidbody
+	 auto rb1 = mono1->addComponent<RigidBody>(STATIC, 10);
+	 rb1->setGravity(Spyutils::Vector3(0, -1, 0));
+
 
 	Entity* camera = new Entity(_grp_GENERAL);
 	Transform* cam_tr = camera->addComponent<Transform>();

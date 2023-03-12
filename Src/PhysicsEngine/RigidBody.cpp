@@ -33,8 +33,11 @@ void Separity::RigidBody::initComponent() {
 	btCollisionShape* collisionShape = collider->getColliderShape();
 
 	btVector3 localInertia(0, 0, 0);  // Tensor de inercia local
-	collisionShape->calculateLocalInertia(
-	    mass_, localInertia);  // Calcula el tensor de inercia local
+	if(tipo_ == DYNAMIC)
+		collisionShape->calculateLocalInertia(
+		    mass_, localInertia);  // Calcula el tensor de inercia local
+	else
+		mass_ = 0;
 
 	// rigidbody de bullet
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(
@@ -43,15 +46,16 @@ void Separity::RigidBody::initComponent() {
 
 	// anadimos una referncia a esta clase dentro del rb de Bullet
 	rb_->setUserPointer(this);
-
-	// si el collider es un trigger desactiva el contacto
-	if(collider->isTrigger()) {
-		rb_->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
-	}
-
 	// anade el rigidbody al mundo fisico
 	Separity::PhysicsManager* s = Separity::PhysicsManager::getInstance();
 	s->getWorld()->addRigidBody(rb_);
+	// si el collider es un trigger desactiva el contacto
+	if(collider->isTrigger()) {
+		rb_->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
+	} 
+	else
+		rb_->setCollisionFlags(rb_->getCollisionFlags() |
+		                      btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 }
 
 void Separity::RigidBody::addForce(Spyutils::Vector3 force) {

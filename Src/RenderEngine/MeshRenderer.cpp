@@ -6,7 +6,7 @@
 #include <Ogre.h>
 #include <cassert>
 #include "Transform.h"
-
+#include"spyMath.h"
 using namespace Separity;
 
 Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
@@ -31,10 +31,12 @@ void Separity::MeshRenderer::render() {
 
 	meshRenderer_->setPosition(tr->getPosition()[0], tr->getPosition()[1],
 	                           tr->getPosition()[2]);
-
-	meshRenderer_->lookAt(
-	    {tr->getRotation()[0], tr->getRotation()[1], tr->getRotation()[2]},
-	    Ogre::Node::TS_WORLD);
+	Ogre::Matrix3 matrix;
+	matrix.FromEulerAnglesYXZ(Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().y)),
+	    Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().x)),
+	    Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().z)));
+	Ogre::Quaternion rot(matrix);
+	meshRenderer_->setOrientation(rot);
 
 	meshRenderer_->setScale(tr->getScale()[0], tr->getScale()[1],
 	                        tr->getScale()[2]);
