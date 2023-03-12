@@ -31,6 +31,7 @@ namespace Separity {
 		void update();
 		void createTestScene();
 		SDL_Window* getSDLWindow();
+		Ogre::RenderWindow* getWindow();
 		Ogre::Root* getOgreRoot();
 		Ogre::SceneManager* getSceneManager();
 		/// <summary>

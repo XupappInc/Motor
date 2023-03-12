@@ -13,6 +13,7 @@
 //#include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
+#include "Camera.h"
 
 #include <AudioSource.h>
 #include <Collider.h>
@@ -21,6 +22,7 @@
 #include <RigidBody.h>
 #include <Transform.h>
 #include <iostream>
+
 
 using namespace std;
 using namespace Separity;
@@ -52,6 +54,7 @@ int main() {
 	                                 "Sinbad.mesh");
 	auto luz = mono->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luz->setDiffuse(Spyutils::Vector3(1, 0, 0));
+	luz->setDirection(Spyutils::Vector3(1, 0, 0));
 	// collider (antes de rigidbody siempre)
 	// colliderParams params;
 	// params.colShape = CUBE;
@@ -66,24 +69,32 @@ int main() {
 	// auto rb=mono->addComponent<RigidBody>(DYNAMIC, 10);
 	// rb->setGravity(Spyutils::Vector3(0, -1, 0));
 	//  Bucle principal
+
+	Entity* camera = new Entity(_grp_GENERAL);
+	Transform* cam_tr = camera->addComponent<Transform>();
+	cam_tr->translate(Spyutils::Vector3(0, 0, 15));
+	Camera* cam_cam = camera->addComponent<Camera>();
+	cam_cam->initComponent();
+
 	bool quit = false;
 	while(!quit) {
 		inputManger->update();
 		if(inputManger->isKeyDown('q') || inputManger->closeWindowEvent()) {
 			quit = true;
 		} else {
+			if(inputManger->isKeyDown('a')) {
+				cam_tr->translate(Spyutils::Vector3(-1, 0, 0));
+			}
+			if(inputManger->isKeyDown('d')) {
+				cam_tr->translate(Spyutils::Vector3(1, 0, 0));
+			}
 			if(inputManger->isKeyDown('w')) {
-				cout << "Tecla w Pulsada\n";
+				cam_tr->translate(Spyutils::Vector3(0, 1, 0));
 			}
-			if(inputManger->isMouseButtonDown(InputManager::LEFT)) {
-				cout << "Click\n";
+			if(inputManger->isKeyDown('s')) {
+				cam_tr->translate(Spyutils::Vector3(0, -1, 0));
 			}
-			if(inputManger->isMouseButtonHeld(InputManager::LEFT)) {
-				cout << "Hold\n";
-			}
-			if(inputManger->isMouseButtonUp(InputManager::LEFT)) {
-				cout << "Release\n";
-			}
+	
 		}
 
 		physManager->update();

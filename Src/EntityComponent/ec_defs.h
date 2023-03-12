@@ -14,7 +14,8 @@
 		_RIGID_BODY, \
 		_COLLIDER, \
 		_LIGHT,\
-		_AUDIO_SOURCE
+		_AUDIO_SOURCE, \
+		_CAMERA
 		 
 
 /// <summary>
