@@ -43,12 +43,11 @@ int main() {
 	Entity* mono2 = new Entity(_grp_GENERAL);
 	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
-	InputManager* inputManger = Separity::InputManager::getInstance();
+	InputManager* im = Separity::InputManager::getInstance();
 	Entity* mono = new Entity(_grp_GENERAL);
 	auto tr = mono->addComponent<Transform>();
 	// tr->translate(Spyutils::Vector3(-4, 2, 0));
 	// tr->setScale(2);
-	tr->pitch(90);
 	// mesh renderer
 	mono->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "Sinbad.mesh");
@@ -73,25 +72,40 @@ int main() {
 	Transform* cam_tr = camera->addComponent<Transform>();
 	cam_tr->translate(Spyutils::Vector3(0, 0, 15));
 	Camera* cam_cam = camera->addComponent<Camera>();
-	cam_cam->initComponent();
 
 	bool quit = false;
 	while(!quit) {
-		inputManger->update();
-		if(inputManger->isKeyDown('q') || inputManger->closeWindowEvent()) {
+		im->update();
+		if(im->isKeyDown('q') || im->closeWindowEvent()) {
 			quit = true;
 		} else {
-			if(inputManger->isKeyDown('a')) {
+			if(im->isKeyDown('a')) {
 				cam_tr->translate(Spyutils::Vector3(-1, 0, 0));
 			}
-			if(inputManger->isKeyDown('d')) {
+			if(im->isKeyDown('d')) {
 				cam_tr->translate(Spyutils::Vector3(1, 0, 0));
 			}
-			if(inputManger->isKeyDown('w')) {
-				cam_tr->translate(Spyutils::Vector3(0, 1, 0));
+			if(im->isKeyDown('w')) {
+				//cam_tr->translate(Spyutils::Vector3(0, 1, 0));
+				cam_cam->zoom(-3);
+				std::cout << cam_cam->getZoom() << "\n";
 			}
-			if(inputManger->isKeyDown('s')) {
-				cam_tr->translate(Spyutils::Vector3(0, -1, 0));
+			if(im->isKeyDown('s')) {
+				//cam_tr->translate(Spyutils::Vector3(0, -1, 0));
+				cam_cam->zoom(3);
+				std::cout << cam_cam->getZoom() << "\n";
+			}
+			if(im->isKeyDown(InputManager::ARROW_LEFT)) {
+				cam_tr->yaw(0.1);
+			}
+			if(im->isKeyDown(InputManager::ARROW_RIGHT)) {
+				cam_tr->yaw(-0.1);
+			}
+			if(im->isKeyDown(InputManager::ARROW_UP)) {
+				cam_tr->pitch(0.1);
+			}
+			if(im->isKeyDown(InputManager::ARROW_DOWN)) {
+				cam_tr->pitch(-0.1);
 			}
 	
 		}

@@ -8,6 +8,7 @@ namespace Ogre {
 	class Camera;
 	class SceneNode;
 	class Viewport;
+	class Degree;
 } 
 
 namespace Separity {
@@ -26,7 +27,15 @@ namespace Separity {
 		void render() override;
 		void initComponent() override;
 
+		void zoom(float zoom);
+		void setZoom(float zoom);
+		float getZoom();
+
 		private:
+
+		void readTransform();
+		Ogre::Degree zoomChecker(Ogre::Degree&& zoom);
+
 		Ogre::SceneNode* cameraNode_;
 		Ogre::Camera* camera_;
 		Ogre::Viewport* viewport_;
