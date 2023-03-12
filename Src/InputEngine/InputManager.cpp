@@ -108,7 +108,12 @@ bool Separity::InputManager::isMouseButtonHeld(MOUSEBUTTON b) {
 }
 
 bool Separity::InputManager::isMouseButtonUp(MOUSEBUTTON b) { 
-	return mbState_[b] == UP; }
+	return mbState_[b] == UP; 
+}
+
+const std::pair<int, int>& Separity::InputManager::getMousePos() {
+	return mousePos_;
+}
 
 void Separity::InputManager::clearState() {
 	isKeyDownEvent_ = false;
@@ -188,7 +193,7 @@ void Separity::InputManager::onControllerAdded() {
 		} 
 		else {
 			// Imprimir información sobre el mando
-			std::cout << "Mando conectado: " 
+			std::cout << "Info mando: " 
 				<< SDL_GameControllerName(gamepad_) << "\n";		       
 			std::cout << "Numero de botones: " 
 				<< SDL_CONTROLLER_BUTTON_MAX << "\n";
@@ -254,18 +259,19 @@ void Separity::InputManager::onAxisMotion() {
 	}
 }
 
-bool Separity::InputManager::deadzoneChecker(Sint16& data, Sint16 value, Sint16 deadzone) {
+bool Separity::InputManager::deadzoneChecker(float& data, Sint16 value, Sint16 deadzone) {
 
 	if(value > deadzone) {
-		data = value;
+		data = (float) value / SDL_MAX_SINT16;
 		return true;
 	} 
 	else if(value < -deadzone) {	
-		data = std::max((Sint16) (-SDL_MAX_SINT16), value);
+		value = std::max((Sint16) (-SDL_MAX_SINT16), value);
+		data = (float) value / SDL_MAX_SINT16;
 		return true;
 	}
 	else {
-		data = 0;
+		data = 0.0f;
 		return false;
 	}
 }
@@ -288,19 +294,16 @@ bool Separity::InputManager::leftJoystickEvent() {
 bool Separity::InputManager::rightJoystickEvent() { 
 	return isRightJoystickEvent_; }
 
-std::pair<float, float> Separity::InputManager::getLeftAxis() {
-	return {(float) leftAxis_.first / SDL_MAX_SINT16,
-	        (float) leftAxis_.second / SDL_MAX_SINT16};
+const std::pair<float, float>& Separity::InputManager::getLeftAxis() {
+	return leftAxis_;
 }
 
-std::pair<float, float> Separity::InputManager::getRightAxis() {
-	return {(float) rightAxis_.first / SDL_MAX_SINT16,
-	        (float) rightAxis_.second / SDL_MAX_SINT16};
+const std::pair<float, float>& Separity::InputManager::getRightAxis() {
+	return rightAxis_;
 }
 
-std::pair<float, float> Separity::InputManager::getTriggers() {
-	return {(float) triggers_.first / SDL_MAX_SINT16,
-	        (float) triggers_.second / SDL_MAX_SINT16};
+const std::pair<float, float>& Separity::InputManager::getTriggers() {
+	return triggers_;
 }
 
 void Separity::InputManager::setJoystickDeadzone(int deadzone) {

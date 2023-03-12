@@ -117,30 +117,30 @@ namespace Separity {
 
 		bool mouseButtonEvent();
 
-		const std::pair<Sint32, Sint32>& getMousePos() { return mousePos_; }
-
 		bool isMouseButtonDown(MOUSEBUTTON b);
 
 		bool isMouseButtonHeld(MOUSEBUTTON b);
 
 		bool isMouseButtonUp(MOUSEBUTTON b);
 
+		const std::pair<int, int>& getMousePos();
+
 		//gamecontroller
+		bool leftJoystickEvent();
+
+		bool rightJoystickEvent();
+
 		bool isControllerButtonDown(GAMEPADBUTTON b);
 
 		bool isControllerButtonHeld(GAMEPADBUTTON b);
 
 		bool isControllerButtonUp(GAMEPADBUTTON b);
 
-		bool leftJoystickEvent();
+		const std::pair<float, float>& getLeftAxis();
 
-		bool rightJoystickEvent();
+		const std::pair<float, float>& getRightAxis();
 
-		std::pair<float, float> getLeftAxis();
-
-		std::pair<float, float> getRightAxis();
-
-		std::pair<float, float> getTriggers();
+		const std::pair<float, float>& getTriggers();
 
 		void setJoystickDeadzone(int deadzone);
 
@@ -150,10 +150,10 @@ namespace Separity {
 
 		int getTriggerDeadzone();
 
-		// close window event
+		//window event
 		bool closeWindowEvent();
 
-		// update
+		//update
 		virtual void update() override;
 
 		static InputManager* getInstance();
@@ -175,29 +175,29 @@ namespace Separity {
 		// clear the state
 		void clearState();
 
-		void onKeyDown();
-
-		void onKeyUp();
-
 		bool isKeyDown(SDL_Scancode key);
 
 		bool isKeyUp(SDL_Scancode key);
+
+		void onKeyDown();
+
+		void onKeyUp();	
 
 		void onMouseMotion();
 
 		void onMouseButtonChange(STATE state);
 
-		void handleWindowEvent();
+		void onAxisMotion();
+
+		void onControllerButtonChange(STATE state);
 
 		void onControllerAdded();
 
 		void onControllerRemoved();
 
-		void onControllerButtonChange(STATE state);
+		bool deadzoneChecker(float& data, Sint16 value, Sint16 deadzone);
 
-		void onAxisMotion();
-
-		bool deadzoneChecker(Sint16& data, Sint16 value, Sint16 deadzone);
+		void handleWindowEvent();
 
 		bool isKeyUpEvent_;
 		bool isKeyDownEvent_;
@@ -205,16 +205,16 @@ namespace Separity {
 
 		bool isMouseMotionEvent_;
 		bool isMouseButtonEvent_;
-		std::pair<Sint32, Sint32> mousePos_;
+		std::pair<int, int> mousePos_;
 		std::array<uint8_t, 3> mbState_;
 	
 		bool isLeftJoystickEvent_;
 		bool isRightJoystickEvent_;
 		Sint16 joystickDeadzone_;
-		std::pair<Sint16, Sint16> leftAxis_;
-		std::pair<Sint16, Sint16> rightAxis_;
+		std::pair<float, float> leftAxis_;
+		std::pair<float, float> rightAxis_;
 		Sint16 triggerDeadzone_;
-		std::pair<Sint16, Sint16> triggers_;
+		std::pair<float, float> triggers_;
 		std::array<uint8_t, GAMEPADBUTTON::LAST> gpState_;
 		SDL_GameController* gamepad_;
 

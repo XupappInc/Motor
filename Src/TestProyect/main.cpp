@@ -4,11 +4,16 @@ using namespace std;
 #include "InputManager.h"
 using namespace Separity;
 
-// #include "checkML.h"
+#include "checkML.h"
 
 int main() {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//int* a = new int();
+
 	// Inicializar SDL
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER);
+
+	
 
 	// Crear una ventana
 	SDL_Window* window =
@@ -18,7 +23,7 @@ int main() {
 	InputManager* iu = InputManager::getInstance();
 
 	iu->setTriggerDeadzone(1000);
-	iu->setJoystickDeadzone(7000);
+	iu->setJoystickDeadzone(3000);
 
 	cout << iu->getTriggerDeadzone() << "\n";
 	cout << iu->getJoystickDeadzone() << "\n";
@@ -37,9 +42,8 @@ int main() {
 			}
 			if(iu->isMouseButtonDown(InputManager::LEFT)) {
 				cout << "Click\n";
-			}
-			if(iu->isMouseButtonHeld(InputManager::LEFT)) {
-				cout << "Hold\n";
+				cout << iu->getMousePos().first << " "
+				     << iu->getMousePos().second << "\n";
 			}
 			if(iu->isMouseButtonUp(InputManager::LEFT)) {
 				cout << "Release\n";
