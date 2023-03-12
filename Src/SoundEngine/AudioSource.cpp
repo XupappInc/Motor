@@ -6,24 +6,19 @@ using namespace Separity;
 AudioSource::AudioSource(const char* songName, bool isMusic) {
 	AudioManager* audioManager = AudioManager::getInstance();
 
-	/*audioManager->getSystem()->createSound(songName, FMOD_DEFAULT, nullptr,
-				                            &sound);*/
-	std::unordered_map<const char*, FMOD::Sound*>* lista = audioManager->getMusicList();
-	if(isMusic) {
-		/*audioManager->sound_[] = sound;*/
-		/*std::unordered_map<const char*, FMOD::Sound*>*::iterator it =
-		    audioManager->getMusicList().begin();*/
-		/*audioManager->getMusicList()->insert(
-		    std::pair<const char*, FMOD::Sound*>(songName, sound));*/
-	}
-	/*else
-		audioManager->getSoundList()->insert(
-		    std::pair<const char*, FMOD::Sound*>(songName, sound));*/
+	audioManager->getSystem()->createSound(songName, FMOD_DEFAULT, nullptr,
+	                                       &sound);
+	// Añade el audio a la lista de sonidos de música o de sonidos dependiendo
+	// de un booleano
+	if(isMusic)
+		audioManager->getMusicList()->emplace(songName, sound);
+	else
+		audioManager->getSoundList()->emplace(songName, sound);
 
 	audioManager = nullptr;
 }
 
 AudioSource::~AudioSource() {
-	//delete sound;
+	// delete sound;
 	sound = nullptr;
 }

@@ -48,7 +48,6 @@ namespace Separity {
 		std::unordered_map<const char*, FMOD::Sound*>* getMusicList();
 		FMOD_RESULT getResult();
 		private:
-		Separity::Entity* entity_;
 		float* buffer_;
 		bool isPlaying_;
 		FMOD::System* system_;

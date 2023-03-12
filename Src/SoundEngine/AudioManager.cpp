@@ -3,14 +3,15 @@
 #include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
-
-#include <iostream>
 #include <unordered_map>
 #define M_PI 3.141592
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
-inline Separity::AudioManager::AudioManager() {}
+inline Separity::AudioManager::AudioManager() {
+	sound_ = new std::unordered_map<const char*, FMOD::Sound*>();
+	music_ = new std::unordered_map<const char*, FMOD::Sound*>();
+}
 
 Separity::AudioManager::~AudioManager() {}
 
