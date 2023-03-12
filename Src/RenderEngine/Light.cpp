@@ -66,3 +66,8 @@ void Separity::Light::setDiffuse(Spyutils::Vector3 dif) {
 void Separity::Light::setSpecular(Spyutils::Vector3 specular) {
 	light_->setSpecularColour(specular.x, specular.y, specular.z);
 }
+
+void Separity::Light::setDirection(Spyutils::Vector3 dir) {
+
+	 lightNode_->setDirection(dir.x, dir.y, dir.z);
+}

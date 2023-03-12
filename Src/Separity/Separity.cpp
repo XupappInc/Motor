@@ -10,7 +10,7 @@
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "SoundEngine.h"
-#include "checkML.h"
+//#include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
 #include "Camera.h"
@@ -53,6 +53,7 @@ int main() {
 	                                 "Sinbad.mesh");
 	auto luz = mono->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luz->setDiffuse(Spyutils::Vector3(1, 0, 0));
+	luz->setDirection(Spyutils::Vector3(1, 0, 0));
 	// collider (antes de rigidbody siempre)
 	// colliderParams params;
 	// params.colShape = CUBE;
