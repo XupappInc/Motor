@@ -101,9 +101,15 @@ void Separity::RigidBody::update() {
 
 	// OnCollisionStay
 	for(auto c : collisionObjects_) {
-		//c->OnCollisionStay(this);
+		c->onCollisionStay(this);
 	}
 }
+
+void Separity::RigidBody::onCollisionEnter(RigidBody* other) {}
+
+void Separity::RigidBody::onCollisionExit(RigidBody* other) {}
+
+void Separity::RigidBody::onCollisionStay(RigidBody* other) {}
 
 btScalar Separity::RigidBody::addSingleResult(
     btManifoldPoint& cp, const btCollisionObjectWrapper* colObj0Wrap,
@@ -128,14 +134,14 @@ btScalar Separity::RigidBody::addSingleResult(
 		if(cp.getDistance() < 0) {
 			if(collisionObjects_.find(otherRB) == collisionObjects_.end()) {
 				collisionObjects_.insert(otherRB);
-				//OnCollisionEnter(otherRB);
+				onCollisionEnter(otherRB);
 			}
 		}
 		// Esto es OnCollisionExit
 		else {
 			if(collisionObjects_.find(otherRB) != collisionObjects_.end()) {
 				collisionObjects_.erase(otherRB);
-				//OnCollisionExit(otherRB);
+				onCollisionExit(otherRB);
 			}
 		}
 	}

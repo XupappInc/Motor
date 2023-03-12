@@ -84,6 +84,19 @@ namespace Separity {
 		void update() override;
 
 		/// <summary>
+		/// Metodo que se llama cuando el rigidbody colisiona
+		/// </summary>
+		void onCollisionEnter(RigidBody* other);
+		/// <summary>
+		/// Metodo que se llama cuando el rigidbody deja de colisionar
+		/// </summary>
+		void onCollisionExit(RigidBody* other);
+		/// <summary>
+		/// Metodo que se llama cuando el rigidbody se mantiene colisionando
+		/// </summary>
+		void onCollisionStay(RigidBody* other);
+
+		/// <summary>
 		/// Metodo de bullet que se llama cuando se produce una colision
 		/// </summary>
 		/// <param name="cp">Punto de la colision</param>
