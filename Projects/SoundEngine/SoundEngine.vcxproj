@@ -21,12 +21,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\SoundEngine\AudioManager.cpp" />
     <ClCompile Include="..\..\Src\SoundEngine\AudioSource.cpp" />
-    <ClCompile Include="..\..\Src\SoundEngine\SoundEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\SoundEngine\AudioManager.h" />
     <ClInclude Include="..\..\Src\SoundEngine\AudioSource.h" />
-    <ClInclude Include="..\..\Src\SoundEngine\SoundEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PhysicsEngine\PhysicsEngine.vcxproj">
