@@ -84,6 +84,12 @@ namespace Separity {
 		void update() override;
 
 		/// <summary>
+		/// Metodo que devuelve el rigidbody de bullet
+		/// </summary>
+		/// <returns>El btRigidBody creado en el componente</returns>
+		btRigidBody* getBulletRigidBody();
+
+		/// <summary>
 		/// Metodo que se llama cuando el rigidbody colisiona
 		/// </summary>
 		void onCollisionEnter(RigidBody* other);

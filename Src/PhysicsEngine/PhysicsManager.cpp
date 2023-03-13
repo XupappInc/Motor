@@ -1,6 +1,8 @@
 #include "PhysicsManager.h"
 // #include "checkML.h"
-#include"Component.h"
+#include "Component.h"
+#include "RigidBody.h"
+
 #include <btBulletDynamicsCommon.h>
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
@@ -38,8 +40,13 @@ void Separity::PhysicsManager::deleteWorld() {
 void PhysicsManager::update() {
 	for(Separity::Component* c : cmps_) {
 		c->update();
+
+		//test de colisiones de cada rigidbody con todo el mundo fisico
+		auto rb = dynamic_cast<Separity::RigidBody*>(c);
+		if (rb != nullptr)
+			world_->contactTest(rb->getBulletRigidBody(), *rb);
 	}
-	world_->stepSimulation(1.0 / 60.0, 10); 
+	world_->stepSimulation(1.0 / 60.0, 10);
 }
 
 btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return world_; }

@@ -109,6 +109,8 @@ void Separity::RigidBody::update() {
 	}
 }
 
+btRigidBody* Separity::RigidBody::getBulletRigidBody() { return rb_; }
+
 void Separity::RigidBody::onCollisionEnter(RigidBody* other) {}
 
 void Separity::RigidBody::onCollisionExit(RigidBody* other) {}
