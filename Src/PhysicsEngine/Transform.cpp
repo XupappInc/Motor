@@ -29,6 +29,8 @@ void Separity::Transform::setPosition(float x, float y, float z) {
 
 void Separity::Transform::translate(Spyutils::Vector3 other) {
 	positition_ += other;
+	btVector3 vec(positition_.x, positition_.y, positition_.z);
+	tr_->setOrigin(vec);
 }
 
 Spyutils::Vector3 Separity::Transform::getPosition() { return positition_; }
