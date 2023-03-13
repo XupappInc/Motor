@@ -5,6 +5,7 @@
 #include "PhysicsManager.h"
 #include "Transform.h"
 #include "Vector.h"
+#include <spyMath.h>
 // #include "checkML.h"
 
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
@@ -23,10 +24,15 @@ void Separity::RigidBody::initComponent() {
 	btTransform nuevoTr;
 	nuevoTr.setIdentity();
 	nuevoTr.setOrigin(tr_->getBulletTransform()->getOrigin());
-	nuevoTr.setRotation(tr_->getBulletTransform()->getRotation());
-
+	btVector3 rotRad =
+	    btVector3((btScalar) spyutils::Math::toRadians(tr_->getRotation().x),
+	              (btScalar) spyutils::Math::toRadians(tr_->getRotation().y),
+	              (btScalar) spyutils::Math::toRadians(tr_->getRotation().z));
+	btQuaternion q = btQuaternion(rotRad.y(), rotRad.z(), rotRad.x());
+	nuevoTr.setRotation(q);
+	
 	btDefaultMotionState* motionState = new btDefaultMotionState(nuevoTr);
-
+	
 	Spyutils::Vector3 escala = tr_->getScale();
 
 	// collider de bullet
@@ -43,6 +49,7 @@ void Separity::RigidBody::initComponent() {
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(
 	    mass_, motionState, collisionShape, localInertia);
 	rb_ = new btRigidBody(rbInfo);
+
 
 	// anadimos una referncia a esta clase dentro del rb de Bullet
 	rb_->setUserPointer(this);
@@ -98,15 +105,24 @@ void Separity::RigidBody::scaleRb(Spyutils::Vector3 s) {
 	collisionShape->calculateLocalInertia(mass_, inertia);
 }
 
+void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
+
+	btVector3 rot = {(btScalar) btRadians(s.x),
+	                 (btScalar) btRadians(s.y),
+	                 (btScalar) btRadians(s.z)};
+	rb_->getWorldTransform().setRotation(
+	    btQuaternion(rot.y(), rot.x(), rot.z()));
+}
+
 void Separity::RigidBody::update() {
 	if(tipo_ == STATIC)
 		return;
-	btScalar pitchx, yawy, rollz;
+	btScalar pitchz, yawy, rollx;
 	btVector3 pos;
 	pos = rb_->getWorldTransform().getOrigin();
-	rb_->getWorldTransform().getRotation().getEulerZYX(rollz, yawy, pitchx);
+	rb_->getWorldTransform().getRotation().getEulerZYX(rollx, yawy, pitchz);
 	tr_->setPosition(pos.x(), pos.y(), pos.z());
-	tr_->setRotation(pitchx, yawy, rollz);
+	tr_->setRotation(spyutils::Math::toDegrees( rollx), spyutils::Math::toDegrees(yawy),spyutils::Math::toDegrees( pitchz));
 
 	// OnCollisionStay
 	for(auto c : collisionObjects_) {

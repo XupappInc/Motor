@@ -15,6 +15,13 @@ namespace spyutils {
 		/// <param name="degrees">Grados a convertir</param>
 		/// <returns>El valor en radianes</returns>
 		static float toRadians(float degrees);
+		// static const double PI;
+		/// <summary>
+		///	Conversión de radianes a grados
+		/// </summary>
+		/// <param name="rad">Radianes a convertir</param>
+		/// <returns>El valor en grados</returns>
+		static float toDegrees(float rad);
 	};
 
 }  // namespace spyutils

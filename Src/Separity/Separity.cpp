@@ -42,7 +42,7 @@ int main() {
 	Entity* sphere = new Entity(_grp_GENERAL);
 	auto tr = sphere->addComponent<Transform>();
 	tr->pitch(60);
-	//tr->setPosition(Spyutils::Vector3(0, 5, -10));
+	tr->setPosition(Spyutils::Vector3(0, 5, -10));
 	tr->setScale(0.03);
 	 
 	//  mesh renderer
@@ -62,9 +62,9 @@ int main() {
 	sphere->addComponent<Collider>(params);
 
 	// rigidbody
-	/*auto rb = sphere->addComponent<RigidBody>(DYNAMIC, 10);
+	auto rb = sphere->addComponent<RigidBody>(DYNAMIC, 10);
 	rb->setGravity(Spyutils::Vector3(0, 0, 0));
-	rb->addForce(Spyutils::Vector3(1000, 0, 0));*/
+	//rb->addForce(Spyutils::Vector3(1000, 0, 0));
 	//rb->addForce(Spyutils::Vector3(1000, 1000, 0));
 	/*rb->applyTorque(Spyutils::Vector3(1000, 1000, 1000));*/
 	////  Bucle principal

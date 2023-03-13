@@ -84,6 +84,11 @@ namespace Separity {
 		/// <param name="s">Escala</param>
 		void scaleRb(Spyutils::Vector3 s);
 		/// <summary>
+		/// Establece la rotacion del rigidbody
+		/// </summary>
+		/// <param name="s">Rotación</param>
+		void rotateRb(Spyutils::Vector3 s);
+		/// <summary>
 		/// Método update heredado de Component
 		/// </summary>
 		void update() override;

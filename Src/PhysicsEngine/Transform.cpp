@@ -36,12 +36,18 @@ void Separity::Transform::translate(Spyutils::Vector3 other) {
 Spyutils::Vector3 Separity::Transform::getPosition() { return positition_; }
 
 void Separity::Transform::setRotation(float rotationX, float rotationY,
-                                      float rotationZ) {
-	btQuaternion quat((btScalar) spyutils::Math::toRadians(rotationX),
-	                  (btScalar) spyutils::Math::toRadians(rotationY),
-	                  (btScalar) spyutils::Math::toRadians( rotationZ));
+                                      float rotationZ){
+     btVector3 rotRad =
+	    btVector3((btScalar) spyutils::Math::toRadians(rotationX),
+	              (btScalar) spyutils::Math::toRadians(rotationY),
+	              (btScalar) spyutils::Math::toRadians(rotationZ));
+	btQuaternion q = btQuaternion(rotRad.y(), rotRad.z(), rotRad.x());
 	rotation_ = Spyutils::Vector3(rotationX, rotationY, rotationZ);
-	tr_->setRotation(quat);
+	tr_->setRotation(q);
+	auto rb = ent_->getComponent<RigidBody>();
+	if(rb) {
+		rb->rotateRb(rotation_);
+	}
 }
 
 Spyutils::Vector3 Separity::Transform::getRotation() { return rotation_; }
