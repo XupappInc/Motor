@@ -133,6 +133,5 @@ bool Separity::AudioManager::FMODErrorChecker(FMOD_RESULT result) {
 		printf("FMOD ERROR " + result);
 		return false;
 	}
-	printf("FMOD Ok " + result);
 	return true;
 }
