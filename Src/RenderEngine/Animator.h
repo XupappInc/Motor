@@ -21,16 +21,27 @@ namespace Separity {
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_ANIMATOR)
 
-		Animator(Ogre::SceneNode* node, std::string animName);
+		Animator(std::string animName);
 		~Animator();
+		void initComponent();
+		void setUpAnim();
+		void setLoop(bool loop);
+		void setEnabled(bool enabled);
+		void setAnimDuration(float duration);
+		//void setInterpolationMode(Ogre::Animation mode);
+		bool getLoop();
+		bool getEnabled();
+		std::string getAnimName();
+		float getAnimDuration();
 
 		private:
 
 		std::string animName_;
 		Ogre::SceneNode* node_;
-
-		Transform* tr_ = nullptr;
-		MeshRenderer* mesh_ = nullptr;
+		bool enabled_;
+		bool loop_;
+		float duration_, distance_;
+		MeshRenderer* mesh_;
 	};
 }  // namespace Separity
 

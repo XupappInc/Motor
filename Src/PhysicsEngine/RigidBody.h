@@ -69,6 +69,11 @@ namespace Separity {
 		/// <param name="torq">La fuerza que se aplica</param>
 		void applyTorque(Spyutils::Vector3 torq);
 		/// <summary>
+		/// Aplica una impulso 
+		/// </summary>
+		/// <param name="impul">El impulso que se aplica</param>
+		void applyImpulse(Spyutils::Vector3 impul);
+		/// <summary>
 		///	Establece la gravedad que afecta al rigidbody
 		/// </summary>
 		/// <param name="g">El vector que define la fuerza aplicada</param>
@@ -82,7 +87,12 @@ namespace Separity {
 		/// Método update heredado de Component
 		/// </summary>
 		void update() override;
-
+		/// <summary>
+		/// Setear el damping 
+		/// </summary>
+		/// <param name="linear">damping lineal</param>
+		/// <param name="angular">damping angular</param>
+		void setDamping(float linear, float angular);
 		/// <summary>
 		/// Metodo que devuelve el rigidbody de bullet
 		/// </summary>

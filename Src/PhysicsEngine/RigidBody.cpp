@@ -52,10 +52,9 @@ void Separity::RigidBody::initComponent() {
 	// si el collider es un trigger desactiva el contacto
 	if(collider->isTrigger()) {
 		rb_->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
-	} 
-	else
+	} else
 		rb_->setCollisionFlags(rb_->getCollisionFlags() |
-		                      btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+		                       btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 }
 
 void Separity::RigidBody::addForce(Spyutils::Vector3 force) {
@@ -78,7 +77,13 @@ void Separity::RigidBody::setAngularVelocity(Spyutils::Vector3 vel) {
 
 void Separity::RigidBody::applyTorque(Spyutils::Vector3 torq) {
 	btVector3 torque(torq.x, torq.y, torq.z);
+	rb_->setAngularFactor({1, 0, 0});
 	rb_->applyTorque(torque);
+}
+void Separity::RigidBody::applyImpulse(Spyutils::Vector3 impul) {
+	btVector3 fuerza(impul.x, impul.y, impul.z);
+	btVector3 posicion(0, 0, 0);
+	rb_->applyImpulse(fuerza, posicion);
 }
 void Separity::RigidBody::setGravity(Spyutils::Vector3 g) {
 	btVector3 fuerza(g.x, g.y, g.z);
@@ -107,6 +112,10 @@ void Separity::RigidBody::update() {
 	for(auto c : collisionObjects_) {
 		c->onCollisionStay(this);
 	}
+}
+
+void Separity::RigidBody::setDamping(float linear, float angular) {
+	rb_->setDamping(linear, angular);
 }
 
 btRigidBody* Separity::RigidBody::getBulletRigidBody() { return rb_; }
