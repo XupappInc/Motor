@@ -10,7 +10,6 @@ template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
 inline Separity::AudioManager::AudioManager() {
-	result_ = FMOD_RESULT::FMOD_OK;
 	buffer_ = nullptr;
 	system_ = nullptr;
 	sounds_ = new std::unordered_map<std::string, FMOD::Sound*>();
@@ -42,18 +41,9 @@ Separity::AudioManager::~AudioManager() {
 
 void Separity::AudioManager::initAudioSystem() {
 	// Create an instance of the FMOD system
-	result_ = FMOD::System_Create(&system_);
-	if(result_ != FMOD_OK) {
-		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
-	}
-
+	FMODErrorChecker(FMOD::System_Create(&system_));
 	// Initialize the FMOD system with 32 channels and normal settings
-	result_ = system_->init(32, FMOD_INIT_NORMAL, 0);
-	if(result_ != FMOD_OK) {
-		printf("FMOD error: %s\n", FMOD_ErrorString(result_));
-		system_->release();
-		;
-	}
+	FMODErrorChecker(system_->init(32, FMOD_INIT_NORMAL, 0));
 
 	// Set the sound parameters
 	const float sampleRate = 44100.0f;
@@ -73,14 +63,14 @@ void Separity::AudioManager::initAudioSystem() {
 	}
 
 	system_->createSoundGroup("soundGroup", &soundGroup_);
+	soundGroup_->setVolume(100);
 	system_->createSoundGroup("musicGroup", &musicGroup_);
+	musicGroup_->setVolume(100);
 }
 
 Separity::AudioManager* Separity::AudioManager::getInstance() {
 	return static_cast<AudioManager*>(instance());
 }
-
-FMOD_RESULT Separity::AudioManager::getResult() { return result_; }
 
 void Separity::AudioManager::playAudio(std::string audioName) {
 	FMOD::Channel* temporalChannel = nullptr;
@@ -93,27 +83,30 @@ void Separity::AudioManager::playAudio(std::string audioName) {
 		temporalSound = musics_->find(audioName)->second;
 	else
 		printf("No existe ese sonido");
-	system_->playSound(temporalSound, nullptr, true, &temporalChannel);
+	FMODErrorChecker(
+	    system_->playSound(temporalSound, nullptr, true, &temporalChannel));
+
 	channels_->emplace(audioName, temporalChannel);
 }
 
 void Separity::AudioManager::update() {
-	std::vector<std::unordered_map<std::string, FMOD::Channel*>::iterator>
-	    channelsWithoutSound;
-	// Comprueba todos los canales añadidos en el map, si no  tienen sonido los libera
-	for(auto itStart = channels_->begin(), itEnd = channels_->end();
-	    itStart != itEnd; itStart++) {
+	 std::vector<std::unordered_map<std::string, FMOD::Channel*>::iterator>
+	     channelsWithoutSound;
+	// Comprueba todos los canales añadidos en el map, si no  tienen sonido
+	//los libera
+	 for(auto itStart = channels_->begin(), itEnd = channels_->end();
+	     itStart != itEnd; itStart++) {
 		bool isPlaying = false;
 		itStart->second->isPlaying(&isPlaying);
 		if(!isPlaying) {
 			channelsWithoutSound.push_back(itStart);
 		}
-	}
+	 }
 	// Si hay canales que no están sonando pero están el map los libera
-	for(auto& it : channelsWithoutSound) {
+	 for(auto& it : channelsWithoutSound) {
 		channels_->erase(it);
-	}
-	system_->update();
+	 }
+	FMODErrorChecker(system_->update());
 }
 void Separity::AudioManager::pauseAllChannels() {
 	for(auto& channelMap : *channels_) {
@@ -134,4 +127,13 @@ void Separity::AudioManager::stopAllChannels() {
 
 void Separity::AudioManager::stopChannel(std::string audioName) {
 	channels_->find(audioName)->second->stop();
+}
+
+bool Separity::AudioManager::FMODErrorChecker(FMOD_RESULT result) {
+	if(result != FMOD_OK) {
+		printf("FMOD ERROR " + result);
+		return false;
+	}
+	printf("FMOD Ok " + result);
+	return true;
 }
