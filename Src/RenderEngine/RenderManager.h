@@ -29,15 +29,12 @@ namespace Separity {
 		void loadResources();
 		void render();
 		void update();
-		void createTestScene();
+		void resizeWindow(int w, int h);
+		void fullScreen(bool full);
 		SDL_Window* getSDLWindow();
 		Ogre::RenderWindow* getWindow();
 		Ogre::Root* getOgreRoot();
 		Ogre::SceneManager* getSceneManager();
-		/// <summary>
-		/// Método encargado de renderizar todos los componentes
-		/// dentro de la lista de componentes
-		/// </summary>
 
 		private:
 		SDL_Window* sdlWindow_;
@@ -46,8 +43,8 @@ namespace Separity {
 		Ogre::SceneManager* sceneMgr_;
 		Ogre::ConfigFile* configFile_;
 
-		float screenW_;
-		float screenH_;
+		int screenW_;
+		int screenH_;
 		
 		Separity::Entity* entity_;
 	};

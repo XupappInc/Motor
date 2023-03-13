@@ -28,7 +28,7 @@ int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
-	renderManager->createTestScene();
+	renderManager->init();
 	PhysicsManager* physManager = Separity::PhysicsManager::getInstance();
 	physManager->initWorld();
 	AudioManager* audManager = Separity::AudioManager::getInstance();
@@ -131,6 +131,16 @@ int main() {
 			if(inputManager->isKeyDown(InputManager::ARROW_DOWN)) {
 				cam_tr->pitch(-0.1);
 			}
+			if(inputManager->isKeyDown('c')) {
+				RenderManager::getInstance()->resizeWindow(1920, 1080);
+			}
+			if(inputManager->isKeyDown('x')) {
+				RenderManager::getInstance()->fullScreen(true);
+			}
+			if(inputManager->isKeyDown('z')) {
+				RenderManager::getInstance()->fullScreen(false);
+			}
+	
 		}
 
 		physManager->update();

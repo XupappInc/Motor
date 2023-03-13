@@ -1,5 +1,8 @@
 #include "RenderManager.h"
 
+#include "Entity.h"
+#include "MeshRenderer.h"
+
 #include <OgreConfigFile.h>
 #include <OgreEntity.h>
 #include <OgreFileSystemLayer.h>
@@ -8,26 +11,20 @@
 #include <OgreViewport.h>
 #include <SDL.h>
 #include <SDL_syswm.h>
-#include <OgreConfigFile.h>
-
-#include "Entity.h"
-#include "MeshRenderer.h"
-
+#include <iostream>
 
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
 Separity::RenderManager::RenderManager() {}
 
-Separity::RenderManager::~RenderManager() 
-{
-	sdlWindow_=nullptr;
-	ogreWindow_=nullptr;
-	ogreRoot_=nullptr;
-	sceneMgr_=nullptr;
-	configFile_=nullptr;
-	entity_=nullptr;
-
+Separity::RenderManager::~RenderManager() {
+	sdlWindow_ = nullptr;
+	ogreWindow_ = nullptr;
+	ogreRoot_ = nullptr;
+	sceneMgr_ = nullptr;
+	configFile_ = nullptr;
+	entity_ = nullptr;
 }
 
 void Separity::RenderManager::init() {
@@ -35,23 +32,32 @@ void Separity::RenderManager::init() {
 	screenW_ = 1024;
 	screenH_ = 768;
 
-	// Crear raiz de ogre
-	ogreRoot_ = new Ogre::Root("plugins.cfg", "ogre.cfg", "Ogre.log");
-
-	// Inicializar SDL
+	//// Inicializar SDL
 	if(!SDL_WasInit(SDL_INIT_EVERYTHING))
-	SDL_InitSubSystem(SDL_INIT_EVERYTHING);
+		SDL_InitSubSystem(SDL_INIT_EVERYTHING);
 
+	Ogre::String pluginPath = "plugins.cfg";
+	if(!Ogre::FileSystemLayer::fileExists(pluginPath)) {
+		OGRE_EXCEPT(Ogre::Exception::ERR_FILE_NOT_FOUND, pluginPath,
+		            "No existe el archivo plugins.cfg");
+	}
+
+	// Crear raiz de ogre
+	ogreRoot_ = new Ogre::Root(pluginPath);
 
 	// Si hay una configuración de antes se utiliza esa y si no se muestra un
 	// diálogo para configuración
-	// if(!(ogreRoot_->restoreConfig() || ogreRoot_->showConfigDialog(nullptr)))
+	if(ogreRoot_->restoreConfig() || ogreRoot_->showConfigDialog(nullptr)) {
+		createSDLWindow();
+	}
 
-	
+	sceneMgr_ = ogreRoot_->createSceneManager();
+
+	loadResources();
+
 }
 
 void Separity::RenderManager::loadResources() {
-	
 	Ogre::ConfigFile configFile;
 	configFile.load("resources.cfg");
 	Ogre::String sec, type, arch;
@@ -83,36 +89,32 @@ void Separity::RenderManager::render() {
 	}
 }
 
-void Separity::RenderManager::update() 
-{
+void Separity::RenderManager::update() {
 	/*entity_->getComponent<Separity::MeshRenderer>()->getNode()->yaw(
 	    Ogre::Degree(-0.2));*/
 	ogreRoot_->renderOneFrame();
 }
 
-void Separity::RenderManager::createTestScene() {
-	init();
-	createSDLWindow();
-	loadResources();
+void Separity::RenderManager::resizeWindow(int w, int h) {
+	screenW_ = w;
+	screenH_ = h;
 
-	sceneMgr_ = ogreRoot_->createSceneManager();
+	SDL_SetWindowSize(sdlWindow_, w, h);
+	SDL_SetWindowPosition(sdlWindow_, SDL_WINDOWPOS_CENTERED,
+	                      SDL_WINDOWPOS_CENTERED);
+	SDL_UpdateWindowSurface(sdlWindow_);
 
-	// Añadimos luz para que no se vea en negro
-	//Ogre::Light* luz = sceneMgr_->createLight("Luz");
-	//luz->setType(Ogre::Light::LT_DIRECTIONAL);
-	//luz->setDiffuseColour(0.75, 0.75, 0.75);
+	ogreWindow_->resize(w, h);
+	ogreWindow_->windowMovedOrResized();
+}
 
-	//// Metemos la luz en un nodo
-	//Ogre::SceneNode* mLightNode =
-	//    sceneMgr_->getRootSceneNode()->createChildSceneNode("nLuz");
+void Separity::RenderManager::fullScreen(bool full) {
+	if(full) {
+		SDL_SetWindowFullscreen(sdlWindow_, SDL_WINDOW_FULLSCREEN);
 
-	//mLightNode->attachObject(luz);
-	//mLightNode->setDirection(Ogre::Vector3(0, -1, -1));  // vec3.normalise();
-	//mLightNode->setPosition(0, 0, 2000);
-
-	// Creamos entidad con mesh de sinbad
-	//entity_ = new Entity(_grp_GENERAL);
-	//entity_->addComponent<MeshRenderer>(getSceneManager(), "Sinbad.mesh");
+	} else {
+		SDL_SetWindowFullscreen(sdlWindow_, 0);
+	}
 }
 
 Separity::RenderManager* Separity::RenderManager::getInstance() {
@@ -120,11 +122,10 @@ Separity::RenderManager* Separity::RenderManager::getInstance() {
 }
 
 void Separity::RenderManager::createSDLWindow() {
-
-	// Crear ventana de SDL	
-	sdlWindow_ = SDL_CreateWindow("Separity", SDL_WINDOWPOS_UNDEFINED,
-	                              SDL_WINDOWPOS_UNDEFINED, screenW_, screenH_,
-	                              SDL_WINDOW_SHOWN);
+	// Crear ventana de SDL
+	sdlWindow_ = SDL_CreateWindow("Separity", SDL_WINDOWPOS_CENTERED,
+	                              SDL_WINDOWPOS_CENTERED, screenW_, screenH_,
+	                              SDL_WINDOW_ALLOW_HIGHDPI);
 
 	// Queremos asignar a la ventana de renderizado la ventana que hemos creado
 	// con SDL
@@ -132,14 +133,15 @@ void Separity::RenderManager::createSDLWindow() {
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(sdlWindow_, &wmInfo);
 
-	Ogre::NameValuePairList misc;
-	misc["externalWindowHandle"] =
-	    Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
-
 	// Creamos un render system cogiendo el primer renderer de los que hay
 	// disponibles
 	Ogre::RenderSystem* sys = ogreRoot_->getAvailableRenderers().front();
 	ogreRoot_->setRenderSystem(sys);
+
+	Ogre::NameValuePairList misc;
+
+	misc["externalWindowHandle"] =
+	    Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
 
 	// Crear render window de ogre
 	ogreWindow_ = ogreRoot_->initialise(false, "Ogre Render");
@@ -149,9 +151,7 @@ void Separity::RenderManager::createSDLWindow() {
 
 SDL_Window* Separity::RenderManager::getSDLWindow() { return sdlWindow_; }
 
-Ogre::RenderWindow* Separity::RenderManager::getWindow() { 
-	return ogreWindow_; 
-}
+Ogre::RenderWindow* Separity::RenderManager::getWindow() { return ogreWindow_; }
 
 Ogre::Root* Separity::RenderManager::getOgreRoot() { return ogreRoot_; }
 
