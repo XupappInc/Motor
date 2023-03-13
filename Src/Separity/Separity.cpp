@@ -9,7 +9,6 @@
 #include "Light.h"
 #include "PhysicsManager.h"
 #include "RenderManager.h"
-#include "SoundEngine.h"
 //#include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
@@ -28,11 +27,6 @@ using namespace std;
 using namespace Separity;
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-	/*SoundEngine* soundEngine_ = new SoundEngine();
-	soundEngine_->initSoundSystem();
-	soundEngine_->createSound("Assets//theme.mp3");
-	soundEngine_->playSound();*/
 
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->createTestScene();
