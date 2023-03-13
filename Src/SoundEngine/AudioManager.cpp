@@ -85,26 +85,25 @@ void Separity::AudioManager::playAudio(std::string audioName) {
 		printf("No existe ese sonido");
 	FMODErrorChecker(
 	    system_->playSound(temporalSound, nullptr, true, &temporalChannel));
+	temporalChannel->setPaused(false);
 
 	channels_->emplace(audioName, temporalChannel);
 }
 
 void Separity::AudioManager::update() {
-	 std::vector<std::unordered_map<std::string, FMOD::Channel*>::iterator>
-	     channelsWithoutSound;
+
 	// Comprueba todos los canales añadidos en el map, si no  tienen sonido
 	//los libera
 	 for(auto itStart = channels_->begin(), itEnd = channels_->end();
 	     itStart != itEnd; itStart++) {
 		bool isPlaying = false;
+		float* volume = new float();
+		bool* as = new bool();
+		
 		itStart->second->isPlaying(&isPlaying);
 		if(!isPlaying) {
-			channelsWithoutSound.push_back(itStart);
+			channels_->erase(itStart);
 		}
-	 }
-	// Si hay canales que no están sonando pero están el map los libera
-	 for(auto& it : channelsWithoutSound) {
-		channels_->erase(it);
 	 }
 	FMODErrorChecker(system_->update());
 }
