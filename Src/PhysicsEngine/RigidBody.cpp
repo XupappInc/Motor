@@ -28,7 +28,7 @@ void Separity::RigidBody::initComponent() {
 	    btVector3((btScalar) spyutils::Math::toRadians(tr_->getRotation().x),
 	              (btScalar) spyutils::Math::toRadians(tr_->getRotation().y),
 	              (btScalar) spyutils::Math::toRadians(tr_->getRotation().z));
-	btQuaternion q = btQuaternion(rotRad.y(), rotRad.z(), rotRad.x());
+	btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
 	nuevoTr.setRotation(q);
 	
 	btDefaultMotionState* motionState = new btDefaultMotionState(nuevoTr);
@@ -50,7 +50,7 @@ void Separity::RigidBody::initComponent() {
 	    mass_, motionState, collisionShape, localInertia);
 	rb_ = new btRigidBody(rbInfo);
 
-
+	rb_->getWorldTransform().setRotation(q);
 	// anadimos una referncia a esta clase dentro del rb de Bullet
 	rb_->setUserPointer(this);
 	// anade el rigidbody al mundo fisico
@@ -117,12 +117,12 @@ void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
 void Separity::RigidBody::update() {
 	if(tipo_ == STATIC)
 		return;
-	btScalar pitchz, yawy, rollx;
+	btScalar x, y, z;
 	btVector3 pos;
 	pos = rb_->getWorldTransform().getOrigin();
-	rb_->getWorldTransform().getRotation().getEulerZYX(rollx, yawy, pitchz);
+	rb_->getWorldTransform().getRotation().getEulerZYX(z, y, x);
 	tr_->setPosition(pos.x(), pos.y(), pos.z());
-	tr_->setRotation(spyutils::Math::toDegrees( rollx), spyutils::Math::toDegrees(yawy),spyutils::Math::toDegrees( pitchz));
+	tr_->setRotation(spyutils::Math::toDegrees( x), spyutils::Math::toDegrees(y),spyutils::Math::toDegrees(z));
 
 	// OnCollisionStay
 	for(auto c : collisionObjects_) {

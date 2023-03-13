@@ -42,7 +42,7 @@ int main() {
 	Entity* sphere = new Entity(_grp_GENERAL);
 	auto tr = sphere->addComponent<Transform>();
 	tr->pitch(60);
-	tr->setPosition(Spyutils::Vector3(0, 5, -10));
+	tr->setPosition(Spyutils::Vector3(10, 5, -10));
 	tr->setScale(0.03);
 	 
 	//  mesh renderer
