@@ -91,18 +91,19 @@ void Separity::AudioManager::playAudio(std::string audioName) {
 }
 
 void Separity::AudioManager::update() {
-
 	// Comprueba todos los canales añadidos en el map, si no  tienen sonido
-	//los libera
-	 for(auto itStart = channels_->begin(), itEnd = channels_->end();
-	     itStart != itEnd; itStart++) {
+	// los libera
+	for(auto itStart = channels_->begin(), itEnd = channels_->end();
+	    itStart != itEnd; itStart++) {
 		bool isPlaying = false;
-		
+
 		itStart->second->isPlaying(&isPlaying);
 		if(!isPlaying) {
 			channels_->erase(itStart);
-		}
-	 }
+		}/* else {
+			itStart->second->set3DAttributes(FMOD_VECTOR fmods);
+		}*/
+	}
 	FMODErrorChecker(system_->update());
 }
 void Separity::AudioManager::pauseAllChannels() {
