@@ -97,8 +97,6 @@ void Separity::AudioManager::update() {
 	 for(auto itStart = channels_->begin(), itEnd = channels_->end();
 	     itStart != itEnd; itStart++) {
 		bool isPlaying = false;
-		float* volume = new float();
-		bool* as = new bool();
 		
 		itStart->second->isPlaying(&isPlaying);
 		if(!isPlaying) {
