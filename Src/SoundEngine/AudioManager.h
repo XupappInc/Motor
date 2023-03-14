@@ -40,25 +40,42 @@ namespace Separity {
 		/// </summary>
 		void playAudio(std::string audioName);
 		/// <summary>
-		/// Para la reproducción del sonido, limpia los canales y limpia el
+		/// Para la reproducción de todos los canales
 		/// sistema
 		/// </summary>
 		void stopAllChannels();
+		/// <summary>
+		/// Para la reproducción de un canal que esté reproducciendo audioName
+		/// </summary>
+		/// <param name="audioName"></param>
 		void stopChannel(std::string audioName);
+		/// <summary>
+		/// Checker de errores de FMOD para comprobar si los procesos de FMOD
+		/// funcionan correctamente
+		/// </summary>
+		/// <param name="result"></param>
+		/// <returns></returns>
 		bool FMODErrorChecker(FMOD_RESULT result);
 		/// <summary>
 		/// Actualiza el sistema y reproduce los sonidos guardados en el sistema
 		/// </summary>
 		void update();
+		/// <summary>
+		/// Pausa todos los caneles
+		/// </summary>
 		void pauseAllChannels();
+		/// <summary>
+		/// Quita la pausa de todos los canales
+		/// </summary>
 		void resumeAllChannels();
 
 		FMOD::System* system_;
 		std::unordered_map<std::string, FMOD::Sound*>* sounds_;
 		std::unordered_map<std::string, FMOD::Sound*>* musics_;
-		std::unordered_map<std::string, FMOD::Channel*>* channels_;	
+		std::unordered_map<std::string, FMOD::Channel*>* channels_;
 		FMOD::SoundGroup* musicGroup_;
 		FMOD::SoundGroup* soundGroup_;
+
 		private:
 		float* buffer_;
 	};

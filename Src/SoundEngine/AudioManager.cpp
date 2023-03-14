@@ -43,7 +43,7 @@ void Separity::AudioManager::initAudioSystem() {
 	// Create an instance of the FMOD system
 	FMODErrorChecker(FMOD::System_Create(&system_));
 	// Initialize the FMOD system with 32 channels and normal settings
-	FMODErrorChecker(system_->init(32, FMOD_INIT_NORMAL, 0));
+	FMODErrorChecker(system_->init(32, FMOD_3D, 0));
 
 	// Set the sound parameters
 	const float sampleRate = 44100.0f;
