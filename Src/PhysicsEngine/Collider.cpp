@@ -6,7 +6,7 @@
 
 Separity::Collider::Collider(colliderParams params) {
 
-	//colliderShape_ = new btCompoundShape();
+	colliderShape_ = new btCompoundShape();
 
 	btCollisionShape* shape;
 	switch(params.colShape) {
@@ -32,13 +32,13 @@ Separity::Collider::Collider(colliderParams params) {
 			break;
 	}
 
-	//offset_ = new Spyutils::Vector3(params.offsetX, params.offsetY, params.offsetZ);
-	//btTransform offsetTransform;
-	//offsetTransform.setIdentity();
-	//offsetTransform.setOrigin(btVector3(offset_->x, offset_->y, offset_->z));
-	//colliderShape_->addChildShape(offsetTransform, shape);
+	offset_ = new Spyutils::Vector3(params.offsetX, params.offsetY, params.offsetZ);
+	btTransform offsetTransform;
+	offsetTransform.setIdentity();
+	offsetTransform.setOrigin(btVector3(offset_->x, offset_->y, offset_->z));
+	colliderShape_->addChildShape(offsetTransform, shape);
 
-	colliderShape_ = shape;
+	//colliderShape_ = shape;
 
 	trigger_ = params.isTrigger;
 }
@@ -48,7 +48,7 @@ Separity::Collider::~Collider() {
 	delete offset_;
 }
 
-btCollisionShape* Separity::Collider::getColliderShape() {
+btCompoundShape* Separity::Collider::getColliderShape() {
 	return colliderShape_;
 }
 
