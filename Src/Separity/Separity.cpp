@@ -42,7 +42,7 @@ int main() {
 	Entity* sphere = new Entity(_grp_GENERAL);
 	auto tr = sphere->addComponent<Transform>();
 	//tr->pitch(60);
-	tr->setPosition(Spyutils::Vector3(0, 10, 0));
+	tr->setPosition(Spyutils::Vector3(0, 4, 0));
 	tr->setScale(0.03);
 	 
 	//  mesh renderer
@@ -63,10 +63,11 @@ int main() {
 
 	// rigidbody
 	auto rb = sphere->addComponent<RigidBody>(DYNAMIC, 10);
-	rb->setGravity(Spyutils::Vector3(0, -.4f, 0));
+	rb->setGravity(Spyutils::Vector3(0, 0, 0));
 	//rb->addForce(Spyutils::Vector3(1000, 0, 0));
 	//rb->addForce(Spyutils::Vector3(1000, 1000, 0));
-	/*rb->applyTorque(Spyutils::Vector3(1000, 1000, 1000));*/
+	rb->applyTorque(Spyutils::Vector3(10, 0,0));
+	//rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
 	////  Bucle principal
 
 	Entity* plano = new Entity(_grp_GENERAL);
