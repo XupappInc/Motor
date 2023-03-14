@@ -150,5 +150,7 @@ int main() {
 		audManager->update();
 	}
 
+	renderManager->saveConfiguration();
+
 	return 0;
 }

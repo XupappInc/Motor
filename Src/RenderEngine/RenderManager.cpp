@@ -11,6 +11,7 @@
 #include <OgreViewport.h>
 #include <SDL.h>
 #include <SDL_syswm.h>
+#include <fstream>
 #include <iostream>
 
 template<typename T>
@@ -54,7 +55,6 @@ void Separity::RenderManager::init() {
 	sceneMgr_ = ogreRoot_->createSceneManager();
 
 	loadResources();
-
 }
 
 void Separity::RenderManager::loadResources() {
@@ -99,6 +99,11 @@ void Separity::RenderManager::resizeWindow(int w, int h) {
 	screenW_ = w;
 	screenH_ = h;
 
+	ogreRoot_->getRenderSystem()->setConfigOption(
+	    "Video Mode", Ogre::StringConverter::toString(screenW_) + " x " +
+	                      Ogre::StringConverter::toString(screenH_));
+
+
 	SDL_SetWindowSize(sdlWindow_, w, h);
 	SDL_SetWindowPosition(sdlWindow_, SDL_WINDOWPOS_CENTERED,
 	                      SDL_WINDOWPOS_CENTERED);
@@ -115,6 +120,22 @@ void Separity::RenderManager::fullScreen(bool full) {
 	} else {
 		SDL_SetWindowFullscreen(sdlWindow_, 0);
 	}
+	ogreRoot_->getRenderSystem()->setConfigOption("Full Screen",
+	                                              full ? "Yes" : "No");
+}
+
+void Separity::RenderManager::saveConfiguration() {
+	std::ofstream configFile;
+	configFile.open("ogre.cfg");
+
+	configFile << "Render System=OpenGL Rendering Subsystem\n";
+	configFile << "[OpenGL Rendering Subsystem]\n";
+
+	for(auto config : ogreRoot_->getRenderSystem()->getConfigOptions())
+		configFile << config.second.name << "=" << config.second.currentValue
+		           << "\n";
+
+	configFile.close();
 }
 
 Separity::RenderManager* Separity::RenderManager::getInstance() {
@@ -122,10 +143,24 @@ Separity::RenderManager* Separity::RenderManager::getInstance() {
 }
 
 void Separity::RenderManager::createSDLWindow() {
+
+	Ogre::ConfigOptionMap configMap =  ogreRoot_->getRenderSystem()->getConfigOptions();
+	std::istringstream videoMode(configMap["Video Mode"].currentValue);
+
+	std::string cansado;
+	videoMode >> cansado;
+	screenW_ = stoi(cansado);
+	videoMode >> cansado >> cansado;
+	screenH_ = stoi(cansado);
+
+	Uint32 fullScreen = configMap["Full Screen"].currentValue == "Yes"
+	                        ? SDL_WINDOW_FULLSCREEN | SDL_WINDOW_ALLOW_HIGHDPI
+	                        : SDL_WINDOW_ALLOW_HIGHDPI;
+
 	// Crear ventana de SDL
 	sdlWindow_ = SDL_CreateWindow("Separity", SDL_WINDOWPOS_CENTERED,
 	                              SDL_WINDOWPOS_CENTERED, screenW_, screenH_,
-	                              SDL_WINDOW_ALLOW_HIGHDPI);
+	                              fullScreen);
 
 	// Queremos asignar a la ventana de renderizado la ventana que hemos creado
 	// con SDL
