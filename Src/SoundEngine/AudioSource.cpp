@@ -11,7 +11,7 @@ AudioSource::AudioSource(const char* songRoute, std::string songName,
 	// de un booleano
 	if(isMusic) {
 		audioManager->FMODErrorChecker(audioManager->system_->createSound(
-		    songRoute, FMOD_DEFAULT/*FMOD_LOOP_NORMAL*/, nullptr, &sound_));
+		    songRoute, FMOD_LOOP_NORMAL, nullptr, &sound_));
 		audioManager->musics_->emplace(songName, sound_);
 		sound_->setSoundGroup(audioManager->musicGroup_);
 	}	
