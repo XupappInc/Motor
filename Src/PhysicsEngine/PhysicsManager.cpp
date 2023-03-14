@@ -15,7 +15,7 @@ void PhysicsManager::initWorld() {
 	broadphase_ = new btDbvtBroadphase();
 	collisionConfiguration_ = new btDefaultCollisionConfiguration();
 	dispatcher_ = new btCollisionDispatcher(collisionConfiguration_);
-	solver_ = new btSequentialImpulseConstraintSolver;
+	solver_ = new btSequentialImpulseConstraintSolver();
 	world_ = new btDiscreteDynamicsWorld(dispatcher_, broadphase_, solver_,
 	                                     collisionConfiguration_);
 }

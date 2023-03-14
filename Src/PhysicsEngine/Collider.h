@@ -7,6 +7,7 @@ namespace Spyutils {
 	class Vector3;
 }
 class btCompoundShape;
+class btCollisionShape;
 class btVector3;
 
 namespace Separity {
@@ -46,7 +47,7 @@ namespace Separity {
 		/// Devuelve el collisionShape que define al collider
 		/// </summary>
 		/// <returns>El collisionShape creado anteriormente</returns>
-		btCompoundShape* getColliderShape();
+		btCollisionShape* getColliderShape();
 
 		/// <summary>
 		/// Devuelve el offset del collider respecto al objeto
@@ -61,7 +62,7 @@ namespace Separity {
 		bool isTrigger();
 
 		private:
-		btCompoundShape* colliderShape_;
+		btCollisionShape* colliderShape_;
 		bool trigger_;
 		Spyutils::Vector3* offset_;
 	};

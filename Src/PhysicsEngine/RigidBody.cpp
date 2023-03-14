@@ -5,6 +5,7 @@
 #include "PhysicsManager.h"
 #include "Transform.h"
 #include "Vector.h"
+
 #include <spyMath.h>
 // #include "checkML.h"
 
@@ -30,9 +31,9 @@ void Separity::RigidBody::initComponent() {
 	              (btScalar) spyutils::Math::toRadians(tr_->getRotation().z));
 	btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
 	nuevoTr.setRotation(q);
-	
+
 	btDefaultMotionState* motionState = new btDefaultMotionState(nuevoTr);
-	
+
 	Spyutils::Vector3 escala = tr_->getScale();
 
 	// collider de bullet
@@ -49,6 +50,17 @@ void Separity::RigidBody::initComponent() {
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(
 	    mass_, motionState, collisionShape, localInertia);
 	rb_ = new btRigidBody(rbInfo);
+
+	switch(type) {
+		case STATIC:
+			rb_->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+			break;
+		case DYNAMIC:
+			rb_->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
+			break;
+		default:
+			break;
+	}
 
 	rb_->getWorldTransform().setRotation(q);
 	// anadimos una referncia a esta clase dentro del rb de Bullet
@@ -106,9 +118,7 @@ void Separity::RigidBody::scaleRb(Spyutils::Vector3 s) {
 }
 
 void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
-
-	btVector3 rot = {(btScalar) btRadians(s.x),
-	                 (btScalar) btRadians(s.y),
+	btVector3 rot = {(btScalar) btRadians(s.x), (btScalar) btRadians(s.y),
 	                 (btScalar) btRadians(s.z)};
 	rb_->getWorldTransform().setRotation(
 	    btQuaternion(rot.y(), rot.x(), rot.z()));
@@ -122,7 +132,8 @@ void Separity::RigidBody::update() {
 	pos = rb_->getWorldTransform().getOrigin();
 	rb_->getWorldTransform().getRotation().getEulerZYX(z, y, x);
 	tr_->setPosition(pos.x(), pos.y(), pos.z());
-	tr_->setRotation(spyutils::Math::toDegrees( x), spyutils::Math::toDegrees(y),spyutils::Math::toDegrees(z));
+	tr_->setRotation(spyutils::Math::toDegrees(x), spyutils::Math::toDegrees(y),
+	                 spyutils::Math::toDegrees(z));
 
 	// OnCollisionStay
 	for(auto c : collisionObjects_) {
