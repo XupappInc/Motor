@@ -38,6 +38,8 @@ Separity::Collider::Collider(colliderParams params) {
 	offsetTransform.setOrigin(btVector3(offset_->x, offset_->y, offset_->z));
 	colliderShape_->addChildShape(offsetTransform, shape);
 
+	//colliderShape_ = shape;
+
 	trigger_ = params.isTrigger;
 }
 

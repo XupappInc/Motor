@@ -22,9 +22,9 @@ namespace Separity {
 	/// </summary>
 	struct colliderParams {
 		colliderShape colShape;
-		float height, width, depth, radius;
-		float offsetX, offsetY, offsetZ;
-		bool isTrigger;
+		float height = 0, width = 0, depth = 0, radius = 0;
+		float offsetX = 0, offsetY = 0, offsetZ = 0;
+		bool isTrigger = false;
 	};
 
 	class Collider : public Separity::Component {
