@@ -31,6 +31,11 @@ namespace Separity {
 		void update();
 		void resizeWindow(int w, int h);
 		void fullScreen(bool full);
+
+		/// <summary>
+		/// Guarda la configuración gráfica de vuelta en el archivo de configuración gráfica (ogre.cfg)
+		/// </summary>
+		void saveConfiguration();
 		SDL_Window* getSDLWindow();
 		Ogre::RenderWindow* getWindow();
 		Ogre::Root* getOgreRoot();
