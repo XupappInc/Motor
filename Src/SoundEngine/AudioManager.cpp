@@ -93,16 +93,24 @@ void Separity::AudioManager::playAudio(std::string audioName) {
 void Separity::AudioManager::update() {
 	// Comprueba todos los canales añadidos en el map, si no  tienen sonido
 	// los libera
+	std::vector<std::unordered_map<std::string, FMOD::Channel*>::iterator>
+	    channelsWithoutSound;
 	for(auto itStart = channels_->begin(), itEnd = channels_->end();
 	    itStart != itEnd; itStart++) {
 		bool isPlaying = false;
 
 		itStart->second->isPlaying(&isPlaying);
 		if(!isPlaying) {
-			channels_->erase(itStart);
-		}/* else {
-			itStart->second->set3DAttributes(FMOD_VECTOR fmods);
-		}*/
+			channelsWithoutSound.push_back(itStart);
+		} /* else {
+		     itStart->second->set3DAttributes(FMOD_VECTOR fmods);
+		 }*/
+	}
+	// Se borran aquí porque dentro del otro for se siguen comprobando cada
+	// canal, no están ordenados, si borras uno no sabes cual vas a comprobar
+	// después además de acabar comprobando canales fueras del rango del for
+	for(auto& it : channelsWithoutSound) {
+		channels_->erase(it);
 	}
 	FMODErrorChecker(system_->update());
 }
