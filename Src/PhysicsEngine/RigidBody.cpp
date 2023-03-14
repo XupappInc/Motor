@@ -96,8 +96,8 @@ void Separity::RigidBody::setAngularVelocity(Spyutils::Vector3 vel) {
 
 void Separity::RigidBody::applyTorque(Spyutils::Vector3 torq) {
 	btVector3 torque(torq.x, torq.y, torq.z);
-	rb_->setAngularFactor({1, 0, 0});
-	rb_->applyTorque(torque);
+	rb_->setAngularFactor({0.1,0.1, 0.1});
+	rb_->applyTorqueImpulse(torque);
 }
 void Separity::RigidBody::applyImpulse(Spyutils::Vector3 impul) {
 	btVector3 fuerza(impul.x, impul.y, impul.z);
