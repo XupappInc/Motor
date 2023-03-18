@@ -2,11 +2,10 @@
 
 #include "Entity.h"
 #include "Transform.h"
+#include "spyMath.h"
 
 #include <Ogre.h>
 #include <cassert>
-#include "Transform.h"
-#include"spyMath.h"
 using namespace Separity;
 
 Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
@@ -24,7 +23,6 @@ Separity::MeshRenderer::~MeshRenderer() {
 }
 
 void Separity::MeshRenderer::render() {
-
 	Transform* tr = ent_->getComponent<Transform>();
 
 	assert(tr != nullptr);
@@ -32,7 +30,8 @@ void Separity::MeshRenderer::render() {
 	meshRenderer_->setPosition(tr->getPosition().x, tr->getPosition().y,
 	                           tr->getPosition().z);
 	Ogre::Matrix3 matrix;
-	matrix.FromEulerAnglesYXZ(Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().y)),
+	matrix.FromEulerAnglesYXZ(
+	    Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().y)),
 	    Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().x)),
 	    Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().z)));
 	Ogre::Quaternion rot(matrix);

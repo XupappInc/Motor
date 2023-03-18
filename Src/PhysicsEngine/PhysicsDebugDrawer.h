@@ -10,6 +10,8 @@ namespace Ogre {
 
 namespace Separity {
 	class PhysicsDebugDrawer : public btIDebugDraw {
+		
+		public:
 		PhysicsDebugDrawer(Ogre::SceneManager* sceneMgr);
 		~PhysicsDebugDrawer();
 
@@ -19,7 +21,7 @@ namespace Separity {
 		void drawBox(const btVector3& bbMin, const btVector3& bbMax,
 		             const btVector3& color) override;
 
-		public:
+		private:
 		Ogre::SceneManager* sceneMngr_;
 	};
 }  // namespace Separity
