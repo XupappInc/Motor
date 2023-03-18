@@ -47,6 +47,11 @@ namespace Separity{
 		virtual void initComponent();
 
 		/// <summary>
+		/// Metodo preUpdate del componente, por defecto no hace nada
+		/// </summary>
+		virtual void preUpdate();
+
+		/// <summary>
 		/// Metodo update del componente, por defecto no hace nada
 		/// </summary>
 		virtual void update();

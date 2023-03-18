@@ -9,15 +9,10 @@ class btTransform;
 namespace Separity {
 	class Transform : public Separity::Component {
 		public:
-		__CMPTYPE_DECL__(Separity::_PHYSICS)
+		__CMPTYPE_DECL__(Separity::_ENTITY)
 		__CMPID_DECL__(Separity::_TRANSFORM)
 		Transform();
 		~Transform();
-		/// <summary>
-		/// El transform de la clase bullet directamente
-		/// </summary>
-		/// <returns>el btTransform</returns>
-		btTransform* getBulletTransform();
 		/// <summary>
 		/// Setear la posición del componente tranform
 		/// </summary>
@@ -86,8 +81,7 @@ namespace Separity {
 		Spyutils::Vector3 getScale();
 
 		private:
-		btTransform* tr_;
-		Spyutils::Vector3 positition_;
+		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
 		Spyutils::Vector3 scale_;
 	};

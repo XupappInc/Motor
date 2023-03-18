@@ -2,7 +2,7 @@
 #ifndef __SPYMATH_H__
 #define __SPYMATH_H__
 
-namespace spyutils {
+namespace Spyutils {
 	/// <summary>
 	/// Clase que abstrae algunas operaciones matemáticas para todo el proyecto.
 	/// </summary>

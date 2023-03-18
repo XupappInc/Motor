@@ -89,6 +89,10 @@ namespace Separity {
 		/// <param name="s">Rotación</param>
 		void rotateRb(Spyutils::Vector3 s);
 		/// <summary>
+		/// Método preUpdate heredado de Component
+		/// </summary>
+		void preUpdate() override;
+		/// <summary>
 		/// Método update heredado de Component
 		/// </summary>
 		void update() override;
@@ -136,6 +140,7 @@ namespace Separity {
 
 		private:
 		Transform* tr_;
+		btTransform* btTr_;
 		float mass_;
 		typeRb tipo_;
 		btRigidBody* rb_;

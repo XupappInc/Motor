@@ -1,53 +1,33 @@
 #include "Transform.h"
 
 #include "Entity.h"
-#include "RigidBody.h"
 #include "Vector.h"
-#include"spyMath.h"
-//#include "checkML.h"
-#include <btBulletDynamicsCommon.h>
+#include "spyMath.h"
+// #include "checkML.h"
 Separity::Transform::Transform()
-    : positition_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0) {
-	btQuaternion quat(0, 0, 0);
+    : position_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0) {
 
-	 tr_ = new btTransform(quat);
 }
 
-Separity::Transform::~Transform() { delete tr_; }
-
-btTransform* Separity::Transform::getBulletTransform() { return tr_; }
+Separity::Transform::~Transform() {}
 
 void Separity::Transform::setPosition(Spyutils::Vector3 other) {
-	btVector3 vec(other.x, other.y, other.z);
-	tr_->setOrigin(vec);
-	positition_ = other;
+	position_ = other;
 }
-
 void Separity::Transform::setPosition(float x, float y, float z) {
 	setPosition(Spyutils::Vector3(x, y, z));
 }
 
 void Separity::Transform::translate(Spyutils::Vector3 other) {
-	positition_ += other;
-	btVector3 vec(positition_.x, positition_.y, positition_.z);
-	tr_->setOrigin(vec);
+	position_ += other;
 }
 
-Spyutils::Vector3 Separity::Transform::getPosition() { return positition_; }
+Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
 
 void Separity::Transform::setRotation(float rotationX, float rotationY,
-                                      float rotationZ){
-     btVector3 rotRad =
-	    btVector3((btScalar) spyutils::Math::toRadians(rotationX),
-	              (btScalar) spyutils::Math::toRadians(rotationY),
-	              (btScalar) spyutils::Math::toRadians(rotationZ));
-	btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
+                                      float rotationZ) {
+
 	rotation_ = Spyutils::Vector3(rotationX, rotationY, rotationZ);
-	tr_->setRotation(q);
-	auto rb = ent_->getComponent<RigidBody>();
-	if(rb) {
-		rb->rotateRb(rotation_);
-	}
 }
 
 Spyutils::Vector3 Separity::Transform::getRotation() { return rotation_; }
@@ -69,10 +49,6 @@ void Separity::Transform::roll(float degree) {
 
 void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 	scale_ = Spyutils::Vector3(scaleX, scaleY, scaleZ);
-	auto rb = ent_->getComponent<RigidBody>();
-	if(rb) {
-		rb->scaleRb(scale_);
-	}
 }
 void Separity::Transform::setScale(float scale) {
 	setScale(scale, scale, scale);
