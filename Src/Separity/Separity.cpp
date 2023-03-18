@@ -39,16 +39,17 @@ int main() {
 	audManager->playAudio(string("codigoLyoko"));
 
 	InputManager* inputManager = Separity::InputManager::getInstance();
-	Entity* sphere = new Entity(_grp_GENERAL);
-	auto tr = sphere->addComponent<Transform>();
+	Entity* cube = new Entity(_grp_GENERAL);
+	auto tr = cube->addComponent<Transform>();
 	//tr->pitch(60);
 	tr->setPosition(Spyutils::Vector3(0, 4, 0));
 	tr->setScale(0.03);
+	tr->setRotation(-20,10,20);
 	 
 	//  mesh renderer
-	sphere->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "cube.mesh");
-	auto luz = sphere->addComponent<Light>(DIRECTIONAL_LIGHT);
+	auto luz = cube->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
 	luz->setDirection(Spyutils::Vector3(-1, -1, -1));
 	/* collider (antes de rigidbody siempre)*/
@@ -59,10 +60,10 @@ int main() {
 	params.depth = 1;
 	params.isTrigger = false;
 
-	sphere->addComponent<Collider>(params);
+	cube->addComponent<Collider>(params);
 
 	// rigidbody
-	auto rb = sphere->addComponent<RigidBody>(DYNAMIC, 10);
+	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
 	rb->setGravity(Spyutils::Vector3(0, 0, 0));
 	//rb->addForce(Spyutils::Vector3(1000, 0, 0));
 	//rb->addForce(Spyutils::Vector3(1000, 1000, 0));
