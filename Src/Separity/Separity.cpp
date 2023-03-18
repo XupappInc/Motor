@@ -35,9 +35,9 @@ int main() {
 	AudioManager* audManager = Separity::AudioManager::getInstance();
 	audManager->initAudioSystem();
 	Entity* mono2 = new Entity(_grp_GENERAL);
-	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
+	/*auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
-	audManager->playAudio(string("codigoLyoko"));
+	audManager->playAudio(string("codigoLyoko"));*/
 
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* sphere = new Entity(_grp_GENERAL);

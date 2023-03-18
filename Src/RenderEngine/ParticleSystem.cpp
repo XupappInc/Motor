@@ -14,8 +14,7 @@ Separity::ParticleSystem::ParticleSystem(std::string type) : visible_(true) {
 	 
 	  particleNode_ =  s->getRootSceneNode()->createChildSceneNode();
 
-	partSys_ =
-	    s->createParticleSystem(type);
+	partSys_ = s->createParticleSystem("psSmoke", "particles/Smoke");
 	  partSys_->setEmitting(true);
 	partSys_->setVisible(true);
 
