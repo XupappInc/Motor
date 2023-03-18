@@ -16,7 +16,8 @@
 		_LIGHT,\
 		_AUDIO_SOURCE, \
 		_CAMERA, \
-		_ANIMATOR
+		_ANIMATOR, \
+		_PARTICLE_SYSTEM
 		 
 
 /// <summary>

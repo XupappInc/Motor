@@ -18,6 +18,7 @@ void PhysicsManager::initWorld() {
 	solver_ = new btSequentialImpulseConstraintSolver();
 	world_ = new btDiscreteDynamicsWorld(dispatcher_, broadphase_, solver_,
 	                                     collisionConfiguration_);
+	world_->setGravity(btVector3(0, -10, 0));
 }
 
 void Separity::PhysicsManager::deleteWorld() {

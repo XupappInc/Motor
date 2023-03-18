@@ -4,7 +4,7 @@
 #include "RigidBody.h"
 #include "Vector.h"
 #include"spyMath.h"
-// #include "checkML.h"
+//#include "checkML.h"
 #include <btBulletDynamicsCommon.h>
 Separity::Transform::Transform()
     : positition_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0) {

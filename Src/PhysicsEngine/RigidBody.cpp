@@ -51,7 +51,7 @@ void Separity::RigidBody::initComponent() {
 	    mass_, motionState, collisionShape, localInertia);
 	rb_ = new btRigidBody(rbInfo);
 
-	switch(type) {
+	switch(tipo_) {
 		case STATIC:
 			rb_->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
 			break;
