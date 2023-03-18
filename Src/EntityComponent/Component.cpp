@@ -22,6 +22,8 @@ bool Separity::Component::isActive() { return active_; }
 
 void Separity::Component::initComponent() {}
 
+void Separity::Component::preUpdate() {}
+
 void Separity::Component::update() {}
 
 void Separity::Component::render() {}

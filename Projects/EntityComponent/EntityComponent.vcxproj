@@ -25,12 +25,14 @@
     <ClInclude Include="..\..\Src\EntityComponent\Entity.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Manager.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Singleton.h" />
+    <ClInclude Include="..\..\Src\EntityComponent\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\EntityComponent\Component.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Entity.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\EntityComponentMain.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Manager.cpp" />
+    <ClCompile Include="..\..\Src\EntityComponent\Transform.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

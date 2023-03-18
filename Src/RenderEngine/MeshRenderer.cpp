@@ -31,9 +31,9 @@ void Separity::MeshRenderer::render() {
 	                           tr->getPosition().z);
 	Ogre::Matrix3 matrix;
 	matrix.FromEulerAnglesYXZ(
-	    Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().y)),
-	    Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().x)),
-	    Ogre::Radian(spyutils::Math::toRadians(tr->getRotation().z)));
+	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().y)),
+	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().x)),
+	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().z)));
 	Ogre::Quaternion rot(matrix);
 	meshRenderer_->setOrientation(rot);
 

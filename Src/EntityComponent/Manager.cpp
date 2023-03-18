@@ -6,6 +6,9 @@
 
 void Separity::Manager::update() {
 	for(Separity::Component* c : cmps_) {
+		c->preUpdate();
+	}
+	for(Separity::Component* c : cmps_) {
 		c->update();
 	}
 }

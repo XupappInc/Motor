@@ -21,9 +21,6 @@
     <ClCompile Include="..\..\Src\PhysicsEngine\RigidBody.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\PhysicsEngine\Transform.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\PhysicsEngine\Collider.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -36,9 +33,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\PhysicsEngine\RigidBody.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\PhysicsEngine\Transform.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\PhysicsEngine\Collider.h">

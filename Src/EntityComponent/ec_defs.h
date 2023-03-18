@@ -23,6 +23,7 @@
 /// Lista tipos de componentes, debe de tener al menos 1 elemento
 /// </summary>
 #define _CMPS_TYPES_ \
+		_ENTITY, \
 		_RENDER, \
 		_PHYSICS, \
 		_INPUT, \

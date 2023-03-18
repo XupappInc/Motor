@@ -15,7 +15,8 @@ namespace Separity {
 
 		public:
 		/// <summary>
-		/// Llama al update de todos los componentes del manager
+		/// Llama al preUpdate de todos los componentes del manager, después
+		/// llama al update de todos los componentes
 		/// </summary>
 		virtual void update();
 		/// <summary>
