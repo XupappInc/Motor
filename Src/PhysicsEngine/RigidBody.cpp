@@ -149,7 +149,13 @@ void Separity::RigidBody::update() {
 	tr_->setPosition(pos.x(), pos.y(), pos.z());
 	tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
 	                 Spyutils::Math::toDegrees(z));
-
+	btVector3 rotRad =
+	    btVector3((btScalar) Spyutils::Math::toRadians(tr_->getRotation().x),
+	              (btScalar) Spyutils::Math::toRadians(tr_->getRotation().y),
+	              (btScalar) Spyutils::Math::toRadians(tr_->getRotation().z));
+	
+	btQuaternion rotQ=btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
+	btTr_->setRotation(rotQ);
 	// OnCollisionStay
 	for(auto c : collisionObjects_) {
 		c->onCollisionStay(this);
