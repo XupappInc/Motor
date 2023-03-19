@@ -23,6 +23,7 @@
 #include <Transform.h>
 #include"ParticleSystem.h"
 #include <iostream>
+#include "VirtualTimer.h"
 
 using namespace std;
 using namespace Separity;
@@ -107,7 +108,7 @@ int main() {
 	Transform* cam_tr = camera->addComponent<Transform>();
 	cam_tr->translate(Spyutils::Vector3(0, 0, 15));
 	Camera* cam_cam = camera->addComponent<Camera>();
-
+	
 	bool quit = false;
 	while(!quit) {
 		inputManager->update();
@@ -123,12 +124,13 @@ int main() {
 			if(inputManager->isKeyDown('w')) {
 				// cam_tr->translate(Spyutils::Vector3(0, 1, 0));
 				cam_cam->zoom(-3);
-				std::cout << cam_cam->getZoom() << "\n";
+			
+				//std::cout << cam_cam->getZoom() << "\n";
 			}
 			if(inputManager->isKeyDown('s')) {
 				// cam_tr->translate(Spyutils::Vector3(0, -1, 0));
 				cam_cam->zoom(3);
-				std::cout << cam_cam->getZoom() << "\n";
+				//std::cout << cam_cam->getZoom() << "\n";
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
 				cam_tr->yaw(0.1);
