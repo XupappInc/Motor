@@ -18,9 +18,12 @@ XCOPY /y /s .\build\bin\debug\Codec_STBI_d.dll %EXES%
 XCOPY /y /s .\build\bin\debug\RenderSystem_GL_d.dll %EXES%
 XCOPY /y /s .\build\bin\debug\OgreMain_d.dll %EXES%
 XCOPY /y /s .\build\bin\debug\zlib.dll %EXES%
+XCOPY /y /s .\build\bin\debug\Plugin_ParticleFX_d.dll %EXES%
+
 
 XCOPY /y /s .\build\bin\release\Codec_STBI.dll %EXES%
 XCOPY /y /s .\build\bin\release\RenderSystem_GL.dll %EXES%
 XCOPY /y /s .\build\bin\release\OgreMain.dll %EXES%
+XCOPY /y /s .\build\bin\release\Plugin_ParticleFX.dll %EXES%
 
 XCOPY /y /s .\build\bin\release\SDL2.dll %EXES%
