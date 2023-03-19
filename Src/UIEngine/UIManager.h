@@ -3,7 +3,6 @@
 #define __UI_MANAGER_H__
 
 #include "Manager.h"
-
 namespace Separity {
 	class UIManager : public Separity::Manager,
 		public Singleton<Separity::UIManager> {
@@ -12,6 +11,8 @@ namespace Separity {
 		/// Constructora de la clase
 		/// </summary>
 		inline UIManager();
+
+		void initUi();
 		
 		/// <summary>
 		/// Instancia de la clase, necesaria por ser singleton
@@ -32,7 +33,7 @@ namespace Separity {
 		/// Borrado de la clase, hereda de Manager
 		/// </summary>
 		virtual ~UIManager() override;
-
+		
 	};
 }  // namespace Separity
 #endif  //!__UI_MANAGER_H__

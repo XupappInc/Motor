@@ -9,6 +9,7 @@
 #include "Light.h"
 #include "PhysicsManager.h"
 #include "RenderManager.h"
+#include "UIManager.h"
 // #include "checkML.h"
 #include "Camera.h"
 #include "fmod.hpp"
@@ -34,6 +35,8 @@ int main() {
 	physManager->initWorld();
 	AudioManager* audManager = Separity::AudioManager::getInstance();
 	audManager->initAudioSystem();
+	UIManager* uiManager = Separity::UIManager::getInstance();
+	uiManager->initUi();
 	Entity* mono2 = new Entity(_grp_GENERAL);
 	/*auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
@@ -150,6 +153,7 @@ int main() {
 		renderManager->update();
 		renderManager->render();
 		audManager->update();
+		uiManager->update();
 	}
 
 	renderManager->saveConfiguration();
