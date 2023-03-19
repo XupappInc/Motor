@@ -7,6 +7,7 @@
 #include "Vector.h"
 
 #include <spyMath.h>
+#include <iostream>
 // #include "checkML.h"
 
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
@@ -19,12 +20,12 @@ Separity::RigidBody::~RigidBody() {
 
 void Separity::RigidBody::initComponent() {
 	tr_ = ent_->getComponent<Transform>();
-	btTr_ = new btTransform();
 	assert(tr_ != nullptr);
 
 	auto collider = ent_->getComponent<Collider>();
 	assert(collider != nullptr);
 
+	btTr_ = new btTransform();
 	// transform de bullet
 
 	Spyutils::Vector3 spyPos = tr_->getPosition();
@@ -103,6 +104,14 @@ void Separity::RigidBody::applyTorque(Spyutils::Vector3 torq) {
 	btVector3 torque(torq.x, torq.y, torq.z);
 	rb_->setAngularFactor({0.1, 0.1, 0.1});
 	rb_->applyTorqueImpulse(torque);
+
+	// rb_->getWorldTransform().setOrigin(btVector3(0, 1, 9));
+
+	// btVector3 rotRad = btVector3((btScalar) Spyutils::Math::toRadians(78),
+	//                              (btScalar) Spyutils::Math::toRadians(35),
+	//                              (btScalar) Spyutils::Math::toRadians(60));
+	// btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
+	// rb_->getWorldTransform().setRotation(q);
 }
 void Separity::RigidBody::applyImpulse(Spyutils::Vector3 impul) {
 	btVector3 fuerza(impul.x, impul.y, impul.z);
@@ -137,6 +146,10 @@ void Separity::RigidBody::preUpdate() {
 	btVector3 btRot = btVector3((btScalar) Spyutils::Math::toRadians(rot.x),
 	                            (btScalar) Spyutils::Math::toRadians(rot.y),
 	                            (btScalar) Spyutils::Math::toRadians(rot.z));
+
+	btQuaternion q = btQuaternion(btRot.y(), btRot.x(), btRot.z());
+	rb_->getWorldTransform().setOrigin(btPos);
+	rb_->getWorldTransform().setRotation(q);
 }
 
 void Separity::RigidBody::update() {
@@ -145,17 +158,17 @@ void Separity::RigidBody::update() {
 	btScalar x, y, z;
 	btVector3 pos;
 	pos = rb_->getWorldTransform().getOrigin();
+	pos = btTr_->getOrigin();
 	rb_->getWorldTransform().getRotation().getEulerZYX(z, y, x);
-	tr_->setPosition(pos.x(), pos.y(), pos.z());
-	tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
-	                 Spyutils::Math::toDegrees(z));
 	btVector3 rotRad =
 	    btVector3((btScalar) Spyutils::Math::toRadians(tr_->getRotation().x),
 	              (btScalar) Spyutils::Math::toRadians(tr_->getRotation().y),
 	              (btScalar) Spyutils::Math::toRadians(tr_->getRotation().z));
-	
-	btQuaternion rotQ=btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
-	btTr_->setRotation(rotQ);
+
+	btQuaternion rotQ = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
+	tr_->setPosition(pos.x(), pos.y(), pos.z());
+	tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
+	                 Spyutils::Math::toDegrees(z));
 	// OnCollisionStay
 	for(auto c : collisionObjects_) {
 		c->onCollisionStay(this);

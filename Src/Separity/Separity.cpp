@@ -41,11 +41,11 @@ int main() {
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* cube = new Entity(_grp_GENERAL);
 	auto tr = cube->addComponent<Transform>();
-	//tr->pitch(60);
+	// tr->pitch(60);
 	tr->setPosition(Spyutils::Vector3(0, 4, 0));
 	tr->setScale(0.03);
-	tr->setRotation(-20,10,20);
-	 
+	tr->setRotation(-20, 10, 20);
+
 	//  mesh renderer
 	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "cube.mesh");
@@ -64,17 +64,17 @@ int main() {
 
 	// rigidbody
 	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
-	rb->setGravity(Spyutils::Vector3(0, 0, 0));
-	//rb->addForce(Spyutils::Vector3(1000, 0, 0));
-	//rb->addForce(Spyutils::Vector3(1000, 1000, 0));
-	rb->applyTorque(Spyutils::Vector3(10, 0,0));
-	//rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
+	rb->setGravity(Spyutils::Vector3(0, -10, 0));
+	rb->addForce(Spyutils::Vector3(1, 0, 0));
+	// rb->addForce(Spyutils::Vector3(1000, 1000, 0));
+	// rb->applyTorque(Spyutils::Vector3(10, 0, 0));
+	// rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
 	////  Bucle principal
 
 	Entity* plano = new Entity(_grp_GENERAL);
 	auto tr1 = plano->addComponent<Transform>();
 	tr1->translate(Spyutils::Vector3(0, -3, 0));
-	tr1->setScale(0.2,0.005,0.2);
+	tr1->setScale(0.2, 0.005, 0.2);
 
 	//  mesh renderer
 	plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
@@ -142,7 +142,6 @@ int main() {
 			if(inputManager->isKeyDown('z')) {
 				RenderManager::getInstance()->fullScreen(false);
 			}
-	
 		}
 
 		physManager->update();
