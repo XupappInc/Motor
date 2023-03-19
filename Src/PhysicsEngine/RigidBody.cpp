@@ -137,6 +137,8 @@ void Separity::RigidBody::preUpdate() {
 	btVector3 btRot = btVector3((btScalar) Spyutils::Math::toRadians(rot.x),
 	                            (btScalar) Spyutils::Math::toRadians(rot.y),
 	                            (btScalar) Spyutils::Math::toRadians(rot.z));
+
+
 }
 
 void Separity::RigidBody::update() {

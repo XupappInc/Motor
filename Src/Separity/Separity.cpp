@@ -101,6 +101,7 @@ int main() {
 	// rigidbody
 	auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
 	rb1->setGravity(Spyutils::Vector3(0, -1, 0));
+	rb1->addForce(Spyutils::Vector3(0, 2, 0));
 
 	Entity* camera = new Entity(_grp_GENERAL);
 	Transform* cam_tr = camera->addComponent<Transform>();

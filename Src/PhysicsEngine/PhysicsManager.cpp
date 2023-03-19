@@ -65,14 +65,17 @@ void Separity::PhysicsManager::deleteWorld() {
 
 void PhysicsManager::update() {
 	for(Separity::Component* c : cmps_) {
-		c->update();
+		c->preUpdate();
 
 		// test de colisiones de cada rigidbody con todo el mundo fisico
 		auto rb = dynamic_cast<Separity::RigidBody*>(c);
 		if(rb != nullptr)
 			world_->contactTest(rb->getBulletRigidBody(), *rb);
-	}
+	}	
 	world_->stepSimulation(1.0 / 60.0, 10);
+	for(Separity::Component* c : cmps_) {
+		c->update();
+	}
 
 	if(debug_)
 		debug();
