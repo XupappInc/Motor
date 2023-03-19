@@ -34,6 +34,8 @@ namespace Separity{
 		/// <param name="set">True para activar el componente, false para desactivarlo</param>
 		void setActive(bool set);
 
+		Entity* getEntity();
+
 		/// <summary>
 		/// Metodo que devuelve si el componente esta activo
 		/// </summary>

@@ -38,9 +38,11 @@ int main() {
 	UIManager* uiManager = Separity::UIManager::getInstance();
 	uiManager->initUi();
 	Entity* mono2 = new Entity(_grp_GENERAL);
-	/*auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
+	auto tr2 = mono2->addComponent<Transform>();
+	tr2->setPosition(Spyutils::Vector3(1000, 0, 0));
+	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
-	audManager->playAudio(string("codigoLyoko"));*/
+	audManager->playAudio(string("codigoLyoko"));
 
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* cube = new Entity(_grp_GENERAL);

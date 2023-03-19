@@ -25,7 +25,20 @@ namespace Separity {
 		/// </summary>
 		~AudioSource();
 
+		void setPlayingState(bool state);
+		/// <summary>
+		/// Devuelve el estado de la variable playing_
+		/// </summary>
+		/// <returns></returns>
+		bool getPlayingState();
+		/// <summary>
+		/// Devuelve el string del nombre del audio
+		/// </summary>
+		/// <returns></returns>
+		std::string getAudioName();
 		private:
+		std::string audioName_;
+		bool playing_;
 		FMOD::Sound* sound_;
 	};
 }  // namespace Separity

@@ -14,6 +14,7 @@
 namespace Separity {
 	class RenderManager;
 	class PhysicsManager;
+	class AudioManager;
 	/// <summary>
 	/// <para>Clase que representa una entidad.</para>
 	/// <para>Cada entidad puede contener una serie de componentes y debe de
@@ -100,11 +101,12 @@ namespace Separity {
 					break;
 				case _UI:
 					componentManager = UIManager::getInstance();
-					break;
+					break;*/
 				case _SOUND:
-					componentManager = SoundManager::getInstance();
+					componentManager = Separity::AudioManager::getInstance();
+					componentManager->addComponent(c);
 					break;
-				case _SCRIPT:
+				/*case _SCRIPT:
 					componentManager = LuaManager::getInstance();
 					break;*/
 				default:

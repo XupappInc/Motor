@@ -1,5 +1,9 @@
 #include "AudioManager.h"
 
+#include "AudioSource.h"
+#include "Component.h"
+#include "Entity.h"
+#include "Transform.h"
 #include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
@@ -85,8 +89,17 @@ void Separity::AudioManager::playAudio(std::string audioName) {
 		printf("No existe ese sonido");
 	FMODErrorChecker(
 	    system_->playSound(temporalSound, nullptr, true, &temporalChannel));
-	temporalChannel->setPaused(false);
 
+	for(Separity::Component* c : cmps_) {
+		AudioSource* au = c->getEntity()->getComponent<AudioSource>();
+		if(au->getAudioName() == audioName) {
+			au->setPlayingState(true);
+			break;
+		}
+	}
+
+	temporalChannel->setPaused(false);
+	temporalChannel->set3DMinMaxDistance(10.0f, 20.0f);
 	channels_->emplace(audioName, temporalChannel);
 }
 
@@ -101,10 +114,39 @@ void Separity::AudioManager::update() {
 
 		itStart->second->isPlaying(&isPlaying);
 		if(!isPlaying) {
+			for(Separity::Component* c : cmps_) {
+				AudioSource* au = c->getEntity()->getComponent<AudioSource>();
+				if(au->getAudioName() == itStart->first) {
+					au->setPlayingState(false);
+					break;
+				}
+			}
 			channelsWithoutSound.push_back(itStart);
-		} /* else {
-		     itStart->second->set3DAttributes(FMOD_VECTOR fmods);
-		 }*/
+		}
+	}
+
+	for(Separity::Component* c : cmps_) {
+		Entity* ent = c->getEntity();
+		AudioSource* au = ent->getComponent<AudioSource>();
+		Transform* tr = ent->getComponent<Transform>();
+
+		if(au->getPlayingState()) {
+			if(channels_->count(au->getAudioName())) {
+				FMOD_VECTOR* pos =
+				    new FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
+				                   tr->getPosition().z};
+				FMOD_VECTOR auxiliarFMOD_VECTOR;
+				
+				FMOD::Channel* c = channels_->find(au->getAudioName())->second;
+				FMODErrorChecker(c->set3DAttributes(pos, nullptr));
+
+				
+				c->get3DAttributes(&auxiliarFMOD_VECTOR, nullptr);
+				delete pos;
+			}
+		}
+
+		/*tr.assert(tr != nullptr);*/
 	}
 	// Se borran aquí porque dentro del otro for se siguen comprobando cada
 	// canal, no están ordenados, si borras uno no sabes cual vas a comprobar

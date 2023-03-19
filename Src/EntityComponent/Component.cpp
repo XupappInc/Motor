@@ -18,6 +18,8 @@ void Separity::Component::setContext(Entity* ent, Manager* mngr) {
 
 void Separity::Component::setActive(bool set) { active_ = set; }
 
+Separity::Entity* Separity::Component::getEntity() { return ent_; }
+
 bool Separity::Component::isActive() { return active_; }
 
 void Separity::Component::initComponent() {}
