@@ -3,8 +3,11 @@
 #define __TRANSFORM_H__
 #include "Component.h"
 #include "Vector.h"
-
-class btTransform;
+#include <vector>
+namespace Ogre {
+	class SceneManager;
+	class SceneNode;
+}  // namespace Ogre
 
 namespace Separity {
 	class Transform : public Separity::Component {
@@ -12,6 +15,8 @@ namespace Separity {
 		__CMPTYPE_DECL__(Separity::_ENTITY)
 		__CMPID_DECL__(Separity::_TRANSFORM)
 		Transform();
+		std::vector<std::vector<float>>calculateRotationMatrix(Spyutils::Vector3 rotation);
+		
 		~Transform();
 		/// <summary>
 		/// Setear la posición del componente tranform
@@ -84,6 +89,8 @@ namespace Separity {
 		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
 		Spyutils::Vector3 scale_;
+
+		
 	};
 }  // namespace Separity
 #endif __TRANSFORM_H__

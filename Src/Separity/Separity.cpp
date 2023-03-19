@@ -48,8 +48,8 @@ int main() {
 	//tr->pitch(60);
 	tr->setPosition(Spyutils::Vector3(0, 4, 0));
 	tr->setScale(0.03);
-	tr->setRotation(-20,10,20);
-	 
+	tr->pitch(30);
+	tr->translate(Spyutils::Vector3(0, 0, -15));
 	//  mesh renderer
 	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "cube.mesh");
@@ -67,8 +67,8 @@ int main() {
 	cube->addComponent<Collider>(params);
 
 	// rigidbody
-	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
-	rb->setGravity(Spyutils::Vector3(0, 0, 0));
+	/*auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
+	rb->setGravity(Spyutils::Vector3(0, 0, 0));*/
 	//rb->addForce(Spyutils::Vector3(1000, 0, 0));
 	//rb->addForce(Spyutils::Vector3(1000, 1000, 0));
 	//rb->applyTorque(Spyutils::Vector3(10, 0,0));
