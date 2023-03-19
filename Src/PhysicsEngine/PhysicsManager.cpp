@@ -1,9 +1,12 @@
 #include "PhysicsManager.h"
 // #include "checkML.h"
 #include "Component.h"
+#include "PhysicsDebugDrawer.h"
+#include "RenderManager.h"
 #include "RigidBody.h"
 
 #include <btBulletDynamicsCommon.h>
+
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 using namespace Separity;
@@ -19,7 +22,19 @@ void PhysicsManager::initWorld() {
 	world_ = new btDiscreteDynamicsWorld(dispatcher_, broadphase_, solver_,
 	                                     collisionConfiguration_);
 	world_->setGravity(btVector3(0, -10, 0));
+
+	initDebug();
 }
+
+void Separity::PhysicsManager::initDebug() {
+	debugDrawer_ = new PhysicsDebugDrawer(
+	    Separity::RenderManager::getInstance()->getSceneManager());
+	debugDrawer_->setDebugMode(btIDebugDraw::DBG_DrawWireframe |
+	                           btIDebugDraw::DBG_DrawAabb);
+	world_->setDebugDrawer(debugDrawer_);
+}
+
+void Separity::PhysicsManager::debug() { world_->debugDrawWorld(); }
 
 void Separity::PhysicsManager::deleteWorld() {
 	for(int i = world_->getNumCollisionObjects() - 1; i >= 0; i--) {
@@ -42,12 +57,14 @@ void PhysicsManager::update() {
 	for(Separity::Component* c : cmps_) {
 		c->update();
 
-		//test de colisiones de cada rigidbody con todo el mundo fisico
+		// test de colisiones de cada rigidbody con todo el mundo fisico
 		auto rb = dynamic_cast<Separity::RigidBody*>(c);
-		if (rb != nullptr)
+		if(rb != nullptr)
 			world_->contactTest(rb->getBulletRigidBody(), *rb);
 	}
 	world_->stepSimulation(1.0 / 60.0, 10);
+
+	debug();
 }
 
 btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return world_; }

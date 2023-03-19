@@ -7,7 +7,9 @@ class btBroadphaseInterface;
 class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
 class btDefaultCollisionConfiguration;
+
 namespace Separity {
+	class PhysicsDebugDrawer;
 	class PhysicsManager : public Separity::Manager,
 	                       public Singleton<Separity::PhysicsManager> {
 		friend Singleton<PhysicsManager>;
@@ -26,6 +28,14 @@ namespace Separity {
 		/// Crea un mundo dinámico discreto de bullet
 		/// </summary>
 		void initWorld();
+		/// <summary>
+		/// Crea el DebugDrawer y lo añade al bullet
+		/// </summary>
+		void initDebug();
+		/// <summary>
+		/// Dibuja el debug
+		/// </summary>
+		void debug();
 		/// <summary>
 		/// Borra el mundo de bullet y los objetos de este
 		/// </summary>
@@ -52,6 +62,8 @@ namespace Separity {
 		btCollisionDispatcher* dispatcher_;
 		btSequentialImpulseConstraintSolver* solver_;
 		btDefaultCollisionConfiguration* collisionConfiguration_;
+		PhysicsDebugDrawer* debugDrawer_;
+
 	};
 }  // namespace Separity
 

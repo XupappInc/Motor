@@ -59,9 +59,9 @@ int main() {
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params;
 	params.colShape = CUBE;
-	params.height = 3;
-	params.width = 3;
-	params.depth = 3;
+	params.height = 6;
+	params.width = 6;
+	params.depth = 6;
 	params.isTrigger = false;
 
 	cube->addComponent<Collider>(params);
@@ -88,8 +88,8 @@ int main() {
 	colliderParams params1;
 	params1.colShape = CUBE;
 	params1.height = 1;
-	params1.width = 1;
-	params1.depth = 1;
+	params1.width = 20;
+	params1.depth = 20;
 	params1.isTrigger = false;
 
 	plano->addComponent<Collider>(params1);
