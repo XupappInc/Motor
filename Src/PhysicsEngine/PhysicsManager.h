@@ -63,7 +63,6 @@ namespace Separity {
 		btSequentialImpulseConstraintSolver* solver_;
 		btDefaultCollisionConfiguration* collisionConfiguration_;
 		PhysicsDebugDrawer* debugDrawer_;
-
 	};
 }  // namespace Separity
 

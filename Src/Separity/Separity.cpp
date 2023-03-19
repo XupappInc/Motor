@@ -60,16 +60,16 @@ int main() {
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params;
 	params.colShape = CUBE;
-	params.height = 6;
-	params.width = 6;
-	params.depth = 6;
+	params.height = 3;
+	params.width = 3;
+	params.depth = 3;
 	params.isTrigger = false;
 
 	cube->addComponent<Collider>(params);
 
 	// rigidbody
-	/*auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
-	rb->setGravity(Spyutils::Vector3(0, 0, 0));*/
+	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
+	//rb->setGravity(Spyutils::Vector3(0, 0, 0));
 	//rb->addForce(Spyutils::Vector3(1000, 0, 0));
 	//rb->addForce(Spyutils::Vector3(1000, 1000, 0));
 	//rb->applyTorque(Spyutils::Vector3(10, 0,0));
@@ -88,9 +88,10 @@ int main() {
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params1;
 	params1.colShape = CUBE;
-	params1.height = 1;
+	params1.height = .5f;
 	params1.width = 20;
 	params1.depth = 20;
+	params1.offsetY = -3;
 	params1.isTrigger = false;
 
 	plano->addComponent<Collider>(params1);

@@ -7,6 +7,12 @@
 
 #include <btBulletDynamicsCommon.h>
 
+#ifdef _DEBUG
+bool debug_ = true;
+#else
+bool debug_ = false;
+#endif  // _DEBUG
+
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 using namespace Separity;
@@ -23,7 +29,8 @@ void PhysicsManager::initWorld() {
 	                                     collisionConfiguration_);
 	world_->setGravity(btVector3(0, -10, 0));
 
-	initDebug();
+	if(debug_)
+		initDebug();
 }
 
 void Separity::PhysicsManager::initDebug() {
@@ -34,7 +41,10 @@ void Separity::PhysicsManager::initDebug() {
 	world_->setDebugDrawer(debugDrawer_);
 }
 
-void Separity::PhysicsManager::debug() { world_->debugDrawWorld(); }
+void Separity::PhysicsManager::debug() {
+	debugDrawer_->clearLines();
+	world_->debugDrawWorld();
+}
 
 void Separity::PhysicsManager::deleteWorld() {
 	for(int i = world_->getNumCollisionObjects() - 1; i >= 0; i--) {
@@ -64,7 +74,8 @@ void PhysicsManager::update() {
 	}
 	world_->stepSimulation(1.0 / 60.0, 10);
 
-	debug();
+	if(debug_)
+		debug();
 }
 
 btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return world_; }
