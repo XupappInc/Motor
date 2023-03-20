@@ -68,7 +68,7 @@ void Separity::Camera::readTransform() {
 	Ogre::Vector3 v = Ogre::Vector3(v_tr.x, v_tr.y, v_tr.z);
 	cameraNode_->setPosition(v);
 
-	v_tr = tr_->getRotation();
+	v_tr = tr_->getRotation().toEulerAngles();
 	cameraNode_->setOrientation(Ogre::Quaternion());
 	cameraNode_->roll(Ogre::Radian(v_tr.z));
 	cameraNode_->pitch(Ogre::Radian(v_tr.x));

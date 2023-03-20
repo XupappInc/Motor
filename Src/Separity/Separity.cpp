@@ -10,12 +10,13 @@
 #include "RenderManager.h"
 #include "UIManager.h"
 // #include "checkML.h"
+#include "Animator.h"
 #include "Camera.h"
 #include "ParticleSystem.h"
 #include "VirtualTimer.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
-#include "Animator.h"
+
 #include <AudioSource.h>
 #include <Behaviour.h>
 #include <Collider.h>
@@ -85,7 +86,33 @@ int main() {
 	// rb->addForce(Spyutils::Vector3(1000, 1000, 0));
 	// rb->applyTorque(Spyutils::Vector3(10, 0,0));
 	// rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
-	////  Bucle principal
+
+	// Pruebas
+	for(int i = 1; i < 20; i++) {
+		Entity* c = new Entity(_grp_GENERAL);
+		auto trtr = c->addComponent<Transform>();
+		trtr->setPosition(Spyutils::Vector3(
+		    (((-20 * i + i) / 100) * (-20 * i + i) / 100) - 5 - (i * 0.2),
+		    ((i + 10 * i + i) / 5),
+		    (((-20 * i + i) / 100) * (-20 * i + i) / 100) - 5 + (i * 0.2)));
+
+		trtr->setScale(0.01);
+		c->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+		                              "cube.mesh");
+		Spyutils::Vector3();
+
+		colliderParams params678;
+		params678.colShape = CUBE;
+		params678.height = 1;
+		params678.width = 1;
+		params678.depth = 1;
+		params678.isTrigger = false;
+
+		c->addComponent<Collider>(params678);
+
+		// rigidbody
+		auto rbrt = c->addComponent<RigidBody>(DYNAMIC, 10);
+	}
 
 	Entity* plano = new Entity(_grp_GENERAL);
 	auto tr1 = plano->addComponent<Transform>();
@@ -124,22 +151,20 @@ int main() {
 	uint32_t deltaTime = 0;
 
 	//
-	//Entity* sinbad = new Entity(_grp_GENERAL);
-	//auto tr4 = sinbad->addComponent<Transform>();
-	//tr4->setScale(2, 2, 2);
+	// Entity* sinbad = new Entity(_grp_GENERAL);
+	// auto tr4 = sinbad->addComponent<Transform>();
+	// tr4->setScale(2, 2, 2);
 	////  mesh renderer
-	//sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	//                                  "Sinbad.mesh");
-	//auto anim = sinbad->addComponent<Animator>();
-	//anim->setUpAnims();
-	// behaviour
+	// sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	//                                   "Sinbad.mesh");
+	// auto anim = sinbad->addComponent<Animator>();
+	// anim->setUpAnims();
+	//  behaviour
 	plano->addComponent<Behaviour>("plano");
 
 	bool quit = false;
 	while(!quit) {
-
 		timer->reset();
-
 
 		inputManager->update();
 		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
@@ -186,7 +211,6 @@ int main() {
 			if(inputManager->isKeyDown('o')) {
 				tr->translate(Spyutils::Vector3(0, 10, 0));
 			}
-	
 		}
 
 		physManager->update(deltaTime);
@@ -195,22 +219,20 @@ int main() {
 		audManager->update();
 		uiManager->update();
 
-
 		deltaTime = timer->currTime();
 		int waitTime = FRAMETIME - deltaTime;
 
-		if(waitTime > 0) 
+		if(waitTime > 0)
 			Sleep(waitTime);
-		
 	}
 
 	renderManager->saveConfiguration();
 	renderManager->closedown();
-	//delete mono2;
-	//delete plano;
-	//delete cube;
-	//delete camera;
-	//delete timer;
+	// delete mono2;
+	// delete plano;
+	// delete cube;
+	// delete camera;
+	// delete timer;
 
 	return 0;
 }

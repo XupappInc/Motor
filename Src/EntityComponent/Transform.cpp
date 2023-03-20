@@ -2,16 +2,14 @@
 
 #include "Entity.h"
 #include "Vector.h"
-
 #include "spyMath.h"
 using namespace std;
 // #include "checkML.h"
 Separity::Transform::Transform()
-    : position_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0) {
+    : position_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0) {}
 
-}
-
-vector<vector<float>>Separity::Transform::calculateRotationMatrix(Spyutils::Vector3 rotation) {
+vector<vector<float>>
+Separity::Transform::calculateRotationMatrix(Spyutils::Vector3 rotation) {
 	float pitch = Spyutils::Math::toRadians(rotation[0]);
 	float yaw = Spyutils::Math::toRadians(rotation[1]);
 	float roll = Spyutils::Math::toRadians(rotation[2]);
@@ -41,21 +39,23 @@ void Separity::Transform::setPosition(float x, float y, float z) {
 }
 
 void Separity::Transform::translate(Spyutils::Vector3 translation) {
-	//position_ += other;
-	vector<vector<float>> rotationMatrix = calculateRotationMatrix(rotation_);
+	// position_ += other;
+	vector<vector<float>> rotationMatrix =
+	    calculateRotationMatrix(rotation_.toEulerAngles());
 
 	float tx_local = translation[0] * rotationMatrix[0][0] +
-	                  translation[1] * rotationMatrix[0][1] +
-	                  translation[2] * rotationMatrix[0][2];
+	                 translation[1] * rotationMatrix[0][1] +
+	                 translation[2] * rotationMatrix[0][2];
 	float ty_local = translation[0] * rotationMatrix[1][0] +
-	                  translation[1] * rotationMatrix[1][1] +
-	                  translation[2] * rotationMatrix[1][2];
+	                 translation[1] * rotationMatrix[1][1] +
+	                 translation[2] * rotationMatrix[1][2];
 	float tz_local = translation[0] * rotationMatrix[2][0] +
-	                  translation[1] * rotationMatrix[2][1] +
-	                  translation[2] * rotationMatrix[2][2];
+	                 translation[1] * rotationMatrix[2][1] +
+	                 translation[2] * rotationMatrix[2][2];
 
-	Spyutils::Vector3 newPosition = {
-	    position_[0] + tx_local, position_[1] + ty_local, position_[2] + tz_local};
+	Spyutils::Vector3 newPosition = {position_[0] + tx_local,
+	                                 position_[1] + ty_local,
+	                                 position_[2] + tz_local};
 	position_ = newPosition;
 }
 
@@ -63,25 +63,21 @@ Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
 
 void Separity::Transform::setRotation(float rotationX, float rotationY,
                                       float rotationZ) {
-
-	rotation_ = Spyutils::Vector3(rotationX, rotationY, rotationZ);
+	rotation_ = Spyutils::spyQuaternion(rotationX, rotationY, rotationZ);
 }
 
-Spyutils::Vector3 Separity::Transform::getRotation() { return rotation_; }
+Spyutils::spyQuaternion Separity::Transform::getRotation() { return rotation_; }
 
 void Separity::Transform::pitch(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x + degree, rot.y, rot.z);
+	getRotation().pitch(degree);
 }
 
 void Separity::Transform::yaw(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x, rot.y + degree, rot.z);
+	getRotation().yaw(degree);
 }
 
 void Separity::Transform::roll(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x, rot.y, rot.z + degree);
+	getRotation().roll(degree);
 }
 
 void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {

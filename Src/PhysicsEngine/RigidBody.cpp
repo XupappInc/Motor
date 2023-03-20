@@ -6,6 +6,7 @@
 #include "PhysicsManager.h"
 #include "Transform.h"
 #include "Vector.h"
+#include "spyQuaternion.h"
 
 #include <spyMath.h>
 // #include "checkML.h"
@@ -134,16 +135,13 @@ void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
 
 void Separity::RigidBody::preUpdate() {
 	Spyutils::Vector3 pos = tr_->getPosition();
-	Spyutils::Vector3 rot = tr_->getRotation();
+	Spyutils::spyQuaternion quat = tr_->getRotation();
 
 	btVector3 btPos = btVector3(pos.x, pos.y, pos.z);
-	btVector3 btRot = btVector3((btScalar) Spyutils::Math::toRadians(rot.x),
-	                            (btScalar) Spyutils::Math::toRadians(rot.y),
-	                            (btScalar) Spyutils::Math::toRadians(rot.z));
-	btQuaternion btQ = btQuaternion(btRot.x(), btRot.y(), btRot.z());
+	btQuaternion btQ = btQuaternion(quat.x, quat.y, quat.z, quat.w);
 
 	rb_->getWorldTransform().setOrigin(btPos);
-	//rb_->getWorldTransform().setRotation(btQ);
+	rb_->getWorldTransform().setRotation(btQ);
 
 }
 

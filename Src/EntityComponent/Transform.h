@@ -3,6 +3,7 @@
 #define __TRANSFORM_H__
 #include "Component.h"
 #include "Vector.h"
+#include "spyQuaternion.h"
 #include <vector>
 namespace Ogre {
 	class SceneManager;
@@ -51,7 +52,7 @@ namespace Separity {
 		/// geter de la rotación en un Vector3
 		/// </summary>
 		/// <returns></returns>
-		Spyutils::Vector3 getRotation();
+		Spyutils::spyQuaternion getRotation();
 		/// <summary>
 		/// Rotacion en el eje x
 		/// </summary>
@@ -87,7 +88,7 @@ namespace Separity {
 
 		private:
 		Spyutils::Vector3 position_;
-		Spyutils::Vector3 rotation_;
+		Spyutils::spyQuaternion rotation_;
 		Spyutils::Vector3 scale_;
 
 		
