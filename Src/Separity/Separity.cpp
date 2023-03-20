@@ -63,7 +63,7 @@ int main() {
 	luz->setDirection(Spyutils::Vector3(-1, -1, 0));
 
 	//behaviour
-	cube->addComponent<Behaviour>();
+	cube->addComponent<Behaviour>("cubo");
 
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params;
@@ -92,6 +92,9 @@ int main() {
 	//  mesh renderer
 	plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                  "cube.mesh");
+
+	// behaviour
+	plano->addComponent<Behaviour>("plano");
 
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params1;

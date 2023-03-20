@@ -3,6 +3,7 @@
 #define BEHAVIOUR_H
 
 #include <Component.h>
+#include <string>
 
 namespace Separity {
 	class Behaviour : public Component 
@@ -11,7 +12,7 @@ namespace Separity {
 		__CMPTYPE_DECL__(Separity::_SCRIPT)
 		__CMPID_DECL__(Separity::_BEHAVIOUR)
 			
-		Behaviour();
+		Behaviour(std::string name = "defaultName");
 		~Behaviour();
 
 		virtual void update() override;
@@ -22,6 +23,7 @@ namespace Separity {
 		virtual void onCollisionStay(Entity* other);
 
 		protected:
+		std::string name_;
 	};
 }  // namespace Separity
 

@@ -143,6 +143,12 @@ void Separity::RigidBody::preUpdate() {
 }
 
 void Separity::RigidBody::update() {
+	
+	// OnCollisionStay
+	for(auto c : collisionObjects_) {
+		c->onCollisionStay(this);
+	}
+
 	if(tipo_ == STATIC)
 		return;
 	btScalar x, y, z;
@@ -152,11 +158,6 @@ void Separity::RigidBody::update() {
 	tr_->setPosition(pos.x(), pos.y(), pos.z());
 	tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
 	                 Spyutils::Math::toDegrees(z));
-
-	// OnCollisionStay
-	for(auto c : collisionObjects_) {
-		c->onCollisionStay(this);
-	}
 }
 
 void Separity::RigidBody::setDamping(float linear, float angular) {
