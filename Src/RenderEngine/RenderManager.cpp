@@ -147,11 +147,11 @@ void Separity::RenderManager::createSDLWindow() {
 	Ogre::ConfigOptionMap configMap =  ogreRoot_->getRenderSystem()->getConfigOptions();
 	std::istringstream videoMode(configMap["Video Mode"].currentValue);
 
-	std::string cansado;
-	videoMode >> cansado;
-	screenW_ = stoi(cansado);
-	videoMode >> cansado >> cansado;
-	screenH_ = stoi(cansado);
+	std::string params;
+	videoMode >> params;
+	screenW_ = stoi(params);
+	videoMode >> params >> params;
+	screenH_ = stoi(params);
 
 	Uint32 fullScreen = configMap["Full Screen"].currentValue == "Yes"
 	                        ? SDL_WINDOW_FULLSCREEN | SDL_WINDOW_ALLOW_HIGHDPI
@@ -186,7 +186,7 @@ void Separity::RenderManager::createSDLWindow() {
 
 SDL_Window* Separity::RenderManager::getSDLWindow() { return sdlWindow_; }
 
-Ogre::RenderWindow* Separity::RenderManager::getWindow() { return ogreWindow_; }
+Ogre::RenderWindow* Separity::RenderManager::getOgreWindow() { return ogreWindow_; }
 
 Ogre::Root* Separity::RenderManager::getOgreRoot() { return ogreRoot_; }
 
