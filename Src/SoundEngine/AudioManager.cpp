@@ -138,7 +138,7 @@ void Separity::AudioManager::update() {
 				FMOD_VECTOR auxiliarFMOD_VECTOR;
 				
 				FMOD::Channel* c = channels_->find(au->getAudioName())->second;
-				FMODErrorChecker(c->set3DAttributes(pos, nullptr));
+				//FMODErrorChecker(c->set3DAttributes(pos, nullptr));
 
 				
 				c->get3DAttributes(&auxiliarFMOD_VECTOR, nullptr);

@@ -170,5 +170,10 @@ int main() {
 
 	renderManager->saveConfiguration();
 
+	delete mono2;
+	delete plano;
+	delete cube;
+	delete camera;
+
 	return 0;
 }

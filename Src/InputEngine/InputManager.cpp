@@ -20,7 +20,10 @@ Separity::InputManager::InputManager() : Manager(), Singleton<InputManager>() {
 	clearState();
 }
 
-Separity::InputManager::~InputManager() {}
+Separity::InputManager::~InputManager() {
+
+	delete gamepad_;
+}
 
 void Separity::InputManager::update() { 
 	Manager::update();

@@ -18,7 +18,17 @@ std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 using namespace Separity;
 PhysicsManager::PhysicsManager() {}
 
-PhysicsManager::~PhysicsManager() {}
+PhysicsManager::~PhysicsManager() {
+
+	delete broadphase_;
+	delete collisionConfiguration_;
+	delete dispatcher_;
+	delete solver_;
+	//delete world_;
+
+	if(debugDrawer_ != nullptr)
+		delete debugDrawer_;
+}
 
 void PhysicsManager::initWorld() {
 	broadphase_ = new btDbvtBroadphase();
