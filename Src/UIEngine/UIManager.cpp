@@ -2,9 +2,10 @@
 
 #include "Button.h"
 #include "RenderManager.h"
-#include "imgui.h"
-#include "imgui_impl_sdl2.h"
-#include "imgui_impl_opengl3.h"
+#include "ImguiManager.h"
+#include <imgui.h>
+//#include "imgui_impl_sdl2.h"
+#include <imgui_impl_opengl3.h>
 
 #include <SDL.h>
 #include <iostream>
@@ -18,20 +19,26 @@ inline Separity::UIManager::UIManager() {}
 
 void Separity::UIManager::initUi() {
 	RenderManager* rM = Separity::RenderManager::getInstance();
-	 SDL_Window* window = rM->getSDLWindow();
+	SDL_Window* window = rM->getSDLWindow();
 	// addComponent(b);
+	/*Ogre::ImguiManager::getSingleton().init(rM->getSceneManager(),
+	                                        rM->getOISKeyboardInput(),
+	                                        rM->getOISMouseInput());*/
+	/*Ogre::ImguiManager->createSingleton();
+	ImguiManager::getSingleton().init(mSceneMgr, mOISKeyboardInput,
+	                                  mOISMouseInput);*/
+	//IMGUI_CHECKVERSION();	
+	//
+	//ImGuiContext* context = ImGui::CreateContext();
+	//ImGui::SetCurrentContext(context);
+	//ImGuiIO& io = ImGui::GetIO();
+	//(void) io;
 
-	IMGUI_CHECKVERSION();	
-	
-	ImGuiContext* context = ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO();
-	(void) io;
+	//ImGui::StyleColorsDark();
+	//SDL_GL_SwapWindow(window);
 
-	ImGui::StyleColorsDark();
-	SDL_GL_SwapWindow(window);
-
-	ImGui_ImplSDL2_InitForOpenGL(window, context);
-	ImGui_ImplOpenGL3_Init();
+	//ImGui_ImplSDL2_InitForOpenGL(window, context);
+	////ImGui_ImplOpenGL3_Init();
 
 }
 
@@ -43,9 +50,11 @@ void Separity::UIManager::render() {}
 
 void Separity::UIManager::update() {
 	// start the Dear ImGui frame
-
-	Separity::Button* b = new Separity::Button();
-	/*if(b->Separity::Button::ButtonPressed()) {
+	//Ogre::ImguiManager::getSingleton().newFrame(
+	//    Ogre::SceneManager::getDeltaTime(), Ogre::Rect(0, 0, _getRenderWindow()->getWidth(),
+	//                               _getRenderWindow()->getHeight()));
+	/*Separity::Button* b = new Separity::Button();
+	if(b->Separity::Button::ButtonPressed()) {
 		std::cout << "Hola\n";
 	}*/
 		//std::cout << "Hola\n";
@@ -54,5 +63,5 @@ void Separity::UIManager::update() {
 Separity::UIManager::~UIManager() {
 //	ImGui_ImplOpenGL3_Shutdown();
 //	ImGui_ImplSDL2_Shutdown();
-	ImGui::DestroyContext();
+	//ImGui::DestroyContext();
 }

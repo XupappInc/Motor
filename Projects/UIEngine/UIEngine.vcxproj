@@ -19,26 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Dependencias\ImGUI\Src\backends\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="..\..\Dependencias\ImGUI\Src\backends\imgui_impl_sdl2.cpp" />
-    <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui.cpp" />
-    <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_demo.cpp" />
-    <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_draw.cpp" />
-    <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_tables.cpp" />
-    <ClCompile Include="..\..\Dependencias\ImGUI\Src\include\imgui_widgets.cpp" />
     <ClCompile Include="..\..\Src\UIEngine\Button.cpp" />
+    <ClCompile Include="..\..\Src\UIEngine\ImguiManager.cpp" />
     <ClCompile Include="..\..\Src\UIEngine\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Dependencias\ImGUI\Src\backends\imgui_impl_opengl3.h" />
-    <ClInclude Include="..\..\Dependencias\ImGUI\Src\backends\imgui_impl_sdl2.h" />
-    <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imconfig.h" />
-    <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imgui.h" />
-    <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imgui_internal.h" />
-    <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_rectpack.h" />
-    <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_textedit.h" />
-    <ClInclude Include="..\..\Dependencias\ImGUI\Src\include\imstb_truetype.h" />
     <ClInclude Include="..\..\Src\UIEngine\Button.h" />
+    <ClInclude Include="..\..\Src\UIEngine\ImguiManager.h" />
     <ClInclude Include="..\..\Src\UIEngine\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -152,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\ImGUI\Src\backends;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\ImGUI\Src\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\build\imgui-1.87\backends;$(SolutionDir)Dependencias\Ogre\build\imgui-1.87;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

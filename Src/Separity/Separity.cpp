@@ -10,6 +10,10 @@
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "UIManager.h"
+#include <imgui.h>
+#include <imgui_impl_opengl3.h>
+
+#include <SDL.h>
 // #include "checkML.h"
 #include "Camera.h"
 #include "fmod.hpp"
