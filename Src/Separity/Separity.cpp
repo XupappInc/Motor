@@ -57,7 +57,7 @@ int main() {
 	tr->setPosition(Spyutils::Vector3(0, 4, 0));
 	tr->setScale(0.03);
 	tr->pitch(30);
-	tr->translate(Spyutils::Vector3(0, 0, -15));
+	tr->translate(Spyutils::Vector3(0, 0, 0));
 	//  mesh renderer
 	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "cube.mesh");
@@ -105,7 +105,7 @@ int main() {
 	params1.height = .5f;
 	params1.width = 20;
 	params1.depth = 20;
-	params1.offsetY = -3;
+	params1.offsetY = 0;
 	params1.isTrigger = false;
 
 	plano->addComponent<Collider>(params1);
@@ -171,6 +171,10 @@ int main() {
 			if(inputManager->isKeyDown('z')) {
 				RenderManager::getInstance()->fullScreen(false);
 			}
+			if(inputManager->isKeyDown('o')) {
+				tr->translate(Spyutils::Vector3(0, 10, 0));
+			}
+	
 		}
 
 		physManager->update(deltaTime);

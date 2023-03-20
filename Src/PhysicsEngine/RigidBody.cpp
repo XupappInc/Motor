@@ -140,6 +140,11 @@ void Separity::RigidBody::preUpdate() {
 	btVector3 btRot = btVector3((btScalar) Spyutils::Math::toRadians(rot.x),
 	                            (btScalar) Spyutils::Math::toRadians(rot.y),
 	                            (btScalar) Spyutils::Math::toRadians(rot.z));
+	btQuaternion btQ = btQuaternion(btRot.x(), btRot.y(), btRot.z());
+
+	rb_->getWorldTransform().setOrigin(btPos);
+	//rb_->getWorldTransform().setRotation(btQ);
+
 }
 
 void Separity::RigidBody::update() {
