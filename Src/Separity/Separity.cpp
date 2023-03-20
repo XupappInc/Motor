@@ -2,7 +2,6 @@
 // programa comienza y termina ahí.
 //
 
-// #include "RenderEngine.h"
 #include "AudioManager.h"
 #include "Entity.h"
 #include "InputManager.h"
@@ -12,19 +11,23 @@
 #include "UIManager.h"
 // #include "checkML.h"
 #include "Camera.h"
+#include "ParticleSystem.h"
+#include "VirtualTimer.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
 
 #include <AudioSource.h>
+#include <Behaviour.h>
 #include <Collider.h>
 #include <MeshRenderer.h>
 #include <Ogre.h>
 #include <RigidBody.h>
 #include <Transform.h>
-#include <Behaviour.h>
-#include"ParticleSystem.h"
+#include <Windows.h>
 #include <iostream>
-#include "VirtualTimer.h"
+
+const uint32_t FRAMERATE = 60;
+const uint32_t FRAMETIME = 1000 / FRAMERATE;
 
 using namespace std;
 using namespace Separity;
@@ -50,7 +53,7 @@ int main() {
 	Entity* cube = new Entity(_grp_GENERAL);
 	auto tr = cube->addComponent<Transform>();
 	cube->addComponent<ParticleSystem>("hola");
-	//tr->pitch(60);
+	// tr->pitch(60);
 	tr->setPosition(Spyutils::Vector3(0, 4, 0));
 	tr->setScale(0.03);
 	tr->pitch(30);
@@ -62,7 +65,7 @@ int main() {
 	luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
 	luz->setDirection(Spyutils::Vector3(-1, -1, 0));
 
-	//behaviour
+	// behaviour
 	cube->addComponent<Behaviour>("cubo");
 
 	/* collider (antes de rigidbody siempre)*/
@@ -77,17 +80,17 @@ int main() {
 
 	// rigidbody
 	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
-	//rb->setGravity(Spyutils::Vector3(0, 0, 0));
-	//rb->addForce(Spyutils::Vector3(1000, 0, 0));
-	//rb->addForce(Spyutils::Vector3(1000, 1000, 0));
-	//rb->applyTorque(Spyutils::Vector3(10, 0,0));
-	//rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
+	// rb->setGravity(Spyutils::Vector3(0, 0, 0));
+	// rb->addForce(Spyutils::Vector3(1000, 0, 0));
+	// rb->addForce(Spyutils::Vector3(1000, 1000, 0));
+	// rb->applyTorque(Spyutils::Vector3(10, 0,0));
+	// rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
 	////  Bucle principal
 
 	Entity* plano = new Entity(_grp_GENERAL);
 	auto tr1 = plano->addComponent<Transform>();
 	tr1->translate(Spyutils::Vector3(0, -3, 0));
-	tr1->setScale(0.2,0.005,0.2);
+	tr1->setScale(0.2, 0.005, 0.2);
 
 	//  mesh renderer
 	plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
@@ -116,9 +119,16 @@ int main() {
 	Transform* cam_tr = camera->addComponent<Transform>();
 	cam_tr->translate(Spyutils::Vector3(0, 0, 15));
 	Camera* cam_cam = camera->addComponent<Camera>();
-	
+
+	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
+	uint32_t deltaTime = 0;
+
 	bool quit = false;
 	while(!quit) {
+
+		timer->reset();
+
+
 		inputManager->update();
 		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
 			quit = true;
@@ -132,13 +142,13 @@ int main() {
 			if(inputManager->isKeyDown('w')) {
 				// cam_tr->translate(Spyutils::Vector3(0, 1, 0));
 				cam_cam->zoom(-3);
-			
-				//std::cout << cam_cam->getZoom() << "\n";
+
+				// std::cout << cam_cam->getZoom() << "\n";
 			}
 			if(inputManager->isKeyDown('s')) {
 				// cam_tr->translate(Spyutils::Vector3(0, -1, 0));
 				cam_cam->zoom(3);
-				//std::cout << cam_cam->getZoom() << "\n";
+				// std::cout << cam_cam->getZoom() << "\n";
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
 				cam_tr->yaw(0.1);
@@ -161,14 +171,21 @@ int main() {
 			if(inputManager->isKeyDown('z')) {
 				RenderManager::getInstance()->fullScreen(false);
 			}
-	
 		}
 
-		physManager->update();
+		physManager->update(deltaTime);
 		renderManager->update();
 		renderManager->render();
 		audManager->update();
 		uiManager->update();
+
+
+		deltaTime = timer->currTime();
+		int waitTime = FRAMETIME - deltaTime;
+
+		if(waitTime > 0) 
+			Sleep(waitTime);
+		
 	}
 
 	renderManager->saveConfiguration();
@@ -177,6 +194,7 @@ int main() {
 	delete plano;
 	delete cube;
 	delete camera;
+	delete timer;
 
 	return 0;
 }

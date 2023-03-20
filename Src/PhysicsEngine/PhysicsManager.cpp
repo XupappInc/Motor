@@ -73,7 +73,7 @@ void Separity::PhysicsManager::deleteWorld() {
 	delete world_;
 }
 
-void PhysicsManager::update() {
+void PhysicsManager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
 		c->preUpdate();
 
@@ -82,7 +82,7 @@ void PhysicsManager::update() {
 		if(rb != nullptr)
 			world_->contactTest(rb->getBulletRigidBody(), *rb);
 	}	
-	world_->stepSimulation(1.0 / 60.0, 10);
+	world_->stepSimulation(deltaTime);
 	for(Separity::Component* c : cmps_) {
 		c->update();
 	}
