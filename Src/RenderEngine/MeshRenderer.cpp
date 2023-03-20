@@ -12,8 +12,8 @@ Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
                                      std::string meshName)
     : sceneManager_(sceneManager) {
 	meshRenderer_ = sceneManager_->getRootSceneNode()->createChildSceneNode();
-	Ogre::Entity* entity = sceneManager_->createEntity(meshName);
-	meshRenderer_->attachObject(entity);
+	entity_ = sceneManager_->createEntity(meshName);
+	meshRenderer_->attachObject(entity_);
 	meshRenderer_->translate(Ogre::Vector3(1, 2, 3));
 }
 
@@ -48,3 +48,5 @@ void Separity::MeshRenderer::setActive(bool set) {
 }
 
 Ogre::SceneNode* Separity::MeshRenderer::getNode() { return meshRenderer_; }
+
+Ogre::Entity* Separity::MeshRenderer::getOgreEntity() { return entity_; }

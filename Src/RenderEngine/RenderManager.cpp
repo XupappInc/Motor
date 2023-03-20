@@ -133,21 +133,30 @@ void Separity::RenderManager::saveConfiguration() {
 void Separity::RenderManager::closedown() {
 	if(ogreWindow_ != nullptr) {
 		ogreWindow_ = nullptr;
+		delete ogreWindow_;
 	}
 
 	if(sdlWindow_ != nullptr) {
 		SDL_DestroyWindow(sdlWindow_);
 		SDL_QuitSubSystem(SDL_INIT_EVERYTHING);
 		sdlWindow_ = nullptr;
+		delete sdlWindow_;
+
 	}
-	if(ogreRoot_ != nullptr)
+	if(ogreRoot_ != nullptr) 
+	{
 		ogreRoot_ = nullptr;
-
-	if(sceneMgr_ != nullptr)
+		delete ogreRoot_;
+	}
+	if(sceneMgr_ != nullptr) {
 		sceneMgr_ = nullptr;
+		delete sceneMgr_;
+	}
 
-	if(configFile_ != nullptr)
+	if(configFile_ != nullptr) {
 		configFile_ = nullptr;
+		delete configFile_;
+	}
 }
 
 Separity::RenderManager* Separity::RenderManager::getInstance() {

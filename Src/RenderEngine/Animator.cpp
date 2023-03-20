@@ -1,11 +1,17 @@
 #include "Animator.h"
 #include "Entity.h"
-#include "Transform.h"
+//#include "Transform.h"
 #include "MeshRenderer.h"
-#include "OgreSceneManager.h"
+#include <OgreAnimationState.h>
 
-Separity::Animator::Animator(std::string animName)
-    : node_(nullptr), animName_(animName), loop_(true), enabled_(true) {}
+#include <OgreAnimation.h>
+#include <Ogre.h>
+#include <OgreEntity.h>
+
+
+Separity::Animator::Animator(): node_(nullptr), loop_(true), enabled_(true) {
+	
+}
 
 Separity::Animator::~Animator() {}
 
@@ -18,8 +24,23 @@ void Separity::Animator::initComponent()
 	
 }
 
-void Separity::Animator::setUpAnim() 
+void Separity::Animator::setUpAnims() 
 {
+	ogreEnt_ = mesh_->getOgreEntity();
+
+	allStates_ = ogreEnt_->getAllAnimationStates();
+	auto it = allStates_->getAnimationStateIterator().begin();
+
+	while(it != allStates_->getAnimationStateIterator().end()) {
+		auto s = it->first;
+		animNames_.push_back(s);
+		++it;
+	}
+}
+
+void Separity::Animator::playAnim(std::string animName) 
+{
+	
 
 }
 
@@ -31,10 +52,15 @@ void Separity::Animator::setAnimDuration(float duration) {
 	duration_ = duration;
 }
 
-std::string Separity::Animator::getAnimName() { return animName_; }
-
-float Separity::Animator::getAnimDuration() { return duration_; }
+//std::string Separity::Animator::getAnimName() { return animName_; }
+//
+//float Separity::Animator::getAnimDuration() { return duration_; }
 
 bool Separity::Animator::getLoop() { return loop_; }
 
 bool Separity::Animator::getEnabled() { return enabled_; }
+
+//void Separity::Animator::render() {
+//
+//	idleTop->addTime(4000); 
+//}

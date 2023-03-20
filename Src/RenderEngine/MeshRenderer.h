@@ -10,6 +10,7 @@
 namespace Ogre {
 	class SceneManager;
 	class SceneNode;
+	class Entity;
 }  // namespace Ogre
 
 namespace Separity {
@@ -30,19 +31,22 @@ namespace Separity {
 		MeshRenderer(Ogre::SceneManager* sceneManager, std::string meshName);
 
 		/// <summary>
-		/// <para>Destruye el nodo que contiene la entidad creada a partir de la malla</para>
+		/// <para>Destruye el nodo que contiene la entidad creada a partir de la
+		/// malla</para>
 		/// </summary>
 		~MeshRenderer();
-		
+
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		void render() override;
-		
+
 		/// <summary>
-		/// <para>Activa/desactiva el nodo que contiene la malla para parar su renderización</para>
+		/// <para>Activa/desactiva el nodo que contiene la malla para parar su
+		/// renderización</para>
 		/// </summary>
-		/// <param name="set">Indica si se va activar/desactivar la renderización del nodo</param>
+		/// <param name="set">Indica si se va activar/desactivar la
+		/// renderización del nodo</param>
 		void setActive(bool set);
 
 		/// <summary>
@@ -51,10 +55,17 @@ namespace Separity {
 		/// <returns>Devuelve el nodo</returns>
 		Ogre::SceneNode* getNode();
 
+		/// <summary>
+		/// <para>Getter de la entidad creada</para>
+		/// </summary>
+		/// <returns>Devuelve la entidad</returns>
+		Ogre::Entity* getOgreEntity();
+
 		private:
 		Ogre::SceneNode* meshRenderer_;
 		Ogre::SceneManager* sceneManager_;
+		Ogre::Entity* entity_;
 	};
-}  // namespace Separity
+};  // namespace Separity
 
 #endif /*__MESH_RENDERER_H__*/

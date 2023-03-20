@@ -15,7 +15,7 @@
 #include "VirtualTimer.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
-
+#include "Animator.h"
 #include <AudioSource.h>
 #include <Behaviour.h>
 #include <Collider.h>
@@ -123,6 +123,18 @@ int main() {
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
 
+	//
+	//Entity* sinbad = new Entity(_grp_GENERAL);
+	//auto tr4 = sinbad->addComponent<Transform>();
+	//tr4->setScale(2, 2, 2);
+	////  mesh renderer
+	//sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	//                                  "Sinbad.mesh");
+	//auto anim = sinbad->addComponent<Animator>();
+	//anim->setUpAnims();
+	// behaviour
+	plano->addComponent<Behaviour>("plano");
+
 	bool quit = false;
 	while(!quit) {
 
@@ -193,12 +205,12 @@ int main() {
 	}
 
 	renderManager->saveConfiguration();
-
-	delete mono2;
-	delete plano;
-	delete cube;
-	delete camera;
-	delete timer;
+	renderManager->closedown();
+	//delete mono2;
+	//delete plano;
+	//delete cube;
+	//delete camera;
+	//delete timer;
 
 	return 0;
 }
