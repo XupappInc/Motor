@@ -43,7 +43,7 @@ namespace Separity {
 		/// <summary>
 		/// Método update que actualiza la simulación física del mundo
 		/// </summary>
-		virtual void update() override;
+		virtual void update(const uint32_t& deltaTime);
 		/// <summary>
 		///	Obtiene un puntero del mundo de bullet
 		/// </summary>
