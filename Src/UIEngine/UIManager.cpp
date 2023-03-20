@@ -13,6 +13,7 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
+
 inline Separity::UIManager::UIManager() {}
 
 void Separity::UIManager::initUi() {
@@ -20,9 +21,7 @@ void Separity::UIManager::initUi() {
 	 SDL_Window* window = rM->getSDLWindow();
 	// addComponent(b);
 
-	IMGUI_CHECKVERSION();
-
-	
+	IMGUI_CHECKVERSION();	
 	
 	ImGuiContext* context = ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
@@ -31,8 +30,8 @@ void Separity::UIManager::initUi() {
 	ImGui::StyleColorsDark();
 	SDL_GL_SwapWindow(window);
 
-	//ImGui_ImplSDL2_InitForOpenGL(window, context);
-	//ImGui_ImplOpenGL3_Init();
+	ImGui_ImplSDL2_InitForOpenGL(window, context);
+	ImGui_ImplOpenGL3_Init();
 
 }
 
