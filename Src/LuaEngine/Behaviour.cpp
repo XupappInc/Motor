@@ -1,4 +1,5 @@
 #include "Behaviour.h"
+#include <iostream>
 
 Separity::Behaviour::Behaviour() {}
 
@@ -10,8 +11,17 @@ void Separity::Behaviour::start() {}
 
 void Separity::Behaviour::awake() {}
 
-void Separity::Behaviour::onCollisionEnter() {}
+void Separity::Behaviour::onCollisionEnter(Entity* other) {
 
-void Separity::Behaviour::onCollisionExit() {}
+	std::cout << "OnCollisionEnter with " << other << std::endl;
+}
 
-void Separity::Behaviour::onCollisionStay() {}
+void Separity::Behaviour::onCollisionExit(Entity* other) {
+
+	std::cout << "OnCollisionExit with " << other << std::endl;
+}
+
+void Separity::Behaviour::onCollisionStay(Entity* other) {
+
+	std::cout << "OnCollisionStay with " << other << std::endl;
+}

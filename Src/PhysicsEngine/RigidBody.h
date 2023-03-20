@@ -13,6 +13,7 @@ class btCollisionShape;
 
 namespace Separity {
 	class Transform;
+	class Behaviour;
 
 	/// <summary>
 	/// Tipo del rigidbody
@@ -144,6 +145,9 @@ namespace Separity {
 		float mass_;
 		typeRb tipo_;
 		btRigidBody* rb_;
+
+		Behaviour* behaviour_;
+		bool triedToGetBehaviour_;
 
 		btCollisionShape* colliderShape_;
 

@@ -1,5 +1,6 @@
 #include "RigidBody.h"
 
+#include "Behaviour.h"
 #include "Collider.h"
 #include "Entity.h"
 #include "PhysicsManager.h"
@@ -10,7 +11,9 @@
 // #include "checkML.h"
 
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
-    : mass_(mass), tipo_(tipo), colliderShape_(nullptr) {}
+    : mass_(mass), tipo_(tipo), colliderShape_(nullptr),
+      triedToGetBehaviour_(false), rb_(nullptr), btTr_(nullptr), tr_(nullptr),
+      behaviour_(nullptr) {}
 
 Separity::RigidBody::~RigidBody() {
 	delete btTr_;
@@ -137,8 +140,6 @@ void Separity::RigidBody::preUpdate() {
 	btVector3 btRot = btVector3((btScalar) Spyutils::Math::toRadians(rot.x),
 	                            (btScalar) Spyutils::Math::toRadians(rot.y),
 	                            (btScalar) Spyutils::Math::toRadians(rot.z));
-
-
 }
 
 void Separity::RigidBody::update() {
@@ -164,11 +165,41 @@ void Separity::RigidBody::setDamping(float linear, float angular) {
 
 btRigidBody* Separity::RigidBody::getBulletRigidBody() { return rb_; }
 
-void Separity::RigidBody::onCollisionEnter(RigidBody* other) {}
+void Separity::RigidBody::onCollisionEnter(RigidBody* other) {
+	if(!triedToGetBehaviour_) {
+		triedToGetBehaviour_ = true;
+		behaviour_ = ent_->getComponent<Behaviour>();
+	}
 
-void Separity::RigidBody::onCollisionExit(RigidBody* other) {}
+	if(behaviour_ != nullptr) {
+		auto ent = other->getEntity();
+		behaviour_->onCollisionEnter(ent);
+	}
+}
 
-void Separity::RigidBody::onCollisionStay(RigidBody* other) {}
+void Separity::RigidBody::onCollisionExit(RigidBody* other) {
+	if(!triedToGetBehaviour_) {
+		triedToGetBehaviour_ = true;
+		behaviour_ = ent_->getComponent<Behaviour>();
+	}
+
+	if(behaviour_ != nullptr) {
+		auto ent = other->getEntity();
+		behaviour_->onCollisionExit(ent);
+	}
+}
+
+void Separity::RigidBody::onCollisionStay(RigidBody* other) {
+	if(!triedToGetBehaviour_) {
+		triedToGetBehaviour_ = true;
+		behaviour_ = ent_->getComponent<Behaviour>();
+	}
+
+	if(behaviour_ != nullptr) {
+		auto ent = other->getEntity();
+		behaviour_->onCollisionStay(ent);
+	}
+}
 
 btScalar Separity::RigidBody::addSingleResult(
     btManifoldPoint& cp, const btCollisionObjectWrapper* colObj0Wrap,

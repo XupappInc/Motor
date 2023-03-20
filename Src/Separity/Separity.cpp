@@ -21,6 +21,7 @@
 #include <Ogre.h>
 #include <RigidBody.h>
 #include <Transform.h>
+#include <Behaviour.h>
 #include"ParticleSystem.h"
 #include <iostream>
 #include "VirtualTimer.h"
@@ -60,6 +61,10 @@ int main() {
 	auto luz = cube->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
 	luz->setDirection(Spyutils::Vector3(-1, -1, 0));
+
+	//behaviour
+	cube->addComponent<Behaviour>();
+
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params;
 	params.colShape = CUBE;
