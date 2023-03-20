@@ -27,7 +27,7 @@ namespace Separity {
 		/// </summary>
 		inline RenderManager();
 		/// <summary>
-		/// Destructor por defecto de la clase, pone a nullptr los punteros
+		/// Destructor por defecto de la clase
 		/// utilizados
 		/// </summary>
 		virtual ~RenderManager();
@@ -80,6 +80,11 @@ namespace Separity {
 		/// </summary>
 		void saveConfiguration();
 		/// <summary>
+		/// Se encarga del cierre de SDL y pone a nullptr los punteros
+		/// correspondientes
+		/// </summary>
+		void closedown();
+		/// <summary>
 		/// Getter de la ventana de SDL
 		/// </summary>
 		/// <returns>SDL_Window* Puntero a la ventana de SDL creada </returns>
@@ -87,7 +92,8 @@ namespace Separity {
 		/// <summary>
 		/// Getter de la ventana de Ogre
 		/// </summary>
-		/// <returns>Ogre::RenderWindow* Puntero a la ventana de Ogre creada </returns>
+		/// <returns>Ogre::RenderWindow* Puntero a la ventana de Ogre creada
+		/// </returns>
 		Ogre::RenderWindow* getOgreWindow();
 		/// <summary>
 		/// Getter de la raíz de Ogre
@@ -111,8 +117,6 @@ namespace Separity {
 
 		int screenW_;
 		int screenH_;
-
-		Separity::Entity* entity_;
 	};
 }  // namespace Separity
 

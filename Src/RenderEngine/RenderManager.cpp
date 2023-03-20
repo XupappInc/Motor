@@ -19,14 +19,7 @@ std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
 Separity::RenderManager::RenderManager() {}
 
-Separity::RenderManager::~RenderManager() {
-	sdlWindow_ = nullptr;
-	ogreWindow_ = nullptr;
-	ogreRoot_ = nullptr;
-	sceneMgr_ = nullptr;
-	configFile_ = nullptr;
-	entity_ = nullptr;
-}
+Separity::RenderManager::~RenderManager() {}
 
 void Separity::RenderManager::init() {
 	// Tamaño ventana
@@ -103,7 +96,6 @@ void Separity::RenderManager::resizeWindow(int w, int h) {
 	    "Video Mode", Ogre::StringConverter::toString(screenW_) + " x " +
 	                      Ogre::StringConverter::toString(screenH_));
 
-
 	SDL_SetWindowSize(sdlWindow_, w, h);
 	SDL_SetWindowPosition(sdlWindow_, SDL_WINDOWPOS_CENTERED,
 	                      SDL_WINDOWPOS_CENTERED);
@@ -138,13 +130,33 @@ void Separity::RenderManager::saveConfiguration() {
 	configFile.close();
 }
 
+void Separity::RenderManager::closedown() {
+	if(ogreWindow_ != nullptr) {
+		ogreWindow_ = nullptr;
+	}
+
+	if(sdlWindow_ != nullptr) {
+		SDL_DestroyWindow(sdlWindow_);
+		SDL_QuitSubSystem(SDL_INIT_EVERYTHING);
+		sdlWindow_ = nullptr;
+	}
+	if(ogreRoot_ != nullptr)
+		ogreRoot_ = nullptr;
+
+	if(sceneMgr_ != nullptr)
+		sceneMgr_ = nullptr;
+
+	if(configFile_ != nullptr)
+		configFile_ = nullptr;
+}
+
 Separity::RenderManager* Separity::RenderManager::getInstance() {
 	return static_cast<Separity::RenderManager*>(instance());
 }
 
 void Separity::RenderManager::createSDLWindow() {
-
-	Ogre::ConfigOptionMap configMap =  ogreRoot_->getRenderSystem()->getConfigOptions();
+	Ogre::ConfigOptionMap configMap =
+	    ogreRoot_->getRenderSystem()->getConfigOptions();
 	std::istringstream videoMode(configMap["Video Mode"].currentValue);
 
 	std::string params;
@@ -186,7 +198,9 @@ void Separity::RenderManager::createSDLWindow() {
 
 SDL_Window* Separity::RenderManager::getSDLWindow() { return sdlWindow_; }
 
-Ogre::RenderWindow* Separity::RenderManager::getOgreWindow() { return ogreWindow_; }
+Ogre::RenderWindow* Separity::RenderManager::getOgreWindow() {
+	return ogreWindow_;
+}
 
 Ogre::Root* Separity::RenderManager::getOgreRoot() { return ogreRoot_; }
 

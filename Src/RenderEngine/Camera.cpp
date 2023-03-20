@@ -24,7 +24,7 @@ Separity::Camera::Camera() : tr_(nullptr) {
 	cameraNode_ = sm->getRootSceneNode()->createChildSceneNode();
 	cameraNode_->attachObject(camera_);
 
-	viewport_ = rm->getWindow()->addViewport(camera_);
+	viewport_ = rm->getOgreWindow()->addViewport(camera_);
 	viewport_->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));
 }
 
