@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D3456508-B130-3116-86D0-FF57D73923CC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>Tests53Cxx17</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\Tests\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Tests53Cxx17.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Tests53Cxx17</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\Tests\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Tests53Cxx17.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Tests53Cxx17</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\Tests\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Tests53Cxx17.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Tests53Cxx17</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\Tests\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Tests53Cxx17.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Tests53Cxx17</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/third_party/gtest/googletest/include" /external:I "C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/third_party/gtest/googletest"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;LUABRIDGE_CXX17;LUABRIDGE_TEST_LUA_VERSION=503;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;LUABRIDGE_CXX17;LUABRIDGE_TEST_LUA_VERSION=503;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest\include;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest\include;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>Debug\Lua53.lib;..\third_party\gtest\googlemock\gtest\Debug\gtestd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/Debug/Tests53Cxx17.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/Debug/Tests53Cxx17.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/third_party/gtest/googletest/include" /external:I "C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/third_party/gtest/googletest"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LUABRIDGE_CXX17;LUABRIDGE_TEST_LUA_VERSION=503;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LUABRIDGE_CXX17;LUABRIDGE_TEST_LUA_VERSION=503;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest\include;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest\include;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>Release\Lua53.lib;..\third_party\gtest\googlemock\gtest\Release\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/Release/Tests53Cxx17.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/Release/Tests53Cxx17.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/third_party/gtest/googletest/include" /external:I "C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/third_party/gtest/googletest"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LUABRIDGE_CXX17;LUABRIDGE_TEST_LUA_VERSION=503;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LUABRIDGE_CXX17;LUABRIDGE_TEST_LUA_VERSION=503;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest\include;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest\include;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>MinSizeRel\Lua53.lib;..\third_party\gtest\googlemock\gtest\MinSizeRel\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/MinSizeRel/Tests53Cxx17.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/MinSizeRel/Tests53Cxx17.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/third_party/gtest/googletest/include" /external:I "C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/third_party/gtest/googletest"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LUABRIDGE_CXX17;LUABRIDGE_TEST_LUA_VERSION=503;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;LUABRIDGE_CXX17;LUABRIDGE_TEST_LUA_VERSION=503;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest\include;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest\include;C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\third_party\gtest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>RelWithDebInfo\Lua53.lib;..\third_party\gtest\googlemock\gtest\RelWithDebInfo\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/RelWithDebInfo/Tests53Cxx17.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/RelWithDebInfo/Tests53Cxx17.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/Tests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src -BC:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build --check-stamp-file C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\Tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/Tests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src -BC:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build --check-stamp-file C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\Tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/Tests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src -BC:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build --check-stamp-file C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\Tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src/Tests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/src -BC:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build --check-stamp-file C:/Users/Vic_M/OneDrive/Escritorio/P3/Motor/Dependencias/LuaBridge2/build/Tests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\Tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\ArrayTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\ClassTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\IssueTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\IteratorTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\LegacyTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\ListTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\LuaRefTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\MapTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\NamespaceTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\PairTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\PerformanceTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\RefCountedObjectTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\RefCountedPtrTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\StackTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\Tests.cpp" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\TestBase.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\TestTypes.h" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\TestsMain.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\UnorderedMapTests.cpp" />
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Source\VectorTests.cpp" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\List.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\LuaBridge.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\Map.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\RefCountedObject.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\RefCountedPtr.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\UnorderedMap.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\Vector.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\Array.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\CFunctions.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\ClassInfo.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\Config.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\Constructor.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\dump.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\FuncTraits.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\Iterator.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\LuaException.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\LuaHelpers.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\LuaRef.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\Namespace.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\Stack.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\TypeList.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\TypeTraits.h" />
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Source\LuaBridge\detail\Userdata.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\ZERO_CHECK.vcxproj">
+      <Project>{03905507-F4B4-32BF-873B-67C345BFC855}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\Tests\Lua53.vcxproj">
+      <Project>{DAE2E524-6E64-3071-B2B6-7C7F025BDF73}</Project>
+      <Name>Lua53</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\third_party\gtest\googlemock\gtest\gtest.vcxproj">
+      <Project>{07A1A044-FA26-3676-82C4-2D311147D1B3}</Project>
+      <Name>gtest</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

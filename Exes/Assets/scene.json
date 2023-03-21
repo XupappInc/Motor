@@ -73,7 +73,9 @@
                     1.0,
                     1.0
                 ]
-            }
+            },
+            "meshRenderer": "Sphere",
+            "collider": "1"
         },
         "Cube": {
             "transform": {
@@ -92,7 +94,8 @@
                     1.0,
                     1.0
                 ]
-            }
+            },
+            "meshRenderer": "Cube"
         }
     }
 }

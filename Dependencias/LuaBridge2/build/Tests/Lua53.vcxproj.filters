@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lapi.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lauxlib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lbaselib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lbitlib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lcode.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lcorolib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lctype.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ldblib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ldebug.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ldo.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ldump.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lfunc.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lgc.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\linit.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\liolib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\llex.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lmathlib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lmem.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\loadlib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lobject.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lopcodes.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\loslib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lparser.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lstate.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lstring.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lstrlib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ltable.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ltablib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ltm.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lua.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\luac.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lundump.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lutf8lib.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lvm.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lzio.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\LuaLibrary.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lapi.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lauxlib.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lcode.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lctype.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ldebug.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ldo.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lfunc.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lgc.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\llex.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\llimits.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lmem.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lobject.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lopcodes.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lparser.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lprefix.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lstate.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lstring.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ltable.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\ltm.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lua.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lua.hpp">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\luaconf.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lualib.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lundump.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lvm.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\Lua\lua-5.3.6\src\lzio.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\src\Tests\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{B772A701-5427-36D3-AC38-2013597A797C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

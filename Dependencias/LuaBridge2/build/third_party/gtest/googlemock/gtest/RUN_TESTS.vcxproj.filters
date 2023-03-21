@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Vic_M\OneDrive\Escritorio\P3\Motor\Dependencias\LuaBridge2\build\CMakeFiles\443e1514e720debc93e1629edef5f747\RUN_TESTS_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7B5EAB07-1E56-3505-B1B6-36FC8CFA1418}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
