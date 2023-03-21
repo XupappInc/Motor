@@ -19,12 +19,27 @@ void Separity::LuaManager::loadScript() {
 	    .endClass();
 
 	// Creamos una instancia de MyDerivedClass y la pasamos al script
-	Behaviour behaviour;
-	luabridge::push(L, &behaviour);
+	Behaviour* behaviour = new Behaviour();
+	luabridge::push(L, behaviour);
 	lua_setglobal(L, "behaviour");
 
-	// Ejecutamos el script y llamamos a la función virtual myVirtualFunction
-	luaL_dostring(L, "myObject:myVirtualFunction()");
+	// Cargamos el script de Lua desde un archivo
+	luaL_dofile(L, "prueba.lua");
+
+	// Obtenemos el objeto behaviour desde Lua
+	luabridge::LuaRef behaviourLua = luabridge::getGlobal(L, "behaviour");
+
+	// Reemplazamos el objeto behaviour original con el objeto de Lua
+	behaviour = luabridge::Stack<Behaviour*>::get(behaviourLua, -1);
+
+	// Llamamos al método update en la instancia de Behaviour
+	behaviour->update();
+
+	// Liberamos el estado de Lua
+	lua_close(L);
+
+	// Liberamos la memoria
+	delete behaviour;
 }
 
 Separity::LuaManager* Separity::LuaManager::getInstance() { return static_cast<LuaManager*>(instance()); }
