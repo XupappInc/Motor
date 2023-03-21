@@ -43,6 +43,8 @@ int main() {
 	audManager->initAudioSystem();
 	UIManager* uiManager = Separity::UIManager::getInstance();
 	uiManager->initUi();
+	LuaManager* luaManager = Separity::LuaManager::getInstance();
+
 	Entity* mono2 = new Entity(_grp_GENERAL);
 	auto tr2 = mono2->addComponent<Transform>();
 	tr2->setPosition(Spyutils::Vector3(1000, 0, 0));

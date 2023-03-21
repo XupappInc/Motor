@@ -3,6 +3,9 @@
 #include "lua.hpp"
 #include "LuaBridge/LuaBridge.h"
 
+template<typename T>
+std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+
 void Separity::LuaManager::loadScript() {
 
 	// Creamos el estado de Lua y registramos las clases
@@ -23,6 +26,8 @@ void Separity::LuaManager::loadScript() {
 	// Ejecutamos el script y llamamos a la función virtual myVirtualFunction
 	luaL_dostring(L, "myObject:myVirtualFunction()");
 }
+
+Separity::LuaManager* Separity::LuaManager::getInstance() { return static_cast<LuaManager*>(instance()); }
 
 Separity::LuaManager::LuaManager() {}
 
