@@ -44,6 +44,7 @@ Separity::AudioManager::~AudioManager() {
 }
 
 void Separity::AudioManager::initAudioSystem() {
+
 	// Create an instance of the FMOD system
 	FMODErrorChecker(FMOD::System_Create(&system_));
 	// Initialize the FMOD system with 32 channels and normal settings

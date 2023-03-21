@@ -51,19 +51,13 @@ int main() {
 
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* cube = new Entity(_grp_GENERAL);
-	auto tr = cube->addComponent<Transform>();
-	cube->addComponent<ParticleSystem>("par","particles/ExplosionB");
-	// tr->pitch(60);
-	tr->setPosition(Spyutils::Vector3(0, 4, 0));
-	tr->setScale(0.03);
-	tr->pitch(30);
-	tr->translate(Spyutils::Vector3(0, 0, 0));
+	
 	//  mesh renderer
 	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "cube.mesh");
 	auto luz = cube->addComponent<Light>(DIRECTIONAL_LIGHT);
-	luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
-	luz->setDirection(Spyutils::Vector3(-1, -1, 0));
+	/*luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
+	luz->setDirection(Spyutils::Vector3(-1, -1, 0));*/
 
 	// behaviour
 	cube->addComponent<Behaviour>("cubo");
@@ -86,7 +80,13 @@ int main() {
 	// rb->applyTorque(Spyutils::Vector3(10, 0,0));
 	// rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
 	////  Bucle principal
-
+	auto tr = cube->addComponent<Transform>();
+	cube->addComponent<ParticleSystem>("par", "particles/ExplosionB");
+	// tr->pitch(60);
+	tr->setPosition(Spyutils::Vector3(0, 4, 0));
+	tr->setScale(0.03);
+	tr->pitch(30);
+	tr->translate(Spyutils::Vector3(0, 0, 0));
 	Entity* plano = new Entity(_grp_GENERAL);
 	auto tr1 = plano->addComponent<Transform>();
 	tr1->translate(Spyutils::Vector3(0, -3, 0));
@@ -112,8 +112,8 @@ int main() {
 
 	// rigidbody
 	auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
-	rb1->setGravity(Spyutils::Vector3(0, -1, 0));
-	rb1->addForce(Spyutils::Vector3(0, 2, 0));
+	/*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
+	rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
 
 	Entity* camera = new Entity(_grp_GENERAL);
 	Transform* cam_tr = camera->addComponent<Transform>();
@@ -136,6 +136,11 @@ int main() {
 	plano->addComponent<Behaviour>("plano");
 
 	bool quit = false;
+	renderManager->initComponent();
+	physManager->initComponent();
+	uiManager->initComponent();
+	inputManager->initComponent();
+	audManager->initComponent();
 	while(!quit) {
 
 		timer->reset();

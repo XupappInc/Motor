@@ -114,7 +114,7 @@ namespace Separity {
 			}
 
 			c->setContext(this, componentManager);
-			c->initComponent();
+			
 			cmps_[cId] = c;
 			currCmps_.push_back(c);
 
