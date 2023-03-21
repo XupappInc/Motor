@@ -9,6 +9,7 @@
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "UIManager.h"
+#include "LuaManager.h"
 // #include "checkML.h"
 #include "Camera.h"
 #include "ParticleSystem.h"

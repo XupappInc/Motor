@@ -21,9 +21,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\LuaEngine\Behaviour.cpp" />
     <ClCompile Include="..\..\Src\LuaEngine\LuaEngine.cpp" />
+    <ClCompile Include="..\..\Src\LuaEngine\LuaManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\LuaEngine\Behaviour.h" />
+    <ClInclude Include="..\..\Src\LuaEngine\LuaManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -136,7 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
