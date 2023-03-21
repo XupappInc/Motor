@@ -27,7 +27,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="type">Tipo de luz que pueden ser
 		/// POINT_LIGHT,DIRECTIONAL_LIGHT,SPOTLIGHT </param>
-		ParticleSystem(std::string name);
+		ParticleSystem(std::string name,std::string name_paricle);
 		/// <summary>
 		/// Destructora de light
 		/// </summary>

@@ -7,15 +7,19 @@
 #include <OgreSceneManager.h>
 #include "RenderManager.h"
 #include "Transform.h"
-Separity::ParticleSystem::ParticleSystem(std::string type) : visible_(true) {
+
+
+Separity::ParticleSystem::ParticleSystem(std::string name,
+                                         std::string name_particle):
+    visible_(true) {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();
 	// se accede al sceneManager
 	Ogre::SceneManager* s = render->getSceneManager();
-	 
-	  particleNode_ =  s->getRootSceneNode()->createChildSceneNode();
 
-	partSys_ = s->createParticleSystem("psSmoke", "particles/ExplosionB");
-	  partSys_->setEmitting(true);
+	particleNode_ = s->getRootSceneNode()->createChildSceneNode();
+
+	partSys_ = s->createParticleSystem(name,name_particle);
+	partSys_->setEmitting(true);
 	partSys_->setVisible(true);
 
 	particleNode_->attachObject(partSys_);

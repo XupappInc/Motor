@@ -52,7 +52,7 @@ int main() {
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* cube = new Entity(_grp_GENERAL);
 	auto tr = cube->addComponent<Transform>();
-	cube->addComponent<ParticleSystem>("hola");
+	cube->addComponent<ParticleSystem>("par","particles/ExplosionB");
 	// tr->pitch(60);
 	tr->setPosition(Spyutils::Vector3(0, 4, 0));
 	tr->setScale(0.03);
