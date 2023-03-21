@@ -138,15 +138,22 @@ void Separity::RigidBody::preUpdate() {
 	Spyutils::spyQuaternion quat = tr_->getRotation();
 
 	btVector3 btPos = btVector3(pos.x, pos.y, pos.z);
-	btQuaternion btQ = btQuaternion(quat.x, quat.y, quat.z, quat.w);
+
+	// Definir la matriz de rotación para convertir los ejes
+	btMatrix3x3 rotationMatrix(1, 0, 0, 0, 0, -1, 0, 1, 0);
+
+	// Rotar el quaternion personalizado
+	btVector3 bulletAxis(quat.x, quat.y, quat.z);
+
+	bulletAxis = rotationMatrix * bulletAxis;
+
+	btQuaternion btQ = btQuaternion(bulletAxis, quat.w);
 
 	rb_->getWorldTransform().setOrigin(btPos);
 	rb_->getWorldTransform().setRotation(btQ);
-
 }
 
 void Separity::RigidBody::update() {
-	
 	// OnCollisionStay
 	for(auto c : collisionObjects_) {
 		c->onCollisionStay(this);

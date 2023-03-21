@@ -53,7 +53,7 @@ int main() {
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* cube = new Entity(_grp_GENERAL);
 	auto tr = cube->addComponent<Transform>();
-	cube->addComponent<ParticleSystem>("hola");
+	//cube->addComponent<ParticleSystem>("hola");
 	// tr->pitch(60);
 	tr->setPosition(Spyutils::Vector3(0, 4, 0));
 	tr->setScale(0.03);
@@ -144,7 +144,7 @@ int main() {
 
 	Entity* camera = new Entity(_grp_GENERAL);
 	Transform* cam_tr = camera->addComponent<Transform>();
-	cam_tr->translate(Spyutils::Vector3(0, 0, 15));
+	cam_tr->translate(Spyutils::Vector3(0, -50, 30));
 	Camera* cam_cam = camera->addComponent<Camera>();
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
@@ -210,6 +210,7 @@ int main() {
 			}
 			if(inputManager->isKeyDown('o')) {
 				tr->translate(Spyutils::Vector3(0, 10, 0));
+				tr->setRotation(80, 45, 20);
 			}
 		}
 
