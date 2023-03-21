@@ -12,9 +12,11 @@ namespace Separity {
 		public:
 		void loadScript();
 
-		protected:
+		static LuaManager* getInstance();
 		LuaManager();
 		virtual ~LuaManager() override;
+
+		protected:
 	};
 }  // namespace Separity
 
