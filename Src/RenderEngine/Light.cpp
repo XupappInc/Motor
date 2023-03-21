@@ -34,9 +34,9 @@ Separity::Light::Light(LightType type) : visible_(true) {
 }
 
 Separity::Light::~Light() {
-	RenderManager::getInstance()->getSceneManager()->destroyLight(light_);
-	RenderManager::getInstance()->getSceneManager()->destroySceneNode(
-	    lightNode_);
+	//RenderManager::getInstance()->getSceneManager()->destroyLight(light_);
+	//RenderManager::getInstance()->getSceneManager()->destroySceneNode(
+	    //lightNode_);
 }
 
 void Separity::Light::render() {

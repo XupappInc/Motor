@@ -26,9 +26,10 @@ Separity::ParticleSystem::ParticleSystem(std::string name,
 }
 
 Separity::ParticleSystem::~ParticleSystem() {
-	RenderManager::getInstance()->getSceneManager()->destroyParticleSystem(partSys_);
-	RenderManager::getInstance()->getSceneManager()->destroySceneNode(
-	    particleNode_);
+	///*RenderManager::getInsta*/nce()->getSceneManager()->destroySceneNode(
+	//    particleNode_);
+	//RenderManager::getInstance()->getSceneManager()->destroyParticleSystem(partSys_);
+	
 }
 
 void Separity::ParticleSystem::render() {

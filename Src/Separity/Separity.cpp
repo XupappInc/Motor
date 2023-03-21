@@ -203,14 +203,14 @@ int main() {
 			Sleep(waitTime);
 		
 	}
-
+	//delete cube;
 	renderManager->saveConfiguration();
 	renderManager->closedown();
-	//delete mono2;
-	//delete plano;
-	//delete cube;
-	//delete camera;
-	//delete timer;
+	delete mono2;
+	delete plano;
+	delete cube;
+	delete camera;
+	delete timer;
 
 	return 0;
 }
