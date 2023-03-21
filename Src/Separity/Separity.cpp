@@ -2,21 +2,24 @@
 // programa comienza y termina ahí.
 //
 
+#include "Animator.h"
 #include "AudioManager.h"
+#include "Camera.h"
 #include "Entity.h"
 #include "InputManager.h"
 #include "Light.h"
+#include "LuaManager.h"
+#include "ParticleSystem.h"
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "UIManager.h"
-#include "LuaManager.h"
 // #include "checkML.h"
 #include "Camera.h"
 #include "ParticleSystem.h"
 #include "VirtualTimer.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
-#include "Animator.h"
+
 #include <AudioSource.h>
 #include <Behaviour.h>
 #include <Collider.h>
@@ -52,7 +55,7 @@ int main() {
 
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* cube = new Entity(_grp_GENERAL);
-	
+
 	//  mesh renderer
 	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "cube.mesh");
@@ -125,15 +128,15 @@ int main() {
 	uint32_t deltaTime = 0;
 
 	//
-	//Entity* sinbad = new Entity(_grp_GENERAL);
-	//auto tr4 = sinbad->addComponent<Transform>();
-	//tr4->setScale(2, 2, 2);
+	// Entity* sinbad = new Entity(_grp_GENERAL);
+	// auto tr4 = sinbad->addComponent<Transform>();
+	// tr4->setScale(2, 2, 2);
 	////  mesh renderer
-	//sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	//                                  "Sinbad.mesh");
-	//auto anim = sinbad->addComponent<Animator>();
-	//anim->setUpAnims();
-	// behaviour
+	// sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	//                                   "Sinbad.mesh");
+	// auto anim = sinbad->addComponent<Animator>();
+	// anim->setUpAnims();
+	//  behaviour
 	plano->addComponent<Behaviour>("plano");
 
 	bool quit = false;
@@ -143,9 +146,7 @@ int main() {
 	inputManager->initComponent();
 	audManager->initComponent();
 	while(!quit) {
-
 		timer->reset();
-
 
 		inputManager->update();
 		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
@@ -192,7 +193,6 @@ int main() {
 			if(inputManager->isKeyDown('o')) {
 				tr->translate(Spyutils::Vector3(0, 10, 0));
 			}
-	
 		}
 
 		physManager->update(deltaTime);
@@ -201,22 +201,26 @@ int main() {
 		audManager->update();
 		uiManager->update();
 
-
 		deltaTime = timer->currTime();
 		int waitTime = FRAMETIME - deltaTime;
 
-		if(waitTime > 0) 
+		if(waitTime > 0)
 			Sleep(waitTime);
-		
 	}
-	//delete cube;
-	renderManager->saveConfiguration();
-	renderManager->closedown();
 	delete mono2;
 	delete plano;
 	delete cube;
 	delete camera;
 	delete timer;
+
+	renderManager->saveConfiguration();
+	renderManager->closedown();
+
+	renderManager->close();
+	uiManager->close();
+	inputManager->close();
+	audManager->close();
+	physManager->close();
 
 	return 0;
 }

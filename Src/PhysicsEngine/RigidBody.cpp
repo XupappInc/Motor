@@ -8,7 +8,7 @@
 #include "Vector.h"
 
 #include <spyMath.h>
-// #include "checkML.h"
+//#include "checkML.h"
 
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
     : mass_(mass), tipo_(tipo), colliderShape_(nullptr),
@@ -18,6 +18,7 @@ Separity::RigidBody::RigidBody(typeRb tipo, float mass)
 Separity::RigidBody::~RigidBody() {
 	delete btTr_;
 	delete rb_;
+	delete colliderShape_;
 }
 
 void Separity::RigidBody::initComponent() {
