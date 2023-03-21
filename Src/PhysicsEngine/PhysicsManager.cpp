@@ -31,6 +31,7 @@ PhysicsManager::~PhysicsManager() {
 }
 
 void PhysicsManager::initWorld() {
+
 	broadphase_ = new btDbvtBroadphase();
 	collisionConfiguration_ = new btDefaultCollisionConfiguration();
 	dispatcher_ = new btCollisionDispatcher(collisionConfiguration_);
