@@ -17,8 +17,7 @@ void Separity::SceneManager::update() {}
 
 Separity::SceneManager::~SceneManager() {}
 
-bool Separity::SceneManager::loadScene() { 
-
+bool Separity::SceneManager::loadScene() {
 	std::ifstream file("Assets/scene.json");
 	rapidjson::IStreamWrapper stream_wrapper(file);
 	rapidjson::Document document;
@@ -27,15 +26,14 @@ bool Separity::SceneManager::loadScene() {
 	const rapidjson::Value& entities = document["Entities"];
 
 	rapidjson::Value::ConstMemberIterator entity;
-	for(entity = entities.MemberBegin(); entity != entities.MemberEnd(); ++entity) {
+	for(entity = entities.MemberBegin(); entity != entities.MemberEnd();
+	    ++entity) {
 		// Imprime el nombre del miembro
 		std::cout << entity->name.GetString() << std::endl;
-		
+
 		rapidjson::Value::ConstMemberIterator component;
-		for(component = entity->value.MemberBegin(); component != entity->value.MemberEnd(); 
-			++component) {
-
-
+		for(component = entity->value.MemberBegin();
+		    component != entity->value.MemberEnd(); ++component) {
 			std::string s = component->name.GetString();
 			std::cout << s << std::endl;
 
@@ -69,11 +67,12 @@ bool Separity::SceneManager::loadScene() {
 				          << "]" << std::endl;
 			}
 
-			else if (s == "camera") {
+			else if(s == "camera") {
 				std::cout << "Soy una camara\n";
 			}
-		}	
-	return false; 
+		}
+		return false;
+	}
 }
 
 Separity::SceneManager::SceneManager() { 
