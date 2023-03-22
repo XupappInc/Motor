@@ -76,8 +76,8 @@ Separity::AudioManager* Separity::AudioManager::getInstance() {
 	return static_cast<AudioManager*>(instance());
 }
 
-void Separity::AudioManager::playAudio(std::string audioName, int minDistance,
-                                       int maxDistance) {
+void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
+                                       float maxDistance) {
 	FMOD::Channel* temporalChannel = nullptr;
 	FMOD::Sound* temporalSound = nullptr;
 	// Comprueba si est� en la lista de sonidos o de m�sica para coger dicho
@@ -104,7 +104,7 @@ void Separity::AudioManager::playAudio(std::string audioName, int minDistance,
 	// volumen 0
 	temporalChannel->setPaused(false);
 	temporalChannel->setMode(FMOD_3D_LINEARROLLOFF);
-	temporalChannel->set3DMinMaxDistance(1.0f, 100.0f);
+	temporalChannel->set3DMinMaxDistance(minDistance, maxDistance);
 	channels_->emplace(audioName, temporalChannel);
 }
 
@@ -149,8 +149,8 @@ void Separity::AudioManager::update() {
 		/*tr.assert(tr != nullptr);*/
 	}
 	FMOD_VECTOR posListener = FMOD_VECTOR {0, 0, 0};
-	FMODErrorChecker(system_->set3DListenerAttributes(0, &posListener, nullptr,
-	                                                  nullptr, nullptr));
+	update3DListener(&posListener);
+	
 	// Se borran aqu� porque dentro del otro for se siguen comprobando cada
 	// canal, no est�n ordenados, si borras uno no sabes cual vas a comprobar
 	// despu�s adem�s de acabar comprobando canales fueras del rango del for
@@ -159,15 +159,24 @@ void Separity::AudioManager::update() {
 	}
 	FMODErrorChecker(system_->update());
 }
+
 void Separity::AudioManager::pauseAllChannels() {
 	for(auto& channelMap : *channels_) {
 		channelMap.second->setPaused(true);
 	}
 }
+
 void Separity::AudioManager::resumeAllChannels() {
 	for(auto& channelMap : *channels_) {
 		channelMap.second->setPaused(false);
 	}
+}
+
+void Separity::AudioManager::update3DListener(FMOD_VECTOR* pos,
+                                              FMOD_VECTOR* vel,
+                                              FMOD_VECTOR* forward,
+                                              FMOD_VECTOR* up) {
+	FMODErrorChecker(system_->set3DListenerAttributes(0, pos, vel, forward, up));
 }
 
 void Separity::AudioManager::stopAllChannels() {

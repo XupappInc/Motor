@@ -201,7 +201,7 @@ int main() {
 			}
 		}
 
-		//luaManager->update();
+		/*luaManager->update();*/
 		physManager->update(deltaTime);
 		renderManager->update();
 		renderManager->render();
