@@ -1,25 +1,28 @@
 #include "Behaviour.h"
 
-#include <iostream>
+#include <lua.hpp>
+#include <LuaBridge/LuaBridge.h>
 
-Separity::Behaviour::Behaviour(std::string name) : name_(name) {}
+Separity::Behaviour::Behaviour() : behaviourLua_(nullptr) {}
 
-Separity::Behaviour::~Behaviour() {}
+Separity::Behaviour::Behaviour(luabridge::LuaRef* behaviourLua)
+    : behaviourLua_(behaviourLua) {}
 
-void Separity::Behaviour::update() {}
+Separity::Behaviour::~Behaviour() { delete behaviourLua_; }
+
+void Separity::Behaviour::update() {
+	luabridge::LuaRef updateLua = (*behaviourLua_)["update"];
+	if(updateLua.isFunction()) {
+		updateLua();
+	}
+}
 
 void Separity::Behaviour::start() {}
 
 void Separity::Behaviour::awake() {}
 
-void Separity::Behaviour::onCollisionEnter(Entity* other) {
-	std::cout << "OnCollisionEnter " << name_ << std::endl;
-}
+void Separity::Behaviour::onCollisionEnter(Entity* other) {}
 
-void Separity::Behaviour::onCollisionExit(Entity* other) {
-	std::cout << "OnCollisionExit " << name_ << std::endl;
-}
+void Separity::Behaviour::onCollisionExit(Entity* other) {}
 
-void Separity::Behaviour::onCollisionStay(Entity* other) {
-	//std::cout << "OnCollisionStay " << name_ << std::endl;
-}
+void Separity::Behaviour::onCollisionStay(Entity* other) {}

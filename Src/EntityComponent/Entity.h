@@ -172,7 +172,10 @@ namespace Separity {
 
 			return cmps_[cId] != nullptr;
 		}
-
+		std::vector<Entity*> getChildren()const;
+		Entity* getParent() const;
+		void addChild(Entity* child);
+		void removeChild(const Entity* child);
 		/// <summary>
 		/// Devuelve el grupo de la entidad
 		/// </summary>
@@ -186,6 +189,8 @@ namespace Separity {
 		bool alive_;
 		bool active_;
 		Separity::grpId_type gId_;
+		Entity* parent = nullptr;
+		std::vector<Entity*> childs_;
 	};
 }  // namespace Separity
 #endif  // !__ENTITY_H__
