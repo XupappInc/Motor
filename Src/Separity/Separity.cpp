@@ -54,10 +54,10 @@ int main() {
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene();
 
-	Entity* mono2 = new Entity(_grp_GENERAL);
-	auto tr2 = mono2->addComponent<Transform>();
+	Entity* MusicInstance = new Entity(_grp_GENERAL);
+	auto tr2 = MusicInstance->addComponent<Transform>();
 	tr2->setPosition(Spyutils::Vector3(1000, 0, 0));
-	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
+	auto musica = MusicInstance->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
 	audManager->playAudio(string("codigoLyoko"), 1.0f, 100.0f);
 
@@ -214,7 +214,7 @@ int main() {
 		if(waitTime > 0)
 			Sleep(waitTime);
 	}
-	delete mono2;
+	delete MusicInstance;
 	delete plano;
 	delete cube;
 	delete camera;
