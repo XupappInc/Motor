@@ -31,7 +31,7 @@ Separity::AudioManager::~AudioManager() {
 	delete sounds_;
 	delete musics_;
 	// IMPORTANTE, system release ya borra todos los sounds, channels,
-	// soundsgroups y demás, es decir no hace falta hacer delete solo poner los
+	// soundsgroups y demï¿½s, es decir no hace falta hacer delete solo poner los
 	// punteros a null
 	system_->release();
 	buffer_ = nullptr;
@@ -80,7 +80,7 @@ Separity::AudioManager* Separity::AudioManager::getInstance() {
 void Separity::AudioManager::playAudio(std::string audioName) {
 	FMOD::Channel* temporalChannel = nullptr;
 	FMOD::Sound* temporalSound = nullptr;
-	// Comprueba si está en la lista de sonidos o de música para coger dicho
+	// Comprueba si estï¿½ en la lista de sonidos o de mï¿½sica para coger dicho
 	// sonido y reproducirlo
 	if(sounds_->count(audioName))
 		temporalSound = sounds_->find(audioName)->second;
@@ -105,7 +105,7 @@ void Separity::AudioManager::playAudio(std::string audioName) {
 }
 
 void Separity::AudioManager::update() {
-	// Comprueba todos los canales añadidos en el map, si no  tienen sonido
+	// Comprueba todos los canales aï¿½adidos en el map, si no  tienen sonido
 	// los libera
 	std::vector<std::unordered_map<std::string, FMOD::Channel*>::iterator>
 	    channelsWithoutSound;
@@ -139,9 +139,10 @@ void Separity::AudioManager::update() {
 				FMOD_VECTOR auxiliarFMOD_VECTOR;
 				
 				FMOD::Channel* c = channels_->find(au->getAudioName())->second;
-				//FMODErrorChecker(c->set3DAttributes(pos, nullptr));
-
-				
+				FMODErrorChecker(system_->set3DListenerAttributes(0, pos, nullptr, nullptr, nullptr));
+				FMODErrorChecker(c->set3DAttributes(pos, nullptr));
+				int l = 1242;
+				FMODErrorChecker(system_->get3DListenerAttributes(l, &auxiliarFMOD_VECTOR, nullptr, nullptr, nullptr));
 				c->get3DAttributes(&auxiliarFMOD_VECTOR, nullptr);
 				delete pos;
 			}
@@ -149,9 +150,9 @@ void Separity::AudioManager::update() {
 
 		/*tr.assert(tr != nullptr);*/
 	}
-	// Se borran aquí porque dentro del otro for se siguen comprobando cada
-	// canal, no están ordenados, si borras uno no sabes cual vas a comprobar
-	// después además de acabar comprobando canales fueras del rango del for
+	// Se borran aquï¿½ porque dentro del otro for se siguen comprobando cada
+	// canal, no estï¿½n ordenados, si borras uno no sabes cual vas a comprobar
+	// despuï¿½s ademï¿½s de acabar comprobando canales fueras del rango del for
 	for(auto& it : channelsWithoutSound) {
 		channels_->erase(it);
 	}
