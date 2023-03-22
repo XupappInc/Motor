@@ -33,7 +33,4 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Prueba.lua" />
-  </ItemGroup>
 </Project>
