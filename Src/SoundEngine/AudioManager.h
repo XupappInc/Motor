@@ -42,7 +42,7 @@ namespace Separity {
 		/// <param name="audioName"></param>
 		/// <param name="minDistance"></param>
 		/// <param name="maxDistance"></param>
-		void playAudio(std::string audioName, int minDistance, int maxDistance);
+		void playAudio(std::string audioName, float minDistance, float maxDistance);
 		/// <summary>
 		/// Para la reproducción de todos los canales
 		/// sistema
@@ -73,6 +73,8 @@ namespace Separity {
 		/// </summary>
 		void resumeAllChannels();
 
+		void update3DListener(FMOD_VECTOR* pos, FMOD_VECTOR* vel = nullptr, FMOD_VECTOR* forward = nullptr,
+		                      FMOD_VECTOR* up = nullptr);
 		FMOD::System* system_;
 		std::unordered_map<std::string, FMOD::Sound*>* sounds_;
 		std::unordered_map<std::string, FMOD::Sound*>* musics_;
