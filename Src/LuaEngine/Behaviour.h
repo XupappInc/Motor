@@ -17,7 +17,7 @@ namespace Separity {
 		__CMPID_DECL__(Separity::_BEHAVIOUR)
 
 		Behaviour();
-		Behaviour(luabridge::LuaRef behaviourLua);
+		Behaviour(luabridge::LuaRef* behaviourLua);
 		~Behaviour();
 
 		virtual void update() override;

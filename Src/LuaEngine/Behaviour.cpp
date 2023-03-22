@@ -1,17 +1,17 @@
 #include "Behaviour.h"
+
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 
-Separity::Behaviour::Behaviour() : behaviourLua_(nullptr) {}
+Separity::Behaviour::Behaviour() : behaviourLua_() {}
 
-Separity::Behaviour::Behaviour(luabridge::LuaRef behaviourLua)
-    : behaviourLua_(&behaviourLua) {}
+Separity::Behaviour::Behaviour(luabridge::LuaRef* behaviourLua)
+    : behaviourLua_(behaviourLua) {}
 
-Separity::Behaviour::~Behaviour() {}
+Separity::Behaviour::~Behaviour() { delete behaviourLua_; }
 
 void Separity::Behaviour::update() {
-
-    luabridge::LuaRef updateLua = (*behaviourLua_)["update"];
+	luabridge::LuaRef updateLua = (*behaviourLua_)["update"];
 	if(updateLua.isFunction()) {
 		updateLua();
 	}

@@ -21,7 +21,7 @@ namespace Separity {
 		virtual ~LuaManager() override;
 
 		protected:
-		//lua_State* L_;
+		lua_State* L_;
 		//Behaviour* behaviourTemplate_;
 	};
 }  // namespace Separity
