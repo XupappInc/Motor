@@ -71,9 +71,6 @@ int main() {
 	/*luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
 	 luz->setDirection(Spyutils::Vector3(-1, -1, 0));*/
 
-	// behaviour
-	cube->addComponent<Behaviour>("cubo");
-
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params;
 	params.colShape = CUBE;
@@ -107,9 +104,6 @@ int main() {
 	//  mesh renderer
 	plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                  "cube.mesh");
-
-	// behaviour
-	plano->addComponent<Behaviour>("plano");
 
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params1;
@@ -150,8 +144,6 @@ int main() {
 	//                                   "Sinbad.mesh");
 	// auto anim = sinbad->addComponent<Animator>();
 	// anim->setUpAnims();
-	//  behaviour
-	plano->addComponent<Behaviour>("plano");
 
 	bool quit = false;
 	renderManager->initComponent();
