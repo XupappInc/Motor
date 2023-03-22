@@ -20,6 +20,9 @@
     <ClCompile Include="..\..\Src\UIEngine\ImguiManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\UIEngine\main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\UIEngine\UIManager.h">

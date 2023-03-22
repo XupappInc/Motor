@@ -21,12 +21,21 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\UIEngine\Button.cpp" />
     <ClCompile Include="..\..\Src\UIEngine\ImguiManager.cpp" />
+    <ClCompile Include="..\..\Src\UIEngine\main.cpp" />
     <ClCompile Include="..\..\Src\UIEngine\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\UIEngine\Button.h" />
     <ClInclude Include="..\..\Src\UIEngine\ImguiManager.h" />
     <ClInclude Include="..\..\Src\UIEngine\UIManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityComponent\EntityComponent.vcxproj">
+      <Project>{329ebb57-bbe0-45ce-861b-a6d9a3d28279}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SeparityUtils\SeparityUtils.vcxproj">
+      <Project>{7731a740-4db7-4577-b8ca-b5379736c8ec}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -50,7 +59,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
