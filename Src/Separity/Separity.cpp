@@ -13,6 +13,7 @@
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "UIManager.h"
+#include "SceneManager.h"
 // #include "checkML.h"
 #include "Camera.h"
 #include "ParticleSystem.h"
@@ -122,6 +123,12 @@ int main() {
 	/*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
 	rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
 
+	Entity* entidad = new Entity(_grp_GENERAL);
+	Transform* ent_tr = entidad->addComponent<Transform>();
+	ent_tr->yaw(0);
+	entidad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	                                   "Sphere.mesh");
+	
 	Entity* camera = new Entity(_grp_GENERAL);
 	Transform* cam_tr = camera->addComponent<Transform>();
 	cam_tr->translate(Spyutils::Vector3(0, 0, 15));
