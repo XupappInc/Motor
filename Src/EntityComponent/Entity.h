@@ -96,12 +96,12 @@ namespace Separity {
 					componentManager = Separity::PhysicsManager::getInstance();
 					componentManager->addComponent(c);
 					break;
-				/*case _INPUT:
-					componentManager = InputManager::getInstance();
-					break;
-				case _UI:
-					componentManager = UIManager::getInstance();
-					break;*/
+				///*case _INPUT:
+				//	componentManager = InputManager::getInstance();
+				//	break;
+				//case _UI:
+				//	componentManager = UIManager::getInstance();
+				//	break;*/
 				case _SOUND:
 					componentManager = Separity::AudioManager::getInstance();
 					componentManager->addComponent(c);
