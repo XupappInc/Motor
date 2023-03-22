@@ -86,11 +86,15 @@ namespace Separity {
 		Spyutils::Vector3 getScale();
 
 		private:
+		Spyutils::Vector3 rotar(Spyutils::Vector3 posicion,
+		                        Spyutils::Vector3 anclaje,
+		           Spyutils::Vector3 rotacion);
 		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
 		Spyutils::Vector3 scale_;
 
 		
 	};
+
 }  // namespace Separity
 #endif __TRANSFORM_H__

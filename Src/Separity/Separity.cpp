@@ -68,9 +68,14 @@ int main() {
 	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                 "cube.mesh");
 	auto luz = cube->addComponent<Light>(DIRECTIONAL_LIGHT);
-	/*luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
-	 luz->setDirection(Spyutils::Vector3(-1, -1, 0));*/
 
+	Entity* cube2 = new Entity(_grp_GENERAL);
+	cube2->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	                                 "cube.mesh");
+	cube->addChild(cube2);
+	auto trchild = cube2->addComponent<Transform>();
+	trchild->setPosition(4,0, 0);
+	trchild->roll(30);
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params;
 	params.colShape = CUBE;
@@ -81,45 +86,40 @@ int main() {
 
 	cube->addComponent<Collider>(params);
 
-	// rigidbody
+	//// rigidbody
 	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
-	// rb->setGravity(Spyutils::Vector3(0, 0, 0));
-	// rb->addForce(Spyutils::Vector3(1000, 0, 0));
-	// rb->addForce(Spyutils::Vector3(1000, 1000, 0));
-	// rb->applyTorque(Spyutils::Vector3(10, 0,0));
-	// rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
-	////  Bucle principal
+
+
 	auto tr = cube->addComponent<Transform>();
-	cube->addComponent<ParticleSystem>("par", "particles/ExplosionB");
-	// tr->pitch(60);
-	tr->setPosition(Spyutils::Vector3(0, 4, 0));
-	tr->setScale(0.03);
+	tr->roll(40);
+	tr->translate(Spyutils::Vector3(2, 0, 0));
+	/*tr->setScale(0.03);
 	tr->pitch(30);
-	tr->translate(Spyutils::Vector3(0, 0, 0));
-	Entity* plano = new Entity(_grp_GENERAL);
-	auto tr1 = plano->addComponent<Transform>();
-	tr1->translate(Spyutils::Vector3(0, -3, 0));
-	tr1->setScale(0.2, 0.005, 0.2);
+	tr->translate(Spyutils::Vector3(0, 0, 0));*/
+	//Entity* plano = new Entity(_grp_GENERAL);
+	//auto tr1 = plano->addComponent<Transform>();
+	//tr1->translate(Spyutils::Vector3(0, -3, 0));
+	//tr1->setScale(0.2, 0.005, 0.2);
 
-	//  mesh renderer
-	plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	                                  "cube.mesh");
+	////  mesh renderer
+	//plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	//                                  "cube.mesh");
 
-	/* collider (antes de rigidbody siempre)*/
-	colliderParams params1;
-	params1.colShape = CUBE;
-	params1.height = .5f;
-	params1.width = 20;
-	params1.depth = 20;
-	params1.offsetY = 0;
-	params1.isTrigger = false;
+	///* collider (antes de rigidbody siempre)*/
+	//colliderParams params1;
+	//params1.colShape = CUBE;
+	//params1.height = .5f;
+	//params1.width = 20;
+	//params1.depth = 20;
+	//params1.offsetY = 0;
+	//params1.isTrigger = false;
 
-	plano->addComponent<Collider>(params1);
+	//plano->addComponent<Collider>(params1);
 
-	// rigidbody
-	auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
-	/*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
-	 rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
+	//// rigidbody
+	//auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
+	///*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
+	// rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
 
 	Entity* entidad = new Entity(_grp_GENERAL);
 	Transform* ent_tr = entidad->addComponent<Transform>();
@@ -159,7 +159,8 @@ int main() {
 			quit = true;
 		} else {
 			if(inputManager->isKeyDown('a')) {
-				cam_tr->translate(Spyutils::Vector3(-1, 0, 0));
+				/*cam_tr->translate(Spyutils::Vector3(-1, 0, 0));*/
+				tr->translate(Spyutils::Vector3(-1, 0, 0));
 			}
 			if(inputManager->isKeyDown('d')) {
 				cam_tr->translate(Spyutils::Vector3(1, 0, 0));
@@ -215,7 +216,7 @@ int main() {
 			Sleep(waitTime);
 	}
 	delete MusicInstance;
-	delete plano;
+//	delete plano;
 	delete cube;
 	delete camera;
 	delete timer;

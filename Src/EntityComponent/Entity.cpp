@@ -28,7 +28,8 @@ Separity::Entity* Separity::Entity::getParent() const {
 }
 
 void Separity::Entity::addChild( Entity* child) {
-	childs_.push_back(child); }
+	childs_.push_back(child);
+}
 
 void Separity::Entity::removeChild(const Entity* child) {
 	auto it = find(childs_.begin(), childs_.end(), child);

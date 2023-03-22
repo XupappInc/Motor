@@ -36,8 +36,14 @@ namespace Separity {
 		virtual ~Entity() {
 			// borramos todos los componentes disponibles
 			for(auto c : currCmps_) delete c;
+			if(parent)
+			delete parent;
+			for(auto ch : childs_) delete ch;
 		}
-
+		std::vector<Entity*> getChildren() const;
+		Entity* getParent() const;
+		void addChild(Entity* child);
+		void removeChild(const Entity* child);
 		/// <summary>
 		/// Cada entidad sabe el manager al que pertenece, usamos este metodos
 		/// para asignar el contexto
@@ -172,10 +178,7 @@ namespace Separity {
 
 			return cmps_[cId] != nullptr;
 		}
-		std::vector<Entity*> getChildren()const;
-		Entity* getParent() const;
-		void addChild(Entity* child);
-		void removeChild(const Entity* child);
+		
 		/// <summary>
 		/// Devuelve el grupo de la entidad
 		/// </summary>
