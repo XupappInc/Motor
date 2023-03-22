@@ -46,7 +46,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -148,13 +148,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\build\imgui-1.87\backends;$(SolutionDir)Dependencias\Ogre\build\imgui-1.87;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\cmake-imgui-master\build\Debug;$(SolutionDir)Dependencias\ImGui\src;$(SolutionDir)Dependencias\ImGui\src\backends;$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencias\Ogre\build\Dependencies\lib;$(SolutionDir)Dependencias\Ogre\build\lib\$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\RelWithDebInfo;$(SolutionDir)Dependencias\cmake-imgui-master\build\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>imguid.lib;SDL2.lib;SDL2main.lib;OgreMain_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

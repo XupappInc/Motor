@@ -1,0 +1,4 @@
+C:/Users/laura/Documents/Cole/3/2Cuatri/P3/Motor/Dependencias/cmake-imgui-master/build/CMakeFiles/imgui.dir
+C:/Users/laura/Documents/Cole/3/2Cuatri/P3/Motor/Dependencias/cmake-imgui-master/build/CMakeFiles/INSTALL.dir
+C:/Users/laura/Documents/Cole/3/2Cuatri/P3/Motor/Dependencias/cmake-imgui-master/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/laura/Documents/Cole/3/2Cuatri/P3/Motor/Dependencias/cmake-imgui-master/build/CMakeFiles/ZERO_CHECK.dir

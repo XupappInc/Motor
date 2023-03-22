@@ -7,6 +7,6 @@ Separity::Button::Button() {
 
 }
 
-bool Separity::Button::ButtonPressed() { return (ImGui::Button("HOLA")); }
+//bool Separity::Button::ButtonPressed() { return (ImGui::Button("HOLA")); }
 
 Separity::Button::~Button() {}

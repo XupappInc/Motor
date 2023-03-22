@@ -10,7 +10,7 @@ namespace Separity {
 		/// Constructora de botones
 		/// </summary>
 		Button();
-		bool ButtonPressed();
+	//	bool ButtonPressed();
 		/// <summary>
 		/// Destructora de botones
 		/// </summary>
