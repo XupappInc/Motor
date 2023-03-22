@@ -13,6 +13,7 @@
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "UIManager.h"
+#include "SceneManager.h"
 // #include "checkML.h"
 #include "Camera.h"
 #include "ParticleSystem.h"
@@ -48,6 +49,8 @@ int main() {
 	uiManager->initUi();
 	LuaManager* luaManager = Separity::LuaManager::getInstance();
 	//luaManager->loadScript();
+	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
+	sceneMenager->loadScene();
 
 	Entity* mono2 = new Entity(_grp_GENERAL);
 	auto tr2 = mono2->addComponent<Transform>();

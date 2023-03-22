@@ -71,8 +71,8 @@ bool Separity::SceneManager::loadScene() {
 				std::cout << "Soy una camara\n";
 			}
 		}
-		return false;
 	}
+	return false;
 }
 
 Separity::SceneManager::SceneManager() { 
