@@ -38,192 +38,193 @@ using namespace Separity;
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	RenderManager* renderManager = Separity::RenderManager::getInstance();
+	/*RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->init();
 	PhysicsManager* physManager = Separity::PhysicsManager::getInstance();
 	physManager->initWorld();
 	AudioManager* audManager = Separity::AudioManager::getInstance();
 	audManager->initAudioSystem();
 	UIManager* uiManager = Separity::UIManager::getInstance();
-	uiManager->initUi();
+	uiManager->initUi();*/
 	LuaManager* luaManager = Separity::LuaManager::getInstance();
-	//luaManager->loadScript();
+	luaManager->initLua();
+	luaManager->loadScript("prueba.lua");
 
-	Entity* mono2 = new Entity(_grp_GENERAL);
-	auto tr2 = mono2->addComponent<Transform>();
-	tr2->setPosition(Spyutils::Vector3(1000, 0, 0));
-	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
-	                                               string("codigoLyoko"), true);
-	audManager->playAudio(string("codigoLyoko"));
+	//Entity* mono2 = new Entity(_grp_GENERAL);
+	//auto tr2 = mono2->addComponent<Transform>();
+	//tr2->setPosition(Spyutils::Vector3(1000, 0, 0));
+	//auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
+	//                                               string("codigoLyoko"), true);
+	//audManager->playAudio(string("codigoLyoko"));
 
-	InputManager* inputManager = Separity::InputManager::getInstance();
-	Entity* cube = new Entity(_grp_GENERAL);
+	//InputManager* inputManager = Separity::InputManager::getInstance();
+	//Entity* cube = new Entity(_grp_GENERAL);
 
-	//  mesh renderer
-	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	                                 "cube.mesh");
-	auto luz = cube->addComponent<Light>(DIRECTIONAL_LIGHT);
-	/*luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
-	luz->setDirection(Spyutils::Vector3(-1, -1, 0));*/
-
-	// behaviour
-	cube->addComponent<Behaviour>("cubo");
-
-	/* collider (antes de rigidbody siempre)*/
-	colliderParams params;
-	params.colShape = CUBE;
-	params.height = 3;
-	params.width = 3;
-	params.depth = 3;
-	params.isTrigger = false;
-
-	cube->addComponent<Collider>(params);
-
-	// rigidbody
-	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
-	// rb->setGravity(Spyutils::Vector3(0, 0, 0));
-	// rb->addForce(Spyutils::Vector3(1000, 0, 0));
-	// rb->addForce(Spyutils::Vector3(1000, 1000, 0));
-	// rb->applyTorque(Spyutils::Vector3(10, 0,0));
-	// rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
-	////  Bucle principal
-	auto tr = cube->addComponent<Transform>();
-	cube->addComponent<ParticleSystem>("par", "particles/ExplosionB");
-	// tr->pitch(60);
-	tr->setPosition(Spyutils::Vector3(0, 4, 0));
-	tr->setScale(0.03);
-	tr->pitch(30);
-	tr->translate(Spyutils::Vector3(0, 0, 0));
-	Entity* plano = new Entity(_grp_GENERAL);
-	auto tr1 = plano->addComponent<Transform>();
-	tr1->translate(Spyutils::Vector3(0, -3, 0));
-	tr1->setScale(0.2, 0.005, 0.2);
-
-	//  mesh renderer
-	plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	                                  "cube.mesh");
-
-	// behaviour
-	plano->addComponent<Behaviour>("plano");
-
-	/* collider (antes de rigidbody siempre)*/
-	colliderParams params1;
-	params1.colShape = CUBE;
-	params1.height = .5f;
-	params1.width = 20;
-	params1.depth = 20;
-	params1.offsetY = 0;
-	params1.isTrigger = false;
-
-	plano->addComponent<Collider>(params1);
-
-	// rigidbody
-	auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
-	/*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
-	rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
-
-	Entity* camera = new Entity(_grp_GENERAL);
-	Transform* cam_tr = camera->addComponent<Transform>();
-	cam_tr->translate(Spyutils::Vector3(0, 0, 15));
-	Camera* cam_cam = camera->addComponent<Camera>();
-
-	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
-	uint32_t deltaTime = 0;
-
-	//
-	// Entity* sinbad = new Entity(_grp_GENERAL);
-	// auto tr4 = sinbad->addComponent<Transform>();
-	// tr4->setScale(2, 2, 2);
 	////  mesh renderer
-	// sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	//                                   "Sinbad.mesh");
-	// auto anim = sinbad->addComponent<Animator>();
-	// anim->setUpAnims();
-	//  behaviour
-	plano->addComponent<Behaviour>("plano");
+	//cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	//                                 "cube.mesh");
+	//auto luz = cube->addComponent<Light>(DIRECTIONAL_LIGHT);
+	///*luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
+	//luz->setDirection(Spyutils::Vector3(-1, -1, 0));*/
 
-	bool quit = false;
-	renderManager->initComponent();
-	physManager->initComponent();
-	uiManager->initComponent();
-	inputManager->initComponent();
-	audManager->initComponent();
-	while(!quit) {
-		timer->reset();
+	//// behaviour
+	//cube->addComponent<Behaviour>("cubo");
 
-		inputManager->update();
-		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
-			quit = true;
-		} else {
-			if(inputManager->isKeyDown('a')) {
-				cam_tr->translate(Spyutils::Vector3(-1, 0, 0));
-			}
-			if(inputManager->isKeyDown('d')) {
-				cam_tr->translate(Spyutils::Vector3(1, 0, 0));
-			}
-			if(inputManager->isKeyDown('w')) {
-				// cam_tr->translate(Spyutils::Vector3(0, 1, 0));
-				cam_cam->zoom(-3);
+	///* collider (antes de rigidbody siempre)*/
+	//colliderParams params;
+	//params.colShape = CUBE;
+	//params.height = 3;
+	//params.width = 3;
+	//params.depth = 3;
+	//params.isTrigger = false;
 
-				// std::cout << cam_cam->getZoom() << "\n";
-			}
-			if(inputManager->isKeyDown('s')) {
-				// cam_tr->translate(Spyutils::Vector3(0, -1, 0));
-				cam_cam->zoom(3);
-				// std::cout << cam_cam->getZoom() << "\n";
-			}
-			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
-				cam_tr->yaw(0.1);
-			}
-			if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
-				cam_tr->yaw(-0.1);
-			}
-			if(inputManager->isKeyDown(InputManager::ARROW_UP)) {
-				cam_tr->pitch(0.1);
-			}
-			if(inputManager->isKeyDown(InputManager::ARROW_DOWN)) {
-				cam_tr->pitch(-0.1);
-			}
-			if(inputManager->isKeyDown('c')) {
-				RenderManager::getInstance()->resizeWindow(1920, 1080);
-			}
-			if(inputManager->isKeyDown('x')) {
-				RenderManager::getInstance()->fullScreen(true);
-			}
-			if(inputManager->isKeyDown('z')) {
-				RenderManager::getInstance()->fullScreen(false);
-			}
-			if(inputManager->isKeyDown('o')) {
-				tr->translate(Spyutils::Vector3(0, 10, 0));
-			}
-		}
+	//cube->addComponent<Collider>(params);
 
-		physManager->update(deltaTime);
-		renderManager->update();
-		renderManager->render();
-		audManager->update();
-		uiManager->update();
+	//// rigidbody
+	//auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
+	//// rb->setGravity(Spyutils::Vector3(0, 0, 0));
+	//// rb->addForce(Spyutils::Vector3(1000, 0, 0));
+	//// rb->addForce(Spyutils::Vector3(1000, 1000, 0));
+	//// rb->applyTorque(Spyutils::Vector3(10, 0,0));
+	//// rb->setAngularVelocity(Spyutils::Vector3(0.1, 0, 0));
+	//////  Bucle principal
+	//auto tr = cube->addComponent<Transform>();
+	//cube->addComponent<ParticleSystem>("par", "particles/ExplosionB");
+	//// tr->pitch(60);
+	//tr->setPosition(Spyutils::Vector3(0, 4, 0));
+	//tr->setScale(0.03);
+	//tr->pitch(30);
+	//tr->translate(Spyutils::Vector3(0, 0, 0));
+	//Entity* plano = new Entity(_grp_GENERAL);
+	//auto tr1 = plano->addComponent<Transform>();
+	//tr1->translate(Spyutils::Vector3(0, -3, 0));
+	//tr1->setScale(0.2, 0.005, 0.2);
 
-		deltaTime = timer->currTime();
-		int waitTime = FRAMETIME - deltaTime;
+	////  mesh renderer
+	//plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	//                                  "cube.mesh");
 
-		if(waitTime > 0)
-			Sleep(waitTime);
-	}
-	delete mono2;
-	delete plano;
-	delete cube;
-	delete camera;
-	delete timer;
+	//// behaviour
+	//plano->addComponent<Behaviour>("plano");
 
-	renderManager->saveConfiguration();
-	renderManager->closedown();
+	///* collider (antes de rigidbody siempre)*/
+	//colliderParams params1;
+	//params1.colShape = CUBE;
+	//params1.height = .5f;
+	//params1.width = 20;
+	//params1.depth = 20;
+	//params1.offsetY = 0;
+	//params1.isTrigger = false;
 
-	renderManager->close();
-	uiManager->close();
-	inputManager->close();
-	audManager->close();
-	physManager->close();
+	//plano->addComponent<Collider>(params1);
+
+	//// rigidbody
+	//auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
+	///*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
+	//rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
+
+	//Entity* camera = new Entity(_grp_GENERAL);
+	//Transform* cam_tr = camera->addComponent<Transform>();
+	//cam_tr->translate(Spyutils::Vector3(0, 0, 15));
+	//Camera* cam_cam = camera->addComponent<Camera>();
+
+	//Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
+	//uint32_t deltaTime = 0;
+
+	////
+	//// Entity* sinbad = new Entity(_grp_GENERAL);
+	//// auto tr4 = sinbad->addComponent<Transform>();
+	//// tr4->setScale(2, 2, 2);
+	//////  mesh renderer
+	//// sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	////                                   "Sinbad.mesh");
+	//// auto anim = sinbad->addComponent<Animator>();
+	//// anim->setUpAnims();
+	////  behaviour
+	//plano->addComponent<Behaviour>("plano");
+
+	//bool quit = false;
+	//renderManager->initComponent();
+	//physManager->initComponent();
+	//uiManager->initComponent();
+	//inputManager->initComponent();
+	//audManager->initComponent();
+	//while(!quit) {
+	//	timer->reset();
+
+	//	inputManager->update();
+	//	if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
+	//		quit = true;
+	//	} else {
+	//		if(inputManager->isKeyDown('a')) {
+	//			cam_tr->translate(Spyutils::Vector3(-1, 0, 0));
+	//		}
+	//		if(inputManager->isKeyDown('d')) {
+	//			cam_tr->translate(Spyutils::Vector3(1, 0, 0));
+	//		}
+	//		if(inputManager->isKeyDown('w')) {
+	//			// cam_tr->translate(Spyutils::Vector3(0, 1, 0));
+	//			cam_cam->zoom(-3);
+
+	//			// std::cout << cam_cam->getZoom() << "\n";
+	//		}
+	//		if(inputManager->isKeyDown('s')) {
+	//			// cam_tr->translate(Spyutils::Vector3(0, -1, 0));
+	//			cam_cam->zoom(3);
+	//			// std::cout << cam_cam->getZoom() << "\n";
+	//		}
+	//		if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
+	//			cam_tr->yaw(0.1);
+	//		}
+	//		if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
+	//			cam_tr->yaw(-0.1);
+	//		}
+	//		if(inputManager->isKeyDown(InputManager::ARROW_UP)) {
+	//			cam_tr->pitch(0.1);
+	//		}
+	//		if(inputManager->isKeyDown(InputManager::ARROW_DOWN)) {
+	//			cam_tr->pitch(-0.1);
+	//		}
+	//		if(inputManager->isKeyDown('c')) {
+	//			RenderManager::getInstance()->resizeWindow(1920, 1080);
+	//		}
+	//		if(inputManager->isKeyDown('x')) {
+	//			RenderManager::getInstance()->fullScreen(true);
+	//		}
+	//		if(inputManager->isKeyDown('z')) {
+	//			RenderManager::getInstance()->fullScreen(false);
+	//		}
+	//		if(inputManager->isKeyDown('o')) {
+	//			tr->translate(Spyutils::Vector3(0, 10, 0));
+	//		}
+	//	}
+
+	//	physManager->update(deltaTime);
+	//	renderManager->update();
+	//	renderManager->render();
+	//	audManager->update();
+	//	uiManager->update();
+
+	//	deltaTime = timer->currTime();
+	//	int waitTime = FRAMETIME - deltaTime;
+
+	//	if(waitTime > 0)
+	//		Sleep(waitTime);
+	//}
+	//delete mono2;
+	//delete plano;
+	//delete cube;
+	//delete camera;
+	//delete timer;
+
+	//renderManager->saveConfiguration();
+	//renderManager->closedown();
+
+	//renderManager->close();
+	//uiManager->close();
+	//inputManager->close();
+	//audManager->close();
+	//physManager->close();
 
 	return 0;
 }

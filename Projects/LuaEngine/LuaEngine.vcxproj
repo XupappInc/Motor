@@ -27,9 +27,6 @@
     <ClInclude Include="..\..\Src\LuaEngine\Behaviour.h" />
     <ClInclude Include="..\..\Src\LuaEngine\LuaManager.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Prueba.lua" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
