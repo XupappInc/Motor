@@ -3,6 +3,8 @@
 #include "Behaviour.h"
 #include "lua.hpp"
 #include "LuaBridge/LuaBridge.h"
+#include "Entity.h"
+#include "Transform.h"
 
 #include <iostream>
 
@@ -26,12 +28,28 @@ void Separity::LuaManager::initLua() {
 	    .addConstructor<void (*)()>()
 	    .endClass();
 
+	registerClasses();
+
 	//// Creamos una instancia de Behaviour y la pasamos al script
 	//Behaviour* behaviour = new Behaviour();
 	//luabridge::push(L_, behaviour);
 	//lua_setglobal(L_, "behaviour");
 
 	//delete behaviour;
+}
+
+void Separity::LuaManager::registerClasses() {
+	/*luabridge::getGlobalNamespace(L_)
+	    .beginClass<Entity>("Entity")
+	    .addFunction("getComponent", &Entity::getComponent)
+	    .endClass();*/
+	/*luabridge::getGlobalNamespace(L_)
+	    .beginClass<Transform>("Transform")
+	    .addFunction("translate", &Transform::translate)
+	    .addFunction("pitch", &Transform::pitch)
+	    .addFunction("yaw", &Transform::yaw)
+	    .addFunction("roll", &Transform::roll)
+	    .endClass();*/
 }
 
 void Separity::LuaManager::loadScript(std::string name) {

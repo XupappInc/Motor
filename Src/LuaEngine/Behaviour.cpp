@@ -3,7 +3,7 @@
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 
-Separity::Behaviour::Behaviour() : behaviourLua_() {}
+Separity::Behaviour::Behaviour() : behaviourLua_(nullptr) {}
 
 Separity::Behaviour::Behaviour(luabridge::LuaRef* behaviourLua)
     : behaviourLua_(behaviourLua) {}

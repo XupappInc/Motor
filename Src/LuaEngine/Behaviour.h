@@ -10,6 +10,7 @@ namespace luabridge
 }
 
 namespace Separity {
+	class RigidBody;
 	class Behaviour : public Component 
 	{
 		public:
