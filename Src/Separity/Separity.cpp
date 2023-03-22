@@ -48,7 +48,9 @@ int main() {
 	UIManager* uiManager = Separity::UIManager::getInstance();
 	uiManager->initUi();
 	LuaManager* luaManager = Separity::LuaManager::getInstance();
-	//luaManager->loadScript();
+	luaManager->initLua();
+	luaManager->loadScript("prueba.lua");
+
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene();
 
@@ -67,10 +69,7 @@ int main() {
 	                                 "cube.mesh");
 	auto luz = cube->addComponent<Light>(DIRECTIONAL_LIGHT);
 	/*luz->setDiffuse(Spyutils::Vector3(1, 0, 1));
-	luz->setDirection(Spyutils::Vector3(-1, -1, 0));*/
-
-	// behaviour
-	cube->addComponent<Behaviour>("cubo");
+	 luz->setDirection(Spyutils::Vector3(-1, -1, 0));*/
 
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params;
@@ -106,9 +105,6 @@ int main() {
 	plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                  "cube.mesh");
 
-	// behaviour
-	plano->addComponent<Behaviour>("plano");
-
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params1;
 	params1.colShape = CUBE;
@@ -123,7 +119,7 @@ int main() {
 	// rigidbody
 	auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
 	/*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
-	rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
+	 rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
 
 	Entity* entidad = new Entity(_grp_GENERAL);
 	Transform* ent_tr = entidad->addComponent<Transform>();
@@ -148,8 +144,6 @@ int main() {
 	//                                   "Sinbad.mesh");
 	// auto anim = sinbad->addComponent<Animator>();
 	// anim->setUpAnims();
-	//  behaviour
-	plano->addComponent<Behaviour>("plano");
 
 	bool quit = false;
 	renderManager->initComponent();
@@ -207,6 +201,7 @@ int main() {
 			}
 		}
 
+		luaManager->update();
 		physManager->update(deltaTime);
 		renderManager->update();
 		renderManager->render();
@@ -233,6 +228,7 @@ int main() {
 	inputManager->close();
 	audManager->close();
 	physManager->close();
+	luaManager->close();
 
 	return 0;
 }
