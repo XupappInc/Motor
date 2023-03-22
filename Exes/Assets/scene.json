@@ -54,7 +54,7 @@
                     1.0
                 ]
             },
-            "camera": 1
+            "camera": ""
         },
         "Sphere": {
             "transform": {
