@@ -33,6 +33,9 @@
     <ProjectReference Include="..\EntityComponent\EntityComponent.vcxproj">
       <Project>{329ebb57-bbe0-45ce-861b-a6d9a3d28279}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\RenderEngine\RenderEngine.vcxproj">
+      <Project>{8345d80d-3b1b-47fa-b148-8e85f601fa3c}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\SeparityUtils\SeparityUtils.vcxproj">
       <Project>{7731a740-4db7-4577-b8ca-b5379736c8ec}</Project>
     </ProjectReference>
