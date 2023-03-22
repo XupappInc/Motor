@@ -44,12 +44,11 @@ Separity::AudioManager::~AudioManager() {
 }
 
 void Separity::AudioManager::initAudioSystem() {
-
 	// Create an instance of the FMOD system
 	FMODErrorChecker(FMOD::System_Create(&system_));
 	// Initialize the FMOD system with 32 channels and normal settings
 	FMODErrorChecker(system_->init(32, FMOD_3D, 0));
-
+	FMODErrorChecker(system_->set3DSettings(1.0f, 1.0f, 1.0f));
 	// Set the sound parameters
 	const float sampleRate = 44100.0f;
 	const float duration = 2.0f;     // in seconds
@@ -77,7 +76,8 @@ Separity::AudioManager* Separity::AudioManager::getInstance() {
 	return static_cast<AudioManager*>(instance());
 }
 
-void Separity::AudioManager::playAudio(std::string audioName) {
+void Separity::AudioManager::playAudio(std::string audioName, int minDistance,
+                                       int maxDistance) {
 	FMOD::Channel* temporalChannel = nullptr;
 	FMOD::Sound* temporalSound = nullptr;
 	// Comprueba si est� en la lista de sonidos o de m�sica para coger dicho
@@ -98,9 +98,13 @@ void Separity::AudioManager::playAudio(std::string audioName) {
 			break;
 		}
 	}
-
+	// Se pone el modo del canal a false porque se pausa de base, y se pone el
+	// modo a FMOD_3D_LINEARROLLOFF para que el sonido sea inversamente
+	// proporcional a la distancia a la que se encuentra hasta maxDistance hasta
+	// volumen 0
 	temporalChannel->setPaused(false);
-	temporalChannel->set3DMinMaxDistance(10.0f, 20.0f);
+	temporalChannel->setMode(FMOD_3D_LINEARROLLOFF);
+	temporalChannel->set3DMinMaxDistance(1.0f, 100.0f);
 	channels_->emplace(audioName, temporalChannel);
 }
 
@@ -133,23 +137,20 @@ void Separity::AudioManager::update() {
 
 		if(au->getPlayingState()) {
 			if(channels_->count(au->getAudioName())) {
-				FMOD_VECTOR* pos =
-				    new FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
-				                   tr->getPosition().z};
-				FMOD_VECTOR auxiliarFMOD_VECTOR;
-				
+				FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
+				                 tr->getPosition().z};
+				//Busca cada canal con dicho nombre y le asigna la posición de su transform
 				FMOD::Channel* c = channels_->find(au->getAudioName())->second;
-				FMODErrorChecker(system_->set3DListenerAttributes(0, pos, nullptr, nullptr, nullptr));
-				FMODErrorChecker(c->set3DAttributes(pos, nullptr));
-				int l = 1242;
-				FMODErrorChecker(system_->get3DListenerAttributes(l, &auxiliarFMOD_VECTOR, nullptr, nullptr, nullptr));
-				c->get3DAttributes(&auxiliarFMOD_VECTOR, nullptr);
-				delete pos;
+				
+				FMODErrorChecker(c->set3DAttributes(&pos, nullptr));
 			}
 		}
 
 		/*tr.assert(tr != nullptr);*/
 	}
+	FMOD_VECTOR posListener = FMOD_VECTOR {0, 0, 0};
+	FMODErrorChecker(system_->set3DListenerAttributes(0, &posListener, nullptr,
+	                                                  nullptr, nullptr));
 	// Se borran aqu� porque dentro del otro for se siguen comprobando cada
 	// canal, no est�n ordenados, si borras uno no sabes cual vas a comprobar
 	// despu�s adem�s de acabar comprobando canales fueras del rango del for

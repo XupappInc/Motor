@@ -36,9 +36,13 @@ namespace Separity {
 		/// </summary>
 		void initAudioSystem();
 		/// <summary>
-		/// Reproduce un sonido "sound" ya guardado creado en "createSound"
+		/// Reproduce un sonido "sound" ya guardado creado en "createSound" con
+		/// un audioName, y se pone una minDistance y una maxDistance
 		/// </summary>
-		void playAudio(std::string audioName);
+		/// <param name="audioName"></param>
+		/// <param name="minDistance"></param>
+		/// <param name="maxDistance"></param>
+		void playAudio(std::string audioName, int minDistance, int maxDistance);
 		/// <summary>
 		/// Para la reproducción de todos los canales
 		/// sistema

@@ -57,7 +57,7 @@ int main() {
 	tr2->setPosition(Spyutils::Vector3(1000, 0, 0));
 	auto musica = mono2->addComponent<AudioSource>("Assets//theme.mp3",
 	                                               string("codigoLyoko"), true);
-	audManager->playAudio(string("codigoLyoko"));
+	audManager->playAudio(string("codigoLyoko"), 1.0f, 100.0f);
 
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	Entity* cube = new Entity(_grp_GENERAL);
