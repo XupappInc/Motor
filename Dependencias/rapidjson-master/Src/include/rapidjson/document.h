@@ -2482,7 +2482,7 @@ private:
 };
 
 //! GenericValue with UTF8 encoding
-typedef GenericValue<UTF8<> > Value;
+typedef GenericValue<UTF8<>> Value;
 
 ///////////////////////////////////////////////////////////////////////////////
 // GenericDocument 
