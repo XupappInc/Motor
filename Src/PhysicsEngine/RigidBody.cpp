@@ -139,15 +139,16 @@ void Separity::RigidBody::preUpdate() {
 
 	btVector3 btPos = btVector3(pos.x, pos.y, pos.z);
 
-	// Definir la matriz de rotación para convertir los ejes
-	btMatrix3x3 rotationMatrix(1, 0, 0, 0, 0, -1, 0, 1, 0);
+	//// Definir la matriz de rotación para convertir los ejes
+	//btMatrix3x3 rotationMatrix(1, 0, 0, 0, 0, -1, 0, 1, 0);
 
-	// Rotar el quaternion personalizado
-	btVector3 bulletAxis(quat.x, quat.y, quat.z);
+	//// Rotar el quaternion personalizado
+	//btVector3 bulletAxis(quat.x, quat.y, quat.z);
 
-	bulletAxis = rotationMatrix * bulletAxis;
+	//bulletAxis = rotationMatrix * bulletAxis;
 
-	btQuaternion btQ = btQuaternion(bulletAxis, quat.w);
+	//btQuaternion btQ = btQuaternion(bulletAxis, quat.w);
+	btQuaternion btQ = btQuaternion(quat.x,quat.y,quat.z, quat.w);
 
 	rb_->getWorldTransform().setOrigin(btPos);
 	rb_->getWorldTransform().setRotation(btQ);

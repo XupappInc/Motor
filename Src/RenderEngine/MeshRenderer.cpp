@@ -30,13 +30,10 @@ void Separity::MeshRenderer::render() {
 
 	meshRenderer_->setPosition(tr->getPosition().x, tr->getPosition().y,
 	                           tr->getPosition().z);
-	Ogre::Matrix3 matrix;
-	matrix.FromEulerAnglesYXZ(
-	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().y)),
-	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().x)),
-	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().z)));
-	Ogre::Quaternion rot(matrix);
-	meshRenderer_->setOrientation(rot);
+
+	Spyutils::spyQuaternion quat = tr->getRotation();
+	Ogre::Quaternion ogreQuat(quat.x, quat.y, quat.z, quat.w);
+	meshRenderer_->setOrientation(ogreQuat);
 
 	meshRenderer_->setScale(tr->getScale().x, tr->getScale().y,
 	                        tr->getScale().z);
