@@ -15,7 +15,7 @@ namespace Separity {
 		public:
 		void initLua();
 		void registerClasses();
-		void loadScript(std::string name);
+		void loadScript(std::string name, Entity* ent);
 
 		static LuaManager* getInstance();
 		LuaManager();

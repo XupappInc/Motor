@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 #include "Vector.h"
+#include <iostream>
 
 #include "spyMath.h"
 using namespace std;
@@ -47,8 +48,8 @@ void Separity::Transform::setPosition(float x, float y, float z) {
 }
 
 void Separity::Transform::translate(Spyutils::Vector3 translation) {
-	//position_ += other;
-	Spyutils::Vector3 posicionPadre = position_;
+	// position_ += other;
+	/*Spyutils::Vector3 posicionPadre = position_;
 	vector<vector<float>> rotationMatrix = calculateRotationMatrix(rotation_);
 
 	float tx_local = translation[0] * rotationMatrix[0][0] +
@@ -62,13 +63,14 @@ void Separity::Transform::translate(Spyutils::Vector3 translation) {
 	                  translation[2] * rotationMatrix[2][2];
 
 	Spyutils::Vector3 newPosition = {
-	    position_[0] + tx_local, position_[1] + ty_local, position_[2] + tz_local};
-	position_ = newPosition;
+	    position_[0] + tx_local, position_[1] + ty_local, position_[2] +
+	tz_local}; position_ = newPosition;
 
 	for(auto child : ent_->getChildren()) {
-		auto tr = child->getComponent<Transform>();
-		tr->setPosition(tr->getPosition() + (newPosition - posicionPadre));
-	}
+	    auto tr = child->getComponent<Transform>();
+	    tr->setPosition(tr->getPosition() + (newPosition - posicionPadre));
+	}*/
+	std::cout << "translate de transform" << std::endl;
 }
 
 Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }

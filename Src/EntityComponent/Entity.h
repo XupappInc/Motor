@@ -94,24 +94,24 @@ namespace Separity {
 			Manager* componentManager = nullptr;
 			constexpr cmpType_type cType = T::type;
 			switch(cType) {
-				case _RENDER:
-					componentManager = Separity::RenderManager::getInstance();
-					componentManager->addComponent(c);
-					break;
-				case _PHYSICS:
-					componentManager = Separity::PhysicsManager::getInstance();
-					componentManager->addComponent(c);
-					break;
+				//case _RENDER:
+				//	componentManager = Separity::RenderManager::getInstance();
+				//	componentManager->addComponent(c);
+				//	break;
+				//case _PHYSICS:
+				//	componentManager = Separity::PhysicsManager::getInstance();
+				//	componentManager->addComponent(c);
+				//	break;
 				///*case _INPUT:
 				//	componentManager = InputManager::getInstance();
 				//	break;
 				//case _UI:
 				//	componentManager = UIManager::getInstance();
 				//	break;*/
-				case _SOUND:
-					componentManager = Separity::AudioManager::getInstance();
-					componentManager->addComponent(c);
-					break;
+				//case _SOUND:
+				//	componentManager = Separity::AudioManager::getInstance();
+				//	componentManager->addComponent(c);
+				//	break;
 				/*case _SCRIPT:
 					componentManager = LuaManager::getInstance();
 					break;*/
