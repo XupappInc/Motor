@@ -22,6 +22,7 @@ inline Separity::AudioManager::AudioManager() {
 	channels_ = new std::unordered_map<std::string, FMOD::Channel*>();
 	soundGroup_ = nullptr;
 	musicGroup_ = nullptr;
+	firstListener = true;
 }
 
 Separity::AudioManager::~AudioManager() {
@@ -49,7 +50,6 @@ void Separity::AudioManager::initAudioSystem() {
 	FMODErrorChecker(FMOD::System_Create(&system_));
 	// Initialize the FMOD system with 32 channels and normal settings
 	FMODErrorChecker(system_->init(32, FMOD_3D, 0));
-	FMODErrorChecker(system_->set3DNumListeners(0));
 	FMODErrorChecker(system_->set3DSettings(1.0f, 1.0f, 1.0f));
 	// Set the sound parameters
 	const float sampleRate = 44100.0f;
