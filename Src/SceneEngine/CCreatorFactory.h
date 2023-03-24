@@ -1,17 +1,9 @@
 #pragma once
 
-#include "CCreator.h"
-
 #include <iostream>
 #include <unordered_map>
 
-
-
-//namespace rapidjson {
-//	class Value;
-//}
-
-
+class lua_State;
 
 namespace Separity {
 
@@ -24,8 +16,8 @@ namespace Separity {
 			CCreatorFactory();
 			~CCreatorFactory();
 
-			//void addComponent(std::string CName, const rapidjson::Value& obj,
-		 //                     Entity* ent);
+			void addComponent(std::string CName, lua_State* L,
+		                      Separity::Entity* ent);
 
 			void add(std::string CName, CCreator* CCreator);
 

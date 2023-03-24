@@ -19,10 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\SceneEngine\CCreatorFactory.cpp" />
+    <ClCompile Include="..\..\Src\SceneEngine\MeshRendererCreator.cpp" />
     <ClCompile Include="..\..\Src\SceneEngine\SceneManager.cpp" />
+    <ClCompile Include="..\..\Src\SceneEngine\TransformCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\SceneEngine\CCreator.h" />
+    <ClInclude Include="..\..\Src\SceneEngine\CCreatorFactory.h" />
+    <ClInclude Include="..\..\Src\SceneEngine\MeshRendererCreator.h" />
     <ClInclude Include="..\..\Src\SceneEngine\SceneManager.h" />
+    <ClInclude Include="..\..\Src\SceneEngine\TransformCreator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

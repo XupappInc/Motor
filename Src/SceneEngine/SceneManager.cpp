@@ -7,10 +7,17 @@
 #include <fstream>
 
 #include <lua.hpp>
+#include <LuaBridge/LuaBridge.h>
+
+
+
 
 #include "Entity.h"
 #include "Transform.h"
 #include "MeshRenderer.h"
+
+#include "TransformCreator.h"
+#include "MeshRendererCreator.h"
 
 #include "RenderManager.h"
 #include "PhysicsManager.h"
@@ -52,6 +59,7 @@ bool Separity::SceneManager::loadScene() {
 			const rapidjson::Value& obj = c->value;
 
 			
+			
 
 			if(cmp_name == "transform") {
 				//Accede a la posición, rotación y escala
@@ -86,12 +94,7 @@ bool Separity::SceneManager::loadScene() {
 
 			else if(cmp_name == "meshRenderer") {
 
-				std::string s = obj.GetString();
-				s += ".mesh";
-
-				MeshRenderer* mesh = entity->addComponent<MeshRenderer>(
-				    Separity::RenderManager::getInstance()->getSceneManager(),
-				    s);				
+		
 			}
 		}
 	}
@@ -99,5 +102,59 @@ bool Separity::SceneManager::loadScene() {
 	return false;
 }
 
+bool Separity::SceneManager::loadLuaScene() { 
+
+	lua_State* L = luaL_newstate();
+
+	int scriptLoadStatus = luaL_dofile(L, "Assets/scene.lua");
+
+	// define error reporter for any Lua error
+	if(scriptLoadStatus != 0) {
+		std::cerr << "[LUA ERROR] " << lua_tostring(L, -1) << std::endl;
+
+		// remove error message from Lua state
+		lua_pop(L, 1);
+	} 
+	else {
+
+		std::cout << "Entidades:\n";
+		lua_getglobal(L, "Entities");
+
+		lua_pushnil(L); 
+		while(lua_next(L, -2)) {
+
+			if(lua_isstring(L, -2)) {
+				const char* entity = lua_tolstring(L, -2, NULL);
+				std::cout << " " << entity << ":\n";
+			}
+
+			if(lua_istable(L, -1)) {
+
+				Entity* entity = new Entity(_grp_GENERAL);
+
+				lua_pushnil(L);  // Poner la primera key en la pila
+				while(lua_next(L, -2)) {
+				
+					if(lua_isstring(L, -2)) {
+						const char* component = lua_tolstring(L, -2, NULL);
+						std::cout << "  " << component << "\n";
+
+						factory_.addComponent(component, L, entity);
+					}
+					lua_pop(L, 1);
+				}
+			}
+			lua_pop(L, 1);
+		}		
+	}
+
+	lua_close(L);
+
+	return false; 
+}
+
 Separity::SceneManager::SceneManager() { 
+	factory_ = CCreatorFactory(); 
+	factory_.add(std::string("transform"), new TransformCreator());
+	factory_.add(std::string("meshRenderer"), new MeshRendererCreator());
 }

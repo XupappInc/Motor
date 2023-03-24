@@ -1,5 +1,7 @@
 #include "CCreatorFactory.h"
 
+#include <iostream>
+
 #include "Component.h"
 #include "CCreator.h"
 
@@ -14,12 +16,15 @@ Separity::CCreatorFactory::~CCreatorFactory() {
 		delete cc.second;
 }
 
-//void Separity::CCreatorFactory::addComponent(std::string CName,
-//                                             const rapidjson::Value& obj,
-//                                             Entity* ent) {
-//
-//	CCreators_[CName]->addComponent(CName, obj, ent);
-//}
+void Separity::CCreatorFactory::addComponent(std::string CName, lua_State* L,
+                                             Separity::Entity* ent) {
+
+	if (!CCreators_.count(CName)) {
+		std::cerr << "Te falta el Creador de " << CName << " por incluir en la Factory" << "\n";
+	} else {
+		CCreators_[CName]->addComponent(L, ent);
+	}	
+}
 
 
 void Separity::CCreatorFactory::add(std::string CName, CCreator* CCreator) {

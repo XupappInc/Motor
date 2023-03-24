@@ -52,7 +52,7 @@ int main() {
 	luaManager->loadScript("prueba.lua");
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
-	sceneMenager->loadScene();
+	sceneMenager->loadLuaScene();
 
 	Entity* MusicInstance = new Entity(_grp_GENERAL);
 	auto tr2 = MusicInstance->addComponent<Transform>();

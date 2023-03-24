@@ -2,9 +2,14 @@
 #ifndef __SCENE_MANAGER_H__
 #define __SCENE_MANAGER_H__
 
+
+
 #include "Manager.h"
 
+#include "CCreatorFactory.h"
+
 namespace Separity {
+
 	class SceneManager : public Separity::Manager,
 	                     public Singleton<Separity::SceneManager> {
 		friend Singleton<Separity::SceneManager>;
@@ -19,9 +24,14 @@ namespace Separity {
 		virtual ~SceneManager() override;
 
 		bool loadScene();
+		bool loadLuaScene();
 
 		protected:
 		SceneManager();
+
+		private:
+
+		CCreatorFactory factory_;
 
 
 	};
