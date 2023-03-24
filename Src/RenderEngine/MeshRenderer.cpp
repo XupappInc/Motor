@@ -32,7 +32,7 @@ void Separity::MeshRenderer::render() {
 	                           tr->getPosition().z);
 
 	Spyutils::spyQuaternion quat = tr->getRotation();
-	Ogre::Quaternion ogreQuat(quat.x, quat.y, quat.z, quat.w);
+	Ogre::Quaternion ogreQuat(quat.w, quat.x, quat.y, quat.z);
 	meshRenderer_->setOrientation(ogreQuat);
 
 	meshRenderer_->setScale(tr->getScale().x, tr->getScale().y,
