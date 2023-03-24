@@ -3,16 +3,22 @@
 #define BEHAVIOUR_H
 
 #include <Component.h>
-#include <string>
+
+namespace luabridge 
+{
+	class LuaRef;
+}
 
 namespace Separity {
+	class RigidBody;
 	class Behaviour : public Component 
 	{
 		public:
 		__CMPTYPE_DECL__(Separity::_SCRIPT)
 		__CMPID_DECL__(Separity::_BEHAVIOUR)
-			
-		Behaviour(std::string name = "defaultName");
+
+		Behaviour();
+		Behaviour(luabridge::LuaRef* behaviourLua);
 		~Behaviour();
 
 		virtual void update() override;
@@ -23,7 +29,7 @@ namespace Separity {
 		virtual void onCollisionStay(Entity* other);
 
 		protected:
-		std::string name_;
+		luabridge::LuaRef* behaviourLua_;
 	};
 }  // namespace Separity
 
