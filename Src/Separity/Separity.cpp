@@ -210,7 +210,7 @@ int main() {
 			}
 			if(inputManager->isKeyDown('o')) {
 				tr->translate(Spyutils::Vector3(0, 10, 0));
-				tr->setRotation(80, 45, 20);
+				tr->setRotation(80, 45, 20, 0);
 			}
 		}
 

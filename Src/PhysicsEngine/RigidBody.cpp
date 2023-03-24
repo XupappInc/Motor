@@ -165,10 +165,9 @@ void Separity::RigidBody::update() {
 	btScalar x, y, z;
 	btVector3 pos;
 	pos = rb_->getWorldTransform().getOrigin();
-	rb_->getWorldTransform().getRotation().getEulerZYX(z, y, x);
+	btQuaternion s=rb_->getWorldTransform().getRotation();
 	tr_->setPosition(pos.x(), pos.y(), pos.z());
-	tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
-	                 Spyutils::Math::toDegrees(z));
+	tr_->setRotation(s.x(),s.y(),s.z(),s.w());
 }
 
 void Separity::RigidBody::setDamping(float linear, float angular) {
