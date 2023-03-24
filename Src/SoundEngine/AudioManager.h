@@ -2,12 +2,16 @@
 #ifndef __AUDIO_MANAGER_H__
 #define __AUDIO_MANAGER_H__
 #include "Manager.h"
-#include "fmod.hpp"
-#include "fmod_errors.h"
 
 #include <iostream>
 #include <unordered_map>
-
+#include "fmod.hpp"
+namespace FMOD {
+	class Sound;
+	class System;
+	class SoundGroup;
+	class Channel;
+}  // namespace FMOD
 namespace Separity {
 	class AudioManager : public Separity::Manager,
 	                     public Singleton<Separity::AudioManager> {
@@ -93,6 +97,7 @@ namespace Separity {
 		FMOD::SoundGroup* musicGroup_;
 		FMOD::SoundGroup* soundGroup_;
 		bool firstListener;
+
 		private:
 		float* buffer_;
 	};
