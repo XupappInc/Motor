@@ -3,6 +3,7 @@
 //
 
 #include "Animator.h"
+#include "AudioListener.h"
 #include "AudioManager.h"
 #include "Camera.h"
 #include "Entity.h"
@@ -12,8 +13,8 @@
 #include "ParticleSystem.h"
 #include "PhysicsManager.h"
 #include "RenderManager.h"
-#include "UIManager.h"
 #include "SceneManager.h"
+#include "UIManager.h"
 // #include "checkML.h"
 #include "Camera.h"
 #include "ParticleSystem.h"
@@ -56,9 +57,9 @@ int main() {
 
 	Entity* MusicInstance = new Entity(_grp_GENERAL);
 	auto tr2 = MusicInstance->addComponent<Transform>();
-	tr2->setPosition(Spyutils::Vector3(1000, 0, 0));
-	auto musica = MusicInstance->addComponent<AudioSource>("Assets//theme.mp3",
-	                                               string("codigoLyoko"), true);
+	tr2->setPosition(Spyutils::Vector3(10, 0, 0));
+	auto musica = MusicInstance->addComponent<AudioSource>(
+	    "Assets//theme.mp3", string("codigoLyoko"), true);
 	audManager->playAudio(string("codigoLyoko"), 1.0f, 100.0f);
 
 	InputManager* inputManager = Separity::InputManager::getInstance();
@@ -71,10 +72,10 @@ int main() {
 
 	Entity* cube2 = new Entity(_grp_GENERAL);
 	cube2->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	                                 "cube.mesh");
+	                                  "cube.mesh");
 	cube->addChild(cube2);
 	auto trchild = cube2->addComponent<Transform>();
-	trchild->setPosition(4,0, 0);
+	trchild->setPosition(4, 0, 0);
 	trchild->roll(30);
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params;
@@ -87,8 +88,7 @@ int main() {
 	cube->addComponent<Collider>(params);
 
 	//// rigidbody
-	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
-
+	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10.0f);
 
 	auto tr = cube->addComponent<Transform>();
 	tr->roll(40);
@@ -96,28 +96,28 @@ int main() {
 	/*tr->setScale(0.03);
 	tr->pitch(30);
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/
-	//Entity* plano = new Entity(_grp_GENERAL);
-	//auto tr1 = plano->addComponent<Transform>();
-	//tr1->translate(Spyutils::Vector3(0, -3, 0));
-	//tr1->setScale(0.2, 0.005, 0.2);
+	// Entity* plano = new Entity(_grp_GENERAL);
+	// auto tr1 = plano->addComponent<Transform>();
+	// tr1->translate(Spyutils::Vector3(0, -3, 0));
+	// tr1->setScale(0.2, 0.005, 0.2);
 
 	////  mesh renderer
-	//plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	//                                  "cube.mesh");
+	// plano->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	//                                   "cube.mesh");
 
 	///* collider (antes de rigidbody siempre)*/
-	//colliderParams params1;
-	//params1.colShape = CUBE;
-	//params1.height = .5f;
-	//params1.width = 20;
-	//params1.depth = 20;
-	//params1.offsetY = 0;
-	//params1.isTrigger = false;
+	// colliderParams params1;
+	// params1.colShape = CUBE;
+	// params1.height = .5f;
+	// params1.width = 20;
+	// params1.depth = 20;
+	// params1.offsetY = 0;
+	// params1.isTrigger = false;
 
-	//plano->addComponent<Collider>(params1);
+	// plano->addComponent<Collider>(params1);
 
 	//// rigidbody
-	//auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
+	// auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
 	///*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
 	// rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
 
@@ -125,12 +125,13 @@ int main() {
 	Transform* ent_tr = entidad->addComponent<Transform>();
 	ent_tr->yaw(0);
 	entidad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	                                   "Sphere.mesh");
-	
+	                                    "Sphere.mesh");
+
 	Entity* camera = new Entity(_grp_GENERAL);
 	Transform* cam_tr = camera->addComponent<Transform>();
 	cam_tr->translate(Spyutils::Vector3(0, 0, 15));
 	Camera* cam_cam = camera->addComponent<Camera>();
+	camera->addComponent<AudioListener>();
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
@@ -177,16 +178,16 @@ int main() {
 				// std::cout << cam_cam->getZoom() << "\n";
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
-				cam_tr->yaw(0.1);
+				cam_tr->yaw(0.1f);
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
-				cam_tr->yaw(-0.1);
+				cam_tr->yaw(-0.1f);
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_UP)) {
-				cam_tr->pitch(0.1);
+				cam_tr->pitch(0.1f);
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_DOWN)) {
-				cam_tr->pitch(-0.1);
+				cam_tr->pitch(-0.1f);
 			}
 			if(inputManager->isKeyDown('c')) {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);
@@ -216,7 +217,7 @@ int main() {
 			Sleep(waitTime);
 	}
 	delete MusicInstance;
-//	delete plano;
+	//	delete plano;
 	delete cube;
 	delete camera;
 	delete timer;
