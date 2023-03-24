@@ -1,16 +1,16 @@
 
-Behaviour = {}
-Behaviour.__index = Behaviour
+Prueba = {}
+Prueba.__index = Prueba
 
-function Behaviour:new()
+function Prueba:new()
     local obj = {}
-    setmetatable(obj, Behaviour)
+    setmetatable(obj, Prueba)
     return obj
 end
 
-function Behaviour:update()
+function Prueba:update()
     print('Se llama al update del script de Lua')
-    -- tranform.translate({x = 0, y = 0, z = 0})
+    -- prueba.tranform_:print()
 end
 
-behaviour = Behaviour:new()
+pruebaLua = Prueba:new()

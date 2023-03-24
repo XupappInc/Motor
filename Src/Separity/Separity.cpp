@@ -93,7 +93,7 @@ int main() {
 	tr->roll(40);
 	//tr->translate(Spyutils::Vector3(2, 0, 0));
 	
-	luaManager->loadScript("Assets/Scripts/prueba.lua", cube);
+	luaManager->loadScript("prueba", cube);
 	/*tr->setScale(0.03);
 	tr->pitch(30);
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/

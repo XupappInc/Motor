@@ -24,6 +24,8 @@ namespace Separity {
 		Behaviour(luabridge::LuaRef* behaviourLua);
 		~Behaviour();
 
+		void setLuaScript(luabridge::LuaRef* behaviourLua);
+
 		void initComponent() override;
 
 		virtual void update() override;

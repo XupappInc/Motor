@@ -14,6 +14,11 @@ Separity::Behaviour::Behaviour(luabridge::LuaRef* behaviourLua)
 
 Separity::Behaviour::~Behaviour() { delete behaviourLua_; }
 
+void Separity::Behaviour::setLuaScript(luabridge::LuaRef* behaviourLua) {
+
+	behaviourLua_ = behaviourLua;
+}
+
 void Separity::Behaviour::initComponent() {
 	transform_ = ent_->getComponent<Transform>();
 	//rigidBody_ = ent_->getComponent<RigidBody>();

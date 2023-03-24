@@ -73,6 +73,10 @@ void Separity::Transform::translate(Spyutils::Vector3 translation) {
 	std::cout << "translate de transform" << std::endl;
 }
 
+void Separity::Transform::print() {
+	std::cout << "print desde transform" << std::endl;
+}
+
 Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
 
 void Separity::Transform::setRotation(float rotationX, float rotationY,

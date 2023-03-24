@@ -35,6 +35,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="other">Vector3 para transladar</param>
 		void translate(Spyutils::Vector3 other);
+		void print();
 		/// <summary>
 		/// Coger la posición del transform
 		/// </summary>
