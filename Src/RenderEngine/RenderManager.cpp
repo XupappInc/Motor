@@ -14,6 +14,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "checkML.h"
+
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
@@ -131,6 +133,9 @@ void Separity::RenderManager::saveConfiguration() {
 }
 
 void Separity::RenderManager::closedown() {
+
+	ogreRoot_->queueEndRendering();
+
 	if(ogreWindow_ != nullptr) {
 		ogreWindow_ = nullptr;
 		delete ogreWindow_;
@@ -141,18 +146,16 @@ void Separity::RenderManager::closedown() {
 		SDL_QuitSubSystem(SDL_INIT_EVERYTHING);
 		sdlWindow_ = nullptr;
 		delete sdlWindow_;
-
-	}
-	if(ogreRoot_ != nullptr) 
-	{
-		ogreRoot_ = nullptr;
-		delete ogreRoot_;
 	}
 	if(sceneMgr_ != nullptr) {
+		ogreRoot_->destroySceneManager(sceneMgr_);
 		sceneMgr_ = nullptr;
 		delete sceneMgr_;
 	}
-
+	if(ogreRoot_ != nullptr) {
+		delete ogreRoot_;
+		ogreRoot_ = nullptr;
+	}
 	if(configFile_ != nullptr) {
 		configFile_ = nullptr;
 		delete configFile_;

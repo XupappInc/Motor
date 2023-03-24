@@ -14,6 +14,7 @@ namespace Separity {
 	class Manager  {
 
 		public:
+		void initComponent();
 		/// <summary>
 		/// Llama al preUpdate de todos los componentes del manager, después
 		/// llama al update de todos los componentes
