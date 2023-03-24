@@ -38,12 +38,18 @@ Separity::Collider::Collider(colliderParams params) {
 	offsetTransform.setOrigin(btVector3(offset_->x, offset_->y, offset_->z));
 	colliderShape_->addChildShape(offsetTransform, shape);
 
+
 	//colliderShape_ = shape;
 
 	trigger_ = params.isTrigger;
 }
 
 Separity::Collider::~Collider() {
+	for(int i = 0; i < colliderShape_->getNumChildShapes(); ++i) {
+		btCollisionShape* s = colliderShape_->getChildShape(i);
+		colliderShape_->removeChildShape(s);
+		delete s;
+	}
 	delete colliderShape_;
 	delete offset_;
 }

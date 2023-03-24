@@ -20,11 +20,7 @@ PhysicsManager::PhysicsManager() {}
 
 PhysicsManager::~PhysicsManager() {
 
-	delete broadphase_;
-	delete collisionConfiguration_;
-	delete dispatcher_;
-	delete solver_;
-	//delete world_;
+	deleteWorld();
 
 	if(debugDrawer_ != nullptr)
 		delete debugDrawer_;
@@ -64,6 +60,7 @@ void Separity::PhysicsManager::deleteWorld() {
 			delete body->getMotionState();
 		}
 		world_->removeCollisionObject(obj);
+		world_->removeRigidBody(body);
 		delete obj;
 	}
 	delete broadphase_;
@@ -81,7 +78,7 @@ void PhysicsManager::update(const uint32_t& deltaTime) {
 		auto rb = dynamic_cast<Separity::RigidBody*>(c);
 		if(rb != nullptr)
 			world_->contactTest(rb->getBulletRigidBody(), *rb);
-	}	
+	}
 	world_->stepSimulation(deltaTime);
 	for(Separity::Component* c : cmps_) {
 		c->update();
