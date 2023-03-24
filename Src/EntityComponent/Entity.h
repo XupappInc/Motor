@@ -36,14 +36,8 @@ namespace Separity {
 		virtual ~Entity() {
 			// borramos todos los componentes disponibles
 			for(auto c : currCmps_) delete c;
-			if(parent)
-			delete parent;
-			for(auto ch : childs_) delete ch;
 		}
-		std::vector<Entity*> getChildren() const;
-		Entity* getParent() const;
-		void addChild(Entity* child);
-		void removeChild(const Entity* child);
+
 		/// <summary>
 		/// Cada entidad sabe el manager al que pertenece, usamos este metodos
 		/// para asignar el contexto
@@ -102,12 +96,12 @@ namespace Separity {
 					componentManager = Separity::PhysicsManager::getInstance();
 					componentManager->addComponent(c);
 					break;
-				///*case _INPUT:
-				//	componentManager = InputManager::getInstance();
-				//	break;
-				//case _UI:
-				//	componentManager = UIManager::getInstance();
-				//	break;*/
+				/*case _INPUT:
+					componentManager = InputManager::getInstance();
+					break;
+				case _UI:
+					componentManager = UIManager::getInstance();
+					break;*/
 				case _SOUND:
 					componentManager = Separity::AudioManager::getInstance();
 					componentManager->addComponent(c);
@@ -120,7 +114,7 @@ namespace Separity {
 			}
 
 			c->setContext(this, componentManager);
-			
+			c->initComponent();
 			cmps_[cId] = c;
 			currCmps_.push_back(c);
 
@@ -178,7 +172,7 @@ namespace Separity {
 
 			return cmps_[cId] != nullptr;
 		}
-		
+
 		/// <summary>
 		/// Devuelve el grupo de la entidad
 		/// </summary>
@@ -192,8 +186,6 @@ namespace Separity {
 		bool alive_;
 		bool active_;
 		Separity::grpId_type gId_;
-		Entity* parent = nullptr;
-		std::vector<Entity*> childs_;
 	};
 }  // namespace Separity
 #endif  // !__ENTITY_H__

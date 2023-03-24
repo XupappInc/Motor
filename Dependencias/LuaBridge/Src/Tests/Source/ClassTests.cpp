@@ -228,7 +228,7 @@ TEST_F(ClassTests, PassOtherTypeInsteadOfNonConstThrows)
 
     luabridge::getGlobalNamespace(L)
         .beginClass<Int>("Int")
-        .addConstructor<void (*)(int)>() // Show that it doesn't matter
+        .addConstructor<void (*)(int)>() // Show that it does't matter
         .endClass()
         .addFunction("processNonConst", &processNonConst<int, EmptyBase>);
 

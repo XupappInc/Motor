@@ -34,6 +34,11 @@
     <ClInclude Include="..\..\Src\RenderEngine\ParticleSystem.h" />
     <ClInclude Include="..\..\Src\RenderEngine\RenderManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhysicsEngine\PhysicsEngine.vcxproj">
+      <Project>{80d74851-5b1e-4e94-afc3-1a47dc02b746}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

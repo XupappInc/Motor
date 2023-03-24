@@ -5,7 +5,7 @@
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_opengl3.h"
-#include "../SeparityUtils/checkML.h"
+
 #include <SDL.h>
 #include <iostream>
 #include <vector>
@@ -45,7 +45,7 @@ void Separity::UIManager::render() {}
 void Separity::UIManager::update() {
 	// start the Dear ImGui frame
 
-	//Separity::Button* b = new Separity::Button();
+	Separity::Button* b = new Separity::Button();
 	/*if(b->Separity::Button::ButtonPressed()) {
 		std::cout << "Hola\n";
 	}*/

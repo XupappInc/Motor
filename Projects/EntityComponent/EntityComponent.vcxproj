@@ -19,26 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\EntityComponent\CCreator.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Component.h" />
-    <ClInclude Include="..\..\Src\EntityComponent\CCreatorFactory.h" />
     <ClInclude Include="..\..\Src\EntityComponent\ec.h" />
     <ClInclude Include="..\..\Src\EntityComponent\ec_defs.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Entity.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Manager.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Singleton.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Transform.h" />
-    <ClInclude Include="..\..\Src\EntityComponent\TransformCreator.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\EntityComponent\CCreator.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Component.cpp" />
-    <ClCompile Include="..\..\Src\EntityComponent\CCreatorFactory.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Entity.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\EntityComponentMain.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Manager.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Transform.cpp" />
-    <ClCompile Include="..\..\Src\EntityComponent\TransformCreator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -117,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\rapidjson-master\Src\include;$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,7 +156,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\rapidjson-master\Src\include;$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

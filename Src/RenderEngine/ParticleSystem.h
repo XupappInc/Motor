@@ -23,35 +23,35 @@ namespace Separity {
 		__CMPID_DECL__(Separity::_PARTICLE_SYSTEM)
 
 		/// <summary>
-		/// constructora de particle system
+		/// Constructora de luz
 		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="name_paricle"></param>
-		ParticleSystem(std::string name,std::string name_paricle);
+		/// <param name="type">Tipo de luz que pueden ser
+		/// POINT_LIGHT,DIRECTIONAL_LIGHT,SPOTLIGHT </param>
+		ParticleSystem(std::string name);
 		/// <summary>
-		/// Destructora de particleSystem
+		/// Destructora de light
 		/// </summary>
 		~ParticleSystem();
 
 		/// <summary>
-		/// render de ParticlSystem que cuando se cambia el transform de tambien
+		/// render de Light que cuando se cambia el transform la luz tambien
 		/// cambia
 		/// </summary>
 		void render() override;
 		/// <summary>
-		/// inicializacion del componente de la partileSystem
+		/// inicializacion del componente de la luz
 		/// </summary>
 		void initComponent() override;
 		/// <summary>
-		/// activa y desactiva el particleSystem
+		/// activa y desactiva la luz
 		/// </summary>
 		/// <param name="set">si esta a true se acativa y a false se
 		/// desactiva</param>
 		void setVisible(bool set);
 		/// <summary>
-		/// comprueba que el particleSystem sea visible o no
+		/// comprueba que la luz sea visible o no
 		/// </summary>
-		/// <returns>devuelve true si esta visible y false si no lo
+		/// <returns>devuelve tru si esta visible y false si no lo
 		/// está</returns>
 		bool isVisible();
 		
@@ -64,4 +64,4 @@ namespace Separity {
 	};
 }  // namespace Separity
 
-#endif /*__PARTICLE_SYSTEM_H__*/
+#endif /*__LIGHT_H__*/

@@ -1,4 +1,4 @@
--- trace assignments to global variables
+-- trace assigments to global variables
 
 do
  -- a tostring that quotes strings. note the use of the original tostring.

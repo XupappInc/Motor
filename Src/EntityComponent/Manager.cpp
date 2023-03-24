@@ -4,10 +4,6 @@
 
 #include <cassert>
 
-void Separity::Manager::initComponent() { 
-	for(Separity::Component* c : cmps_)
-	c->initComponent(); }
-
 void Separity::Manager::update() {
 	for(Separity::Component* c : cmps_) {
 		c->preUpdate();
