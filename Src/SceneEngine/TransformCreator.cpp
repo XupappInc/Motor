@@ -11,9 +11,7 @@
 #include "PhysicsManager.h"
 #include "AudioManager.h"
 
-
 using namespace Separity;
-
 
 Separity::TransformCreator::TransformCreator() {}
 

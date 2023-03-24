@@ -16,7 +16,8 @@ Separity::CCreatorFactory::~CCreatorFactory() {
 		delete cc.second;
 }
 
-void Separity::CCreatorFactory::addComponent(std::string CName, lua_State* L,
+void Separity::CCreatorFactory::addComponent(const std::string& CName,
+                                             lua_State* L,
                                              Separity::Entity* ent) {
 
 	if (!CCreators_.count(CName)) {
@@ -27,7 +28,8 @@ void Separity::CCreatorFactory::addComponent(std::string CName, lua_State* L,
 }
 
 
-void Separity::CCreatorFactory::add(std::string CName, CCreator* CCreator) {
+void Separity::CCreatorFactory::add(const std::string& CName,
+                                    CCreator* CCreator) {
 
 	CCreators_[CName] = CCreator;
 }

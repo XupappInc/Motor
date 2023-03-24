@@ -16,10 +16,10 @@ namespace Separity {
 			CCreatorFactory();
 			~CCreatorFactory();
 
-			void addComponent(std::string CName, lua_State* L,
+			void addComponent(const std::string& CName, lua_State* L,
 		                      Separity::Entity* ent);
 
-			void add(std::string CName, CCreator* CCreator);
+			void add(const std::string& CName, CCreator* CCreator);
 
 		private:
 			

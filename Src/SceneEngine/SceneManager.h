@@ -23,8 +23,8 @@ namespace Separity {
 
 		virtual ~SceneManager() override;
 
-		bool loadScene();
-		bool loadLuaScene();
+
+		bool loadScene(const std::string& root);
 
 		protected:
 		SceneManager();
