@@ -88,7 +88,7 @@ int main() {
 	cube->addComponent<Collider>(params);
 
 	//// rigidbody
-	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10);
+	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10.0f);
 
 	auto tr = cube->addComponent<Transform>();
 	tr->roll(40);
@@ -178,16 +178,16 @@ int main() {
 				// std::cout << cam_cam->getZoom() << "\n";
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
-				cam_tr->yaw(0.1);
+				cam_tr->yaw(0.1f);
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
-				cam_tr->yaw(-0.1);
+				cam_tr->yaw(-0.1f);
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_UP)) {
-				cam_tr->pitch(0.1);
+				cam_tr->pitch(0.1f);
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_DOWN)) {
-				cam_tr->pitch(-0.1);
+				cam_tr->pitch(-0.1f);
 			}
 			if(inputManager->isKeyDown('c')) {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);

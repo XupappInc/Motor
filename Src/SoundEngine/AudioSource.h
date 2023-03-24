@@ -3,6 +3,7 @@
 #define __AUDIO_SOURCE_H__
 #include "Component.h"
 #include "fmod.hpp"
+
 #include <iostream>
 
 namespace Separity {
@@ -35,6 +36,7 @@ namespace Separity {
 		/// </summary>
 		/// <returns></returns>
 		std::string getAudioName();
+
 		private:
 		std::string audioName_;
 		bool playing_;
