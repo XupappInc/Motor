@@ -3,7 +3,6 @@
 #define __AUDIO_SOURCE_H__
 #include "Component.h"
 #include "fmod.hpp"
-
 #include <iostream>
 
 namespace Separity {

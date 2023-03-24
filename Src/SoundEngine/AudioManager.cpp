@@ -1,5 +1,6 @@
 #include "AudioManager.h"
 
+#include "AudioListener.h"
 #include "AudioSource.h"
 #include "Component.h"
 #include "Entity.h"
@@ -48,6 +49,7 @@ void Separity::AudioManager::initAudioSystem() {
 	FMODErrorChecker(FMOD::System_Create(&system_));
 	// Initialize the FMOD system with 32 channels and normal settings
 	FMODErrorChecker(system_->init(32, FMOD_3D, 0));
+	FMODErrorChecker(system_->set3DNumListeners(0));
 	FMODErrorChecker(system_->set3DSettings(1.0f, 1.0f, 1.0f));
 	// Set the sound parameters
 	const float sampleRate = 44100.0f;
@@ -135,23 +137,21 @@ void Separity::AudioManager::update() {
 		AudioSource* au = ent->getComponent<AudioSource>();
 		Transform* tr = ent->getComponent<Transform>();
 
-		if(au->getPlayingState()) {
+		FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
+		                               tr->getPosition().z};
+		if(au && au->getPlayingState()) {
 			if(channels_->count(au->getAudioName())) {
-				FMOD_VECTOR pos =
-				    FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
-				                 tr->getPosition().z};
 				// Busca cada canal con dicho nombre y le asigna la posición de
 				// su transform
 				FMOD::Channel* c = channels_->find(au->getAudioName())->second;
 
 				FMODErrorChecker(c->set3DAttributes(&pos, nullptr));
 			}
+		} else {
+			AudioListener* audListener = ent->getComponent<AudioListener>();
+			update3DListener(audListener->listenerNumber_, &pos);
 		}
-
-		/*tr.assert(tr != nullptr);*/
 	}
-	FMOD_VECTOR posListener = FMOD_VECTOR {0, 0, 0};
-	update3DListener(&posListener);
 
 	// Se borran aqu� porque dentro del otro for se siguen comprobando cada
 	// canal, no est�n ordenados, si borras uno no sabes cual vas a comprobar
@@ -174,12 +174,13 @@ void Separity::AudioManager::resumeAllChannels() {
 	}
 }
 
-void Separity::AudioManager::update3DListener(FMOD_VECTOR* pos,
+void Separity::AudioManager::update3DListener(int listenerNumber,
+                                              FMOD_VECTOR* pos,
                                               FMOD_VECTOR* vel,
                                               FMOD_VECTOR* forward,
                                               FMOD_VECTOR* up) {
-	FMODErrorChecker(
-	    system_->set3DListenerAttributes(0, pos, vel, forward, up));
+	FMODErrorChecker(system_->set3DListenerAttributes(listenerNumber, pos, vel,
+	                                                  forward, up));
 }
 
 void Separity::AudioManager::stopAllChannels() {

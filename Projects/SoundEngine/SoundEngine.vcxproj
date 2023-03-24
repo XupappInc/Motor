@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\SoundEngine\AudioListener.cpp" />
     <ClCompile Include="..\..\Src\SoundEngine\AudioManager.cpp" />
     <ClCompile Include="..\..\Src\SoundEngine\AudioSource.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\SoundEngine\AudioListener.h" />
     <ClInclude Include="..\..\Src\SoundEngine\AudioManager.h" />
     <ClInclude Include="..\..\Src\SoundEngine\AudioSource.h" />
   </ItemGroup>

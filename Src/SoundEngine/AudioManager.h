@@ -74,14 +74,16 @@ namespace Separity {
 		/// </summary>
 		void resumeAllChannels();
 		/// <summary>
-		/// Actualiza la posición del listener con una pos dada, una vel dada, y
-		/// una dirección forward y up dadas
+		/// Actualiza la posición del listener, que tiene un listenerNumber con
+		/// una pos dada, una vel dada, y una dirección forward y up dadas
 		/// </summary>
+		/// <param name="listenerNumber"></param>
 		/// <param name="pos"></param>
 		/// <param name="vel"></param>
 		/// <param name="forward"></param>
 		/// <param name="up"></param>
-		void update3DListener(FMOD_VECTOR* pos, FMOD_VECTOR* vel = nullptr,
+		void update3DListener(int listenerNumber, FMOD_VECTOR* pos,
+		                      FMOD_VECTOR* vel = nullptr,
 		                      FMOD_VECTOR* forward = nullptr,
 		                      FMOD_VECTOR* up = nullptr);
 		FMOD::System* system_;
