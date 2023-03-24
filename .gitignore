@@ -39,6 +39,7 @@ bld/
 [Dd]ependencias/ImGUI/build
 [Dd]ependencias/LuaBridge/build
 [Dd]ependencias/SDL/build
+[Dd]ependencias/cmake-imgui-master/build
 ![Dd]ependencias/FMOD/build/*
 ![Dd]ependencias/CMake/bin
 [Dd]ependencias/bullet3d/Build/

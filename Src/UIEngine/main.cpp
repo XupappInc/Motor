@@ -6,10 +6,6 @@
 
 #include "UIManager.h"
 #include "RenderManager.h"
-
-#include <SDL.h>
-#include <imgui.h>
-#include <imgui_impl_opengl3.h>
 #include <iostream>
 
 using namespace std;

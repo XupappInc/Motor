@@ -3,9 +3,8 @@
 #include "Button.h"
 #include "RenderManager.h"
 #include "ImguiManager.h"
-#include <imgui.h>
 #include "imgui_impl_sdl2.h"
-#include "imgui_impl_opengl3.h"
+//#include "imgui_impl_opengl3.h"
 
 #include <SDL.h>
 #include <iostream>
@@ -33,7 +32,8 @@ void Separity::UIManager::initUi() {
 	SDL_GL_SwapWindow(window);
 
 	ImGui_ImplSDL2_InitForOpenGL(window, context);
-	ImGui_ImplOpenGL3_Init();
+
+	//ImGui_ImplOpenGL3_Init();
 
 }
 
@@ -54,7 +54,7 @@ void Separity::UIManager::update() {
 }
 
 Separity::UIManager::~UIManager() {
-	ImGui_ImplOpenGL3_Shutdown();
+	//ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
 }
