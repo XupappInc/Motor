@@ -1,21 +1,13 @@
 ﻿#include "SceneManager.h"
 
-#include <rapidjson/document.h>
-#include <rapidjson/istreamwrapper.h>
-
 #include <iostream>
-#include <fstream>
 
 #include <lua.hpp>
 
 #include "Entity.h"
-#include "Transform.h"
-#include "MeshRenderer.h"
 
-#include "RenderManager.h"
-#include "PhysicsManager.h"
-#include "AudioManager.h"
-
+#include "TransformCreator.h"
+#include "MeshRendererCreator.h"
 
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
@@ -28,76 +20,59 @@ void Separity::SceneManager::update() {}
 
 Separity::SceneManager::~SceneManager() {}
 
-bool Separity::SceneManager::loadScene() {
-	std::ifstream file("Assets/scene.json");
-	rapidjson::IStreamWrapper stream_wrapper(file);
-	rapidjson::Document document;
-	document.ParseStream(stream_wrapper);
+bool Separity::SceneManager::loadScene(const std::string& root) { 
 
-	const rapidjson::Value& entities = document["Entities"];
+	lua_State* L = luaL_newstate();
 
-	rapidjson::Value::ConstMemberIterator e;
-	for(e = entities.MemberBegin(); e != entities.MemberEnd(); ++e) {
-		// Imprime el nombre del miembro
-		std::cout << e->name.GetString() << std::endl;
+	int scriptLoadStatus = luaL_dofile(L, root.c_str());
 
-		Entity* entity = new Entity(_grp_GENERAL);
+	// define error reporter for any Lua error
+	if(scriptLoadStatus != 0) {
+		std::cerr << "[LUA ERROR] " << lua_tostring(L, -1) << std::endl;
 
-		rapidjson::Value::ConstMemberIterator c;
-		for(c = e->value.MemberBegin(); c != e->value.MemberEnd(); ++c) {
+		// remove error message from Lua state
+		lua_pop(L, 1);
+	} 
+	else {
 
-			std::string cmp_name = c->name.GetString();
-			std::cout << cmp_name << std::endl;
+		std::cout << "Entidades:\n";
+		lua_getglobal(L, "Entities");
 
-			const rapidjson::Value& obj = c->value;
+		lua_pushnil(L); 
+		while(lua_next(L, -2)) {
 
-			
-
-			if(cmp_name == "transform") {
-				//Accede a la posición, rotación y escala
-				const rapidjson::Value& pos = obj["pos"];
-				const rapidjson::Value& rot = obj["rot"];
-				const rapidjson::Value& scale = obj["scale"];
-
-				Transform* tr = entity->addComponent<Transform>();
-				tr->setPosition(pos[0].GetDouble(), pos[1].GetDouble(),
-				                pos[2].GetDouble());
-				tr->setRotation(rot[0].GetDouble(), rot[1].GetDouble(),
-				                rot[2].GetDouble(),0);
-				tr->setScale(scale[0].GetDouble(), scale[1].GetDouble(),
-				             scale[2].GetDouble());
+			if(lua_isstring(L, -2)) {
+				std::string entity = lua_tostring(L, -2, NULL);
+				std::cout << " " << entity << ":\n";
 			}
 
-			else if(cmp_name == "light") {
-				// Accede a la posición, rotación y escala
-				const rapidjson::Value& pos = obj["ambient"];
+			if(lua_istable(L, -1)) {
 
-				// Imprime la posición, rotación y escala
-				std::cout << "Ambiente: [" << pos[0].GetDouble() << ", "
-				          << pos[1].GetDouble() << ", " << pos[2].GetDouble()
-				          << "]" << std::endl;
+				Entity* entity = new Entity(_grp_GENERAL);
+
+				lua_pushnil(L);  // Poner la primera key en la pila
+				while(lua_next(L, -2)) {
+				
+					if(lua_isstring(L, -2)) {
+						std::string component = lua_tostring(L, -2, NULL);
+						std::cout << "  " << component << "\n";
+
+						factory_.addComponent(component, L, entity);
+					}
+					lua_pop(L, 1);
+				}
 			}
-
-			
-
-			else if(cmp_name == "camera") {
-				std::cout << "Soy una camara\n";
-			}
-
-			else if(cmp_name == "meshRenderer") {
-
-				std::string s = obj.GetString();
-				s += ".mesh";
-
-				MeshRenderer* mesh = entity->addComponent<MeshRenderer>(
-				    Separity::RenderManager::getInstance()->getSceneManager(),
-				    s);				
-			}
-		}
+			lua_pop(L, 1);
+		}		
 	}
 
-	return false;
+	lua_close(L);
+
+	return false; 
 }
 
 Separity::SceneManager::SceneManager() { 
+	factory_ = CCreatorFactory(); 
+	factory_.add("transform", new TransformCreator());
+	factory_.add("meshRenderer", new MeshRendererCreator());
 }
