@@ -96,10 +96,10 @@ int main() {
 	//// rigidbody
 	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10.0f);
 
-	auto tr = cube->addComponent<Transform>();
-	tr->roll(40);
-	tr->translate(Spyutils::Vector3(2, 0, 0));
-	tr->setScale(0.5);
+	auto tr3 = cube->addComponent<Transform>();
+	tr3->roll(40);
+	tr3->translate(Spyutils::Vector3(2, 0, 0));
+	tr3->setScale(0.5);
 	//luaManager->loadScript("Assets/Scripts/prueba.lua", cube);
 
 	/*tr->setScale(0.03);

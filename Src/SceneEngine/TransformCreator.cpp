@@ -45,7 +45,7 @@ void Separity::TransformCreator::addComponent(lua_State* L,
 			std::cout << data[i - 1] << "\n";
 			lua_pop(L, 1);
 		}
-		tr->setRotation(data[0], data[1], data[2]);
+		tr->setRotation(data[0], data[1], data[2], 0);
 		lua_pop(L, 1);
 	}
 
