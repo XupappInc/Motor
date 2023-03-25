@@ -44,9 +44,10 @@ namespace Separity {
 		/// <summary>
 		/// Setetar l posición del transform.
 		/// </summary>
-		/// <param name="rotationX">grados del eje x</param>
-		/// <param name="rotationY">grados eje y</param>
-		/// <param name="rotationZ">grados de ejez</param>
+		/// <param name="x">valor x del quaternion</param>
+		/// <param name="y">valor y del quaternion</param>
+		/// <param name="z">valor z del quaternion</param>
+		/// <param name="w">valor w del quaternion</param>
 		void setRotation(float x, float y, float z, float w);
 		/// <summary>
 		/// geter de la rotación en un Vector3
