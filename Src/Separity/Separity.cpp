@@ -54,9 +54,9 @@ int main() {
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/scene.lua");
 
-	Entity* MusicInstance = new Entity(_grp_GENERAL);
-	auto tr2 = MusicInstance->addComponent<Transform>();
-	tr2->setPosition(Spyutils::Vector3(10, 0, 0));
+	Entity* MusicInstance = new Entity(_grp_GENERAL,Spyutils::Vector3(10, 0, 0));
+	//auto tr2 = MusicInstance->addComponent<Transform>();
+	//tr2->setPosition();
 	auto musica = MusicInstance->addComponent<AudioSource>(
 	    "Assets//theme.mp3", string("codigoLyoko"), true);
 	audManager->playAudio(string("codigoLyoko"), 1.0f, 100.0f);
@@ -69,12 +69,12 @@ int main() {
 	                                 "cube.mesh");
 	auto luz = cube->addComponent<Light>(DIRECTIONAL_LIGHT);
 
-	Entity* cube2 = new Entity(_grp_GENERAL);
+	Entity* cube2 = new Entity(_grp_GENERAL, Spyutils::Vector3(4, 0, 0));
 	cube2->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                  "cube.mesh");
 	cube->addChild(cube2);
-	auto trchild = cube2->addComponent<Transform>();
-	trchild->setPosition(4, 0, 0);
+	auto trchild = cube2->getEntTransform();
+	//trchild->setPosition(4, 0, 0);
 	trchild->roll(30);
 	/* collider (antes de rigidbody siempre)*/
 	colliderParams params;
@@ -89,7 +89,7 @@ int main() {
 	//// rigidbody
 	auto rb = cube->addComponent<RigidBody>(DYNAMIC, 10.0f);
 
-	auto tr = cube->addComponent<Transform>();
+	auto tr = cube->getEntTransform();
 	tr->roll(40);
 	tr->translate(Spyutils::Vector3(2, 0, 0));
 	tr->setScale(0.5);
@@ -124,13 +124,14 @@ int main() {
 	// rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
 
 	Entity* entidad = new Entity(_grp_GENERAL);
-	Transform* ent_tr = entidad->addComponent<Transform>();
+	Transform* ent_tr =
+	    entidad->getEntTransform();  // addComponent<Transform>();
 	ent_tr->yaw(0);
 	entidad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                    "Sphere.mesh");
 
 	Entity* camera = new Entity(_grp_GENERAL);
-	Transform* cam_tr = camera->addComponent<Transform>();
+	Transform* cam_tr = camera->getEntTransform();  // addComponent<Transform>();
 	cam_tr->translate(Spyutils::Vector3(0, 0, 15));
 	Camera* cam_cam = camera->addComponent<Camera>();
 	camera->addComponent<AudioListener>();

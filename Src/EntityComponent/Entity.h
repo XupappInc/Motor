@@ -12,9 +12,9 @@
 #include <cassert>
 #include <vector>
 
-//namespace Spyutils {
-//	class Vector3;		
-//	}
+namespace Spyutils {
+	class Vector3;		
+	}
 namespace Separity {
 	
 	class RenderManager;
@@ -30,8 +30,8 @@ namespace Separity {
 	///
 	class Entity {
 		public:
-		Entity(Separity::grpId_type gId/*,
-		       Spyutils::Vector3 iniPos = Spyutils::Vector3(0,0,0)*/);
+		Entity(Separity::grpId_type gId,
+		       Spyutils::Vector3 iniPos = Spyutils::Vector3(0,0,0));
 		int s;
 		// borramos el constructor por copia/asignamiento porque no está claro
 		// como copiar los componentes
@@ -192,7 +192,7 @@ namespace Separity {
 		/// </summary>
 		/// <returns>El grupo al que pertenece la entidad (gId)</returns>
 		Separity::grpId_type getGroupId();
-
+		Separity::Transform* getEntTransform();
 		private:
 		Manager* mngr_;
 		std::array<Component*, maxComponentId> cmps_;
@@ -203,7 +203,7 @@ namespace Separity {
 		Entity* parent = nullptr;
 		std::vector<Entity*> childs_;
 		Transform * entTr_;
-		//Spyutils::Vector3 iniPos_;
+		Spyutils::Vector3 iniPos_;
 	};
 }  // namespace Separity
 #endif  // !__ENTITY_H__

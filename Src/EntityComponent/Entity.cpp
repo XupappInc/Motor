@@ -7,12 +7,13 @@
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 
-Separity::Entity::Entity(Separity::grpId_type gId/*, Spyutils::Vector3 iniPos*/)
-    : mngr_(nullptr), cmps_(), currCmps_(), alive_(), gId_(gId)/*,iniPos_(iniPos)*/ {
+Separity::Entity::Entity(Separity::grpId_type gId, Spyutils::Vector3 iniPos)
+    : mngr_(nullptr), cmps_(), currCmps_(), alive_(), gId_(gId),iniPos_(iniPos) {
 	// Reservamos espacio para el numero maximo de componentes.
 	// Esto puede evitar que se tenga que redimensionar el vector
 	currCmps_.reserve(Separity::maxComponentId);
 	entTr_ = addComponent<Transform>();
+	entTr_->setPosition(iniPos_);
 }
 
 void Separity::Entity::setContext(Manager* mngr) { mngr_ = mngr; }
@@ -49,6 +50,8 @@ void Separity::Entity::removeChild(const Entity* child) {
 }
 
 Separity::grpId_type Separity::Entity::getGroupId() { return gId_; }
+
+Separity::Transform* Separity::Entity::getEntTransform() { return entTr_; }
 
 
 
