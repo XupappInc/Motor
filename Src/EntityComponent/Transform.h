@@ -20,36 +20,37 @@ namespace Separity {
 		
 		~Transform();
 		/// <summary>
-		/// Setear la posición del componente tranform
+		/// Setear la posiciï¿½n del componente tranform
 		/// </summary>
-		/// <param name="other">Vector3 de la posición</param>
+		/// <param name="other">Vector3 de la posiciï¿½n</param>
 		void setPosition(Spyutils::Vector3 other);
 		/// <summary>
-		/// Setear la posición del componente tranform
+		/// Setear la posiciï¿½n del componente tranform
 		/// </summary>
-		/// <param name="x">posición x</param>
-		/// <param name="y">posición y</param>
-		/// <param name="z">posición z</param>
+		/// <param name="x">posiciï¿½n x</param>
+		/// <param name="y">posiciï¿½n y</param>
+		/// <param name="z">posiciï¿½n z</param>
 		void setPosition(float x, float y, float z);
 		/// <summary>
-		/// Transladar la posición del transform
+		/// Transladar la posiciï¿½n del transform
 		/// </summary>
 		/// <param name="other">Vector3 para transladar</param>
 		void translate(Spyutils::Vector3 other);
 		/// <summary>
-		/// Coger la posición del transform
+		/// Coger la posiciï¿½n del transform
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getPosition();
 		/// <summary>
-		/// Setetar l posición del transform.
+		/// Setetar l posiciï¿½n del transform.
 		/// </summary>
-		/// <param name="rotationX">grados del eje x</param>
-		/// <param name="rotationY">grados eje y</param>
-		/// <param name="rotationZ">grados de ejez</param>
-		void setRotation(float rotationX, float rotationY, float rotationZ);
+		/// <param name="x">valor x del quaternion</param>
+		/// <param name="y">valor y del quaternion</param>
+		/// <param name="z">valor z del quaternion</param>
+		/// <param name="w">valor w del quaternion</param>
+		void setRotation(float x, float y, float z, float w);
 		/// <summary>
-		/// geter de la rotación en un Vector3
+		/// geter de la rotaciï¿½n en un Vector3
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::spyQuaternion getRotation();
