@@ -50,7 +50,6 @@ int main() {
 	uiManager->initUi();
 	LuaManager* luaManager = Separity::LuaManager::getInstance();
 	luaManager->initLua();
-	luaManager->loadScript("prueba.lua");
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/scene.lua");
@@ -93,6 +92,9 @@ int main() {
 	auto tr = cube->addComponent<Transform>();
 	tr->roll(40);
 	tr->translate(Spyutils::Vector3(2, 0, 0));
+
+	//luaManager->loadScript("Assets/Scripts/prueba.lua", cube);
+
 	/*tr->setScale(0.03);
 	tr->pitch(30);
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/

@@ -9,7 +9,6 @@ end
 
 function Prueba:update()
     print('Se llama al update del script de Lua')
-    prueba.transform:print()
 end
 
 pruebaLua = Prueba:new()
