@@ -41,6 +41,7 @@ void Separity::Transform::setPosition(Spyutils::Vector3 other) {
 }
 void Separity::Transform::setPosition(float x, float y, float z) {
 	setPosition(Spyutils::Vector3(x, y, z));
+
 }
 
 void Separity::Transform::translate(Spyutils::Vector3 translation) {
@@ -148,16 +149,15 @@ Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
 	    {-sin_yaw, sin_pitch * cos_yaw, cos_pitch * cos_yaw}};
 
 	// Aplica la rotaci�n al vector de rotaci�n
-	Spyutils::Vector3 vector_rotado = {
-	    matriz_rotacion[0][0] * vector_rotacion.x +
-	        matriz_rotacion[0][1] * vector_rotacion.y +
-	        matriz_rotacion[0][2] * vector_rotacion.z,
-	    matriz_rotacion[1][0] * vector_rotacion.x +
-	        matriz_rotacion[1][1] * vector_rotacion.y +
-	        matriz_rotacion[1][2] * vector_rotacion.z,
-	    matriz_rotacion[2][0] * vector_rotacion.x +
-	        matriz_rotacion[2][1] * vector_rotacion.y +
-	        matriz_rotacion[2][2] * vector_rotacion.z};
+	Spyutils::Vector3 vector_rotado = {matriz_rotacion[0][0] * vector_rotacion.x +
+	                              matriz_rotacion[0][1] * vector_rotacion.y +
+	                              matriz_rotacion[0][2] * vector_rotacion.z,
+	                          matriz_rotacion[1][0] * vector_rotacion.x +
+	                              matriz_rotacion[1][1] * vector_rotacion.y +
+	                              matriz_rotacion[1][2] * vector_rotacion.z,
+	                          matriz_rotacion[2][0] * vector_rotacion.x +
+	                              matriz_rotacion[2][1] * vector_rotacion.y +
+	                              matriz_rotacion[2][2] * vector_rotacion.z};
 
 	// Calcula la nueva posici�n a partir del vector rotado y el anclaje
 	posicion = {anclaje.x + vector_rotado.x, anclaje.y + vector_rotado.y,
