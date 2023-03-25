@@ -48,8 +48,8 @@ int main() {
 	audManager->initAudioSystem();
 	UIManager* uiManager = Separity::UIManager::getInstance();
 	uiManager->initUi();
-	LuaManager* luaManager = Separity::LuaManager::getInstance();
-	luaManager->initLua();
+	/*LuaManager* luaManager = Separity::LuaManager::getInstance();
+	luaManager->initLua();*/
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/scene.lua");
@@ -93,7 +93,7 @@ int main() {
 	tr->roll(40);
 	tr->translate(Spyutils::Vector3(2, 0, 0));
 	tr->setScale(0.5);
-	//luaManager->loadScript("Assets/Scripts/prueba.lua", cube);
+	//luaManager->loadScript("prueba", cube);
 
 	/*tr->setScale(0.03);
 	tr->pitch(30);
@@ -205,7 +205,7 @@ int main() {
 			}
 		}
 
-		/*luaManager->update();*/
+		//luaManager->update();
 		physManager->update(deltaTime);
 		renderManager->update();
 		renderManager->render();
@@ -232,7 +232,7 @@ int main() {
 	inputManager->close();
 	audManager->close();
 	physManager->close();
-	luaManager->close();
+	//luaManager->close();
 
 	return 0;
 }

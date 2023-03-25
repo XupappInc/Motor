@@ -19,11 +19,6 @@ void Separity::Behaviour::setLuaScript(luabridge::LuaRef* behaviourLua) {
 	behaviourLua_ = behaviourLua;
 }
 
-void Separity::Behaviour::initComponent() {
-	transform_ = ent_->getComponent<Transform>();
-	//rigidBody_ = ent_->getComponent<RigidBody>();
-}
-
 void Separity::Behaviour::update() {
 	luabridge::LuaRef updateLua = (*behaviourLua_)["update"];
 	if(updateLua.isFunction()) {
@@ -40,5 +35,3 @@ void Separity::Behaviour::onCollisionEnter(Entity* other) {}
 void Separity::Behaviour::onCollisionExit(Entity* other) {}
 
 void Separity::Behaviour::onCollisionStay(Entity* other) {}
-
-Separity::Transform& Separity::Behaviour::getTransform() { return *transform_; }
