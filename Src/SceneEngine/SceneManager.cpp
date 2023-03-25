@@ -63,7 +63,7 @@ bool Separity::SceneManager::loadScene() {
 				tr->setPosition(pos[0].GetDouble(), pos[1].GetDouble(),
 				                pos[2].GetDouble());
 				tr->setRotation(rot[0].GetDouble(), rot[1].GetDouble(),
-				                rot[2].GetDouble());
+				                rot[2].GetDouble(),0);
 				tr->setScale(scale[0].GetDouble(), scale[1].GetDouble(),
 				             scale[2].GetDouble());
 			}

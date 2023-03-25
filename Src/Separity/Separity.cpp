@@ -129,9 +129,9 @@ int main() {
 	}
 
 
-	auto tr = cube->addComponent<Transform>();
-	tr->roll(40);
-	tr->translate(Spyutils::Vector3(2, 0, 0));
+	auto tr3 = cube->addComponent<Transform>();
+	tr3->roll(40);
+	tr3->translate(Spyutils::Vector3(2, 0, 0));
 	/*tr->setScale(0.03);
 	tr->pitch(30);
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/
@@ -184,7 +184,7 @@ int main() {
 	// auto anim = sinbad->addComponent<Animator>();
 	// anim->setUpAnims();
 	//  behaviour
-	plano->addComponent<Behaviour>("plano");
+	//plano->addComponent<Behaviour>("plano");
 
 	bool quit = false;
 	renderManager->initComponent();
