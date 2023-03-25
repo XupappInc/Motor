@@ -92,7 +92,7 @@ int main() {
 	auto tr = cube->addComponent<Transform>();
 	tr->roll(40);
 	tr->translate(Spyutils::Vector3(2, 0, 0));
-
+	tr->setScale(0.5);
 	//luaManager->loadScript("Assets/Scripts/prueba.lua", cube);
 
 	/*tr->setScale(0.03);
