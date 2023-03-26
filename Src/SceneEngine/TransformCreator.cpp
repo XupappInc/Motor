@@ -44,7 +44,7 @@ void Separity::TransformCreator::addComponent(lua_State* L,
 		i = 0;
 		while(lua_next(L, -2)) {
 			data[i++] = lua_tonumber(L, -1);
-			std::cout << data[i - 1] << "\n";				
+			//std::cout << data[i - 1] << "\n";				
 			lua_pop(L, 1);
 		}
 		tr->setPosition(data[0], data[1], data[2]);
@@ -57,7 +57,7 @@ void Separity::TransformCreator::addComponent(lua_State* L,
 		lua_pushnil(L);
 		while(lua_next(L, -2)) {
 			data[i++] = lua_tonumber(L, -1);
-			std::cout << data[i - 1] << "\n";
+			//std::cout << data[i - 1] << "\n";
 			lua_pop(L, 1);
 		}
 		tr->setRotation(data[0], data[1], data[2]);
@@ -70,7 +70,7 @@ void Separity::TransformCreator::addComponent(lua_State* L,
 		lua_pushnil(L);
 		while(lua_next(L, -2)) {
 			data[i++] = lua_tonumber(L, -1);
-			std::cout << data[i - 1] << "\n";
+			//std::cout << data[i - 1] << "\n";
 			lua_pop(L, 1);
 		}
 		tr->setScale(data[0], data[1], data[2]);

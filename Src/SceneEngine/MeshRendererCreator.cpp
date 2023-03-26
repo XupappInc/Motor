@@ -21,11 +21,8 @@ void Separity::MeshRendererCreator::addComponent(lua_State* L,
 
 	lua_getfield(L, -1, "meshName");
 	std::string s = lua_tostring(L, -1);
-	lua_pop(L, 1);
-
 	s += ".mesh";
-
-	std::cout << s << "\n";
+	lua_pop(L, 1);
 
 	MeshRenderer* mesh = ent->addComponent<MeshRenderer>(
 	    Separity::RenderManager::getInstance()->getSceneManager(), s);

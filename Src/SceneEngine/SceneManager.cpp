@@ -9,6 +9,8 @@
 #include "TransformCreator.h"
 #include "MeshRendererCreator.h"
 #include "LightCreator.h"
+#include "ColliderCreator.h"
+#include "RigidbodyCreator.h"
 
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
@@ -46,7 +48,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 
 			if(lua_isstring(L, -2)) {
 				std::string entity = lua_tostring(L, -2, NULL);
-				std::cout << " " << entity << ":\n";
+				//std::cout << " " << entity << ":\n";
 			}
 
 			if(lua_istable(L, -1)) {
@@ -59,7 +61,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 				
 					if(lua_isstring(L, -2)) {
 						std::string component = lua_tostring(L, -2, NULL);
-						std::cout << "  " << component << "\n";
+						//std::cout << "  " << component << "\n";
 
 						factory_.addComponent(component, L, entity);
 					}
@@ -84,4 +86,6 @@ Separity::SceneManager::SceneManager() {
 	factory_.add("transform", new TransformCreator());
 	factory_.add("meshRenderer", new MeshRendererCreator());
 	factory_.add("light", new LightCreator());
+	factory_.add("collider", new ColliderCreator());
+	factory_.add("rigidbody", new RigidbodyCreator());
 }
