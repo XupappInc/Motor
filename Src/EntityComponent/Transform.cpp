@@ -130,6 +130,21 @@ void Separity::Transform::roll(float degree) {
 
 void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 	scale_ = Spyutils::Vector3(scaleX, scaleY, scaleZ);
+
+	 for(auto child : ent_->getChildren()) {
+		// Escalar y mover el objeto hijo
+		auto tr = child->getComponent<Transform>();
+		tr->position_.x*= scaleX;
+		tr->position_.y*= scaleY;
+		tr->position_.z*= scaleZ;
+		
+		tr->position_.x += position_.x;
+		tr->position_.y += position_.y;
+		tr->position_.z += position_.z;
+		/*child.scale *= scale;*/
+		// Dibujar el objeto hijo y sus objetos hijos
+		tr->setScale(scaleX, scaleY, scaleZ);
+	}
 }
 void Separity::Transform::setScale(float scale) {
 	setScale(scale, scale, scale);

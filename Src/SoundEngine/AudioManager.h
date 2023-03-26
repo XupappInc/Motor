@@ -2,12 +2,17 @@
 #ifndef __AUDIO_MANAGER_H__
 #define __AUDIO_MANAGER_H__
 #include "Manager.h"
-#include "fmod.hpp"
-#include "fmod_errors.h"
 
 #include <iostream>
 #include <unordered_map>
+#include "fmod_common.h"
 
+namespace FMOD {
+	class Sound;
+	class System;
+	class SoundGroup;
+	class Channel;
+}  // namespace FMOD
 namespace Separity {
 	class AudioManager : public Separity::Manager,
 	                     public Singleton<Separity::AudioManager> {
@@ -74,14 +79,16 @@ namespace Separity {
 		/// </summary>
 		void resumeAllChannels();
 		/// <summary>
-		/// Actualiza la posición del listener con una pos dada, una vel dada, y
-		/// una dirección forward y up dadas
+		/// Actualiza la posición del listener, que tiene un listenerNumber con
+		/// una pos dada, una vel dada, y una dirección forward y up dadas
 		/// </summary>
+		/// <param name="listenerNumber"></param>
 		/// <param name="pos"></param>
 		/// <param name="vel"></param>
 		/// <param name="forward"></param>
 		/// <param name="up"></param>
-		void update3DListener(FMOD_VECTOR* pos, FMOD_VECTOR* vel = nullptr,
+		void update3DListener(int listenerNumber, FMOD_VECTOR* pos,
+		                      FMOD_VECTOR* vel = nullptr,
 		                      FMOD_VECTOR* forward = nullptr,
 		                      FMOD_VECTOR* up = nullptr);
 		FMOD::System* system_;
@@ -90,6 +97,7 @@ namespace Separity {
 		std::unordered_map<std::string, FMOD::Channel*>* channels_;
 		FMOD::SoundGroup* musicGroup_;
 		FMOD::SoundGroup* soundGroup_;
+		bool firstListener;
 
 		private:
 		float* buffer_;

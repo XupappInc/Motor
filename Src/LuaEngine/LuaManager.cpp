@@ -5,6 +5,11 @@
 #include "LuaBridge/LuaBridge.h"
 #include "Entity.h"
 #include "Transform.h"
+//#include "RigidBody.h"
+
+#include "PhysicsManager.h"
+#include "RenderManager.h"
+#include "AudioManager.h"
 
 #include <iostream>
 
@@ -21,48 +26,60 @@ void Separity::LuaManager::initLua() {
 
 	luaL_openlibs(L_);
 
+	registerClasses();
+
 	// Registramos la clase base y sus funciones miembro
 	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Behaviour>("Behaviour")
 	    .addFunction("update", &Behaviour::update)
-	    .addConstructor<void (*)()>()
+	    .addProperty("entity", &Behaviour::ent_)
 	    .endClass();
-
-	registerClasses();
-
-	//// Creamos una instancia de Behaviour y la pasamos al script
-	//Behaviour* behaviour = new Behaviour();
-	//luabridge::push(L_, behaviour);
-	//lua_setglobal(L_, "behaviour");
-
-	//delete behaviour;
 }
 
 void Separity::LuaManager::registerClasses() {
-	/*luabridge::getGlobalNamespace(L_)
+	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Entity>("Entity")
-	    .addFunction("getComponent", &Entity::getComponent)
-	    .endClass();*/
-	/*luabridge::getGlobalNamespace(L_)
+	    .addFunction("getTransform", &Entity::getComponent<Transform>)
+	    .endClass();
+	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Transform>("Transform")
 	    .addFunction("translate", &Transform::translate)
 	    .addFunction("pitch", &Transform::pitch)
 	    .addFunction("yaw", &Transform::yaw)
 	    .addFunction("roll", &Transform::roll)
-	    .endClass();*/
+	    .endClass();
+
+	//luabridge::getGlobalNamespace(L_)
+	//    .beginClass<RigidBody>("RigidBody")
+	//    .addFunction("addForce", &RigidBody::addForce)
+	//    .addFunction("clearForces", &RigidBody::clearForces)
+	//    .addFunction("setLinearVelocity", &RigidBody::setLinearVelocity)
+	//    .endClass();
 }
 
-void Separity::LuaManager::loadScript(std::string name) {
+void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 	// Cargamos el script de Lua desde un archivo
-	luaL_dofile(L_, name.c_str());
+	std::string path = "Assets/Scripts/" + name + ".lua";
+	luaL_dofile(L_, path.c_str());
+
+	// Creamos una instancia de Behaviour y la pasamos al script
+	Behaviour* behaviourScript = ent->addComponent<Behaviour>();
+
+	behaviourScript->initComponent();
+
+	luabridge::push(L_, behaviourScript);
+	lua_setglobal(L_, name.c_str());
 
 	// Obtenemos el objeto behaviour desde Lua
 	auto behaviourLua =
-	    new luabridge::LuaRef(luabridge::getGlobal(L_, "behaviour"));
-	Behaviour* behaviourScript = new Behaviour(behaviourLua);
+	    new luabridge::LuaRef(luabridge::getGlobal(L_, (name + "Lua").c_str()));
+
+	behaviourScript->setLuaScript(behaviourLua);
 
 	cmps_.push_back(behaviourScript);
 }
+
+lua_State* Separity::LuaManager::getLuaState() { return L_; }
 
 Separity::LuaManager* Separity::LuaManager::getInstance() {
 	return static_cast<LuaManager*>(instance());
@@ -71,8 +88,9 @@ Separity::LuaManager* Separity::LuaManager::getInstance() {
 Separity::LuaManager::LuaManager() : L_(nullptr) {}
 
 Separity::LuaManager::~LuaManager() {
-	for(auto c : cmps_) delete c;
-
+	for(auto c : cmps_) {
+		//if (c != nullptr) delete c;
+	}
 	cmps_.clear();
 	
 	// Liberamos el estado de Lua

@@ -10,9 +10,12 @@ namespace luabridge
 }
 
 namespace Separity {
-	class RigidBody;
+	//class RigidBody;
+	class Transform;
 	class Behaviour : public Component 
 	{
+		friend class LuaManager;
+
 		public:
 		__CMPTYPE_DECL__(Separity::_SCRIPT)
 		__CMPID_DECL__(Separity::_BEHAVIOUR)
@@ -21,9 +24,11 @@ namespace Separity {
 		Behaviour(luabridge::LuaRef* behaviourLua);
 		~Behaviour();
 
-		virtual void update() override;
-		virtual void start();
+		void setLuaScript(luabridge::LuaRef* behaviourLua);
+
 		virtual void awake();
+		virtual void start();
+		virtual void update() override;
 		virtual void onCollisionEnter(Entity* other);
 		virtual void onCollisionExit(Entity* other);
 		virtual void onCollisionStay(Entity* other);

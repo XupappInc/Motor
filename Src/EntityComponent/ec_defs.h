@@ -18,7 +18,8 @@
 		_CAMERA, \
 		_ANIMATOR, \
 		_PARTICLE_SYSTEM, \
-		_BEHAVIOUR
+		_BEHAVIOUR, \
+		_AUDIO_LISTENER
 		 
 
 /// <summary>

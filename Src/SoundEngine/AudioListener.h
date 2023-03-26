@@ -1,0 +1,24 @@
+#include "Component.h"
+
+#include <iostream>
+#pragma once
+#ifndef __AUDIO_LISTENER_H__
+#define __AUDIO_LISTENER_H__                                                   \
+	
+namespace Separity {
+	class AudioListener : public Separity::Component {
+		public:
+		__CMPTYPE_DECL__(Separity::_SOUND)
+		__CMPID_DECL__(Separity::_AUDIO_LISTENER)
+		/// <summary>
+		/// Método constructor del audioListener, cambia el número de listeners existentes y se guarda su número
+		/// </summary>
+		AudioListener();
+		/// <summary>
+		/// Método destructor actualmente vacío
+		/// </summary>
+		~AudioListener();
+		int listenerNumber_;
+	};
+}  // namespace Separity
+#endif  // !__AUDIO_MANAGER_H__
