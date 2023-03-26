@@ -15,5 +15,9 @@ call %BAT%
 cd ..\FMOD\
 call %BAT%
 
+cd ..\LuaBrigde\
+call %BAT%
+
+
 cd..
 cd..
