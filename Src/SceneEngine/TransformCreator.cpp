@@ -19,7 +19,7 @@ void Separity::TransformCreator::addComponent(lua_State* L,
                                               Separity::Entity* ent) {
 
 
-	Transform* tr = ent->addComponent<Transform>();
+	Transform* tr = ent->getEntTransform();  // addComponent<Transform>();
 	int i = 0;
 	float data[3] = {};
 
