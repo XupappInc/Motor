@@ -11,9 +11,24 @@
 #include "PhysicsManager.h"
 #include "AudioManager.h"
 
+#include "lua.hpp"
+#include "LuaBridge/LuaBridge.h"
+#include "LuaManager.h"
+
 using namespace Separity;
 
 Separity::TransformCreator::TransformCreator() {}
+
+void Separity::TransformCreator::registerInLua() {
+	lua_State* L = Separity::LuaManager::getInstance()->getLuaState();
+	luabridge::getGlobalNamespace(L)
+	    .beginClass<Transform>("Transform")
+	    .addFunction("translate", &Transform::translate)
+	    .addFunction("pitch", &Transform::pitch)
+	    .addFunction("yaw", &Transform::yaw)
+	    .addFunction("roll", &Transform::roll)
+	    .endClass();
+}
 
 void Separity::TransformCreator::addComponent(lua_State* L,
                                               Separity::Entity* ent) {

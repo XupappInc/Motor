@@ -13,6 +13,8 @@
 
 Separity::MeshRendererCreator::MeshRendererCreator() {}
 
+void Separity::MeshRendererCreator::registerInLua() {}
+
 void Separity::MeshRendererCreator::addComponent(lua_State* L,
                                                  Separity::Entity* ent) {
 
