@@ -39,22 +39,8 @@ void Separity::LuaManager::initLua() {
 void Separity::LuaManager::registerClasses() {
 	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Entity>("Entity")
-	    .addFunction("getTransform", &Entity::getComponent<Transform>)
+	    .addFunction("getTransform", &Entity::getEntTransform)
 	    .endClass();
-	luabridge::getGlobalNamespace(L_)
-	    .beginClass<Transform>("Transform")
-	    .addFunction("translate", &Transform::translate)
-	    .addFunction("pitch", &Transform::pitch)
-	    .addFunction("yaw", &Transform::yaw)
-	    .addFunction("roll", &Transform::roll)
-	    .endClass();
-
-	//luabridge::getGlobalNamespace(L_)
-	//    .beginClass<RigidBody>("RigidBody")
-	//    .addFunction("addForce", &RigidBody::addForce)
-	//    .addFunction("clearForces", &RigidBody::clearForces)
-	//    .addFunction("setLinearVelocity", &RigidBody::setLinearVelocity)
-	//    .endClass();
 }
 
 void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
