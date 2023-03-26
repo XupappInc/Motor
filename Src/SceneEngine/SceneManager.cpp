@@ -8,6 +8,7 @@
 
 #include "TransformCreator.h"
 #include "MeshRendererCreator.h"
+#include "LightCreator.h"
 
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
@@ -38,6 +39,8 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		std::cout << "Entidades:\n";
 		lua_getglobal(L, "Entities");
 
+		int cont = 0;
+
 		lua_pushnil(L); 
 		while(lua_next(L, -2)) {
 
@@ -49,6 +52,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 			if(lua_istable(L, -1)) {
 
 				Entity* entity = new Entity(_grp_GENERAL);
+				cont++;
 
 				lua_pushnil(L);  // Poner la primera key en la pila
 				while(lua_next(L, -2)) {
@@ -63,8 +67,12 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 				}
 			}
 			lua_pop(L, 1);
-		}		
+		}	
+
+		std::cout << "Entidades Creadas:" << cont << "\n";
 	}
+
+	
 
 	lua_close(L);
 
@@ -75,4 +83,5 @@ Separity::SceneManager::SceneManager() {
 	factory_ = CCreatorFactory(); 
 	factory_.add("transform", new TransformCreator());
 	factory_.add("meshRenderer", new MeshRendererCreator());
+	factory_.add("light", new LightCreator());
 }

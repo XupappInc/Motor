@@ -21,7 +21,7 @@ void Separity::TransformCreator::addComponent(lua_State* L,
 
 	Transform* tr = ent->addComponent<Transform>();
 	int i = 0;
-	double data[3];
+	float data[3] = {};
 
 	lua_getfield(L, -1, "pos");
 	if(lua_istable(L, -2)) {

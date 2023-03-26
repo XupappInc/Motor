@@ -16,7 +16,11 @@ Separity::MeshRendererCreator::MeshRendererCreator() {}
 void Separity::MeshRendererCreator::addComponent(lua_State* L,
                                                  Separity::Entity* ent) {
 
+
+	lua_getfield(L, -1, "meshName");
 	std::string s = lua_tostring(L, -1);
+	lua_pop(L, 1);
+
 	s += ".mesh";
 
 	std::cout << s << "\n";
