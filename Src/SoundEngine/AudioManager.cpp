@@ -7,6 +7,7 @@
 #include "Transform.h"
 #include "checkML.h"
 #include "fmod_errors.h"
+#include "fmod.hpp"
 
 #include <unordered_map>
 #define M_PI 3.141592
@@ -134,7 +135,7 @@ void Separity::AudioManager::update() {
 	for(Separity::Component* c : cmps_) {
 		Entity* ent = c->getEntity();
 		AudioSource* au = ent->getComponent<AudioSource>();
-		Transform* tr = ent->getComponent<Transform>();
+		Transform* tr = ent->getEntTransform();
 
 		FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
 		                               tr->getPosition().z};

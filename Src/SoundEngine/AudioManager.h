@@ -5,7 +5,8 @@
 
 #include <iostream>
 #include <unordered_map>
-#include "fmod.hpp"
+#include "fmod_common.h"
+
 namespace FMOD {
 	class Sound;
 	class System;
