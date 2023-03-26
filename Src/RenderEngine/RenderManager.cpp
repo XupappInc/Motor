@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 #include "MeshRenderer.h"
+#include "checkML.h"
 
 #include <OgreConfigFile.h>
 #include <OgreEntity.h>
@@ -13,8 +14,6 @@
 #include <SDL_syswm.h>
 #include <fstream>
 #include <iostream>
-
-#include "checkML.h"
 
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
@@ -133,7 +132,6 @@ void Separity::RenderManager::saveConfiguration() {
 }
 
 void Separity::RenderManager::closedown() {
-
 	ogreRoot_->queueEndRendering();
 
 	if(ogreWindow_ != nullptr) {
@@ -148,17 +146,16 @@ void Separity::RenderManager::closedown() {
 		delete sdlWindow_;
 	}
 	if(sceneMgr_ != nullptr) {
-		ogreRoot_->destroySceneManager(sceneMgr_);
 		sceneMgr_ = nullptr;
-		delete sceneMgr_;
+		// delete sceneMgr_;
 	}
 	if(ogreRoot_ != nullptr) {
 		delete ogreRoot_;
 		ogreRoot_ = nullptr;
 	}
 	if(configFile_ != nullptr) {
-		configFile_ = nullptr;
 		delete configFile_;
+		configFile_ = nullptr;
 	}
 }
 

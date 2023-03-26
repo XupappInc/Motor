@@ -5,10 +5,12 @@
 
 
 #include "Manager.h"
+#include <vector>
 
 #include "CCreatorFactory.h"
 
 namespace Separity {
+	class Entity;
 
 	class SceneManager : public Separity::Manager,
 	                     public Singleton<Separity::SceneManager> {
@@ -26,6 +28,8 @@ namespace Separity {
 
 		bool loadScene(const std::string& root);
 
+		void eraseEntities();
+
 		protected:
 		SceneManager();
 
@@ -33,7 +37,7 @@ namespace Separity {
 
 		CCreatorFactory factory_;
 
-
+		std::vector<Entity*> entidades;
 	};
 }  // namespace Separity
 

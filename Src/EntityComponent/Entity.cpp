@@ -35,6 +35,9 @@ Separity::Entity* Separity::Entity::getParent() const {
 }
 
 void Separity::Entity::addChild( Entity* child) {
+	auto tr2 = this->getEntTransform();
+	auto tr=child->getEntTransform();
+	tr->setPosition(tr2->getPosition());
 	childs_.push_back(child);
 }
 
