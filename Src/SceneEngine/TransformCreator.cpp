@@ -1,15 +1,15 @@
 #include "TransformCreator.h"
 
-#include "Transform.h"
+#include "AudioManager.h"
 #include "Component.h"
 #include "Entity.h"
-
-#include <lua.hpp>
-#include <iostream>
-
-#include "RenderManager.h"
 #include "PhysicsManager.h"
-#include "AudioManager.h"
+#include "RenderManager.h"
+#include "Transform.h"
+
+#include <iostream>
+#include <lua.hpp>
+#include <math.h>
 
 using namespace Separity;
 
@@ -17,8 +17,6 @@ Separity::TransformCreator::TransformCreator() {}
 
 void Separity::TransformCreator::addComponent(lua_State* L,
                                               Separity::Entity* ent) {
-
-
 	Transform* tr = ent->addComponent<Transform>();
 	int i = 0;
 	double data[3];
@@ -29,7 +27,7 @@ void Separity::TransformCreator::addComponent(lua_State* L,
 		i = 0;
 		while(lua_next(L, -2)) {
 			data[i++] = lua_tonumber(L, -1);
-			std::cout << data[i - 1] << "\n";				
+			std::cout << data[i - 1] << "\n";
 			lua_pop(L, 1);
 		}
 		tr->setPosition(data[0], data[1], data[2]);
@@ -45,7 +43,9 @@ void Separity::TransformCreator::addComponent(lua_State* L,
 			std::cout << data[i - 1] << "\n";
 			lua_pop(L, 1);
 		}
-		tr->setRotation(data[0], data[1], data[2], 0);
+		tr->setRotation(
+		    data[0], data[1], data[2],
+		    sqrt(1 - pow(data[0], 2) - pow(data[1], 2) - pow(data[2], 2)));
 		lua_pop(L, 1);
 	}
 
@@ -62,15 +62,3 @@ void Separity::TransformCreator::addComponent(lua_State* L,
 		lua_pop(L, 1);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

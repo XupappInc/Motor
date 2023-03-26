@@ -74,7 +74,7 @@ void Separity::Transform::translate(Spyutils::Vector3 translation) {
 Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
 
 void Separity::Transform::setRotation(float x, float y, float z, float w) {
-	//rotation_ = Spyutils::spyQuaternion(x, y, z, w);
+	rotation_ = Spyutils::spyQuaternion(x, y, z, w);
 }
 
 Spyutils::spyQuaternion Separity::Transform::getRotation() { return rotation_; }
