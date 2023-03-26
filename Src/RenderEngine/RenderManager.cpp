@@ -149,8 +149,8 @@ void Separity::RenderManager::closedown() {
 	}
 	if(sceneMgr_ != nullptr) {
 		ogreRoot_->destroySceneManager(sceneMgr_);
-		sceneMgr_ = nullptr;
-		delete sceneMgr_;
+		//sceneMgr_ = nullptr;
+		//delete sceneMgr_;
 	}
 	if(ogreRoot_ != nullptr) {
 		delete ogreRoot_;
