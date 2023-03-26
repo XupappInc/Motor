@@ -47,10 +47,13 @@ Separity::AudioManager::~AudioManager() {
 
 void Separity::AudioManager::initAudioSystem() {
 	// Create an instance of the FMOD system
-	FMODErrorChecker(FMOD::System_Create(&system_));
+	FMOD_RESULT result = FMOD::System_Create(&system_);
+	FMODErrorChecker(&result);
 	// Initialize the FMOD system with 32 channels and normal settings
-	FMODErrorChecker(system_->init(32, FMOD_3D, 0));
-	FMODErrorChecker(system_->set3DSettings(1.0f, 1.0f, 1.0f));
+	result = system_->init(32, FMOD_3D, 0);
+	FMODErrorChecker(&result);
+	result = system_->set3DSettings(1.0f, 1.0f, 1.0f);
+	FMODErrorChecker(&result);
 	// Set the sound parameters
 	const float sampleRate = 44100.0f;
 	const float duration = 2.0f;     // in seconds
@@ -90,8 +93,9 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 		temporalSound = musics_->find(audioName)->second;
 	else
 		printf("No existe ese sonido");
-	FMODErrorChecker(
-	    system_->playSound(temporalSound, nullptr, true, &temporalChannel));
+	FMOD_RESULT result =
+	    system_->playSound(temporalSound, nullptr, true, &temporalChannel);
+	FMODErrorChecker(&result);
 
 	for(Separity::Component* c : cmps_) {
 		AudioSource* au = c->getEntity()->getComponent<AudioSource>();
@@ -144,8 +148,8 @@ void Separity::AudioManager::update() {
 				// Busca cada canal con dicho nombre y le asigna la posición de
 				// su transform
 				FMOD::Channel* c = channels_->find(au->getAudioName())->second;
-
-				FMODErrorChecker(c->set3DAttributes(&pos, nullptr));
+				FMOD_RESULT result = c->set3DAttributes(&pos, nullptr);
+				FMODErrorChecker(&result);
 			}
 		} else {
 			AudioListener* audListener = ent->getComponent<AudioListener>();
@@ -160,7 +164,8 @@ void Separity::AudioManager::update() {
 	for(auto& it : channelsWithoutSound) {
 		channels_->erase(it);
 	}
-	FMODErrorChecker(system_->update());
+	FMOD_RESULT result = system_->update();
+	FMODErrorChecker(&result);
 }
 
 void Separity::AudioManager::pauseAllChannels() {
@@ -180,8 +185,9 @@ void Separity::AudioManager::update3DListener(int listenerNumber,
                                               FMOD_VECTOR* vel,
                                               FMOD_VECTOR* forward,
                                               FMOD_VECTOR* up) {
-	FMODErrorChecker(system_->set3DListenerAttributes(listenerNumber, pos, vel,
-	                                                  forward, up));
+	FMOD_RESULT result =
+	    system_->set3DListenerAttributes(listenerNumber, pos, vel, forward, up);
+	FMODErrorChecker(&result);
 }
 
 void Separity::AudioManager::stopAllChannels() {
@@ -194,9 +200,9 @@ void Separity::AudioManager::stopChannel(std::string audioName) {
 	channels_->find(audioName)->second->stop();
 }
 
-bool Separity::AudioManager::FMODErrorChecker(FMOD_RESULT result) {
-	if(result != FMOD_OK) {
-		printf("FMOD ERROR " + result);
+bool Separity::AudioManager::FMODErrorChecker(FMOD_RESULT* result) {
+	if(*result != FMOD_OK) {
+		printf("FMOD ERROR " + *result);
 		return false;
 	}
 	return true;

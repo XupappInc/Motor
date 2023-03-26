@@ -65,7 +65,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="result"></param>
 		/// <returns></returns>
-		bool FMODErrorChecker(FMOD_RESULT result);
+		bool FMODErrorChecker(FMOD_RESULT* result);
 		/// <summary>
 		/// Actualiza el sistema y reproduce los sonidos guardados en el sistema
 		/// </summary>

@@ -11,14 +11,17 @@ AudioSource::AudioSource(const char* songRoute, std::string songName,
 
 	// Añade el audio a la lista de sonidos de música o de sonidos dependiendo
 	// de un booleano
+	FMOD_RESULT result;
 	if(isMusic) {
-		audioManager->FMODErrorChecker(audioManager->system_->createSound(
-		    songRoute, FMOD_3D | FMOD_LOOP_NORMAL, nullptr, &sound_));
+		result = audioManager->system_->createSound(
+		    songRoute, FMOD_3D | FMOD_LOOP_NORMAL, nullptr, &sound_);
+		audioManager->FMODErrorChecker(&result);
 		audioManager->musics_->emplace(songName, sound_);
 		sound_->setSoundGroup(audioManager->musicGroup_);
 	} else {
-		audioManager->FMODErrorChecker(audioManager->system_->createSound(
-		    songRoute, FMOD_3D | FMOD_DEFAULT, nullptr, &sound_));
+		result = audioManager->system_->createSound(
+		    songRoute, FMOD_3D | FMOD_DEFAULT, nullptr, &sound_);
+		audioManager->FMODErrorChecker(&result);
 		audioManager->sounds_->emplace(songName, sound_);
 		sound_->setSoundGroup(audioManager->soundGroup_);
 	}
