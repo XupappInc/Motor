@@ -149,9 +149,10 @@ int main() {
 	  auto rbcube=
 		  cube->addComponent<RigidBody>(DYNAMIC, 10);
 
-	  cube->addChild(camera);
-	  cam_tr->translate({0, 2, 3});
+	 // cube->addChild(camera);
+	
 	  cam_tr->setRotation(30, 10, 40);
+	
 	bool quit = false;
 	 initComponents(renderManager, physManager, uiManager, inputManager,
 	                 audManager);
@@ -160,7 +161,6 @@ int main() {
 
 	while(!quit) {
 		timer->reset();
-
 		inputManager->update();
 		int xMouse = inputManager->getMousePos().first;
 		int yMouse = inputManager->getMousePos().second;
@@ -170,7 +170,7 @@ int main() {
 			
 			if(inputManager->isKeyDown('a')) {
 				rbcube->addForce({-1000, 0, 0});
-				//cam_tr->translate(Spyutils::Vector3(-5, 0, 0));
+				
 			}
 			if(inputManager->isKeyDown('d')) {
 				//cam_tr->translate(Spyutils::Vector3(5, 0, 0));

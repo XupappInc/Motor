@@ -1,0 +1,287 @@
+material Practica1/plano {
+		technique {
+			pass {
+				diffuse 0.4 0.4 0.4
+				texture_unit {
+					texture Water02.jpg
+					colour_op add
+					scroll_anim 0.1  0.1
+				}
+		 }
+	 }
+}
+
+material Practica1/cangilon {
+		technique {
+			pass {
+				diffuse 0.7 0.7 0.7
+				texture_unit {
+					texture BumpyMetal.jpg
+					colour_op add
+				}
+		 }
+	 }
+}
+
+material Practica1/tablon {
+		technique {
+			pass {
+				diffuse 0.7 0.4 0.0
+		 }
+	 }
+}
+
+material Practica1/cian {
+		technique {
+			pass {
+				diffuse 0.0 1.0 1.0
+		 }
+	 }
+}
+
+material Practica1/rodillo {
+		technique {
+			pass {
+				diffuse 0.3 0.3 0.3
+				texture_unit {
+					texture BeachStones.jpg
+					colour_op add
+				}
+		 }
+	 }
+}
+
+material Practica1/cuerpo {
+		technique {
+			pass {
+				diffuse 0.4 0.4 0.4
+				texture_unit {
+					texture checker.png
+					colour_op add
+					env_map spherical
+				}
+		 }
+	 }
+}
+
+material Practica1/cabeza {
+		technique {
+			pass {
+				diffuse 0.3 0.3 0.3
+				texture_unit {
+					texture spotlight_image.png
+					colour_op add
+					env_map spherical
+				}
+		 }
+	 }
+}
+
+material Practica1/rojo {
+		technique {
+			pass {
+				diffuse 1.0 0.6 0.2
+		 }
+	 }
+}
+
+material Practica1/Rojo {
+		technique {
+			pass {
+				diffuse 1.0 0.0 0.0
+		 }
+	 }
+}
+
+material Practica1/ombligo {
+		technique {
+			pass {
+				diffuse 1.0 0.0 0.0
+		 }
+	 }
+}
+material Practica1/naranja {
+		technique {
+			pass {
+				diffuse 1 0.6 0.0
+					
+		 }
+	 }
+}
+
+material Practica1/esferaAvion {
+		technique {
+			pass {
+				diffuse 0.9 0.0 0.0
+		 }
+	 }
+}
+
+material Practica1/CabezaRoja {
+		technique {
+			pass {
+				diffuse 0.8 0.0 0.0
+				texture_unit {
+					texture spotlight_image.png
+					colour_op modulate
+					env_map spherical
+				}
+		 }
+	 }
+}
+
+material Practica1/CuerpoRojo {
+		technique {
+			pass {
+				diffuse 0.8 0.0 0.0
+				texture_unit {
+					texture checker.png
+					colour_op modulate
+					env_map spherical
+				}
+		 }
+	 }
+}
+
+material Practica1/ninja {
+		technique {
+			pass {
+				diffuse 1.0 1.0 0.0
+		 }
+	 }
+}
+
+material Practica1/alasAvion {
+		technique {
+			pass {
+				diffuse 0.4 0.4 0.4
+				texture_unit {
+					texture checker.png
+					colour_op add
+				}
+		 }
+	 }
+}
+
+material Practica1/morroAvion {
+		technique {
+			pass {
+				diffuse 0.9 0.6 0.0
+			}
+		}
+}
+material Practica1/morroAspa {
+		technique {
+			pass {
+				diffuse 0.4 0.4 0.4
+				texture_unit {
+					texture dirt01.jpg
+					colour_op add
+					}
+			}
+		}
+}
+material Practica1/brazo {
+		technique {
+			pass {
+				diffuse 1.0 1 0
+				texture_unit {
+					texture BumpyMetal.jpg
+				colour_op add
+					
+					}
+			}
+		}
+}
+material Practica1/Amarillo {
+		technique {
+			pass {
+				diffuse 1.0 1.0 0.0
+		 }
+	 }
+}
+
+material Practica1/bomba {
+		technique {
+			pass {
+				diffuse 0.4 0.4 0.4
+				texture_unit {
+					texture checker.png
+					colour_op add
+			
+				}
+		 }
+	 }
+}
+
+material Practica1/piedras {
+		technique {
+			pass {
+				diffuse 0.4 0.4 0.4
+				texture_unit {
+					texture BeachStones.jpg
+					colour_op modulate
+				}
+		 }
+	 }
+}
+material Practica1/points {
+		technique {
+			pass {
+			    lighting off  
+				texture_unit {
+					texture 10points.png
+					
+					tex_address_mode clamp
+			
+				}
+		 }
+	 }
+}
+
+material Practica1/Smoke
+{
+	technique
+			{
+				pass
+				{
+					lighting off
+					scene_blend alpha_blend
+					depth_write off
+					diffuse vertexcolour
+					texture_unit
+					{
+						texture smoke.png
+						tex_address_mode clamp
+					}
+				}
+			}
+}
+
+material IG2/Space{
+		technique
+					{
+						pass
+								{
+								lighting off
+								diffuse 1.0 1.0 1.0					
+								ambient 0.5 0.5 0.5
+								texture_unit
+								{ 
+									tex_coord_set 0 
+									texture spaceSky.jpg
+									colour_op modulate
+									rotate_anim 0.05
+								}
+
+								texture_unit
+								{ 
+									tex_coord_set 0 
+									texture lightMap.jpg
+									colour_op modulate
+								}
+								
+						}
+					}
+}
+
