@@ -8,7 +8,8 @@ function Prueba:new()
 end
 
 function Prueba:update()
-    print('Se llama al update del script de Lua')
+    -- print('Se llama al update del script de Lua')
+    prueba.entity:getTransform():roll(27);
 end
 
 pruebaLua = Prueba:new()

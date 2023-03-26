@@ -5,16 +5,23 @@
 #include "Component.h"
 #include "Manager.h"
 #include "ec.h"
+#include "Vector.h"
 
 #include <array>
 #include <bitset>
 #include <cassert>
 #include <vector>
-//#include"PhysicsManager.h"
+
+namespace Spyutils {
+	class Vector3;		
+	}
 namespace Separity {
+	
 	class RenderManager;
 	class PhysicsManager;
 	class AudioManager;
+	class Transform;
+
 	/// <summary>
 	/// <para>Clase que representa una entidad.</para>
 	/// <para>Cada entidad puede contener una serie de componentes y debe de
@@ -23,7 +30,8 @@ namespace Separity {
 	///
 	class Entity {
 		public:
-		Entity(Separity::grpId_type gId);
+		Entity(Separity::grpId_type gId,
+		       Spyutils::Vector3 iniPos = Spyutils::Vector3(0,0,0));
 		int s;
 		// borramos el constructor por copia/asignamiento porque no está claro
 		// como copiar los componentes
@@ -184,7 +192,7 @@ namespace Separity {
 		/// </summary>
 		/// <returns>El grupo al que pertenece la entidad (gId)</returns>
 		Separity::grpId_type getGroupId();
-
+		Separity::Transform* getEntTransform();
 		private:
 		Manager* mngr_;
 		std::array<Component*, maxComponentId> cmps_;
@@ -194,6 +202,8 @@ namespace Separity {
 		Separity::grpId_type gId_;
 		Entity* parent = nullptr;
 		std::vector<Entity*> childs_;
+		Transform * entTr_;
+		Spyutils::Vector3 iniPos_;
 	};
 }  // namespace Separity
 #endif  // !__ENTITY_H__

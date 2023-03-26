@@ -5,13 +5,15 @@
 
 #include <iostream>
 #include <unordered_map>
-#include "fmod.hpp"
+struct FMOD_VECTOR;
+enum FMOD_RESULT;
 namespace FMOD {
 	class Sound;
 	class System;
 	class SoundGroup;
 	class Channel;
 }  // namespace FMOD
+
 namespace Separity {
 	class AudioManager : public Separity::Manager,
 	                     public Singleton<Separity::AudioManager> {
@@ -64,7 +66,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="result"></param>
 		/// <returns></returns>
-		bool FMODErrorChecker(FMOD_RESULT result);
+		bool FMODErrorChecker(FMOD_RESULT* result);
 		/// <summary>
 		/// Actualiza el sistema y reproduce los sonidos guardados en el sistema
 		/// </summary>

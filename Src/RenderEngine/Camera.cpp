@@ -9,6 +9,7 @@
 #include "OgreSceneManager.h"
 #include "OgreRenderWindow.h"
 #include "OgreViewport.h"
+#include <spyMath.h>
 
 
 Separity::Camera::Camera() : tr_(nullptr) {
@@ -64,15 +65,22 @@ Ogre::Degree Separity::Camera::zoomChecker(Ogre::Degree&& zoom) {
 }
 
 void Separity::Camera::readTransform() {
-	Spyutils::Vector3 v_tr = tr_->getPosition();
-	Ogre::Vector3 v = Ogre::Vector3(v_tr.x, v_tr.y, v_tr.z);
-	cameraNode_->setPosition(v);
+	Transform* tr = ent_->getComponent<Transform>();
 
-	v_tr = tr_->getRotation().toEulerAngles();
-	cameraNode_->setOrientation(Ogre::Quaternion());
-	cameraNode_->roll(Ogre::Radian(v_tr.z));
-	cameraNode_->pitch(Ogre::Radian(v_tr.x));
-	cameraNode_->yaw(Ogre::Radian(v_tr.y));
+	assert(tr != nullptr);
+
+	cameraNode_->setPosition(tr->getPosition().x, tr->getPosition().y,
+	                           tr->getPosition().z);
+	Ogre::Matrix3 matrix;
+	matrix.FromEulerAnglesYXZ(
+	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().y)),
+	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().x)),
+	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().z)));
+	Ogre::Quaternion rot(matrix);
+	cameraNode_->setOrientation(rot);
+
+	cameraNode_->setScale(tr->getScale().x, tr->getScale().y,
+	                        tr->getScale().z);
 }
 
 

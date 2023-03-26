@@ -18,7 +18,11 @@ Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
 }
 
 Separity::MeshRenderer::~MeshRenderer() {
+
+	sceneManager_->destroyMovableObject(entity_);
 	sceneManager_->destroySceneNode(meshRenderer_);
+	
+	entity_ = nullptr;
 	meshRenderer_ = nullptr;
 	sceneManager_ = nullptr;
 }
@@ -37,6 +41,11 @@ void Separity::MeshRenderer::render() {
 
 	meshRenderer_->setScale(tr->getScale().x, tr->getScale().y,
 	                        tr->getScale().z);
+}
+
+void Separity::MeshRenderer::setTexture(const std::string& name) {
+
+	entity_->setMaterialName(name);
 }
 
 void Separity::MeshRenderer::setActive(bool set) {

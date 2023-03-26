@@ -26,21 +26,15 @@ namespace Separity {
 
 		void setLuaScript(luabridge::LuaRef* behaviourLua);
 
-		void initComponent() override;
-
-		virtual void update() override;
-		virtual void start();
 		virtual void awake();
+		virtual void start();
+		virtual void update() override;
 		virtual void onCollisionEnter(Entity* other);
 		virtual void onCollisionExit(Entity* other);
 		virtual void onCollisionStay(Entity* other);
 
-		Transform& getTransform();
-		Transform* transform_;
-
 		protected:
 		luabridge::LuaRef* behaviourLua_;
-		//RigidBody* rigidBody_;
 	};
 }  // namespace Separity
 

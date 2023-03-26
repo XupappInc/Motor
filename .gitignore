@@ -364,3 +364,7 @@ MigrationBackup/
 
 ## Dear ImGui artifacts
 imgui.ini
+
+# Blender
+*.blend
+*.blend1
