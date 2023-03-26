@@ -5,14 +5,15 @@
 
 #include <iostream>
 #include <unordered_map>
-#include "fmod_common.h"
-
+struct FMOD_VECTOR;
+enum FMOD_RESULT;
 namespace FMOD {
 	class Sound;
 	class System;
 	class SoundGroup;
 	class Channel;
 }  // namespace FMOD
+
 namespace Separity {
 	class AudioManager : public Separity::Manager,
 	                     public Singleton<Separity::AudioManager> {
