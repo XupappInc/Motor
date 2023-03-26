@@ -154,9 +154,9 @@ int main() {
 
 	  colliderParams paramscube;
 	  paramscube.colShape = CUBE;
-	  paramscube.height = 1;
-	  paramscube.width = 1;
-	  paramscube.depth = 1;
+	  paramscube.height = 2;
+	  paramscube.width = 2;
+	  paramscube.depth = 5;
 	  paramscube.offsetY = 0;
 	  paramscube.isTrigger = false;
 	  cube->addComponent<Collider>(paramscube);
