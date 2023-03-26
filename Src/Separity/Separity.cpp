@@ -58,9 +58,9 @@ int main() {
 	Entity* MusicInstance = new Entity(_grp_GENERAL,Spyutils::Vector3(10, 0, 0));
 	//auto tr2 = MusicInstance->addComponent<Transform>();
 	//tr2->setPosition();
-	auto musica = MusicInstance->addComponent<AudioSource>(
-	    "Assets//theme.mp3", string("codigoLyoko"), true);
-	audManager->playAudio(string("codigoLyoko"), 1.0f, 100.0f);
+	//auto musica = MusicInstance->addComponent<AudioSource>(
+	//    "Assets//theme.mp3", string("codigoLyoko"), true);
+	//audManager->playAudio(string("codigoLyoko"), 1.0f, 100.0f);
 
 	
 	//luaManager->loadScript("prueba", cube);

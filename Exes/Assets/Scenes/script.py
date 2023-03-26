@@ -40,12 +40,23 @@ for obj in scene.objects:
         
         lua_string += "\t\tlight = {\n"        
         lua_string += "\t\t\t" + "color = {" + str(color.r) + ", " + str(color.g) + ", " + str(color.b) + "},\n"
-        lua_string += "\t\t\t" + "type = \"" + obj.data.type + "\",\n"
+        lua_string += "\t\t\t" + "type = \"" + obj.data.type + "\"\n"
         lua_string += "\t\t},\n"                         
     # Si el objeto tiene una malla, agrega el atributo "MeshRenderer"       
     elif obj.data is not None and obj.type == "MESH":
+        
         lua_string += "\t\tmeshRenderer = {\n" 
-        lua_string += "\t\t\t" + "meshName = \"" + obj.data.name + "\"\n"
+        
+        if obj.material_slots:
+            # Accede al primer slot de material
+            first_material_slot = obj.material_slots[0]
+            # Accede al nombre del material en el primer slot
+            first_material_name = first_material_slot.name
+            first_material_name = first_material_name.replace(" ", "_")
+            lua_string += "\t\t\t" + "textureName = \"" + first_material_name + "\",\n"
+            
+        
+        lua_string += "\t\t\t" + "meshName = \"" + obj.data.name + "\"\n"      
         lua_string += "\t\t},\n"  
 
     # Itera a través de todas las propiedades personalizadas del objeto y crea los atributos correspondientes

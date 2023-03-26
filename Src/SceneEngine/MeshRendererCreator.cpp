@@ -27,4 +27,10 @@ void Separity::MeshRendererCreator::addComponent(lua_State* L,
 
 	MeshRenderer* mesh = ent->addComponent<MeshRenderer>(
 	    Separity::RenderManager::getInstance()->getSceneManager(), s);
+
+	lua_getfield(L, -1, "textureName");
+	s = lua_tostring(L, -1);
+	lua_pop(L, 1);
+
+	mesh->setTexture(s);
 }

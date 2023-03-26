@@ -42,6 +42,11 @@ void Separity::MeshRenderer::render() {
 	                        tr->getScale().z);
 }
 
+void Separity::MeshRenderer::setTexture(const std::string& name) {
+
+	entity_->setMaterialName(name);
+}
+
 void Separity::MeshRenderer::setActive(bool set) {
 	// ec:Component::setActive(set);
 	meshRenderer_->setVisible(set);
