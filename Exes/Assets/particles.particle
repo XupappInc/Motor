@@ -47,8 +47,8 @@ particle_system particles/Smoke
 particle_system particles/ExplosionAv
 {
 	material        	Practica1/Smoke
-	particle_width  	70
-	particle_height 	100
+	particle_width  	2
+	particle_height 	2
 	cull_each       	true
 	quota           	500
 	billboard_type  	point

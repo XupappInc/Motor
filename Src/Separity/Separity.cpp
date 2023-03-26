@@ -15,9 +15,9 @@
 #include "RenderManager.h"
 #include "SceneManager.h"
 #include "UIManager.h"
-//#include "checkML.h"
-#include "Camera.h"
-#include "ParticleSystem.h"
+// #include "checkML.h"
+
+#include "Separity.h"
 #include "VirtualTimer.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
@@ -32,7 +32,6 @@
 #include <Windows.h>
 #include <iostream>
 #include <utility>
-#include "Separity.h"
 
 const uint32_t FRAMERATE = 60;
 const uint32_t FRAMETIME = 1000 / FRAMERATE;
@@ -56,87 +55,102 @@ int main() {
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/Scenes/scene.lua");
 
+	Entity* MusicInstance =
+	    new Entity(_grp_GENERAL, Spyutils::Vector3(0, 0, 0));
 
-	Entity* MusicInstance = new Entity(_grp_GENERAL,Spyutils::Vector3(10, 0, 0));
-	//auto tr2 = MusicInstance->addComponent<Transform>();
-	//tr2->setPosition();
-	//auto musica = MusicInstance->addComponent<AudioSource>(
-	//    "Assets//theme.mp3", string("codigoLyoko"), true);
-	//audManager->playAudio(string("codigoLyoko"), 1.0f, 100.0f);
+	auto musica = MusicInstance->addComponent<AudioSource>(
+	    "Assets//callmemaybe.mp3", string("callmemaybe"), true);
+	audManager->playAudio(string("callmemaybe"), 1000.0f, 100000.0f);
 
-	
-	//luaManager->loadScript("prueba", cube);
+	// luaManager->loadScript("prueba", cube);
 
 	/*tr->setScale(0.03);
 	tr->pitch(30);
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/
-	 Entity* plano = new Entity(_grp_GENERAL);
-	 auto tr1 = plano->addComponent<Transform>();
-	 auto luz=plano->addComponent<Light>(DIRECTIONAL_LIGHT);
-	 luz->setDirection({1, 1, 1});
 	
-	 tr1->translate(Spyutils::Vector3(0,1.2,2));
-	 tr1->setScale(0.2, 0.005, 0.2);
+	Entity* plano = new Entity(_grp_GENERAL);
+	auto tr1 = plano->addComponent<Transform>();
+	/*auto luz = plano->addComponent<Light>(DIRECTIONAL_LIGHT);
+	luz->setDirection({1, 1, 1});*/
 
+	tr1->translate(Spyutils::Vector3(0, 1.2, 2));
+	tr1->setScale(0.2, 0.005, 0.2);
 
-	
 	/* collider (antes de rigidbody siempre)*/
-	 colliderParams params1;
-	 params1.colShape = CUBE;
-	 params1.height = 5;
-	 params1.width = 45;
-	 params1.depth = 45;
-	 params1.offsetY = 0;
-	 params1.isTrigger = false;
+	colliderParams params1;
+	params1.colShape = CUBE;
+	params1.height = 5;
+	params1.width = 45;
+	params1.depth = 45;
+	params1.offsetY = 0;
+	params1.isTrigger = false;
 
-	 plano->addComponent<Collider>(params1);
+	plano->addComponent<Collider>(params1);
 
 	// rigidbody
-	 auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
+	auto rb1 = plano->addComponent<RigidBody>(STATIC, 10);
 	/*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
 	 rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
 
-	
-
 	Entity* camera = new Entity(_grp_GENERAL);
-	Transform* cam_tr = camera->getEntTransform();  // addComponent<Transform>();
+	Transform* cam_tr =
+	    camera->getEntTransform();  // addComponent<Transform>();
 	cam_tr->translate(Spyutils::Vector3(0, 20, 25));
 	cam_tr->pitch(-40);
+
 	Camera* cam_cam = camera->addComponent<Camera>();
 	camera->addComponent<AudioListener>();
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
 
-	
-	 Entity* sinbad = new Entity(_grp_GENERAL);
+	Entity* sinbad = new Entity(_grp_GENERAL);
 	auto tr4 = sinbad->addComponent<Transform>();
-	 tr4->translate({0, 20, 0});
+	tr4->translate({0, 20, 0});
+
+	Entity* particleSystem = new Entity(_grp_GENERAL);
+	auto parts=particleSystem->getEntTransform();
+	parts->translate({0, 20, 0});
+	//sinbad->addChild(particleSystem);
+	auto particleComponent= particleSystem->addComponent<ParticleSystem>("misParticulas","particles/Smoke");
+	
 
 	//  mesh renderer
 
-	 sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
 	                                   "Sinbad.mesh");
+
+	colliderParams params;
+	params.colShape = CUBE;
+	params.height = 10;
+	params.width = 5;
+	params.depth = 5;
+	params.offsetY = 0;
+	params.isTrigger = false;
+	sinbad->addComponent<Collider>(params);
+	auto rbSinbad = sinbad->addComponent<RigidBody>(DYNAMIC, 10);
+
+	Entity* cube = new Entity(_grp_GENERAL);
+	auto cubetr = cube->getEntTransform();
+	cubetr->translate({20, 25, 0});
+	cubetr->setScale(0.03);
 	
-	 colliderParams params;
-	 params.colShape = CUBE;
-	 params.height = 10;
-	 params.width = 5;
-	 params.depth =5;
-	 params.offsetY = 0;
-	 params.isTrigger = false;
-	 sinbad->addComponent<Collider>(params);
-	  auto rbSinbad=sinbad->addComponent<RigidBody>(DYNAMIC, 10);
+	Entity* luz = new Entity(_grp_GENERAL);
+	auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
+	luzGlobal->setDiffuse({0.7, 0.7, 0.7});
+	auto luzTr=luz->getEntTransform();
+	luzTr->translate({0,100,0});
 
+	Entity* luzAux = new Entity(_grp_GENERAL);
+	auto luzAux1 = luzAux->addComponent<Light>(DIRECTIONAL_LIGHT);
+	auto luzTr2 = luzAux->getEntTransform();
+	luzTr2->translate({0, 100, 0});
+	luzAux1->setDirection({0, 0, -1});
+	luzAux1->setDiffuse({0.5, 0, 0.5});
+	//  mesh renderer
 
-	 Entity* cube = new Entity(_grp_GENERAL);
-	  auto cubetr = cube->getEntTransform();
-	 cubetr->translate({20, 20, 0});
-	  cubetr->setScale(0.3);
-	  //  mesh renderer
-
-	  cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
-	                                     "Sinbad.mesh");
+	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	                                 "Mesh.010.mesh");
 
 	  colliderParams paramscube;
 	  paramscube.colShape = CUBE;
@@ -146,18 +160,15 @@ int main() {
 	  paramscube.offsetY = 0;
 	  paramscube.isTrigger = false;
 	  cube->addComponent<Collider>(paramscube);
-	  auto rbcube=
-		  cube->addComponent<RigidBody>(DYNAMIC, 10);
+	  auto rbcube=  cube->addComponent<RigidBody>(DYNAMIC, 10);
 
 	 // cube->addChild(camera);
 	
-	  cam_tr->setRotation(30, 10, 40);
-	
 	bool quit = false;
-	 initComponents(renderManager, physManager, uiManager, inputManager,
-	                 audManager);
+	initComponents(renderManager, physManager, uiManager, inputManager,
+	               audManager);
 
-	 rbcube->setDamping(0.5,0);
+	rbcube->setDamping(0.5, 0);
 
 	while(!quit) {
 		timer->reset();
@@ -167,37 +178,23 @@ int main() {
 		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
 			quit = true;
 		} else {
-			
 			if(inputManager->isKeyDown('a')) {
 				rbcube->addForce({-1000, 0, 0});
 				
 			}
 			if(inputManager->isKeyDown('d')) {
-				//cam_tr->translate(Spyutils::Vector3(5, 0, 0));
 				rbcube->addForce({1000, 0, 0});
 			}
 			if(inputManager->isKeyDown('w')) {
-				//cam_tr->translate(Spyutils::Vector3(0, 5, 0));
 				rbcube->addForce({0, 0, -1000});
 			}
 			if(inputManager->isKeyDown('s')) {
 				rbcube->addForce({0, 0, 1000});
-				//cam_tr->translate(Spyutils::Vector3(0, -5, 0));
 			}
-			if(inputManager->mouseMotionEvent()) {
-				std::pair<int,int> mouse= inputManager->getMousePos();
-				int a = mouse.first;
-				std::cout << "Pos Raton: " << a << std::endl;
-				std::cout << "Pos Raton ini: " << xMouse << std::endl;
-				if( a > xMouse) {
-					cam_tr->yaw(-50.f);
-				}
-				if(a < xMouse) {
-					cam_tr->yaw(50.f);
-				}
-				//cam_tr->yaw(0.1f);
+			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
+				cam_tr->yaw(0.1f);
 			}
-			/*if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
+			if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
 				cam_tr->yaw(-0.1f);
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_UP)) {
@@ -205,7 +202,7 @@ int main() {
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_DOWN)) {
 				cam_tr->translate(Spyutils::Vector3(0, 0, 5));
-			}*/
+			}
 			if(inputManager->isKeyDown('c')) {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);
 			}
@@ -213,12 +210,12 @@ int main() {
 				RenderManager::getInstance()->fullScreen(true);
 			}
 			if(inputManager->isKeyDown('z')) {
-				RenderManager::getInstance()->fullScreen(false);
+				//RenderManager::getInstance()->fullScreen(false);
+				//particleComponent->setVisible(true);
 			}
-
 		}
 
-		//luaManager->update();
+		// luaManager->update();
 		physManager->update(deltaTime);
 		renderManager->update();
 		renderManager->render();
@@ -245,7 +242,7 @@ int main() {
 	inputManager->close();
 	audManager->close();
 	physManager->close();
-	//luaManager->close();
+	// luaManager->close();
 
 	return 0;
 }
