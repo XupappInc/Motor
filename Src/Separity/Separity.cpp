@@ -110,11 +110,11 @@ int main() {
 
 	Entity* particleSystem = new Entity(_grp_GENERAL);
 	auto parts=particleSystem->getEntTransform();
-	parts->translate({0, 20, 0});
-	//sinbad->addChild(particleSystem);
-	auto particleComponent= particleSystem->addComponent<ParticleSystem>("misParticulas","particles/Smoke");
+	parts->translate({0, 0, 20});
 	
+	auto particleComponent= particleSystem->addComponent<ParticleSystem>("misParticulas","particles/Smoke");
 
+	//sinbad->addChild(particleSystem);
 	//  mesh renderer
 
 	sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
@@ -209,10 +209,7 @@ int main() {
 			if(inputManager->isKeyDown('x')) {
 				RenderManager::getInstance()->fullScreen(true);
 			}
-			if(inputManager->isKeyDown('z')) {
-				//RenderManager::getInstance()->fullScreen(false);
-				//particleComponent->setVisible(true);
-			}
+			
 		}
 
 		// luaManager->update();

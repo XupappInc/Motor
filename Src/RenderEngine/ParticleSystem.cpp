@@ -48,7 +48,9 @@ void Separity::ParticleSystem::initComponent() {
 	}
 }
 
-void Separity::ParticleSystem::setVisible(bool set) { particleNode_->setVisible(set); }
+void Separity::ParticleSystem::setVisible(bool set) { particleNode_->setVisible(set);
+	partSys_->setVisible(set);
+}
 bool Separity::ParticleSystem::isVisible() { return visible_; }
 
 
