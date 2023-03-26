@@ -96,7 +96,7 @@ void Separity::Transform::pitch(float degree) {
 	Spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x + degree, rot.y, rot.z);
 	for(auto child : ent_->getChildren()) {
-		auto tr = child->getComponent<Transform>();
+		auto tr = child->getEntTransform();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		 tr->setPosition(rotacion);
@@ -108,7 +108,7 @@ void Separity::Transform::yaw(float degree) {
 	Spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x, rot.y + degree, rot.z);
 	for(auto child : ent_->getChildren()) {
-		auto tr = child->getComponent<Transform>();
+		auto tr = child->getEntTransform();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
@@ -120,7 +120,7 @@ void Separity::Transform::roll(float degree) {
 	Spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x, rot.y, rot.z + degree);
 	for(auto child : ent_->getChildren()) {
-		auto tr = child->getComponent<Transform>();
+		auto tr = child->getEntTransform();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
@@ -133,7 +133,7 @@ void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 
 	 for(auto child : ent_->getChildren()) {
 		// Escalar y mover el objeto hijo
-		auto tr = child->getComponent<Transform>();
+		auto tr = child->getEntTransform();  // getComponent<Transform>();
 		tr->position_.x*= scaleX;
 		tr->position_.y*= scaleY;
 		tr->position_.z*= scaleZ;

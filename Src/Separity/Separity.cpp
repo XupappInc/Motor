@@ -31,6 +31,7 @@
 #include <Transform.h>
 #include <Windows.h>
 #include <iostream>
+#include <utility>
 #include "Separity.h"
 
 const uint32_t FRAMERATE = 60;
@@ -161,9 +162,12 @@ int main() {
 		timer->reset();
 
 		inputManager->update();
+		int xMouse = inputManager->getMousePos().first;
+		int yMouse = inputManager->getMousePos().second;
 		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
 			quit = true;
 		} else {
+			
 			if(inputManager->isKeyDown('a')) {
 				rbcube->addForce({-1000, 0, 0});
 				//cam_tr->translate(Spyutils::Vector3(-5, 0, 0));
@@ -180,10 +184,20 @@ int main() {
 				rbcube->addForce({0, 0, 1000});
 				//cam_tr->translate(Spyutils::Vector3(0, -5, 0));
 			}
-			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
-				cam_tr->yaw(0.1f);
+			if(inputManager->mouseMotionEvent()) {
+				std::pair<int,int> mouse= inputManager->getMousePos();
+				int a = mouse.first;
+				std::cout << "Pos Raton: " << a << std::endl;
+				std::cout << "Pos Raton ini: " << xMouse << std::endl;
+				if( a > xMouse) {
+					cam_tr->yaw(-50.f);
+				}
+				if(a < xMouse) {
+					cam_tr->yaw(50.f);
+				}
+				//cam_tr->yaw(0.1f);
 			}
-			if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
+			/*if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
 				cam_tr->yaw(-0.1f);
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_UP)) {
@@ -191,7 +205,7 @@ int main() {
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_DOWN)) {
 				cam_tr->translate(Spyutils::Vector3(0, 0, 5));
-			}
+			}*/
 			if(inputManager->isKeyDown('c')) {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);
 			}
