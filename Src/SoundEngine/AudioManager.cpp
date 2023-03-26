@@ -6,8 +6,8 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "checkML.h"
-#include "fmod_errors.h"
 #include "fmod.hpp"
+#include "fmod_errors.h"
 
 #include <unordered_map>
 #define M_PI 3.141592
@@ -149,7 +149,8 @@ void Separity::AudioManager::update() {
 			}
 		} else {
 			AudioListener* audListener = ent->getComponent<AudioListener>();
-			update3DListener(audListener->listenerNumber_, &pos);
+			if(audListener)
+				update3DListener(audListener->listenerNumber_, &pos);
 		}
 	}
 
