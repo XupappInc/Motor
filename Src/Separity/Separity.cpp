@@ -149,13 +149,13 @@ int main() {
 		  cube->addComponent<RigidBody>(DYNAMIC, 10);
 
 	  cube->addChild(camera);
-	  //cam_tr->translate({0, 2, 3});
-	  
+	  cam_tr->translate({0, 2, 3});
+	  cam_tr->setRotation(30, 10, 40);
 	bool quit = false;
 	 initComponents(renderManager, physManager, uiManager, inputManager,
 	                 audManager);
 
-
+	 rbcube->setDamping(0.5,0);
 
 	while(!quit) {
 		timer->reset();
@@ -165,19 +165,19 @@ int main() {
 			quit = true;
 		} else {
 			if(inputManager->isKeyDown('a')) {
-				rbcube->addForce({-400, 0, 0});
+				rbcube->addForce({-1000, 0, 0});
 				//cam_tr->translate(Spyutils::Vector3(-5, 0, 0));
 			}
 			if(inputManager->isKeyDown('d')) {
 				//cam_tr->translate(Spyutils::Vector3(5, 0, 0));
-				rbcube->addForce({4000, 0, 0});
+				rbcube->addForce({1000, 0, 0});
 			}
 			if(inputManager->isKeyDown('w')) {
 				//cam_tr->translate(Spyutils::Vector3(0, 5, 0));
-				rbcube->addForce({0, 0, -400});
+				rbcube->addForce({0, 0, -1000});
 			}
 			if(inputManager->isKeyDown('s')) {
-				rbcube->addForce({0, 0, 400});
+				rbcube->addForce({0, 0, 1000});
 				//cam_tr->translate(Spyutils::Vector3(0, -5, 0));
 			}
 			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
