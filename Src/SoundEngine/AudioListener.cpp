@@ -11,13 +11,13 @@ AudioListener::AudioListener() {
 		listenerNumber_ = 0;
 	} else {
 		int f = 0;
-		audioManager->FMODErrorChecker(
-		    audioManager->system_->get3DNumListeners(&f));
+		FMOD_RESULT result = audioManager->system_->get3DNumListeners(&f);
+		audioManager->FMODErrorChecker(&result);
 		listenerNumber_ = f;
-		audioManager->FMODErrorChecker(
-		    audioManager->system_->set3DNumListeners(listenerNumber_ + 1));
-		audioManager->FMODErrorChecker(
-		    audioManager->system_->get3DNumListeners(&f));
+		result = audioManager->system_->set3DNumListeners(listenerNumber_ + 1);
+		audioManager->FMODErrorChecker(&result);
+		result = audioManager->system_->get3DNumListeners(&f);
+		audioManager->FMODErrorChecker(&result);
 	}
 	audioManager = nullptr;
 }
