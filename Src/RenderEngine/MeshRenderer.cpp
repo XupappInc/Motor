@@ -18,9 +18,11 @@ Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
 }
 
 Separity::MeshRenderer::~MeshRenderer() {
-	sceneManager_->destroySceneNode(meshRenderer_);
+	meshRenderer_->detachAllObjects();
+	sceneManager_->destroyEntity(entity_->getName());
 	meshRenderer_ = nullptr;
 	sceneManager_ = nullptr;
+	entity_ = nullptr;
 }
 
 void Separity::MeshRenderer::render() {

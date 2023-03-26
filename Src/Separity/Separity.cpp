@@ -15,7 +15,7 @@
 #include "RenderManager.h"
 #include "SceneManager.h"
 #include "UIManager.h"
-// #include "checkML.h"
+//#include "checkML.h"
 #include "Camera.h"
 #include "ParticleSystem.h"
 #include "VirtualTimer.h"
@@ -218,10 +218,11 @@ int main() {
 			Sleep(waitTime);
 	}
 	delete MusicInstance;
-	//	delete plano;
 	delete cube;
 	delete timer;
 	delete plano;
+	delete sinbad;
+	sceneMenager->eraseEntities();
 	renderManager->saveConfiguration();
 	renderManager->closedown();
 
