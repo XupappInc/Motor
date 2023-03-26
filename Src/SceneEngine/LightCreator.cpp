@@ -30,7 +30,6 @@ void Separity::LightCreator::addComponent(lua_State* L, Separity::Entity* ent) {
 	if(type == "SPOT") {
 		 light = ent->addComponent<Separity::Light>(SPOTLIGHT);	
 	} else if(type == "SUN") {
-		 //return;
 		 light = ent->addComponent<Separity::Light>(DIRECTIONAL_LIGHT);	
 	}
 
@@ -43,7 +42,7 @@ void Separity::LightCreator::addComponent(lua_State* L, Separity::Entity* ent) {
 		i = 0;
 		while(lua_next(L, -2)) {
 			data[i++] = lua_tonumber(L, -1);
-			std::cout << data[i - 1] << "\n";
+			//std::cout << data[i - 1] << "\n";
 			lua_pop(L, 1);
 		}
 		light->setDiffuse(Spyutils::Vector3(data[0], data[1], data[2]));
