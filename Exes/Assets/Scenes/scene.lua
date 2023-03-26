@@ -949,12 +949,6 @@ Entities = {
 		meshRenderer = {
 			textureName = "World_ap",
 			meshName = "Mesh.098"
-		},
-		collider = {
-			dim = {39.052555084228516, 4.317275047302246, 39.07554626464844}
-		},
-		rigidbody = {
-			type = 2
 		}
 	},
 	Bushes_3_2_001 = {
