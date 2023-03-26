@@ -1,13 +1,13 @@
 ﻿#include "SceneManager.h"
 
-#include "Entity.h"
-#include "LightCreator.h"
-#include "ColliderCreator.h"
-#include "RigidbodyCreator.h"
-#include "MeshRendererCreator.h"
-#include "TransformCreator.h"
 #include <iostream>
+
 #include <lua.hpp>
+
+#include "Entity.h"
+
+#include "TransformCreator.h"
+#include "MeshRendererCreator.h"
 
 
 template<typename T>
@@ -19,16 +19,10 @@ Separity::SceneManager* Separity::SceneManager::getInstance() {
 
 void Separity::SceneManager::update() {}
 
-void Separity::SceneManager::eraseEntities() {
-	for(Entity* e : entidades) {
-		delete e;
-	}
-	entidades.clear();
-}
-
 Separity::SceneManager::~SceneManager() {}
 
-bool Separity::SceneManager::loadScene(const std::string& root) {
+bool Separity::SceneManager::loadScene(const std::string& root) { 
+
 	lua_State* L = luaL_newstate();
 
 	int scriptLoadStatus = luaL_dofile(L, root.c_str());
@@ -39,30 +33,30 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 
 		// remove error message from Lua state
 		lua_pop(L, 1);
-	} else {
+	} 
+	else {
+
 		std::cout << "Entidades:\n";
 		lua_getglobal(L, "Entities");
 
-		int cont = 0;
-
-		lua_pushnil(L);
+		lua_pushnil(L); 
 		while(lua_next(L, -2)) {
+
 			if(lua_isstring(L, -2)) {
 				std::string entity = lua_tostring(L, -2, NULL);
-				//std::cout << " " << entity << ":\n";
+				std::cout << " " << entity << ":\n";
 			}
 
 			if(lua_istable(L, -1)) {
-				Entity* entity = new Entity(_grp_GENERAL);
-				entidades.push_back(entity);
 
-				cont++;
+				Entity* entity = new Entity(_grp_GENERAL);
 
 				lua_pushnil(L);  // Poner la primera key en la pila
 				while(lua_next(L, -2)) {
+				
 					if(lua_isstring(L, -2)) {
 						std::string component = lua_tostring(L, -2, NULL);
-						//std::cout << "  " << component << "\n";
+						std::cout << "  " << component << "\n";
 
 						factory_.addComponent(component, L, entity);
 					}
@@ -70,21 +64,16 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 				}
 			}
 			lua_pop(L, 1);
-		}
-
-		std::cout << "Entidades Creadas:" << cont << "\n";
+		}		
 	}
 
 	lua_close(L);
 
-	return false;
+	return false; 
 }
 
-Separity::SceneManager::SceneManager() {
-	factory_ = CCreatorFactory();
+Separity::SceneManager::SceneManager() { 
+	factory_ = CCreatorFactory(); 
 	factory_.add("transform", new TransformCreator());
 	factory_.add("meshRenderer", new MeshRendererCreator());
-	factory_.add("light", new LightCreator());
-	factory_.add("collider", new ColliderCreator());
-	factory_.add("rigidbody", new RigidbodyCreator());
 }

@@ -40,7 +40,6 @@
     <ProjectGuid>{329ebb57-bbe0-45ce-861b-a6d9a3d28279}</ProjectGuid>
     <RootNamespace>EntityComponent</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>EntityComponent</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -112,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +126,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,7 +156,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

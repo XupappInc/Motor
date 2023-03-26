@@ -80,44 +80,44 @@ void Separity::Transform::setRotation(float x, float y, float z, float w) {
 Spyutils::spyQuaternion Separity::Transform::getRotation() { return rotation_; }
 
 void Separity::Transform::pitch(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x + degree, rot.y, rot.z);
-	for(auto child : ent_->getChildren()) {
-		auto tr = child->getEntTransform();
-		Spyutils::Vector3 rotacion =
-		    rotar(tr->getPosition(), position_, rotation_);
-		 tr->setPosition(rotacion);
-		tr->pitch(rot.x+degree);
-	}
+	//Spyutils::spyQuaternion rot = getRotation();
+	//setRotation(rot.x + degree, rot.y, rot.z, rot.w);
+	//for(auto child : ent_->getChildren()) {
+	//	auto tr = child->getComponent<Transform>();
+	//	Spyutils::Vector3 rotacion =
+	//	    rotar(tr->getPosition(), position_, rotation_.toEulerAngles());
+	//	tr->setPosition(rotacion);
+	//	tr->pitch(rot.x + degree);
+	//}
 }
 void Separity::Transform::yaw(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x, rot.y + degree, rot.z);
-	for(auto child : ent_->getChildren()) {
-		auto tr = child->getEntTransform();
-		Spyutils::Vector3 rotacion =
-		    rotar(tr->getPosition(), position_, rotation_);
-		tr->setPosition(rotacion);
-		tr->yaw(rot.y + degree);
-	}
+	//Spyutils::spyQuaternion rot = getRotation();
+	//setRotation(rot.x, rot.y + degree, rot.z, rot.w);
+	//for(auto child : ent_->getChildren()) {
+	//	auto tr = child->getComponent<Transform>();
+	//	Spyutils::Vector3 rotacion =
+	//	    rotar(tr->getPosition(), position_, rotation_.toEulerAngles());
+	//	tr->setPosition(rotacion);
+	//	tr->yaw(rot.y + degree);
+	//}
 }
 void Separity::Transform::roll(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x, rot.y, rot.z + degree);
-	for(auto child : ent_->getChildren()) {
-		auto tr = child->getEntTransform();
-		Spyutils::Vector3 rotacion =
-		    rotar(tr->getPosition(), position_, rotation_);
-		tr->setPosition(rotacion);
-		tr->roll(rot.z + degree);
-	}
+	//Spyutils::spyQuaternion rot = getRotation();
+	//setRotation(rot.x, rot.y, rot.z + degree, rot.w);
+	//for(auto child : ent_->getChildren()) {
+	//	auto tr = child->getComponent<Transform>();
+	//	Spyutils::Vector3 rotacion =
+	//	    rotar(tr->getPosition(), position_, rotation_.toEulerAngles());
+	//	tr->setPosition(rotacion);
+	//	tr->roll(rot.z + degree);
+	//}
 }
 void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 	scale_ = Spyutils::Vector3(scaleX, scaleY, scaleZ);
 
 	 for(auto child : ent_->getChildren()) {
 		// Escalar y mover el objeto hijo
-		auto tr = child->getEntTransform();  // getComponent<Transform>();
+		auto tr = child->getComponent<Transform>();
 		tr->position_.x*= scaleX;
 		tr->position_.y*= scaleY;
 		tr->position_.z*= scaleZ;

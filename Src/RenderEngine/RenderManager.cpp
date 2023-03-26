@@ -2,7 +2,6 @@
 
 #include "Entity.h"
 #include "MeshRenderer.h"
-#include "checkML.h"
 
 #include <OgreConfigFile.h>
 #include <OgreEntity.h>
@@ -15,30 +14,20 @@
 #include <fstream>
 #include <iostream>
 
+#include "checkML.h"
+
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
-Separity::RenderManager::RenderManager() {
-	sdlWindow_ = nullptr;
+Separity::RenderManager::RenderManager() {}
+
+Separity::RenderManager::~RenderManager() {}
+
+void Separity::RenderManager::init() {
 	// Tamaño ventana
 	screenW_ = 1024;
 	screenH_ = 768;
 
-	sceneMgr_ = nullptr;
-	ogreRoot_ = nullptr;
-	ogreWindow_ = nullptr;
-	configFile_ = nullptr;
-}
-
-Separity::RenderManager::~RenderManager() {
-	if(ogreRoot_ != nullptr) {
-		delete ogreRoot_;
-		ogreRoot_ = nullptr;
-	}
-	SDL_Quit();
-}
-
-void Separity::RenderManager::init() {
 	//// Inicializar SDL
 	if(!SDL_WasInit(SDL_INIT_EVERYTHING))
 		SDL_InitSubSystem(SDL_INIT_EVERYTHING);
@@ -144,21 +133,32 @@ void Separity::RenderManager::saveConfiguration() {
 }
 
 void Separity::RenderManager::closedown() {
+
 	ogreRoot_->queueEndRendering();
 
-	ogreWindow_ = nullptr;
+	if(ogreWindow_ != nullptr) {
+		ogreWindow_ = nullptr;
+		delete ogreWindow_;
+	}
 
 	if(sdlWindow_ != nullptr) {
 		SDL_DestroyWindow(sdlWindow_);
 		SDL_QuitSubSystem(SDL_INIT_EVERYTHING);
 		sdlWindow_ = nullptr;
+		delete sdlWindow_;
 	}
-
-	sceneMgr_ = nullptr;
-
+	if(sceneMgr_ != nullptr) {
+		ogreRoot_->destroySceneManager(sceneMgr_);
+		sceneMgr_ = nullptr;
+		delete sceneMgr_;
+	}
+	if(ogreRoot_ != nullptr) {
+		delete ogreRoot_;
+		ogreRoot_ = nullptr;
+	}
 	if(configFile_ != nullptr) {
-		delete configFile_;
 		configFile_ = nullptr;
+		delete configFile_;
 	}
 }
 

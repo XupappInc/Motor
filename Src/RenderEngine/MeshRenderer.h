@@ -41,8 +41,6 @@ namespace Separity {
 		/// </summary>
 		void render() override;
 
-		void setTexture(const std::string& name);
-
 		/// <summary>
 		/// <para>Activa/desactiva el nodo que contiene la malla para parar su
 		/// renderización</para>

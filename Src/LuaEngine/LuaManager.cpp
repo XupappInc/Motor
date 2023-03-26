@@ -7,10 +7,6 @@
 #include "Transform.h"
 //#include "RigidBody.h"
 
-#include "PhysicsManager.h"
-#include "RenderManager.h"
-#include "AudioManager.h"
-
 #include <iostream>
 
 template<typename T>
@@ -32,15 +28,29 @@ void Separity::LuaManager::initLua() {
 	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Behaviour>("Behaviour")
 	    .addFunction("update", &Behaviour::update)
-	    .addProperty("entity", &Behaviour::ent_)
+	    .addProperty("transform", &Behaviour::transform_)
 	    .endClass();
 }
 
 void Separity::LuaManager::registerClasses() {
-	luabridge::getGlobalNamespace(L_)
+	/*luabridge::getGlobalNamespace(L_)
 	    .beginClass<Entity>("Entity")
-	    .addFunction("getTransform", &Entity::getEntTransform)
+	    .addFunction("getComponent", &Entity::getComponent)
+	    .endClass();*/
+	luabridge::getGlobalNamespace(L_)
+	    .beginClass<Transform>("Transform")
+	    .addFunction("translate", &Transform::translate)
+	    .addFunction("pitch", &Transform::pitch)
+	    .addFunction("yaw", &Transform::yaw)
+	    .addFunction("roll", &Transform::roll)
 	    .endClass();
+
+	//luabridge::getGlobalNamespace(L_)
+	//    .beginClass<RigidBody>("RigidBody")
+	//    .addFunction("addForce", &RigidBody::addForce)
+	//    .addFunction("clearForces", &RigidBody::clearForces)
+	//    .addFunction("setLinearVelocity", &RigidBody::setLinearVelocity)
+	//    .endClass();
 }
 
 void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
@@ -49,20 +59,20 @@ void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 	luaL_dofile(L_, path.c_str());
 
 	// Creamos una instancia de Behaviour y la pasamos al script
-	Behaviour* behaviourScript = ent->addComponent<Behaviour>();
+	//Behaviour* behaviourScript = ent->addComponent<Behaviour>();
 
-	behaviourScript->initComponent();
+	//behaviourScript->initComponent();
 
-	luabridge::push(L_, behaviourScript);
-	lua_setglobal(L_, name.c_str());
+	//luabridge::push(L_, behaviourScript);
+	//lua_setglobal(L_, name.c_str());
 
-	// Obtenemos el objeto behaviour desde Lua
-	auto behaviourLua =
-	    new luabridge::LuaRef(luabridge::getGlobal(L_, (name + "Lua").c_str()));
+	//// Obtenemos el objeto behaviour desde Lua
+	//auto behaviourLua =
+	//    new luabridge::LuaRef(luabridge::getGlobal(L_, (name + "Lua").c_str()));
 
-	behaviourScript->setLuaScript(behaviourLua);
+	//behaviourScript->setLuaScript(behaviourLua);
 
-	cmps_.push_back(behaviourScript);
+	//cmps_.push_back(behaviourScript);
 }
 
 lua_State* Separity::LuaManager::getLuaState() { return L_; }
@@ -74,9 +84,8 @@ Separity::LuaManager* Separity::LuaManager::getInstance() {
 Separity::LuaManager::LuaManager() : L_(nullptr) {}
 
 Separity::LuaManager::~LuaManager() {
-	for(auto c : cmps_) {
-		//if (c != nullptr) delete c;
-	}
+	for(auto c : cmps_) delete c;
+
 	cmps_.clear();
 	
 	// Liberamos el estado de Lua
