@@ -1,5 +1,7 @@
 #include "AudioManager.h"
 
+#include "ManagerManager.h"
+
 #include "AudioListener.h"
 #include "AudioSource.h"
 #include "Component.h"
@@ -23,6 +25,8 @@ inline Separity::AudioManager::AudioManager() {
 	soundGroup_ = nullptr;
 	musicGroup_ = nullptr;
 	firstListener = true;
+
+	ManagerManager::getInstance()->addManager(_SOUND, this);
 }
 
 Separity::AudioManager::~AudioManager() {

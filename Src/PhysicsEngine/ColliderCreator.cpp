@@ -1,15 +1,11 @@
 #include "ColliderCreator.h"
 
 #include "Collider.h"
-#include "Component.h"
 #include "Entity.h"
 
 #include <lua.hpp>
-#include <iostream>
 
-#include "RenderManager.h"
-#include "PhysicsManager.h"
-#include "AudioManager.h"
+#include <iostream>
 
 using namespace Separity;
 

@@ -2,12 +2,9 @@
 #ifndef __SCENE_MANAGER_H__
 #define __SCENE_MANAGER_H__
 
-
-
 #include "Manager.h"
-#include <vector>
 
-#include "CCreatorFactory.h"
+#include <string>
 
 namespace Separity {
 	class Entity;
@@ -34,8 +31,6 @@ namespace Separity {
 		SceneManager();
 
 		private:
-
-		CCreatorFactory factory_;
 
 		std::vector<Entity*> entidades;
 	};

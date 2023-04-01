@@ -1,19 +1,13 @@
 #include "TransformCreator.h"
 
 #include "Transform.h"
-#include "Component.h"
 #include "Entity.h"
 
 #include <lua.hpp>
-#include <iostream>
-
-#include "RenderManager.h"
-#include "PhysicsManager.h"
-#include "AudioManager.h"
-
-#include "lua.hpp"
-#include "LuaBridge/LuaBridge.h"
+#include <LuaBridge/LuaBridge.h>
 #include "LuaManager.h"
+
+#include <iostream>
 
 using namespace Separity;
 

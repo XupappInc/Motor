@@ -32,7 +32,8 @@
 		_INPUT, \
 		_UI, \
 		_SOUND, \
-		_SCRIPT
+		_SCRIPT, \
+		_SCENE
 
 /// <summary>
 /// Lista de grupos, debe de tener al menos 1 elemento

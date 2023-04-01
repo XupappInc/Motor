@@ -1,4 +1,10 @@
 #include "PhysicsManager.h"
+
+#include "ManagerManager.h"
+
+#include "ColliderCreator.h"
+#include "RigidbodyCreator.h"
+
 // #include "checkML.h"
 #include "Component.h"
 #include "PhysicsDebugDrawer.h"
@@ -16,7 +22,14 @@ bool debug_ = false;
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 using namespace Separity;
-PhysicsManager::PhysicsManager() {}
+PhysicsManager::PhysicsManager() {
+
+	ManagerManager* m = ManagerManager::getInstance();
+	m->addManager(_PHYSICS, this);
+
+	m->addCreator("collider", new ColliderCreator());
+	m->addCreator("rigidbody", new RigidbodyCreator());
+}
 
 PhysicsManager::~PhysicsManager() {
 

@@ -7,12 +7,7 @@
 #include <lua.hpp>
 #include <iostream>
 
-#include "RenderManager.h"
-#include "PhysicsManager.h"
-#include "AudioManager.h"
-
 #include "Vector.h"
-
 
 using namespace Separity;
 

@@ -1,5 +1,7 @@
 #include "RenderManager.h"
 
+#include "ManagerManager.h"
+
 #include "Entity.h"
 #include "MeshRenderer.h"
 #include "checkML.h"
@@ -15,6 +17,9 @@
 #include <fstream>
 #include <iostream>
 
+#include "MeshRendererCreator.h"
+#include "LightCreator.h"
+
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
@@ -28,6 +33,12 @@ Separity::RenderManager::RenderManager() {
 	ogreRoot_ = nullptr;
 	ogreWindow_ = nullptr;
 	configFile_ = nullptr;
+
+	ManagerManager* m = ManagerManager::getInstance();
+
+	m->addManager(_RENDER, this);
+	m->addCreator("meshRenderer", new MeshRendererCreator());
+	m->addCreator("light", new LightCreator());
 }
 
 Separity::RenderManager::~RenderManager() {

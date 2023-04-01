@@ -1,22 +1,12 @@
 #include "RigidbodyCreator.h"
 
 #include "Rigidbody.h"
-#include "Component.h"
 #include "Collider.h"
 #include "Entity.h"
+#include "Vector.h"
 
 #include <lua.hpp>
 #include <iostream>
-
-#include "RenderManager.h"
-#include "PhysicsManager.h"
-#include "AudioManager.h"
-
-#include "lua.hpp"
-#include "LuaBridge/LuaBridge.h"
-#include "LuaManager.h"
-
-#include "Vector.h"
 
 using namespace Separity;
 

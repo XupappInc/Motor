@@ -5,21 +5,20 @@
 #include "Component.h"
 #include "Manager.h"
 #include "ec.h"
-#include "Vector.h"
 
 #include <array>
 #include <bitset>
 #include <cassert>
 #include <vector>
 
+#include <iostream>
+
 namespace Spyutils {
 	class Vector3;		
-	}
+}
+
 namespace Separity {
-	
-	class RenderManager;
-	class PhysicsManager;
-	class AudioManager;
+
 	class Transform;
 
 	/// <summary>
@@ -30,8 +29,7 @@ namespace Separity {
 	///
 	class Entity {
 		public:
-		Entity(Separity::grpId_type gId,
-		       Spyutils::Vector3 iniPos = Spyutils::Vector3(0,0,0));
+		Entity(Separity::grpId_type gId);
 		int s;
 		// borramos el constructor por copia/asignamiento porque no está claro
 		// como copiar los componentes
@@ -98,36 +96,12 @@ namespace Separity {
 
 			// crea, inicializa y añade el nuevo componente
 			Component* c = new T(std::forward<Ts>(args)...);
-
-			Manager* componentManager = nullptr;
-			constexpr cmpType_type cType = T::type;
-			switch(cType) {
-				case _RENDER:
-					componentManager = Separity::RenderManager::getInstance();
-					componentManager->addComponent(c);
-					break;
-				case _PHYSICS:
-					componentManager = Separity::PhysicsManager::getInstance();
-					componentManager->addComponent(c);
-					break;
-				///*case _INPUT:
-				//	componentManager = InputManager::getInstance();
-				//	break;
-				//case _UI:
-				//	componentManager = UIManager::getInstance();
-				//	break;*/
-				case _SOUND:
-					componentManager = Separity::AudioManager::getInstance();
-					componentManager->addComponent(c);
-					break;
-				/*case _SCRIPT:
-					componentManager = LuaManager::getInstance();
-					break;*/
-				default:
-					break;
-			}
-
-			c->setContext(this, componentManager);
+		
+			uint8_t cType = T::type;
+			Manager* m = getManager(cType);
+			if(m != nullptr)
+				m->addComponent(c);
+			c->setContext(this, m);
 			
 			cmps_[cId] = c;
 			currCmps_.push_back(c);
@@ -194,6 +168,9 @@ namespace Separity {
 		Separity::grpId_type getGroupId();
 		Separity::Transform* getEntTransform();
 		private:
+
+		Manager* getManager(cmpType_type type);
+
 		Manager* mngr_;
 		std::array<Component*, maxComponentId> cmps_;
 		std::vector<Component*> currCmps_;
@@ -202,8 +179,7 @@ namespace Separity {
 		Separity::grpId_type gId_;
 		Entity* parent = nullptr;
 		std::vector<Entity*> childs_;
-		Transform * entTr_;
-		Spyutils::Vector3 iniPos_;
+		Transform* entTr_;
 	};
 }  // namespace Separity
 #endif  // !__ENTITY_H__

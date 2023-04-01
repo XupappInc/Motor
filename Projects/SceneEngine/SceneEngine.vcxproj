@@ -19,28 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\SceneEngine\CCreatorFactory.cpp" />
-    <ClCompile Include="..\..\Src\SceneEngine\ColliderCreator.cpp" />
-    <ClCompile Include="..\..\Src\SceneEngine\LightCreator.cpp" />
-    <ClCompile Include="..\..\Src\SceneEngine\MeshRendererCreator.cpp" />
-    <ClCompile Include="..\..\Src\SceneEngine\RigidbodyCreator.cpp" />
     <ClCompile Include="..\..\Src\SceneEngine\SceneManager.cpp" />
-    <ClCompile Include="..\..\Src\SceneEngine\TransformCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\SceneEngine\CCreator.h" />
-    <ClInclude Include="..\..\Src\SceneEngine\CCreatorFactory.h" />
-    <ClInclude Include="..\..\Src\SceneEngine\ColliderCreator.h" />
-    <ClInclude Include="..\..\Src\SceneEngine\LightCreator.h" />
-    <ClInclude Include="..\..\Src\SceneEngine\MeshRendererCreator.h" />
-    <ClInclude Include="..\..\Src\SceneEngine\RigidbodyCreator.h" />
     <ClInclude Include="..\..\Src\SceneEngine\SceneManager.h" />
-    <ClInclude Include="..\..\Src\SceneEngine\TransformCreator.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PhysicsEngine\PhysicsEngine.vcxproj">
-      <Project>{80d74851-5b1e-4e94-afc3-1a47dc02b746}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -149,7 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\bullet3d\Src\src;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\LuaEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -164,7 +146,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\bullet3d\Src\src;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\LuaEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

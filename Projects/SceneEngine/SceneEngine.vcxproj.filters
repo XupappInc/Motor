@@ -18,48 +18,9 @@
     <ClCompile Include="..\..\Src\SceneEngine\SceneManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\SceneEngine\CCreatorFactory.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\SceneEngine\TransformCreator.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\SceneEngine\MeshRendererCreator.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\SceneEngine\LightCreator.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\SceneEngine\ColliderCreator.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\SceneEngine\RigidbodyCreator.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\SceneEngine\SceneManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\SceneEngine\CCreator.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\SceneEngine\CCreatorFactory.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\SceneEngine\TransformCreator.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\SceneEngine\MeshRendererCreator.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\SceneEngine\LightCreator.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\SceneEngine\ColliderCreator.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\SceneEngine\RigidbodyCreator.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

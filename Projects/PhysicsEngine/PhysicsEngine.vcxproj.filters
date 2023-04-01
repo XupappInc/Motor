@@ -27,6 +27,12 @@
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsDebugDrawer.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\PhysicsEngine\ColliderCreator.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PhysicsEngine\RigidbodyCreator.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsManager.h">
@@ -39,6 +45,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsDebugDrawer.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PhysicsEngine\ColliderCreator.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PhysicsEngine\RigidbodyCreator.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

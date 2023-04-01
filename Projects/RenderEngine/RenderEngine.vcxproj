@@ -22,7 +22,9 @@
     <ClCompile Include="..\..\Src\RenderEngine\Animator.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\Camera.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\Light.cpp" />
+    <ClCompile Include="..\..\Src\RenderEngine\LightCreator.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\MeshRenderer.cpp" />
+    <ClCompile Include="..\..\Src\RenderEngine\MeshRendererCreator.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\ParticleSystem.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\RenderManager.cpp" />
   </ItemGroup>
@@ -30,7 +32,9 @@
     <ClInclude Include="..\..\Src\RenderEngine\Animator.h" />
     <ClInclude Include="..\..\Src\RenderEngine\Camera.h" />
     <ClInclude Include="..\..\Src\RenderEngine\Light.h" />
+    <ClInclude Include="..\..\Src\RenderEngine\LightCreator.h" />
     <ClInclude Include="..\..\Src\RenderEngine\MeshRenderer.h" />
+    <ClInclude Include="..\..\Src\RenderEngine\MeshRendererCreator.h" />
     <ClInclude Include="..\..\Src\RenderEngine\ParticleSystem.h" />
     <ClInclude Include="..\..\Src\RenderEngine\RenderManager.h" />
   </ItemGroup>
@@ -145,7 +149,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\RTShaderSystem\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-release;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\Src\Components\RTShaderSystem\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,7 +166,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\RTShaderSystem\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-release;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\Src\Components\RTShaderSystem\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

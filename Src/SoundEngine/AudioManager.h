@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <unordered_map>
+
 struct FMOD_VECTOR;
 enum FMOD_RESULT;
 namespace FMOD {

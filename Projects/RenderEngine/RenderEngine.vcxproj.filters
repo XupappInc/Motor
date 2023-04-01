@@ -33,6 +33,12 @@
     <ClCompile Include="..\..\Src\RenderEngine\ParticleSystem.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\RenderEngine\LightCreator.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\RenderEngine\MeshRendererCreator.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\RenderEngine\RenderManager.h">
@@ -51,6 +57,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\RenderEngine\ParticleSystem.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\RenderEngine\LightCreator.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\RenderEngine\MeshRendererCreator.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -41,6 +41,7 @@ using namespace Separity;
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
+
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->init();
 	PhysicsManager* physManager = Separity::PhysicsManager::getInstance();
@@ -50,13 +51,13 @@ int main() {
 	UIManager* uiManager = Separity::UIManager::getInstance();
 	uiManager->initUi();
 	InputManager* inputManager = Separity::InputManager::getInstance();
-	/*LuaManager* luaManager = Separity::LuaManager::getInstance();
-	luaManager->initLua();*/
+	//LuaManager* luaManager = Separity::LuaManager::getInstance();
+	//luaManager->initLua();
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/Scenes/scene.lua");
 
 	Entity* MusicInstance =
-	    new Entity(_grp_GENERAL, Spyutils::Vector3(0, 0, 0));
+	    new Entity(_grp_GENERAL);
 
 	auto musica = MusicInstance->addComponent<AudioSource>(
 	    "Assets//callmemaybe.mp3", string("callmemaybe"), true);
@@ -230,7 +231,7 @@ int main() {
 	delete timer;
 	delete plano;
 	delete sinbad;
-	sceneMenager->eraseEntities();
+	//sceneMenager->eraseEntities();
 	renderManager->saveConfiguration();
 	renderManager->closedown();
 

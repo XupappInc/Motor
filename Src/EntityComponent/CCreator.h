@@ -8,7 +8,7 @@ namespace Separity {
 
 	class CCreator {
 		public:
-		CCreator() {};
+		CCreator();
 		~CCreator() = default;
 
 		virtual void registerInLua() = 0;

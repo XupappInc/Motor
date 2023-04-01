@@ -1,19 +1,21 @@
 #include "Entity.h"
-#include <algorithm>
-#include "checkML.h"
+
+#include "ManagerManager.h"
+
 #include "Transform.h"
 #include "Vector.h"
-#include "AudioManager.h"
-#include "PhysicsManager.h"
-#include "RenderManager.h"
 
-Separity::Entity::Entity(Separity::grpId_type gId, Spyutils::Vector3 iniPos)
-    : mngr_(nullptr), cmps_(), currCmps_(), alive_(), gId_(gId),iniPos_(iniPos) {
+#include "checkML.h"
+
+#include <algorithm>
+
+Separity::Entity::Entity(Separity::grpId_type gId)
+    : mngr_(nullptr), cmps_(), currCmps_(), alive_(), gId_(gId) {
 	// Reservamos espacio para el numero maximo de componentes.
 	// Esto puede evitar que se tenga que redimensionar el vector
 	currCmps_.reserve(Separity::maxComponentId);
 	entTr_ = addComponent<Transform>();
-	entTr_->setPosition(iniPos_);
+	entTr_->setPosition(Spyutils::Vector3(0, 0, 0));
 }
 
 void Separity::Entity::setContext(Manager* mngr) { mngr_ = mngr; }
@@ -55,6 +57,10 @@ void Separity::Entity::removeChild(const Entity* child) {
 Separity::grpId_type Separity::Entity::getGroupId() { return gId_; }
 
 Separity::Transform* Separity::Entity::getEntTransform() { return entTr_; }
+
+Separity::Manager* Separity::Entity::getManager(cmpType_type type) {
+	return Separity::ManagerManager::getInstance()->getManager(type);
+}
 
 
 

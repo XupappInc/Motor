@@ -1,15 +1,12 @@
 #include "MeshRendererCreator.h"
 
-#include <lua.hpp>
-#include <iostream>
-
 #include "Entity.h"
-
 #include "MeshRenderer.h"
 
 #include "RenderManager.h"
-#include "PhysicsManager.h"
-#include "AudioManager.h"
+
+#include <lua.hpp>
+#include <iostream>
 
 Separity::MeshRendererCreator::MeshRendererCreator() {}
 
