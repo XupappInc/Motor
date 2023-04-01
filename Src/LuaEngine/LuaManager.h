@@ -1,8 +1,10 @@
 #pragma once
 #ifndef __LUA_MANAGER_H__
 #define __LUA_MANAGER_H__
-#include <string>
+
 #include "Manager.h"
+
+#include <string>
 
 class lua_State;
 

@@ -2,7 +2,6 @@
 
 #include "Entity.h"
 #include "Transform.h"
-//#include "RigidBody.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>

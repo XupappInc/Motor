@@ -1,15 +1,11 @@
 #include "LuaManager.h"
 
-#include "Behaviour.h"
-#include "lua.hpp"
-#include "LuaBridge/LuaBridge.h"
 #include "Entity.h"
+#include "Behaviour.h"
 #include "Transform.h"
-//#include "RigidBody.h"
 
-#include "PhysicsManager.h"
-#include "RenderManager.h"
-#include "AudioManager.h"
+#include <lua.hpp>
+#include <LuaBridge/LuaBridge.h>
 
 #include <iostream>
 
