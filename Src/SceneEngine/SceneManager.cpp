@@ -85,4 +85,5 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 }
 
 Separity::SceneManager::SceneManager() {
+	ManagerManager::getInstance()->addManager(_SCENE, this);
 }

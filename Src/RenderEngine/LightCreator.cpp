@@ -15,7 +15,7 @@ Separity::LightCreator::LightCreator() {}
 
 void Separity::LightCreator::registerInLua() {}
 
-void Separity::LightCreator::addComponent(lua_State* L, Separity::Entity* ent) {
+void Separity::LightCreator::createComponent(lua_State* L, Separity::Entity* ent) {
 
 	lua_getfield(L, -1, "type");
 	std::string type = lua_tostring(L, -1);

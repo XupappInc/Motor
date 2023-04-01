@@ -1,5 +1,7 @@
 #include "LuaManager.h"
 
+#include "ManagerManager.h"
+
 #include "Entity.h"
 #include "Behaviour.h"
 #include "Transform.h"
@@ -67,7 +69,12 @@ Separity::LuaManager* Separity::LuaManager::getInstance() {
 	return static_cast<LuaManager*>(instance());
 }
 
-Separity::LuaManager::LuaManager() : L_(nullptr) {}
+Separity::LuaManager::LuaManager() : L_(nullptr) {
+
+	ManagerManager* m = ManagerManager::getInstance();
+
+	m->addManager(_SCRIPT, this);
+}
 
 Separity::LuaManager::~LuaManager() {
 	for(auto c : cmps_) {

@@ -33,6 +33,8 @@ namespace Separity {
 
 		void addCreator(const std::string& CName, CCreator* CCreator);
 
+		int nManagers();
+
 		protected:
 		ManagerManager();
 

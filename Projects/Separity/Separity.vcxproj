@@ -130,7 +130,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,7 +148,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -164,7 +166,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -181,7 +183,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\build\dll;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

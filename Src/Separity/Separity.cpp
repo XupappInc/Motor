@@ -1,34 +1,41 @@
 // Separity.cpp : Este archivo contiene la función "main". La ejecución del
 // programa comienza y termina ahí.
-//
 
-#include "Animator.h"
-#include "AudioListener.h"
-#include "AudioManager.h"
-#include "Camera.h"
 #include "Entity.h"
-#include "InputManager.h"
+
+//Componentes
+#include "Transform.h"
+
+#include "Behaviour.h"
+
+#include "Collider.h"
+#include "RigidBody.h"
+
+#include "MeshRenderer.h"
 #include "Light.h"
-#include "LuaManager.h"
+#include "Camera.h"
+#include "Animator.h"
 #include "ParticleSystem.h"
+
+#include "AudioListener.h"
+#include "AudioSource.h"
+
+//Managers
+#include "ManagerManager.h"
+#include "InputManager.h"
+#include "LuaManager.h"
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "SceneManager.h"
+#include "AudioManager.h"
 #include "UIManager.h"
-// #include "checkML.h"
+
+//Utils
+//#include "checkML.h"
+#include "VirtualTimer.h"
 
 #include "Separity.h"
-#include "VirtualTimer.h"
-#include "fmod.hpp"
-#include "fmod_errors.h"
 
-#include <AudioSource.h>
-#include <Behaviour.h>
-#include <Collider.h>
-#include <MeshRenderer.h>
-#include <Ogre.h>
-#include <RigidBody.h>
-#include <Transform.h>
 #include <Windows.h>
 #include <iostream>
 #include <utility>
@@ -170,6 +177,9 @@ int main() {
 	               audManager);
 
 	rbcube->setDamping(0.5, 0);
+
+	std::cout << "Proyectos adicionales cargados: "
+	          << ManagerManager::getInstance()->nManagers() << "\n";
 
 	while(!quit) {
 		timer->reset();

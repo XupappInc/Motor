@@ -21,11 +21,15 @@ namespace Separity {
 
 		lua_State* getLuaState();
 
-		static LuaManager* getInstance();
-		LuaManager();
+		static LuaManager* getInstance();	
 		virtual ~LuaManager() override;
 
 		protected:
+
+		LuaManager();
+
+		private:
+
 		lua_State* L_;
 		//Behaviour* behaviourTemplate_;
 	};

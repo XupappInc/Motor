@@ -24,7 +24,7 @@ void Separity::TransformCreator::registerInLua() {
 	    .endClass();
 }
 
-void Separity::TransformCreator::addComponent(lua_State* L,
+void Separity::TransformCreator::createComponent(lua_State* L,
                                               Separity::Entity* ent) {
 
 

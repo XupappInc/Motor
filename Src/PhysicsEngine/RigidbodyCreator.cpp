@@ -14,7 +14,7 @@ Separity::RigidbodyCreator::RigidbodyCreator() {}
 
 void Separity::RigidbodyCreator::registerInLua() {}
 
-void Separity::RigidbodyCreator::addComponent(lua_State* L,
+void Separity::RigidbodyCreator::createComponent(lua_State* L,
                                               Separity::Entity* ent) {
 
 	//std::cout << "Rigidbody creado\n";

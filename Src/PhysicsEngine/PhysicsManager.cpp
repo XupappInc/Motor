@@ -25,8 +25,8 @@ using namespace Separity;
 PhysicsManager::PhysicsManager() {
 
 	ManagerManager* m = ManagerManager::getInstance();
-	m->addManager(_PHYSICS, this);
 
+	m->addManager(_PHYSICS, this);
 	m->addCreator("collider", new ColliderCreator());
 	m->addCreator("rigidbody", new RigidbodyCreator());
 }

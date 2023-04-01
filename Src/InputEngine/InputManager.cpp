@@ -1,5 +1,7 @@
 #include "InputManager.h"
 
+#include "ManagerManager.h"
+
 #include <iostream>
 
 #include "checkML.h"
@@ -18,6 +20,8 @@ Separity::InputManager::InputManager() : Manager(), Singleton<InputManager>() {
 	joystickDeadzone_ = 0;
 	triggerDeadzone_ = 0;
 	clearState();
+
+	ManagerManager::getInstance()->addManager(_INPUT, this);
 }
 
 Separity::InputManager::~InputManager() {

@@ -13,7 +13,8 @@ namespace Separity {
 
 		void registerInLua() override;
 
-		virtual void addComponent(lua_State* L, Separity::Entity* ent) override;
+		virtual void createComponent(lua_State* L,
+		                             Separity::Entity* ent) override;
 
 	};
 };  // namespace Separity

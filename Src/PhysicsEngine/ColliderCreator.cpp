@@ -11,7 +11,7 @@ using namespace Separity;
 
 Separity::ColliderCreator::ColliderCreator() {}
 
-void Separity::ColliderCreator::addComponent(lua_State* L,
+void Separity::ColliderCreator::createComponent(lua_State* L,
                                              Separity::Entity* ent) {
 
 

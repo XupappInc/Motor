@@ -26,7 +26,9 @@ inline Separity::AudioManager::AudioManager() {
 	musicGroup_ = nullptr;
 	firstListener = true;
 
-	ManagerManager::getInstance()->addManager(_SOUND, this);
+	ManagerManager* m = ManagerManager::getInstance();
+
+	m->addManager(_SOUND, this);
 }
 
 Separity::AudioManager::~AudioManager() {

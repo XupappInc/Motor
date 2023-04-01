@@ -43,12 +43,16 @@ void Separity::ManagerManager::createComponent(const std::string& CName,
 		          << " por incluir en la Factory"
 		          << "\n";
 	} else {
-		creators_[CName]->addComponent(L, ent);
+		creators_[CName]->createComponent(L, ent);
 	}
 }
 
 void Separity::ManagerManager::addCreator(const std::string& CName,
                                     CCreator* CCreator) {
 	creators_[CName] = CCreator;
+}
+
+int Separity::ManagerManager::nManagers() { 
+	return managers_.size(); 
 }
 

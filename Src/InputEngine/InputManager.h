@@ -165,6 +165,7 @@ namespace Separity {
 		InputManager();
 
 		private:
+
 		enum STATE : uint8_t {
 			RELEASED = 0,
 			DOWN = 1,
