@@ -15,6 +15,10 @@ namespace Separity {
 
 	class Transform;
 
+	/// <summary>
+	/// Componente cámara, desde la que se renderiza el espacio.
+	/// Solo puede haber una por escena.
+	/// </summary>
 	class Camera : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
@@ -23,17 +27,45 @@ namespace Separity {
 		Camera();
 		~Camera();
 
+		/// <summary>
+		/// Cambia la posición de la cámara con el método axiliar readTransform
+		/// </summary>
 		void update() override;
-		void render() override;
+
+		/// <summary>
+		/// Obtiene una referencia al componente Transform e
+		/// inicializa la posición de la cámara con el método axiliar readTransform
+		/// </summary>
 		void initComponent() override;
 
+		/// <summary>
+		/// Incrementa (o disminuye) el valor del zoom
+		/// </summary>
+		/// <param name="zoom">: Incremento del Zoom</param>
 		void zoom(float zoom);
+
+		/// <summary>
+		/// Establece un nuevo valor del Zoom
+		/// </summary>
+		/// <param name="zoom">: Nuevo Zoom</param>
 		void setZoom(float zoom);
+
+		/// <returns>
+		/// El Zoom actual de la cámara
+		/// </returns>
 		float getZoom();
 
 		private:
 
+		/// <summary>
+		/// Método auxiliar para ajustar la posición de la 
+		/// cámara de Ogre respecto al componente Transform
+		/// </summary>
 		void readTransform();
+
+		/// <summary>
+		/// Método auxiliar que trunca el valor del zoom al máximo o mínimo permitido
+		/// </summary>
 		Ogre::Degree zoomChecker(Ogre::Degree&& zoom);
 
 		Ogre::SceneNode* cameraNode_;

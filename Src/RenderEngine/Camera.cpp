@@ -32,10 +32,7 @@ Separity::Camera::Camera() : tr_(nullptr) {
 Separity::Camera::~Camera() {}
 
 void Separity::Camera::update() { 	
-}
-
-void Separity::Camera::render() {
-	readTransform();
+	readTransform(); 
 }
 
 void Separity::Camera::initComponent() {

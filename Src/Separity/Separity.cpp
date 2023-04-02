@@ -189,29 +189,29 @@ int main() {
 		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
 			quit = true;
 		} else {
-			if(inputManager->isKeyDown('a')) {
+			if(inputManager->isKeyHeld('a')) {
 				rbcube->addForce({-1000, 0, 0});
 				
 			}
-			if(inputManager->isKeyDown('d')) {
+			if(inputManager->isKeyHeld('d')) {
 				rbcube->addForce({1000, 0, 0});
 			}
-			if(inputManager->isKeyDown('w')) {
+			if(inputManager->isKeyHeld('w')) {
 				rbcube->addForce({0, 0, -1000});
 			}
-			if(inputManager->isKeyDown('s')) {
+			if(inputManager->isKeyHeld('s')) {
 				rbcube->addForce({0, 0, 1000});
 			}
-			if(inputManager->isKeyDown(InputManager::ARROW_LEFT)) {
+			if(inputManager->isKeyHeld(InputManager::ARROW_LEFT)) {
 				cam_tr->yaw(0.1f);
 			}
-			if(inputManager->isKeyDown(InputManager::ARROW_RIGHT)) {
+			if(inputManager->isKeyHeld(InputManager::ARROW_RIGHT)) {
 				cam_tr->yaw(-0.1f);
 			}
-			if(inputManager->isKeyDown(InputManager::ARROW_UP)) {
+			if(inputManager->isKeyHeld(InputManager::ARROW_UP)) {
 				cam_tr->translate(Spyutils::Vector3(0, 0, -5));
 			}
-			if(inputManager->isKeyDown(InputManager::ARROW_DOWN)) {
+			if(inputManager->isKeyHeld(InputManager::ARROW_DOWN)) {
 				cam_tr->translate(Spyutils::Vector3(0, 0, 5));
 			}
 			if(inputManager->isKeyDown('c')) {

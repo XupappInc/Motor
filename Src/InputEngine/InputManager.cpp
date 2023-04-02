@@ -15,7 +15,7 @@ Separity::InputManager* Separity::InputManager::getInstance() {
 
 Separity::InputManager::InputManager() {
 	event = SDL_Event();
-	kbState_ = SDL_GetKeyboardState(0);
+	kbState_ = std::unordered_map<uint8_t, uint8_t>();
 	gamepad_ = nullptr;
 	joystickDeadzone_ = 0;
 	triggerDeadzone_ = 0;
@@ -25,8 +25,6 @@ Separity::InputManager::InputManager() {
 }
 
 Separity::InputManager::~InputManager() {
-
-	delete gamepad_;
 }
 
 void Separity::InputManager::update() { 
@@ -86,12 +84,20 @@ bool Separity::InputManager::isKeyDown(char key) {
 	return isKeyDown(SDL_GetScancodeFromKey(key));
 }
 
+bool Separity::InputManager::isKeyHeld(char key) { 
+	return isKeyHeld(SDL_GetScancodeFromKey(key));
+}
+
 bool Separity::InputManager::isKeyUp(char key) {
 	return isKeyUp(SDL_GetScancodeFromKey(key));
 }
 
 bool Separity::InputManager::isKeyDown(SPECIALKEY key) { 
 	return isKeyDown((SDL_Scancode) key); 
+}
+
+bool Separity::InputManager::isKeyHeld(SPECIALKEY key) { 
+	return isKeyHeld((SDL_Scancode) key);
 }
 
 bool Separity::InputManager::isKeyUp(SPECIALKEY key) { 
@@ -142,24 +148,42 @@ void Separity::InputManager::clearState() {
 		if(gpState_[i] == DOWN)
 			gpState_[i] = HELD;
 		else if(gpState_[i] == UP)
-			gpState_[i] = RELEASED;		
+			gpState_[i] = RELEASED;
+	}
+
+	for(auto i = 0u; i < kbState_.size(); i++) {
+		if(kbState_[i] == DOWN)
+			kbState_[i] = HELD;
+		else if(kbState_[i] == UP)
+			kbState_[i] = RELEASED;
 	}
 }
 
 void Separity::InputManager::onKeyDown() { 
+
+	SDL_Scancode key = event.key.keysym.scancode;
+	if(!kbState_.count(key) || kbState_[key] != HELD)
+		kbState_[key] = DOWN;
+
 	isKeyDownEvent_ = true; 
 }
 
 void Separity::InputManager::onKeyUp() { 
+	kbState_[event.key.keysym.scancode] = UP;
+
 	isKeyUpEvent_ = true; 
 }
 
 bool Separity::InputManager::isKeyDown(SDL_Scancode key) {
-	return keyDownEvent() && kbState_[key] == 1;
+	return kbState_[key] == DOWN;
+}
+
+bool Separity::InputManager::isKeyHeld(SDL_Scancode key) { 
+	return kbState_[key] == DOWN || kbState_[key] == HELD;
 }
 
 bool Separity::InputManager::isKeyUp(SDL_Scancode key) {
-	return keyUpEvent() && kbState_[key] == 0;
+	return kbState_[key] == UP;
 }
 
 void Separity::InputManager::onMouseMotion() {

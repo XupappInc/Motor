@@ -103,8 +103,9 @@ void Separity::RenderManager::render() {
 }
 
 void Separity::RenderManager::update() {
-	/*entity_->getComponent<Separity::MeshRenderer>()->getNode()->yaw(
-	    Ogre::Degree(-0.2));*/
+	for(Separity::Component* c : cmps_) {
+		c->update();
+	}
 	ogreRoot_->renderOneFrame();
 }
 

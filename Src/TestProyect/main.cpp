@@ -37,8 +37,14 @@ int main() {
 		if(iu->isKeyDown('q')) {
 			quit = true;
 		} else {
-			if(iu->isKeyDown('w')) {
-				cout << "Tecla w Pulsada\n";
+			if(iu->isKeyHeld('l')) {
+				cout << "Tecla l mantenida\n";
+			}
+			if(iu->isKeyHeld('6')) {
+				cout << "Tecla 6 Mantenida\n";
+			}
+			if(iu->isKeyUp('z')) {
+				cout << "Tecla w Soltada\n";
 			}
 			if(iu->isMouseButtonDown(InputManager::LEFT)) {
 				cout << "Click\n";
@@ -80,8 +86,11 @@ int main() {
 			if(iu->isControllerButtonUp(InputManager::LT)) {
 				cout << "LT soltado\n";
 			}
-			if(iu->isKeyDown(InputManager::SPACE)) {
+			if(iu->isKeyHeld(InputManager::RALT)) {
 				cout << "tecla especial pulsada\n";
+			}
+			if(iu->isKeyUp(InputManager::RALT)) {
+				cout << "tecla especial soltada\n";
 			}
 		}
 	}
