@@ -17,7 +17,7 @@ void Separity::MeshRendererCreator::createComponent(lua_State* L,
 	s += ".mesh";
 
 	MeshRenderer* mesh = ent->addComponent<MeshRenderer>(
-	    Separity::RenderManager::getInstance()->getSceneManager(), s);
+	    s);
 
 
 	readParam("textureName", L, s);

@@ -7,7 +7,8 @@ Separity::Button::Button() {
 	Separity::UIManager* ui = Separity::UIManager::getInstance();
 }
 
-bool Separity::Button::ButtonPressed() { return false; }
+bool Separity::Button::ButtonPressed() { return true; }
+
 
 Separity::Button::~Button() {}
  
