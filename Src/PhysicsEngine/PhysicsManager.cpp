@@ -24,11 +24,7 @@ std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 using namespace Separity;
 PhysicsManager::PhysicsManager() {
 
-	ManagerManager* m = ManagerManager::getInstance();
-
-	m->addManager(_PHYSICS, this);
-	m->addCreator("collider", new ColliderCreator());
-	m->addCreator("rigidbody", new RigidbodyCreator());
+	ManagerManager::getInstance()->addManager(_PHYSICS, this);
 }
 
 PhysicsManager::~PhysicsManager() {

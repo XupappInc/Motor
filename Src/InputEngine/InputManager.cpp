@@ -13,7 +13,7 @@ Separity::InputManager* Separity::InputManager::getInstance() {
 	return static_cast<InputManager*>(instance());
 }
 
-Separity::InputManager::InputManager() : Manager(), Singleton<InputManager>() {
+Separity::InputManager::InputManager() {
 	event = SDL_Event();
 	kbState_ = SDL_GetKeyboardState(0);
 	gamepad_ = nullptr;

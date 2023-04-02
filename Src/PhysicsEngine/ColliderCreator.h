@@ -1,4 +1,6 @@
 #pragma once
+#ifndef __COLLIDER_CREATOR_H__
+#define __COLLIDER_CREATOR_H__
 
 #include "CCreator.h"
 
@@ -13,6 +15,8 @@ namespace Separity {
 
 		void registerInLua() override {};
 
-		virtual void createComponent(lua_State* L, Separity::Entity* ent) override;
+		void createComponent(lua_State* L, Separity::Entity* ent) override;
 	};
 };  // namespace Separity
+
+#endif __COLLIDER_CREATOR_H__

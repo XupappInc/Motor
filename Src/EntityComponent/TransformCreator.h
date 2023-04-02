@@ -1,4 +1,6 @@
 #pragma once
+#ifndef __TRANSFORM_CREATOR_H__
+#define __TRANSFORM_CREATOR_H__
 
 #include "CCreator.h"
 
@@ -13,8 +15,9 @@ namespace Separity {
 
 		void registerInLua() override;
 
-		virtual void createComponent(lua_State* L,
-		                             Separity::Entity* ent) override;
+		void createComponent(lua_State* L, Separity::Entity* ent) override;
 
 	};
 };  // namespace Separity
+
+#endif __TRANSFORM_CREATOR_H__

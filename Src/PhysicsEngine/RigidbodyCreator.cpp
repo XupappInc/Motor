@@ -5,11 +5,6 @@
 #include "Entity.h"
 #include "Vector.h"
 
-#include <lua.hpp>
-#include <iostream>
-
-using namespace Separity;
-
 Separity::RigidbodyCreator::RigidbodyCreator() {}
 
 void Separity::RigidbodyCreator::registerInLua() {}
@@ -17,13 +12,10 @@ void Separity::RigidbodyCreator::registerInLua() {}
 void Separity::RigidbodyCreator::createComponent(lua_State* L,
                                               Separity::Entity* ent) {
 
-	//std::cout << "Rigidbody creado\n";
-
-
     if(ent->getComponent<Collider>() != nullptr) {
-		lua_getfield(L, -1, "type");
-		int type = lua_tointeger(L, -1);
-		lua_pop(L, 1);
+
+		int type = 0;
+		readParam("type", L, type);
 
 		RigidBody* rb = nullptr;
 		if(type == 0)

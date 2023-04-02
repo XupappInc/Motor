@@ -70,10 +70,8 @@ Separity::LuaManager* Separity::LuaManager::getInstance() {
 }
 
 Separity::LuaManager::LuaManager() : L_(nullptr) {
-
-	ManagerManager* m = ManagerManager::getInstance();
-
-	m->addManager(_SCRIPT, this);
+	
+	ManagerManager::getInstance()->addManager(_SCRIPT, this);
 }
 
 Separity::LuaManager::~LuaManager() {

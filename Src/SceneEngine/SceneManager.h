@@ -7,7 +7,9 @@
 #include <string>
 
 namespace Separity {
+
 	class Entity;
+	class ComponentFactory;
 
 	class SceneManager : public Separity::Manager,
 	                     public Singleton<Separity::SceneManager> {
@@ -33,6 +35,7 @@ namespace Separity {
 		private:
 
 		std::vector<Entity*> entidades;
+		ComponentFactory* factory_;
 	};
 }  // namespace Separity
 

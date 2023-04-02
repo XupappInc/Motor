@@ -1,4 +1,8 @@
 #pragma once
+#ifndef __CREATOR_H__
+#define __CREATOR_H__
+
+#include <string>
 
 class lua_State;
 
@@ -14,5 +18,14 @@ namespace Separity {
 		virtual void registerInLua() = 0;
 
 		virtual void createComponent(lua_State* L, Separity::Entity* ent) = 0;
+
+		protected:
+
+		bool readArray(const std::string& paramName, lua_State* L, float* data);
+
+		bool readParam(const std::string& paramName, lua_State* L, std::string& param);
+		bool readParam(const std::string& paramName, lua_State* L, int& param);
 	};
 };  // namespace Separity
+
+#endif __CREATOR_H__

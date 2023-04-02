@@ -1,4 +1,6 @@
 #pragma once
+#ifndef __MESH_RENDERER_CREATOR_H__
+#define __MESH_RENDERER_CREATOR_H__
 
 #include "CCreator.h"
 
@@ -13,7 +15,8 @@ namespace Separity {
 
 		void registerInLua() override;
 
-		virtual void createComponent(lua_State* L,
-		                             Separity::Entity* ent) override;
+		void createComponent(lua_State* L, Separity::Entity* ent) override;
 	};
 };  // namespace Separity
+
+#endif __MESH_RENDERER_CREATOR_H__

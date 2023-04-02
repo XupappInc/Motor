@@ -34,11 +34,7 @@ Separity::RenderManager::RenderManager() {
 	ogreWindow_ = nullptr;
 	configFile_ = nullptr;
 
-	ManagerManager* m = ManagerManager::getInstance();
-
-	m->addManager(_RENDER, this);
-	m->addCreator("meshRenderer", new MeshRendererCreator());
-	m->addCreator("light", new LightCreator());
+	ManagerManager::getInstance()->addManager(_RENDER, this);
 }
 
 Separity::RenderManager::~RenderManager() {

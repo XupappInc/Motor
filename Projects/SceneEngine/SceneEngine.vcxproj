@@ -19,9 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\SceneEngine\ComponentFactory.cpp" />
     <ClCompile Include="..\..\Src\SceneEngine\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\SceneEngine\CCreatorHeaders.h" />
+    <ClInclude Include="..\..\Src\SceneEngine\ComponentFactory.h" />
     <ClInclude Include="..\..\Src\SceneEngine\SceneManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -133,7 +136,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\LuaEngine</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,7 +151,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\LuaEngine</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

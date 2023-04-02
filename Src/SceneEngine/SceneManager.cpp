@@ -5,6 +5,9 @@
 #include "Entity.h"
 #include "Component.h"
 
+#include "CCreatorHeaders.h"
+#include "ComponentFactory.h"
+
 #include <iostream>
 
 #include <lua.hpp>
@@ -27,7 +30,9 @@ void Separity::SceneManager::eraseEntities() {
 	entidades.clear();
 }
 
-Separity::SceneManager::~SceneManager() {}
+Separity::SceneManager::~SceneManager() { 
+	delete factory_; 
+}
 
 bool Separity::SceneManager::loadScene(const std::string& root) {
 	lua_State* L = luaL_newstate();
@@ -41,8 +46,6 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		// remove error message from Lua state
 		lua_pop(L, 1);
 	} else {
-
-		ManagerManager* m = ManagerManager::getInstance();
 
 		std::cout << "Entidades:\n";
 		lua_getglobal(L, "Entities");
@@ -68,7 +71,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 						std::string component = lua_tostring(L, -2, NULL);
 						//std::cout << "  " << component << "\n";
 
-						m->createComponent(component, L, entity);
+						factory_->createComponent(component, L, entity);
 					}
 					lua_pop(L, 1);
 				}
@@ -86,4 +89,11 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 
 Separity::SceneManager::SceneManager() {
 	ManagerManager::getInstance()->addManager(_SCENE, this);
+
+	factory_ = new ComponentFactory();
+	factory_->addCreator("transform", new TransformCreator());
+	factory_->addCreator("collider", new ColliderCreator());
+	factory_->addCreator("rigidbody", new RigidbodyCreator());
+	factory_->addCreator("meshRenderer", new MeshRendererCreator());
+	factory_->addCreator("light", new LightCreator());
 }

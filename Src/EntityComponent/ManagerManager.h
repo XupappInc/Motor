@@ -28,11 +28,6 @@ namespace Separity {
 		void addManager(cmpType_type type, Manager* manager);
 		Manager* getManager(cmpType_type type);
 
-		void createComponent(const std::string& CName, lua_State* L,
-		                  Separity::Entity* ent);
-
-		void addCreator(const std::string& CName, CCreator* CCreator);
-
 		int nManagers();
 
 		protected:
@@ -40,7 +35,6 @@ namespace Separity {
 
 		private:
 		std::unordered_map<cmpType_type, Manager*> managers_;
-		std::unordered_map<std::string, CCreator*> creators_;
 	};
 }  // namespace Separity
 
