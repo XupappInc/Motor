@@ -3,14 +3,15 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "spyMath.h"
-
+#include "RenderManager.h"
 #include <Ogre.h>
 #include <cassert>
 using namespace Separity;
 
-Separity::MeshRenderer::MeshRenderer(Ogre::SceneManager* sceneManager,
-                                     std::string meshName)
-    : sceneManager_(sceneManager) {
+Separity::MeshRenderer::MeshRenderer(std::string meshName) {
+	Separity::RenderManager* render = Separity::RenderManager::getInstance();
+	// se accede al sceneManager
+	sceneManager_ = render->getSceneManager();
 	meshRenderer_ = sceneManager_->getRootSceneNode()->createChildSceneNode();
 	entity_ = sceneManager_->createEntity(meshName);
 	meshRenderer_->attachObject(entity_);

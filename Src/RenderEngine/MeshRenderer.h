@@ -28,7 +28,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="sceneManager">Manager de la escena</param>
 		/// <param name="meshName">Nombre de la malla</param>
-		MeshRenderer(Ogre::SceneManager* sceneManager, std::string meshName);
+		MeshRenderer(std::string meshName);
 
 		/// <summary>
 		/// <para>Destruye el nodo que contiene la entidad creada a partir de la
