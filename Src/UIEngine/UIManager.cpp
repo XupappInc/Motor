@@ -2,9 +2,6 @@
 
 #include "Button.h"
 #include "RenderManager.h"
-#include "imgui.h"
-#include "imgui_impl_sdl2.h"
-#include "imgui_impl_opengl3.h"
 #include "../SeparityUtils/checkML.h"
 #include <SDL.h>
 #include <iostream>
@@ -18,22 +15,7 @@ inline Separity::UIManager::UIManager() {}
 void Separity::UIManager::initUi() {
 	RenderManager* rM = Separity::RenderManager::getInstance();
 	 SDL_Window* window = rM->getSDLWindow();
-	// addComponent(b);
-
-	IMGUI_CHECKVERSION();
-
 	
-	
-	ImGuiContext* context = ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO();
-	(void) io;
-
-	ImGui::StyleColorsDark();
-	SDL_GL_SwapWindow(window);
-
-	//ImGui_ImplSDL2_InitForOpenGL(window, context);
-	//ImGui_ImplOpenGL3_Init();
-
 }
 
 Separity::UIManager* Separity::UIManager::getInstance() {
@@ -43,17 +25,7 @@ Separity::UIManager* Separity::UIManager::getInstance() {
 void Separity::UIManager::render() {}
 
 void Separity::UIManager::update() {
-	// start the Dear ImGui frame
-
-	//Separity::Button* b = new Separity::Button();
-	/*if(b->Separity::Button::ButtonPressed()) {
-		std::cout << "Hola\n";
-	}*/
-		//std::cout << "Hola\n";
+	
 }
 
-Separity::UIManager::~UIManager() {
-//	ImGui_ImplOpenGL3_Shutdown();
-//	ImGui_ImplSDL2_Shutdown();
-	ImGui::DestroyContext();
-}
+Separity::UIManager::~UIManager() {}

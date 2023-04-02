@@ -125,7 +125,7 @@ int main() {
 	//sinbad->addChild(particleSystem);
 	//  mesh renderer
 
-	sinbad->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	sinbad->addComponent<MeshRenderer>(
 	                                   "Sinbad.mesh");
 
 	colliderParams params;
@@ -157,7 +157,7 @@ int main() {
 	luzAux1->setDiffuse({0.5, 0, 0.5});
 	//  mesh renderer
 
-	cube->addComponent<MeshRenderer>(renderManager->getSceneManager(),
+	cube->addComponent<MeshRenderer>(
 	                                 "Mesh.010.mesh");
 
 	  colliderParams paramscube;
