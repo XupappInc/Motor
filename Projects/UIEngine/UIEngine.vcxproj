@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\UIEngine\Button.cpp" />
+    <ClCompile Include="..\..\Src\UIEngine\Text.cpp" />
     <ClCompile Include="..\..\Src\UIEngine\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\UIEngine\Button.h" />
+    <ClInclude Include="..\..\Src\UIEngine\Text.h" />
     <ClInclude Include="..\..\Src\UIEngine\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
