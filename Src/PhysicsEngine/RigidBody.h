@@ -2,6 +2,7 @@
 #ifndef __RIGIDBODY_H__
 #define __RIGIDBODY_H__
 #include "Component.h"
+
 #include <unordered_set>
 
 namespace Spyutils {
@@ -70,7 +71,7 @@ namespace Separity {
 		/// <param name="torq">La fuerza que se aplica</param>
 		void applyTorque(Spyutils::Vector3 torq);
 		/// <summary>
-		/// Aplica una impulso 
+		/// Aplica una impulso
 		/// </summary>
 		/// <param name="impul">El impulso que se aplica</param>
 		void applyImpulse(Spyutils::Vector3 impul);
@@ -98,7 +99,7 @@ namespace Separity {
 		/// </summary>
 		void update() override;
 		/// <summary>
-		/// Setear el damping 
+		/// Setear el damping
 		/// </summary>
 		/// <param name="linear">damping lineal</param>
 		/// <param name="angular">damping angular</param>
@@ -109,6 +110,11 @@ namespace Separity {
 		/// <returns>El btRigidBody creado en el componente</returns>
 		btRigidBody* getBulletRigidBody();
 
+		/// <summary>
+		/// Comprueba si se puede conseguir el componente Behaviour desde la
+		/// entidad, solo si no se ha intentado antes
+		/// </summary>
+		void tryToGetBehaviour();
 		/// <summary>
 		/// Metodo que se llama cuando el rigidbody colisiona
 		/// </summary>
@@ -123,21 +129,8 @@ namespace Separity {
 		void onCollisionStay(RigidBody* other);
 
 		/// <summary>
-		/// Añade un RigidBody al array de objetos que han colisionado con este 
-		/// (usado para llamar a OnCollisionStay) y llama a OnCollisionEnter
-		/// </summary>
-		/// <param name="collisionObject">RigidBody con el que ha colisionado</param>
-		void addCollisionObject(RigidBody* collisionObject);
-
-		/// <summary>
-		/// Quita un RigidBody del array de objetos que han colisionado con este (usado
-		/// para llamar a OnCollisionStay) y llama a OnCollisionExit
-		/// </summary>
-		/// <param name="collisionObject">RigidBody con el que ha dejado de colisionar</param>
-		void removeCollisionObject(RigidBody* collisionObject);
-
-		/// <summary>
-		/// Devuelve el CollisionCallback, que gestiona los eventos de colision del RigidBody
+		/// Devuelve el CollisionCallback, que gestiona los eventos de colision
+		/// del RigidBody
 		/// </summary>
 		/// <returns>El CollisionCallback asociado a este RigidBody</returns>
 		CollisionCallback* getCollisionCallback();
@@ -155,7 +148,6 @@ namespace Separity {
 		btCollisionShape* colliderShape_;
 
 		CollisionCallback* collisionCallback_;
-		std::unordered_set<Separity::RigidBody*> collisionObjects_;
 	};
 }  // namespace Separity
 #endif __RIGIDBODY_H__

@@ -20,6 +20,11 @@ namespace Separity {
 		~CollisionCallback();
 
 		/// <summary>
+		/// Metodo update de CollisionCallback, se encarga de gestionar los eventos de OnCollisionStay
+		/// </summary>
+		void update();
+
+		/// <summary>
 		/// Metodo de bullet que se llama cuando se produce una colision
 		/// </summary>
 		/// <param name="cp">Punto de la colision</param>
@@ -38,6 +43,7 @@ namespace Separity {
 
 		private:
 		RigidBody* rigidBody_;
+		std::unordered_set<Separity::RigidBody*> collisionObjects_;
 	};
 }  // namespace Separity
 

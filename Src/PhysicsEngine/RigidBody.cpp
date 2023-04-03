@@ -155,11 +155,6 @@ void Separity::RigidBody::preUpdate() {
 }
 
 void Separity::RigidBody::update() {
-	// OnCollisionStay
-	for(auto c : collisionObjects_) {
-		c->onCollisionStay(this);
-	}
-
 	if(tipo_ == STATIC)
 		return;
 	btScalar x, y, z;
@@ -177,11 +172,15 @@ void Separity::RigidBody::setDamping(float linear, float angular) {
 
 btRigidBody* Separity::RigidBody::getBulletRigidBody() { return rb_; }
 
-void Separity::RigidBody::onCollisionEnter(RigidBody* other) {
+void Separity::RigidBody::tryToGetBehaviour() {
 	if(!triedToGetBehaviour_) {
 		triedToGetBehaviour_ = true;
 		behaviour_ = ent_->getComponent<Behaviour>();
 	}
+}
+
+void Separity::RigidBody::onCollisionEnter(RigidBody* other) {
+	tryToGetBehaviour();
 
 	if(behaviour_ != nullptr) {
 		auto ent = other->getEntity();
@@ -190,10 +189,7 @@ void Separity::RigidBody::onCollisionEnter(RigidBody* other) {
 }
 
 void Separity::RigidBody::onCollisionExit(RigidBody* other) {
-	if(!triedToGetBehaviour_) {
-		triedToGetBehaviour_ = true;
-		behaviour_ = ent_->getComponent<Behaviour>();
-	}
+	tryToGetBehaviour();
 
 	if(behaviour_ != nullptr) {
 		auto ent = other->getEntity();
@@ -210,20 +206,6 @@ void Separity::RigidBody::onCollisionStay(RigidBody* other) {
 	if(behaviour_ != nullptr) {
 		auto ent = other->getEntity();
 		behaviour_->onCollisionStay(ent);
-	}
-}
-
-void Separity::RigidBody::addCollisionObject(RigidBody* collisionObject) {
-	if(collisionObjects_.find(collisionObject) == collisionObjects_.end()) {
-		collisionObjects_.insert(collisionObject);
-		onCollisionEnter(collisionObject);
-	}
-}
-
-void Separity::RigidBody::removeCollisionObject(RigidBody* collisionObject) {
-	if(collisionObjects_.find(collisionObject) != collisionObjects_.end()) {
-		collisionObjects_.erase(collisionObject);
-		onCollisionExit(collisionObject);
 	}
 }
 
