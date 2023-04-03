@@ -2,23 +2,25 @@
 
 #include "Behaviour.h"
 #include "Collider.h"
+#include "CollisionCallback.h"
 #include "Entity.h"
 #include "PhysicsManager.h"
 #include "Transform.h"
 #include "Vector.h"
 
+#include <btBulletDynamicsCommon.h>
 #include <spyMath.h>
-//#include "checkML.h"
+// #include "checkML.h"
 
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
     : mass_(mass), tipo_(tipo), colliderShape_(nullptr),
       triedToGetBehaviour_(false), rb_(nullptr), btTr_(nullptr), tr_(nullptr),
-      behaviour_(nullptr) {}
+      behaviour_(nullptr), collisionCallback_(nullptr) {}
 
 Separity::RigidBody::~RigidBody() {
 	delete btTr_;
 	btTr_ = nullptr;
-	//delete rb_; no borrar, se borra en el physics manager
+	// delete rb_; no borrar, se borra en el physics manager
 	rb_ = nullptr;
 	delete colliderShape_;
 	colliderShape_ = nullptr;
@@ -86,6 +88,8 @@ void Separity::RigidBody::initComponent() {
 	} else
 		rb_->setCollisionFlags(rb_->getCollisionFlags() |
 		                       btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+
+	collisionCallback_ = new CollisionCallback(this);
 }
 
 void Separity::RigidBody::addForce(Spyutils::Vector3 force) {
@@ -147,12 +151,10 @@ void Separity::RigidBody::preUpdate() {
 	btQuaternion btQ = btQuaternion(btRot.x(), btRot.y(), btRot.z());
 
 	rb_->getWorldTransform().setOrigin(btPos);
-	//rb_->getWorldTransform().setRotation(btQ);
-
+	// rb_->getWorldTransform().setRotation(btQ);
 }
 
 void Separity::RigidBody::update() {
-	
 	// OnCollisionStay
 	for(auto c : collisionObjects_) {
 		c->onCollisionStay(this);
@@ -211,40 +213,20 @@ void Separity::RigidBody::onCollisionStay(RigidBody* other) {
 	}
 }
 
-btScalar Separity::RigidBody::addSingleResult(
-    btManifoldPoint& cp, const btCollisionObjectWrapper* colObj0Wrap,
-    int partId0, int index0, const btCollisionObjectWrapper* colObj1Wrap,
-    int partId1, int index1) {
-	if(colObj0Wrap->getCollisionObject() == rb_ ||
-	   colObj1Wrap->getCollisionObject() == rb_) {
-		btCollisionObject* otherObject = nullptr;
-		if(colObj0Wrap->getCollisionObject() == rb_) {
-			otherObject = const_cast<btCollisionObject*>(
-			    colObj1Wrap->getCollisionObject());
-		} else {
-			otherObject = const_cast<btCollisionObject*>(
-			    colObj0Wrap->getCollisionObject());
-		}
-
-		// referencia al rigidbody con el que ha colisionado
-		Separity::RigidBody* otherRB =
-		    static_cast<Separity::RigidBody*>(otherObject->getUserPointer());
-
-		// Esto es OnCollisionEnter
-		if(cp.getDistance() < 0) {
-			if(collisionObjects_.find(otherRB) == collisionObjects_.end()) {
-				collisionObjects_.insert(otherRB);
-				onCollisionEnter(otherRB);
-			}
-		}
-		// Esto es OnCollisionExit
-		else {
-			if(collisionObjects_.find(otherRB) != collisionObjects_.end()) {
-				collisionObjects_.erase(otherRB);
-				onCollisionExit(otherRB);
-			}
-		}
+void Separity::RigidBody::addCollisionObject(RigidBody* collisionObject) {
+	if(collisionObjects_.find(collisionObject) == collisionObjects_.end()) {
+		collisionObjects_.insert(collisionObject);
+		onCollisionEnter(collisionObject);
 	}
+}
 
-	return 0;
+void Separity::RigidBody::removeCollisionObject(RigidBody* collisionObject) {
+	if(collisionObjects_.find(collisionObject) != collisionObjects_.end()) {
+		collisionObjects_.erase(collisionObject);
+		onCollisionExit(collisionObject);
+	}
+}
+
+Separity::CollisionCallback* Separity::RigidBody::getCollisionCallback() {
+	return collisionCallback_;
 }

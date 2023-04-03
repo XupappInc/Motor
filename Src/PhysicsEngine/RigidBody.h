@@ -3,17 +3,18 @@
 #define __RIGIDBODY_H__
 #include "Component.h"
 #include <unordered_set>
-#include <btBulletDynamicsCommon.h>
 
 namespace Spyutils {
 	class Vector3;
 }
 class btRigidBody;
 class btCollisionShape;
+class btTransform;
 
 namespace Separity {
 	class Transform;
 	class Behaviour;
+	class CollisionCallback;
 
 	/// <summary>
 	/// Tipo del rigidbody
@@ -35,8 +36,7 @@ namespace Separity {
 	/// <summary>
 	/// Componente rigidbody
 	/// </summary>
-	class RigidBody : public Separity::Component,
-	                  public btCollisionWorld::ContactResultCallback {
+	class RigidBody : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_RIGID_BODY)
@@ -123,21 +123,24 @@ namespace Separity {
 		void onCollisionStay(RigidBody* other);
 
 		/// <summary>
-		/// Metodo de bullet que se llama cuando se produce una colision
+		/// Añade un RigidBody al array de objetos que han colisionado con este 
+		/// (usado para llamar a OnCollisionStay) y llama a OnCollisionEnter
 		/// </summary>
-		/// <param name="cp">Punto de la colision</param>
-		/// <param name="colObj0Wrap">Wrapper del objeto 0</param>
-		/// <param name="partId0"></param>
-		/// <param name="index0">Indice del objeto 0</param>
-		/// <param name="colObj1Wrap">Wrapper del objeto 1</param>
-		/// <param name="partId1"></param>
-		/// <param name="index1">Indice del objeto 1</param>
-		/// <returns></returns>
-		btScalar addSingleResult(btManifoldPoint& cp,
-		                         const btCollisionObjectWrapper* colObj0Wrap,
-		                         int partId0, int index0,
-		                         const btCollisionObjectWrapper* colObj1Wrap,
-		                         int partId1, int index1) override;
+		/// <param name="collisionObject">RigidBody con el que ha colisionado</param>
+		void addCollisionObject(RigidBody* collisionObject);
+
+		/// <summary>
+		/// Quita un RigidBody del array de objetos que han colisionado con este (usado
+		/// para llamar a OnCollisionStay) y llama a OnCollisionExit
+		/// </summary>
+		/// <param name="collisionObject">RigidBody con el que ha dejado de colisionar</param>
+		void removeCollisionObject(RigidBody* collisionObject);
+
+		/// <summary>
+		/// Devuelve el CollisionCallback, que gestiona los eventos de colision del RigidBody
+		/// </summary>
+		/// <returns>El CollisionCallback asociado a este RigidBody</returns>
+		CollisionCallback* getCollisionCallback();
 
 		private:
 		Transform* tr_;
@@ -151,6 +154,7 @@ namespace Separity {
 
 		btCollisionShape* colliderShape_;
 
+		CollisionCallback* collisionCallback_;
 		std::unordered_set<Separity::RigidBody*> collisionObjects_;
 	};
 }  // namespace Separity
