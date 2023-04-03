@@ -2,13 +2,15 @@
 #ifndef __SPYMATH_H__
 #define __SPYMATH_H__
 
+#define spyPI 3.14159265358979323846 /* pi */
+
 namespace Spyutils {
 	/// <summary>
 	/// Clase que abstrae algunas operaciones matemáticas para todo el proyecto.
 	/// </summary>
 	class Math {
 		public:
-		//static const double PI;
+		// static const double PI;
 		/// <summary>
 		///	Conversión de grados a radianes
 		/// </summary>
@@ -24,5 +26,5 @@ namespace Spyutils {
 		static float toDegrees(float rad);
 	};
 
-}  // namespace spyutils
+}  // namespace Spyutils
 #endif  // !__SPYMATH_H__

@@ -1,9 +1,10 @@
-#pragma once
+Ôªø#pragma once
 #ifndef __TRANSFORM_H__
 #define __TRANSFORM_H__
 #include "Component.h"
 #include "Vector.h"
 #include <vector>
+#include <spyQuaternion.h>
 namespace Ogre {
 	class SceneManager;
 	class SceneNode;
@@ -19,39 +20,46 @@ namespace Separity {
 		
 		~Transform();
 		/// <summary>
-		/// Setear la posiciÛn del componente tranform
+		/// Setear la posici√≥n del componente tranform
 		/// </summary>
-		/// <param name="other">Vector3 de la posiciÛn</param>
+		/// <param name="other">Vector3 de la posici√≥n</param>
 		void setPosition(Spyutils::Vector3 other);
 		/// <summary>
-		/// Setear la posiciÛn del componente tranform
+		/// Setear la posici√≥n del componente tranform
 		/// </summary>
-		/// <param name="x">posiciÛn x</param>
-		/// <param name="y">posiciÛn y</param>
-		/// <param name="z">posiciÛn z</param>
+		/// <param name="x">posici√≥n x</param>
+		/// <param name="y">posici√≥n y</param>
+		/// <param name="z">posici√≥n z</param>
 		void setPosition(float x, float y, float z);
 		/// <summary>
-		/// Transladar la posiciÛn del transform
+		/// Transladar la posici√≥n del transform
 		/// </summary>
 		/// <param name="other">Vector3 para transladar</param>
 		void translate(Spyutils::Vector3 other);
 		/// <summary>
-		/// Coger la posiciÛn del transform
+		/// Coger la posici√≥n del transform
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getPosition();
 		/// <summary>
-		/// Setetar l posiciÛn del transform.
+		/// Setetar l posici√≥n del transform.
 		/// </summary>
 		/// <param name="rotationX">grados del eje x</param>
 		/// <param name="rotationY">grados eje y</param>
 		/// <param name="rotationZ">grados de ejez</param>
 		void setRotation(float rotationX, float rotationY, float rotationZ);
+		void setRotationQ(float rotationX, float rotationY, float rotationZ,
+		                  float rotationW);
 		/// <summary>
-		/// geter de la rotaciÛn en un Vector3
+		/// geter de la rotaci√≥n en un Vector3
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getRotation();
+		/// <summary>
+		/// geter de la rotaci√≥n en un Quaternion
+		/// </summary>
+		/// <returns></returns>
+		Spyutils::spyQuaternion getRotationQ();
 		/// <summary>
 		/// Rotacion en el eje x
 		/// </summary>
@@ -91,6 +99,7 @@ namespace Separity {
 		           Spyutils::Vector3 rotacion);
 		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
+		Spyutils::spyQuaternion rotationQ_;
 		Spyutils::Vector3 scale_;
 
 		

@@ -1,4 +1,4 @@
-#include "RigidBody.h"
+﻿#include "RigidBody.h"
 
 #include "Behaviour.h"
 #include "Collider.h"
@@ -6,9 +6,9 @@
 #include "PhysicsManager.h"
 #include "Transform.h"
 #include "Vector.h"
-
-#include <spyMath.h>
-//#include "checkML.h"
+#include "spyMath.h"
+#include "spyQuaternion.h"
+// #include "checkML.h"
 
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
     : mass_(mass), tipo_(tipo), colliderShape_(nullptr),
@@ -18,7 +18,7 @@ Separity::RigidBody::RigidBody(typeRb tipo, float mass)
 Separity::RigidBody::~RigidBody() {
 	delete btTr_;
 	btTr_ = nullptr;
-	//delete rb_; no borrar, se borra en el physics manager
+	// delete rb_; no borrar, se borra en el physics manager
 	rb_ = nullptr;
 	delete colliderShape_;
 	colliderShape_ = nullptr;
@@ -138,21 +138,26 @@ void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
 
 void Separity::RigidBody::preUpdate() {
 	Spyutils::Vector3 pos = tr_->getPosition();
-	Spyutils::Vector3 rot = tr_->getRotation();
+	Spyutils::spyQuaternion quat = tr_->getRotationQ();
 
 	btVector3 btPos = btVector3(pos.x, pos.y, pos.z);
-	btVector3 btRot = btVector3((btScalar) Spyutils::Math::toRadians(rot.x),
-	                            (btScalar) Spyutils::Math::toRadians(rot.y),
-	                            (btScalar) Spyutils::Math::toRadians(rot.z));
-	btQuaternion btQ = btQuaternion(btRot.x(), btRot.y(), btRot.z());
+
+	//// Definir la matriz de rotaci�n para convertir los ejes
+	// btMatrix3x3 rotationMatrix(1, 0, 0, 0, 0, -1, 0, 1, 0);
+
+	//// Rotar el quaternion personalizado
+	// btVector3 bulletAxis(quat.x, quat.y, quat.z);
+
+	// bulletAxis = rotationMatrix * bulletAxis;
+
+	// btQuaternion btQ = btQuaternion(bulletAxis, quat.w);
+	btQuaternion btQ = btQuaternion(quat.x, quat.y, quat.z, quat.w);
 
 	rb_->getWorldTransform().setOrigin(btPos);
-	//rb_->getWorldTransform().setRotation(btQ);
-
+	rb_->getWorldTransform().setRotation(btQ);
 }
 
 void Separity::RigidBody::update() {
-	
 	// OnCollisionStay
 	for(auto c : collisionObjects_) {
 		c->onCollisionStay(this);
@@ -163,10 +168,9 @@ void Separity::RigidBody::update() {
 	btScalar x, y, z;
 	btVector3 pos;
 	pos = rb_->getWorldTransform().getOrigin();
-	rb_->getWorldTransform().getRotation().getEulerZYX(z, y, x);
+	btQuaternion s = rb_->getWorldTransform().getRotation();
 	tr_->setPosition(pos.x(), pos.y(), pos.z());
-	tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
-	                 Spyutils::Math::toDegrees(z));
+	tr_->setRotationQ(s.x(), s.y(), s.z(), s.w());
 }
 
 void Separity::RigidBody::setDamping(float linear, float angular) {
