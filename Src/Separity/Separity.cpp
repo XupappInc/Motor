@@ -3,38 +3,33 @@
 
 #include "Entity.h"
 
-//Componentes
-#include "Transform.h"
-
-#include "Behaviour.h"
-
-#include "Collider.h"
-#include "RigidBody.h"
-
-#include "MeshRenderer.h"
-#include "Light.h"
-#include "Camera.h"
+// Componentes
 #include "Animator.h"
-#include "ParticleSystem.h"
-
 #include "AudioListener.h"
 #include "AudioSource.h"
+#include "Behaviour.h"
+#include "Camera.h"
+#include "Collider.h"
+#include "Light.h"
+#include "MeshRenderer.h"
+#include "ParticleSystem.h"
+#include "RigidBody.h"
+#include "Transform.h"
 
-//Managers
-#include "ManagerManager.h"
+// Managers
+#include "AudioManager.h"
 #include "InputManager.h"
 #include "LuaManager.h"
+#include "ManagerManager.h"
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "SceneManager.h"
-#include "AudioManager.h"
+#include "TransformManager.h"
 #include "UIManager.h"
-
-//Utils
-//#include "checkML.h"
-#include "VirtualTimer.h"
-
+// Utils
+// #include "checkML.h"
 #include "Separity.h"
+#include "VirtualTimer.h"
 
 #include <Windows.h>
 #include <iostream>
@@ -48,7 +43,6 @@ using namespace Separity;
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-
 	RenderManager* renderManager = Separity::RenderManager::getInstance();
 	renderManager->init();
 	PhysicsManager* physManager = Separity::PhysicsManager::getInstance();
@@ -58,13 +52,14 @@ int main() {
 	UIManager* uiManager = Separity::UIManager::getInstance();
 	uiManager->initUi();
 	InputManager* inputManager = Separity::InputManager::getInstance();
-	//LuaManager* luaManager = Separity::LuaManager::getInstance();
-	//luaManager->initLua();
+	TransformManager* transformManager =
+	    Separity::TransformManager::getInstance();
+	// LuaManager* luaManager = Separity::LuaManager::getInstance();
+	// luaManager->initLua();
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/Scenes/scene.lua");
 
-	Entity* MusicInstance =
-	    new Entity(_grp_GENERAL);
+	Entity* MusicInstance = new Entity(_grp_GENERAL);
 
 	auto musica = MusicInstance->addComponent<AudioSource>(
 	    "Assets//callmemaybe.mp3", string("callmemaybe"), true);
@@ -75,9 +70,10 @@ int main() {
 	/*tr->setScale(0.03);
 	tr->pitch(30);
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/
-	
+
 	Entity* plano = new Entity(_grp_GENERAL);
-	auto tr1 = plano->addComponent<Transform>();
+	auto tr1 = plano->getEntTransform();
+	/*->addComponent<Transform>();*/
 	/*auto luz = plano->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luz->setDirection({1, 1, 1});*/
 
@@ -113,20 +109,21 @@ int main() {
 	uint32_t deltaTime = 0;
 
 	Entity* sinbad = new Entity(_grp_GENERAL);
-	auto tr4 = sinbad->addComponent<Transform>();
+	auto tr4 = sinbad->getEntTransform();
+	/*->addComponent<Transform>();*/
 	tr4->translate({0, 20, 0});
 
 	Entity* particleSystem = new Entity(_grp_GENERAL);
-	auto parts=particleSystem->getEntTransform();
+	auto parts = particleSystem->getEntTransform();
 	parts->translate({0, 0, 20});
-	
-	auto particleComponent= particleSystem->addComponent<ParticleSystem>("misParticulas","particles/Smoke");
 
-	//sinbad->addChild(particleSystem);
-	//  mesh renderer
+	auto particleComponent = particleSystem->addComponent<ParticleSystem>(
+	    "misParticulas", "particles/Smoke");
 
-	sinbad->addComponent<MeshRenderer>(
-	                                   "Sinbad.mesh");
+	// sinbad->addChild(particleSystem);
+	//   mesh renderer
+
+	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 
 	colliderParams params;
 	params.colShape = CUBE;
@@ -142,12 +139,12 @@ int main() {
 	auto cubetr = cube->getEntTransform();
 	cubetr->translate({20, 25, 0});
 	cubetr->setScale(0.03);
-	
+
 	Entity* luz = new Entity(_grp_GENERAL);
 	auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luzGlobal->setDiffuse({0.7, 0.7, 0.7});
-	auto luzTr=luz->getEntTransform();
-	luzTr->translate({0,100,0});
+	auto luzTr = luz->getEntTransform();
+	luzTr->translate({0, 100, 0});
 
 	Entity* luzAux = new Entity(_grp_GENERAL);
 	auto luzAux1 = luzAux->addComponent<Light>(DIRECTIONAL_LIGHT);
@@ -157,21 +154,20 @@ int main() {
 	luzAux1->setDiffuse({0.5, 0, 0.5});
 	//  mesh renderer
 
-	cube->addComponent<MeshRenderer>(
-	                                 "Mesh.010.mesh");
+	cube->addComponent<MeshRenderer>("Mesh.010.mesh");
 
-	  colliderParams paramscube;
-	  paramscube.colShape = CUBE;
-	  paramscube.height = 2;
-	  paramscube.width = 2;
-	  paramscube.depth = 5;
-	  paramscube.offsetY = 0;
-	  paramscube.isTrigger = false;
-	  cube->addComponent<Collider>(paramscube);
-	  auto rbcube=  cube->addComponent<RigidBody>(DYNAMIC, 10);
+	colliderParams paramscube;
+	paramscube.colShape = CUBE;
+	paramscube.height = 2;
+	paramscube.width = 2;
+	paramscube.depth = 5;
+	paramscube.offsetY = 0;
+	paramscube.isTrigger = false;
+	cube->addComponent<Collider>(paramscube);
+	auto rbcube = cube->addComponent<RigidBody>(DYNAMIC, 10);
 
-	 // cube->addChild(camera);
-	
+	// cube->addChild(camera);
+
 	bool quit = false;
 	initComponents(renderManager, physManager, uiManager, inputManager,
 	               audManager);
@@ -191,7 +187,6 @@ int main() {
 		} else {
 			if(inputManager->isKeyHeld('a')) {
 				rbcube->addForce({-1000, 0, 0});
-				
 			}
 			if(inputManager->isKeyHeld('d')) {
 				rbcube->addForce({1000, 0, 0});
@@ -220,7 +215,6 @@ int main() {
 			if(inputManager->isKeyDown('x')) {
 				RenderManager::getInstance()->fullScreen(true);
 			}
-			
 		}
 
 		// luaManager->update();
@@ -241,7 +235,7 @@ int main() {
 	delete timer;
 	delete plano;
 	delete sinbad;
-	//sceneMenager->eraseEntities();
+	// sceneMenager->eraseEntities();
 	renderManager->saveConfiguration();
 	renderManager->closedown();
 

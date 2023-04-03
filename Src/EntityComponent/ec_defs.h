@@ -33,7 +33,8 @@
 		_UI, \
 		_SOUND, \
 		_SCRIPT, \
-		_SCENE
+		_SCENE, \
+		_TRANSFORM_COMPONENT
 
 /// <summary>
 /// Lista de grupos, debe de tener al menos 1 elemento

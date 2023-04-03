@@ -3,10 +3,12 @@
 #include "Manager.h"
 #include "checkML.h"
 
-Separity::Component::Component() : ent_(nullptr), mngr_(nullptr), active_(true) {}
+Separity::Component::Component()
+    : ent_(nullptr), mngr_(nullptr), active_(true) {}
 
 Separity::Component::~Component() {
-	// mngr_->removeComponent(this);
+	if(mngr_ != NULL)
+		mngr_->removeComponent(this);
 	ent_ = nullptr;
 	mngr_ = nullptr;
 }

@@ -29,6 +29,7 @@
     <ClInclude Include="..\..\Src\EntityComponent\Singleton.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Transform.h" />
     <ClInclude Include="..\..\Src\EntityComponent\TransformCreator.h" />
+    <ClInclude Include="..\..\Src\EntityComponent\TransformManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\EntityComponent\CCreator.cpp" />
@@ -39,6 +40,7 @@
     <ClCompile Include="..\..\Src\EntityComponent\ManagerManager.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Transform.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\TransformCreator.cpp" />
+    <ClCompile Include="..\..\Src\EntityComponent\TransformManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
