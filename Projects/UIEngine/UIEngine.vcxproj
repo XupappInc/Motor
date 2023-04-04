@@ -139,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,7 +156,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,7 +1,9 @@
 #include "Text.h"
 
-Separity::Text::Text() {
-	
-}
-
-Separity::Text::~Text() {}
+//#include <OgreTextAreaOverlayElement.h>
+//
+//Separity::Text::Text() {
+//	
+//}
+//
+//Separity::Text::~Text() {}
