@@ -61,9 +61,6 @@ int main() {
 
 	Entity* MusicInstance = new Entity(_grp_GENERAL);
 
-	auto musica = MusicInstance->addComponent<AudioSource>(
-	    "Assets//callmemaybe.mp3", string("callmemaybe"), true);
-	audManager->playAudio(string("callmemaybe"), 1000.0f, 100000.0f);
 
 	// luaManager->loadScript("prueba", cube);
 
@@ -103,7 +100,7 @@ int main() {
 	cam_tr->pitch(-40);
 
 	Camera* cam_cam = camera->addComponent<Camera>();
-	camera->addComponent<AudioListener>();
+	
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
@@ -214,6 +211,10 @@ int main() {
 			}
 			if(inputManager->isKeyDown('x')) {
 				RenderManager::getInstance()->fullScreen(true);
+			}
+			if(inputManager->isKeyDown('v')) {
+				auto trsi = sinbad->getEntTransform();
+				trsi->yaw(20);
 			}
 		}
 

@@ -141,17 +141,19 @@ void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
 }
 
 void Separity::RigidBody::preUpdate() {
+	if(tipo_ == STATIC)
+		return;
 	Spyutils::Vector3 pos = tr_->getPosition();
 	Spyutils::Vector3 rot = tr_->getRotation();
 
 	btVector3 btPos = btVector3(pos.x, pos.y, pos.z);
-	btVector3 btRot = btVector3((btScalar) Spyutils::Math::toRadians(rot.x),
-	                            (btScalar) Spyutils::Math::toRadians(rot.y),
-	                            (btScalar) Spyutils::Math::toRadians(rot.z));
-	btQuaternion btQ = btQuaternion(btRot.x(), btRot.y(), btRot.z());
+	btVector3 btRot = btVector3((btScalar) btRadians(rot.x), (btScalar) btRadians(rot.y),
+	              (btScalar) btRadians(rot.z));
+	btQuaternion btQ = btQuaternion(btRot.y(), btRot.x(), btRot.z());
 
 	rb_->getWorldTransform().setOrigin(btPos);
-	// rb_->getWorldTransform().setRotation(btQ);
+    rb_->getWorldTransform().setRotation(btQ);
+	 
 }
 
 void Separity::RigidBody::update() {
@@ -160,7 +162,7 @@ void Separity::RigidBody::update() {
 	btScalar x, y, z;
 	btVector3 pos;
 	pos = rb_->getWorldTransform().getOrigin();
-	rb_->getWorldTransform().getRotation().getEulerZYX(z, y, x);
+	rb_->getWorldTransform().getRotation().getEulerZYX(z, y,x);
 	tr_->setPosition(pos.x(), pos.y(), pos.z());
 	tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
 	                 Spyutils::Math::toDegrees(z));
