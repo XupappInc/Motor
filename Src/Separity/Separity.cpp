@@ -54,8 +54,8 @@ int main() {
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	TransformManager* transformManager =
 	    Separity::TransformManager::getInstance();
-	// LuaManager* luaManager = Separity::LuaManager::getInstance();
-	// luaManager->initLua();
+	LuaManager* luaManager = Separity::LuaManager::getInstance();
+	luaManager->initLua();
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/Scenes/scene.lua");
 
@@ -244,7 +244,7 @@ int main() {
 	inputManager->close();
 	audManager->close();
 	physManager->close();
-	// luaManager->close();
+	luaManager->close();
 
 	return 0;
 }
