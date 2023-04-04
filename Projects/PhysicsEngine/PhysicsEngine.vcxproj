@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\PhysicsEngine\Collider.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\ColliderCreator.cpp" />
+    <ClCompile Include="..\..\Src\PhysicsEngine\CollisionCallback.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsDebugDrawer.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsManager.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\RigidBody.cpp" />
@@ -29,6 +30,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\PhysicsEngine\Collider.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\ColliderCreator.h" />
+    <ClInclude Include="..\..\Src\PhysicsEngine\CollisionCallback.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsDebugDrawer.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsManager.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\RigidBody.h" />

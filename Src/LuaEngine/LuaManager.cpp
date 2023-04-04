@@ -30,6 +30,11 @@ void Separity::LuaManager::initLua() {
 	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Behaviour>("Behaviour")
 	    .addFunction("update", &Behaviour::update)
+	    .addFunction("start", &Behaviour::start)
+	    .addFunction("awake", &Behaviour::awake)
+	    .addFunction("onCollisionEnter", &Behaviour::onCollisionEnter)
+	    .addFunction("onCollisionExit", &Behaviour::onCollisionExit)
+	    .addFunction("onCollisionStay", &Behaviour::onCollisionStay)
 	    .addProperty("entity", &Behaviour::ent_)
 	    .endClass();
 }
@@ -75,9 +80,7 @@ Separity::LuaManager::LuaManager() : L_(nullptr) {
 }
 
 Separity::LuaManager::~LuaManager() {
-	for(auto c : cmps_) {
-		//if (c != nullptr) delete c;
-	}
+
 	cmps_.clear();
 	
 	// Liberamos el estado de Lua

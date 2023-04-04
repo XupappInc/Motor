@@ -10,6 +10,7 @@
 #include "PhysicsDebugDrawer.h"
 #include "RenderManager.h"
 #include "RigidBody.h"
+#include "CollisionCallback.h"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -86,7 +87,7 @@ void PhysicsManager::update(const uint32_t& deltaTime) {
 		// test de colisiones de cada rigidbody con todo el mundo fisico
 		auto rb = dynamic_cast<Separity::RigidBody*>(c);
 		if(rb != nullptr)
-			world_->contactTest(rb->getBulletRigidBody(), *rb);
+			world_->contactTest(rb->getBulletRigidBody(), *rb->getCollisionCallback());
 	}
 	world_->stepSimulation(deltaTime);
 	for(Separity::Component* c : cmps_) {

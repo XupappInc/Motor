@@ -25,12 +25,37 @@ void Separity::Behaviour::update() {
 	}
 }
 
-void Separity::Behaviour::start() {}
+void Separity::Behaviour::start() {
+	luabridge::LuaRef startLua = (*behaviourLua_)["start"];
+	if(startLua.isFunction()) {
+		startLua();
+	}
+}
 
-void Separity::Behaviour::awake() {}
+void Separity::Behaviour::awake() {
+	luabridge::LuaRef awakeLua = (*behaviourLua_)["awake"];
+	if(awakeLua.isFunction()) {
+		awakeLua();
+	}
+}
 
-void Separity::Behaviour::onCollisionEnter(Entity* other) {}
+void Separity::Behaviour::onCollisionEnter(Entity* other) {
+	luabridge::LuaRef collisionEnterLua = (*behaviourLua_)["onCollisionEnter"];
+	if(collisionEnterLua.isFunction()) {
+		collisionEnterLua(other);
+	}
+}
 
-void Separity::Behaviour::onCollisionExit(Entity* other) {}
+void Separity::Behaviour::onCollisionExit(Entity* other) {
+	luabridge::LuaRef collisionExitLua = (*behaviourLua_)["onCollisionExit"];
+	if(collisionExitLua.isFunction()) {
+		collisionExitLua();
+	}
+}
 
-void Separity::Behaviour::onCollisionStay(Entity* other) {}
+void Separity::Behaviour::onCollisionStay(Entity* other) {
+	luabridge::LuaRef collisionStayLua = (*behaviourLua_)["onCollisionStay"];
+	if(collisionStayLua.isFunction()) {
+		collisionStayLua();
+	}
+}

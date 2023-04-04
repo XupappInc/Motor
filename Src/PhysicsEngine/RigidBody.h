@@ -2,18 +2,20 @@
 #ifndef __RIGIDBODY_H__
 #define __RIGIDBODY_H__
 #include "Component.h"
+
 #include <unordered_set>
-#include <btBulletDynamicsCommon.h>
 
 namespace Spyutils {
 	class Vector3;
 }
 class btRigidBody;
 class btCollisionShape;
+class btTransform;
 
 namespace Separity {
 	class Transform;
 	class Behaviour;
+	class CollisionCallback;
 
 	/// <summary>
 	/// Tipo del rigidbody
@@ -35,8 +37,7 @@ namespace Separity {
 	/// <summary>
 	/// Componente rigidbody
 	/// </summary>
-	class RigidBody : public Separity::Component,
-	                  public btCollisionWorld::ContactResultCallback {
+	class RigidBody : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_RIGID_BODY)
@@ -70,7 +71,7 @@ namespace Separity {
 		/// <param name="torq">La fuerza que se aplica</param>
 		void applyTorque(Spyutils::Vector3 torq);
 		/// <summary>
-		/// Aplica una impulso 
+		/// Aplica una impulso
 		/// </summary>
 		/// <param name="impul">El impulso que se aplica</param>
 		void applyImpulse(Spyutils::Vector3 impul);
@@ -98,7 +99,7 @@ namespace Separity {
 		/// </summary>
 		void update() override;
 		/// <summary>
-		/// Setear el damping 
+		/// Setear el damping
 		/// </summary>
 		/// <param name="linear">damping lineal</param>
 		/// <param name="angular">damping angular</param>
@@ -109,6 +110,11 @@ namespace Separity {
 		/// <returns>El btRigidBody creado en el componente</returns>
 		btRigidBody* getBulletRigidBody();
 
+		/// <summary>
+		/// Comprueba si se puede conseguir el componente Behaviour desde la
+		/// entidad, solo si no se ha intentado antes
+		/// </summary>
+		void tryToGetBehaviour();
 		/// <summary>
 		/// Metodo que se llama cuando el rigidbody colisiona
 		/// </summary>
@@ -123,21 +129,11 @@ namespace Separity {
 		void onCollisionStay(RigidBody* other);
 
 		/// <summary>
-		/// Metodo de bullet que se llama cuando se produce una colision
+		/// Devuelve el CollisionCallback, que gestiona los eventos de colision
+		/// del RigidBody
 		/// </summary>
-		/// <param name="cp">Punto de la colision</param>
-		/// <param name="colObj0Wrap">Wrapper del objeto 0</param>
-		/// <param name="partId0"></param>
-		/// <param name="index0">Indice del objeto 0</param>
-		/// <param name="colObj1Wrap">Wrapper del objeto 1</param>
-		/// <param name="partId1"></param>
-		/// <param name="index1">Indice del objeto 1</param>
-		/// <returns></returns>
-		btScalar addSingleResult(btManifoldPoint& cp,
-		                         const btCollisionObjectWrapper* colObj0Wrap,
-		                         int partId0, int index0,
-		                         const btCollisionObjectWrapper* colObj1Wrap,
-		                         int partId1, int index1) override;
+		/// <returns>El CollisionCallback asociado a este RigidBody</returns>
+		CollisionCallback* getCollisionCallback();
 
 		private:
 		Transform* tr_;
@@ -151,7 +147,7 @@ namespace Separity {
 
 		btCollisionShape* colliderShape_;
 
-		std::unordered_set<Separity::RigidBody*> collisionObjects_;
+		CollisionCallback* collisionCallback_;
 	};
 }  // namespace Separity
 #endif __RIGIDBODY_H__
