@@ -92,6 +92,36 @@ void Separity::Transform::setRotation(float rotationX, float rotationY,
 
 Spyutils::Vector3 Separity::Transform::getRotation() { return rotation_; }
 
+Spyutils::Vector3 Separity::Transform::getRotationGlobal() {
+
+	float pitch = Spyutils::Math::toRadians(rotation_[0]);
+	float yaw = Spyutils::Math::toRadians(rotation_[1]);
+	float roll = Spyutils::Math::toRadians(rotation_[2]);
+
+	// Calcular la matriz de rotación local R_local
+	float cx = std::cos(pitch);
+	float sx = std::sin(pitch);
+	float cy = std::cos(yaw);
+	float sy = std::sin(yaw);
+	float cz = std::cos(roll);
+	float sz = std::sin(roll);
+
+	float R_local[3][3] = {
+	    {cy * cz, -cy * sz * sx + sy * cx, cy * sz * cx + sy * sx},
+	    {sz, cz * cx, -cz * sx},
+	    {-sy * cz, sy * sz * sx + cy * cx, -sy * sz * cx + cy * sx}};
+
+	// Calcular la matriz de rotación global R_global
+	float R_global[3][3] = {{R_local[0][0], R_local[0][1], R_local[0][2]},
+	                         {R_local[1][0], R_local[1][1], R_local[1][2]},
+	                         {R_local[2][0], R_local[2][1], R_local[2][2]}};
+	float pitch_global, yaw_global, roll_global;
+	  getEulerAngles(R_global, pitch_global, yaw_global, roll_global);
+	
+	Spyutils::Vector3 res = {pitch_global, yaw_global, roll_global};
+	return res;
+}
+
 void Separity::Transform::pitch(float degree) {
 	Spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x + degree, rot.y, rot.z);
@@ -197,4 +227,16 @@ Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
 	                            Spyutils::Math::toDegrees(posicion.y),
 	                            Spyutils::Math::toDegrees(posicion.z)};
 	return posicion;
+}
+
+void Separity::Transform::getEulerAngles(float R[3][3], float& pitch,
+                                         float& yaw, float& roll) {
+
+	 pitch = std::atan2(R[2][1], R[2][2]);
+	yaw =
+	    std::atan2(-R[2][0], std::sqrt(R[2][1] * R[2][1] + R[2][2] * R[2][2]));
+	roll = std::atan2(R[1][0], R[0][0]);
+	pitch = Spyutils::Math::toDegrees(pitch);
+	yaw = Spyutils::Math::toDegrees(yaw);
+	roll = Spyutils::Math::toDegrees(roll);
 }

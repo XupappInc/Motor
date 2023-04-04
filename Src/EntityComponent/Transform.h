@@ -53,6 +53,11 @@ namespace Separity {
 		/// <returns></returns>
 		Spyutils::Vector3 getRotation();
 		/// <summary>
+		/// geter de la rotación en un Vector3 globales
+		/// </summary>
+		/// <returns></returns>
+		Spyutils::Vector3 getRotationGlobal();
+		/// <summary>
 		/// Rotacion en el eje x
 		/// </summary>
 		/// <param name="degree">grados a girar</param>
@@ -92,7 +97,8 @@ namespace Separity {
 		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
 		Spyutils::Vector3 scale_;
-
+		void getEulerAngles(float R[3][3], float& pitch, float& yaw,
+		                    float& roll);
 		
 	};
 

@@ -144,7 +144,7 @@ void Separity::RigidBody::preUpdate() {
 	if(tipo_ == STATIC)
 		return;
 	Spyutils::Vector3 pos = tr_->getPosition();
-	Spyutils::Vector3 rot = tr_->getRotation();
+	Spyutils::Vector3 rot = tr_->getRotationGlobal();
 
 	btVector3 btPos = btVector3(pos.x, pos.y, pos.z);
 	btVector3 btRot = btVector3((btScalar) btRadians(rot.x), (btScalar) btRadians(rot.y),
