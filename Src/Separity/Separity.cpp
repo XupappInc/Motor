@@ -50,7 +50,7 @@ int main() {
 	AudioManager* audManager = Separity::AudioManager::getInstance();
 	audManager->initAudioSystem();
 	UIManager* uiManager = Separity::UIManager::getInstance();
-	uiManager->initUi();
+	//uiManager->initUi();
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	TransformManager* transformManager =
 	    Separity::TransformManager::getInstance();

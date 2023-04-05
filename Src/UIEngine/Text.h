@@ -1,25 +1,32 @@
 #pragma once
 #ifndef __TEXT_H__
 #define __TEXT_H__
-#include "Component.h"
+#include "UIComponent.h"
 #include <string>
-#include <vector>
-//
-//namespace Ogre {
-//	class textAreaOverlayElement;
-//}
+#include <utility>
+#include <Vector.h>
+
+namespace Ogre {
+	class TextAreaOverlayElement;
+}
 namespace Separity {
-	class Text : public Separity::Component {
+	class Text : public Separity::UIComponent {
 		private:
-		// Variables
-		/*Ogre::textAreaOverlayElement* areaOverlayElement;
+		//Elemento de overlay de ogre
+		Ogre::TextAreaOverlayElement* overlayText;
 		public:
-		Text(std::string overlayName, std::string fontName, float x, float y,
-		     float width, float height, std::string text,
-		     Spyutils::Vector3 textColor);*/
-		Text& operator=(const Text& otherText);
+		/// <summary>
+		/// Constructora de la clase Texto
+		/// </summary>
+		Text(std::string overlayName, std::string fontType, float xPos, float yPos,
+		     float width, float height, std::string textContent,
+		     Spyutils::Vector3 textColor);
+		/// <summary>
+		/// Constructora de copia de la clase Texto
+		/// </summary>
+		//Text& operator=(const Text& otherText);
 		void init();
-		void draw();
+		/*void draw();
 		void load();
 		void update();
 		void changeText();
@@ -27,7 +34,7 @@ namespace Separity {
 		void changeTextSize();
 		void changeVisibility(bool visible);
 		void setX(float x);
-		void setY(float y);
+		void setY(float y);*/
 	};
 }  // namespace Separity
 #endif  // !__TEXT_H__
