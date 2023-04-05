@@ -11,7 +11,7 @@ cd .\build
 
 msbuild "OGRE.sln" /p:configuration=Debug
 msbuild "OGRE.sln" /p:configuration=Release
-pause
+
 cd ..
 
 XCOPY /y /s .\build\bin\debug\Codec_STBI_d.dll %EXES%
