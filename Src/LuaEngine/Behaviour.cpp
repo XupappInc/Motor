@@ -49,13 +49,13 @@ void Separity::Behaviour::onCollisionEnter(Entity* other) {
 void Separity::Behaviour::onCollisionExit(Entity* other) {
 	luabridge::LuaRef collisionExitLua = (*behaviourLua_)["onCollisionExit"];
 	if(collisionExitLua.isFunction()) {
-		collisionExitLua();
+		collisionExitLua(other);
 	}
 }
 
 void Separity::Behaviour::onCollisionStay(Entity* other) {
 	luabridge::LuaRef collisionStayLua = (*behaviourLua_)["onCollisionStay"];
 	if(collisionStayLua.isFunction()) {
-		collisionStayLua();
+		collisionStayLua(other);
 	}
 }

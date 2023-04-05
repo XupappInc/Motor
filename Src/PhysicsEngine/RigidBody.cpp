@@ -157,6 +157,7 @@ void Separity::RigidBody::preUpdate() {
 }
 
 void Separity::RigidBody::update() {
+	collisionCallback_->update();
 	if(tipo_ == STATIC)
 		return;
 	btScalar x, y, z;

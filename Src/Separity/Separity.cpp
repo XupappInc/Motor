@@ -50,7 +50,7 @@ int main() {
 	AudioManager* audManager = Separity::AudioManager::getInstance();
 	audManager->initAudioSystem();
 	UIManager* uiManager = Separity::UIManager::getInstance();
-	//uiManager->initUi();
+	// uiManager->initUi();
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	TransformManager* transformManager =
 	    Separity::TransformManager::getInstance();
@@ -60,9 +60,6 @@ int main() {
 	sceneMenager->loadScene("Assets/Scenes/scene.lua");
 
 	Entity* MusicInstance = new Entity(_grp_GENERAL);
-
-
-	// luaManager->loadScript("prueba", cube);
 
 	/*tr->setScale(0.03);
 	tr->pitch(30);
@@ -100,7 +97,6 @@ int main() {
 	cam_tr->pitch(-40);
 
 	Camera* cam_cam = camera->addComponent<Camera>();
-	
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
@@ -131,6 +127,8 @@ int main() {
 	params.isTrigger = false;
 	sinbad->addComponent<Collider>(params);
 	auto rbSinbad = sinbad->addComponent<RigidBody>(DYNAMIC, 10);
+
+	luaManager->loadScript("prueba", sinbad);
 
 	Entity* cube = new Entity(_grp_GENERAL);
 	auto cubetr = cube->getEntTransform();
@@ -218,7 +216,7 @@ int main() {
 			}
 		}
 
-		// luaManager->update();
+		luaManager->update();
 		physManager->update(deltaTime);
 		renderManager->update();
 		renderManager->render();
