@@ -14,7 +14,7 @@ namespace Spyutils {
 	/// </summary>
 	class spyQuaternion {
 		public:
-		float x, y, z, w;
+		float w,x, y, z;
 
 		spyQuaternion(float x = 0, float y = 0, float z = 0);
 		spyQuaternion(float w,float x, float y, float z );

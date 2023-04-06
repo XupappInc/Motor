@@ -57,7 +57,13 @@ Spyutils::spyQuaternion Separity::Transform::getRotationQuat() {
 	Quaternion q=tr_->getOrientation();
 	return {q.w,q.x,q.y,q.z};
 }
-Spyutils::Vector3 Separity::Transform::getRotation() { return rotation_; }
+Spyutils::Vector3 Separity::Transform::getRotation() {
+	Ogre::Radian pitch = tr_->getOrientation().getPitch();
+	Ogre::Radian yaw = tr_->getOrientation().getYaw();
+	Ogre::Radian roll = tr_->getOrientation().getRoll();
+	rotation_ = {pitch.valueDegrees(), yaw.valueDegrees(), roll.valueDegrees()};
+	return rotation_;
+}
 void Separity::Transform::pitch(float degree) {
 	rotation_ =
 	    Spyutils::Vector3(rotation_.x + degree, rotation_.y, rotation_.z);

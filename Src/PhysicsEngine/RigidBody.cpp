@@ -147,8 +147,8 @@ void Separity::RigidBody::preUpdate() {
 	Spyutils::spyQuaternion rot = tr_->getRotationQuat();
 
 	btVector3 btPos = btVector3(pos.x, pos.y, pos.z);
-	btQuaternion btQ = btQuaternion(rot.x,rot.y,rot.z,rot.w);
-
+	btQuaternion btQ = btQuaternion(rot.z,rot.x,rot.y,rot.w);
+	
 	rb_->getWorldTransform().setOrigin(btPos);
     rb_->getWorldTransform().setRotation(btQ);
 	 
@@ -160,8 +160,17 @@ void Separity::RigidBody::update() {
 	btScalar x, y, z;
 	btVector3 pos;
 	pos = rb_->getWorldTransform().getOrigin();
-	auto Q=rb_->getWorldTransform().getRotation();
+	rb_->getWorldTransform().getRotation().getEulerZYX(y,x,z);
 	tr_->setGlobalPosition({pos.x(), pos.y(), pos.z()});
+
+	Spyutils::spyQuaternion rot = {
+	    Spyutils::Math::toDegrees(x) - tr_->getRotation().x,
+	    Spyutils::Math::toDegrees(y) - tr_->getRotation().y,
+	    Spyutils::Math::toDegrees(z) - tr_->getRotation().z};
+	tr_->pitch(rot.x);
+	tr_->yaw(rot.y);
+	tr_->roll(rot.z);
+	//tr_->setRotation({Q.w(), Q.y(), Q.z(), Q.x()});
 	//tr_->setRotation({Q.w(), Q.x(), Q.y(), Q.z()});
 	//tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
 	                // Spyutils::Math::toDegrees(z));
