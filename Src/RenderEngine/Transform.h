@@ -91,14 +91,11 @@ namespace Separity {
 		Spyutils::Vector3 getScale();
 
 		private:
-		Spyutils::Vector3 rotar(Spyutils::Vector3 posicion,
-		                        Spyutils::Vector3 anclaje,
-		           Spyutils::Vector3 rotacion);
+		Ogre::SceneNode* node_ = nullptr;
 		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
 		Spyutils::Vector3 scale_;
-		void getEulerAngles(float R[3][3], float& pitch, float& yaw,
-		                    float& roll);
+		
 		
 	};
 
