@@ -31,6 +31,8 @@ void Separity::UIManager::initUi() {
 	overlayMngr_ = Ogre::OverlayManager::getSingletonPtr();
 
 	rM->getSceneManager()->addRenderQueueListener(overSystem_);
+	
+	//rM->render();
 	Separity::Text* newTextUwu = new Separity::Text(
 	    "TextoPrueba", "uwu", 10, 10, 100, 50, "HOLA?", (1, 1, 1));
 }

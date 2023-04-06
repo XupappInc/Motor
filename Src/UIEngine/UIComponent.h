@@ -5,12 +5,14 @@
 namespace Ogre {
 	class OverlayManager;
 	class Overlay;
+	class OverlayContainer;
 }
 namespace Separity {
 	class UIComponent : public Separity::Component {
 		protected:
 		Ogre::OverlayManager* overlayManager;
 		Ogre::Overlay* overlayElement;
+		Ogre::OverlayContainer* panel;
 		static int numUIElements;
 		public:
 		UIComponent();
