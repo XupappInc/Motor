@@ -13,33 +13,33 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
 	//Panel para el texto
 	panel = static_cast<Ogre::OverlayContainer*>(
 	    overlayManager->createOverlayElement(
-	        "Panel", overlayName + std::to_string(numUIElements)));
+	        "Panel", "panelName" + std::to_string(numUIElements)));
 	panel->setMetricsMode(Ogre::GMM_PIXELS);
 	panel->setPosition(10, 10);
 	panel->setDimensions(100, 100);
-	panel->setMaterialName("BaseWhite");
+	//panel->setMaterialName("World_ap.16");
     //Creo el area del texto
-	//overlayText = static_cast<Ogre::TextAreaOverlayElement*>(
-	//overlayManager->createOverlayElement(
-	//        "UIText", overlayName + std::to_string(numUIElements)));
-	//
-	////Set de las opciones del texto
-	//overlayText->setMetricsMode(Ogre::GMM_PIXELS);
-	//overlayText->setPosition(xPos, yPos);
-	//overlayText->setDimensions(width, height);
-	//overlayText->setCaption(textContent);
-	//overlayText->setCharHeight(16);
-	//overlayText->setFontName("TrebuchetMSBold");
-	//overlayText->setColourTop(
-	//    Ogre::ColourValue(textColor.x, textColor.y, textColor.z));
-	//overlayText->setColourBottom(
-	//    Ogre::ColourValue(textColor.x, textColor.y, textColor.z));
+	overlayText = static_cast<Ogre::TextAreaOverlayElement*>(
+	overlayManager->createOverlayElement(
+	        "TextArea", overlayName + std::to_string(numUIElements)));
+	
+	//Set de las opciones del texto
+	overlayText->setMetricsMode(Ogre::GMM_PIXELS);
+	overlayText->setPosition(0, 0);
+	overlayText->setDimensions(100, 100);
+	overlayText->setCaption("jelou worl");
+	overlayText->setCharHeight(16);
+	//overlayText->setFontName("fuentePrueba");
+	overlayText->setColourTop(
+	    Ogre::ColourValue(textColor.x, textColor.y, textColor.z));
+	overlayText->setColourBottom(
+	    Ogre::ColourValue(textColor.x, textColor.y, textColor.z));
 	//Creo un elemento overlay para añadirle el panel
 	overlayElement =
-	    overlayManager->create(overlayName + std::to_string(numUIElements));
+	    overlayManager->create("over" + std::to_string(numUIElements));
 	overlayElement->add2D(panel);
 	
-	//panel->addChild(overlayText);
+	panel->addChild(overlayText);
 	//Añado el nuevo texto al overlay
 	overlayElement->show();
 	

@@ -34,7 +34,7 @@ void Separity::UIManager::initUi() {
 	
 	//rM->render();
 	Separity::Text* newTextUwu = new Separity::Text(
-	    "TextoPrueba", "uwu", 10, 10, 100, 50, "HOLA?", (1, 1, 1));
+	    "TextoPrueba", "uwu", 0, 0, 100, 100, "HOLA?", (0.5, 0.3, 0.5));
 }
 
 
