@@ -117,7 +117,8 @@ int main() {
 	//   mesh renderer
 
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
-
+	auto animSinbad=sinbad->addComponent<Animator>();
+	//animSinbad->playAnim("Dance");
 	colliderParams params;
 	params.colShape = CUBE;
 	params.height = 10;
@@ -125,8 +126,8 @@ int main() {
 	params.depth = 5;
 	params.offsetY = 0;
 	params.isTrigger = false;
-	sinbad->addComponent<Collider>(params);
-	auto rbSinbad = sinbad->addComponent<RigidBody>(DYNAMIC, 10);
+	/*sinbad->addComponent<Collider>(params);
+	auto rbSinbad = sinbad->addComponent<RigidBody>(DYNAMIC, 10);*/
 
 	luaManager->loadScript("prueba", sinbad);
 

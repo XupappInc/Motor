@@ -30,7 +30,7 @@ namespace Separity {
 		void playAnim(std::string animName);
 		void setLoop(bool loop);
 		void setEnabled(bool enabled);
-		void setAnimDuration(float duration);
+		//void setAnimDuration(float duration);
 		//void setInterpolationMode(Ogre::Animation mode);
 		bool getLoop();
 		bool getEnabled();
@@ -46,7 +46,6 @@ namespace Separity {
 		bool loop_;
 		float duration_, distance_;
 		MeshRenderer* mesh_;
-		Ogre::AnimationState* idleTop;
 		Ogre::AnimationStateSet* allStates_;
 		std::list<std::string> animNames_;
 		
