@@ -20,6 +20,7 @@ namespace Separity {
 	
 		
 		~Transform();
+		Ogre::SceneNode* getNode() { return tr_; }
 		/// <summary>
 		/// Setear la posición del componente tranform
 		/// </summary>

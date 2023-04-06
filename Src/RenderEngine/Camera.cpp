@@ -22,8 +22,8 @@ Separity::Camera::Camera() : tr_(nullptr) {
 	camera_->setFarClipDistance(10000);
 	camera_->setAutoAspectRatio(true);
 
-	cameraNode_ = sm->getRootSceneNode()->createChildSceneNode();
-	cameraNode_->attachObject(camera_);
+	//cameraNode_ = sm->getRootSceneNode()->createChildSceneNode();
+	
 
 	viewport_ = rm->getOgreWindow()->addViewport(camera_);
 	viewport_->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));
@@ -40,7 +40,13 @@ void Separity::Camera::initComponent() {
 	if(tr_ == nullptr) {
 		throw std::runtime_error("Entity doesn't have Transform Component\n");
 	}		
-	else readTransform();
+	else {
+		Transform* tr = ent_->getComponent<Transform>();
+		auto node = tr->getNode();
+		node->attachObject(camera_);
+	}
+		
+
 }
 
 void Separity::Camera::zoom(float zoom) { 
@@ -62,7 +68,7 @@ Ogre::Degree Separity::Camera::zoomChecker(Ogre::Degree&& zoom) {
 }
 
 void Separity::Camera::readTransform() {
-	Transform* tr = ent_->getComponent<Transform>();
+	/*Transform* tr = ent_->getComponent<Transform>();
 
 	assert(tr != nullptr);
 
@@ -77,7 +83,7 @@ void Separity::Camera::readTransform() {
 	cameraNode_->setOrientation(rot);
 
 	cameraNode_->setScale(tr->getScale().x, tr->getScale().y,
-	                        tr->getScale().z);
+	                        tr->getScale().z);*/
 }
 
 

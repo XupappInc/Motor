@@ -33,7 +33,8 @@ void Separity::Transform::setPosition(float x, float y, float z) {
 }
 
 void Separity::Transform::translate(Spyutils::Vector3 translation) {
-	tr_->translate(Vector3(translation.x, translation.y, translation.z));
+	tr_->translate(Vector3(translation.x, translation.y, translation.z),
+	               Ogre::Node::TransformSpace::TS_LOCAL);
 	Vector3 p = tr_->getPosition();
 	position_ = {p.x, p.y, p.z};
 	
@@ -92,7 +93,10 @@ Spyutils::Vector3 Separity::Transform::getGlobalPosition() {
 }
 
 void Separity::Transform::setGlobalPosition(Spyutils::Vector3 other) {
-	tr_->setPosition(tr_->getParent()->convertWorldToLocalPosition({other.x,other.y,other.z}));
+	auto v = tr_->getParent()->convertWorldToLocalPosition(
+	    {other.x, other.y, other.z});
+	tr_->setPosition(v);
+	position_ = {v.x, v.y, v.z};
 }
 
 Spyutils::Vector3 Separity::Transform::getScale() {

@@ -143,7 +143,7 @@ void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
 void Separity::RigidBody::preUpdate() {
 	if(tipo_ == STATIC)
 		return;
-	Spyutils::Vector3 pos = tr_->getPosition();
+	Spyutils::Vector3 pos = tr_->getGlobalPosition();
 	Spyutils::spyQuaternion rot = tr_->getRotationQuat();
 
 	btVector3 btPos = btVector3(pos.x, pos.y, pos.z);
@@ -160,8 +160,9 @@ void Separity::RigidBody::update() {
 	btScalar x, y, z;
 	btVector3 pos;
 	pos = rb_->getWorldTransform().getOrigin();
-	rb_->getWorldTransform().getRotation();
+	auto Q=rb_->getWorldTransform().getRotation();
 	tr_->setGlobalPosition({pos.x(), pos.y(), pos.z()});
+	//tr_->setRotation({Q.w(), Q.x(), Q.y(), Q.z()});
 	//tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
 	                // Spyutils::Math::toDegrees(z));
 }
