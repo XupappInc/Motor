@@ -8,3 +8,4 @@
 #include "MeshRendererCreator.h"
 #include "RigidbodyCreator.h"
 #include "TransformCreator.h"
+#include "ParticleSystemCreator.h"

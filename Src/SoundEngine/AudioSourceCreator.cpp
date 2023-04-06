@@ -20,7 +20,6 @@ void Separity::AudioSourceCreator::registerInLua() {
 
 void Separity::AudioSourceCreator::createComponent(lua_State* L,
                                                    Separity::Entity* ent) {
-	float data[3] = {};
 	std::string audioRoute, audioName, isMusic;
 	bool isMusicBoolean;
 

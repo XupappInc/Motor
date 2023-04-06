@@ -99,4 +99,5 @@ Separity::SceneManager::SceneManager() {
 	factory_->addCreator("audioListener", new AudioListenerCreator());
 	factory_->addCreator("audioSource", new AudioSourceCreator());
 	factory_->addCreator("camera", new CameraCreator());
+	factory_->addCreator("particleSystem", new ParticleSystemCreator());
 }
