@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __MESH_RENDERER_CREATOR_H__
-#define __MESH_RENDERER_CREATOR_H__
+#ifndef __CAMERA_CREATOR_H__
+#define __CAMERA_CREATOR_H__
 
 #include "CCreator.h"
 
@@ -8,10 +8,10 @@ class lua_State;
 
 namespace Separity {
 
-	class MeshRendererCreator : public CCreator {
+	class CameraCreator : public CCreator {
 		public:
-		MeshRendererCreator();
-		~MeshRendererCreator() = default;
+		CameraCreator();
+		~CameraCreator() = default;
 
 		void registerInLua() override;
 
@@ -19,4 +19,4 @@ namespace Separity {
 	};
 };  // namespace Separity
 
-#endif // !__MESH_RENDERER_CREATOR_H__
+#endif  // !__CAMERA_CREATOR_H__

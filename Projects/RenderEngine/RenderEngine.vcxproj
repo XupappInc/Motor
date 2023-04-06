@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\RenderEngine\Animator.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\Camera.cpp" />
+    <ClCompile Include="..\..\Src\RenderEngine\CameraCreator.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\Light.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\LightCreator.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\MeshRenderer.cpp" />
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\RenderEngine\Animator.h" />
     <ClInclude Include="..\..\Src\RenderEngine\Camera.h" />
+    <ClInclude Include="..\..\Src\RenderEngine\CameraCreator.h" />
     <ClInclude Include="..\..\Src\RenderEngine\Light.h" />
     <ClInclude Include="..\..\Src\RenderEngine\LightCreator.h" />
     <ClInclude Include="..\..\Src\RenderEngine\MeshRenderer.h" />

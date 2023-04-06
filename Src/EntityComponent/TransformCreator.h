@@ -20,4 +20,4 @@ namespace Separity {
 	};
 };  // namespace Separity
 
-#endif __TRANSFORM_CREATOR_H__
+#endif // !__TRANSFORM_CREATOR_H__
