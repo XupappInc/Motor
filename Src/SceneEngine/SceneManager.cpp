@@ -1,17 +1,14 @@
 ﻿#include "SceneManager.h"
 
-#include "ManagerManager.h"
-
-#include "Entity.h"
-#include "Component.h"
-
 #include "CCreatorHeaders.h"
+#include "Component.h"
 #include "ComponentFactory.h"
-
-#include <iostream>
+#include "Entity.h"
+#include "ManagerManager.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
+#include <iostream>
 
 
 template<typename T>
@@ -30,9 +27,7 @@ void Separity::SceneManager::eraseEntities() {
 	entidades.clear();
 }
 
-Separity::SceneManager::~SceneManager() { 
-	delete factory_; 
-}
+Separity::SceneManager::~SceneManager() { delete factory_; }
 
 bool Separity::SceneManager::loadScene(const std::string& root) {
 	lua_State* L = luaL_newstate();
@@ -46,7 +41,6 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		// remove error message from Lua state
 		lua_pop(L, 1);
 	} else {
-
 		std::cout << "Entidades:\n";
 		lua_getglobal(L, "Entities");
 
@@ -56,7 +50,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		while(lua_next(L, -2)) {
 			if(lua_isstring(L, -2)) {
 				std::string entity = lua_tostring(L, -2, NULL);
-				//std::cout << " " << entity << ":\n";
+				// std::cout << " " << entity << ":\n";
 			}
 
 			if(lua_istable(L, -1)) {
@@ -69,7 +63,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 				while(lua_next(L, -2)) {
 					if(lua_isstring(L, -2)) {
 						std::string component = lua_tostring(L, -2, NULL);
-						//std::cout << "  " << component << "\n";
+						// std::cout << "  " << component << "\n";
 
 						factory_->createComponent(component, L, entity);
 					}
@@ -100,4 +94,5 @@ Separity::SceneManager::SceneManager() {
 	factory_->addCreator("audioSource", new AudioSourceCreator());
 	factory_->addCreator("camera", new CameraCreator());
 	factory_->addCreator("particleSystem", new ParticleSystemCreator());
+	factory_->addCreator("animator", new AnimatorCreator());
 }
