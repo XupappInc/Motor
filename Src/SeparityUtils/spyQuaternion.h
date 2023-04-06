@@ -17,7 +17,7 @@ namespace Spyutils {
 		float x, y, z, w;
 
 		spyQuaternion(float x = 0, float y = 0, float z = 0);
-		spyQuaternion(float x, float y, float z, float w);
+		spyQuaternion(float w,float x, float y, float z );
 		/// <summary>
 		/// Convertir a grados
 		/// </summary>

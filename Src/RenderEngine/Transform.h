@@ -3,19 +3,21 @@
 #define __TRANSFORM_H__
 #include "Component.h"
 #include "Vector.h"
-#include <vector>
+
 namespace Ogre {
 	class SceneManager;
 	class SceneNode;
 }  // namespace Ogre
-
+namespace Spyutils {
+	class spyQuaternion;
+}
 namespace Separity {
 	class Transform : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_TRANSFORM_COMPONENT)
 		__CMPID_DECL__(Separity::_TRANSFORM)
 		Transform();
-		std::vector<std::vector<float>>calculateRotationMatrix(Spyutils::Vector3 rotation);
+	
 		
 		~Transform();
 		/// <summary>
@@ -46,7 +48,7 @@ namespace Separity {
 		/// <param name="rotationX">grados del eje x</param>
 		/// <param name="rotationY">grados eje y</param>
 		/// <param name="rotationZ">grados de ejez</param>
-		void setRotation(float rotationX, float rotationY, float rotationZ);
+		void setRotation(Spyutils::spyQuaternion quat);
 		/// <summary>
 		/// geter de la rotación en un Vector3
 		/// </summary>

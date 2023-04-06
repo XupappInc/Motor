@@ -34,8 +34,8 @@ Spyutils::spyQuaternion::spyQuaternion(float angleX, float angleY,
 	}
 }
 
-Spyutils::spyQuaternion::spyQuaternion(float compX, float compY, float compZ,
-                                       float compW)
+Spyutils::spyQuaternion::spyQuaternion(float compW, float compY, float compZ,
+                                       float compX)
     : x(compX), y(compY), z(compZ), w(compW) {}
 
 Spyutils::Vector3 Spyutils::spyQuaternion::toEulerAngles() {

@@ -4,6 +4,7 @@
 #include "Vector.h"
 #include <OgreSceneNode.h>
 #include "spyMath.h"
+#include"spyQuaternion.h"
 using namespace std;
 using namespace Ogre;
 // #include "checkML.h"
@@ -17,12 +18,9 @@ Separity::Transform::Transform()
 Separity::Transform::~Transform() {}
 
 void Separity::Transform::setPosition(Spyutils::Vector3 other) {
-	Spyutils::Vector3 posicionPadre = position_;
+	
 	position_ = other;
-	for(auto child : ent_->getChildren()) {
-		auto tr = child->getComponent<Transform>();
-		tr->setPosition(tr->getPosition() + (other-posicionPadre));
-	}
+	node_->setPosition({other.x, other.y, other.z});
 }
 void Separity::Transform::setPosition(float x, float y, float z) {
 	setPosition(Spyutils::Vector3(x, y, z));
@@ -30,37 +28,22 @@ void Separity::Transform::setPosition(float x, float y, float z) {
 }
 
 void Separity::Transform::translate(Spyutils::Vector3 translation) {
-	//position_ += other;
-	Spyutils::Vector3 posicionPadre = position_;
-	vector<vector<float>> rotationMatrix = calculateRotationMatrix(rotation_);
-
-	float tx_local = translation[0] * rotationMatrix[0][0] +
-	                  translation[1] * rotationMatrix[0][1] +
-	                  translation[2] * rotationMatrix[0][2];
-	float ty_local = translation[0] * rotationMatrix[1][0] +
-	                  translation[1] * rotationMatrix[1][1] +
-	                  translation[2] * rotationMatrix[1][2];
-	float tz_local = translation[0] * rotationMatrix[2][0] +
-	                  translation[1] * rotationMatrix[2][1] +
-	                  translation[2] * rotationMatrix[2][2];
-
-	Spyutils::Vector3 newPosition = {
-	    position_[0] + tx_local, position_[1] + ty_local, position_[2] + tz_local};
-	position_ = newPosition;
-
-	for(auto child : ent_->getChildren()) {
-		auto tr = child->getComponent<Transform>();
-		tr->setPosition(tr->getPosition() + (newPosition - posicionPadre));
-	}
+	node_->translate(Vector3(translation.x, translation.y, translation.z));
+	Vector3 p = node_->getPosition();
+	position_ = {p.x, p.y, p.z};
+	
 }
 
 Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
 
-void Separity::Transform::setRotation(float rotationX, float rotationY,
-                                      float rotationZ) {
+void Separity::Transform::setRotation(Spyutils::spyQuaternion quat) {
 
-	rotation_ = Spyutils::Vector3(rotationX, rotationY, rotationZ);
-	
+	Quaternion q = {quat.w, quat.x, quat.y, quat.z};
+	node_->setOrientation(q);
+	Ogre::Radian pitch = node_->getOrientation().getPitch();
+	Ogre::Radian yaw = node_->getOrientation().getYaw();
+	Ogre::Radian roll = node_->getOrientation().getRoll();
+	rotation_ = {pitch.valueDegrees(), yaw.valueDegrees(), roll.valueDegrees()};
 }
 
 
