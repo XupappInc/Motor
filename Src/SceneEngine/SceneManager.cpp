@@ -97,4 +97,5 @@ Separity::SceneManager::SceneManager() {
 	factory_->addCreator("meshRenderer", new MeshRendererCreator());
 	factory_->addCreator("light", new LightCreator());
 	factory_->addCreator("audioListener", new AudioListenerCreator());
+	factory_->addCreator("audioSource", new AudioSourceCreator());
 }

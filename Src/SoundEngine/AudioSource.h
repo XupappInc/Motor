@@ -19,7 +19,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="songRoute"></param>
 		/// <param name="isMusic"></param>
-		AudioSource(const char* songRoute, std::string songName,
+		AudioSource(std::string audioRoute, std::string songName,
 		            bool isMusic = false);
 		/// <summary>
 		/// Método destructor de audio que vacía el componente

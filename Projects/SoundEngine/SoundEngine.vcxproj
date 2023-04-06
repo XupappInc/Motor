@@ -23,12 +23,14 @@
     <ClCompile Include="..\..\Src\SoundEngine\AudioListenerCreator.cpp" />
     <ClCompile Include="..\..\Src\SoundEngine\AudioManager.cpp" />
     <ClCompile Include="..\..\Src\SoundEngine\AudioSource.cpp" />
+    <ClCompile Include="..\..\Src\SoundEngine\AudioSourceCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\SoundEngine\AudioListener.h" />
     <ClInclude Include="..\..\Src\SoundEngine\AudioListenerCreator.h" />
     <ClInclude Include="..\..\Src\SoundEngine\AudioManager.h" />
     <ClInclude Include="..\..\Src\SoundEngine\AudioSource.h" />
+    <ClInclude Include="..\..\Src\SoundEngine\AudioSourceCreator.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PhysicsEngine\PhysicsEngine.vcxproj">
