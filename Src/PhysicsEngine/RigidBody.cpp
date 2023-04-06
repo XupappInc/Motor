@@ -7,7 +7,7 @@
 #include "PhysicsManager.h"
 #include "Transform.h"
 #include "Vector.h"
-
+#include "spyQuaternion.h"
 #include <btBulletDynamicsCommon.h>
 #include <spyMath.h>
 // #include "checkML.h"
@@ -144,12 +144,10 @@ void Separity::RigidBody::preUpdate() {
 	if(tipo_ == STATIC)
 		return;
 	Spyutils::Vector3 pos = tr_->getPosition();
-	Spyutils::Vector3 rot = tr_->getRotationGlobal();
+	Spyutils::spyQuaternion rot = tr_->getRotationQuat();
 
 	btVector3 btPos = btVector3(pos.x, pos.y, pos.z);
-	btVector3 btRot = btVector3((btScalar) btRadians(rot.x), (btScalar) btRadians(rot.y),
-	              (btScalar) btRadians(rot.z));
-	btQuaternion btQ = btQuaternion(btRot.y(), btRot.x(), btRot.z());
+	btQuaternion btQ = btQuaternion(rot.x,rot.y,rot.z,rot.w);
 
 	rb_->getWorldTransform().setOrigin(btPos);
     rb_->getWorldTransform().setRotation(btQ);
@@ -162,8 +160,8 @@ void Separity::RigidBody::update() {
 	btScalar x, y, z;
 	btVector3 pos;
 	pos = rb_->getWorldTransform().getOrigin();
-	rb_->getWorldTransform().getRotation().getEulerZYX(z, y,x);
-	tr_->setPosition(pos.x(), pos.y(), pos.z());
+	rb_->getWorldTransform().getRotation();
+	tr_->setGlobalPosition({pos.x(), pos.y(), pos.z()});
 	//tr_->setRotation(Spyutils::Math::toDegrees(x), Spyutils::Math::toDegrees(y),
 	                // Spyutils::Math::toDegrees(z));
 }

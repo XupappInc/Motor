@@ -49,16 +49,13 @@ namespace Separity {
 		/// <param name="rotationY">grados eje y</param>
 		/// <param name="rotationZ">grados de ejez</param>
 		void setRotation(Spyutils::spyQuaternion quat);
+
+		Spyutils::spyQuaternion getRotationQuat();
 		/// <summary>
 		/// geter de la rotación en un Vector3
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getRotation();
-		/// <summary>
-		/// geter de la rotación en un Vector3 globales
-		/// </summary>
-		/// <returns></returns>
-		Spyutils::Vector3 getRotationGlobal();
 		/// <summary>
 		/// Rotacion en el eje x
 		/// </summary>
@@ -86,6 +83,8 @@ namespace Separity {
 		/// </summary>
 		/// <param name="scale">float para escalar el eje x y z</param>
 		void setScale(float scale);
+		Spyutils::Vector3 getGlobalPosition();
+		void setGlobalPosition(Spyutils::Vector3 other);
 		/// <summary>
 		/// geter de la escala del transform
 		/// </summary>
@@ -93,7 +92,7 @@ namespace Separity {
 		Spyutils::Vector3 getScale();
 
 		private:
-		Ogre::SceneNode* node_ = nullptr;
+		Ogre::SceneNode* tr_ = nullptr;
 		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
 		Spyutils::Vector3 scale_;

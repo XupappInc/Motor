@@ -4,7 +4,7 @@
 
 #include "Entity.h"
 #include "Behaviour.h"
-#include "Transform.h"
+
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
