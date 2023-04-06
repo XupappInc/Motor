@@ -1,70 +1,65 @@
 #include "Animator.h"
+
 #include "Entity.h"
-//#include "Transform.h"
 #include "MeshRenderer.h"
-#include <OgreAnimationState.h>
 
-#include <OgreAnimation.h>
 #include <Ogre.h>
+#include <OgreAnimation.h>
+#include <OgreAnimationState.h>
 #include <OgreEntity.h>
+#include <OgrePrerequisites.h>
 
-
-Separity::Animator::Animator() : node_(nullptr), loop_(true), enabled_(true) {
-	
-}
+Separity::Animator::Animator() {}
 
 Separity::Animator::~Animator() {}
 
-void Separity::Animator::initComponent() 
-{
+void Separity::Animator::initComponent() {
 	mesh_ = ent_->getComponent<MeshRenderer>();
 	assert(mesh_ != nullptr);
 	if(mesh_) {
-		node_ = mesh_->getNode();
+		ogreEnt_ = mesh_->getOgreEntity();
 	}
+
 	setUpAnims();
 }
 
-void Separity::Animator::setUpAnims() 
-{
-	ogreEnt_ = mesh_->getOgreEntity();
-
+void Separity::Animator::setUpAnims() {
 	allStates_ = ogreEnt_->getAllAnimationStates();
 	auto it = allStates_->getAnimationStateIterator().begin();
 
 	while(it != allStates_->getAnimationStateIterator().end()) {
-		auto s = it->first;
-		animNames_.push_back(s);
-		std::cout << "Name: " + s << std::endl;
+		std::pair<std::string, Ogre::AnimationState*> par(it->first,
+		                                                  it->second);
+		allAnims_.insert(par);
 		++it;
 	}
 }
 
-void Separity::Animator::playAnim(std::string animName) 
-{
-	Ogre::AnimationState *prueba = ogreEnt_->getAnimationState(animName);
-	prueba->setEnabled(true);
-	prueba->setLoop(true);
-
+void Separity::Animator::playAnim(std::string animName, bool play) {
+	auto currAnimIt = allAnims_.find(animName);
+	Ogre::AnimationState* anim = currAnimIt->second;
+	if(anim != nullptr) {
+		if(ogreEnt_->hasAnimationState(currAnimIt->first))
+			anim->setEnabled(play);
+	}
 }
 
-void Separity::Animator::setLoop(bool loop) { loop_ = loop; }
+void Separity::Animator::setAnimLoop(std::string animName, bool loop) {
+	auto currAnimIt = allAnims_.find(animName);
+	Ogre::AnimationState* anim = currAnimIt->second;
+	if(anim != nullptr) {
+		if(ogreEnt_->hasAnimationState(currAnimIt->first))
+			anim->setLoop(loop);
+	}
+}
 
-void Separity::Animator::setEnabled(bool enabled) { enabled_ = enabled; }
-
-//void Separity::Animator::setAnimDuration(float duration) {
-//	duration_ = duration;
-//}
-
-//std::string Separity::Animator::getAnimName() { return animName_; }
-//
-//float Separity::Animator::getAnimDuration() { return duration_; }
-
-bool Separity::Animator::getLoop() { return loop_; }
-
-bool Separity::Animator::getEnabled() { return enabled_; }
-
-//void Separity::Animator::render() {
-//
-//	idleTop->addTime(4000); 
-//}
+void Separity::Animator::render(const uint32_t& deltaTime) {
+	for(auto it = allAnims_.begin(); it != allAnims_.end(); it++) {
+		Ogre::AnimationState* anim = it->second;
+		if(anim != nullptr) {
+			if(anim->getEnabled()) {
+				anim->addTime(deltaTime / 1000.f);
+			}
+		}
+	}
+}

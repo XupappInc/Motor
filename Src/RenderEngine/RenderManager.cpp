@@ -96,10 +96,12 @@ void Separity::RenderManager::loadResources() {
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void Separity::RenderManager::render() {
+void Separity::RenderManager::render(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
 		c->render();
+		c->render(deltaTime);
 	}
+	// ogreRoot_->renderOneFrame(deltaTime);
 }
 
 void Separity::RenderManager::update() {

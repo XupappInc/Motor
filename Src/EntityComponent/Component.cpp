@@ -31,3 +31,4 @@ void Separity::Component::preUpdate() {}
 void Separity::Component::update() {}
 
 void Separity::Component::render() {}
+void Separity::Component::render(const uint32_t& deltaTime) {}

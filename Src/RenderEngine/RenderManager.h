@@ -56,7 +56,7 @@ namespace Separity {
 		/// <summary>
 		/// Llama al método render de todos los componentes
 		/// </summary>
-		void render();
+		virtual void render(const uint32_t& deltaTime);
 		/// <summary>
 		/// Ejecuta el método renderOneframe de Ogre que actualiza todos los
 		/// renders

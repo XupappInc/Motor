@@ -62,7 +62,10 @@ namespace Separity{
 		/// Metodo render del componente, por defecto no hace nada
 		/// </summary>
 		virtual void render();
-
+		/// <summary>
+		/// Metodo render con deltaTime del componente, por defecto no hace nada
+		/// </summary>
+		virtual void render(const uint32_t& deltaTime);
 		protected:
 		Entity* ent_;
 		Manager* mngr_;

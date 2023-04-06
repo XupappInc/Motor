@@ -4,18 +4,16 @@
 
 #include "Component.h"
 #include <string>
-#include <list>
+#include <unordered_map>
+enum InterpolationType {  };
 namespace Ogre {
 	class AnimationState;
-	class SceneNode;
-	class NodeAnimationTrack;
-	class Animation;
 	class AnimationStateSet;
 	class Entity;
 };  // namespace Ogre
 namespace Separity {
 
-	//class Transform;
+
 	class MeshRenderer;
 
 	class Animator : public Separity::Component {
@@ -25,29 +23,21 @@ namespace Separity {
 
 		Animator();
 		~Animator();
-		void initComponent();
+		void initComponent() override;
 		void setUpAnims();
-		void playAnim(std::string animName);
-		void setLoop(bool loop);
-		void setEnabled(bool enabled);
-		//void setAnimDuration(float duration);
+		void playAnim(std::string animName, bool play=true);
+		void setAnimLoop(std::string animName, bool loop=true);
+
 		//void setInterpolationMode(Ogre::Animation mode);
-		bool getLoop();
-		bool getEnabled();
-	/*	std::string getAnimName();
-		float getAnimDuration();*/
-		//void render() override;
+
+		void render(const uint32_t& deltaTime) override;
 
 		private:
 
-		Ogre::SceneNode* node_;
 		Ogre::Entity* ogreEnt_;
-		bool enabled_;
-		bool loop_;
-		float duration_, distance_;
 		MeshRenderer* mesh_;
 		Ogre::AnimationStateSet* allStates_;
-		std::list<std::string> animNames_;
+		std::unordered_map<std::string, Ogre::AnimationState*> allAnims_;
 		
 	};
 }  // namespace Separity

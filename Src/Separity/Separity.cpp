@@ -118,7 +118,6 @@ int main() {
 
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 	auto animSinbad=sinbad->addComponent<Animator>();
-	//animSinbad->playAnim("Dance");
 	colliderParams params;
 	params.colShape = CUBE;
 	params.height = 10;
@@ -169,6 +168,7 @@ int main() {
 	               audManager);
 
 	rbcube->setDamping(0.5, 0);
+	animSinbad->playAnim("Dance");
 
 	std::cout << "Proyectos adicionales cargados: "
 	          << ManagerManager::getInstance()->nManagers() << "\n";
@@ -220,7 +220,7 @@ int main() {
 		luaManager->update();
 		physManager->update(deltaTime);
 		renderManager->update();
-		renderManager->render();
+		renderManager->render(deltaTime);
 		audManager->update();
 		uiManager->update();
 
