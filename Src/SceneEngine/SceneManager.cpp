@@ -96,4 +96,5 @@ Separity::SceneManager::SceneManager() {
 	factory_->addCreator("rigidbody", new RigidbodyCreator());
 	factory_->addCreator("meshRenderer", new MeshRendererCreator());
 	factory_->addCreator("light", new LightCreator());
+	factory_->addCreator("audioListener", new AudioListenerCreator());
 }
