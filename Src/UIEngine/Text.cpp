@@ -15,9 +15,9 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
 	    overlayManager->createOverlayElement(
 	        "Panel", "panelName" + std::to_string(numUIElements)));
 	panel->setMetricsMode(Ogre::GMM_PIXELS);
-	panel->setPosition(10, 10);
+	panel->setPosition(10,10);
 	panel->setDimensions(100, 100);
-	//panel->setMaterialName("World_ap.16");
+	panel->setMaterialName("World_ap.8");
     //Creo el area del texto
 	overlayText = static_cast<Ogre::TextAreaOverlayElement*>(
 	overlayManager->createOverlayElement(
@@ -38,7 +38,7 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
 	overlayElement =
 	    overlayManager->create("over" + std::to_string(numUIElements));
 	overlayElement->add2D(panel);
-	
+	//Añado el texto como hijo del panel
 	panel->addChild(overlayText);
 	//Añado el nuevo texto al overlay
 	overlayElement->show();

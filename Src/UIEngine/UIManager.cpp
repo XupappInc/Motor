@@ -25,13 +25,13 @@ inline Separity::UIManager::UIManager() {}
 void Separity::UIManager::initUi() {
 	
 	
-	RenderManager* rM = Separity::RenderManager::getInstance();
-	 SDL_Window* window = rM->getSDLWindow();
 	overSystem_ = new Ogre::OverlaySystem();
 	overlayMngr_ = Ogre::OverlayManager::getSingletonPtr();
 
+	RenderManager* rM = Separity::RenderManager::getInstance();
+	 SDL_Window* window = rM->getSDLWindow();
 	rM->getSceneManager()->addRenderQueueListener(overSystem_);
-	
+	 
 	//rM->render();
 	Separity::Text* newTextUwu = new Separity::Text(
 	    "TextoPrueba", "uwu", 0, 0, 100, 100, "HOLA?", (0.5, 0.3, 0.5));
