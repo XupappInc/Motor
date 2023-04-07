@@ -178,7 +178,8 @@ int main() {
 		inputManager->update();
 		int xMouse = inputManager->getMousePos().first;
 		int yMouse = inputManager->getMousePos().second;
-		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
+		if(inputManager->isKeyDown(InputManager::ESCAPE) ||
+		   inputManager->closeWindowEvent()) {
 			quit = true;
 		} else {
 			if(inputManager->isKeyHeld('a')) {
@@ -214,6 +215,13 @@ int main() {
 			if(inputManager->isKeyDown('v')) {
 				auto trsi = sinbad->getEntTransform();
 				trsi->yaw(20);
+			}
+			if(inputManager->isKeyDown('l')) {
+				animSinbad->playAnim("Dance",false);
+				
+			}
+			if(inputManager->isKeyDown('k')) {
+				animSinbad->playAnim("Dance");
 			}
 		}
 
