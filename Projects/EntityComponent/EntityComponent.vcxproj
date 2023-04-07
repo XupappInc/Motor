@@ -27,8 +27,6 @@
     <ClInclude Include="..\..\Src\EntityComponent\Manager.h" />
     <ClInclude Include="..\..\Src\EntityComponent\ManagerManager.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Singleton.h" />
-    <ClInclude Include="..\..\Src\EntityComponent\Transform.h" />
-    <ClInclude Include="..\..\Src\EntityComponent\TransformCreator.h" />
     <ClInclude Include="..\..\Src\EntityComponent\TransformManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -38,8 +36,6 @@
     <ClCompile Include="..\..\Src\EntityComponent\EntityComponentMain.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Manager.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\ManagerManager.cpp" />
-    <ClCompile Include="..\..\Src\EntityComponent\Transform.cpp" />
-    <ClCompile Include="..\..\Src\EntityComponent\TransformCreator.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\TransformManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -152,7 +148,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\SeparityUtils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

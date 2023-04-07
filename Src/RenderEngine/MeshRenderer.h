@@ -30,6 +30,9 @@ namespace Separity {
 		/// <param name="meshName">Nombre de la malla</param>
 		MeshRenderer(std::string meshName);
 
+		void initComponent() override;
+	
+
 		/// <summary>
 		/// <para>Destruye el nodo que contiene la entidad creada a partir de la
 		/// malla</para>

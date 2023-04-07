@@ -104,7 +104,7 @@ int main() {
 	Entity* sinbad = new Entity(_grp_GENERAL);
 	auto tr4 = sinbad->getEntTransform();
 	/*->addComponent<Transform>();*/
-	tr4->translate({0, 20, 0});
+	tr4->translate({0, 60, 0});
 
 	Entity* particleSystem = new Entity(_grp_GENERAL);
 	auto parts = particleSystem->getEntTransform();
@@ -125,10 +125,12 @@ int main() {
 	params.depth = 5;
 	params.offsetY = 0;
 	params.isTrigger = false;
-	/*sinbad->addComponent<Collider>(params);
-	auto rbSinbad = sinbad->addComponent<RigidBody>(DYNAMIC, 10);*/
+	sinbad->addComponent<Collider>(params);
+	auto rbSinbad = sinbad->addComponent<RigidBody>(DYNAMIC, 10);
 
 	luaManager->loadScript("prueba", sinbad);
+	sinbad->addComponent<Collider>(params);
+
 
 	Entity* cube = new Entity(_grp_GENERAL);
 	auto cubetr = cube->getEntTransform();
@@ -214,7 +216,7 @@ int main() {
 			}
 			if(inputManager->isKeyDown('v')) {
 				auto trsi = sinbad->getEntTransform();
-				trsi->yaw(20);
+				trsi->roll(20);
 			}
 			if(inputManager->isKeyDown('l')) {
 				animSinbad->playAnim("Dance",false);
@@ -239,7 +241,7 @@ int main() {
 			Sleep(waitTime);
 	}
 	delete MusicInstance;
-	delete cube;
+	//delete cube;
 	delete timer;
 	delete plano;
 	delete sinbad;

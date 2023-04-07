@@ -14,8 +14,14 @@ Separity::MeshRenderer::MeshRenderer(std::string meshName) {
 	sceneManager_ = render->getSceneManager();
 	meshRenderer_ = sceneManager_->getRootSceneNode()->createChildSceneNode();
 	entity_ = sceneManager_->createEntity(meshName);
-	meshRenderer_->attachObject(entity_);
-	meshRenderer_->translate(Ogre::Vector3(1, 2, 3));
+	//meshRenderer_->attachObject(entity_);
+
+}
+void Separity::MeshRenderer::initComponent() {
+	Transform* tr = ent_->getComponent<Transform>();
+	auto node = tr->getNode();
+	node->attachObject(entity_);
+
 }
 
 Separity::MeshRenderer::~MeshRenderer() {
@@ -29,7 +35,7 @@ Separity::MeshRenderer::~MeshRenderer() {
 }
 
 void Separity::MeshRenderer::render() {
-	Transform* tr = ent_->getComponent<Transform>();
+	/*Transform* tr = ent_->getComponent<Transform>();
 
 	assert(tr != nullptr);
 
@@ -44,7 +50,7 @@ void Separity::MeshRenderer::render() {
 	meshRenderer_->setOrientation(rot);
 
 	meshRenderer_->setScale(tr->getScale().x, tr->getScale().y,
-	                        tr->getScale().z);
+	                        tr->getScale().z);*/
 }
 
 void Separity::MeshRenderer::setTexture(const std::string& name) {
