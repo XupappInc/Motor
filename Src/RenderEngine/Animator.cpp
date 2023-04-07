@@ -3,15 +3,20 @@
 #include "Entity.h"
 #include "MeshRenderer.h"
 
-#include <Ogre.h>
-#include <OgreAnimation.h>
 #include <OgreAnimationState.h>
 #include <OgreEntity.h>
-#include <OgrePrerequisites.h>
+
 
 Separity::Animator::Animator() {}
 
-Separity::Animator::~Animator() {}
+Separity::Animator::~Animator() { 
+	
+	//delete ogreEnt_;
+	//delete mesh_;
+	//allAnims_.clear(); 
+	//delete allStates_;
+
+}
 
 void Separity::Animator::initComponent() {
 	mesh_ = ent_->getComponent<MeshRenderer>();
@@ -63,3 +68,4 @@ void Separity::Animator::render(const uint32_t& deltaTime) {
 		}
 	}
 }
+
