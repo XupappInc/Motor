@@ -36,15 +36,14 @@ void Separity::RigidBody::initComponent() {
 
 	// transform de bullet
 
-	Spyutils::Vector3 spyPos = tr_->getPosition();
+	Spyutils::Vector3 spyPos = tr_->getGlobalPosition();
 	btVector3 pos = btVector3(spyPos.x, spyPos.y, spyPos.z);
 	btTr_->setOrigin(pos);
-	btVector3 rotRad =
-	    btVector3((btScalar) Spyutils::Math::toRadians(tr_->getRotation().x),
-	              (btScalar) Spyutils::Math::toRadians(tr_->getRotation().y),
-	              (btScalar) Spyutils::Math::toRadians(tr_->getRotation().z));
-	btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
-	btTr_->setRotation(q);
+	btQuaternion rotRad =
+	    {tr_->getGlobalRotation().w,tr_->getGlobalRotation().x, tr_->getGlobalRotation().y,
+	      tr_->getGlobalRotation().z};
+	//btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
+	btTr_->setRotation(rotRad);
 
 	btDefaultMotionState* motionState = new btDefaultMotionState();
 
@@ -76,7 +75,7 @@ void Separity::RigidBody::initComponent() {
 			break;
 	}
 
-	rb_->getWorldTransform().setRotation(q);
+	rb_->getWorldTransform().setRotation(rotRad);
 	// anadimos una referncia a esta clase dentro del rb de Bullet
 	rb_->setUserPointer(this);
 	// anade el rigidbody al mundo fisico
@@ -163,10 +162,10 @@ void Separity::RigidBody::update() {
 	tr_->setGlobalPosition(
 	    {trans.getOrigin().x(), trans.getOrigin().y(), trans.getOrigin().z()});
 	// rotación del rb al tr
-	btScalar x, y, z;
-	trans.getRotation().getEulerZYX(y,x,z);
-	Spyutils::spyQuaternion q = {y, x, z};
-	tr_->setGlobalRotation(q);
+	//btScalar x, y, z;
+	auto quat=trans.getRotation();  //.getEulerZYX(y,x,z);
+	//Spyutils::spyQuaternion q = {y, x, z};
+	tr_->setGlobalRotation({quat.w(), quat.y(), quat.z(), quat.x()});
 	
 }
 

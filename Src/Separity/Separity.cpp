@@ -130,12 +130,13 @@ int main() {
 	params.offsetY = 0;
 	params.isTrigger = false;
 	sinbad->addComponent<Collider>(params);
+
 	auto rbSinbad = sinbad->addComponent<RigidBody>(DYNAMIC, 10);
 
-	Entity* cube = new Entity(_grp_GENERAL);
-	auto cubetr = cube->getEntTransform();
-	cubetr->translate({20, 25, 0});
-	cubetr->setScale(0.03);
+	//Entity* cube = new Entity(_grp_GENERAL);
+	//auto cubetr = cube->getEntTransform();
+	//cubetr->translate({20, 25, 0});
+	//cubetr->setScale(0.03);
 
 	Entity* luz = new Entity(_grp_GENERAL);
 	auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
@@ -151,7 +152,7 @@ int main() {
 	luzAux1->setDiffuse({0.5, 0, 0.5});
 	//  mesh renderer
 
-	cube->addComponent<MeshRenderer>("Mesh.010.mesh");
+	//cube->addComponent<MeshRenderer>("Mesh.010.mesh");
 
 	colliderParams paramscube;
 	paramscube.colShape = CUBE;
@@ -160,8 +161,8 @@ int main() {
 	paramscube.depth = 5;
 	paramscube.offsetY = 0;
 	paramscube.isTrigger = false;
-	cube->addComponent<Collider>(paramscube);
-	auto rbcube = cube->addComponent<RigidBody>(DYNAMIC, 10);
+	/*cube->addComponent<Collider>(paramscube);
+	auto rbcube = cube->addComponent<RigidBody>(DYNAMIC, 10);*/
 
 	// cube->addChild(camera);
 
@@ -169,7 +170,8 @@ int main() {
 	initComponents(renderManager, physManager, uiManager, inputManager,
 	               audManager);
 
-	rbcube->setDamping(0.5, 0);
+	//rbcube->setDamping(0.5, 0);
+	rbSinbad->setGravity({0, -9, 0});
 
 	std::cout << "Proyectos adicionales cargados: "
 	          << ManagerManager::getInstance()->nManagers() << "\n";
@@ -182,7 +184,7 @@ int main() {
 		if(inputManager->isKeyDown('q') || inputManager->closeWindowEvent()) {
 			quit = true;
 		} else {
-			if(inputManager->isKeyHeld('a')) {
+			/*if(inputManager->isKeyHeld('a')) {
 				rbcube->addForce({-1000, 0, 0});
 			}
 			if(inputManager->isKeyHeld('d')) {
@@ -193,7 +195,7 @@ int main() {
 			}
 			if(inputManager->isKeyHeld('s')) {
 				rbcube->addForce({0, 0, 1000});
-			}
+			}*/
 			if(inputManager->isKeyHeld(InputManager::ARROW_LEFT)) {
 				cam_tr->yaw(0.1f);
 			}
@@ -232,7 +234,7 @@ int main() {
 			Sleep(waitTime);
 	}
 	delete MusicInstance;
-	delete cube;
+	//delete cube;
 	delete timer;
 	delete plano;
 	delete sinbad;

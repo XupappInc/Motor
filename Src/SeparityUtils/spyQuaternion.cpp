@@ -44,8 +44,8 @@ Spyutils::spyQuaternion::spyQuaternion( float yaw, float pitch,
 	float sinRoll = sin(halfRoll);
 	x = cosRoll * sinPitch * cosYaw + sinRoll * cosPitch * sinYaw;
 	y = cosRoll * cosPitch * sinYaw - sinRoll * sinPitch * cosYaw;
-	z = sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw;
-	w= cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw;
+	w = sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw;
+	z = cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw;
 }
 
 Spyutils::spyQuaternion::spyQuaternion(float compW, float compY, float compZ,
