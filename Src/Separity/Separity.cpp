@@ -30,6 +30,7 @@
 // #include "checkML.h"
 #include "Separity.h"
 #include "VirtualTimer.h"
+#include "Random.h"
 
 #include <Windows.h>
 #include <iostream>

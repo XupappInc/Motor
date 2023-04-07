@@ -30,6 +30,9 @@
     <ClInclude Include="..\..\Src\SeparityUtils\spyQuaternion.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\SeparityUtils\Random.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\SeparityUtils\spyMath.cpp">
@@ -42,6 +45,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\SeparityUtils\spyQuaternion.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\SeparityUtils\Random.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

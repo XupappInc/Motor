@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\SeparityUtils\checkML.h" />
+    <ClInclude Include="..\..\Src\SeparityUtils\Random.h" />
     <ClInclude Include="..\..\Src\SeparityUtils\spyMath.h" />
     <ClInclude Include="..\..\Src\SeparityUtils\spyQuaternion.h" />
     <ClInclude Include="..\..\Src\SeparityUtils\Vector.h" />
     <ClInclude Include="..\..\Src\SeparityUtils\VirtualTimer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\SeparityUtils\Random.cpp" />
     <ClCompile Include="..\..\Src\SeparityUtils\spyMath.cpp" />
     <ClCompile Include="..\..\Src\SeparityUtils\spyQuaternion.cpp" />
     <ClCompile Include="..\..\Src\SeparityUtils\Vector.cpp" />
