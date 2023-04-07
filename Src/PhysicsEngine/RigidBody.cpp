@@ -166,7 +166,7 @@ void Separity::RigidBody::update() {
 	//btScalar x, y, z;
 	auto quat=trans.getRotation();  //.getEulerZYX(y,x,z);
 	//Spyutils::spyQuaternion q = {y, x, z};
-	tr_->setGlobalRotation({quat.w(), quat.y(), quat.z(), quat.x()});
+	//tr_->setGlobalRotation({quat.w(), quat.y(), quat.z(), quat.x()});
 	
 }
 
