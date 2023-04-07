@@ -20,6 +20,10 @@ namespace Separity {
 	
 		
 		~Transform();
+		/// <summary>
+		/// geter del nodo de ogre
+		/// </summary>
+		/// <returns></returns>
 		Ogre::SceneNode* getNode() { return tr_; }
 		/// <summary>
 		/// Setear la posición del componente tranform
@@ -50,7 +54,10 @@ namespace Separity {
 		/// <param name="rotationY">grados eje y</param>
 		/// <param name="rotationZ">grados de ejez</param>
 		void setRotation(Spyutils::spyQuaternion quat);
-
+		/// <summary>
+		/// geter de la rotacion local en qutaerniones
+		/// </summary>
+		/// <returns></returns>
 		Spyutils::spyQuaternion getRotationQuat();
 		/// <summary>
 		/// geter de la rotación en un Vector3
@@ -84,14 +91,31 @@ namespace Separity {
 		/// </summary>
 		/// <param name="scale">float para escalar el eje x y z</param>
 		void setScale(float scale);
+		/// <summary>
+		/// geter de la posición global
+		/// </summary>
+		/// <returns>la posicion en coordenadas globales</returns>
 		Spyutils::Vector3 getGlobalPosition();
+		/// <summary>
+		/// seter de la posición global
+		/// </summary>
+		/// <param name="other">vector3 para el cambio de la posición global</param>
 		void setGlobalPosition(Spyutils::Vector3 other);
 		/// <summary>
 		/// geter de la escala del transform
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getScale();
-
+		/// <summary>
+		/// Seter de la rotacion en coordenadas globales
+		/// </summary>
+		/// <param name="quat">quaternion para cambiar la rotación</param>
+		void setGlobalRotation(Spyutils::spyQuaternion quat);
+		/// <summary>
+		/// geter de la rotacion en coordenadas globales
+		/// </summary>
+		/// <returns></returns>
+		Spyutils::spyQuaternion  getGlobalRotation();
 		private:
 		Ogre::SceneNode* tr_ = nullptr;
 		Spyutils::Vector3 position_;

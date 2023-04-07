@@ -110,3 +110,13 @@ Spyutils::Vector3 Separity::Transform::getScale() {
 	
 }
 
+void Separity::Transform::setWorldRotation(Spyutils::spyQuaternion quat) {
+	tr_->setOrientation(tr_->getParent()->convertWorldToLocalOrientation({quat.w,quat.x,quat.y,quat.z}));
+}
+
+Spyutils::spyQuaternion Separity::Transform::getWorldRotation() {
+	Quaternion q= tr_->getParent()->convertLocalToWorldOrientation(
+	    tr_->getOrientation());
+	return {q.w, q.x, q.y, q.z};
+}
+

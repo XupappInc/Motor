@@ -5,33 +5,47 @@
 
 #include <math.h>
 
-Spyutils::spyQuaternion::spyQuaternion(float angleX, float angleY,
-                                       float angleZ) {
+Spyutils::spyQuaternion::spyQuaternion( float yaw, float pitch,
+                                        float roll) {
 	// Convertir a radianes
-	angleX = angleX * spyPI / 180.0f;
+	/*angleX = angleX * spyPI / 180.0f;
 	angleY = angleY * spyPI / 180.0f;
-	angleZ = angleZ * spyPI / 180.0f;
+	angleZ = angleZ * spyPI / 180.0f;*/
 
-	float cx = cos(angleX / 2.0f);
-	float cy = cos(angleY / 2.0f);
-	float cz = cos(angleZ / 2.0f);
-	float sx = sin(angleX / 2.0f);
-	float sy = sin(angleY / 2.0f);
-	float sz = sin(angleZ / 2.0f);
+	//float cx = cos(angleX / 2.0f);
+	//float cy = cos(angleY / 2.0f);
+	//float cz = cos(angleZ / 2.0f);
+	//float sx = sin(angleX / 2.0f);
+	//float sy = sin(angleY / 2.0f);
+	//float sz = sin(angleZ / 2.0f);
 
-	x = cx * cy * cz + sx * sy * sz;
-	y = sx * cy * cz - cx * sy * sz;
-	z = cx * sy * cz + sx * cy * sz;
-	w = cx * cy * sz - sx * sy * cz;
+	//x = cx * cy * cz + sx * sy * sz;
+	//y = sx * cy * cz - cx * sy * sz;
+	//z = cx * sy * cz + sx * cy * sz;
+	//w = cx * cy * sz - sx * sy * cz;
 
-	// Normalizar
-	float len = sqrt(x * x + y * y + z * z + w * w);
-	if(len != 0.0f) {
-		x /= len;
-		y /= len;
-		z /= len;
-		w /= len;
-	}
+	//// Normalizar
+	//float len = sqrt(x * x + y * y + z * z + w * w);
+	//if(len != 0.0f) {
+	//	x /= len;
+	//	y /= len;
+	//	z /= len;
+	//	w /= len;
+	//}
+
+	float halfYaw = float(yaw) * float(0.5);
+	float halfPitch = float(pitch) * float(0.5);
+	float halfRoll = float(roll) * float(0.5);
+	float cosYaw = cos(halfYaw);
+	float sinYaw = sin(halfYaw);
+	float cosPitch = cos(halfPitch);
+	float sinPitch = sin(halfPitch);
+	float cosRoll = cos(halfRoll);
+	float sinRoll = sin(halfRoll);
+	x = cosRoll * sinPitch * cosYaw + sinRoll * cosPitch * sinYaw;
+	y = cosRoll * cosPitch * sinYaw - sinRoll * sinPitch * cosYaw;
+	z = sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw;
+	w= cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw;
 }
 
 Spyutils::spyQuaternion::spyQuaternion(float compW, float compY, float compZ,
