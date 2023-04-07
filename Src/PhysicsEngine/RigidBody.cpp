@@ -148,8 +148,8 @@ void Separity::RigidBody::preUpdate() {
 	trans.setOrigin({tr_->getGlobalPosition().x, tr_->getGlobalPosition().y,
 	                 tr_->getGlobalPosition().z});
 	// modificamos la rotación de rb con el transform
-	trans.setRotation({tr_->getWorldRotation().w, tr_->getWorldRotation().x,
-	                   tr_->getWorldRotation().y, tr_->getWorldRotation().z});
+	trans.setRotation({tr_->getGlobalRotation().w, tr_->getGlobalRotation().x,
+	                   tr_->getGlobalRotation().y, tr_->getGlobalRotation().z});
 	rb_->getMotionState()->setWorldTransform(trans);
 	rb_->setWorldTransform(trans);
 }
@@ -166,7 +166,7 @@ void Separity::RigidBody::update() {
 	btScalar x, y, z;
 	trans.getRotation().getEulerZYX(y,x,z);
 	Spyutils::spyQuaternion q = {y, x, z};
-	tr_->setWorldRotation(q);
+	tr_->setGlobalRotation(q);
 	
 }
 
