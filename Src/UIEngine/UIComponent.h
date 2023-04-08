@@ -7,21 +7,24 @@ namespace Ogre {
 	class Overlay;
 	class OverlayContainer;
 }
+
+//Clase base de la que heredan todos los elementos de la UI
 namespace Separity {
 	class UIComponent : public Separity::Component {
 		protected:
+		// Managers y elementos de Ogre necesarios para el control y uso de la
+		// UI
 		Ogre::OverlayManager* overlayManager;
 		Ogre::Overlay* overlayElement;
 		Ogre::OverlayContainer* panel;
+		//Control de los elementos de la ui
 		static int numUIElements;
 		public:
+		/// <summary>
+		/// Constructora de la clase
+		/// </summary>
 		UIComponent();
-		/*UIComponent& operator=(const UIComponent& otherUIComponent);
-		void init();
-		void draw();
-		void load();
-		void update();
-		void changeVisibility(bool visible);*/
+		~UIComponent();
 	};
 }  // namespace Separity
 #endif  // !__UI_COMPONENT_H__

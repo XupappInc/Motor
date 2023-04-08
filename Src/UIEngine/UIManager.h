@@ -4,21 +4,24 @@
 
 #include "Manager.h"
 namespace Ogre {
-	class OverlayManager;
 	class OverlaySystem;
 }  // namespace Ogre
+
+
 namespace Separity {
 	class UIManager : public Separity::Manager,
 		public Singleton<Separity::UIManager> {
 		private:
 		Ogre::OverlaySystem* overSystem_;
-		Ogre::OverlayManager* overlayMngr_;
 		public:
 		/// <summary>
 		/// Constructora de la clase
 		/// </summary>
 		inline UIManager();
 
+		/// <summary>
+		/// Inicia el sistema de UI
+		/// </summary>
 		void initUi();
 		/// <summary>
 		/// Instancia de la clase, necesaria por ser singleton
