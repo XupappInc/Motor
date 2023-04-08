@@ -3,6 +3,7 @@
 #include "../SeparityUtils/checkML.h"
 #include "RenderManager.h"
 #include "Text.h"
+#include "UIPanel.h"
 
 #include <OgreFontManager.h>
 #include <OgreImage.h>
@@ -29,8 +30,9 @@ void Separity::UIManager::initUi() {
 	SDL_Window* window = rM->getSDLWindow();
 	rM->getSceneManager()->addRenderQueueListener(overSystem_);
 
-	Separity::Text* newTextUwu = new Separity::Text(
-	    "TextoPrueba", "uwu", 0, 0, 100, 100, "HOLA?", (0.5, 0.3, 0.5));
+	Separity::UIPanel* tryUpdatePanel =
+	    new Separity::UIPanel("myFirstPanel", 500, 500, 100, 50, "World_ap");
+	addComponent(tryUpdatePanel);
 }
 
 Separity::UIManager* Separity::UIManager::getInstance() {
@@ -42,5 +44,5 @@ void Separity::UIManager::render() {}
 void Separity::UIManager::update() {}
 
 Separity::UIManager::~UIManager() {
-	delete overSystem_;
+
 }

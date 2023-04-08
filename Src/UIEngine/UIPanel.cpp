@@ -1,5 +1,6 @@
 #include "UIPanel.h"
 
+#include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayElement.h>
 #include <OgreOverlayManager.h>
@@ -8,16 +9,26 @@ Separity::UIPanel::UIPanel(std::string name, float xPos, float yPos,
     : UIComponent() {
 	panel = static_cast<Ogre::OverlayContainer*>(
 	    overlayManager->createOverlayElement(
-	        "Panel", "panelComponent_" + std::to_string(numUIElements)));
+	        "Panel", name + std::to_string(numUIElements)));
 	panel->setMetricsMode(Ogre::GMM_PIXELS);
-	panel->setPosition(10, 10);
-	panel->setDimensions(100, 100);
-	
+	panel->setPosition(xPos, yPos);
+	panel->setDimensions(width, height);
+
 	// Compruebo si se le quiere meter o no un material al panel
 	if(materialName != "")
 		panel->setMaterialName(materialName);
+
+	// Creo un elemento overlay para añadirle el panel
+	overlayElement =
+	    overlayManager->create("over" + std::to_string(numUIElements));
+	overlayElement->add2D(panel);
+
+	overlayElement->show();
 }
 
 Ogre::OverlayContainer* Separity::UIPanel::getPanel() { return panel; }
 
-Separity::UIPanel::~UIPanel() { delete panel; }
+Separity::UIPanel::~UIPanel() {
+	overlayElement->clear();
+	panel->cleanupDictionary();
+}

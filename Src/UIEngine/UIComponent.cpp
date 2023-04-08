@@ -8,3 +8,5 @@ Separity::UIComponent::UIComponent() {
 	overlayManager = Ogre::OverlayManager::getSingletonPtr();
 	numUIElements++;
 }
+
+Separity::UIComponent::~UIComponent() {}

@@ -15,6 +15,7 @@ namespace Separity {
 	class UIPanel : public UIComponent {
 		private:
 		Ogre::OverlayContainer* panel;
+
 		public:
 		/// <summary>
 		/// Constructora de la clase panel
@@ -22,13 +23,16 @@ namespace Separity {
 		UIPanel(std::string name, float xPos, float yPos, float width,
 		        float height, std::string materialName = "");
 
-		~UIPanel();
-
 		/// <summary>
 		/// Devuelve un puntero al panel para que los elementos puedan acceder a
 		/// él y añadirse como hijos
 		/// </summary>
 		Ogre::OverlayContainer* getPanel();
+
+		///< summary>
+		/// Destructora de la clase UIPanel
+		///  </summary>
+		~UIPanel();
 	};
 }  // namespace Separity
 #endif  // !__UI_PANEL_H__
