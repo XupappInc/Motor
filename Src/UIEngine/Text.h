@@ -10,16 +10,14 @@
 namespace Ogre {
 	class TextAreaOverlayElement;
 }
-namespace Separity {
-	class UIPanel;	
-}
 
 //Clase que crea textos para la UI
 namespace Separity {
+	class Panel;	
 	class Text : public Separity::UIComponent {
 		private:
 		Ogre::TextAreaOverlayElement* overlayText;
-		Separity::UIPanel* parentPanel;
+		Separity::Panel* parentPanel;
 		
 		public:
 		/// <summary>

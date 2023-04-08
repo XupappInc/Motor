@@ -1,10 +1,11 @@
-#include "UIPanel.h"
+#include "Panel.h"
 
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayElement.h>
 #include <OgreOverlayManager.h>
-Separity::UIPanel::UIPanel(std::string name, float xPos, float yPos,
+
+Separity::Panel::Panel(std::string name, float xPos, float yPos,
                            float width, float height, std::string materialName)
     : UIComponent() {
 	panel = static_cast<Ogre::OverlayContainer*>(
@@ -26,9 +27,9 @@ Separity::UIPanel::UIPanel(std::string name, float xPos, float yPos,
 	overlayElement->show();
 }
 
-Ogre::OverlayContainer* Separity::UIPanel::getPanel() { return panel; }
+Ogre::OverlayContainer* Separity::Panel::getPanel() { return panel; }
 
-Separity::UIPanel::~UIPanel() {
+Separity::Panel::~Panel() {
 	overlayElement->clear();
 	panel->cleanupDictionary();
 }

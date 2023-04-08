@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __UI_PANEL_H__
-#define __UI_PANEL_H__
+#ifndef __PANEL_H__
+#define __PANEL_H__
 
 #include "UIComponent.h"
 
@@ -12,7 +12,7 @@ namespace Ogre {
 
 // Paneles que incluyen los elementos de la UI que se quieran mostrar
 namespace Separity {
-	class UIPanel : public UIComponent {
+	class Panel : public UIComponent {
 		private:
 		Ogre::OverlayContainer* panel;
 
@@ -20,7 +20,7 @@ namespace Separity {
 		/// <summary>
 		/// Constructora de la clase panel
 		/// </summary>
-		UIPanel(std::string name, float xPos, float yPos, float width,
+		Panel(std::string name, float xPos, float yPos, float width,
 		        float height, std::string materialName = "");
 
 		/// <summary>
@@ -32,7 +32,7 @@ namespace Separity {
 		///< summary>
 		/// Destructora de la clase UIPanel
 		///  </summary>
-		~UIPanel();
+		~Panel();
 	};
 }  // namespace Separity
-#endif  // !__UI_PANEL_H__
+#endif  // !__PANEL_H__

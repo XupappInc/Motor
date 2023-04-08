@@ -1,6 +1,6 @@
 #include "Text.h"
 
-#include "UIPanel.h"
+#include "Panel.h"
 
 #include <OgreFontManager.h>
 #include <OgreOverlay.h>
@@ -13,7 +13,7 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
                      std::string textContent, Spyutils::Vector3 textColor)
     : UIComponent() {
 	// Panel para el texto
-	parentPanel = new Separity::UIPanel(overlayName, xPos, yPos, width, height);
+	parentPanel = new Separity::Panel(overlayName, xPos, yPos, width, height);
 	// Creo el area del texto
 	overlayText = static_cast<Ogre::TextAreaOverlayElement*>(
 	    overlayManager->createOverlayElement(
