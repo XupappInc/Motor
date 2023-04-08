@@ -1,4 +1,5 @@
 #include "Text.h"
+#include "UIPanel.h"
 
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
@@ -11,15 +12,11 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
                      std::string textContent, Spyutils::Vector3 textColor)
     : UIComponent() {
 	//Panel para el texto
-	panel = static_cast<Ogre::OverlayContainer*>(
-	    overlayManager->createOverlayElement(
-	        "Panel", "panelName" + std::to_string(numUIElements)));
-	panel->setMetricsMode(Ogre::GMM_PIXELS);
-	panel->setPosition(10,10);
-	panel->setDimensions(100, 100);
-	panel->setMaterialName("World_ap.8");
+	parentPanel =
+	    new Separity::UIPanel(overlayName, xPos, yPos, width, height);
     //Creo el area del texto
 	overlayText = static_cast<Ogre::TextAreaOverlayElement*>(
+		
 	overlayManager->createOverlayElement(
 	        "TextArea", overlayName + std::to_string(numUIElements)));
 	
@@ -37,13 +34,15 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
 	//Creo un elemento overlay para añadirle el panel
 	overlayElement =
 	    overlayManager->create("over" + std::to_string(numUIElements));
-	overlayElement->add2D(panel);
+	overlayElement->add2D(parentPanel->getPanel());
 	//Añado el texto como hijo del panel
-	panel->addChild(overlayText);
+	parentPanel->getPanel()->addChild(overlayText);
+	
 	//Añado el nuevo texto al overlay
 	overlayElement->show();
-	
 }
 
 
 void Separity::Text::init() {}
+
+Separity::Text::~Text() { delete parentPanel; }

@@ -7,12 +7,12 @@ namespace Ogre {
 	class OverlaySystem;
 }  // namespace Ogre
 
-
 namespace Separity {
 	class UIManager : public Separity::Manager,
-		public Singleton<Separity::UIManager> {
+	                  public Singleton<Separity::UIManager> {
 		private:
 		Ogre::OverlaySystem* overSystem_;
+
 		public:
 		/// <summary>
 		/// Constructora de la clase
@@ -23,6 +23,7 @@ namespace Separity {
 		/// Inicia el sistema de UI
 		/// </summary>
 		void initUi();
+		
 		/// <summary>
 		/// Instancia de la clase, necesaria por ser singleton
 		/// </summary>
@@ -42,7 +43,6 @@ namespace Separity {
 		/// Borrado de la clase, hereda de Manager
 		/// </summary>
 		virtual ~UIManager() override;
-		
 	};
 }  // namespace Separity
 #endif  //!__UI_MANAGER_H__

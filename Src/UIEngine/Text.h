@@ -9,11 +9,15 @@
 namespace Ogre {
 	class TextAreaOverlayElement;
 }
+
+class UIPanel;
+
 namespace Separity {
 	class Text : public Separity::UIComponent {
 		private:
 		//Elemento de overlay de ogre
 		Ogre::TextAreaOverlayElement* overlayText;
+		Separity::UIPanel* parentPanel;
 		public:
 		/// <summary>
 		/// Constructora de la clase Texto
@@ -26,6 +30,8 @@ namespace Separity {
 		/// </summary>
 		//Text& operator=(const Text& otherText);
 		void init();
+		
+		~Text();
 		/*void draw();
 		void load();
 		void update();

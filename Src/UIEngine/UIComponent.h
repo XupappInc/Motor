@@ -16,7 +16,7 @@ namespace Separity {
 		// UI
 		Ogre::OverlayManager* overlayManager;
 		Ogre::Overlay* overlayElement;
-		Ogre::OverlayContainer* panel;
+		
 		//Control de los elementos de la ui
 		static int numUIElements;
 		public:
@@ -24,7 +24,7 @@ namespace Separity {
 		/// Constructora de la clase
 		/// </summary>
 		UIComponent();
-		~UIComponent();
+		virtual ~UIComponent();
 	};
 }  // namespace Separity
 #endif  // !__UI_COMPONENT_H__
