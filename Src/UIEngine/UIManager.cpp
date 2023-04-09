@@ -31,8 +31,7 @@ void Separity::UIManager::initUi() {
 	rM->getSceneManager()->addRenderQueueListener(overSystem_);
 
 	Separity::Panel* tryUpdatePanel =
-	    new Separity::Panel("myFirstPanel", 500, 500, 100, 50, "BaseWhite");
-	
+	    new Separity::Panel("myFirstPanel", 500, 500, 100, 50, "World_ap");
 	addComponent(tryUpdatePanel);
 }
 

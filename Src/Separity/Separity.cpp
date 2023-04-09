@@ -175,7 +175,7 @@ int main() {
 
 	std::cout << "Proyectos adicionales cargados: "
 	          << ManagerManager::getInstance()->nManagers() << "\n";
-
+	
 	while(!quit) {
 		timer->reset();
 		inputManager->update();
