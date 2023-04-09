@@ -17,7 +17,7 @@ namespace Separity {
 	class Text : public Separity::UIComponent {
 		private:
 		Ogre::TextAreaOverlayElement* overlayText;
-		Separity::Panel* parentPanel;
+		Ogre::Overlay* overlayElement;
 		
 		public:
 		/// <summary>
