@@ -121,6 +121,7 @@ Spyutils::spyQuaternion Separity::Transform::getGlobalRotation() {
 }
 
 void Separity::Transform::addChild(Ogre::SceneNode* child) {
+	child->getParent()->removeChild(child);
 	tr_->addChild(child);
 }
 

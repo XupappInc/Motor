@@ -175,7 +175,7 @@ int main() {
 
 	std::cout << "Proyectos adicionales cargados: "
 	          << ManagerManager::getInstance()->nManagers() << "\n";
-	//sinbad->addChild(cube);
+	
 	while(!quit) {
 		timer->reset();
 		inputManager->update();
