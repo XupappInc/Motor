@@ -4,6 +4,7 @@
 #include "Component.h"
 
 #include <Vector.h>
+#include <OgreTextAreaOverlayElement.h>
 namespace Ogre {
 	class OverlayManager;
 	class Overlay;

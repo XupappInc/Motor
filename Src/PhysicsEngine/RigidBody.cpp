@@ -28,7 +28,7 @@ Separity::RigidBody::~RigidBody() {
 
 void Separity::RigidBody::initComponent() {
 	tr_ = ent_->getComponent<Transform>();
-	btTr_ = new btTransform();
+	//btTr_ = new btTransform();
 	assert(tr_ != nullptr);
 
 	auto collider = ent_->getComponent<Collider>();
@@ -38,14 +38,20 @@ void Separity::RigidBody::initComponent() {
 
 	Spyutils::Vector3 spyPos = tr_->getGlobalPosition();
 	btVector3 pos = btVector3(spyPos.x, spyPos.y, spyPos.z);
-	btTr_->setOrigin(pos);
+	//btTr_->setOrigin(pos);
 	btQuaternion rotRad =
-	    {tr_->getGlobalRotation().w,tr_->getGlobalRotation().x, tr_->getGlobalRotation().y,
+	    {tr_->getGlobalRotation().x, tr_->getGlobalRotation().y,
 	      tr_->getGlobalRotation().z};
 	//btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
-	btTr_->setRotation(rotRad);
+	//btTr_->setRotation(rotRad);
 
-	btDefaultMotionState* motionState = new btDefaultMotionState();
+
+	btTr_ = new btTransform(
+	    btQuaternion(rotRad),
+	    btVector3(pos));
+
+
+	btDefaultMotionState* motionState = new btDefaultMotionState(*btTr_);
 
 	Spyutils::Vector3 escala = tr_->getScale();
 
@@ -166,7 +172,12 @@ void Separity::RigidBody::update() {
 	//btScalar x, y, z;
 	auto quat=trans.getRotation();  //.getEulerZYX(y,x,z);
 	//Spyutils::spyQuaternion q = {y, x, z};
-	//tr_->setGlobalRotation({quat.w(), quat.y(), quat.z(), quat.x()});
+	tr_->setGlobalRotation({
+	    quat.x(),
+	    quat.y(),
+	    quat.z(),
+	    quat.w()
+	});
 	
 }
 
