@@ -44,6 +44,4 @@ void Separity::UIManager::render() {}
 
 void Separity::UIManager::update() {}
 
-Separity::UIManager::~UIManager() {
-
-}
+Separity::UIManager::~UIManager() {  }
