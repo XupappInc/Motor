@@ -8,14 +8,14 @@
 #include <string>
 
 namespace Ogre {
-	class OverlayContainer;
+	class Overlay;
 }
 
 namespace Separity {
 	class Panel;
 	class Button : public Separity::UIComponent {
 		private:
-		Separity::Panel* parentPanel;
+		Ogre::Overlay* overlayElement;
 
 		public:
 		/// <summary>

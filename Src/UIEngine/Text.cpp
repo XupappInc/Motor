@@ -12,8 +12,6 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
                      float yPos, float width, float height,
                      std::string textContent, Spyutils::Vector3 textColor)
     : UIComponent() {
-	// Panel para el texto
-	parentPanel = new Separity::Panel(overlayName, xPos, yPos, width, height);
 	// Creo el area del texto
 	overlayText = static_cast<Ogre::TextAreaOverlayElement*>(
 	    overlayManager->createOverlayElement(
@@ -31,8 +29,8 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
 	overlayText->setColourBottom(
 	    Ogre::ColourValue(textColor.x, textColor.y, textColor.z));
 
-	// Añado el texto como hijo del panel
-	parentPanel->getPanel()->addChild(overlayText);
+	overlayElement =
+	    overlayManager->create(overlayName + "_overlay_" + std::to_string(numUIElements));
+	overlayElement->show();
 }
-
-Separity::Text::~Text() { delete parentPanel; }
+Separity::Text::~Text() {  }
