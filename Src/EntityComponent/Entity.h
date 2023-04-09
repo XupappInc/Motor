@@ -46,10 +46,26 @@ namespace Separity {
 			delete parent;
 			for(auto ch : childs_) delete ch;
 		}
+		/// <summary>
+		/// acceso a los hijops de la entidad
+		/// </summary>
+		/// <returns>vector de entidades</returns>
 		std::vector<Entity*> getChildren() const;
+		/// <summary>
+		/// acceso al padre 
+		/// </summary>
+		/// <returns>la entidad del padre</returns>
 		Entity* getParent() const;
+		/// <summary>
+		/// Añade un hijo a la entidad
+		/// </summary>
+		/// <param name="child">hijo a añadir</param>
 		void addChild(Entity* child);
-		void removeChild(const Entity* child);
+		/// <summary>
+		/// elimina el hijo de la entidad
+		/// </summary>
+		/// <param name="child">hijo a elinar</param>
+		void removeChild( Entity* child);
 		/// <summary>
 		/// Cada entidad sabe el manager al que pertenece, usamos este metodos
 		/// para asignar el contexto

@@ -39,12 +39,15 @@ Separity::Entity* Separity::Entity::getParent() const {
 void Separity::Entity::addChild( Entity* child) {
 	auto tr2 = this->getEntTransform();
 	auto tr=child->getEntTransform();
-	tr->setPosition(tr2->getPosition());
+	tr->addChild(tr2->getNode());
 	childs_.push_back(child);
 }
 
-void Separity::Entity::removeChild(const Entity* child) {
+void Separity::Entity::removeChild( Entity* child) {
 	auto it = find(childs_.begin(), childs_.end(), child);
+	auto tr2 = this->getEntTransform();
+	auto tr = child->getEntTransform();
+	tr->removeChild(tr2->getNode());
 	if(it != childs_.end()) {
 		childs_.erase(it);
 

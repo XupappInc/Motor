@@ -116,6 +116,16 @@ namespace Separity {
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::spyQuaternion  getGlobalRotation();
+		/// <summary>
+		/// Añade un hijo a la entidad
+		/// </summary>
+		/// <param name="child">hijo a añadir</param>
+		void addChild(Ogre::SceneNode* child);
+		/// <summary>
+		/// elimina el hijo de la entidad
+		/// </summary>
+		/// <param name="child">hijo a elinar</param>
+		void removeChild(const Ogre::SceneNode* child);
 		private:
 		Ogre::SceneNode* tr_ = nullptr;
 		Spyutils::Vector3 position_;

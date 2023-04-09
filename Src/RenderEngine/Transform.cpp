@@ -120,3 +120,16 @@ Spyutils::spyQuaternion Separity::Transform::getGlobalRotation() {
 	return {q.w, q.x, q.y, q.z};
 }
 
+void Separity::Transform::addChild(Ogre::SceneNode* child) {
+	tr_->addChild(child);
+}
+
+void Separity::Transform::removeChild(const Ogre::SceneNode* child) {
+	if(tr_ && tr_->getChild(child->getName()) != nullptr) {
+		tr_->removeChild(child->getName());
+	}
+}
+
+
+
+

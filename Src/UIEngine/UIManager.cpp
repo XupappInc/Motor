@@ -3,7 +3,7 @@
 #include "../SeparityUtils/checkML.h"
 #include "RenderManager.h"
 #include "Text.h"
-#include "UIPanel.h"
+#include "Panel.h"
 
 #include <OgreFontManager.h>
 #include <OgreImage.h>
@@ -30,8 +30,8 @@ void Separity::UIManager::initUi() {
 	SDL_Window* window = rM->getSDLWindow();
 	rM->getSceneManager()->addRenderQueueListener(overSystem_);
 
-	Separity::UIPanel* tryUpdatePanel =
-	    new Separity::UIPanel("myFirstPanel", 500, 500, 100, 50, "World_ap");
+	Separity::Panel* tryUpdatePanel =
+	    new Separity::Panel("myFirstPanel", 500, 500, 100, 50, "World_ap");
 	addComponent(tryUpdatePanel);
 }
 
