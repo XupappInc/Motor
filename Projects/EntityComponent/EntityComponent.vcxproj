@@ -24,6 +24,7 @@
     <ClInclude Include="..\..\Src\EntityComponent\ec.h" />
     <ClInclude Include="..\..\Src\EntityComponent\ec_defs.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Entity.h" />
+    <ClInclude Include="..\..\Src\EntityComponent\EntityManager.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Manager.h" />
     <ClInclude Include="..\..\Src\EntityComponent\ManagerManager.h" />
     <ClInclude Include="..\..\Src\EntityComponent\Singleton.h" />
@@ -34,6 +35,7 @@
     <ClCompile Include="..\..\Src\EntityComponent\Component.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Entity.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\EntityComponentMain.cpp" />
+    <ClCompile Include="..\..\Src\EntityComponent\EntityManager.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Manager.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\ManagerManager.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\TransformManager.cpp" />
