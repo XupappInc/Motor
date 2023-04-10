@@ -39,7 +39,7 @@ Separity::RenderManager::RenderManager() {
 
 Separity::RenderManager::~RenderManager() {
 	if(ogreRoot_ != nullptr) {
-		delete ogreRoot_;
+		delete ogreRoot_; //genera un error destroy movable object en SceneManager de Ogre
 		ogreRoot_ = nullptr;
 	}
 	SDL_Quit();

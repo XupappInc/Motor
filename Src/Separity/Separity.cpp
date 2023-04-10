@@ -26,6 +26,7 @@
 #include "SceneManager.h"
 #include "TransformManager.h"
 #include "UIManager.h"
+#include "EntityManager.h"
 // Utils
 // #include "checkML.h"
 #include "Separity.h"
@@ -60,15 +61,17 @@ int main() {
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/Scenes/scene.lua");
 
-	Entity* MusicInstance = new Entity(_grp_GENERAL);
+	EntityManager* entityManager = Separity::EntityManager::getInstance();
+	entityManager->init();
+
+	Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
 	/*tr->setScale(0.03);
 	tr->pitch(30);
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/
 
-	Entity* plano = new Entity(_grp_GENERAL);
+	Entity* plano = entityManager->addEntity(_grp_GENERAL);
 	auto tr1 = plano->getEntTransform();
-	/*->addComponent<Transform>();*/
 	/*auto luz = plano->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luz->setDirection({1, 1, 1});*/
 
@@ -91,7 +94,7 @@ int main() {
 	/*rb1->setGravity(Spyutils::Vector3(0, -1, 0));
 	 rb1->addForce(Spyutils::Vector3(0, 2, 0));*/
 
-	Entity* camera = new Entity(_grp_GENERAL);
+	Entity* camera = entityManager->addEntity(_grp_GENERAL);
 	Transform* cam_tr =
 	    camera->getEntTransform();  // addComponent<Transform>();
 	cam_tr->translate(Spyutils::Vector3(0, 20, 25));
@@ -102,12 +105,12 @@ int main() {
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
 
-	Entity* sinbad = new Entity(_grp_GENERAL);
+	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	auto tr4 = sinbad->getEntTransform();
 	/*->addComponent<Transform>();*/
 	tr4->translate({0, 60, 0});
 
-	Entity* particleSystem = new Entity(_grp_GENERAL);
+	Entity* particleSystem = entityManager->addEntity(_grp_GENERAL);
 	auto parts = particleSystem->getEntTransform();
 	parts->translate({0, 0, 20});
 
@@ -133,18 +136,18 @@ int main() {
 	sinbad->addComponent<Collider>(params);
 
 
-	Entity* cube = new Entity(_grp_GENERAL);
+	Entity* cube = entityManager->addEntity(_grp_GENERAL);
 	auto cubetr = cube->getEntTransform();
 	cubetr->translate({20, 25, 0});
 	cubetr->setScale(0.03);
 
-	Entity* luz = new Entity(_grp_GENERAL);
+	Entity* luz = entityManager->addEntity(_grp_GENERAL);
 	auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luzGlobal->setDiffuse({0.7, 0.7, 0.7});
 	auto luzTr = luz->getEntTransform();
 	luzTr->translate({0, 100, 0});
 
-	Entity* luzAux = new Entity(_grp_GENERAL);
+	Entity* luzAux = entityManager->addEntity(_grp_GENERAL);
 	auto luzAux1 = luzAux->addComponent<Light>(DIRECTIONAL_LIGHT);
 	auto luzTr2 = luzAux->getEntTransform();
 	luzTr2->translate({0, 100, 0});
