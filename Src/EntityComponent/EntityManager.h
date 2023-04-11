@@ -55,11 +55,6 @@ namespace Separity {
 		/// </summary>
 		void deleteEntities();
 
-		/*Entity* getHandler();
-		Entity* getEntByGroup();*/
-
-		/*std::array<Entity*, Separity::maxHdlrId> hdlrs_;
-		std::array<Entity*, Separity::maxGroupId> entsByGroup_;*/
 		std::vector<Entity*> allEntities_;
 	};
 }  // namespace Separity

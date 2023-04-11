@@ -26,7 +26,3 @@ void Separity::EntityManager::deleteEntities() {
 	}
 	allEntities_.clear();
 }
-
-Separity::Entity* Separity::EntityManager::getHandler() { return nullptr; }
-
-Separity::Entity* Separity::EntityManager::getEntByGroup() { return nullptr; }
