@@ -16,6 +16,7 @@ namespace FMOD {
 }  // namespace FMOD
 
 namespace Separity {
+	class AudioSource;
 	class AudioManager : public Separity::Manager,
 	                     public Singleton<Separity::AudioManager> {
 		friend Singleton<AudioManager>;
@@ -50,6 +51,8 @@ namespace Separity {
 		/// <param name="minDistance"></param>
 		/// <param name="maxDistance"></param>
 		void playAudio(std::string audioName, float minDistance,
+		               float maxDistance);
+		void playAudio(AudioSource* audioSource, float minDistance,
 		               float maxDistance);
 		/// <summary>
 		/// Para la reproducción de todos los canales

@@ -6,7 +6,8 @@
 #include <iostream>
 namespace FMOD {
 	class Sound;
-}
+	class Channel;
+}  // namespace FMOD
 namespace Separity {
 	class AudioSource : public Separity::Component {
 		public:
@@ -26,6 +27,10 @@ namespace Separity {
 		/// </summary>
 		~AudioSource();
 
+		/// <summary>
+		/// Pone un estado bool a playing
+		/// </summary>
+		/// <param name="state"></param>
 		void setPlayingState(bool state);
 		/// <summary>
 		/// Devuelve el estado de la variable playing_
@@ -37,10 +42,29 @@ namespace Separity {
 		/// </summary>
 		/// <returns></returns>
 		std::string getAudioName();
-
+		/// <summary>
+		/// Coge el canal en el que se está reproduciendo la música
+		/// </summary>
+		/// <returns></returns>
+		FMOD::Channel* getChannel();
+		/// <summary>
+		/// Guarda un canal newChannel en channel_
+		/// </summary>
+		/// <param name="newChannel"></param>
+		void setChannel(FMOD::Channel* newChannel);
+		/// <summary>
+		/// Actualiza la posicion del canal dependiendo de su transform
+		/// </summary>
+		void update();
+		/// <summary>
+		/// Devuelve el sonido guardado
+		/// </summary>
+		/// <returns></returns>
+		FMOD::Sound* getSound();
 		private:
 		std::string audioName_;
 		bool playing_;
+		FMOD::Channel* channel_;
 		FMOD::Sound* sound_;
 	};
 }  // namespace Separity
