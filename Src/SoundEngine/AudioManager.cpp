@@ -141,6 +141,7 @@ void Separity::AudioManager::update() {
 	}
 
 	for(Separity::Component* c : cmps_) {
+		c->update();
 		Entity* ent = c->getEntity();
 		AudioSource* au = ent->getComponent<AudioSource>();
 		Transform* tr = ent->getEntTransform();
@@ -155,11 +156,11 @@ void Separity::AudioManager::update() {
 				FMOD_RESULT result = c->set3DAttributes(&pos, nullptr);
 				FMODErrorChecker(&result);
 			}
-		} else {
+		}/* else {
 			AudioListener* audListener = ent->getComponent<AudioListener>();
 			if(audListener)
 				update3DListener(audListener->listenerNumber_, &pos);
-		}
+		}*/
 	}
 
 	// Se borran aqu� porque dentro del otro for se siguen comprobando cada

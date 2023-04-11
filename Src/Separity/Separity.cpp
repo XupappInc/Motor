@@ -70,6 +70,8 @@ int main() {
 	tr->pitch(30);
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/
 
+	Entity* listener = entityManager->addEntity(_grp_GENERAL);
+	listener->addComponent<AudioListener>();
 	Entity* plano = entityManager->addEntity(_grp_GENERAL);
 	auto tr1 = plano->getEntTransform();
 	/*auto luz = plano->addComponent<Light>(DIRECTIONAL_LIGHT);

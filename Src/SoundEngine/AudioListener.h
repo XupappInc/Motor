@@ -18,6 +18,7 @@ namespace Separity {
 		/// Método destructor actualmente vacío
 		/// </summary>
 		~AudioListener();
+		void update();
 		int listenerNumber_;
 	};
 }  // namespace Separity

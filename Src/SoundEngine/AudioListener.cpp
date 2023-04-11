@@ -1,5 +1,6 @@
 #include "AudioListener.h"
-
+#include "Transform.h"
+#include "Entity.h"
 #include "AudioManager.h"
 #include "fmod.hpp"
 using namespace Separity;
@@ -23,3 +24,12 @@ AudioListener::AudioListener() {
 }
 
 Separity::AudioListener::~AudioListener() {}
+
+void Separity::AudioListener::update() {
+	Transform* tr = ent_->getEntTransform();
+
+	FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
+	                               tr->getPosition().z};
+	AudioManager* audioManager = AudioManager::getInstance();
+	audioManager->update3DListener(listenerNumber_, &pos);
+}
