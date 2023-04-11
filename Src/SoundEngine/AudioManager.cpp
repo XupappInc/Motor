@@ -1,11 +1,10 @@
 #include "AudioManager.h"
 
-#include "ManagerManager.h"
-
 #include "AudioListener.h"
 #include "AudioSource.h"
 #include "Component.h"
 #include "Entity.h"
+#include "ManagerManager.h"
 #include "Transform.h"
 #include "checkML.h"
 #include "fmod.hpp"
@@ -26,7 +25,7 @@ inline Separity::AudioManager::AudioManager() {
 	musicGroup_ = nullptr;
 	firstListener = true;
 
-	ManagerManager::getInstance()->addManager(_SOUND, this);	
+	ManagerManager::getInstance()->addManager(_SOUND, this);
 }
 
 Separity::AudioManager::~AudioManager() {
@@ -117,6 +116,26 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 	temporalChannel->setMode(FMOD_3D_LINEARROLLOFF);
 	temporalChannel->set3DMinMaxDistance(minDistance, maxDistance);
 	channels_->emplace(audioName, temporalChannel);
+}
+
+void Separity::AudioManager::playAudio(AudioSource* audioSource,
+                                       float minDistance, float maxDistance) {
+	FMOD::Channel* temporalChannel = nullptr;
+
+	FMOD_RESULT result = system_->playSound(audioSource->getSound(), nullptr,
+	                                        true, &temporalChannel);
+	FMODErrorChecker(&result);
+	audioSource->setPlayingState(true);
+	audioSource->setChannel(temporalChannel);
+	
+	// Se pone el modo del canal a false porque se pausa de base, y se pone el
+	// modo a FMOD_3D_LINEARROLLOFF para que el sonido sea inversamente
+	// proporcional a la distancia a la que se encuentra hasta maxDistance hasta
+	// volumen 0
+	temporalChannel->setPaused(false);
+	temporalChannel->setMode(FMOD_3D_LINEARROLLOFF);
+	temporalChannel->set3DMinMaxDistance(minDistance, maxDistance);
+	channels_->emplace(audioSource->getAudioName(), temporalChannel);
 }
 
 void Separity::AudioManager::update() {

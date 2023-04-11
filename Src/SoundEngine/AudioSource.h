@@ -56,7 +56,11 @@ namespace Separity {
 		/// Actualiza la posicion del canal dependiendo de su transform
 		/// </summary>
 		void update();
-
+		/// <summary>
+		/// Devuelve el sonido guardado
+		/// </summary>
+		/// <returns></returns>
+		FMOD::Sound* getSound();
 		private:
 		std::string audioName_;
 		bool playing_;

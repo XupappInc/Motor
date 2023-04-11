@@ -65,3 +65,5 @@ void Separity::AudioSource::update() {
 		channel_ = nullptr;
 	
 }
+
+FMOD::Sound* Separity::AudioSource::getSound() { return sound_; }

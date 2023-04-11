@@ -52,6 +52,8 @@ namespace Separity {
 		/// <param name="maxDistance"></param>
 		void playAudio(std::string audioName, float minDistance,
 		               float maxDistance);
+		void playAudio(AudioSource* audioSource, float minDistance,
+		               float maxDistance);
 		/// <summary>
 		/// Para la reproducción de todos los canales
 		/// sistema
