@@ -4,27 +4,23 @@
 #include "Component.h"
 #include "Vector.h"
 
+#include <spyQuaternion.h>
+#include <vector>
 namespace Ogre {
 	class SceneManager;
 	class SceneNode;
 }  // namespace Ogre
-namespace Spyutils {
-	class spyQuaternion;
-}
+
 namespace Separity {
 	class Transform : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_TRANSFORM_COMPONENT)
 		__CMPID_DECL__(Separity::_TRANSFORM)
 		Transform();
-	
-		
+		std::vector<std::vector<float>>
+		calculateRotationMatrix(Spyutils::Vector3 rotation);
+
 		~Transform();
-		/// <summary>
-		/// geter del nodo de ogre
-		/// </summary>
-		/// <returns></returns>
-		Ogre::SceneNode* getNode() { return tr_; }
 		/// <summary>
 		/// Setear la posición del componente tranform
 		/// </summary>
@@ -53,17 +49,19 @@ namespace Separity {
 		/// <param name="rotationX">grados del eje x</param>
 		/// <param name="rotationY">grados eje y</param>
 		/// <param name="rotationZ">grados de ejez</param>
-		void setRotation(Spyutils::spyQuaternion quat);
-		/// <summary>
-		/// geter de la rotacion local en qutaerniones
-		/// </summary>
-		/// <returns></returns>
-		Spyutils::spyQuaternion getRotationQuat();
+		void setRotation(float rotationX, float rotationY, float rotationZ);
+		void setRotationQ(float rotationX, float rotationY, float rotationZ,
+		                  float rotationW);
 		/// <summary>
 		/// geter de la rotación en un Vector3
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getRotation();
+		/// <summary>
+		/// geter de la rotación en un Quaternion
+		/// </summary>
+		/// <returns></returns>
+		Spyutils::spyQuaternion getRotationQ();
 		/// <summary>
 		/// Rotacion en el eje x
 		/// </summary>
@@ -92,47 +90,19 @@ namespace Separity {
 		/// <param name="scale">float para escalar el eje x y z</param>
 		void setScale(float scale);
 		/// <summary>
-		/// geter de la posición global
-		/// </summary>
-		/// <returns>la posicion en coordenadas globales</returns>
-		Spyutils::Vector3 getGlobalPosition();
-		/// <summary>
-		/// seter de la posición global
-		/// </summary>
-		/// <param name="other">vector3 para el cambio de la posición global</param>
-		void setGlobalPosition(Spyutils::Vector3 other);
-		/// <summary>
 		/// geter de la escala del transform
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getScale();
-		/// <summary>
-		/// Seter de la rotacion en coordenadas globales
-		/// </summary>
-		/// <param name="quat">quaternion para cambiar la rotación</param>
-		void setGlobalRotation(Spyutils::spyQuaternion quat);
-		/// <summary>
-		/// geter de la rotacion en coordenadas globales
-		/// </summary>
-		/// <returns></returns>
-		Spyutils::spyQuaternion  getGlobalRotation();
-		/// <summary>
-		/// Añade un hijo a la entidad
-		/// </summary>
-		/// <param name="child">hijo a añadir</param>
-		void addChild(Ogre::SceneNode* child);
-		/// <summary>
-		/// elimina el hijo de la entidad
-		/// </summary>
-		/// <param name="child">hijo a elinar</param>
-		void removeChild(const Ogre::SceneNode* child);
+
 		private:
-		Ogre::SceneNode* tr_ = nullptr;
+		Spyutils::Vector3 rotar(Spyutils::Vector3 posicion,
+		                        Spyutils::Vector3 anclaje,
+		                        Spyutils::Vector3 rotacion);
 		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
+		Spyutils::spyQuaternion rotationQ_;
 		Spyutils::Vector3 scale_;
-		
-		
 	};
 
 }  // namespace Separity
