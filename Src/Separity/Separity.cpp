@@ -71,7 +71,9 @@ int main() {
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/
 
 	Entity* listener = entityManager->addEntity(_grp_GENERAL);
-	listener->addComponent<AudioListener>();
+	auto* sonido = listener->addComponent<AudioSource>("Assets//callmemaybe.mp3",
+	                                    "callmemaybe", true);
+	audManager->playAudio("callmemaybe", 0, 0);
 	Entity* plano = entityManager->addEntity(_grp_GENERAL);
 	auto tr1 = plano->getEntTransform();
 	/*auto luz = plano->addComponent<Light>(DIRECTIONAL_LIGHT);

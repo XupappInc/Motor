@@ -16,6 +16,7 @@ namespace FMOD {
 }  // namespace FMOD
 
 namespace Separity {
+	class AudioSource;
 	class AudioManager : public Separity::Manager,
 	                     public Singleton<Separity::AudioManager> {
 		friend Singleton<AudioManager>;

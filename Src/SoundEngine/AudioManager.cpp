@@ -89,7 +89,7 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
                                        float maxDistance) {
 	FMOD::Channel* temporalChannel = nullptr;
 	FMOD::Sound* temporalSound = nullptr;
-	// Comprueba si est� en la lista de sonidos o de m�sica para coger dicho
+	// Comprueba si esta en la lista de sonidos o de m�sica para coger dicho
 	// sonido y reproducirlo
 	if(sounds_->count(audioName))
 		temporalSound = sounds_->find(audioName)->second;
@@ -105,6 +105,7 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 		AudioSource* au = c->getEntity()->getComponent<AudioSource>();
 		if(au->getAudioName() == audioName) {
 			au->setPlayingState(true);
+			au->setChannel(temporalChannel);
 			break;
 		}
 	}
@@ -119,7 +120,7 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 }
 
 void Separity::AudioManager::update() {
-	// Comprueba todos los canales a�adidos en el map, si no  tienen sonido
+	// Comprueba todos los canales incluidos en el map, si no  tienen sonido
 	// los libera
 	std::vector<std::unordered_map<std::string, FMOD::Channel*>::iterator>
 	    channelsWithoutSound;
@@ -142,30 +143,11 @@ void Separity::AudioManager::update() {
 
 	for(Separity::Component* c : cmps_) {
 		c->update();
-		Entity* ent = c->getEntity();
-		AudioSource* au = ent->getComponent<AudioSource>();
-		Transform* tr = ent->getEntTransform();
-
-		FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
-		                               tr->getPosition().z};
-		if(au && au->getPlayingState()) {
-			if(channels_->count(au->getAudioName())) {
-				// Busca cada canal con dicho nombre y le asigna la posición de
-				// su transform
-				FMOD::Channel* c = channels_->find(au->getAudioName())->second;
-				FMOD_RESULT result = c->set3DAttributes(&pos, nullptr);
-				FMODErrorChecker(&result);
-			}
-		}/* else {
-			AudioListener* audListener = ent->getComponent<AudioListener>();
-			if(audListener)
-				update3DListener(audListener->listenerNumber_, &pos);
-		}*/
 	}
 
-	// Se borran aqu� porque dentro del otro for se siguen comprobando cada
-	// canal, no est�n ordenados, si borras uno no sabes cual vas a comprobar
-	// despu�s adem�s de acabar comprobando canales fueras del rango del for
+	// Se borran aqui porque dentro del otro for se siguen comprobando cada
+	// canal, no estan ordenados, si borras uno no sabes cual vas a comprobar
+	// despues ademas de acabar comprobando canales fueras del rango del for
 	for(auto& it : channelsWithoutSound) {
 		channels_->erase(it);
 	}

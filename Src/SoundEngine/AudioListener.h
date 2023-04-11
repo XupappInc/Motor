@@ -18,6 +18,9 @@ namespace Separity {
 		/// Método destructor actualmente vacío
 		/// </summary>
 		~AudioListener();
+		/// <summary>
+		/// Actualiza la posicion del listener dependiendo de su transform
+		/// </summary>
 		void update();
 		int listenerNumber_;
 	};
