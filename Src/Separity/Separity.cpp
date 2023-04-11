@@ -246,12 +246,13 @@ int main() {
 		if(waitTime > 0)
 			Sleep(waitTime);
 	}
-	delete MusicInstance;
-	//delete cube;
-	delete timer;
-	delete plano;
-	delete sinbad;
-	// sceneMenager->eraseEntities();
+	//delete MusicInstance;
+	////delete cube;
+	//delete timer;
+	//delete plano;
+	//delete sinbad;
+	sceneMenager->eraseEntities();
+	entityManager->deleteEntities();
 	renderManager->saveConfiguration();
 	renderManager->closedown();
 
@@ -261,6 +262,7 @@ int main() {
 	audManager->close();
 	physManager->close();
 	luaManager->close();
+	entityManager->close();
 
 	return 0;
 }

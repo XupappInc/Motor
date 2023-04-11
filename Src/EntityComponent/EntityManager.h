@@ -2,10 +2,12 @@
 #ifndef __ENTITY_MANAGER_H__
 #define __ENTITY_MANAGER_H__
 #include "Manager.h"
-#include <array>
+// #include <array>
 #include "Entity.h"
+
+#include <vector>
 namespace Separity {
-	
+
 	class EntityManager : public Separity::Manager,
 	                      public Singleton<Separity::EntityManager> {
 		friend Singleton<Separity::EntityManager>;
@@ -17,7 +19,6 @@ namespace Separity {
 		inline EntityManager();
 		/// <summary>
 		/// Destructor por defecto de la clase
-		/// utilizados
 		/// </summary>
 		virtual ~EntityManager();
 		/// <summary>
@@ -30,18 +31,18 @@ namespace Separity {
 		/// <summary>
 		/// Añade una entidad al registro del manager
 		/// </summary>
-		/// <params>Acepta una lista de argumentos (si hay) para ser pasados al constructor.</params>
-
-		//template<class... Types>
+		/// <params>Acepta una lista de argumentos (si hay) para ser pasados al
+		/// constructor (Id del grupo).</params>
 		Entity* addEntity(grpId_type gID) {
-			//constexpr 
+			// constexpr
 			grpId_type gId = gID;
-			//constexpr hdlrId hdlrId = T::;
+			// constexpr hdlrId hdlrId = T::;
 			assert(gId < Separity::maxGroupId);
 			// crea, inicializa y añade la entidad
 			Entity* e = new Entity(gId);
 			e->setContext(this);
-			entsByGroup_[gId] = e;
+			allEntities_.push_back(e);
+			// entsByGroup_[gId] = e;
 			return e;
 		}
 		/// <summary>
@@ -49,16 +50,17 @@ namespace Separity {
 		/// </summary>
 		void init();
 		/// <summary>
-		/// Borra todas las entidades que hay guardadas
+		/// Borra todas las entidades que hay guardadas en el vector llamando a
+		/// su destructor
 		/// </summary>
-		//void deleteEntities();
+		void deleteEntities();
 
+		/*Entity* getHandler();
+		Entity* getEntByGroup();*/
 
-		Entity* getHandler();
-		Entity* getEntByGroup();
-
-		std::array<Entity*, Separity::maxHdlrId> hdlrs_;
-		std::array<Entity*, Separity::maxGroupId> entsByGroup_;
+		/*std::array<Entity*, Separity::maxHdlrId> hdlrs_;
+		std::array<Entity*, Separity::maxGroupId> entsByGroup_;*/
+		std::vector<Entity*> allEntities_;
 	};
 }  // namespace Separity
 #endif __ENTITY_MANAGER_H__

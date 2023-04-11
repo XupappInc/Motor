@@ -18,6 +18,15 @@ Separity::EntityManager* Separity::EntityManager::getInstance() {return static_c
 
 void Separity::EntityManager::init() {}
 
+void Separity::EntityManager::deleteEntities() {
+
+	for(int i = 0; i < allEntities_.size(); i++) {
+
+		delete allEntities_[i];
+	}
+	allEntities_.clear();
+}
+
 Separity::Entity* Separity::EntityManager::getHandler() { return nullptr; }
 
 Separity::Entity* Separity::EntityManager::getEntByGroup() { return nullptr; }
