@@ -22,7 +22,7 @@ Separity::Camera::Camera() : tr_(nullptr) {
 	camera_->setFarClipDistance(10000);
 	camera_->setAutoAspectRatio(true);
 
-	//cameraNode_ = sm->getRootSceneNode()->createChildSceneNode();
+	cameraNode_ = sm->getRootSceneNode()->createChildSceneNode();
 	
 
 	viewport_ = rm->getOgreWindow()->addViewport(camera_);
@@ -42,8 +42,8 @@ void Separity::Camera::initComponent() {
 	}		
 	else {
 		Transform* tr = ent_->getComponent<Transform>();
-		auto node = tr->getNode();
-		node->attachObject(camera_);
+		//auto node = tr->getNode();
+		cameraNode_->attachObject(camera_);
 	}
 		
 
@@ -68,7 +68,7 @@ Ogre::Degree Separity::Camera::zoomChecker(Ogre::Degree&& zoom) {
 }
 
 void Separity::Camera::readTransform() {
-	/*Transform* tr = ent_->getComponent<Transform>();
+	Transform* tr = ent_->getComponent<Transform>();
 
 	assert(tr != nullptr);
 
@@ -83,7 +83,7 @@ void Separity::Camera::readTransform() {
 	cameraNode_->setOrientation(rot);
 
 	cameraNode_->setScale(tr->getScale().x, tr->getScale().y,
-	                        tr->getScale().z);*/
+	                        tr->getScale().z);
 }
 
 

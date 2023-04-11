@@ -30,8 +30,6 @@
     <ClCompile Include="..\..\Src\RenderEngine\ParticleSystem.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\ParticleSystemCreator.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\RenderManager.cpp" />
-    <ClCompile Include="..\..\Src\RenderEngine\Transform.cpp" />
-    <ClCompile Include="..\..\Src\RenderEngine\TransformCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\RenderEngine\Animator.h" />
@@ -45,8 +43,6 @@
     <ClInclude Include="..\..\Src\RenderEngine\ParticleSystem.h" />
     <ClInclude Include="..\..\Src\RenderEngine\ParticleSystemCreator.h" />
     <ClInclude Include="..\..\Src\RenderEngine\RenderManager.h" />
-    <ClInclude Include="..\..\Src\RenderEngine\Transform.h" />
-    <ClInclude Include="..\..\Src\RenderEngine\TransformCreator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
