@@ -36,12 +36,12 @@ void Separity::RigidBody::initComponent() {
 
 	// transform de bullet
 
-	Spyutils::Vector3 spyPos = tr_->getGlobalPosition();
+	Spyutils::Vector3 spyPos = tr_->getPosition();
 	btVector3 pos = btVector3(spyPos.x, spyPos.y, spyPos.z);
 	//btTr_->setOrigin(pos);
 	btQuaternion rotRad =
-	    {tr_->getGlobalRotation().x, tr_->getGlobalRotation().y,
-	      tr_->getGlobalRotation().z};
+	    {tr_->getRotation().y, tr_->getRotation().x,
+	      tr_->getRotation().z};
 	//btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
 	//btTr_->setRotation(rotRad);
 
@@ -150,11 +150,11 @@ void Separity::RigidBody::preUpdate() {
 	//cogemos el transform del rb
 	rb_->getMotionState()->getWorldTransform(trans);
 	//modificamos el tr de rb con el transform
-	trans.setOrigin({tr_->getGlobalPosition().x, tr_->getGlobalPosition().y,
-	                 tr_->getGlobalPosition().z});
+	trans.setOrigin({tr_->getPosition().x, tr_->getPosition().y, tr_->getPosition().z});
 	// modificamos la rotación de rb con el transform
-	trans.setRotation({tr_->getGlobalRotation().w, tr_->getGlobalRotation().x,
-	                   tr_->getGlobalRotation().y, tr_->getGlobalRotation().z});
+	trans.setRotation( {tr_->getRotation().y,
+	                                         tr_->getRotation().x,
+	                                         tr_->getRotation().z});
 	rb_->getMotionState()->setWorldTransform(trans);
 	rb_->setWorldTransform(trans);
 }
@@ -166,18 +166,18 @@ void Separity::RigidBody::update() {
 	btTransform trans;
 	//posición del rb al tr
 	trans = rb_->getWorldTransform();
-	tr_->setGlobalPosition(
+	tr_->setPosition(
 	    {trans.getOrigin().x(), trans.getOrigin().y(), trans.getOrigin().z()});
 	// rotación del rb al tr
 	//btScalar x, y, z;
 	auto quat=trans.getRotation();  //.getEulerZYX(y,x,z);
 	//Spyutils::spyQuaternion q = {y, x, z};
-	tr_->setGlobalRotation({
+	/*tr_->setRotationQ({
 	    quat.x(),
 	    quat.y(),
 	    quat.z(),
 	    quat.w()
-	});
+	});*/
 	
 }
 
