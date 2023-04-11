@@ -23,7 +23,8 @@ namespace Separity {
 
 		public:
 		/// <summary>
-		/// Constructor de AudioManager, inicializa todas las variables
+		/// Constructor de AudioManager, inicializa todas las variables, inicia
+		/// el sistema de sonido, crea todas sus caracteristicas
 		/// </summary>
 		inline AudioManager();
 		/// <summary>
@@ -39,11 +40,6 @@ namespace Separity {
 		/// <returns></returns>
 		static AudioManager* getInstance();
 		/// <summary>
-		/// Método iniciador del sistema de sonido, lo inicia y crea todas sus
-		/// caracteristicas
-		/// </summary>
-		void initAudioSystem();
-		/// <summary>
 		/// Reproduce un sonido "sound" ya guardado creado en "createSound" con
 		/// un audioName, y se pone una minDistance y una maxDistance
 		/// </summary>
@@ -52,6 +48,13 @@ namespace Separity {
 		/// <param name="maxDistance"></param>
 		void playAudio(std::string audioName, float minDistance,
 		               float maxDistance);
+		/// <summary>
+		/// Reproduce un sonido audioSource y se pone una minDistance y una
+		/// maxDistance
+		/// </summary>
+		/// <param name="audioSource"></param>
+		/// <param name="minDistance"></param>
+		/// <param name="maxDistance"></param>
 		void playAudio(AudioSource* audioSource, float minDistance,
 		               float maxDistance);
 		/// <summary>

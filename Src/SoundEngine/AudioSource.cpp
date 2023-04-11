@@ -51,19 +51,33 @@ void Separity::AudioSource::setChannel(FMOD::Channel* newChannel) {
 }
 
 void Separity::AudioSource::update() {
-	Transform* tr = ent_->getEntTransform();
-
-	FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
-	                               tr->getPosition().z};
 	AudioManager* audioManager = AudioManager::getInstance();
-	if(playing_) {
+	bool isPlaying = true;
+	// Comprueba si está sonando el sonido, si es así quita el canal del map de
+	// canales y pone el canal a null y el estado playing a false
+	if(channel_ && !isPlaying) {
+		channel_->isPlaying(&isPlaying);
+		if(!isPlaying) {
+			auto iterator = audioManager->channels_->find(audioName_);
+			audioManager->channels_->erase(iterator);
+			channel_ = nullptr;
+			playing_ = false;
+		}
+	}
+	// Comprueba si está sonando, si está sonando coge el transform y mueve el
+	// sonido a la posición del transform
+	else if(playing_) {
+		Transform* tr = ent_->getEntTransform();
+
+		FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
+		                               tr->getPosition().z};
+		// Comprobación extra para ver si está sonando, es decir en el map de
+		// channels
 		if(audioManager->channels_->count(audioName_)) {
 			FMOD_RESULT result = channel_->set3DAttributes(&pos, nullptr);
 			audioManager->FMODErrorChecker(&result);
 		}
-	} else if(channel_ != nullptr)
-		channel_ = nullptr;
-	
+	}
 }
 
 FMOD::Sound* Separity::AudioSource::getSound() { return sound_; }

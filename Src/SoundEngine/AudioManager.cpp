@@ -26,29 +26,8 @@ inline Separity::AudioManager::AudioManager() {
 	firstListener = true;
 
 	ManagerManager::getInstance()->addManager(_SOUND, this);
-}
 
-Separity::AudioManager::~AudioManager() {
-	sounds_->clear();
-	musics_->clear();
-	delete[] buffer_;
-	delete channels_;
-	delete sounds_;
-	delete musics_;
-	// IMPORTANTE, system release ya borra todos los sounds, channels,
-	// soundsgroups y dem�s, es decir no hace falta hacer delete solo poner los
-	// punteros a null
-	system_->release();
-	buffer_ = nullptr;
-	soundGroup_ = nullptr;
-	musicGroup_ = nullptr;
-	channels_ = nullptr;
-	sounds_ = nullptr;
-	musics_ = nullptr;
-	system_ = nullptr;
-}
-
-void Separity::AudioManager::initAudioSystem() {
+	//Initialization of the manager
 	// Create an instance of the FMOD system
 	FMOD_RESULT result = FMOD::System_Create(&system_);
 	FMODErrorChecker(&result);
@@ -78,6 +57,26 @@ void Separity::AudioManager::initAudioSystem() {
 	soundGroup_->setVolume(100);
 	system_->createSoundGroup("musicGroup", &musicGroup_);
 	musicGroup_->setVolume(100);
+}
+
+Separity::AudioManager::~AudioManager() {
+	sounds_->clear();
+	musics_->clear();
+	delete[] buffer_;
+	delete channels_;
+	delete sounds_;
+	delete musics_;
+	// IMPORTANTE, system release ya borra todos los sounds, channels,
+	// soundsgroups y dem�s, es decir no hace falta hacer delete solo poner los
+	// punteros a null
+	system_->release();
+	buffer_ = nullptr;
+	soundGroup_ = nullptr;
+	musicGroup_ = nullptr;
+	channels_ = nullptr;
+	sounds_ = nullptr;
+	musics_ = nullptr;
+	system_ = nullptr;
 }
 
 Separity::AudioManager* Separity::AudioManager::getInstance() {
@@ -139,36 +138,8 @@ void Separity::AudioManager::playAudio(AudioSource* audioSource,
 }
 
 void Separity::AudioManager::update() {
-	// Comprueba todos los canales incluidos en el map, si no  tienen sonido
-	// los libera
-	std::vector<std::unordered_map<std::string, FMOD::Channel*>::iterator>
-	    channelsWithoutSound;
-	for(auto itStart = channels_->begin(), itEnd = channels_->end();
-	    itStart != itEnd; itStart++) {
-		bool isPlaying = false;
-
-		itStart->second->isPlaying(&isPlaying);
-		if(!isPlaying) {
-			for(Separity::Component* c : cmps_) {
-				AudioSource* au = c->getEntity()->getComponent<AudioSource>();
-				if(au->getAudioName() == itStart->first) {
-					au->setPlayingState(false);
-					break;
-				}
-			}
-			channelsWithoutSound.push_back(itStart);
-		}
-	}
-
 	for(Separity::Component* c : cmps_) {
 		c->update();
-	}
-
-	// Se borran aqui porque dentro del otro for se siguen comprobando cada
-	// canal, no estan ordenados, si borras uno no sabes cual vas a comprobar
-	// despues ademas de acabar comprobando canales fueras del rango del for
-	for(auto& it : channelsWithoutSound) {
-		channels_->erase(it);
 	}
 	FMOD_RESULT result = system_->update();
 	FMODErrorChecker(&result);

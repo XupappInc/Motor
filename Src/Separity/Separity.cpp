@@ -18,6 +18,7 @@
 
 // Managers
 #include "AudioManager.h"
+#include "EntityManager.h"
 #include "InputManager.h"
 #include "LuaManager.h"
 #include "ManagerManager.h"
@@ -26,12 +27,11 @@
 #include "SceneManager.h"
 #include "TransformManager.h"
 #include "UIManager.h"
-#include "EntityManager.h"
 // Utils
 // #include "checkML.h"
+#include "Random.h"
 #include "Separity.h"
 #include "VirtualTimer.h"
-#include "Random.h"
 
 #include <Windows.h>
 #include <iostream>
@@ -50,7 +50,6 @@ int main() {
 	PhysicsManager* physManager = Separity::PhysicsManager::getInstance();
 	physManager->initWorld();
 	AudioManager* audManager = Separity::AudioManager::getInstance();
-	audManager->initAudioSystem();
 	UIManager* uiManager = Separity::UIManager::getInstance();
 	uiManager->initUi();
 	InputManager* inputManager = Separity::InputManager::getInstance();
@@ -71,9 +70,9 @@ int main() {
 	tr->translate(Spyutils::Vector3(0, 0, 0));*/
 
 	Entity* listener = entityManager->addEntity(_grp_GENERAL);
-	auto* sonido = listener->addComponent<AudioSource>("Assets//callmemaybe.mp3",
-	                                    "callmemaybe", true);
-	audManager->playAudio("callmemaybe", 0, 0);
+	auto* sonido = listener->addComponent<AudioSource>("Assets//piano.wav",
+	                                                   "callmemaybe", false);
+	audManager->playAudio(sonido, 0, 0);
 	Entity* plano = entityManager->addEntity(_grp_GENERAL);
 	auto tr1 = plano->getEntTransform();
 	/*auto luz = plano->addComponent<Light>(DIRECTIONAL_LIGHT);
@@ -125,7 +124,7 @@ int main() {
 	//   mesh renderer
 
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
-	auto animSinbad=sinbad->addComponent<Animator>();
+	auto animSinbad = sinbad->addComponent<Animator>();
 	colliderParams params;
 	params.colShape = CUBE;
 	params.height = 10;
@@ -138,7 +137,6 @@ int main() {
 
 	luaManager->loadScript("prueba", sinbad);
 	sinbad->addComponent<Collider>(params);
-
 
 	Entity* cube = entityManager->addEntity(_grp_GENERAL);
 	auto cubetr = cube->getEntTransform();
@@ -182,7 +180,7 @@ int main() {
 
 	std::cout << "Proyectos adicionales cargados: "
 	          << ManagerManager::getInstance()->nManagers() << "\n";
-	
+
 	while(!quit) {
 		timer->reset();
 		inputManager->update();
@@ -227,8 +225,7 @@ int main() {
 				trsi->roll(20);
 			}
 			if(inputManager->isKeyDown('l')) {
-				animSinbad->playAnim("Dance",false);
-				
+				animSinbad->playAnim("Dance", false);
 			}
 			if(inputManager->isKeyDown('k')) {
 				animSinbad->playAnim("Dance");
@@ -249,7 +246,7 @@ int main() {
 			Sleep(waitTime);
 	}
 	delete MusicInstance;
-	//delete cube;
+	// delete cube;
 	delete timer;
 	delete plano;
 	delete sinbad;
