@@ -25,14 +25,6 @@ namespace Separity {
 		/// <returns>La instancia del Manager</returns>
 		static PhysicsManager* getInstance();
 		/// <summary>
-		/// Crea un mundo dinámico discreto de bullet
-		/// </summary>
-		void initWorld();
-		/// <summary>
-		/// Crea el DebugDrawer y lo añade al bullet
-		/// </summary>
-		void initDebug();
-		/// <summary>
 		/// Dibuja el debug
 		/// </summary>
 		void debug();
@@ -43,18 +35,24 @@ namespace Separity {
 		/// <summary>
 		/// Método update que actualiza la simulación física del mundo
 		/// </summary>
-		virtual void update(const uint32_t& deltaTime);
+		virtual void update(const uint32_t& deltaTime) override;
 		/// <summary>
 		///	Obtiene un puntero del mundo de bullet
 		/// </summary>
 		/// <returns>El mundo donde sucede la simulación</returns>
 		btDiscreteDynamicsWorld* getWorld();
-		/// <summary>
-		/// El destructor heredado del Manager
-		/// </summary>
-		virtual ~PhysicsManager() override;
+		
+		void clean() override;
 
 		private:
+		/// <summary>
+		/// Crea un mundo dinámico discreto de bullet
+		/// </summary>
+		void initWorld();
+		/// <summary>
+		/// Crea el DebugDrawer y lo añade al bullet
+		/// </summary>
+		void initDebug();
 		
 
 		btDiscreteDynamicsWorld* world_;

@@ -58,7 +58,7 @@ void Separity::Animator::setAnimLoop(std::string animName, bool loop) {
 	}
 }
 
-void Separity::Animator::render(const uint32_t& deltaTime) {
+void Separity::Animator::update(const uint32_t& deltaTime) {
 	for(auto it = allAnims_.begin(); it != allAnims_.end(); it++) {
 		Ogre::AnimationState* anim = it->second;
 		if(anim != nullptr) {

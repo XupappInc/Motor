@@ -71,7 +71,7 @@ void Separity::AudioSource::setChannel(FMOD::Channel* newChannel) {
 	channel_ = newChannel;
 }
 
-void Separity::AudioSource::update() {
+void Separity::AudioSource::update(const uint32_t& deltaTime) {
 	AudioManager* audioManager = AudioManager::getInstance();
 	bool isPlaying = true;
 	// Comprueba si está sonando el sonido, si es así quita el canal del map de

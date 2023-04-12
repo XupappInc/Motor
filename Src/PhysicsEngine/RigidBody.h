@@ -97,7 +97,7 @@ namespace Separity {
 		/// <summary>
 		/// Método update heredado de Component
 		/// </summary>
-		void update() override;
+		void update(const uint32_t& deltaTime) override;
 		/// <summary>
 		/// Setear el damping
 		/// </summary>

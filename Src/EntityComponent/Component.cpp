@@ -27,7 +27,6 @@ void Separity::Component::initComponent() {}
 
 void Separity::Component::preUpdate() {}
 
-void Separity::Component::update() {}
+void Separity::Component::update(const uint32_t& deltaTime) {}
 
 void Separity::Component::render() {}
-void Separity::Component::render(const uint32_t& deltaTime) {}

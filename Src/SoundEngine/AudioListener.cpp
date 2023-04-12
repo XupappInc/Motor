@@ -29,7 +29,7 @@ Separity::AudioListener::~AudioListener() {
 	audioManager->firstListener = true;
 }
 
-void Separity::AudioListener::update() {
+void Separity::AudioListener::update(const uint32_t& deltaTime) {
 	Transform* tr = ent_->getEntTransform();
 
 	FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,

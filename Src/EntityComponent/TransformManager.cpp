@@ -14,3 +14,5 @@ Separity::TransformManager::~TransformManager() {}
 Separity::TransformManager* Separity::TransformManager::getInstance() {
 	return static_cast<TransformManager*>(instance());
 }
+
+void Separity::TransformManager::clean() { close(); }

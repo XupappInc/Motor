@@ -27,11 +27,6 @@ namespace Separity {
 		/// </summary>
 		inline RenderManager();
 		/// <summary>
-		/// Destructor por defecto de la clase
-		/// utilizados
-		/// </summary>
-		virtual ~RenderManager();
-		/// <summary>
 		/// Método que devuelve una instancia de si mismo, es decir
 		/// RenderManager, si ya existiera devuelve dicha instancia, si no
 		/// existiera aún devuelve una nueva instancia
@@ -39,29 +34,14 @@ namespace Separity {
 		/// <returns>Instacia de RenderManager</returns>
 		static RenderManager* getInstance();
 		/// <summary>
-		/// Inicializa SDL y una raíz proyecto de ogre. Invoca los métodos para
-		/// creación de la ventana de SDL  carga de recursos utilizados
-		/// </summary>
-		void init();
-		/// <summary>
-		/// Crea una ventana de SDL con la configuración correspodiente y crea
-		/// otra ventana de Ogre que renderiza dentro de la de SDL
-		/// </summary>
-		void createSDLWindow();
-		/// <summary>
-		/// Carga e inicializa los recursos de Ogre a partir del archivo
-		/// "resources.cfg"
-		/// </summary>
-		void loadResources();
-		/// <summary>
 		/// Llama al método render de todos los componentes
 		/// </summary>
-		virtual void render(const uint32_t& deltaTime);
+		void render() override;
 		/// <summary>
 		/// Ejecuta el método renderOneframe de Ogre que actualiza todos los
 		/// renders
 		/// </summary>
-		void update();
+		void update(const uint32_t& deltaTime) override;
 		/// <summary>
 		/// Cambia el tamaño de las ventanas de SDL y Ogre
 		/// </summary>
@@ -108,7 +88,25 @@ namespace Separity {
 		/// </returns>
 		Ogre::SceneManager* getSceneManager();
 
+		void clean() override;
+
 		private:
+		/// <summary>
+		/// Inicializa SDL y una raíz proyecto de ogre. Invoca los métodos para
+		/// creación de la ventana de SDL  carga de recursos utilizados
+		/// </summary>
+		void init();
+		/// <summary>
+		/// Carga e inicializa los recursos de Ogre a partir del archivo
+		/// "resources.cfg"
+		/// </summary>
+		void loadResources();
+		/// <summary>
+		/// Crea una ventana de SDL con la configuración correspodiente y crea
+		/// otra ventana de Ogre que renderiza dentro de la de SDL
+		/// </summary>
+		void createSDLWindow();
+
 		SDL_Window* sdlWindow_;
 		Ogre::RenderWindow* ogreWindow_;
 		Ogre::Root* ogreRoot_;

@@ -50,9 +50,6 @@
       <Project>{cc70ea3d-ae4a-4198-9a29-39dff9d166c9}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Src\Separity\Separity.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

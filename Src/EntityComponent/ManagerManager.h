@@ -18,8 +18,10 @@ namespace Separity {
 		friend Singleton<Separity::ManagerManager>;
 
 		public:
-		// update
-		virtual void update() override;
+		
+		virtual void initComponents();
+
+		virtual void update(const uint32_t& deltaTime) override;
 
 		static ManagerManager* getInstance();
 
@@ -29,6 +31,8 @@ namespace Separity {
 		Manager* getManager(cmpType_type type);
 
 		int nManagers();
+
+		void clean() override;
 
 		protected:
 		ManagerManager();

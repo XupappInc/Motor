@@ -288,11 +288,11 @@ namespace Separity {
 		/// actualizar los nuevos estados del imput y actualizar los flags con las funciones
 		/// privadas onFunction()
 		/// </summary>
-		virtual void update() override;
+		virtual void update(const uint32_t& deltaTime) override;
 
 		static InputManager* getInstance();
 
-		virtual ~InputManager() override;
+		void clean() override;
 
 		protected:
 

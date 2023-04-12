@@ -30,7 +30,7 @@ namespace Separity {
 		/// <summary>
 		/// Cambia la posición de la cámara con el método axiliar readTransform
 		/// </summary>
-		void update() override;
+		void update(const uint32_t& deltaTime) override;
 
 		/// <summary>
 		/// Obtiene una referencia al componente Transform e

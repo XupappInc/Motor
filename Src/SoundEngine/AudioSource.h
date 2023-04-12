@@ -55,7 +55,7 @@ namespace Separity {
 		/// <summary>
 		/// Actualiza la posicion del canal dependiendo de su transform
 		/// </summary>
-		void update();
+		void update(const uint32_t& deltaTime) override;
 		/// <summary>
 		/// Devuelve el sonido guardado
 		/// </summary>

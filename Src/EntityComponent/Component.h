@@ -55,16 +55,12 @@ namespace Separity{
 		/// <summary>
 		/// Metodo update del componente, por defecto no hace nada
 		/// </summary>
-		virtual void update();
+		virtual void update(const uint32_t& deltaTime = 0);
 
 		/// <summary>
 		/// Metodo render del componente, por defecto no hace nada
 		/// </summary>
 		virtual void render();
-		/// <summary>
-		/// Metodo render con deltaTime del componente, por defecto no hace nada
-		/// </summary>
-		virtual void render(const uint32_t& deltaTime);
 
 		protected:
 		Entity* ent_;

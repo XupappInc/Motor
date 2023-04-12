@@ -31,7 +31,7 @@ Separity::Camera::Camera() : tr_(nullptr), RenderComponent() {
 
 Separity::Camera::~Camera() {}
 
-void Separity::Camera::update() { 	
+void Separity::Camera::update(const uint32_t& deltaTime) { 	
 	readTransform(); 
 }
 

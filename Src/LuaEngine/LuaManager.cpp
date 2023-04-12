@@ -14,6 +14,25 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
+Separity::LuaManager* Separity::LuaManager::getInstance() {
+	return static_cast<LuaManager*>(instance());
+}
+
+void Separity::LuaManager::clean() {
+
+	cmps_.clear();
+	// Liberamos el estado de Lua
+	lua_close(L_);
+
+	close();
+}
+
+Separity::LuaManager::LuaManager() : L_(nullptr) {
+	ManagerManager::getInstance()->addManager(_SCRIPT, this);
+
+	initLua();
+}
+
 void Separity::LuaManager::initLua() {
 	// Creamos el estado de Lua y registramos las clases
 	L_ = luaL_newstate();
@@ -68,19 +87,4 @@ void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 
 lua_State* Separity::LuaManager::getLuaState() { return L_; }
 
-Separity::LuaManager* Separity::LuaManager::getInstance() {
-	return static_cast<LuaManager*>(instance());
-}
 
-Separity::LuaManager::LuaManager() : L_(nullptr) {
-	
-	ManagerManager::getInstance()->addManager(_SCRIPT, this);
-}
-
-Separity::LuaManager::~LuaManager() {
-
-	cmps_.clear();
-	
-	// Liberamos el estado de Lua
-	lua_close(L_);
-}

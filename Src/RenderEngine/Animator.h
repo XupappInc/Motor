@@ -60,7 +60,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="deltaTime" Parametro uint32_t que devuelve el tiempo
 		/// entre un frame y otro en milisegundos ></param>
-		void render(const uint32_t& deltaTime) override;
+		void update(const uint32_t& deltaTime) override;
 
 		private:
 		Ogre::Entity* ogreEnt_;

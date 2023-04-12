@@ -59,25 +59,7 @@ inline Separity::AudioManager::AudioManager() {
 	musicGroup_->setVolume(100);
 }
 
-Separity::AudioManager::~AudioManager() {
-	sounds_->clear();
-	musics_->clear();
-	delete[] buffer_;
-	delete channels_;
-	delete sounds_;
-	delete musics_;
-	// IMPORTANTE, system release ya borra todos los sounds, channels,
-	// soundsgroups y dem�s, es decir no hace falta hacer delete solo poner los
-	// punteros a null
-	system_->release();
-	buffer_ = nullptr;
-	soundGroup_ = nullptr;
-	musicGroup_ = nullptr;
-	channels_ = nullptr;
-	sounds_ = nullptr;
-	musics_ = nullptr;
-	system_ = nullptr;
-}
+
 
 Separity::AudioManager* Separity::AudioManager::getInstance() {
 	return static_cast<AudioManager*>(instance());
@@ -137,7 +119,7 @@ void Separity::AudioManager::playAudio(AudioSource* audioSource,
 	channels_->emplace(audioSource->getAudioName(), temporalChannel);
 }
 
-void Separity::AudioManager::update() {
+void Separity::AudioManager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
 		c->update();
 	}
@@ -165,6 +147,28 @@ void Separity::AudioManager::update3DListener(int listenerNumber,
 	FMOD_RESULT result =
 	    system_->set3DListenerAttributes(listenerNumber, pos, vel, forward, up);
 	FMODErrorChecker(&result);
+}
+
+void Separity::AudioManager::clean() { 
+	sounds_->clear();
+	musics_->clear();
+	delete[] buffer_;
+	delete channels_;
+	delete sounds_;
+	delete musics_;
+	// IMPORTANTE, system release ya borra todos los sounds, channels,
+	// soundsgroups y dem�s, es decir no hace falta hacer delete solo poner los
+	// punteros a null
+	system_->release();
+	buffer_ = nullptr;
+	soundGroup_ = nullptr;
+	musicGroup_ = nullptr;
+	channels_ = nullptr;
+	sounds_ = nullptr;
+	musics_ = nullptr;
+	system_ = nullptr;
+
+	close(); 
 }
 
 void Separity::AudioManager::stopAllChannels() {

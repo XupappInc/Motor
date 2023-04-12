@@ -2,6 +2,8 @@
 #include "ManagerManager.h"
 
 #include "Entity.h"
+
+#include "Transform.h"
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
@@ -9,14 +11,22 @@ inline Separity::EntityManager::EntityManager() {
 	ManagerManager::getInstance()->addManager(_ENTITY, this);
 }
 
-Separity::EntityManager::~EntityManager() {}
+Separity::EntityManager* Separity::EntityManager::getInstance() {
+	return static_cast<EntityManager*>(instance());
+}
 
-	
-Separity::EntityManager* Separity::EntityManager::getInstance() {return static_cast<EntityManager*>(instance());}
-
-//void Separity::EntityManager::deleteEntities() {}
-
-void Separity::EntityManager::init() {}
+Separity::Entity* Separity::EntityManager::addEntity(grpId_type gID) {	
+	// constexpr
+	grpId_type gId = gID;
+	// constexpr hdlrId hdlrId = T::;
+	assert(gId < Separity::maxGroupId);
+	// crea, inicializa y añade la entidad
+	Entity* e = new Entity(gId);
+	e->setContext(this);
+	allEntities_.push_back(e);
+	// entsByGroup_[gId] = e;
+	return e;
+}
 
 void Separity::EntityManager::deleteEntities() {
 
@@ -26,3 +36,20 @@ void Separity::EntityManager::deleteEntities() {
 	}
 	allEntities_.clear();
 }
+
+void Separity::EntityManager::clean() { 
+	
+	close(); 
+
+	deleteEntities();
+}
+
+void Separity::EntityManager::debug() {
+	for(auto i : allEntities_) {
+		Transform* tr = i->getComponent<Transform>();
+		std::cout << tr->getPosition().x << " " << tr->getPosition().y << " " 
+		          << tr->getPosition().z << "\n";
+	}
+}
+
+

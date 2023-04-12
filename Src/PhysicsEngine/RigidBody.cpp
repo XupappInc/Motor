@@ -159,7 +159,7 @@ void Separity::RigidBody::preUpdate() {
 	rb_->setWorldTransform(trans);
 }
 
-void Separity::RigidBody::update() {
+void Separity::RigidBody::update(const uint32_t& deltaTime) {
 	collisionCallback_->update();
 	if(tipo_ == STATIC)
 		return;

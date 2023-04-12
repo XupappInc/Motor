@@ -2,8 +2,6 @@
 #ifndef __ENTITY_MANAGER_H__
 #define __ENTITY_MANAGER_H__
 #include "Manager.h"
-// #include <array>
-#include "Entity.h"
 
 #include <vector>
 namespace Separity {
@@ -18,10 +16,6 @@ namespace Separity {
 		/// </summary>
 		inline EntityManager();
 		/// <summary>
-		/// Destructor por defecto de la clase
-		/// </summary>
-		virtual ~EntityManager();
-		/// <summary>
 		/// Método que devuelve una instancia de si mismo, es decir
 		/// EntityManager, si ya existiera devuelve dicha instancia, si no
 		/// existiera aún devuelve una nueva instancia
@@ -33,28 +27,18 @@ namespace Separity {
 		/// </summary>
 		/// <params>Acepta una lista de argumentos (si hay) para ser pasados al
 		/// constructor (Id del grupo).</params>
-		Entity* addEntity(grpId_type gID) {
-			// constexpr
-			grpId_type gId = gID;
-			// constexpr hdlrId hdlrId = T::;
-			assert(gId < Separity::maxGroupId);
-			// crea, inicializa y añade la entidad
-			Entity* e = new Entity(gId);
-			e->setContext(this);
-			allEntities_.push_back(e);
-			// entsByGroup_[gId] = e;
-			return e;
-		}
-		/// <summary>
-		/// Usado por el singleton. Actualmente no inicaliza nada
-		/// </summary>
-		void init();
+		Entity* addEntity(grpId_type gID);
 		/// <summary>
 		/// Borra todas las entidades que hay guardadas en el vector llamando a
 		/// su destructor
 		/// </summary>
 		void deleteEntities();
 
+		void clean() override;
+
+		void debug();
+
+		private:
 		std::vector<Entity*> allEntities_;
 	};
 }  // namespace Separity

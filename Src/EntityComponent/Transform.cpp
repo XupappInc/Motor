@@ -1,5 +1,7 @@
 ﻿#include "Transform.h"
 
+#include "TransformManager.h"
+
 #include "Entity.h"
 #include "Vector.h"
 #include "spyMath.h"
@@ -7,7 +9,9 @@ using namespace std;
 // #include "checkML.h"
 Separity::Transform::Transform()
     : position_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0),
-      rotationQ_(0, 0, 0) {}
+      rotationQ_(0, 0, 0) {
+	mngr_ = Separity::TransformManager::getInstance();
+}
 
 vector<vector<float>>
 Separity::Transform::calculateRotationMatrix(Spyutils::Vector3 rotation) {

@@ -14,21 +14,22 @@ namespace Separity {
 	                   public Singleton<Separity::LuaManager> {
 		friend Singleton<LuaManager>;
 
-		public:
-		void initLua();
+		public:	
 		void registerClasses();
 		void loadScript(std::string name, Entity* ent);
 
 		lua_State* getLuaState();
 
 		static LuaManager* getInstance();	
-		virtual ~LuaManager() override;
+		void clean() override;
 
 		protected:
 
 		LuaManager();
 
 		private:
+
+		void initLua();
 
 		lua_State* L_;
 		//Behaviour* behaviourTemplate_;

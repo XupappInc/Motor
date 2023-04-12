@@ -20,7 +20,7 @@ namespace Separity {
 		/// <summary>
 		/// Actualiza la posicion del listener dependiendo de su transform
 		/// </summary>
-		void update();
+		void update(const uint32_t& deltaTime) override;
 		int listenerNumber_;
 	};
 }  // namespace Separity

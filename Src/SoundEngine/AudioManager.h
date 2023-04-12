@@ -28,11 +28,6 @@ namespace Separity {
 		/// </summary>
 		inline AudioManager();
 		/// <summary>
-		/// Destructor de AudioManager, pone punteros a null y vacía las
-		/// variables
-		/// </summary>
-		virtual ~AudioManager();
-		/// <summary>
 		/// Método que devuelve una instancia de si mismo, es decir
 		/// AudioManager, si ya existiera devuelve dicha instancia, si no
 		/// existiera aún devuelve una nueva instancia
@@ -77,7 +72,7 @@ namespace Separity {
 		/// <summary>
 		/// Actualiza el sistema y reproduce los sonidos guardados en el sistema
 		/// </summary>
-		void update();
+		void update(const uint32_t& deltaTime) override;
 		/// <summary>
 		/// Pausa todos los caneles
 		/// </summary>
@@ -106,6 +101,8 @@ namespace Separity {
 		FMOD::SoundGroup* musicGroup_;
 		FMOD::SoundGroup* soundGroup_;
 		bool firstListener;
+
+		void clean() override;
 
 		private:
 		float* buffer_;

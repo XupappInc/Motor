@@ -15,13 +15,14 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
+void Separity::SceneManager::clean() { 
+	delete factory_;
+	close();
+}
+
 Separity::SceneManager* Separity::SceneManager::getInstance() {
 	return static_cast<SceneManager*>(instance());
 }
-
-void Separity::SceneManager::update() {}
-
-Separity::SceneManager::~SceneManager() { delete factory_; }
 
 bool Separity::SceneManager::loadScene(const std::string& root) {
 	lua_State* L = luaL_newstate();

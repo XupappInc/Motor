@@ -18,6 +18,8 @@ namespace Separity {
 		/// </summary>
 		/// <returns>La instancia del Manager</returns>
 		static TransformManager* getInstance();
+
+		void clean() override;
 	};
 }  // namespace Separity
 

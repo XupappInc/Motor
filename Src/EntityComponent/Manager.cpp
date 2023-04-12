@@ -4,11 +4,11 @@
 
 #include <cassert>
 
-void Separity::Manager::initComponent() { 
+void Separity::Manager::initComponents() { 
 	for(Separity::Component* c : cmps_)
-	c->initComponent(); }
+		c->initComponent(); }
 
-void Separity::Manager::update() {
+void Separity::Manager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
 		c->preUpdate();
 	}
@@ -16,6 +16,8 @@ void Separity::Manager::update() {
 		c->update();
 	}
 }
+
+void Separity::Manager::render() {}
 
 void Separity::Manager::addComponent(Separity::Component* cmp) {
 	assert(cmp != nullptr);
