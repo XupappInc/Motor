@@ -4,6 +4,7 @@
 #include "Component.h"
 #include "ComponentFactory.h"
 #include "Entity.h"
+#include "EntityManager.h"
 #include "ManagerManager.h"
 
 #include <lua.hpp>
@@ -47,6 +48,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		int cont = 0;
 
 		lua_pushnil(L);
+		EntityManager* entManager = Separity::EntityManager::getInstance();
 		while(lua_next(L, -2)) {
 			if(lua_isstring(L, -2)) {
 				std::string entity = lua_tostring(L, -2, NULL);
@@ -54,7 +56,8 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 			}
 
 			if(lua_istable(L, -1)) {
-				Entity* entity = new Entity(_grp_GENERAL);
+				/*Entity* luzAux = EntityManager.get ->addEntity(_grp_GENERAL);*/
+				Entity* entity = entManager->addEntity(_grp_GENERAL);
 				entidades.push_back(entity);
 
 				cont++;
