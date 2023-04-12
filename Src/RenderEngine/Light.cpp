@@ -5,7 +5,7 @@
 #include "OgreSceneManager.h"
 #include "RenderManager.h"
 #include "Transform.h"
-Separity::Light::Light(LightType type) : visible_(true) {
+Separity::Light::Light(LightType type) : visible_(true), RenderComponent() {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();
 	// se accede al sceneManager
 	Ogre::SceneManager* s = render->getSceneManager();

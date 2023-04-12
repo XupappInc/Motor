@@ -3,7 +3,7 @@
 #ifndef __PARTICLE_SYSTEM_H__
 #define __PARTICLE_SYSTEM_H__
 
-#include "Component.h"
+#include "RenderComponent.h"
 #include "Vector.h"
 #include <string>
 
@@ -17,7 +17,7 @@ namespace Separity {
 	/// <summary>
 	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
 	/// </summary>
-	class ParticleSystem : public Separity::Component {
+	class ParticleSystem : public Separity::RenderComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_PARTICLE_SYSTEM)

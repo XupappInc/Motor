@@ -117,7 +117,7 @@ namespace Separity {
 			Manager* m = getManager(cType);
 			if(m != nullptr)
 				m->addComponent(c);
-			c->setContext(this, m);
+			c->setContext(this);
 			
 			cmps_[cId] = c;
 			currCmps_.push_back(c);

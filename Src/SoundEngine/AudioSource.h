@@ -1,7 +1,7 @@
 #pragma once
 #ifndef __AUDIO_SOURCE_H__
 #define __AUDIO_SOURCE_H__
-#include "Component.h"
+#include "AudioComponent.h"
 
 #include <iostream>
 namespace FMOD {
@@ -9,7 +9,7 @@ namespace FMOD {
 	class Channel;
 }  // namespace FMOD
 namespace Separity {
-	class AudioSource : public Separity::Component {
+	class AudioSource : public Separity::AudioComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_SOUND)
 		__CMPID_DECL__(Separity::_AUDIO_SOURCE)

@@ -4,7 +4,7 @@
 
 #include <btBulletDynamicsCommon.h>
 
-Separity::Collider::Collider(colliderParams params) {
+Separity::Collider::Collider(colliderParams params) : PhysicsComponent() {
 
 	colliderShape_ = new btCompoundShape();
 

@@ -25,8 +25,7 @@ namespace Separity{
 		/// Este metodo se usa para asignar el contexto
 		/// </summary>
 		/// <param name="ent">Entidad a la que pertenece el componente</param>
-		/// <param name="mngr">Manager al que pertenece el componente</param>
-		void setContext(Entity* ent, Manager* mngr);
+		void setContext(Entity* ent);
 
 		/// <summary>
 		/// Metodo que activa o desactiva el componente
@@ -66,6 +65,7 @@ namespace Separity{
 		/// Metodo render con deltaTime del componente, por defecto no hace nada
 		/// </summary>
 		virtual void render(const uint32_t& deltaTime);
+
 		protected:
 		Entity* ent_;
 		Manager* mngr_;

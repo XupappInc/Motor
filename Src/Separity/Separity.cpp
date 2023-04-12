@@ -250,7 +250,6 @@ int main() {
 	//delete timer;
 	//delete plano;
 	//delete sinbad;
-	sceneMenager->eraseEntities();
 	entityManager->deleteEntities();
 	renderManager->saveConfiguration();
 	renderManager->closedown();

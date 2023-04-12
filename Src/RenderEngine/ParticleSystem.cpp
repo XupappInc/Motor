@@ -11,7 +11,7 @@
 
 Separity::ParticleSystem::ParticleSystem(std::string name,
                                          std::string name_particle):
-    visible_(true) {
+    visible_(true), RenderComponent() {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();
 	// se accede al sceneManager
 	Ogre::SceneManager* s = render->getSceneManager();

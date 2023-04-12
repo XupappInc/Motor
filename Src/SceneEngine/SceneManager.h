@@ -24,17 +24,13 @@ namespace Separity {
 
 		virtual ~SceneManager() override;
 
-
 		bool loadScene(const std::string& root);
-
-		void eraseEntities();
 
 		protected:
 		SceneManager();
 
 		private:
 
-		std::vector<Entity*> entidades;
 		ComponentFactory* factory_;
 	};
 }  // namespace Separity

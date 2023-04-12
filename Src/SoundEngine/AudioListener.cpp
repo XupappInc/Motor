@@ -3,9 +3,10 @@
 #include "Entity.h"
 #include "AudioManager.h"
 #include "fmod.hpp"
+
 using namespace Separity;
 
-AudioListener::AudioListener() {
+AudioListener::AudioListener() : AudioComponent() {
 	AudioManager* audioManager = AudioManager::getInstance();
 	if(audioManager->firstListener) {
 		audioManager->firstListener = false;

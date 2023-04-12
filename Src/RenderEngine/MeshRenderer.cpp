@@ -9,7 +9,7 @@
 #include <cassert>
 using namespace Separity;
 
-Separity::MeshRenderer::MeshRenderer(std::string meshName) {
+Separity::MeshRenderer::MeshRenderer(std::string meshName) : RenderComponent() {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();
 	// se accede al sceneManager
 	sceneManager_ = render->getSceneManager();

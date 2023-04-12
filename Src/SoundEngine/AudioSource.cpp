@@ -7,7 +7,7 @@
 using namespace Separity;
 
 AudioSource::AudioSource(std::string audioRoute, std::string audioName,
-                         bool isMusic) {
+                         bool isMusic) : AudioComponent() {
 	channel_ = nullptr;
 	AudioManager* audioManager = AudioManager::getInstance();
 	// Crea un audio con una songRoute y lo almacena en sound_

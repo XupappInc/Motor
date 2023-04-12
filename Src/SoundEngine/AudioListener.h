@@ -1,12 +1,11 @@
-#include "Component.h"
-
-#include <iostream>
 #pragma once
 #ifndef __AUDIO_LISTENER_H__
-#define __AUDIO_LISTENER_H__                                                   \
+#define __AUDIO_LISTENER_H__       
+
+#include "AudioComponent.h"
 	
 namespace Separity {
-	class AudioListener : public Separity::Component {
+	class AudioListener : public Separity::AudioComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_SOUND)
 		__CMPID_DECL__(Separity::_AUDIO_LISTENER)
