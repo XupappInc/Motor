@@ -3,7 +3,8 @@
 #include "CCreatorHeaders.h"
 #include "Component.h"
 #include "ComponentFactory.h"
-
+#include "Entity.h"
+#include "EntityManager.h"
 #include "ManagerManager.h"
 #include "EntityManager.h"
 
@@ -45,6 +46,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		int cont = 0;
 
 		lua_pushnil(L);
+		EntityManager* entManager = Separity::EntityManager::getInstance();
 		while(lua_next(L, -2)) {
 			if(lua_isstring(L, -2)) {
 				std::string entity = lua_tostring(L, -2, NULL);
