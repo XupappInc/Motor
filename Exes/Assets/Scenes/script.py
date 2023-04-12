@@ -23,8 +23,8 @@ for obj in scene.objects:
     # Crea un diccionario con las transformaciones del objeto
     escale = 1
     lua_string += "\t\ttransform = {\n" 
-    lua_string += "\t\t\t" + "pos = {" + str(pos.x / escale) + ", " + str(pos.z / escale) + ", " + str(pos.y / escale) + "},\n"
-    lua_string += "\t\t\t" + "rot = {" + str(math.degrees(rot.x - math.pi / 2)) + ", " + str(math.degrees(rot.z)) + ", " + str(math.degrees(rot.y)) + "},\n"
+    lua_string += "\t\t\t" + "pos = {" + str(pos.x / escale) + ", " + str(pos.z / escale) + ", " + str(-pos.y / escale) + "},\n"
+    lua_string += "\t\t\t" + "rot = {" + str(math.degrees(rot.x)) + ", " + str(math.degrees(rot.z)) + ", " + str(math.degrees(-rot.y)) + "},\n"
     lua_string += "\t\t\t" + "scale = {" + str(scl.x / escale) + ", " + str(scl.z / escale) + ", " + str(scl.y / escale) + "}\n"
     lua_string += "\t\t},\n"  
     

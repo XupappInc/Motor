@@ -21,8 +21,10 @@ void Separity::ManagerManager::update(const uint32_t& deltaTime) {
 	}
 }
 
-Separity::ManagerManager::~ManagerManager() {
-
+void Separity::ManagerManager::render() {
+	for(auto m : managers_) {
+		m.second->render();
+	}
 }
 
 Separity::ManagerManager::ManagerManager() {

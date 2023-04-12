@@ -19,13 +19,13 @@ namespace Separity {
 
 		public:
 		
-		virtual void initComponents();
+		void initComponents();
 
-		virtual void update(const uint32_t& deltaTime) override;
+		void update(const uint32_t& deltaTime) override;
+
+		void render() override;
 
 		static ManagerManager* getInstance();
-
-		virtual ~ManagerManager() override;
 
 		void addManager(cmpType_type type, Manager* manager);
 		Manager* getManager(cmpType_type type);

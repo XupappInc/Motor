@@ -48,7 +48,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		while(lua_next(L, -2)) {
 			if(lua_isstring(L, -2)) {
 				std::string entity = lua_tostring(L, -2, NULL);
-				// std::cout << " " << entity << ":\n";
+				std::cout << " " << entity << ":\n";
 			}
 
 			if(lua_istable(L, -1)) {

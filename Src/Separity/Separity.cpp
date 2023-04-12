@@ -67,8 +67,8 @@ int main() {
 	//                                                   "callmemaybe", false);
 	//Entity* plano = entityManager->addEntity(_grp_GENERAL);
 	//auto tr1 = plano->getEntTransform();
-	///*auto luz = plano->addComponent<Light>(DIRECTIONAL_LIGHT);
-	//luz->setDirection({1, 1, 1});*/
+	//auto luz = plano->addComponent<Light>(DIRECTIONAL_LIGHT);
+	//luz->setDirection({1, 1, 1});
 
 	//tr1->translate(Spyutils::Vector3(0, 1.2, 2));
 	//tr1->setScale(0.2, 0.005, 0.2);
@@ -128,19 +128,19 @@ int main() {
 	//cubetr->translate({20, 25, 0});
 	//cubetr->setScale(0.03);
 
-	//Entity* luz = entityManager->addEntity(_grp_GENERAL);
-	//auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
-	//luzGlobal->setDiffuse({0.7, 0.7, 0.7});
-	//auto luzTr = luz->getEntTransform();
-	//luzTr->translate({0, 100, 0});
+	Entity* luz = entityManager->addEntity(_grp_GENERAL);
+	auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
+	luzGlobal->setDiffuse({0.7, 0.7, 0.7});
+	auto luzTr = luz->getEntTransform();
+	luzTr->translate({0, 100, 0});
 
-	//Entity* luzAux = entityManager->addEntity(_grp_GENERAL);
-	//auto luzAux1 = luzAux->addComponent<Light>(DIRECTIONAL_LIGHT);
-	//auto luzTr2 = luzAux->getEntTransform();
-	//luzTr2->translate({0, 100, 0});
-	//luzAux1->setDirection({0, 0, -1});
-	//luzAux1->setDiffuse({0.5, 0, 0.5});
-	////  mesh renderer
+	Entity* luzAux = entityManager->addEntity(_grp_GENERAL);
+	auto luzAux1 = luzAux->addComponent<Light>(DIRECTIONAL_LIGHT);
+	auto luzTr2 = luzAux->getEntTransform();
+	luzTr2->translate({0, 100, 0});
+	luzAux1->setDirection({0, 0, -1});
+	luzAux1->setDiffuse({0.5, 0, 0.5});
+	//  mesh renderer
 
 	//cube->addComponent<MeshRenderer>("Mesh.010.mesh");
 
@@ -172,8 +172,8 @@ int main() {
 	Entity* camera = entityManager->addEntity(_grp_GENERAL);
 	Transform* cam_tr =
 	    camera->getEntTransform();  // addComponent<Transform>();
-	cam_tr->translate(Spyutils::Vector3(0, 20, 25));
-	cam_tr->pitch(-40);
+	cam_tr->setPosition(0, 20, 30);
+	cam_tr->pitch(-30);
 	Camera* cam_cam = camera->addComponent<Camera>();
 
 	mm->initComponents();

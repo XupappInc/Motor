@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- exporter: blender2ogre 0.8.3 -->
+<!-- export_time: Wed, 12 Apr 2023 23:40:56 +0000 -->
+<!-- previous_export_time: Wed, 12 Apr 2023 23:36:16 +0000 -->
+<scene author="Vic_M" formatVersion="1.1" >
+  <nodes >
+    <node name="CAR_03_1" >
+      <position x="-0.726659" y="19.947966" z="-17.546831" />
+      <rotation qw="0.010697" qx="0.010698" qy="-0.707026" qz="0.707026" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.mesh" name="CAR_03_1" >
+        <userData />
+      </entity>
+    </node>
+    <node name="CAR_03" >
+      <position x="-12.187517" y="4.847420" z="-12.213877" />
+      <rotation qw="0.021180" qx="0.021180" qy="-0.706790" qz="0.706789" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.001.mesh" name="CAR_03" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_04" >
+      <position x="-13.380053" y="5.018251" z="-9.339052" />
+      <rotation qw="0.500137" qx="0.500137" qy="0.499863" qz="-0.499863" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.002.mesh" name="Car_04" >
+        <userData />
+      </entity>
+    </node>
+    <node name="CAR_03_2" >
+      <position x="-8.426238" y="4.927019" z="8.012352" />
+      <rotation qw="0.470758" qx="0.470758" qy="-0.527624" qz="0.527624" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.003.mesh" name="CAR_03_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_04_1" >
+      <position x="-8.501179" y="5.106515" z="-12.246647" />
+      <rotation qw="0.000194" qx="0.000194" qy="0.707107" qz="-0.707107" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.004.mesh" name="Car_04_1" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_04_2" >
+      <position x="-18.454517" y="5.032256" z="9.109938" />
+      <rotation qw="0.002342" qx="0.002342" qy="-0.707103" qz="0.707103" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.005.mesh" name="Car_04_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_04_3" >
+      <position x="8.061096" y="4.938966" z="10.579006" />
+      <rotation qw="0.499863" qx="0.499863" qy="-0.500137" qz="0.500137" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.006.mesh" name="Car_04_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_08_4" >
+      <position x="16.742002" y="4.331988" z="4.279676" />
+      <rotation qw="0.000000" qx="-0.707107" qy="0.000000" qz="0.707107" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.008.mesh" name="Car_08_4" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_08_3" >
+      <position x="18.082014" y="4.259678" z="-8.808605" />
+      <rotation qw="0.000000" qx="-0.720012" qy="0.000000" qz="-0.693961" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.009.mesh" name="Car_08_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_04_1_2" >
+      <position x="-16.321959" y="5.018251" z="-2.461198" />
+      <rotation qw="0.022155" qx="0.022155" qy="0.706760" qz="-0.706760" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.010.mesh" name="Car_04_1_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_08_2" >
+      <position x="-4.198454" y="4.559501" z="-10.472971" />
+      <rotation qw="0.000000" qx="-0.780534" qy="-0.000000" qz="-0.625114" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.011.mesh" name="Car_08_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="CAR_03_1_2" >
+      <position x="4.905548" y="5.061615" z="-6.431811" />
+      <rotation qw="0.496691" qx="0.496691" qy="0.503288" qz="-0.503287" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.012.mesh" name="CAR_03_1_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="CAR_03_2_2" >
+      <position x="-11.669372" y="4.948797" z="10.658803" />
+      <rotation qw="0.516617" qx="0.516617" qy="-0.482811" qz="0.482811" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.013.mesh" name="CAR_03_2_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_04_2_2" >
+      <position x="10.270324" y="5.134731" z="-9.185039" />
+      <rotation qw="0.443308" qx="0.443308" qy="0.550888" qz="-0.550888" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.014.mesh" name="Car_04_2_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_08_1" >
+      <position x="-10.248900" y="4.352717" z="-24.967567" />
+      <rotation qw="0.000000" qx="-0.000000" qy="-0.000000" qz="1.000000" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.015.mesh" name="Car_08_1" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_08" >
+      <position x="0.041465" y="4.332121" z="4.839552" />
+      <rotation qw="0.000000" qx="-0.707107" qy="-0.000000" qz="0.707107" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.016.mesh" name="Car_08" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_08_5" >
+      <position x="10.119079" y="4.318643" z="-25.974558" />
+      <rotation qw="0.000000" qx="-0.999830" qy="0.000000" qz="0.018421" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.017.mesh" name="Car_08_5" >
+        <userData />
+      </entity>
+    </node>
+    <node name="CAR_03_2_3" >
+      <position x="-16.484251" y="4.901580" z="-16.321459" />
+      <rotation qw="0.703065" qx="0.703065" qy="-0.075498" qz="0.075498" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.018.mesh" name="CAR_03_2_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Car_08_6" >
+      <position x="-0.038426" y="4.364435" z="9.009047" />
+      <rotation qw="0.000000" qx="-0.707107" qy="-0.000000" qz="0.707107" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.019.mesh" name="Car_08_6" >
+        <userData />
+      </entity>
+    </node>
+    <node name="CAR_03_3" >
+      <position x="12.144852" y="5.426166" z="-13.433855" />
+      <rotation qw="0.706252" qx="0.706252" qy="0.034752" qz="-0.034752" />
+      <scale x="0.026636" y="0.026636" z="0.026636" />
+      <entity meshFile="Mesh.020.mesh" name="CAR_03_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="traffic_light" >
+      <position x="8.498717" y="5.490379" z="-13.659899" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.021.mesh" name="traffic_light" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_3" >
+      <position x="7.242279" y="4.047173" z="-10.738484" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.022.mesh" name="Light_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_2" >
+      <position x="2.683851" y="4.047180" z="-2.326494" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.023.mesh" name="Light_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_1" >
+      <position x="7.242279" y="4.047180" z="-13.675188" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.024.mesh" name="Light_1" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light.001" >
+      <position x="-4.280840" y="4.047173" z="-3.775004" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.025.mesh" name="Light.001" >
+        <userData />
+      </entity>
+    </node>
+    <node name="traffic_light_1" >
+      <position x="-2.778747" y="5.490379" z="-13.659899" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.026.mesh" name="traffic_light_1" >
+        <userData />
+      </entity>
+    </node>
+    <node name="traffic_light_2" >
+      <position x="-2.973982" y="5.539427" z="-22.163788" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.027.mesh" name="traffic_light_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Floor_4" >
+      <position x="-8.584304" y="5.060415" z="0.775170" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.014884" y="0.017767" z="0.014884" />
+      <entity meshFile="Mesh.028.mesh" name="Floor_4" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Floor" >
+      <position x="7.958388" y="5.132097" z="-16.159874" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017565" y="0.016843" z="0.021108" />
+      <entity meshFile="Mesh.029.mesh" name="Floor" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Bed" >
+      <position x="3.376060" y="4.343489" z="-15.317022" />
+      <rotation qw="0.000000" qx="-0.000000" qy="0.707107" qz="-0.707107" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.030.mesh" name="Bed" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Bed_2" >
+      <position x="-13.001105" y="4.310020" z="0.648995" />
+      <rotation qw="0.000000" qx="-0.000000" qy="0.707107" qz="-0.707107" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.032.mesh" name="Bed_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Bushes_3_2" >
+      <position x="4.494996" y="4.650058" z="-4.340831" />
+      <rotation qw="0.591742" qx="0.512306" qy="0.483707" qz="0.391678" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.033.mesh" name="Bushes_3_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="House" >
+      <position x="7.200770" y="95.956589" z="-11.941550" />
+      <rotation qw="0.000000" qx="-1.000000" qy="-0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <userData >
+        <property data="1.0" name="collider" type="str" />
+        <property data="type = 0" name="rigidbody" type="str" />
+      </userData>
+      <entity meshFile="Mesh.034.mesh" name="House" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Bench_1" >
+      <position x="2.523941" y="3.952850" z="-8.760691" />
+      <rotation qw="0.000000" qx="-0.707107" qy="-0.000000" qz="0.707107" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.035.mesh" name="Bench_1" >
+        <userData />
+      </entity>
+    </node>
+    <node name="House_2" >
+      <position x="10.457152" y="4.392285" z="2.490962" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.036.mesh" name="House_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_3_2" >
+      <position x="4.062244" y="4.047180" z="6.141724" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.037.mesh" name="Light_3_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_2_2" >
+      <position x="-14.066381" y="4.047180" z="-15.345236" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.038.mesh" name="Light_2_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_1_2" >
+      <position x="6.149566" y="4.047173" z="-13.769060" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.039.mesh" name="Light_1_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_2_3" >
+      <position x="1.982399" y="4.047173" z="-18.862728" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.040.mesh" name="Light_2_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Floor_4_2" >
+      <position x="6.896088" y="4.959407" z="0.847907" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.020973" z="0.017757" />
+      <entity meshFile="Mesh.041.mesh" name="Floor_4_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Floor_2" >
+      <position x="7.926476" y="5.027987" z="0.699986" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.042.mesh" name="Floor_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_47" >
+      <position x="12.162578" y="3.982986" z="-20.693666" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.043.mesh" name="Firtree_47" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_3" >
+      <position x="9.785771" y="4.467484" z="-21.018909" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.044.mesh" name="Firtree_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_2" >
+      <position x="8.193958" y="4.321060" z="-20.935480" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.045.mesh" name="Firtree_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_1" >
+      <position x="6.382730" y="4.102135" z="-20.688488" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.046.mesh" name="Firtree_1" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree" >
+      <position x="4.819894" y="4.089447" z="-20.805120" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.047.mesh" name="Firtree" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Cube_7" >
+      <position x="6.827527" y="4.421786" z="-3.324274" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.048.mesh" name="Cube_7" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_4" >
+      <position x="12.643640" y="4.287941" z="-21.556200" />
+      <rotation qw="0.649180" qx="0.649180" qy="0.280296" qz="-0.280296" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.049.mesh" name="Firtree_4" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Bench" >
+      <position x="2.523941" y="3.952850" z="-11.058771" />
+      <rotation qw="0.000000" qx="-0.707107" qy="-0.000000" qz="0.707107" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.050.mesh" name="Bench" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Muff_1" >
+      <position x="-6.770016" y="5.466811" z="1.364066" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.051.mesh" name="Muff_1" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Muff" >
+      <position x="-6.770016" y="5.466811" z="3.137381" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.052.mesh" name="Muff" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_3_3" >
+      <position x="13.331179" y="4.047180" z="0.414703" />
+      <rotation qw="0.000000" qx="0.000000" qy="0.707107" qz="-0.707107" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.053.mesh" name="Light_3_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_2_4" >
+      <position x="13.170110" y="4.047180" z="5.684768" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.054.mesh" name="Light_2_4" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_1_3" >
+      <position x="6.149566" y="4.047173" z="-13.769060" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.055.mesh" name="Light_1_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_3_4" >
+      <position x="4.593835" y="4.047173" z="-4.937449" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.056.mesh" name="Light_3_4" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_4" >
+      <position x="-4.413651" y="4.047180" z="-16.182343" />
+      <rotation qw="0.000000" qx="-0.000000" qy="0.707107" qz="-0.707107" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.057.mesh" name="Light_4" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_5" >
+      <position x="-4.110419" y="4.244796" z="5.621415" />
+      <rotation qw="0.000000" qx="-0.000000" qy="0.707107" qz="-0.707107" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.058.mesh" name="Light_5" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Floor_4_3" >
+      <position x="8.620531" y="5.353589" z="-15.510691" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.018348" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.059.mesh" name="Floor_4_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Floor_3" >
+      <position x="-9.260073" y="5.151781" z="0.979287" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.060.mesh" name="Floor_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_47_2" >
+      <position x="-14.097712" y="4.328594" z="4.736880" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.061.mesh" name="Firtree_47_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_3_2" >
+      <position x="-14.298684" y="4.813091" z="2.419314" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.062.mesh" name="Firtree_3_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_2_2" >
+      <position x="-14.224256" y="4.666668" z="0.766459" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.063.mesh" name="Firtree_2_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_1_2" >
+      <position x="-14.278793" y="4.447742" z="-0.946163" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.064.mesh" name="Firtree_1_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_2_3" >
+      <position x="-14.001101" y="4.435055" z="-2.250983" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.065.mesh" name="Firtree_2_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Cube_7_2" >
+      <position x="8.771032" y="4.627893" z="-20.634600" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.012818" y="0.018441" z="0.017757" />
+      <entity meshFile="Mesh.066.mesh" name="Cube_7_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Firtree_4_2" >
+      <position x="-14.225495" y="4.221512" z="-3.534927" />
+      <rotation qw="0.649180" qx="0.649180" qy="0.280296" qz="-0.280296" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.067.mesh" name="Firtree_4_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Bench_2" >
+      <position x="-3.247970" y="3.952850" z="-13.201128" />
+      <rotation qw="0.000000" qx="-1.000000" qy="-0.000000" qz="0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.068.mesh" name="Bench_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Behch" >
+      <position x="-3.247970" y="3.952850" z="-11.810183" />
+      <rotation qw="0.000000" qx="-1.000000" qy="-0.000000" qz="0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.069.mesh" name="Behch" >
+        <userData />
+      </entity>
+    </node>
+    <node name="House_3" >
+      <position x="-9.315704" y="5.335236" z="-0.947848" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.070.mesh" name="House_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Shop" >
+      <position x="-9.210002" y="4.200622" z="-19.065489" />
+      <rotation qw="0.000000" qx="-1.000000" qy="0.000000" qz="0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.071.mesh" name="Shop" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Trash" >
+      <position x="0.892654" y="3.803398" z="-8.258898" />
+      <rotation qw="0.707107" qx="-0.707107" qy="-0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.072.mesh" name="Trash" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Trash_2" >
+      <position x="-1.387726" y="3.803398" z="-8.258898" />
+      <rotation qw="0.707107" qx="-0.707107" qy="-0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.073.mesh" name="Trash_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_3_5" >
+      <position x="12.540011" y="4.018883" z="-10.913599" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.074.mesh" name="Light_3_5" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_2_5" >
+      <position x="-12.453157" y="4.018883" z="5.968887" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.075.mesh" name="Light_2_5" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Light_4_2" >
+      <position x="-14.372162" y="3.547948" z="-4.845606" />
+      <rotation qw="0.500000" qx="0.500000" qy="-0.500000" qz="0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.076.mesh" name="Light_4_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Floor_4_4" >
+      <position x="-9.283895" y="5.056010" z="-15.705859" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.077.mesh" name="Floor_4_4" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Floor_4_5" >
+      <position x="-8.321920" y="4.976170" z="-10.835993" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.078.mesh" name="Floor_4_5" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Bushes_15" >
+      <position x="2.915678" y="4.913353" z="-17.906578" />
+      <rotation qw="0.760458" qx="0.085297" qy="-0.076393" qz="0.639213" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.080.mesh" name="Bushes_15" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Bushes_2" >
+      <position x="3.184377" y="4.622692" z="-13.306192" />
+      <rotation qw="0.760458" qx="0.085297" qy="-0.076393" qz="0.639213" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.081.mesh" name="Bushes_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Tree_1" >
+      <position x="2.801296" y="3.790840" z="-15.695240" />
+      <rotation qw="0.510579" qx="-0.367544" qy="-0.568718" qz="0.529887" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.083.mesh" name="Tree_1" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Tree_2" >
+      <position x="3.161169" y="3.484314" z="-12.419183" />
+      <rotation qw="0.760458" qx="0.085297" qy="-0.076393" qz="0.639213" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.084.mesh" name="Tree_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Tree_3" >
+      <position x="2.467138" y="3.806259" z="-11.429324" />
+      <rotation qw="0.636521" qx="0.471223" qy="0.423052" qz="0.440247" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.085.mesh" name="Tree_3" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Tree_1_2" >
+      <position x="2.934072" y="3.790840" z="-18.882420" />
+      <rotation qw="0.760458" qx="0.085297" qy="-0.076393" qz="0.639213" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.090.mesh" name="Tree_1_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Tree_2_2" >
+      <position x="2.676205" y="3.806259" z="-17.208736" />
+      <rotation qw="0.760458" qx="0.085297" qy="-0.076393" qz="0.639213" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.091.mesh" name="Tree_2_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Tree_3_2" >
+      <position x="2.770958" y="3.806259" z="-14.616504" />
+      <rotation qw="0.636521" qx="0.471223" qy="0.423052" qz="0.440247" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.092.mesh" name="Tree_3_2" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Floor_6" >
+      <position x="-0.633299" y="1.839522" z="-7.719617" />
+      <rotation qw="0.000000" qx="-1.000000" qy="-0.000000" qz="0.000000" />
+      <scale x="0.017956" y="0.017956" z="0.017956" />
+      <entity meshFile="Mesh.098.mesh" name="Floor_6" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Bushes_3_2.001" >
+      <position x="4.494996" y="4.747939" z="5.110823" />
+      <rotation qw="0.591742" qx="0.512306" qy="0.483707" qz="0.391678" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.033.mesh" name="Bushes_3_2.001" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Cube_7.001" >
+      <position x="6.827527" y="4.519666" z="6.127380" />
+      <rotation qw="0.500000" qx="0.500000" qy="0.500000" qz="-0.500000" />
+      <scale x="0.017757" y="0.017757" z="0.017757" />
+      <entity meshFile="Mesh.048.mesh" name="Cube_7.001" >
+        <userData />
+      </entity>
+    </node>
+    <node name="Sun" >
+      <position x="0.000000" y="15.542765" z="-0.000000" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Sun" powerScale="1.0600000619888306" type="directional" >
+        <colourDiffuse b="0.734694" g="0.612501" r="0.261704" />
+        <colourSpecular b="1.000000" g="0.833682" r="0.356208" />
+        <lightAttenuation constant="1.0" linear="0.080000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot" >
+      <position x="-4.263870" y="8.676029" z="-5.197741" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.001" >
+      <position x="-14.258504" y="8.676029" z="-6.414494" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.001" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.002" >
+      <position x="4.597455" y="8.676029" z="-6.469467" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.002" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.003" >
+      <position x="7.167649" y="8.676029" z="-9.488676" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.003" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.004" >
+      <position x="12.948470" y="8.676029" z="-9.740982" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.004" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.005" >
+      <position x="-2.810835" y="8.676029" z="-16.279669" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.005" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.006" >
+      <position x="0.568082" y="8.821006" z="-18.811245" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.006" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.007" >
+      <position x="-12.288205" y="8.459111" z="7.728264" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.007" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.008" >
+      <position x="13.009048" y="8.459111" z="7.728264" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.008" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.009" >
+      <position x="1.321919" y="8.676029" z="-2.151211" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.009" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.010" >
+      <position x="15.062689" y="8.676029" z="0.766801" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.010" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+    <node name="Spot.011" >
+      <position x="-14.258504" y="8.676029" z="-13.651421" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <light name="Spot.011" powerScale="374.89996337890625" type="spot" >
+        <colourDiffuse b="0.127867" g="1.000000" r="0.769743" />
+        <colourSpecular b="0.127867" g="1.000000" r="0.769743" />
+        <lightRange falloff="1.0" inner="0.6675884527838338" outer="0.7853981852531433" />
+        <lightAttenuation constant="1.0" linear="0.040000" quadratic="0.0" range="5000" />
+      </light>
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="World_ap.15.material" />
+    </item>
+    <item type="material" >
+      <file name="World_ap.8.material" />
+    </item>
+    <item type="material" >
+      <file name="World_ap.9.material" />
+    </item>
+    <item type="material" >
+      <file name="World_ap.16.material" />
+    </item>
+    <item type="material" >
+      <file name="World_ap.material" />
+    </item>
+    <item type="material" >
+      <file name="World_ap.17.material" />
+    </item>
+    <item type="material" >
+      <file name="World_ap.11.material" />
+    </item>
+    <item type="material" >
+      <file name="World_ap.19.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourBackground b="0.050876" g="0.050876" r="0.050876" />
+  </environment>
+</scene>

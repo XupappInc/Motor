@@ -17,7 +17,8 @@ void Separity::Manager::update(const uint32_t& deltaTime) {
 	}
 }
 
-void Separity::Manager::render() {}
+void Separity::Manager::render() {
+}
 
 void Separity::Manager::addComponent(Separity::Component* cmp) {
 	assert(cmp != nullptr);
