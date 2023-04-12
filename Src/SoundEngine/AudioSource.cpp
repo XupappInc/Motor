@@ -57,6 +57,7 @@ AudioSource::~AudioSource() {
 		auto iterator = audioManager->sounds_->find(audioName_);
 		audioManager->sounds_->erase(iterator);
 	}
+	sound_->release();
 }
 
 void Separity::AudioSource::setPlayingState(bool state) { playing_ = state; }
