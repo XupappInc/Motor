@@ -64,8 +64,6 @@ void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 	    new luabridge::LuaRef(luabridge::getGlobal(L_, (name + "Lua").c_str()));
 
 	behaviourScript->setLuaScript(behaviourLua);
-
-	cmps_.push_back(behaviourScript);
 }
 
 lua_State* Separity::LuaManager::getLuaState() { return L_; }

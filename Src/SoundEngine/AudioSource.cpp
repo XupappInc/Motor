@@ -15,6 +15,7 @@ AudioSource::AudioSource(std::string audioRoute, std::string audioName,
 	// Añade el audio a la lista de sonidos de música o de sonidos dependiendo
 	// de un booleano
 	FMOD_RESULT result;
+	isMusic_ = isMusic;
 	if(isMusic) {
 		result = audioManager->system_->createSound(
 		    audioRoute.c_str(), FMOD_3D | FMOD_LOOP_NORMAL, nullptr, &sound_);
@@ -36,6 +37,26 @@ AudioSource::AudioSource(std::string audioRoute, std::string audioName,
 AudioSource::~AudioSource() {
 	// Pone a nullptr sound_
 	sound_ = nullptr;
+	AudioManager* audioManager = AudioManager::getInstance();
+	bool isPlaying = true;
+	// Comprueba si está sonando el sonido, si es así quita el canal del map de
+	// canales y pone el canal a null y el estado playing a false
+	if(channel_ && !isPlaying) {
+		channel_->isPlaying(&isPlaying);
+		if(!isPlaying) {
+			auto iterator = audioManager->channels_->find(audioName_);
+			audioManager->channels_->erase(iterator);
+			channel_ = nullptr;
+			playing_ = false;
+		}
+	}
+	if(isMusic_) {
+		auto iterator = audioManager->musics_->find(audioName_);
+		audioManager->musics_->erase(iterator);
+	} else {
+		auto iterator = audioManager->sounds_->find(audioName_);
+		audioManager->sounds_->erase(iterator);
+	}
 }
 
 void Separity::AudioSource::setPlayingState(bool state) { playing_ = state; }

@@ -23,7 +23,10 @@ AudioListener::AudioListener() {
 	audioManager = nullptr;
 }
 
-Separity::AudioListener::~AudioListener() {}
+Separity::AudioListener::~AudioListener() {
+	AudioManager* audioManager = AudioManager::getInstance();
+	audioManager->firstListener = true;
+}
 
 void Separity::AudioListener::update() {
 	Transform* tr = ent_->getEntTransform();

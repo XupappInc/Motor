@@ -63,7 +63,7 @@ namespace Separity {
 		FMOD::Sound* getSound();
 		private:
 		std::string audioName_;
-		bool playing_;
+		bool playing_, isMusic_;
 		FMOD::Channel* channel_;
 		FMOD::Sound* sound_;
 	};
