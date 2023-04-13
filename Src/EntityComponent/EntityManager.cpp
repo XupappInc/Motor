@@ -46,8 +46,8 @@ void Separity::EntityManager::clean() {
 void Separity::EntityManager::debug() {
 	for(auto i : allEntities_) {
 		Transform* tr = i->getComponent<Transform>();
-		std::cout << tr->getPosition().x << " " << tr->getPosition().y << " " 
-		          << tr->getPosition().z << "\n";
+		std::cout << tr->getRotationQ().x << " " << tr->getRotationQ().y << " " 
+		          << tr->getPosition().z << " " << tr->getRotationQ().w << "\n";
 	}
 }
 

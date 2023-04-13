@@ -58,26 +58,11 @@ int main() {
 	//auto* sonido = listener->addComponent<AudioSource>("Assets//piano.wav",
 	//                                                   "callmemaybe", false);
 
-	Entity* plano = entityManager->addEntity(_grp_GENERAL);
-	plano->getComponent<Transform>()->setPosition(0, 2, 0);
-
-	colliderParams params;
-	params.colShape = CUBE;
-	params.height = 5;
-	params.width = 45;
-	params.depth = 45;
-	params.offsetY = 0;
-	params.offsetX = 0;
-	params.offsetZ = 0;
-	params.isTrigger = false;
-
-	plano->addComponent<Collider>(params);
-	plano->addComponent<RigidBody>(STATIC, 10);
-
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({0, 60, 0});
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 	
+	colliderParams params;
 	params.colShape = CUBE;
 	params.height = 10;
 	params.width = 5;
@@ -115,6 +100,8 @@ int main() {
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
 	bool quit = false;
+
+	entityManager->debug();
 
 	while(!quit) {
 
