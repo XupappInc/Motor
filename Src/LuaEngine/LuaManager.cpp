@@ -43,7 +43,7 @@ void Separity::LuaManager::initLua() {
 
 	luaL_openlibs(L_);
 
-	registerClasses();
+	//registerClasses();
 
 	// Registramos la clase base y sus funciones miembro
 	luabridge::getGlobalNamespace(L_)
@@ -58,12 +58,12 @@ void Separity::LuaManager::initLua() {
 	    .endClass();
 }
 
-void Separity::LuaManager::registerClasses() {
-	luabridge::getGlobalNamespace(L_)
-	    .beginClass<Entity>("Entity")
-	    .addFunction("getTransform", &Entity::getEntTransform)
-	    .endClass();
-}
+//void Separity::LuaManager::registerClasses() {
+//	/*luabridge::getGlobalNamespace(L_)
+//	    .beginClass<Entity>("Entity")
+//	    .addFunction("getComponent", &Entity::getEntTransform)
+//	    .endClass();*/
+//}
 
 void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 	// Cargamos el script de Lua desde un archivo

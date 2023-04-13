@@ -15,7 +15,7 @@ namespace Separity {
 		friend Singleton<LuaManager>;
 
 		public:	
-		void registerClasses();
+		//void registerClasses();
 		void loadScript(std::string name, Entity* ent);
 
 		lua_State* getLuaState();

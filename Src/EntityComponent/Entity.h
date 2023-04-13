@@ -182,7 +182,7 @@ namespace Separity {
 		/// </summary>
 		/// <returns>El grupo al que pertenece la entidad (gId)</returns>
 		Separity::grpId_type getGroupId();
-		Separity::Transform* getEntTransform();
+		
 		private:
 
 		Manager* getManager(cmpType_type type);

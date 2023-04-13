@@ -89,7 +89,7 @@ void Separity::AudioSource::update(const uint32_t& deltaTime) {
 	// Comprueba si está sonando, si está sonando coge el transform y mueve el
 	// sonido a la posición del transform
 	else if(playing_) {
-		Transform* tr = ent_->getEntTransform();
+		Transform* tr = ent_->getComponent<Transform>();
 
 		FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
 		                               tr->getPosition().z};

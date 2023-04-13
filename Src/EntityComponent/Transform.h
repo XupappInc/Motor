@@ -14,7 +14,7 @@ namespace Ogre {
 namespace Separity {
 	class Transform : public Separity::Component {
 		public:
-		__CMPTYPE_DECL__(Separity::_TRANSFORM_COMPONENT)
+		__CMPTYPE_DECL__(Separity::_ENTITY)
 		__CMPID_DECL__(Separity::_TRANSFORM)
 		Transform();
 		std::vector<std::vector<float>>

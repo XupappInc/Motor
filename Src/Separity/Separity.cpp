@@ -25,7 +25,6 @@
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "SceneManager.h"
-#include "TransformManager.h"
 #include "UIManager.h"
 // Utils
 // #include "checkML.h"
@@ -76,7 +75,7 @@ int main() {
 	plano->addComponent<RigidBody>(STATIC, 10);
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
-	sinbad->getEntTransform()->translate({0, 60, 0});
+	sinbad->getComponent<Transform>()->translate({0, 60, 0});
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 	
 	params.colShape = CUBE;
@@ -94,19 +93,19 @@ int main() {
 	Entity* luz = entityManager->addEntity(_grp_GENERAL);
 	auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luzGlobal->setDiffuse({0.7, 0.7, 0.7});
-	auto luzTr = luz->getEntTransform();
+	auto luzTr = luz->getComponent<Transform>();
 	luzTr->translate({0, 100, 0});
 
 	Entity* luzAux = entityManager->addEntity(_grp_GENERAL);
 	auto luzAux1 = luzAux->addComponent<Light>(DIRECTIONAL_LIGHT);
-	auto luzTr2 = luzAux->getEntTransform();
+	auto luzTr2 = luzAux->getComponent<Transform>();
 	luzTr2->translate({0, 100, 0});
 	luzAux1->setDirection({0, 0, -1});
 	luzAux1->setDiffuse({0.5, 0, 0.5});
 
 	Entity* camera = entityManager->addEntity(_grp_GENERAL);
 	Transform* cam_tr =
-	    camera->getEntTransform();  // addComponent<Transform>();
+	    camera->getComponent<Transform>();  // addComponent<Transform>();
 	cam_tr->setPosition(0, 20, 30);
 	cam_tr->pitch(-30);
 	Camera* cam_cam = camera->addComponent<Camera>();
