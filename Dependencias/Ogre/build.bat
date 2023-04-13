@@ -25,6 +25,6 @@ XCOPY /y /s .\build\bin\release\Codec_STBI.dll %EXES%
 XCOPY /y /s .\build\bin\release\RenderSystem_GL.dll %EXES%
 XCOPY /y /s .\build\bin\release\OgreMain.dll %EXES%
 XCOPY /y /s .\build\bin\release\Plugin_ParticleFX.dll %EXES%
-XCOPY /y /s .\build\bin\debug\OgreOverlay.dll %EXES%
+XCOPY /y /s .\build\bin\release\OgreOverlay.dll %EXES%
 
 XCOPY /y /s .\build\bin\release\SDL2.dll %EXES%
