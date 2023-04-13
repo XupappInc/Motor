@@ -39,8 +39,7 @@ void Separity::EntityManager::deleteEntities() {
 
 void Separity::EntityManager::clean() { 
 	
-
-	deleteEntities();
+	//deleteEntities();
 	close(); 
 }
 

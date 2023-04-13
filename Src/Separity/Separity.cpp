@@ -178,7 +178,7 @@ int main() {
 		if(waitTime > 0)
 			Sleep(waitTime);
 	}
-
+	entityManager->deleteEntities(); //no tocar
 	mm->clean();
 
 	return 0;
