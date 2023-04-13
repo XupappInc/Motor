@@ -101,8 +101,6 @@ int main() {
 	uint32_t deltaTime = 0;
 	bool quit = false;
 
-	entityManager->debug();
-
 	while(!quit) {
 
 		timer->reset();
