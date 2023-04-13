@@ -641,6 +641,12 @@ Entities = {
 		meshRenderer = {
 			textureName = "World_ap",
 			meshName = "Mesh.059"
+		},
+		collider = {
+			dim = {10.216782569885254, 9.887961387634277, 0.3033443093299866},
+		},
+		rigidbody = {
+			type = 2
 		}
 	},
 	Floor_3 = {
