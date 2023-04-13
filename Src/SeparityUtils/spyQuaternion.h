@@ -1,7 +1,12 @@
 #pragma once
 #ifndef __SPYQUATERNION_H__
 #define __SPYQUATERNION_H__
+  
 
+class btQuaternion;
+namespace Ogre {
+	class Quaternion;
+}
 namespace Spyutils {
 	class Vector3;
 
@@ -16,7 +21,7 @@ namespace Spyutils {
 		public:
 		float w,x, y, z;
 
-		spyQuaternion(float x = 0, float y = 0, float z = 0);
+		spyQuaternion( float x, float y, float z);
 		spyQuaternion(float w,float x, float y, float z );
 		/// <summary>
 		/// Convertir a grados
@@ -44,6 +49,8 @@ namespace Spyutils {
 		/// </summary>
 		/// <param name="angle">grados que rota</param>
 		void roll(float angle);
+		Ogre::Quaternion spyQuaterniomToOgre() const;
+		btQuaternion spyQuaterniomToBullet() const;
 	};
 
 }  // namespace Spyutils

@@ -79,6 +79,7 @@ Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
 void Separity::Transform::setRotation(float rotationX, float rotationY,
                                       float rotationZ) {
 	rotation_ = Spyutils::Vector3(rotationX, rotationY, rotationZ);
+	rotationQ_ = {rotationX, rotationY, rotationZ};
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
