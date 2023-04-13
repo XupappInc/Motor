@@ -27,9 +27,9 @@ void Separity::Manager::addComponent(Separity::Component* cmp) {
 
 void Separity::Manager::removeComponent(Separity::Component* cmp) {
 	assert(cmp != nullptr);
-	auto iter = std::find(cmps_.begin(), cmps_.end(), cmp);
+	/*auto iter = std::find(cmps_.begin(), cmps_.end(), cmp);
 
-	cmps_.erase(iter);
+	cmps_.erase(iter);*/
 }
 
 Separity::Manager::Manager() {}

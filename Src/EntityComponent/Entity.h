@@ -41,10 +41,10 @@ namespace Separity {
 		/// </summary>
 		virtual ~Entity() {
 			// borramos todos los componentes disponibles
-			for(auto c : currCmps_) delete c;
+			for(Component* c : currCmps_) delete c;
 			if(parent)
 			delete parent;
-			for(auto ch : childs_) delete ch;
+			for(Entity* ch : childs_) delete ch;
 		}
 		/// <summary>
 		/// acceso a los hijops de la entidad
