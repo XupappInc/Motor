@@ -37,16 +37,16 @@ Separity::Entity* Separity::Entity::getParent() const {
 }
 
 void Separity::Entity::addChild( Entity* child) {
-	auto parent = this->getEntTransform();
-	auto childrenTr=child->getEntTransform();
+	auto parent = this->getComponent<Transform>();
+	auto childrenTr = child->getComponent<Transform>();
 	//parent->addChild(childrenTr->getNode());
 	childs_.push_back(child);
 }
 
 void Separity::Entity::removeChild( Entity* child) {
 	auto it = find(childs_.begin(), childs_.end(), child);
-	auto tr2 = this->getEntTransform();
-	auto tr = child->getEntTransform();
+	auto tr2 = getComponent<Transform>();
+	auto tr =getComponent<Transform>();
 	//tr->removeChild(tr2->getNode());
 	if(it != childs_.end()) {
 		childs_.erase(it);
@@ -58,8 +58,6 @@ void Separity::Entity::removeChild( Entity* child) {
 }
 
 Separity::grpId_type Separity::Entity::getGroupId() { return gId_; }
-
-Separity::Transform* Separity::Entity::getEntTransform() { return entTr_; }
 
 Separity::Manager* Separity::Entity::getManager(cmpType_type type) {
 	return Separity::ManagerManager::getInstance()->getManager(type);

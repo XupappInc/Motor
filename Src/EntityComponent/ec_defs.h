@@ -23,7 +23,7 @@
 		 
 
 /// <summary>
-/// Lista tipos de componentes, debe de tener al menos 1 elemento
+/// Lista tipos de managers, debe de tener al menos 1 elemento
 /// </summary>
 #define _CMPS_TYPES_ \
 		_ENTITY, \
@@ -33,8 +33,7 @@
 		_UI, \
 		_SOUND, \
 		_SCRIPT, \
-		_SCENE, \
-		_TRANSFORM_COMPONENT
+		_SCENE
 
 /// <summary>
 /// Lista de grupos, debe de tener al menos 1 elemento

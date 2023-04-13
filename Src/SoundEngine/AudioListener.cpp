@@ -30,7 +30,7 @@ Separity::AudioListener::~AudioListener() {
 }
 
 void Separity::AudioListener::update(const uint32_t& deltaTime) {
-	Transform* tr = ent_->getEntTransform();
+	Transform* tr = ent_->getComponent<Transform>();
 
 	FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
 	                               tr->getPosition().z};
