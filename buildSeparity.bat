@@ -2,5 +2,5 @@
 
 cls
 
-msbuild "Separity.sln" /p:configuration=Debug
-msbuild "Separity.sln" /p:configuration=Release
+msbuild "Separity.sln" /p:Configuration=Debug /p:Platform=x64
+msbuild "Separity.sln" /p:Configuration=Release /p:Platform=x64

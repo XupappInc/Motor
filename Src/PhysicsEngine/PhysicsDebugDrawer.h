@@ -55,7 +55,7 @@ namespace Separity {
 		/// </summary>
 		/// <returns>Un entero con los flags</returns>
 		int getDebugMode() const override;
-
+		void setSceneManager(Ogre::SceneManager* sceneManager);
 		private:
 		Ogre::SceneManager* sceneMngr_;
 		DebugDrawModes debugMode_;
