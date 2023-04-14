@@ -46,7 +46,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		int cont = 0;
 
 		lua_pushnil(L);
-		EntityManager* entManager = Separity::EntityManager::getInstance();
+		/*EntityManager* entManager = Separity::EntityManager::getInstance();*/
 		while(lua_next(L, -2)) {
 			if(lua_isstring(L, -2)) {
 				std::string entity = lua_tostring(L, -2, NULL);
