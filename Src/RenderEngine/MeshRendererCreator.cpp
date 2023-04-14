@@ -20,6 +20,6 @@ void Separity::MeshRendererCreator::createComponent(lua_State* L,
 	    s);
 
 
-	readParam("textureName", L, s);
-	mesh->setTexture(s);
+	if (readParam("textureName", L, s))
+		mesh->setTexture(s);
 }

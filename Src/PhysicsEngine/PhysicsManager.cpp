@@ -23,17 +23,11 @@ bool debug_ = false;
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 using namespace Separity;
+
 PhysicsManager::PhysicsManager() {
-
 	ManagerManager::getInstance()->addManager(_PHYSICS, this);
-}
 
-PhysicsManager::~PhysicsManager() {
-
-	deleteWorld();
-
-	if(debugDrawer_ != nullptr)
-		delete debugDrawer_;
+	initWorld();
 }
 
 void PhysicsManager::initWorld() {
@@ -99,6 +93,15 @@ void PhysicsManager::update(const uint32_t& deltaTime) {
 }
 
 btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return world_; }
+
+void Separity::PhysicsManager::clean() {
+	deleteWorld();
+
+	if(debugDrawer_ != nullptr)
+		delete debugDrawer_;
+
+	close();
+}
 
 PhysicsManager* PhysicsManager::getInstance() {
 	return static_cast<PhysicsManager*>(instance());

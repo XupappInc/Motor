@@ -1,5 +1,5 @@
 ﻿#include "Transform.h"
-
+#include "EntityManager.h"
 #include "Entity.h"
 #include "Vector.h"
 #include "spyMath.h"
@@ -7,7 +7,9 @@ using namespace std;
 // #include "checkML.h"
 Separity::Transform::Transform()
     : position_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0),
-      rotationQ_(0, 0, 0) {}
+      rotationQ_(0, 0, 0) {
+	mngr_ = Separity::EntityManager::getInstance();
+}
 
 vector<vector<float>>
 Separity::Transform::calculateRotationMatrix(Spyutils::Vector3 rotation) {
@@ -75,6 +77,7 @@ Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
 void Separity::Transform::setRotation(float rotationX, float rotationY,
                                       float rotationZ) {
 	rotation_ = Spyutils::Vector3(rotationX, rotationY, rotationZ);
+	rotationQ_ = {rotationX, rotationY, rotationZ};
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
@@ -108,7 +111,7 @@ void Separity::Transform::pitch(float degree) {
 	Spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x + degree, rot.y, rot.z);
 	for(auto child : ent_->getChildren()) {
-		auto tr = child->getEntTransform();
+		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
@@ -120,7 +123,7 @@ void Separity::Transform::yaw(float degree) {
 	Spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x, rot.y + degree, rot.z);
 	for(auto child : ent_->getChildren()) {
-		auto tr = child->getEntTransform();
+		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
@@ -132,7 +135,7 @@ void Separity::Transform::roll(float degree) {
 	Spyutils::Vector3 rot = getRotation();
 	setRotation(rot.x, rot.y, rot.z + degree);
 	for(auto child : ent_->getChildren()) {
-		auto tr = child->getEntTransform();
+		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
@@ -145,7 +148,7 @@ void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 
 	for(auto child : ent_->getChildren()) {
 		// Escalar y mover el objeto hijo
-		auto tr = child->getEntTransform();  // getComponent<Transform>();
+		auto tr = child->getComponent<Transform>();
 		tr->position_.x *= scaleX;
 		tr->position_.y *= scaleY;
 		tr->position_.z *= scaleZ;
@@ -191,7 +194,7 @@ Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
 	     cos_pitch * sin_yaw * sin_roll - sin_pitch * cos_roll},
 	    {-sin_yaw, sin_pitch * cos_yaw, cos_pitch * cos_yaw}};
 
-	// Aplica la rotaci�n al vector de rotaci�n
+	// Aplica la rotaci�n al vector de rotacion
 	Spyutils::Vector3 vector_rotado = {
 	    matriz_rotacion[0][0] * vector_rotacion.x +
 	        matriz_rotacion[0][1] * vector_rotacion.y +
@@ -203,7 +206,7 @@ Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
 	        matriz_rotacion[2][1] * vector_rotacion.y +
 	        matriz_rotacion[2][2] * vector_rotacion.z};
 
-	// Calcula la nueva posici�n a partir del vector rotado y el anclaje
+	// Calcula la nueva posicion a partir del vector rotado y el anclaje
 	posicion = {anclaje.x + vector_rotado.x, anclaje.y + vector_rotado.y,
 	            anclaje.z + vector_rotado.z};
 	Spyutils::Vector3 newpos = {Spyutils::Math::toDegrees(posicion.x),

@@ -9,7 +9,7 @@
 #include <cassert>
 using namespace Separity;
 
-Separity::MeshRenderer::MeshRenderer(std::string meshName) {
+Separity::MeshRenderer::MeshRenderer(std::string meshName) : RenderComponent() {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();
 	// se accede al sceneManager
 	sceneManager_ = render->getSceneManager();
@@ -37,13 +37,14 @@ void Separity::MeshRenderer::render() {
 
 	meshRenderer_->setPosition(tr->getPosition().x, tr->getPosition().y,
 	                           tr->getPosition().z);
-	Ogre::Matrix3 matrix;
+	/*Ogre::Matrix3 matrix;
 	matrix.FromEulerAnglesYXZ(
 	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().y)),
 	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().x)),
 	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().z)));
-	Ogre::Quaternion rot(matrix);
-	meshRenderer_->setOrientation(rot);
+	Ogre::Quaternion rot(matrix);*/
+	Spyutils::spyQuaternion rot = tr->getRotationQ();
+	meshRenderer_->setOrientation(rot.spyQuaterniomToOgre());
 
 	meshRenderer_->setScale(tr->getScale().x, tr->getScale().y,
 	                        tr->getScale().z);

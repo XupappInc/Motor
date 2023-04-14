@@ -14,12 +14,17 @@ namespace Separity {
 	class Manager  {
 
 		public:
-		void initComponent();
+
+		virtual void initComponents();
 		/// <summary>
 		/// Llama al preUpdate de todos los componentes del manager, después
 		/// llama al update de todos los componentes
 		/// </summary>
-		virtual void update();
+		virtual void update(const uint32_t& deltaTime);
+		/// <summary>
+		/// Llama al update de todos los componentes
+		/// </summary>
+		virtual void render();
 		/// <summary>
 		/// Añade un componente al manager
 		/// </summary>
@@ -31,6 +36,10 @@ namespace Separity {
 		/// <param name="cmp">Componente que se quiere quitar del
 		/// manager</param>
 		void removeComponent(Separity::Component* cmp);
+		/// <summary>
+		/// Funcion que se llama para eliminar el manager
+		/// manager</param>
+		virtual void clean() = 0;
 		/// <summary>
 		/// Destructor de la clase, protected
 		/// para que puedan acceder los otros managers que hereden de esta clase

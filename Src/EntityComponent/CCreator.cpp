@@ -19,14 +19,17 @@ bool Separity::CCreator::readArray(const std::string& paramName, lua_State* L,
 
 		return true;
 	}
+	lua_pop(L, 1);
 	return false;
 }
 
 bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
                                    std::string& param) {
 
-	if(!lua_getfield(L, -1, paramName.c_str()))
+	if(!lua_getfield(L, -1, paramName.c_str())) {
+		lua_pop(L, 1);
 		return false;
+	}		
 	param = lua_tostring(L, -1);
 	lua_pop(L, 1);
 
@@ -36,8 +39,10 @@ bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
 bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
                                    int& param) {
 
-	if(!lua_getfield(L, -1, paramName.c_str()))
+	if(!lua_getfield(L, -1, paramName.c_str())) {
+		lua_pop(L, 1);
 		return false;
+	}
 	param = lua_tointeger(L, -1);
 	lua_pop(L, 1);
 

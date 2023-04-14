@@ -11,7 +11,7 @@
 
 Separity::ParticleSystem::ParticleSystem(std::string name,
                                          std::string name_particle):
-    visible_(true) {
+    visible_(true), RenderComponent() {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();
 	// se accede al sceneManager
 	Ogre::SceneManager* s = render->getSceneManager();
@@ -26,10 +26,11 @@ Separity::ParticleSystem::ParticleSystem(std::string name,
 }
 
 Separity::ParticleSystem::~ParticleSystem() {
-	///*RenderManager::getInsta*/nce()->getSceneManager()->destroySceneNode(
-	//    particleNode_);
-	//RenderManager::getInstance()->getSceneManager()->destroyParticleSystem(partSys_);
+	Separity::RenderManager* render = Separity::RenderManager::getInstance();
+	Ogre::SceneManager* s = render->getSceneManager();
 	
+	s->destroyParticleSystem(partSys_);
+	s->destroySceneNode(particleNode_);
 }
 
 void Separity::ParticleSystem::render() {

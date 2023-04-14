@@ -1,7 +1,7 @@
 #pragma once
 #ifndef __RIGIDBODY_H__
 #define __RIGIDBODY_H__
-#include "Component.h"
+#include "PhysicsComponent.h"
 
 #include <unordered_set>
 
@@ -37,7 +37,7 @@ namespace Separity {
 	/// <summary>
 	/// Componente rigidbody
 	/// </summary>
-	class RigidBody : public Separity::Component {
+	class RigidBody : public Separity::PhysicsComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_RIGID_BODY)
@@ -97,7 +97,7 @@ namespace Separity {
 		/// <summary>
 		/// Método update heredado de Component
 		/// </summary>
-		void update() override;
+		void update(const uint32_t& deltaTime) override;
 		/// <summary>
 		/// Setear el damping
 		/// </summary>

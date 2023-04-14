@@ -35,15 +35,11 @@ Separity::RenderManager::RenderManager() {
 	configFile_ = nullptr;
 
 	ManagerManager::getInstance()->addManager(_RENDER, this);
+
+	init();
 }
 
-Separity::RenderManager::~RenderManager() {
-	if(ogreRoot_ != nullptr) {
-		delete ogreRoot_; //genera un error destroy movable object en SceneManager de Ogre
-		ogreRoot_ = nullptr;
-	}
-	SDL_Quit();
-}
+
 
 void Separity::RenderManager::init() {
 	//// Inicializar SDL
@@ -96,17 +92,16 @@ void Separity::RenderManager::loadResources() {
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void Separity::RenderManager::render(const uint32_t& deltaTime) {
+void Separity::RenderManager::render() {
 	for(Separity::Component* c : cmps_) {
 		c->render();
-		c->render(deltaTime);
 	}
 	// ogreRoot_->renderOneFrame(deltaTime);
 }
 
-void Separity::RenderManager::update() {
+void Separity::RenderManager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
-		c->update();
+		c->update(deltaTime);
 	}
 	ogreRoot_->renderOneFrame();
 }
@@ -228,4 +223,19 @@ Ogre::Root* Separity::RenderManager::getOgreRoot() { return ogreRoot_; }
 
 Ogre::SceneManager* Separity::RenderManager::getSceneManager() {
 	return sceneMgr_;
+}
+
+void Separity::RenderManager::clean() {
+
+	saveConfiguration();
+	closedown();
+
+	if(ogreRoot_ != nullptr) {
+		delete ogreRoot_;  // genera un error destroy movable object en
+		                   // SceneManager de Ogre
+		ogreRoot_ = nullptr;
+	}
+	SDL_Quit();
+
+	close(); 
 }

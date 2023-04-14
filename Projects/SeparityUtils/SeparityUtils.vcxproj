@@ -142,12 +142,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -157,7 +160,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\bullet3d\Src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,6 +168,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

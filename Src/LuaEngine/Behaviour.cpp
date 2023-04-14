@@ -1,12 +1,14 @@
 #include "Behaviour.h"
 
-#include "Entity.h"
-
+#include "LuaManager.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 
-Separity::Behaviour::Behaviour() : behaviourLua_(nullptr) {}
+Separity::Behaviour::Behaviour()
+    : behaviourLua_(nullptr) {
+	mngr_ = Separity::LuaManager::getInstance();
+}
 
 Separity::Behaviour::Behaviour(luabridge::LuaRef* behaviourLua)
     : behaviourLua_(behaviourLua) {}
@@ -18,7 +20,7 @@ void Separity::Behaviour::setLuaScript(luabridge::LuaRef* behaviourLua) {
 	behaviourLua_ = behaviourLua;
 }
 
-void Separity::Behaviour::update() {
+void Separity::Behaviour::update(const uint32_t& deltaTime) {
 	luabridge::LuaRef updateLua = (*behaviourLua_)["update"];
 	if(updateLua.isFunction()) {
 		updateLua();

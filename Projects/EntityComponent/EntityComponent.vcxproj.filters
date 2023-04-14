@@ -39,9 +39,6 @@
     <ClInclude Include="..\..\Src\EntityComponent\CCreator.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\EntityComponent\TransformManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\EntityComponent\EntityManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -69,9 +66,6 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\EntityComponent\CCreator.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\EntityComponent\TransformManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\EntityComponent\EntityManager.cpp">

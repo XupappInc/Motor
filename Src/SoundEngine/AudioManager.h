@@ -16,20 +16,17 @@ namespace FMOD {
 }  // namespace FMOD
 
 namespace Separity {
+	class AudioSource;
 	class AudioManager : public Separity::Manager,
 	                     public Singleton<Separity::AudioManager> {
 		friend Singleton<AudioManager>;
 
 		public:
 		/// <summary>
-		/// Constructor de AudioManager, inicializa todas las variables
+		/// Constructor de AudioManager, inicializa todas las variables, inicia
+		/// el sistema de sonido, crea todas sus caracteristicas
 		/// </summary>
 		inline AudioManager();
-		/// <summary>
-		/// Destructor de AudioManager, pone punteros a null y vacía las
-		/// variables
-		/// </summary>
-		virtual ~AudioManager();
 		/// <summary>
 		/// Método que devuelve una instancia de si mismo, es decir
 		/// AudioManager, si ya existiera devuelve dicha instancia, si no
@@ -38,11 +35,6 @@ namespace Separity {
 		/// <returns></returns>
 		static AudioManager* getInstance();
 		/// <summary>
-		/// Método iniciador del sistema de sonido, lo inicia y crea todas sus
-		/// caracteristicas
-		/// </summary>
-		void initAudioSystem();
-		/// <summary>
 		/// Reproduce un sonido "sound" ya guardado creado en "createSound" con
 		/// un audioName, y se pone una minDistance y una maxDistance
 		/// </summary>
@@ -50,6 +42,15 @@ namespace Separity {
 		/// <param name="minDistance"></param>
 		/// <param name="maxDistance"></param>
 		void playAudio(std::string audioName, float minDistance,
+		               float maxDistance);
+		/// <summary>
+		/// Reproduce un sonido audioSource y se pone una minDistance y una
+		/// maxDistance
+		/// </summary>
+		/// <param name="audioSource"></param>
+		/// <param name="minDistance"></param>
+		/// <param name="maxDistance"></param>
+		void playAudio(AudioSource* audioSource, float minDistance,
 		               float maxDistance);
 		/// <summary>
 		/// Para la reproducción de todos los canales
@@ -71,7 +72,7 @@ namespace Separity {
 		/// <summary>
 		/// Actualiza el sistema y reproduce los sonidos guardados en el sistema
 		/// </summary>
-		void update();
+		void update(const uint32_t& deltaTime) override;
 		/// <summary>
 		/// Pausa todos los caneles
 		/// </summary>
@@ -100,6 +101,8 @@ namespace Separity {
 		FMOD::SoundGroup* musicGroup_;
 		FMOD::SoundGroup* soundGroup_;
 		bool firstListener;
+
+		void clean() override;
 
 		private:
 		float* buffer_;

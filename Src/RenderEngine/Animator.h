@@ -2,7 +2,7 @@
 #ifndef __ANIMATOR_H__
 #define __ANIMATOR_H__
 
-#include "Component.h"
+#include "RenderComponent.h"
 
 #include <string>
 #include <unordered_map>
@@ -16,7 +16,7 @@ namespace Separity {
 
 	class MeshRenderer;
 
-	class Animator : public Separity::Component {
+	class Animator : public Separity::RenderComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_ANIMATOR)
@@ -60,7 +60,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="deltaTime" Parametro uint32_t que devuelve el tiempo
 		/// entre un frame y otro en milisegundos ></param>
-		void render(const uint32_t& deltaTime) override;
+		void update(const uint32_t& deltaTime) override;
 
 		private:
 		Ogre::Entity* ogreEnt_;

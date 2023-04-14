@@ -24,11 +24,9 @@ Separity::InputManager::InputManager() {
 	ManagerManager::getInstance()->addManager(_INPUT, this);
 }
 
-Separity::InputManager::~InputManager() {
-}
+void Separity::InputManager::clean() { close(); }
 
-void Separity::InputManager::update() { 
-	Manager::update();
+void Separity::InputManager::update(const uint32_t& deltaTime) { 
 
 	clearState();
 	while(SDL_PollEvent(&event)) {

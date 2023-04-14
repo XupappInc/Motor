@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\SoundEngine\AudioComponent.cpp" />
     <ClCompile Include="..\..\Src\SoundEngine\AudioListener.cpp" />
     <ClCompile Include="..\..\Src\SoundEngine\AudioListenerCreator.cpp" />
     <ClCompile Include="..\..\Src\SoundEngine\AudioManager.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="..\..\Src\SoundEngine\AudioSourceCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\SoundEngine\AudioComponent.h" />
     <ClInclude Include="..\..\Src\SoundEngine\AudioListener.h" />
     <ClInclude Include="..\..\Src\SoundEngine\AudioListenerCreator.h" />
     <ClInclude Include="..\..\Src\SoundEngine\AudioManager.h" />
@@ -145,7 +147,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\SeparityUtils;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,7 +1,7 @@
 #pragma once
 #ifndef __COLLIDER_H__
 #define __COLLIDER_H__
-#include "Component.h"
+#include "PhysicsComponent.h"
 
 namespace Spyutils {
 	class Vector3;
@@ -27,7 +27,7 @@ namespace Separity {
 		bool isTrigger = false;
 	};
 
-	class Collider : public Separity::Component {
+	class Collider : public Separity::PhysicsComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_COLLIDER)

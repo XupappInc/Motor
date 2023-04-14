@@ -21,7 +21,9 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
-inline Separity::UIManager::UIManager() {}
+inline Separity::UIManager::UIManager() { 
+	initUi(); 
+}
 
 void Separity::UIManager::initUi() {
 	overSystem_ = new Ogre::OverlaySystem();
@@ -41,6 +43,8 @@ Separity::UIManager* Separity::UIManager::getInstance() {
 
 void Separity::UIManager::render() {}
 
-void Separity::UIManager::update() {}
+void Separity::UIManager::update(const uint32_t& deltaTime) {}
 
-Separity::UIManager::~UIManager() {  }
+
+
+void Separity::UIManager::clean() { close(); }

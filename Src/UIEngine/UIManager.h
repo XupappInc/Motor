@@ -37,12 +37,9 @@ namespace Separity {
 		/// <summary>
 		/// Método update que hereda de manager
 		/// </summary>
-		virtual void update() override;
+		void update(const uint32_t& deltaTime) override;
 
-		/// <summary>
-		/// Borrado de la clase, hereda de Manager
-		/// </summary>
-		virtual ~UIManager() override;
+		void clean() override;
 	};
 }  // namespace Separity
 #endif  //!__UI_MANAGER_H__

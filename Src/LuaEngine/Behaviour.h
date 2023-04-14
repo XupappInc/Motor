@@ -28,7 +28,7 @@ namespace Separity {
 
 		virtual void awake();
 		virtual void start();
-		virtual void update() override;
+		virtual void update(const uint32_t& deltaTime) override;
 		virtual void onCollisionEnter(Entity* other);
 		virtual void onCollisionExit(Entity* other);
 		virtual void onCollisionStay(Entity* other);

@@ -4,7 +4,9 @@
 #include "Component.h"
 #include "ComponentFactory.h"
 #include "Entity.h"
+#include "EntityManager.h"
 #include "ManagerManager.h"
+#include "EntityManager.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
@@ -14,20 +16,14 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
+void Separity::SceneManager::clean() { 
+	delete factory_;
+	close();
+}
+
 Separity::SceneManager* Separity::SceneManager::getInstance() {
 	return static_cast<SceneManager*>(instance());
 }
-
-void Separity::SceneManager::update() {}
-
-void Separity::SceneManager::eraseEntities() {
-	for(Entity* e : entidades) {
-		delete e;
-	}
-	entidades.clear();
-}
-
-Separity::SceneManager::~SceneManager() { delete factory_; }
 
 bool Separity::SceneManager::loadScene(const std::string& root) {
 	lua_State* L = luaL_newstate();
@@ -44,18 +40,21 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		std::cout << "Entidades:\n";
 		lua_getglobal(L, "Entities");
 
+
+		EntityManager* em = Separity::EntityManager::getInstance();
+
 		int cont = 0;
 
 		lua_pushnil(L);
+		/*EntityManager* entManager = Separity::EntityManager::getInstance();*/
 		while(lua_next(L, -2)) {
 			if(lua_isstring(L, -2)) {
 				std::string entity = lua_tostring(L, -2, NULL);
-				// std::cout << " " << entity << ":\n";
+				std::cout << " " << entity << ":\n";
 			}
 
 			if(lua_istable(L, -1)) {
-				Entity* entity = new Entity(_grp_GENERAL);
-				entidades.push_back(entity);
+				Entity* entity = em->addEntity(_grp_GENERAL);
 
 				cont++;
 

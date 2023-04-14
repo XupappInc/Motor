@@ -15,7 +15,7 @@
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
     : mass_(mass), tipo_(tipo), colliderShape_(nullptr),
       triedToGetBehaviour_(false), rb_(nullptr), btTr_(nullptr), tr_(nullptr),
-      behaviour_(nullptr), collisionCallback_(nullptr) {}
+      behaviour_(nullptr), collisionCallback_(nullptr), PhysicsComponent() {}
 
 Separity::RigidBody::~RigidBody() {
 	delete btTr_;
@@ -159,7 +159,7 @@ void Separity::RigidBody::preUpdate() {
 	rb_->setWorldTransform(trans);
 }
 
-void Separity::RigidBody::update() {
+void Separity::RigidBody::update(const uint32_t& deltaTime) {
 	collisionCallback_->update();
 	if(tipo_ == STATIC)
 		return;

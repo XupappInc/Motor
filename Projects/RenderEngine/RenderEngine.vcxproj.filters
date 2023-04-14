@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\Src\RenderEngine\AnimatorCreator.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\RenderEngine\RenderComponent.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\RenderEngine\RenderManager.h">
@@ -81,6 +84,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\RenderEngine\AnimatorCreator.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\RenderEngine\RenderComponent.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,7 @@
 #define __MESH_RENDERER_H__
 
 
-#include "Component.h"
+#include "RenderComponent.h"
 
 #include <string>
 
@@ -17,7 +17,7 @@ namespace Separity {
 	/// <summary>
 	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
 	/// </summary>
-	class MeshRenderer : public Separity::Component {
+	class MeshRenderer : public Separity::RenderComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_MESH_RENDERER)

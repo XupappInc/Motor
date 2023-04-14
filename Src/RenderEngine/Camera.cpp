@@ -12,7 +12,7 @@
 #include <spyMath.h>
 
 
-Separity::Camera::Camera() : tr_(nullptr) {
+Separity::Camera::Camera() : tr_(nullptr), RenderComponent() {
 
 	Separity::RenderManager* rm = Separity::RenderManager::getInstance();
 	Ogre::SceneManager* sm = rm->getSceneManager();
@@ -29,9 +29,15 @@ Separity::Camera::Camera() : tr_(nullptr) {
 	viewport_->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));
 }
 
-Separity::Camera::~Camera() {}
+Separity::Camera::~Camera() {
+	Separity::RenderManager* rm = Separity::RenderManager::getInstance();
+	Ogre::SceneManager* sm = rm->getSceneManager();
+	sm->destroyCamera(camera_);
+	sm->destroySceneNode(cameraNode_);
+	rm->getOgreWindow()->removeViewport(viewport_->getZOrder());
+}
 
-void Separity::Camera::update() { 	
+void Separity::Camera::update(const uint32_t& deltaTime) { 	
 	readTransform(); 
 }
 

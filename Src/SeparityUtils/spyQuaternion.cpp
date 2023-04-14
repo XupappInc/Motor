@@ -1,53 +1,23 @@
 #include "spyQuaternion.h"
-
 #include "spyMath.h"
 #include "vector.h"
-
 #include <math.h>
+#include"OgreQuaternion.h"
+#include <LinearMath/btQuaternion.h>
+Spyutils::spyQuaternion::spyQuaternion(float x, float y, float z) {
 
-Spyutils::spyQuaternion::spyQuaternion( float yaw, float pitch,
-                                        float roll) {
-	// Convertir a radianes
-	/*angleX = angleX * spyPI / 180.0f;
-	angleY = angleY * spyPI / 180.0f;
-	angleZ = angleZ * spyPI / 180.0f;*/
+	double cy = cos(z * Ogre::Math::PI / 180.0 / 2.0);
+	double sy = sin(z * Ogre::Math::PI / 180.0 / 2.0);
+	double cp = cos(y * Ogre::Math::PI / 180.0 / 2.0);
+	double sp = sin(y * Ogre::Math::PI / 180.0 / 2.0);
+	double cr = cos(x * Ogre::Math::PI / 180.0 / 2.0);
+	double sr = sin(x * Ogre::Math::PI / 180.0 / 2.0);
 
-	//float cx = cos(angleX / 2.0f);
-	//float cy = cos(angleY / 2.0f);
-	//float cz = cos(angleZ / 2.0f);
-	//float sx = sin(angleX / 2.0f);
-	//float sy = sin(angleY / 2.0f);
-	//float sz = sin(angleZ / 2.0f);
-
-	//x = cx * cy * cz + sx * sy * sz;
-	//y = sx * cy * cz - cx * sy * sz;
-	//z = cx * sy * cz + sx * cy * sz;
-	//w = cx * cy * sz - sx * sy * cz;
-
-	//// Normalizar
-	//float len = sqrt(x * x + y * y + z * z + w * w);
-	//if(len != 0.0f) {
-	//	x /= len;
-	//	y /= len;
-	//	z /= len;
-	//	w /= len;
-	//}
-
-	float halfYaw = float(yaw) * float(0.5);
-	float halfPitch = float(pitch) * float(0.5);
-	float halfRoll = float(roll) * float(0.5);
-	float cosYaw = cos(halfYaw);
-	float sinYaw = sin(halfYaw);
-	float cosPitch = cos(halfPitch);
-	float sinPitch = sin(halfPitch);
-	float cosRoll = cos(halfRoll);
-	float sinRoll = sin(halfRoll);
-	x = cosRoll * sinPitch * cosYaw + sinRoll * cosPitch * sinYaw;
-	y = cosRoll * cosPitch * sinYaw - sinRoll * sinPitch * cosYaw;
-	w = sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw;
-	z = cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw;
+	w = cy * cp * cr + sy * sp * sr;
+	x = cy * cp * sr - sy * sp * cr;
+	y = sy * cp * sr + cy * sp * cr;
+	z = sy * cp * cr - cy * sp * sr;
 }
-
 Spyutils::spyQuaternion::spyQuaternion(float compW, float compY, float compZ,
                                        float compX)
     : x(compX), y(compY), z(compZ), w(compW) {}
@@ -107,4 +77,12 @@ void Spyutils::spyQuaternion::yaw(float angle) {
 
 void Spyutils::spyQuaternion::roll(float angle) {
 	rotate(angle, Spyutils::Vector3(0.0, 0.0, 1.0));
+}
+
+Ogre::Quaternion Spyutils::spyQuaternion::spyQuaterniomToOgre() const {
+	return Ogre::Quaternion(w, x, y, z);
+}
+
+btQuaternion Spyutils::spyQuaternion::spyQuaterniomToBullet() const {
+	return btQuaternion(x, y, z, w);
 }

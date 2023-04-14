@@ -1,11 +1,10 @@
 #include "AudioManager.h"
 
-#include "ManagerManager.h"
-
 #include "AudioListener.h"
 #include "AudioSource.h"
 #include "Component.h"
 #include "Entity.h"
+#include "ManagerManager.h"
 #include "Transform.h"
 #include "checkML.h"
 #include "fmod.hpp"
@@ -26,30 +25,9 @@ inline Separity::AudioManager::AudioManager() {
 	musicGroup_ = nullptr;
 	firstListener = true;
 
-	ManagerManager::getInstance()->addManager(_SOUND, this);	
-}
+	ManagerManager::getInstance()->addManager(_SOUND, this);
 
-Separity::AudioManager::~AudioManager() {
-	sounds_->clear();
-	musics_->clear();
-	delete[] buffer_;
-	delete channels_;
-	delete sounds_;
-	delete musics_;
-	// IMPORTANTE, system release ya borra todos los sounds, channels,
-	// soundsgroups y dem�s, es decir no hace falta hacer delete solo poner los
-	// punteros a null
-	system_->release();
-	buffer_ = nullptr;
-	soundGroup_ = nullptr;
-	musicGroup_ = nullptr;
-	channels_ = nullptr;
-	sounds_ = nullptr;
-	musics_ = nullptr;
-	system_ = nullptr;
-}
-
-void Separity::AudioManager::initAudioSystem() {
+	//Initialization of the manager
 	// Create an instance of the FMOD system
 	FMOD_RESULT result = FMOD::System_Create(&system_);
 	FMODErrorChecker(&result);
@@ -81,6 +59,8 @@ void Separity::AudioManager::initAudioSystem() {
 	musicGroup_->setVolume(100);
 }
 
+
+
 Separity::AudioManager* Separity::AudioManager::getInstance() {
 	return static_cast<AudioManager*>(instance());
 }
@@ -89,7 +69,7 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
                                        float maxDistance) {
 	FMOD::Channel* temporalChannel = nullptr;
 	FMOD::Sound* temporalSound = nullptr;
-	// Comprueba si est� en la lista de sonidos o de m�sica para coger dicho
+	// Comprueba si esta en la lista de sonidos o de m�sica para coger dicho
 	// sonido y reproducirlo
 	if(sounds_->count(audioName))
 		temporalSound = sounds_->find(audioName)->second;
@@ -105,6 +85,7 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 		AudioSource* au = c->getEntity()->getComponent<AudioSource>();
 		if(au->getAudioName() == audioName) {
 			au->setPlayingState(true);
+			au->setChannel(temporalChannel);
 			break;
 		}
 	}
@@ -118,55 +99,29 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 	channels_->emplace(audioName, temporalChannel);
 }
 
-void Separity::AudioManager::update() {
-	// Comprueba todos los canales a�adidos en el map, si no  tienen sonido
-	// los libera
-	std::vector<std::unordered_map<std::string, FMOD::Channel*>::iterator>
-	    channelsWithoutSound;
-	for(auto itStart = channels_->begin(), itEnd = channels_->end();
-	    itStart != itEnd; itStart++) {
-		bool isPlaying = false;
+void Separity::AudioManager::playAudio(AudioSource* audioSource,
+                                       float minDistance, float maxDistance) {
+	FMOD::Channel* temporalChannel = nullptr;
 
-		itStart->second->isPlaying(&isPlaying);
-		if(!isPlaying) {
-			for(Separity::Component* c : cmps_) {
-				AudioSource* au = c->getEntity()->getComponent<AudioSource>();
-				if(au->getAudioName() == itStart->first) {
-					au->setPlayingState(false);
-					break;
-				}
-			}
-			channelsWithoutSound.push_back(itStart);
-		}
-	}
+	FMOD_RESULT result = system_->playSound(audioSource->getSound(), nullptr,
+	                                        true, &temporalChannel);
+	FMODErrorChecker(&result);
+	audioSource->setPlayingState(true);
+	audioSource->setChannel(temporalChannel);
+	
+	// Se pone el modo del canal a false porque se pausa de base, y se pone el
+	// modo a FMOD_3D_LINEARROLLOFF para que el sonido sea inversamente
+	// proporcional a la distancia a la que se encuentra hasta maxDistance hasta
+	// volumen 0
+	temporalChannel->setPaused(false);
+	temporalChannel->setMode(FMOD_3D_LINEARROLLOFF);
+	temporalChannel->set3DMinMaxDistance(minDistance, maxDistance);
+	channels_->emplace(audioSource->getAudioName(), temporalChannel);
+}
 
+void Separity::AudioManager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
-		Entity* ent = c->getEntity();
-		AudioSource* au = ent->getComponent<AudioSource>();
-		Transform* tr = ent->getEntTransform();
-
-		FMOD_VECTOR pos = FMOD_VECTOR {tr->getPosition().x, tr->getPosition().y,
-		                               tr->getPosition().z};
-		if(au && au->getPlayingState()) {
-			if(channels_->count(au->getAudioName())) {
-				// Busca cada canal con dicho nombre y le asigna la posición de
-				// su transform
-				FMOD::Channel* c = channels_->find(au->getAudioName())->second;
-				FMOD_RESULT result = c->set3DAttributes(&pos, nullptr);
-				FMODErrorChecker(&result);
-			}
-		} else {
-			AudioListener* audListener = ent->getComponent<AudioListener>();
-			if(audListener)
-				update3DListener(audListener->listenerNumber_, &pos);
-		}
-	}
-
-	// Se borran aqu� porque dentro del otro for se siguen comprobando cada
-	// canal, no est�n ordenados, si borras uno no sabes cual vas a comprobar
-	// despu�s adem�s de acabar comprobando canales fueras del rango del for
-	for(auto& it : channelsWithoutSound) {
-		channels_->erase(it);
+		c->update();
 	}
 	FMOD_RESULT result = system_->update();
 	FMODErrorChecker(&result);
@@ -192,6 +147,28 @@ void Separity::AudioManager::update3DListener(int listenerNumber,
 	FMOD_RESULT result =
 	    system_->set3DListenerAttributes(listenerNumber, pos, vel, forward, up);
 	FMODErrorChecker(&result);
+}
+
+void Separity::AudioManager::clean() { 
+	sounds_->clear();
+	musics_->clear();
+	delete[] buffer_;
+	delete channels_;
+	delete sounds_;
+	delete musics_;
+	// IMPORTANTE, system release ya borra todos los sounds, channels,
+	// soundsgroups y dem�s, es decir no hace falta hacer delete solo poner los
+	// punteros a null
+	system_->release();
+	buffer_ = nullptr;
+	soundGroup_ = nullptr;
+	musicGroup_ = nullptr;
+	channels_ = nullptr;
+	sounds_ = nullptr;
+	musics_ = nullptr;
+	system_ = nullptr;
+
+	close(); 
 }
 
 void Separity::AudioManager::stopAllChannels() {
