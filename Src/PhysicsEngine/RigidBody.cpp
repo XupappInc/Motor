@@ -24,6 +24,8 @@ Separity::RigidBody::~RigidBody() {
 	rb_ = nullptr;
 	delete colliderShape_;
 	colliderShape_ = nullptr;
+	delete collisionCallback_;
+	collisionCallback_ = nullptr;
 }
 
 void Separity::RigidBody::initComponent() {

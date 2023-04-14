@@ -221,6 +221,7 @@ int main() {
 	}
 	entityManager->deleteEntities();  // no tocar
 	mm->clean();
+	delete timer;
 
 	return 0;
 }
