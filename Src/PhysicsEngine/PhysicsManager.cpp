@@ -1,17 +1,17 @@
 #include "PhysicsManager.h"
 
-#include "ManagerManager.h"
-
 #include "ColliderCreator.h"
+#include "ManagerManager.h"
 #include "RigidbodyCreator.h"
 
 // #include "checkML.h"
+#include "CollisionCallback.h"
 #include "Component.h"
 #include "PhysicsDebugDrawer.h"
 #include "RenderManager.h"
 #include "RigidBody.h"
-#include "CollisionCallback.h"
 
+#include <OgreRoot.h>
 #include <btBulletDynamicsCommon.h>
 
 #ifdef _DEBUG
@@ -52,26 +52,40 @@ void Separity::PhysicsManager::initDebug() {
 }
 
 void Separity::PhysicsManager::debug() {
-	debugDrawer_->clearLines();
-	world_->debugDrawWorld();
+	if(debugDrawer_ != nullptr)
+		debugDrawer_->clearLines();
+	if(world_ != nullptr)
+		world_->debugDrawWorld();
+}
+
+void Separity::PhysicsManager::resetWorld() {
+	deleteWorld();
+	initWorld();
 }
 
 void Separity::PhysicsManager::deleteWorld() {
-	for(int i = world_->getNumCollisionObjects() - 1; i >= 0; i--) {
-		btCollisionObject* obj = world_->getCollisionObjectArray()[i];
-		btRigidBody* body = btRigidBody::upcast(obj);
-		if(body && body->getMotionState()) {
-			delete body->getMotionState();
+	if(world_ != nullptr) {
+		for(int i = world_->getNumCollisionObjects() - 1; i >= 0; i--) {
+			btCollisionObject* obj = world_->getCollisionObjectArray()[i];
+			btRigidBody* body = btRigidBody::upcast(obj);
+			if(body && body->getMotionState()) {
+				delete body->getMotionState();
+			}
+			world_->removeCollisionObject(obj);
+			world_->removeRigidBody(body);
+			delete obj;
 		}
-		world_->removeCollisionObject(obj);
-		world_->removeRigidBody(body);
-		delete obj;
+		delete broadphase_;
+		delete collisionConfiguration_;
+		delete dispatcher_;
+		delete solver_;
+		delete world_;
+		broadphase_ = nullptr;
+		collisionConfiguration_ = nullptr;
+		dispatcher_ = nullptr;
+		solver_ = nullptr;
+		world_ = nullptr;
 	}
-	delete broadphase_;
-	delete collisionConfiguration_;
-	delete dispatcher_;
-	delete solver_;
-	delete world_;
 }
 
 void PhysicsManager::update(const uint32_t& deltaTime) {
@@ -81,9 +95,11 @@ void PhysicsManager::update(const uint32_t& deltaTime) {
 		// test de colisiones de cada rigidbody con todo el mundo fisico
 		auto rb = dynamic_cast<Separity::RigidBody*>(c);
 		if(rb != nullptr)
-			world_->contactTest(rb->getBulletRigidBody(), *rb->getCollisionCallback());
+			world_->contactTest(rb->getBulletRigidBody(),
+			                    *rb->getCollisionCallback());
 	}
-	world_->stepSimulation(deltaTime);
+	if(world_ != nullptr)
+		world_->stepSimulation(deltaTime);
 	for(Separity::Component* c : cmps_) {
 		c->update();
 	}
@@ -101,6 +117,11 @@ void Separity::PhysicsManager::clean() {
 		delete debugDrawer_;
 
 	close();
+}
+
+void Separity::PhysicsManager::setSceneManagerFromOgre(
+    Ogre::SceneManager* sceneMgr) {
+	debugDrawer_->setSceneManager(sceneMgr);
 }
 
 PhysicsManager* PhysicsManager::getInstance() {

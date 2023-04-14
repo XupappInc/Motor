@@ -101,3 +101,8 @@ void Separity::PhysicsDebugDrawer::setDebugMode(int debugMode) {
 }
 
 int Separity::PhysicsDebugDrawer::getDebugMode() const { return debugMode_; }
+
+void Separity::PhysicsDebugDrawer::setSceneManager(
+    Ogre::SceneManager* sceneManager) {
+	sceneMngr_ = sceneManager;
+}

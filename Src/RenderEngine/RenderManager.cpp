@@ -226,7 +226,6 @@ Ogre::SceneManager* Separity::RenderManager::getSceneManager() {
 }
 
 void Separity::RenderManager::clean() {
-
 	saveConfiguration();
 	closedown();
 
@@ -238,4 +237,9 @@ void Separity::RenderManager::clean() {
 	SDL_Quit();
 
 	close(); 
+}
+
+void Separity::RenderManager::resetSceneManager() {
+	ogreRoot_->destroySceneManager(sceneMgr_);
+	sceneMgr_ = ogreRoot_->createSceneManager();
 }

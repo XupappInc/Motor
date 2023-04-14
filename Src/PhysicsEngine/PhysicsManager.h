@@ -8,6 +8,9 @@ class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
 class btDefaultCollisionConfiguration;
 
+namespace Ogre {
+	class SceneManager;
+}  // namespace Ogre
 namespace Separity {
 	class PhysicsDebugDrawer;
 	class PhysicsManager : public Separity::Manager,
@@ -28,6 +31,7 @@ namespace Separity {
 		/// Dibuja el debug
 		/// </summary>
 		void debug();
+		void resetWorld();
 		/// <summary>
 		/// Borra el mundo de bullet y los objetos de este
 		/// </summary>
@@ -43,7 +47,8 @@ namespace Separity {
 		btDiscreteDynamicsWorld* getWorld();
 		
 		void clean() override;
-
+		
+		void setSceneManagerFromOgre(Ogre::SceneManager* sceneMgr);
 		private:
 		/// <summary>
 		/// Crea un mundo dinámico discreto de bullet
