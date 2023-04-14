@@ -19,7 +19,10 @@
 		_ANIMATOR, \
 		_PARTICLE_SYSTEM, \
 		_BEHAVIOUR, \
-		_AUDIO_LISTENER
+		_AUDIO_LISTENER, \
+		_BUTTON, \
+		_TEXT, \
+		_PANEL
 		 
 
 /// <summary>

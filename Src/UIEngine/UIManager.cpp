@@ -2,18 +2,14 @@
 
 #include "../SeparityUtils/checkML.h"
 #include "RenderManager.h"
-#include "Text.h"
-#include "Panel.h"
 
-#include <OgreFontManager.h>
-#include <OgreImage.h>
+#include "ManagerManager.h"
 #include <OgreLogManager.h>
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayManager.h>
 #include <OgreOverlaySystem.h>
 #include <OgreSceneManager.h>
-#include <OgreTextAreaOverlayElement.h>
 #include <SDL.h>
 #include <iostream>
 #include <vector>
@@ -22,19 +18,17 @@ template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
 inline Separity::UIManager::UIManager() { 
-	initUi(); 
+	ManagerManager::getInstance()->addManager(_UI, this);
+	initUi();
 }
 
 void Separity::UIManager::initUi() {
-	overSystem_ = new Ogre::OverlaySystem();
+	overManager = Ogre::OverlayManager::getSingletonPtr();
+	overSystem = new Ogre::OverlaySystem();
 
 	RenderManager* rM = Separity::RenderManager::getInstance();
 	SDL_Window* window = rM->getSDLWindow();
-	rM->getSceneManager()->addRenderQueueListener(overSystem_);
-
-	Separity::Panel* tryUpdatePanel =
-	    new Separity::Panel("myFirstPanel", 500, 500, 100, 50, "World_ap");
-	addComponent(tryUpdatePanel);
+	rM->getSceneManager()->addRenderQueueListener(overSystem);
 }
 
 Separity::UIManager* Separity::UIManager::getInstance() {

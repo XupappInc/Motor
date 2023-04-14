@@ -10,6 +10,8 @@
 namespace Separity {
 	class Panel : public UIComponent {
 		public:
+		__CMPTYPE_DECL__(Separity::_UI)
+		__CMPID_DECL__(Separity::_PANEL)
 		/// <summary>
 		/// Constructora de la clase panel
 		/// </summary>

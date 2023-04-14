@@ -14,10 +14,10 @@ namespace Ogre {
 namespace Separity {
 	class Panel;
 	class Button : public Separity::UIComponent {
-		private:
-		Ogre::Overlay* overlayElement;
-
 		public:
+		__CMPTYPE_DECL__(Separity::_UI)
+		__CMPID_DECL__(Separity::_BUTTON)
+
 		/// <summary>
 		/// Constructora de la clase Boton
 		/// </summary>
@@ -28,6 +28,9 @@ namespace Separity {
 		/// Destructora de la clase Boton
 		/// </summary>
 		~Button();
+
+		private:
+		Ogre::Overlay* overlayElement;
 	};
 }  // namespace Separity
 

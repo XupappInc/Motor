@@ -15,11 +15,10 @@ namespace Ogre {
 namespace Separity {
 	class Panel;	
 	class Text : public Separity::UIComponent {
-		private:
-		Ogre::TextAreaOverlayElement* overlayText;
-		Ogre::Overlay* overlayElement;
-		
 		public:
+		__CMPTYPE_DECL__(Separity::_UI)
+		__CMPID_DECL__(Separity::_TEXT)
+		
 		/// <summary>
 		/// Constructora de la clase Texto
 		/// </summary>
@@ -31,6 +30,11 @@ namespace Separity {
 		/// Destructora de la clase Texto
 		/// </summary>
 		~Text();
+
+		private:
+		Ogre::TextAreaOverlayElement* overlayText;
+		Ogre::Overlay* overlayElement;
+		
 	};
 }  // namespace Separity
 #endif  // !__TEXT_H__

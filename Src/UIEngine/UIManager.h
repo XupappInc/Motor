@@ -5,13 +5,12 @@
 #include "Manager.h"
 namespace Ogre {
 	class OverlaySystem;
+	class OverlayManager;
 }  // namespace Ogre
 
 namespace Separity {
 	class UIManager : public Separity::Manager,
 	                  public Singleton<Separity::UIManager> {
-		private:
-		Ogre::OverlaySystem* overSystem_;
 
 		public:
 		/// <summary>
@@ -40,6 +39,9 @@ namespace Separity {
 		void update(const uint32_t& deltaTime) override;
 
 		void clean() override;
+		private:
+		Ogre::OverlaySystem* overSystem;
+		Ogre::OverlayManager* overManager;
 	};
 }  // namespace Separity
 #endif  //!__UI_MANAGER_H__
