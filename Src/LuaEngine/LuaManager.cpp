@@ -56,8 +56,7 @@ void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 
 	behaviourScript->initComponent();
 
-	luabridge::push(L_, behaviourScript);
-	lua_setglobal(L_, name.c_str());
+	luabridge::setGlobal(L_, behaviourScript, name.c_str());
 
 	// Obtenemos el objeto behaviour desde Lua
 	auto behaviourLua =
