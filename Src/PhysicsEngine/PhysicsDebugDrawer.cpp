@@ -5,14 +5,21 @@
 Separity::PhysicsDebugDrawer::PhysicsDebugDrawer(Ogre::SceneManager* sceneMgr)
     : sceneMngr_(sceneMgr) {
 	debugMode_ = DBG_DrawWireframe;
+	debugNode_ = sceneMngr_->getRootSceneNode()->createChildSceneNode();
 }
 
-Separity::PhysicsDebugDrawer::~PhysicsDebugDrawer() {}
+Separity::PhysicsDebugDrawer::~PhysicsDebugDrawer() { 
+	/*clearLines();
+	sceneMngr_->destroySceneNode(debugNode_);*/
+	
+	debugNode_ = nullptr;
+	sceneMngr_ = nullptr;
+}
 
 void Separity::PhysicsDebugDrawer::clearLines() {
 	for(int i = 0; i < lines_.size(); i++) {
-		lines_[i]->clear();
-		delete lines_[i];
+		if(lines_[i] != nullptr)
+			sceneMngr_->destroyManualObject(lines_[i]);
 	}
 
 	lines_.clear();
@@ -27,7 +34,7 @@ void Separity::PhysicsDebugDrawer::drawLine(const btVector3& from,
 	line->position(to.x(), to.y(), to.z());
 	line->colour(Ogre::ColourValue(color.x(), color.y(), color.z()));
 	line->end();
-	sceneMngr_->getRootSceneNode()->createChildSceneNode()->attachObject(line);
+	debugNode_->attachObject(line);
 	lines_.push_back(line);
 }
 

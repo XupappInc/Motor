@@ -8,6 +8,7 @@
 namespace Ogre {
 	class SceneManager;
 	class ManualObject;
+	class SceneNode;
 }
 
 namespace Separity {
@@ -59,6 +60,7 @@ namespace Separity {
 		private:
 		Ogre::SceneManager* sceneMngr_;
 		DebugDrawModes debugMode_;
+		Ogre::SceneNode* debugNode_;
 
 		std::vector<Ogre::ManualObject*> lines_;
 	};
