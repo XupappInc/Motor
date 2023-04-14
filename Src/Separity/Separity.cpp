@@ -48,20 +48,20 @@ int main() {
 
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	EntityManager* entityManager = Separity::EntityManager::getInstance();
-	
+
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/Scenes/scene.lua");
-	
-	//Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
-	//Entity* listener = entityManager->addEntity(_grp_GENERAL);
-	//auto* sonido = listener->addComponent<AudioSource>("Assets//piano.wav",
-	//                                                   "callmemaybe", false);
+	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
+
+	// Entity* listener = entityManager->addEntity(_grp_GENERAL);
+	// auto* sonido = listener->addComponent<AudioSource>("Assets//piano.wav",
+	//                                                    "callmemaybe", false);
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({0, 60, 0});
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
-	
+
 	colliderParams params;
 	params.colShape = CUBE;
 	params.height = 10;
@@ -96,13 +96,12 @@ int main() {
 	Camera* cam_cam = camera->addComponent<Camera>();
 
 	mm->initComponents();
-	
+
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
 	bool quit = false;
 
 	while(!quit) {
-
 		timer->reset();
 
 		int xMouse = inputManager->getMousePos().first;
@@ -138,19 +137,77 @@ int main() {
 			if(inputManager->isKeyDown('c')) {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);
 			}
-			if(inputManager->isKeyDown('x')) {
-				RenderManager::getInstance()->fullScreen(true);
+			if(inputManager->isKeyDown('r')) {
+				entityManager->deleteEntities();  // no tocar
+				Separity::PhysicsManager::getInstance()->resetWorld();
+				Separity::RenderManager::getInstance()->resetSceneManager();
+				Separity::PhysicsManager::getInstance()->setSceneManagerFromOgre(
+				    Separity::RenderManager::getInstance()->getSceneManager());
+				sceneMenager->loadScene("Assets/Scenes/scene.lua");
+
+				// Entity* MusicInstance =
+				// entityManager->addEntity(_grp_GENERAL);
+
+				// Entity* listener = entityManager->addEntity(_grp_GENERAL);
+				// auto* sonido =
+				// listener->addComponent<AudioSource>("Assets//piano.wav",
+				//                                                    "callmemaybe",
+				//                                                    false);
+
+				Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
+				sinbad->getComponent<Transform>()->translate({0, 60, 0});
+				sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
+
+				colliderParams params;
+				params.colShape = CUBE;
+				params.height = 10;
+				params.width = 5;
+				params.depth = 5;
+				params.isTrigger = false;
+
+				sinbad->addComponent<Collider>(params);
+				sinbad->addComponent<RigidBody>(DYNAMIC, 10);
+				auto animSinbad = sinbad->addComponent<Animator>();
+
+				Separity::LuaManager::getInstance()->loadScript("prueba",
+				                                                sinbad);
+
+				Entity* luz = entityManager->addEntity(_grp_GENERAL);
+				auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
+				luzGlobal->setDiffuse({0.7, 0.7, 0.7});
+				auto luzTr = luz->getComponent<Transform>();
+				luzTr->translate({0, 100, 0});
+
+				Entity* luzAux = entityManager->addEntity(_grp_GENERAL);
+				auto luzAux1 = luzAux->addComponent<Light>(DIRECTIONAL_LIGHT);
+				auto luzTr2 = luzAux->getComponent<Transform>();
+				luzTr2->translate({0, 100, 0});
+				luzAux1->setDirection({0, 0, -1});
+				luzAux1->setDiffuse({0.5, 0, 0.5});
+
+				Entity* camera = entityManager->addEntity(_grp_GENERAL);
+				Transform* cam_tr = camera->getComponent<
+				    Transform>();  // addComponent<Transform>();
+				cam_tr->setPosition(0, 20, 30);
+				cam_tr->pitch(-30);
+				Camera* cam_cam = camera->addComponent<Camera>();
+
+				mm->initComponents();
 			}
 			/*if(inputManager->isKeyDown('v')) {
-				auto trsi = sinbad->getEntTransform();
-				trsi->roll(20);
+			    auto trsi = sinbad->getEntTransform();
+			    trsi->roll(20);
 			}
 			if(inputManager->isKeyDown('l')) {
-				animSinbad->playAnim("Dance", false);
+			    animSinbad->playAnim("Dance", false);
 			}
 			if(inputManager->isKeyDown('k')) {
-				animSinbad->playAnim("Dance");
+			    animSinbad->playAnim("Dance");
 			}*/
+			}
+			if(inputManager->isKeyDown('x')) {
+				;
+				
 		}
 
 		mm->update(deltaTime);
@@ -162,7 +219,7 @@ int main() {
 		if(waitTime > 0)
 			Sleep(waitTime);
 	}
-	entityManager->deleteEntities(); //no tocar
+	entityManager->deleteEntities();  // no tocar
 	mm->clean();
 
 	return 0;
