@@ -61,7 +61,7 @@ void Separity::LuaManager::initLua() {
 void Separity::LuaManager::registerClasses() {
 	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Entity>("Entity")
-	    .addFunction("getTransform", &Entity::getComponent<Transform>)
+	    //.addFunction("getTransform", &Entity::getComponent<Transform>)
 	    .endClass();
 }
 
