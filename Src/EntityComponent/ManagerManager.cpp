@@ -28,7 +28,7 @@ void Separity::ManagerManager::render() {
 }
 
 Separity::ManagerManager::ManagerManager() {
-	managers_ = std::unordered_map<cmpType_type, Manager*>();
+	managers_ = std::map<cmpType_type, Manager*>();
 }
 
 void Separity::ManagerManager::addManager(cmpType_type type, Manager* manager) {

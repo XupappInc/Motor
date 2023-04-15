@@ -30,8 +30,8 @@
 /// </summary>
 #define _CMPS_TYPES_ \
 		_ENTITY, \
-		_RENDER, \
 		_PHYSICS, \
+		_RENDER, \
 		_INPUT, \
 		_UI, \
 		_SOUND, \

@@ -9,8 +9,8 @@ Separity::PhysicsDebugDrawer::PhysicsDebugDrawer(Ogre::SceneManager* sceneMgr)
 }
 
 Separity::PhysicsDebugDrawer::~PhysicsDebugDrawer() { 
-	/*clearLines();
-	sceneMngr_->destroySceneNode(debugNode_);*/
+	clearLines();
+	sceneMngr_->destroySceneNode(debugNode_);
 	
 	debugNode_ = nullptr;
 	sceneMngr_ = nullptr;

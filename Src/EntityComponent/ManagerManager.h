@@ -4,7 +4,7 @@
 
 #include "Manager.h"
 
-#include <unordered_map>
+#include <map>
 #include <string>
 
 class lua_State;
@@ -40,7 +40,7 @@ namespace Separity {
 		ManagerManager();
 
 		private:
-		std::unordered_map<cmpType_type, Manager*> managers_;
+		std::map<cmpType_type, Manager*> managers_;
 	};
 }  // namespace Separity
 
