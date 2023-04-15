@@ -18,7 +18,7 @@ function Prueba:onCollisionEnter(other)
     print('OnCollisionEnter de Sinbad')
 
     if other ~= nil then
-        other:getTransform():roll(90)
+        print('Other not nil!!!!')
     else
         print('Other is nil')
     end

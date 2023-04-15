@@ -5,6 +5,8 @@
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 
+#include "Entity.h"
+
 Separity::Behaviour::Behaviour()
     : behaviourLua_(nullptr) {
 	mngr_ = Separity::LuaManager::getInstance();
@@ -44,7 +46,11 @@ void Separity::Behaviour::awake() {
 void Separity::Behaviour::onCollisionEnter(Entity* other) {
 	luabridge::LuaRef collisionEnterLua = (*behaviourLua_)["onCollisionEnter"];
 	if(collisionEnterLua.isFunction()) {
-		collisionEnterLua(other);
+		auto L = Separity::LuaManager::getInstance()->getLuaState();
+
+		luabridge::setGlobal(L, other, "other");
+		collisionEnterLua();
+		luabridge::getGlobal(L, "other");
 	}
 }
 
