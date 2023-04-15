@@ -58,11 +58,6 @@ void Separity::PhysicsManager::debug() {
 		world_->debugDrawWorld();
 }
 
-void Separity::PhysicsManager::resetWorld() {
-	deleteWorld();
-	initWorld();
-}
-
 void Separity::PhysicsManager::deleteWorld() {
 	if(world_ != nullptr) {
 		for(int i = world_->getNumCollisionObjects() - 1; i >= 0; i--) {
@@ -117,11 +112,6 @@ void Separity::PhysicsManager::clean() {
 		delete debugDrawer_;
 
 	close();
-}
-
-void Separity::PhysicsManager::setSceneManagerFromOgre(
-    Ogre::SceneManager* sceneMgr) {
-	debugDrawer_->setSceneManager(sceneMgr);
 }
 
 PhysicsManager* PhysicsManager::getInstance() {

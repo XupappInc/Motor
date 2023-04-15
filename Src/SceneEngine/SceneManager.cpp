@@ -80,6 +80,14 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 	return false;
 }
 
+bool Separity::SceneManager::changeScene(const std::string& root) {
+	EntityManager::getInstance()->deleteEntities();
+	ManagerManager::getInstance()->pseudoClean();
+	loadScene(root);
+	ManagerManager::getInstance()->initComponents();
+	return true;
+}
+
 Separity::SceneManager::SceneManager() {
 	ManagerManager::getInstance()->addManager(_SCENE, this);
 

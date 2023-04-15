@@ -31,7 +31,6 @@ namespace Separity {
 		/// Dibuja el debug
 		/// </summary>
 		void debug();
-		void resetWorld();
 		/// <summary>
 		/// Borra el mundo de bullet y los objetos de este
 		/// </summary>
@@ -48,7 +47,6 @@ namespace Separity {
 		
 		void clean() override;
 		
-		void setSceneManagerFromOgre(Ogre::SceneManager* sceneMgr);
 		private:
 		/// <summary>
 		/// Crea un mundo dinámico discreto de bullet

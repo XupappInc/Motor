@@ -239,7 +239,3 @@ void Separity::RenderManager::clean() {
 	close(); 
 }
 
-void Separity::RenderManager::resetSceneManager() {
-	ogreRoot_->destroySceneManager(sceneMgr_);
-	sceneMgr_ = ogreRoot_->createSceneManager();
-}

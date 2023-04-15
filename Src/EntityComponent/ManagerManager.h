@@ -34,6 +34,8 @@ namespace Separity {
 
 		void clean() override;
 
+		void pseudoClean();
+
 		protected:
 		ManagerManager();
 

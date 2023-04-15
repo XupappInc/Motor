@@ -89,10 +89,7 @@ namespace Separity {
 		Ogre::SceneManager* getSceneManager();
 
 		void clean() override;
-		/// <summary>
-		/// Resetea el sceneManager de Ogre
-		/// </summary>
-		void resetSceneManager();
+
 		private:
 		/// <summary>
 		/// Inicializa SDL y una raíz proyecto de ogre. Invoca los métodos para

@@ -18,5 +18,6 @@ void Separity::CameraCreator::registerInLua() {
 
 void Separity::CameraCreator::createComponent(lua_State* L,
                                               Separity::Entity* ent) {
+
 	ent->addComponent<Camera>();
 }

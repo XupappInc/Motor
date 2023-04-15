@@ -17,11 +17,14 @@ namespace Separity {
 
 		public:
 
+		bool loadScene(const std::string& root);
+
+		bool changeScene(const std::string& root);
+
 		void clean() override;
 
 		static SceneManager* getInstance();
 
-		bool loadScene(const std::string& root);
 
 		protected:
 		SceneManager();
