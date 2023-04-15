@@ -14,7 +14,7 @@ function Prueba:update()
     -- prueba.entity:getTransform():roll(27)
 end
 
-function Prueba:onCollisionEnter(other)
+function Prueba:onCollisionEnter()
     print('OnCollisionEnter de Sinbad')
 
     if other ~= nil then
