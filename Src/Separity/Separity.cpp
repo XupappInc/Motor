@@ -208,11 +208,11 @@ int main() {
 				cam_cam = camera->addComponent<Camera>();
 				cam_cam->initComponent();		
 			}
-			/*if(inputManager->isKeyDown('v')) {
-			    auto trsi = sinbad->getEntTransform();
-			    trsi->roll(20);
+			if(inputManager->isKeyDown('v')) {
+			    auto trsi = sinbad->getComponent<Transform>();
+			    trsi->yaw(20);
 			}
-			if(inputManager->isKeyDown('l')) {
+			/*if(inputManager->isKeyDown('l')) {
 			    animSinbad->playAnim("Dance", false);
 			}
 			if(inputManager->isKeyDown('k')) {

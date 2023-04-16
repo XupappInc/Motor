@@ -37,40 +37,12 @@ Spyutils::Vector3 Spyutils::spyQuaternion::toEulerAngles() {
 }
 
 void Spyutils::spyQuaternion::rotate(float angle, Spyutils::Vector3 axis) {
-	double radianAngle = Spyutils::Math::toRadians( angle);
 
-	// Calcular el seno y coseno del ángulo dividido por 2
-	double sinHalfAngle = std::sin(radianAngle / 2.0);
-	double cosHalfAngle = std::cos(radianAngle / 2.0);
-
-	// Crear un Quaternion auxiliar para representar la rotación
-	Spyutils::spyQuaternion rotationQuaternion(
-	    cosHalfAngle, axis.x * sinHalfAngle, axis.y * sinHalfAngle,
-	    axis.z * sinHalfAngle);
-
-
-	// Realizar la multiplicación de Quaternions para aplicar la rotación
-	int w_ = w * rotationQuaternion.w - x * rotationQuaternion.x -
-	           y * rotationQuaternion.y - z * rotationQuaternion.z;
-	int x_ = w * rotationQuaternion.x + x * rotationQuaternion.w +
-	           y * rotationQuaternion.z - z * rotationQuaternion.y;
-	int y_= w * rotationQuaternion.y - x * rotationQuaternion.z +
-	           y * rotationQuaternion.w + z * rotationQuaternion.x;
-	int z_ = w * rotationQuaternion.z + x * rotationQuaternion.y -
-	           y * rotationQuaternion.x + z * rotationQuaternion.w;
-
-	
-
-	// Actualizar el Quaternion original con el resultado de la rotación
-	x = x_;
-	y = y_;
-	z = z_;
-	w = w_;
-
-	// Normalizar el Quaternion resultante
-	//normalizeQuaternion();
-
-	
+	Ogre::Quaternion ogreQuaternion(Ogre::Radian(Spyutils::Math::toRadians(angle)), {axis.x, axis.y, axis.z});
+	w = w * ogreQuaternion.w - x * ogreQuaternion.x - y * ogreQuaternion.y - z * ogreQuaternion.z;
+	x = w * ogreQuaternion.x + x * ogreQuaternion.w + y * ogreQuaternion.z - z * ogreQuaternion.y;
+	y = w * ogreQuaternion.y - x * ogreQuaternion.z + y * ogreQuaternion.w + z * ogreQuaternion.x;
+	z = w * ogreQuaternion.z + x * ogreQuaternion.y - y * ogreQuaternion.x + z * ogreQuaternion.w;	
 }
 void Spyutils::spyQuaternion::normalizeQuaternion() {
 	double norm = std::sqrt(w *w +x * x + y * y + z * z);
@@ -79,12 +51,13 @@ void Spyutils::spyQuaternion::normalizeQuaternion() {
 	y /= norm;
 	z /= norm;
 }
-void Spyutils::spyQuaternion::pitch(float angle) {
+void Spyutils::spyQuaternion::rotateGlobal(float angle,
+                                           Spyutils::Vector3 axis) {
 	Ogre::Real pitchangle = Spyutils::Math::toRadians(angle);  // 45 grados
 
 	// Crear un vector unitario que define el eje de rotación vertical (y)
 	Ogre::Quaternion quat(this->spyQuaterniomToOgre());
-	Ogre::Vector3 rkAxis(1, 0, 0);
+	Ogre::Vector3 rkAxis(axis.x, axis.y, axis.z);
 	// Realizar la rotación de yaw en el quaternion
 	quat = Ogre::Quaternion(Ogre::Radian(pitchangle), rkAxis) * quat;
 
@@ -94,36 +67,6 @@ void Spyutils::spyQuaternion::pitch(float angle) {
 	w = quat.w;
 }
 
-void Spyutils::spyQuaternion::yaw(float angle) {
-	Ogre::Real yawAngle = Spyutils::Math::toRadians(angle);  // 45 grados
-
-	// Crear un vector unitario que define el eje de rotación vertical (y)
-	Ogre::Quaternion quat(this->spyQuaterniomToOgre());
-	Ogre::Vector3 rkAxis(0, 1, 0);
-	// Realizar la rotación de yaw en el quaternion
-	quat = Ogre::Quaternion(Ogre::Radian(yawAngle), rkAxis)*quat ;
-
-	x = quat.x;
-	y = quat.y;
-	z = quat.z;
-	w = quat.w;
-	/*rotate(angle, Spyutils::Vector3(0.0, 1.0, 0.0));*/
-}
-
-void Spyutils::spyQuaternion::roll(float angle) {
-	Ogre::Real rollangle = Spyutils::Math::toRadians(angle);  // 45 grados
-
-	// Crear un vector unitario que define el eje de rotación vertical (y)
-	Ogre::Quaternion quat(this->spyQuaterniomToOgre());
-	Ogre::Vector3 rkAxis(0, 0, 1);
-	// Realizar la rotación de yaw en el quaternion
-	quat = Ogre::Quaternion(Ogre::Radian(rollangle), rkAxis) * quat;
-
-	x = quat.x;
-	y = quat.y;
-	z = quat.z;
-	w = quat.w;
-}
 
 Spyutils::Vector3 Spyutils::spyQuaternion::getRotation() {
 	Ogre::Quaternion quat(this->spyQuaterniomToOgre());

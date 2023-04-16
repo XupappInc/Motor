@@ -35,23 +35,29 @@ namespace Spyutils {
 		/// <param name="axis">eje sobre el que queremos girar</param>
 		void rotate(float angle, Spyutils::Vector3 axis);
 		/// <summary>
-		/// Rotación sobre el eje x
+		/// devuelve el pitch roll y yaw en un vector3
 		/// </summary>
-		/// <param name="angle">grados que rota</param>
-		void pitch(float angle);
-		/// <summary>
-		/// Rotación sobre el eje y
-		/// </summary>
-		/// <param name="angle">grados que rota</param>
-		void yaw(float angle);
-		/// <summary>
-		/// Rotación sobre el eje z
-		/// </summary>
-		/// <param name="angle">grados que rota</param>
-		void roll(float angle);
+		/// <returns>Vector3 de la rotacion</returns>
 		Vector3 getRotation();
+		/// <summary>
+		/// normaliza el quaternion
+		/// </summary>
 		void normalizeQuaternion();
+		/// <summary>
+		/// Rotar el quaternion actual sobre las coordenadas globales
+		/// </summary>
+		/// <param name="angle">grados a girar</param>
+		/// <param name="axis">eje sobre el que queremos girar</param>
+		void rotateGlobal(float angle, Spyutils::Vector3 axis);
+		/// <summary>
+		/// convieret el spyquaternion a ogre
+		/// </summary>
+		/// <returns></returns>
 		Ogre::Quaternion spyQuaterniomToOgre() const;
+		/// <summary>
+		/// convierete el spyquaternion a bullet
+		/// </summary>
+		/// <returns></returns>
 		btQuaternion spyQuaterniomToBullet() const;
 	};
 
