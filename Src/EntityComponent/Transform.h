@@ -12,6 +12,8 @@ namespace Ogre {
 }  // namespace Ogre
 
 namespace Separity {
+	enum typeOR { LOCAL, GLOBAL
+	};
 	class Transform : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_ENTITY)
@@ -37,7 +39,7 @@ namespace Separity {
 		/// Transladar la posición del transform
 		/// </summary>
 		/// <param name="other">Vector3 para transladar</param>
-		void translate(Spyutils::Vector3 other);
+		void translate(Spyutils::Vector3 other, typeOR TP=LOCAL);
 		/// <summary>
 		/// Coger la posición del transform
 		/// </summary>
@@ -66,17 +68,17 @@ namespace Separity {
 		/// Rotacion en el eje x
 		/// </summary>
 		/// <param name="degree">grados a girar</param>
-		void pitch(float degree);
+		void pitch(float degree,  typeOR TP = LOCAL);
 		/// <summary>
 		/// Rotacion en el eje y
 		/// </summary>
 		/// <param name="degree">grados a girar</param>
-		void yaw(float degree);
+		void yaw(float degree,  typeOR TP = LOCAL);
 		/// <summary>
 		/// Rotacion en el eje z
 		/// </summary>
 		/// <param name="degree">grados a girar</param>
-		void roll(float degree);
+		void roll(float degree, typeOR TP = LOCAL);
 		/// <summary>
 		/// setear la escala del transform
 		/// </summary>

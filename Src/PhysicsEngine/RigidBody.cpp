@@ -154,9 +154,8 @@ void Separity::RigidBody::preUpdate() {
 	//modificamos el tr de rb con el transform
 	trans.setOrigin({tr_->getPosition().x, tr_->getPosition().y, tr_->getPosition().z});
 	// modificamos la rotación de rb con el transform
-	trans.setRotation( {tr_->getRotation().y,
-	                                         tr_->getRotation().x,
-	                                         tr_->getRotation().z});
+	//
+	//trans.setRotation(tr_->getRotationQ().spyQuaterniomToBullet());
 	rb_->getMotionState()->setWorldTransform(trans);
 	rb_->setWorldTransform(trans);
 }
@@ -170,16 +169,10 @@ void Separity::RigidBody::update(const uint32_t& deltaTime) {
 	trans = rb_->getWorldTransform();
 	tr_->setPosition(
 	    {trans.getOrigin().x(), trans.getOrigin().y(), trans.getOrigin().z()});
-	// rotación del rb al tr
-	//btScalar x, y, z;
-	auto quat=trans.getRotation();  //.getEulerZYX(y,x,z);
-	//Spyutils::spyQuaternion q = {y, x, z};
-	/*tr_->setRotationQ({
-	    quat.x(),
-	    quat.y(),
-	    quat.z(),
-	    quat.w()
-	});*/
+	btQuaternion rot = rb_->getWorldTransform().getRotation();
+	// update transform position and rotation
+	
+	tr_->setRotationQ(-rot.x(), rot.z(), rot.y(), rot.w());
 	
 }
 

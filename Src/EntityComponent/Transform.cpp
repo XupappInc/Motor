@@ -46,26 +46,35 @@ void Separity::Transform::setPosition(float x, float y, float z) {
 	setPosition(Spyutils::Vector3(x, y, z));
 }
 
-void Separity::Transform::translate(Spyutils::Vector3 translation) {
-	// position_ += other;
+void Separity::Transform::translate(Spyutils::Vector3 translation,
+                                    typeOR TP ) {
+	Spyutils::Vector3 newPosition; 
 	Spyutils::Vector3 posicionPadre = position_;
-	vector<vector<float>> rotationMatrix = calculateRotationMatrix(rotation_);
+	if(TP == LOCAL) {
+		vector<vector<float>> rotationMatrix =
+		    calculateRotationMatrix(rotationQ_.getRotation());
 
-	float tx_local = translation[0] * rotationMatrix[0][0] +
-	                 translation[1] * rotationMatrix[0][1] +
-	                 translation[2] * rotationMatrix[0][2];
-	float ty_local = translation[0] * rotationMatrix[1][0] +
-	                 translation[1] * rotationMatrix[1][1] +
-	                 translation[2] * rotationMatrix[1][2];
-	float tz_local = translation[0] * rotationMatrix[2][0] +
-	                 translation[1] * rotationMatrix[2][1] +
-	                 translation[2] * rotationMatrix[2][2];
+		float tx_local = translation[0] * rotationMatrix[0][0] +
+		                 translation[1] * rotationMatrix[0][1] +
+		                 translation[2] * rotationMatrix[0][2];
+		float ty_local = translation[0] * rotationMatrix[1][0] +
+		                 translation[1] * rotationMatrix[1][1] +
+		                 translation[2] * rotationMatrix[1][2];
+		float tz_local = translation[0] * rotationMatrix[2][0] +
+		                 translation[1] * rotationMatrix[2][1] +
+		                 translation[2] * rotationMatrix[2][2];
 
-	Spyutils::Vector3 newPosition = {position_[0] + tx_local,
-	                                 position_[1] + ty_local,
-	                                 position_[2] + tz_local};
+		newPosition = {position_[0] + tx_local, position_[1] + ty_local,
+		               position_[2] + tz_local};
+		
+	} 
+	else {
+		newPosition += translation;
+	}
+	// position_ += other;
+
+	
 	position_ = newPosition;
-
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		tr->setPosition(tr->getPosition() + (newPosition - posicionPadre));
@@ -87,10 +96,10 @@ void Separity::Transform::setRotation(float rotationX, float rotationY,
 		tr->setRotation(rot.x, rot.y, rot.z);
 	}
 }
-void Separity::Transform::setRotationQ(float rotationX, float rotationY,
-                                       float rotationZ, float rotationW) {
+void Separity::Transform::setRotationQ(float rotationW, float rotationX,
+                                       float rotationY, float rotationZ) {
 	rotationQ_ =
-	    Spyutils::spyQuaternion(rotationX, rotationY, rotationZ, rotationW);
+	    Spyutils::spyQuaternion(rotationW, rotationX, rotationY, rotationZ);
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
@@ -107,39 +116,47 @@ Spyutils::spyQuaternion Separity::Transform::getRotationQ() {
 	return rotationQ_;
 }
 
-void Separity::Transform::pitch(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x + degree, rot.y, rot.z);
+void Separity::Transform::pitch(float degree,typeOR TP ) {
+	if(TP == LOCAL)
+		rotationQ_.rotate(degree, {1, 0, 0});
+	else
+		rotationQ_.rotateGlobal(degree, {1, 0, 0});
+
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
-		tr->pitch(rot.x + degree);
+		tr->pitch(rotationQ_.getRotation().x + degree);
 	}
 }
 
-void Separity::Transform::yaw(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x, rot.y + degree, rot.z);
+void Separity::Transform::yaw(float degree, typeOR TP) {
+	if(TP==LOCAL)
+		rotationQ_.rotate(degree, {0, 1, 0});
+	else 
+		rotationQ_.rotateGlobal(degree, {0, 1, 0});
+	
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
-		tr->yaw(rot.y + degree);
+		tr->yaw(rotationQ_.getRotation().y + degree);
 	}
 }
 
-void Separity::Transform::roll(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x, rot.y, rot.z + degree);
+void Separity::Transform::roll(float degree, typeOR TP ) {	
+	if(TP == LOCAL)
+		rotationQ_.rotate(degree, {0, 0, 1});
+	else
+		rotationQ_.rotateGlobal(degree, {0, 0, 1});
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
-		tr->roll(rot.z + degree);
+		tr->roll(rotationQ_.getRotation().z + degree);
 	}
 }
 

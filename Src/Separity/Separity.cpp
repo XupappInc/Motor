@@ -62,7 +62,8 @@ int main() {
 	//                                                    "callmemaybe", false);
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
-	sinbad->getComponent<Transform>()->translate({0, 60, 0});
+	sinbad->getComponent<Transform>()->translate({-15, 60, 12});
+	sinbad->getComponent<Transform>()->pitch(90);
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 
 	colliderParams params;
@@ -102,6 +103,7 @@ int main() {
 	Button* but =
 	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
 	                                          "World_ap.15");
+
 	mm->initComponents();
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
@@ -207,11 +209,11 @@ int main() {
 				cam_cam = camera->addComponent<Camera>();
 				cam_cam->initComponent();		
 			}
-			/*if(inputManager->isKeyDown('v')) {
-			    auto trsi = sinbad->getEntTransform();
-			    trsi->roll(20);
+			if(inputManager->isKeyDown('v')) {
+			    auto trsi = sinbad->getComponent<Transform>();
+			    trsi->yaw(20);
 			}
-			if(inputManager->isKeyDown('l')) {
+			/*if(inputManager->isKeyDown('l')) {
 			    animSinbad->playAnim("Dance", false);
 			}
 			if(inputManager->isKeyDown('k')) {
