@@ -96,10 +96,10 @@ void Separity::Transform::setRotation(float rotationX, float rotationY,
 		tr->setRotation(rot.x, rot.y, rot.z);
 	}
 }
-void Separity::Transform::setRotationQ(float rotationX, float rotationY,
-                                       float rotationZ, float rotationW) {
+void Separity::Transform::setRotationQ(float rotationW, float rotationX,
+                                       float rotationY, float rotationZ) {
 	rotationQ_ =
-	    Spyutils::spyQuaternion(rotationX, rotationY, rotationZ, rotationW);
+	    Spyutils::spyQuaternion(rotationW, rotationX, rotationY, rotationZ);
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =

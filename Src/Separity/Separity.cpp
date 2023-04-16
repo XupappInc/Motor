@@ -62,7 +62,7 @@ int main() {
 	//                                                    "callmemaybe", false);
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
-	sinbad->getComponent<Transform>()->translate({0, 60, 0});
+	sinbad->getComponent<Transform>()->translate({-15, 60, 12});
 	sinbad->getComponent<Transform>()->pitch(90);
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 
