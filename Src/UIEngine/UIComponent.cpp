@@ -1,4 +1,5 @@
 #include "UIComponent.h"
+#include "InputManager.h"
 
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
@@ -8,6 +9,7 @@ int Separity::UIComponent::numUIElements = 0;
 
 Separity::UIComponent::UIComponent() {
 	overlayManager = Ogre::OverlayManager::getSingletonPtr();
+	inputManager = Separity::InputManager::getInstance();
 	numUIElements++;
 }
 

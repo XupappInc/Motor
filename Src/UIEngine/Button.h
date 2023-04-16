@@ -21,10 +21,11 @@ namespace Separity {
 		/// <summary>
 		/// Constructora de la clase Boton
 		/// </summary>
-		Button(std::string overlayName,
-		       float xPos, float yPos, float width,
+		Button(std::string overlayName, float xPos, float yPos, float width,
 		       float height, std::string textureName);
 
+		// bool isClicked(float xMouse, float yMouse);
+		void update(const uint32_t& deltaTime = 0) override;
 		///< summary>
 		/// Destructora de la clase Boton
 		/// </summary>
@@ -32,6 +33,13 @@ namespace Separity {
 
 		private:
 		Ogre::Overlay* overlayElement;
+		int n;
+
+		// posiciones limite del botón
+		int topPosition;
+		int bottomPosition;
+		int leftPosition;
+		int rightPosition;
 	};
 }  // namespace Separity
 

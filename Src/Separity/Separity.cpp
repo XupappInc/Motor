@@ -100,7 +100,7 @@ int main() {
 
 	Entity* button = entityManager->addEntity(_grp_GENERAL);
 	Button* but =
-	    button->addComponent<Button>("BotonPrueba", 200, 200, 500, 500,
+	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
 	                                          "World_ap.15");
 	mm->initComponents();
 
@@ -218,7 +218,7 @@ int main() {
 			    animSinbad->playAnim("Dance");
 			}*/
 		}
-
+		uiManager->update(deltaTime);
 		mm->update(deltaTime);
 		mm->render();
 

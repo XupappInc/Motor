@@ -14,6 +14,7 @@ namespace Ogre {
 
 // Clase base de la que heredan todos los elementos de la UI
 namespace Separity {
+	class InputManager;
 	class UIComponent : public Separity::Component {
 		public:
 		/// <summary>
@@ -89,6 +90,9 @@ namespace Separity {
 
 		// Control de los elementos de la UI
 		static int numUIElements;
+
+		//Input para los eventos de los botones
+		InputManager* inputManager;
 	};
 }  // namespace Separity
 #endif  // !__UI_COMPONENT_H__

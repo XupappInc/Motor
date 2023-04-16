@@ -2,7 +2,7 @@
 
 #include "../SeparityUtils/checkML.h"
 #include "RenderManager.h"
-
+#include "UIComponent.h"
 #include "ManagerManager.h"
 #include <OgreLogManager.h>
 #include <OgreOverlay.h>
@@ -37,7 +37,11 @@ Separity::UIManager* Separity::UIManager::getInstance() {
 
 void Separity::UIManager::render() {}
 
-void Separity::UIManager::update(const uint32_t& deltaTime) {}
+void Separity::UIManager::update(const uint32_t& deltaTime) {
+	for(Separity::Component* c : cmps_) {
+		c->update(deltaTime);
+	}
+}
 
 
 
