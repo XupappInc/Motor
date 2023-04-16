@@ -49,6 +49,8 @@ namespace Spyutils {
 		/// </summary>
 		/// <param name="angle">grados que rota</param>
 		void roll(float angle);
+		Vector3 getRotation();
+		void normalizeQuaternion();
 		Ogre::Quaternion spyQuaterniomToOgre() const;
 		btQuaternion spyQuaterniomToBullet() const;
 	};

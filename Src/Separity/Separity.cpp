@@ -63,6 +63,7 @@ int main() {
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({0, 60, 0});
+	sinbad->getComponent<Transform>()->yaw(90);
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 
 	colliderParams params;
@@ -99,9 +100,9 @@ int main() {
 	Camera* cam_cam = camera->addComponent<Camera>();
 
 	Entity* button = entityManager->addEntity(_grp_GENERAL);
-	Button* but =
+	/*Button* but =
 	    button->addComponent<Button>("BotonPrueba", 200, 200, 500, 500,
-	                                          "World_ap.15");
+	                                          "World_ap.15");*/
 	mm->initComponents();
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();

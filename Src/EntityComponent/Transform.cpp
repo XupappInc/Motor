@@ -49,7 +49,7 @@ void Separity::Transform::setPosition(float x, float y, float z) {
 void Separity::Transform::translate(Spyutils::Vector3 translation) {
 	// position_ += other;
 	Spyutils::Vector3 posicionPadre = position_;
-	vector<vector<float>> rotationMatrix = calculateRotationMatrix(rotation_);
+	vector<vector<float>> rotationMatrix = calculateRotationMatrix(rotationQ_.getRotation());
 
 	float tx_local = translation[0] * rotationMatrix[0][0] +
 	                 translation[1] * rotationMatrix[0][1] +
@@ -108,38 +108,38 @@ Spyutils::spyQuaternion Separity::Transform::getRotationQ() {
 }
 
 void Separity::Transform::pitch(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x + degree, rot.y, rot.z);
+	rotationQ_.pitch(degree);
+	//setRotation(rot.x + degree, rot.y, rot.z);
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
-		tr->pitch(rot.x + degree);
+		//tr->pitch(rot.x + degree);
 	}
 }
 
 void Separity::Transform::yaw(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x, rot.y + degree, rot.z);
+
+	rotationQ_.yaw(degree);
+	/*setRotation(rot.x, rot.y + degree, rot.z);*/
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
-		tr->yaw(rot.y + degree);
+		//tr->yaw(rot.y + degree);
 	}
 }
 
-void Separity::Transform::roll(float degree) {
-	Spyutils::Vector3 rot = getRotation();
-	setRotation(rot.x, rot.y, rot.z + degree);
+void Separity::Transform::roll(float degree) {	
+	rotationQ_.roll(degree);
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotation_);
 		tr->setPosition(rotacion);
-		tr->roll(rot.z + degree);
+		//tr->roll(rot.z + degree);
 	}
 }
 
