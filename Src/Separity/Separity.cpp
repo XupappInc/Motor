@@ -63,7 +63,7 @@ int main() {
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({0, 60, 0});
-	sinbad->getComponent<Transform>()->yaw(90);
+	sinbad->getComponent<Transform>()->pitch(90);
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 
 	colliderParams params;
