@@ -57,13 +57,21 @@ void Separity::Behaviour::onCollisionEnter(Entity* other) {
 void Separity::Behaviour::onCollisionExit(Entity* other) {
 	luabridge::LuaRef collisionExitLua = (*behaviourLua_)["onCollisionExit"];
 	if(collisionExitLua.isFunction()) {
+		auto L = Separity::LuaManager::getInstance()->getLuaState();
+
+		luabridge::setGlobal(L, other, "other");
 		collisionExitLua(other);
+		luabridge::getGlobal(L, "other");
 	}
 }
 
 void Separity::Behaviour::onCollisionStay(Entity* other) {
 	luabridge::LuaRef collisionStayLua = (*behaviourLua_)["onCollisionStay"];
 	if(collisionStayLua.isFunction()) {
+		auto L = Separity::LuaManager::getInstance()->getLuaState();
+
+		luabridge::setGlobal(L, other, "other");
 		collisionStayLua(other);
+		luabridge::getGlobal(L, "other");
 	}
 }
