@@ -16,6 +16,7 @@
 #include "RigidBody.h"
 #include "Transform.h"
 #include "Button.h"
+#include "Panel.h"
 
 // Managers
 #include "AudioManager.h"
@@ -49,7 +50,7 @@ int main() {
 
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	EntityManager* entityManager = Separity::EntityManager::getInstance();
-	//UIManager* uiManager = Separity::UIManager::getInstance();
+	UIManager* uiManager = Separity::UIManager::getInstance();
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/Scenes/scene.lua");
@@ -97,10 +98,10 @@ int main() {
 	cam_tr->pitch(-30);
 	Camera* cam_cam = camera->addComponent<Camera>();
 
-	/*Entity* button = entityManager->addEntity(_grp_GENERAL);
+	Entity* button = entityManager->addEntity(_grp_GENERAL);
 	Button* but =
-	    button->addComponent<Button>("BotonPrueba", 200,
-	                                200, 500, 500);*/
+	    button->addComponent<Button>("BotonPrueba", 200, 200, 500, 500,
+	                                          "World_ap.15");
 	mm->initComponents();
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();

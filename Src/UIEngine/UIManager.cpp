@@ -23,11 +23,11 @@ inline Separity::UIManager::UIManager() {
 }
 
 void Separity::UIManager::initUi() {
-	overManager = Ogre::OverlayManager::getSingletonPtr();
-	overSystem = new Ogre::OverlaySystem();
-
+	
 	RenderManager* rM = Separity::RenderManager::getInstance();
 	SDL_Window* window = rM->getSDLWindow();
+	
+	overSystem = new Ogre::OverlaySystem();
 	rM->getSceneManager()->addRenderQueueListener(overSystem);
 }
 
@@ -41,4 +41,7 @@ void Separity::UIManager::update(const uint32_t& deltaTime) {}
 
 
 
-void Separity::UIManager::clean() { close(); }
+void Separity::UIManager::clean() {
+	//delete overSystem;
+	close();
+}

@@ -21,8 +21,9 @@ namespace Separity {
 		/// <summary>
 		/// Constructora de la clase Boton
 		/// </summary>
-		Button(std::string overlayName, float xPos,
-		       float yPos, float width, float height);
+		Button(std::string overlayName,
+		       float xPos, float yPos, float width,
+		       float height, std::string textureName);
 
 		///< summary>
 		/// Destructora de la clase Boton
