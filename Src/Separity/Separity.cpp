@@ -211,7 +211,7 @@ int main() {
 			}
 			if(inputManager->isKeyDown('v')) {
 			    auto trsi = sinbad->getComponent<Transform>();
-			    trsi->setScale(20);
+			    trsi->yaw(20);
 			}
 			/*if(inputManager->isKeyDown('l')) {
 			    animSinbad->playAnim("Dance", false);

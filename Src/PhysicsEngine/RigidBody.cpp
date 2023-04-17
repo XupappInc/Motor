@@ -148,6 +148,8 @@ void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
 }
 
 void Separity::RigidBody::preUpdate() {
+	if(tipo_ == STATIC)
+		return;
 	btTransform trans;
 	//cogemos el transform del rb
 	rb_->getMotionState()->getWorldTransform(trans);
@@ -158,8 +160,6 @@ void Separity::RigidBody::preUpdate() {
 	trans.setRotation(tr_->getRotationQ().spyQuaterniomToBullet());
 	rb_->getMotionState()->setWorldTransform(trans);
 	rb_->setWorldTransform(trans);
-	auto scale_ = tr_->getScale();
-	rb_->getCollisionShape()->setLocalScaling({scale_.x, scale_.y, scale_.z});
 }
 
 void Separity::RigidBody::update(const uint32_t& deltaTime) {
@@ -175,7 +175,6 @@ void Separity::RigidBody::update(const uint32_t& deltaTime) {
 	// update transform position and rotation
 	
 	tr_->setRotationQ(rot.w(), rot.x() ,rot.y(), rot.z());
-	
 	
 }
 
