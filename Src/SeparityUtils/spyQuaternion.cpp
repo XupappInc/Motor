@@ -20,8 +20,8 @@ Spyutils::spyQuaternion::spyQuaternion(float x, float y, float z) {
 	y = sy * cp * sr + cy * sp * cr;
 	z = sy * cp * cr - cy * sp * sr;
 }
-Spyutils::spyQuaternion::spyQuaternion(float compW, float compY, float compZ,
-                                       float compX)
+Spyutils::spyQuaternion::spyQuaternion(float compW, float compX, float compY,
+                                       float compZ)
     : x(compX), y(compY), z(compZ), w(compW) {}
 
 Spyutils::Vector3 Spyutils::spyQuaternion::toEulerAngles() {

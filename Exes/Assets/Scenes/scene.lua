@@ -352,10 +352,10 @@ Entities = {
 		},
 		collider = {
 			dim = {6.555717945098877, 9.741019248962402, 9.111288070678711},
-		},
-		rigidbody = {
-			type = 0
-		}
+		 }
+		-- rigidbody = {
+		-- 	type = 0
+		-- }
 	},
 	Bench_1 = {
 		transform = {
@@ -633,10 +633,10 @@ Entities = {
 		},
 		collider = {
 			dim = {10.216782569885254, 9.887962341308594, 0.30334433913230896},
-		},
-		rigidbody = {
-			type = 2
 		}
+		-- rigidbody = {
+		-- 	type = 2
+		-- }
 	},
 	Floor_3 = {
 		transform = {
