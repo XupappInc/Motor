@@ -32,7 +32,7 @@ void Separity::TransformCreator::createComponent(lua_State* L,
 	readArray("pos", L, data);
 	tr->setPosition(data[0], data[1], data[2]);
 	readArray("rot", L, data);
-	tr->setRotationQ(data[0], data[1], data[2], data[3]);
+	tr->setRotationQ(data[3], data[0], data[1], data[2]);
 	readArray("scale", L, data);
 	tr->setScale(data[0], data[1], data[2]);
 }
