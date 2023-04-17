@@ -153,6 +153,8 @@ void Separity::RigidBody::preUpdate() {
 	btTransform trans;
 	//cogemos el transform del rb
 	rb_->getMotionState()->getWorldTransform(trans);
+	/*auto scale_ = tr_->getScale();
+	rb_->getCollisionShape()->setLocalScaling({scale_.x, scale_.y, scale_.z});*/
 	//modificamos el tr de rb con el transform
 	trans.setOrigin({tr_->getPosition().x, tr_->getPosition().y, tr_->getPosition().z});
 	// modificamos la rotación de rb con el transform
