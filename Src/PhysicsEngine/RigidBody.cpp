@@ -102,6 +102,7 @@ void Separity::RigidBody::initComponent() {
 void Separity::RigidBody::addForce(Spyutils::Vector3 force) {
 	btVector3 fuerza(force.x, force.y, force.z);
 	btVector3 posicion(0, 0, 0);
+	rb_->activate(true);
 	rb_->applyForce(fuerza, posicion);
 }
 
@@ -148,12 +149,10 @@ void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
 }
 
 void Separity::RigidBody::preUpdate() {
-	if(tipo_ == STATIC)
-		return;
 	btTransform trans;
 	//cogemos el transform del rb
 	rb_->getMotionState()->getWorldTransform(trans);
-	/*auto scale_ = tr_->getScale();
+	/* auto scale_ = tr_->getScale();
 	rb_->getCollisionShape()->setLocalScaling({scale_.x, scale_.y, scale_.z});*/
 	//modificamos el tr de rb con el transform
 	trans.setOrigin({tr_->getPosition().x, tr_->getPosition().y, tr_->getPosition().z});
