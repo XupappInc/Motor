@@ -66,6 +66,12 @@ int main() {
 	///sinbad->getComponent<Transform>()->pitch(90);
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 
+	Entity* sinbad3 = entityManager->addEntity(_grp_GENERAL);
+	sinbad->addChild(sinbad3);
+	sinbad3->getComponent<Transform>()->translate({0,5,0});
+	/// sinbad->getComponent<Transform>()->pitch(90);
+	sinbad3->addComponent<MeshRenderer>("Sinbad.mesh");
+
 	colliderParams params;
 	params.colShape = CUBE;
 	params.height = 10;

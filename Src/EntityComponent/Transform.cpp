@@ -103,10 +103,9 @@ void Separity::Transform::setRotationQ(float rotationW, float rotationX,
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
-		    rotar(tr->getPosition(), position_, rotation_);
-		// tr->setPosition(rotacion);
-		Spyutils::Vector3 rot = rotation_;
-		tr->setRotation(rot.x, rot.y, rot.z);
+		    rotar(tr->getPosition(), position_, rotationQ_.getRotation());
+		 //tr->setPosition(rotacion);
+		 tr->setRotationQ(rotationW, rotationX, rotationY, rotationZ);
 	}
 }
 
