@@ -22,7 +22,8 @@
 		_AUDIO_LISTENER, \
 		_BUTTON, \
 		_TEXT, \
-		_PANEL
+		_PANEL, \
+		_PATH_FOLLOW
 		 
 
 /// <summary>

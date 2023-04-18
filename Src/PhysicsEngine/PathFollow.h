@@ -1,0 +1,47 @@
+#pragma once
+#ifndef __PATH_FOLLOW_H__
+#define __PATH_FOLLOW_H__
+
+#include "PhysicsComponent.h"
+
+#include <vector>
+
+namespace Spyutils {
+	class Vector3;
+}  // namespace Spyutils
+
+namespace Separity {
+	class PathFollow : public Separity::PhysicsComponent {
+		public:
+		__CMPTYPE_DECL__(Separity::_PHYSICS)
+		__CMPID_DECL__(Separity::_PATH_FOLLOW)
+
+		/// <summary>
+		/// Crea el componente pathfollow
+		/// </summary>
+		PathFollow(std::vector<Spyutils::Vector3> const& path);
+
+		/// <summary>
+		/// Destructora del componente
+		/// </summary>
+		~PathFollow();
+
+		/// <summary>
+		/// Método update heredado de Component
+		/// </summary>
+		void update(const uint32_t& deltaTime = 0) override;
+
+		void stop();
+		void resume();
+
+		void setPath(std::vector<Spyutils::Vector3> const& path);
+
+		void setVelocity(Spyutils::Vector3 vel);
+
+		private:
+		std::vector<Spyutils::Vector3> path_;
+	};
+
+}  // namespace Separity
+
+#endif  // !__PATH_FOLLOW__
