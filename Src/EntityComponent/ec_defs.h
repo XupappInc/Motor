@@ -31,9 +31,9 @@
 #define _CMPS_TYPES_ \
 		_ENTITY, \
 		_PHYSICS, \
+		_UI, \
 		_RENDER, \
 		_INPUT, \
-		_UI, \
 		_SOUND, \
 		_SCRIPT, \
 		_SCENE
