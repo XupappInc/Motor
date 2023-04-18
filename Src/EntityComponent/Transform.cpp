@@ -183,6 +183,17 @@ void Separity::Transform::setScale(float scale) {
 
 Spyutils::Vector3 Separity::Transform::getScale() { return scale_; }
 
+void Separity::Transform::lookAt(Spyutils::Vector3 target) {
+	Spyutils::Vector3 dir = target - position_;
+	dir.normalize();
+
+	Spyutils::spyQuaternion rot = Spyutils::spyQuaternion(
+	    std::atan2(dir.y,
+	               std::sqrt(dir.x * dir.x + dir.z * dir.z) * 180.0f / spyPI),
+	    std::atan2(dir.x, dir.z) * 180.0f / spyPI, 0);
+	setRotationQ(rot.x, rot.y, rot.z, rot.w);
+}
+
 Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
                                              Spyutils::Vector3 anclaje,
                                              Spyutils::Vector3 rotacion) {

@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "RigidBody.h"
 #include "Transform.h"
+#include "Vector.h"
 
 Separity::PathFollow::PathFollow(std::vector<Spyutils::Vector3> const& path)
     : path_(path), pathingTo_(0), velocity_(1.0f), stopped_(false),
@@ -15,7 +16,7 @@ void Separity::PathFollow::update(const uint32_t& deltaTime) {
 	if(stopped_)
 		return;
 
-	if(path_.size() == 0 || pathingTo_ >= path_.size())
+	if(path_.size() == 0 || pathingTo_ >= path_.size() || pathingTo_ < 0)
 		return;
 
 	// Ha llegado al siguiente waypoint
@@ -29,13 +30,15 @@ void Separity::PathFollow::update(const uint32_t& deltaTime) {
 
 		} else if(pathingType_ == PathingType::CYCLIC)
 			pathingTo_ = (pathingTo_ + 1) % path_.size();
+
+		// Rotar
+		transform_->lookAt(path_[pathingTo_]);
 	}
 
+	// Fuerza
 	Spyutils::Vector3 dir = path_[pathingTo_] - transform_->getPosition();
 	dir.normalize();
 	dir *= velocity_;
-
-	transform_->setRotation(dir.x, dir.y, dir.z);
 	rigidBody_->applyImpulse(dir);
 }
 
