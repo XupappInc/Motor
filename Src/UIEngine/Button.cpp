@@ -46,4 +46,4 @@ void Separity::Button::update(const uint32_t& deltaTime) {
 		}
 	}
 }
-Separity::Button::~Button() {}
+Separity::Button::~Button() { }

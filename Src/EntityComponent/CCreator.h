@@ -15,7 +15,7 @@ namespace Separity {
 		CCreator();
 		~CCreator() = default;
 
-		virtual void registerInLua() = 0;
+		virtual void registerInLua() {};
 
 		virtual void createComponent(lua_State* L, Separity::Entity* ent) = 0;
 

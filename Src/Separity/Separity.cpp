@@ -106,9 +106,9 @@ int main() {
 	Camera* cam_cam = camera->addComponent<Camera>();
 
 	Entity* button = entityManager->addEntity(_grp_GENERAL);
-	/*Button* but =
+	Button* but =
 	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
-	                                          "World_ap.15");*/
+	                                          "World_ap.15");
 
 	mm->initComponents();
 
@@ -226,7 +226,7 @@ int main() {
 			    animSinbad->playAnim("Dance");
 			}*/
 		}
-		uiManager->update(deltaTime);
+
 		mm->update(deltaTime);
 		mm->render();
 

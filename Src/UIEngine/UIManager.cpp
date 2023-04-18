@@ -46,6 +46,7 @@ void Separity::UIManager::update(const uint32_t& deltaTime) {
 
 
 void Separity::UIManager::clean() {
-	//delete overSystem;
+	Separity::RenderManager::getInstance()->getSceneManager()->removeRenderQueueListener(overSystem);
+	delete overSystem;
 	close();
 }
