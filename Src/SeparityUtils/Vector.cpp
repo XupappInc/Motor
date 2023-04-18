@@ -82,3 +82,7 @@ void Spyutils::Vector3::normalize() {
 	this->y /= magn;
 	this->z /= magn;
 }
+
+float Spyutils::Vector3::distance(Vector3 const& other) {
+	return (*this - other).magnitude();
+}

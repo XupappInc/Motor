@@ -12,19 +12,12 @@ Separity::PathFollow::~PathFollow() {}
 
 void Separity::PathFollow::update(const uint32_t& deltaTime) {
 	
-	/*	if(stopped_)
+		if(stopped_)
 			return;
-		if(path_.size() == 0)
+
+		if(path_.size() == 0 || pathingTo_ >= path_.size())
 			return;
-		if(pathingTo_ >= path_.size())
-			return;
-		Spyutils::Vector3 dir = path_[pathingTo_] - transform_->getPosition();
-		dir.normalize();
-		rigidBody_->setVelocity(dir * velocity_);
-		if(Spyutils::Vector3::distance(path_[pathingTo_],
-		                               transform_->getPosition()) < 0.1f) {
-			pathingTo_++;
-		}*/
+
 	
 }
 
