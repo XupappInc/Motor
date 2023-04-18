@@ -11,6 +11,9 @@ namespace Spyutils {
 }  // namespace Spyutils
 
 namespace Separity {
+	class Transform;
+	class RigidBody;
+	
 	class PathFollow : public Separity::PhysicsComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
@@ -30,16 +33,21 @@ namespace Separity {
 		/// Método update heredado de Component
 		/// </summary>
 		void update(const uint32_t& deltaTime = 0) override;
+		
+		void initComponent() override;
 
-		void stop();
-		void resume();
-
+		void setStopped(bool stop);
 		void setPath(std::vector<Spyutils::Vector3> const& path);
-
-		void setVelocity(Spyutils::Vector3 vel);
+		void setVelocity(float vel);
 
 		private:
 		std::vector<Spyutils::Vector3> path_;
+		float velocity_;
+		bool stopped_;
+		int pathingTo_;
+		
+		Separity::Transform* transform_;
+		Separity::RigidBody* rigidBody_;
 	};
 
 }  // namespace Separity
