@@ -2,7 +2,7 @@
 
 #include <lua.hpp>
 
-Separity::CCreator::CCreator() {}
+Separity::CCreator::CCreator() { registerInLua(); }
 
 bool Separity::CCreator::readArray(const std::string& paramName, lua_State* L,
                                    float* data) {
