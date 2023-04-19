@@ -24,6 +24,29 @@ Spyutils::spyQuaternion::spyQuaternion(float compW, float compX, float compY,
                                        float compZ)
     : x(compX), y(compY), z(compZ), w(compW) {}
 
+Spyutils::spyQuaternion Spyutils::spyQuaternion::Inverse(spyQuaternion q) {
+	  // El cuaternión original
+	Spyutils::spyQuaternion q_conjugate = Spyutils::spyQuaternion(
+	    q.w, -q.x, -q.y, -q.z);  // Calculamos el conjugado de q
+	float q_magnitude_squared =
+	    q.w * q.w + q.x * q.x + q.y * q.y +
+	    q.z * q.z;  // Calculamos la magnitud al cuadrado de q
+	Spyutils::spyQuaternion q_inverse = q_conjugate / q_magnitude_squared;
+	return q_inverse;
+}
+
+Spyutils::spyQuaternion Spyutils::spyQuaternion::operator/(float const& other) {
+	return Spyutils::spyQuaternion(this->w / other, this->x / other,
+	                               this->y / other,
+	                               this->z / other);
+}
+
+
+Spyutils::spyQuaternion Spyutils::spyQuaternion::operator*(spyQuaternion const& other) {
+	return Spyutils::spyQuaternion(this->w * other.w, this->x * other.x,
+	                               this->y * other.y, this->z * other.z);
+}
+
 Spyutils::Vector3 Spyutils::spyQuaternion::toEulerAngles() {
 	Spyutils::Vector3 angulos;
 

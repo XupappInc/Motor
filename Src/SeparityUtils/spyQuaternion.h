@@ -23,6 +23,14 @@ namespace Spyutils {
 
 		spyQuaternion( float x, float y, float z);
 		spyQuaternion(float w,float x, float y, float z );
+		static spyQuaternion Inverse(spyQuaternion quat);
+		spyQuaternion operator/(float const& other);
+		/// <summary>
+		/// Multiplicación de dos quaterniones.
+		/// </summary>
+		/// <param name="other">quaternion con el que se hará el producto</param>
+		/// <returns>quaternion del producto</returns>
+		spyQuaternion operator*(spyQuaternion const& other);
 		/// <summary>
 		/// Convertir a grados
 		/// </summary>
