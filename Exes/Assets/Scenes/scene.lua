@@ -2,7 +2,7 @@ Entities = {
 	CAR_03_1 = {
 		transform = {
 			pos = {-0.8017139434814453, 19.68632698059082, -17.163516998291016},
-			rot = {0.01069751288741827, -0.7070258855819702, 0.7070258259773254, 0.010697372257709503},
+			rot = {-0.774382472038269, -0.11053477972745895, -0.08803245425224304, 0.6167370080947876},
 			scale = {0.026635944843292236, 0.026635944843292236, 0.026635944843292236}
 		},
 		meshRenderer = {
@@ -63,6 +63,9 @@ Entities = {
 		meshRenderer = {
 			textureName = "World_ap",
 			meshName = "Mesh.005"
+		},
+		script = {
+			name = "prueba"
 		}
 	},
 	Car_04_3 = {
@@ -377,6 +380,12 @@ Entities = {
 		meshRenderer = {
 			textureName = "World_ap",
 			meshName = "Mesh.036"
+		},
+		collider = {
+			dim = {6.050632476806641, 8.528901100158691, 8.929821968078613},
+		},
+		rigidbody = {
+			type = 0
 		}
 	},
 	Light_3_2 = {
@@ -630,12 +639,6 @@ Entities = {
 		meshRenderer = {
 			textureName = "World_ap",
 			meshName = "Mesh.059"
-		},
-		collider = {
-			dim = {10.216782569885254, 9.887962341308594, 0.30334433913230896},
-		},
-		rigidbody = {
-			type = 2
 		}
 	},
 	Floor_3 = {

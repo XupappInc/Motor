@@ -63,13 +63,11 @@ int main() {
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({-15, 60, 12});
-	///sinbad->getComponent<Transform>()->pitch(90);
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 
 	Entity* sinbad3 = entityManager->addEntity(_grp_GENERAL);
 	sinbad->addChild(sinbad3);
 	sinbad3->getComponent<Transform>()->translate({0,5,0});
-	/// sinbad->getComponent<Transform>()->pitch(90);
 	sinbad3->addComponent<MeshRenderer>("Sinbad.mesh");
 
 	colliderParams params;
@@ -82,8 +80,6 @@ int main() {
 	sinbad->addComponent<Collider>(params);
 	sinbad->addComponent<RigidBody>(DYNAMIC, 10);
 	auto animSinbad = sinbad->addComponent<Animator>();
-
-	Separity::LuaManager::getInstance()->loadScript("prueba", sinbad);
 
 	Entity* luz = entityManager->addEntity(_grp_GENERAL);
 	auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
@@ -105,10 +101,10 @@ int main() {
 	cam_tr->pitch(-30);
 	Camera* cam_cam = camera->addComponent<Camera>();
 
-	Entity* button = entityManager->addEntity(_grp_GENERAL);
-	Button* but =
-	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
-	                                          "World_ap.15");
+	//Entity* button = entityManager->addEntity(_grp_GENERAL);
+	//Button* but =
+	//    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
+	//                                          "World_ap.15");
 
 	mm->initComponents();
 

@@ -102,4 +102,5 @@ Separity::SceneManager::SceneManager() {
 	factory_->addCreator("camera", new CameraCreator());
 	factory_->addCreator("particleSystem", new ParticleSystemCreator());
 	factory_->addCreator("animator", new AnimatorCreator());
+	factory_->addCreator("script", new BehaviourCreator());
 }
