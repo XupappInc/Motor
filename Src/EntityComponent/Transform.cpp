@@ -1,6 +1,7 @@
 ﻿#include "Transform.h"
-#include "EntityManager.h"
+
 #include "Entity.h"
+#include "EntityManager.h"
 #include "Vector.h"
 #include "spyMath.h"
 using namespace std;
@@ -46,9 +47,8 @@ void Separity::Transform::setPosition(float x, float y, float z) {
 	setPosition(Spyutils::Vector3(x, y, z));
 }
 
-void Separity::Transform::translate(Spyutils::Vector3 translation,
-                                    typeOR TP ) {
-	Spyutils::Vector3 newPosition; 
+void Separity::Transform::translate(Spyutils::Vector3 translation, typeOR TP) {
+	Spyutils::Vector3 newPosition;
 	Spyutils::Vector3 posicionPadre = position_;
 	if(TP == LOCAL) {
 		vector<vector<float>> rotationMatrix =
@@ -66,14 +66,12 @@ void Separity::Transform::translate(Spyutils::Vector3 translation,
 
 		newPosition = {position_[0] + tx_local, position_[1] + ty_local,
 		               position_[2] + tz_local};
-		
-	} 
-	else {
+
+	} else {
 		newPosition += translation;
 	}
 	// position_ += other;
 
-	
 	position_ = newPosition;
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
@@ -87,14 +85,14 @@ void Separity::Transform::setRotation(float rotationX, float rotationY,
                                       float rotationZ) {
 	rotation_ = Spyutils::Vector3(rotationX, rotationY, rotationZ);
 	rotationQ_ = {rotationX, rotationY, rotationZ};
-	//for(auto child : ent_->getChildren()) {
+	// for(auto child : ent_->getChildren()) {
 	//	auto tr = child->getComponent<Transform>();
 	//	Spyutils::Vector3 rotacion =
 	//	    rotar(tr->getPosition(), position_, rotation_);
 	//	// tr->setPosition(rotacion);
 	//	Spyutils::Vector3 rot = rotation_;
 	//	tr->setRotation(rot.x, rot.y, rot.z);
-	//}
+	// }
 }
 void Separity::Transform::setRotationQ(float rotationW, float rotationX,
                                        float rotationY, float rotationZ) {
@@ -104,8 +102,8 @@ void Separity::Transform::setRotationQ(float rotationW, float rotationX,
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
 		    rotar(tr->getPosition(), position_, rotationQ_.getRotation());
-		 //tr->setPosition(rotacion);
-		 tr->setRotationQ(rotationW, rotationX, rotationY, rotationZ);
+		// tr->setPosition(rotacion);
+		tr->setRotationQ(rotationW, rotationX, rotationY, rotationZ);
 	}
 }
 
@@ -115,7 +113,7 @@ Spyutils::spyQuaternion Separity::Transform::getRotationQ() {
 	return rotationQ_;
 }
 
-void Separity::Transform::pitch(float degree,typeOR TP ) {
+void Separity::Transform::pitch(float degree, typeOR TP) {
 	if(TP == LOCAL)
 		rotationQ_.rotate(degree, {1, 0, 0});
 	else
@@ -131,11 +129,11 @@ void Separity::Transform::pitch(float degree,typeOR TP ) {
 }
 
 void Separity::Transform::yaw(float degree, typeOR TP) {
-	if(TP==LOCAL)
+	if(TP == LOCAL)
 		rotationQ_.rotate(degree, {0, 1, 0});
-	else 
+	else
 		rotationQ_.rotateGlobal(degree, {0, 1, 0});
-	
+
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
@@ -145,7 +143,7 @@ void Separity::Transform::yaw(float degree, typeOR TP) {
 	}
 }
 
-void Separity::Transform::roll(float degree, typeOR TP ) {	
+void Separity::Transform::roll(float degree, typeOR TP) {
 	if(TP == LOCAL)
 		rotationQ_.rotate(degree, {0, 0, 1});
 	else
@@ -188,10 +186,10 @@ void Separity::Transform::lookAt(Spyutils::Vector3 target) {
 	dir.normalize();
 
 	Spyutils::spyQuaternion rot = Spyutils::spyQuaternion(
-	    std::atan2(dir.y,
-	               std::sqrt(dir.x * dir.x + dir.z * dir.z) * 180.0f / spyPI),
+	    std::atan2(dir.y, std::sqrt(dir.x * dir.x + dir.z * dir.z)) * 180.0f /
+	        spyPI,
 	    std::atan2(dir.x, dir.z) * 180.0f / spyPI, 0);
-	setRotationQ(rot.x, rot.y, rot.z, rot.w);
+	setRotationQ(rot.w, rot.x, rot.y, rot.z);
 }
 
 Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,

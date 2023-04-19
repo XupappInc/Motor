@@ -8,7 +8,7 @@
 Separity::PathFollow::PathFollow(std::vector<Spyutils::Vector3> const& path)
     : path_(path), pathingTo_(0), velocity_(1.0f), stopped_(false),
       rigidBody_(nullptr), transform_(nullptr),
-      pathingType_(PathingType::DEFAULT), pathingDir_(1), PhysicsComponent() {}
+      pathingType_(PathingType::DEFAULT), pathingDir_(1), Behaviour() {}
 
 Separity::PathFollow::~PathFollow() {}
 
@@ -19,8 +19,14 @@ void Separity::PathFollow::update(const uint32_t& deltaTime) {
 	if(path_.size() == 0 || pathingTo_ >= path_.size() || pathingTo_ < 0)
 		return;
 
+	//std::cout << "Pathing to: " << pathingTo_ << std::endl;
+	/*std::cout << transform_->getPosition().x << " "
+	          << transform_->getPosition().y << " "
+	          << transform_->getPosition().z << std::endl;*/
+	//transform_->setPosition(path_[pathingTo_]);
 	// Ha llegado al siguiente waypoint
-	if(transform_->getPosition().distance(path_[pathingTo_]) < 0.1f) {
+	if(std::abs(transform_->getPosition().x - path_[pathingTo_].x) <= 1.0f &&
+	   std::abs(transform_->getPosition().z - path_[pathingTo_].z) <= 1.0f) {
 		if(pathingType_ == PathingType::DEFAULT) {
 			pathingTo_ += pathingDir_;
 			if(pathingTo_ < 0 || pathingTo_ > path_.size()) {
@@ -38,7 +44,8 @@ void Separity::PathFollow::update(const uint32_t& deltaTime) {
 	// Fuerza
 	Spyutils::Vector3 dir = path_[pathingTo_] - transform_->getPosition();
 	dir.normalize();
-	dir *= velocity_;
+	dir.y = 0;
+	//dir *= velocity_;
 	rigidBody_->applyImpulse(dir);
 }
 

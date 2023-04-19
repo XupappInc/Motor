@@ -16,7 +16,6 @@ Separity::MeshRenderer::MeshRenderer(std::string meshName) : RenderComponent() {
 	meshRenderer_ = sceneManager_->getRootSceneNode()->createChildSceneNode();
 	entity_ = sceneManager_->createEntity(meshName);
 	meshRenderer_->attachObject(entity_);
-	meshRenderer_->translate(Ogre::Vector3(1, 2, 3));
 }
 
 void Separity::MeshRenderer::initComponent() {}

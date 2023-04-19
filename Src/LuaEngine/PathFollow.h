@@ -2,8 +2,7 @@
 #ifndef __PATH_FOLLOW_H__
 #define __PATH_FOLLOW_H__
 
-#include "PhysicsComponent.h"
-
+#include "Behaviour.h"
 #include <vector>
 
 namespace Spyutils {
@@ -14,9 +13,9 @@ namespace Separity {
 	class Transform;
 	class RigidBody;
 
-	class PathFollow : public Separity::PhysicsComponent {
+	class PathFollow : public Separity::Behaviour {
 		public:
-		__CMPTYPE_DECL__(Separity::_PHYSICS)
+		__CMPTYPE_DECL__(Separity::_SCRIPT)
 		__CMPID_DECL__(Separity::_PATH_FOLLOW)
 
 		enum PathingType { DEFAULT = 0, CYCLIC } pathingType_;
