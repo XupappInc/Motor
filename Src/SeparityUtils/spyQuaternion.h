@@ -25,6 +25,8 @@ namespace Spyutils {
 		spyQuaternion(float w,float x, float y, float z );
 		static spyQuaternion Inverse(spyQuaternion quat);
 		static spyQuaternion Conjugate(spyQuaternion quat);
+		static spyQuaternion difference(Spyutils::spyQuaternion q1,
+		                                Spyutils::spyQuaternion q2);
 		float& operator[](int index);
 		spyQuaternion operator/(float const& other);
 		/// <summary>

@@ -40,6 +40,12 @@ Spyutils::spyQuaternion Spyutils::spyQuaternion::Conjugate(spyQuaternion q) {
 	return Spyutils::spyQuaternion(q.w, -q.x, -q.y, -q.z);
 }
 
+Spyutils::spyQuaternion
+Spyutils::spyQuaternion::difference(Spyutils::spyQuaternion q1,
+                                                  Spyutils::spyQuaternion q2) {
+	return q1 * Spyutils::spyQuaternion::Conjugate(q2);
+}
+
 float& Spyutils::spyQuaternion::operator[](int index) {
 	switch(index) {
 		case 0:
@@ -64,17 +70,6 @@ Spyutils::spyQuaternion Spyutils::spyQuaternion::operator/(float const& other) {
 	                               this->y / other,
 	                               this->z / other);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 Spyutils::spyQuaternion Spyutils::spyQuaternion::operator*(spyQuaternion const& q) {
@@ -135,6 +130,7 @@ Spyutils::Vector3 Spyutils::spyQuaternion::getRotation() {
 	return Vector3(quat.getPitch().valueDegrees(), quat.getYaw().valueDegrees(),
 	               quat.getRoll().valueDegrees());
 }
+
 
 Ogre::Quaternion Spyutils::spyQuaternion::spyQuaterniomToOgre() const {
 	return Ogre::Quaternion(w, x, y, z);
