@@ -96,14 +96,20 @@ void Separity::Transform::setRotation(float rotationX, float rotationY,
 }
 void Separity::Transform::setRotationQ(float rotationW, float rotationX,
                                        float rotationY, float rotationZ) {
+	auto initpadre = rotationQ_.getRotation();
 	rotationQ_ =
 	    Spyutils::spyQuaternion(rotationW, rotationX, rotationY, rotationZ);
+	auto dif = rotationQ_.getRotation() - initpadre;
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
-		    rotar(tr->getPosition(), position_, rotationQ_.getRotation());
-		// tr->setPosition(rotacion);
-		tr->setRotationQ(rotationW, rotationX, rotationY, rotationZ);
+		    rotar(tr->getPosition(), position_, dif);
+		/*Spyutils::spyQuaternion q_relative =
+		    Spyutils::spyQuaternion::Conjugate(rotationQ_) * tr->getRotationQ();
+		Spyutils::spyQuaternion q_final = rotationQ_ * q_relative;*/
+		 tr->setPosition(rotacion);
+		tr->setRotationQ( rotationW,  rotationX,  rotationY,
+		                  rotationZ);
 	}
 }
 

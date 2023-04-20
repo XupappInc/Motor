@@ -6,6 +6,7 @@
 #include <OgreMath.h>
 #include <OgreVector3.h>
 #include <LinearMath/btQuaternion.h>
+Spyutils::spyQuaternion::spyQuaternion():spyQuaternion(0,0,0) {}
 Spyutils::spyQuaternion::spyQuaternion(float x, float y, float z) {
 
 	double cy = cos(z * Ogre::Math::PI / 180.0 / 2.0);
@@ -35,6 +36,29 @@ Spyutils::spyQuaternion Spyutils::spyQuaternion::Inverse(spyQuaternion q) {
 	return q_inverse;
 }
 
+Spyutils::spyQuaternion Spyutils::spyQuaternion::Conjugate(spyQuaternion q) {
+	return Spyutils::spyQuaternion(q.w, -q.x, -q.y, -q.z);
+}
+
+float& Spyutils::spyQuaternion::operator[](int index) {
+	switch(index) {
+		case 0:
+			return w;
+			break;
+		case 1:
+			return x;
+			break;
+		case 2:
+			return y;
+			break;
+		case 3:
+			return z;
+			break;
+		default:
+			break;
+	}
+}
+
 Spyutils::spyQuaternion Spyutils::spyQuaternion::operator/(float const& other) {
 	return Spyutils::spyQuaternion(this->w / other, this->x / other,
 	                               this->y / other,
@@ -42,9 +66,24 @@ Spyutils::spyQuaternion Spyutils::spyQuaternion::operator/(float const& other) {
 }
 
 
-Spyutils::spyQuaternion Spyutils::spyQuaternion::operator*(spyQuaternion const& other) {
-	return Spyutils::spyQuaternion(this->w * other.w, this->x * other.x,
-	                               this->y * other.y, this->z * other.z);
+
+
+
+
+
+
+
+
+
+
+
+Spyutils::spyQuaternion Spyutils::spyQuaternion::operator*(spyQuaternion const& q) {
+
+	double w_ = w * q.w - x * q.x - y * q.y - z * q.z;
+	double x_ = w * q.x + x * q.w + y * q.z - z * q.y;
+	double y_ = w * q.y - x * q.z + y * q.w + z * q.x;
+	double z_ = w * q.z + x * q.y - y * q.x + z * q.w;
+	return Spyutils::spyQuaternion(w_, x_, y_, z_);
 }
 
 Spyutils::Vector3 Spyutils::spyQuaternion::toEulerAngles() {
