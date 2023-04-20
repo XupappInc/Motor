@@ -12,7 +12,7 @@
 #include <LuaBridge/LuaBridge.h>
 #include <iostream>
 
-
+using namespace Separity;
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
@@ -48,14 +48,16 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 		lua_pushnil(L);
 		/*EntityManager* entManager = Separity::EntityManager::getInstance();*/
 		while(lua_next(L, -2)) {
+			std::string entityName = " ";
 			if(lua_isstring(L, -2)) {
-				std::string entity = lua_tostring(L, -2, NULL);
-				std::cout << " " << entity << ":\n";
+				entityName = lua_tostring(L, -2, NULL);
+				std::cout << " " << entityName << ":\n";
 			}
 
 			if(lua_istable(L, -1)) {
 				Entity* entity = em->addEntity(_grp_GENERAL);
-
+				if(entityName != " ")
+					entity->setTag(entityName);
 				cont++;
 
 				lua_pushnil(L);  // Poner la primera key en la pila

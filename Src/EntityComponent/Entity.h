@@ -183,6 +183,15 @@ namespace Separity {
 		/// <returns>El grupo al que pertenece la entidad (gId)</returns>
 		Separity::grpId_type getGroupId();
 		
+		/// <summary>
+		/// Getter para conseguir un tag
+		/// </summary>
+		/// <returns></returns>
+		std::string getTag();
+		/// <summary>
+		/// Setter para poner el nombre del tag
+		/// </summary>
+		void setTag(std::string name);
 		private:
 
 		Manager* getManager(cmpType_type type);
@@ -196,6 +205,7 @@ namespace Separity {
 		Entity* parent = nullptr;
 		std::vector<Entity*> childs_;
 		Transform* entTr_;
+		std::string tag_;
 	};
 }  // namespace Separity
 #endif  // !__ENTITY_H__
