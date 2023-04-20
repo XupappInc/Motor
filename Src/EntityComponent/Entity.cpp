@@ -60,6 +60,10 @@ void Separity::Entity::removeChild( Entity* child) {
 
 Separity::grpId_type Separity::Entity::getGroupId() { return gId_; }
 
+std::string Separity::Entity::getTag() { return tag_; }
+
+void Separity::Entity::setTag(std::string name) { tag_ = name; }
+
 Separity::Manager* Separity::Entity::getManager(cmpType_type type) {
 	return Separity::ManagerManager::getInstance()->getManager(type);
 }

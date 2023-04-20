@@ -11,7 +11,8 @@ end
 
 function Prueba:update()
     -- print('Se llama al update del script de Lua')
-    -- prueba.entity:getTransform():roll(27)
+    local s = prueba.entity:getTag()
+    print(s)
 end
 
 function Prueba:onCollisionEnter()
