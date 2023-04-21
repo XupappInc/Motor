@@ -30,4 +30,5 @@ void Separity::ComponentFactory::createComponent(const std::string& CName,
 void Separity::ComponentFactory::addCreator(const std::string& CName,
                                     CCreator* CCreator) {
 	creators_[CName] = CCreator;
+	CCreator->registerInLua();
 }
