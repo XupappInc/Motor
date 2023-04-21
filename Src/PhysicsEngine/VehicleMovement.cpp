@@ -5,6 +5,8 @@
 #include "Rigidbody.h"
 
 #include <btBulletDynamicsCommon.h>
+#include <BulletDynamics/Vehicle/btRaycastVehicle.h>
+
 //  #include "checkML.h"
 
 Separity::VehicleMovement::VehicleMovement()
@@ -15,12 +17,12 @@ Separity::VehicleMovement::VehicleMovement()
 Separity::VehicleMovement::~VehicleMovement() {}
 
 void Separity::VehicleMovement::initComponent() {
-	//rb_ = ent_->getComponent<RigidBody>();
-	//assert(rb_ != nullptr);
+	rb_ = ent_->getComponent<RigidBody>();
+	assert(rb_ != nullptr);
 
-	//Separity::PhysicsManager* physicsManager =
-	//    Separity::PhysicsManager::getInstance();
-	//world_ = physicsManager->getWorld();
+	Separity::PhysicsManager* physicsManager =
+	    Separity::PhysicsManager::getInstance();
+	world_ = physicsManager->getWorld();
 
 	//btVehicleRaycaster* vehicleRayCaster =
 	//    new btDefaultVehicleRaycaster(world_);

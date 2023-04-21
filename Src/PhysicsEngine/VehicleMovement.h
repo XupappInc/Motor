@@ -9,8 +9,7 @@ namespace Spyutils {
 
 namespace Separity {
 	class RigidBody;
-	class btDiscreteDynamicsWorld;
-	class btRaycastVehicle;
+	class btDynamicsWorld;
 	/// <summary>
 	/// Componente rigidbody
 	/// </summary>
@@ -45,9 +44,8 @@ namespace Separity {
 
 		private:
 		float mass_;
-		btDiscreteDynamicsWorld* world_;
+		btDynamicsWorld* world_;
 		RigidBody* rb_;
-		btRaycastVehicle* vehicle_;
 	};
 }  // namespace Separity
 #endif __VEHICLE_MOVEMENT_H__
