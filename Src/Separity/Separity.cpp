@@ -1,5 +1,12 @@
 // Separity.cpp : Este archivo contiene la función "main". La ejecución del
 // programa comienza y termina ahí.
+//#include <Windows.h>
+//
+//#ifdef _DEBUG
+//HMODULE hinstLib = LoadLibrary(TEXT("Separity_Game_d"));
+//#else
+//HMODULE hinstLib = LoadLibrary(TEXT("Separity_Game"));
+//#endif  // DEBUG
 
 #include "Entity.h"
 
@@ -17,6 +24,7 @@
 #include "Transform.h"
 #include "Button.h"
 #include "Panel.h"
+#include "Text.h"
 
 // Managers
 #include "AudioManager.h"
@@ -107,10 +115,15 @@ int main() {
 	cam_tr->pitch(-30);
 	Camera* cam_cam = camera->addComponent<Camera>();
 
-	//Entity* button = entityManager->addEntity(_grp_GENERAL);
-	//Button* but =
-	//    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
-	//                                          "World_ap.15");
+
+	Entity* button = entityManager->addEntity(_grp_GENERAL);
+	//Text* txt =
+	//    button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100, 200,
+	//                               50, "Holi", Spyutils::Vector3(0, 0, 1));
+	/* Button* but =
+	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
+	                                          "World_ap.15");*/
+
 
 	mm->initComponents();
 

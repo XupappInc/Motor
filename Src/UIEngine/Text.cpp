@@ -17,13 +17,26 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
 	    overlayManager->createOverlayElement(
 	        "TextArea", overlayName + std::to_string(numUIElements)));
 
+	/*Ogre::FontPtr mFont =
+	    Ogre::FontManager::getSingleton().create("fuentePrueba", "Fonts");
+	mFont->setType(Ogre::FT_TRUETYPE);
+	mFont->setSource("Assets/fonts/OpenSans.ttf");
+	mFont->setParameter("size", "26");
+	mFont->setParameter("resolution", "96");
+	mFont->load();*/
+
+	/*Ogre::FontManager& fontMgr = Ogre::FontManager::getSingleton();
+	fontMgr.parseFont("path/to/fontdef/file.fontdef", "MyFontName");*/
+
+	
 	// Set de las opciones del texto
 	overlayText->setMetricsMode(Ogre::GMM_PIXELS);
 	overlayText->setPosition(xPos, yPos);
 	overlayText->setDimensions(width, height);
-	overlayText->setCaption(textContent);
+	//overlayText->setCaption(textContent);
 	overlayText->setCharHeight(16);
-	// overlayText->setFontName("fuentePrueba");
+	
+	overlayText->setFontName(fontType);
 	overlayText->setColourTop(
 	    Ogre::ColourValue(textColor.x, textColor.y, textColor.z));
 	overlayText->setColourBottom(
