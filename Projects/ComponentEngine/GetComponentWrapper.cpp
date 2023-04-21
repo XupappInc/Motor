@@ -23,5 +23,5 @@ Separity::Transform* Separity::GetComponentWrapper::getTransform(Entity* ent) {
 }
 
 void Separity::GetComponentWrapper::registerInLua() {
-	L
+	
 }
