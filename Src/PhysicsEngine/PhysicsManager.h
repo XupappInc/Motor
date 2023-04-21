@@ -2,7 +2,7 @@
 #ifndef __PHYSICS_MANAGER_H__
 #define __PHYSICS_MANAGER_H__
 #include "Manager.h"
-class btDiscreteDynamicsWorld;
+class btDynamicsWorld;
 class btBroadphaseInterface;
 class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
@@ -43,7 +43,7 @@ namespace Separity {
 		///	Obtiene un puntero del mundo de bullet
 		/// </summary>
 		/// <returns>El mundo donde sucede la simulación</returns>
-		btDiscreteDynamicsWorld* getWorld();
+		btDynamicsWorld* getWorld();
 		
 		void clean() override;
 		
@@ -58,7 +58,7 @@ namespace Separity {
 		void initDebug();
 		
 
-		btDiscreteDynamicsWorld* world_;
+		btDynamicsWorld* world_;
 		btBroadphaseInterface* broadphase_;
 		btCollisionDispatcher* dispatcher_;
 		btSequentialImpulseConstraintSolver* solver_;

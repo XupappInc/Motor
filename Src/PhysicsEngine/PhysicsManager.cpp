@@ -103,7 +103,7 @@ void PhysicsManager::update(const uint32_t& deltaTime) {
 		debug();
 }
 
-btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return world_; }
+btDynamicsWorld* PhysicsManager::getWorld() { return world_; }
 
 void Separity::PhysicsManager::clean() {
 	deleteWorld();
