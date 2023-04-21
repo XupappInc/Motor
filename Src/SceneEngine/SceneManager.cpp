@@ -106,4 +106,5 @@ Separity::SceneManager::SceneManager() {
 	factory_->addCreator("animator", new AnimatorCreator());
 	factory_->addCreator("script", new BehaviourCreator());
 	factory_->addCreator("button", new ButtonCreator());
+	factory_->addCreator("panel", new PanelCreator());
 }
