@@ -102,17 +102,16 @@ void Separity::Transform::setRotationQ(float rotationW, float rotationX,
 	auto dif = Spyutils::spyQuaternion::difference(rotationQ_, initpadre);
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
-		Spyutils::Vector3 rotacion =
-		    rotar(tr->getPosition(), position_, dif);
+		Spyutils::Vector3 rotacion = rotar(tr->getPosition(), position_, dif);
 		/*Spyutils::spyQuaternion q_relative =
 		    Spyutils::spyQuaternion::Conjugate(rotationQ_) * tr->getRotationQ();
 		Spyutils::spyQuaternion q_final = rotationQ_ * q_relative;*/
-		 tr->setPosition(rotacion);
+		tr->setPosition(rotacion);
 		auto rotchild = tr->getRotationQ();
-		 rotchild.rotate(dif.getRotation().x, {1, 0, 0});
-		 rotchild.rotate(dif.getRotation().y, {0, 1, 0});
-		 rotchild.rotate(dif.getRotation().z, {0, 0, 1});
-		 tr->setRotationQ(rotchild.w, rotchild.x, rotchild.y, rotchild.z);
+		rotchild.rotate(dif.getRotation().x, {1, 0, 0});
+		rotchild.rotate(dif.getRotation().y, {0, 1, 0});
+		rotchild.rotate(dif.getRotation().z, {0, 0, 1});
+		tr->setRotationQ(rotchild.w, rotchild.x, rotchild.y, rotchild.z);
 	}
 }
 
@@ -191,14 +190,7 @@ void Separity::Transform::setScale(float scale) {
 Spyutils::Vector3 Separity::Transform::getScale() { return scale_; }
 
 void Separity::Transform::lookAt(Spyutils::Vector3 target) {
-	Spyutils::Vector3 dir = target - position_;
-	dir.normalize();
-
-	Spyutils::spyQuaternion rot = Spyutils::spyQuaternion(
-	    std::atan2(dir.y, std::sqrt(dir.x * dir.x + dir.z * dir.z)) * 180.0f /
-	        spyPI,
-	    std::atan2(dir.x, dir.z) * 180.0f / spyPI, 0);
-	setRotationQ(rot.w, rot.x, rot.y, rot.z);
+	rotationQ_.lookAt(target, position_);
 }
 
 Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,

@@ -71,6 +71,12 @@ namespace Spyutils {
 		/// </summary>
 		/// <returns></returns>
 		btQuaternion spyQuaterniomToBullet() const;
+		/// <summary>
+		/// rota el quaternion para mirar hacia un punto
+		/// </summary>
+		/// <param name="target">la posicion a la que apuntar</param>
+		/// <param name="position">la posicion de la entidad</param>
+		void lookAt(Spyutils::Vector3 target, Spyutils::Vector3 position);
 	};
 
 }  // namespace Spyutils

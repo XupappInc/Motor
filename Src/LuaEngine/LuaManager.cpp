@@ -2,6 +2,7 @@
 
 #include "ManagerManager.h"
 
+#include "Transform.h"
 #include "Entity.h"
 #include "Behaviour.h"
 

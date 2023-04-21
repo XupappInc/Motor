@@ -23,7 +23,8 @@
 		_BUTTON, \
 		_TEXT, \
 		_PANEL, \
-		_PATH_FOLLOW
+		_PATH_FOLLOW, \
+		_VEHICLE_MOVEMENT
 		 
 
 /// <summary>
@@ -31,12 +32,12 @@
 /// </summary>
 #define _CMPS_TYPES_ \
 		_ENTITY, \
+		_INPUT, \
+		_SCRIPT, \
 		_PHYSICS, \
 		_UI, \
 		_RENDER, \
-		_INPUT, \
 		_SOUND, \
-		_SCRIPT, \
 		_SCENE
 
 /// <summary>
