@@ -19,6 +19,7 @@ void Separity::TransformCreator::registerInLua() {
 	    .addFunction("pitch", &Transform::pitch)
 	    .addFunction("yaw", &Transform::yaw)
 	    .addFunction("roll", &Transform::roll)
+	    .addFunction("lookAt", &Transform::lookAt)
 	    .endClass();
 }
 
