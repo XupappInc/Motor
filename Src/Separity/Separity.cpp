@@ -73,6 +73,7 @@ int main() {
 	Entity* sinbad3 = entityManager->addEntity(_grp_GENERAL);
 	sinbad->addChild(sinbad3);
 	sinbad3->getComponent<Transform>()->translate({0,5,0});
+	//sinbad3->getComponent<Transform>()->roll(90);
 	sinbad3->addComponent<MeshRenderer>("Sinbad.mesh");
 
 	colliderParams params;

@@ -96,14 +96,23 @@ void Separity::Transform::setRotation(float rotationX, float rotationY,
 }
 void Separity::Transform::setRotationQ(float rotationW, float rotationX,
                                        float rotationY, float rotationZ) {
+	auto initpadre = rotationQ_;
 	rotationQ_ =
 	    Spyutils::spyQuaternion(rotationW, rotationX, rotationY, rotationZ);
+	auto dif = Spyutils::spyQuaternion::difference(rotationQ_, initpadre);
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
 		Spyutils::Vector3 rotacion =
-		    rotar(tr->getPosition(), position_, rotationQ_.getRotation());
-		// tr->setPosition(rotacion);
-		tr->setRotationQ(rotationW, rotationX, rotationY, rotationZ);
+		    rotar(tr->getPosition(), position_, dif);
+		/*Spyutils::spyQuaternion q_relative =
+		    Spyutils::spyQuaternion::Conjugate(rotationQ_) * tr->getRotationQ();
+		Spyutils::spyQuaternion q_final = rotationQ_ * q_relative;*/
+		 tr->setPosition(rotacion);
+		auto rotchild = tr->getRotationQ();
+		 rotchild.rotate(dif.getRotation().x, {1, 0, 0});
+		 rotchild.rotate(dif.getRotation().y, {0, 1, 0});
+		 rotchild.rotate(dif.getRotation().z, {0, 0, 1});
+		 tr->setRotationQ(rotchild.w, rotchild.x, rotchild.y, rotchild.z);
 	}
 }
 
@@ -220,6 +229,46 @@ Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
 	    {-sin_yaw, sin_pitch * cos_yaw, cos_pitch * cos_yaw}};
 
 	// Aplica la rotaci�n al vector de rotacion
+	Spyutils::Vector3 vector_rotado = {
+	    matriz_rotacion[0][0] * vector_rotacion.x +
+	        matriz_rotacion[0][1] * vector_rotacion.y +
+	        matriz_rotacion[0][2] * vector_rotacion.z,
+	    matriz_rotacion[1][0] * vector_rotacion.x +
+	        matriz_rotacion[1][1] * vector_rotacion.y +
+	        matriz_rotacion[1][2] * vector_rotacion.z,
+	    matriz_rotacion[2][0] * vector_rotacion.x +
+	        matriz_rotacion[2][1] * vector_rotacion.y +
+	        matriz_rotacion[2][2] * vector_rotacion.z};
+
+	// Calcula la nueva posicion a partir del vector rotado y el anclaje
+	posicion = {anclaje.x + vector_rotado.x, anclaje.y + vector_rotado.y,
+	            anclaje.z + vector_rotado.z};
+	Spyutils::Vector3 newpos = {Spyutils::Math::toDegrees(posicion.x),
+	                            Spyutils::Math::toDegrees(posicion.y),
+	                            Spyutils::Math::toDegrees(posicion.z)};
+	return posicion;
+}
+Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
+                                             Spyutils::Vector3 anclaje,
+                                             Spyutils::spyQuaternion rotacion) {
+	Spyutils::Vector3 vector_rotacion = {
+	    posicion.x - anclaje.x, posicion.y - anclaje.y, posicion.z - anclaje.z};
+
+	// Construye la matriz de rotación a partir del quaternion
+	float w = rotacion.w;
+	float x = rotacion.x;
+	float y = rotacion.y;
+	float z = rotacion.z;
+
+	float matriz_rotacion[3][3] = {
+	    {1 - 2 * y * y - 2 * z * z, 2 * x * y - 2 * z * w,
+	     2 * x * z + 2 * y * w},
+	    {2 * x * y + 2 * z * w, 1 - 2 * x * x - 2 * z * z,
+	     2 * y * z - 2 * x * w},
+	    {2 * x * z - 2 * y * w, 2 * y * z + 2 * x * w,
+	     1 - 2 * x * x - 2 * y * y}};
+
+	// Aplica la rotación al vector de rotación
 	Spyutils::Vector3 vector_rotado = {
 	    matriz_rotacion[0][0] * vector_rotacion.x +
 	        matriz_rotacion[0][1] * vector_rotacion.y +

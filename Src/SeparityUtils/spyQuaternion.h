@@ -20,10 +20,14 @@ namespace Spyutils {
 	class spyQuaternion {
 		public:
 		float w,x, y, z;
-
+		spyQuaternion();
 		spyQuaternion( float x, float y, float z);
 		spyQuaternion(float w,float x, float y, float z );
 		static spyQuaternion Inverse(spyQuaternion quat);
+		static spyQuaternion Conjugate(spyQuaternion quat);
+		static spyQuaternion difference(Spyutils::spyQuaternion q1,
+		                                Spyutils::spyQuaternion q2);
+		float& operator[](int index);
 		spyQuaternion operator/(float const& other);
 		/// <summary>
 		/// Multiplicación de dos quaterniones.
