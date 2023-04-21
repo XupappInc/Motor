@@ -23,7 +23,8 @@
 		_BUTTON, \
 		_TEXT, \
 		_PANEL, \
-		_PATH_FOLLOW
+		_PATH_FOLLOW, \
+		_PLAYER_CTRL
 		 
 
 /// <summary>
