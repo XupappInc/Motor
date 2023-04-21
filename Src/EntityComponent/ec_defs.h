@@ -24,7 +24,7 @@
 		_TEXT, \
 		_PANEL, \
 		_PATH_FOLLOW, \
-		_PLAYER_CTRL
+		_VEHICLE_MOVEMENT
 		 
 
 /// <summary>
