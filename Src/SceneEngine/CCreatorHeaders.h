@@ -13,3 +13,4 @@
 #include "BehaviourCreator.h"
 #include "ButtonCreator.h"
 #include "PanelCreator.h"
+#include "TextCreator.h"
