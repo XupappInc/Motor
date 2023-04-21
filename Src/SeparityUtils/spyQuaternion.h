@@ -20,9 +20,21 @@ namespace Spyutils {
 	class spyQuaternion {
 		public:
 		float w,x, y, z;
-
+		spyQuaternion();
 		spyQuaternion( float x, float y, float z);
 		spyQuaternion(float w,float x, float y, float z );
+		static spyQuaternion Inverse(spyQuaternion quat);
+		static spyQuaternion Conjugate(spyQuaternion quat);
+		static spyQuaternion difference(Spyutils::spyQuaternion q1,
+		                                Spyutils::spyQuaternion q2);
+		float& operator[](int index);
+		spyQuaternion operator/(float const& other);
+		/// <summary>
+		/// Multiplicación de dos quaterniones.
+		/// </summary>
+		/// <param name="other">quaternion con el que se hará el producto</param>
+		/// <returns>quaternion del producto</returns>
+		spyQuaternion operator*(spyQuaternion const& other);
 		/// <summary>
 		/// Convertir a grados
 		/// </summary>
@@ -59,6 +71,12 @@ namespace Spyutils {
 		/// </summary>
 		/// <returns></returns>
 		btQuaternion spyQuaterniomToBullet() const;
+		/// <summary>
+		/// rota el quaternion para mirar hacia un punto
+		/// </summary>
+		/// <param name="target">la posicion a la que apuntar</param>
+		/// <param name="position">la posicion de la entidad</param>
+		void lookAt(Spyutils::Vector3 target, Spyutils::Vector3 position);
 	};
 
 }  // namespace Spyutils

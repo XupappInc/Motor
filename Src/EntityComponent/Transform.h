@@ -96,11 +96,19 @@ namespace Separity {
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getScale();
+		/// <summary>
+		/// rota el transform para mirar hacia un punto
+		/// </summary>
+		/// <param name="target">Punto al que mirar</param>
+		void lookAt(Spyutils::Vector3 target);
 
 		private:
 		Spyutils::Vector3 rotar(Spyutils::Vector3 posicion,
 		                        Spyutils::Vector3 anclaje,
 		                        Spyutils::Vector3 rotacion);
+		Spyutils::Vector3 rotar(Spyutils::Vector3 posicion,
+		                        Spyutils::Vector3 anclaje,
+		                        Spyutils::spyQuaternion rotacion);
 		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
 		Spyutils::spyQuaternion rotationQ_;

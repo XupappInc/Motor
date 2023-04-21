@@ -92,6 +92,11 @@ namespace Spyutils {
 		/// Normaliza los valores del vector (pone la magnitud a 1)
 		/// </summary>
 		void normalize();
+		/// <summary>
+		/// Devuelve la distancia que hay entre dos vectores
+		/// </summary>
+		/// <param name="other">El otro vector</param>
+		float distance(Vector3 const& other);
 	};
 
 }  // namespace Spyutils

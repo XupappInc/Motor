@@ -63,13 +63,17 @@ int main() {
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({-15, 60, 12});
-	///sinbad->getComponent<Transform>()->pitch(90);
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
+
+	Entity* guile = entityManager->addEntity(_grp_GENERAL);
+	guile->getComponent<Transform>()->translate({0, 10, 12});
+	guile->getComponent<Transform>()->setScale(3);
+	guile->addComponent<MeshRenderer>("guille.mesh");
 
 	Entity* sinbad3 = entityManager->addEntity(_grp_GENERAL);
 	sinbad->addChild(sinbad3);
 	sinbad3->getComponent<Transform>()->translate({0,5,0});
-	/// sinbad->getComponent<Transform>()->pitch(90);
+	//sinbad3->getComponent<Transform>()->roll(90);
 	sinbad3->addComponent<MeshRenderer>("Sinbad.mesh");
 
 	colliderParams params;
@@ -82,8 +86,6 @@ int main() {
 	sinbad->addComponent<Collider>(params);
 	sinbad->addComponent<RigidBody>(DYNAMIC, 10);
 	auto animSinbad = sinbad->addComponent<Animator>();
-
-	Separity::LuaManager::getInstance()->loadScript("prueba", sinbad);
 
 	Entity* luz = entityManager->addEntity(_grp_GENERAL);
 	auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
@@ -105,10 +107,10 @@ int main() {
 	cam_tr->pitch(-30);
 	Camera* cam_cam = camera->addComponent<Camera>();
 
-	Entity* button = entityManager->addEntity(_grp_GENERAL);
-	Button* but =
-	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
-	                                          "World_ap.15");
+	//Entity* button = entityManager->addEntity(_grp_GENERAL);
+	//Button* but =
+	//    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
+	//                                          "World_ap.15");
 
 	mm->initComponents();
 
@@ -126,28 +128,28 @@ int main() {
 			quit = true;
 		} else {
 			if(inputManager->isKeyHeld('a')) {
-				cam_tr->translate(Spyutils::Vector3(-5, 0, 0));
+				cam_tr->translate(Spyutils::Vector3(-1, 0, 0));
 			}
 			if(inputManager->isKeyHeld('d')) {
-				cam_tr->translate(Spyutils::Vector3(5, 0, 0));
+				cam_tr->translate(Spyutils::Vector3(1, 0, 0));
 			}
 			if(inputManager->isKeyHeld('w')) {
-				cam_tr->translate(Spyutils::Vector3(0, 5, 0));
+				cam_tr->translate(Spyutils::Vector3(0,1, 0));
 			}
 			if(inputManager->isKeyHeld('s')) {
-				cam_tr->translate(Spyutils::Vector3(0, -5, 0));
+				cam_tr->translate(Spyutils::Vector3(0, -1, 0));
 			}
 			if(inputManager->isKeyHeld(InputManager::ARROW_LEFT)) {
-				cam_tr->yaw(0.5f);
+				cam_tr->yaw(0.1f);
 			}
 			if(inputManager->isKeyHeld(InputManager::ARROW_RIGHT)) {
-				cam_tr->yaw(-0.5f);
+				cam_tr->yaw(-0.1f);
 			}
 			if(inputManager->isKeyHeld(InputManager::ARROW_UP)) {
-				cam_tr->translate(Spyutils::Vector3(0, 0, -5));
+				cam_tr->translate(Spyutils::Vector3(0, 0, -1));
 			}
 			if(inputManager->isKeyHeld(InputManager::ARROW_DOWN)) {
-				cam_tr->translate(Spyutils::Vector3(0, 0, 5));
+				cam_tr->translate(Spyutils::Vector3(0, 0, 1));
 			}
 			if(inputManager->isKeyDown('c')) {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);

@@ -10,3 +10,7 @@
 #include "ParticleSystemCreator.h"
 #include "RigidbodyCreator.h"
 #include "TransformCreator.h"
+#include "BehaviourCreator.h"
+#include "ButtonCreator.h"
+#include "PanelCreator.h"
+#include "TextCreator.h"

@@ -23,6 +23,8 @@ void Separity::LightCreator::createComponent(lua_State* L, Separity::Entity* ent
 	}
 
 	float data[3] = {};
-	readArray("color", L, data);
-	light->setDiffuse(Spyutils::Vector3(data[0], data[1], data[2]));
+	if(readArray("color", L, data)) {
+		 light->setDiffuse(Spyutils::Vector3(data[0], data[1], data[2]));
+	}
+	
 }
