@@ -19,17 +19,12 @@ void Separity::PathFollow::update(const uint32_t& deltaTime) {
 	if(path_.size() == 0 || pathingTo_ >= path_.size() || pathingTo_ < 0)
 		return;
 
-	//std::cout << "Pathing to: " << pathingTo_ << std::endl;
-	/*std::cout << transform_->getPosition().x << " "
-	          << transform_->getPosition().y << " "
-	          << transform_->getPosition().z << std::endl;*/
-	//transform_->setPosition(path_[pathingTo_]);
 	// Ha llegado al siguiente waypoint
-	if(std::abs(transform_->getPosition().x - path_[pathingTo_].x) <= 1.0f &&
-	   std::abs(transform_->getPosition().z - path_[pathingTo_].z) <= 1.0f) {
+	Spyutils::Vector3 dir = path_[pathingTo_] - transform_->getPosition();
+	if(std::abs(dir.x) <= 1.0f && std::abs(dir.z) <= 1.0f) {
 		if(pathingType_ == PathingType::DEFAULT) {
 			pathingTo_ += pathingDir_;
-			if(pathingTo_ < 0 || pathingTo_ > path_.size()) {
+			if(pathingTo_ < 0 || pathingTo_ >= path_.size()) {
 				pathingDir_ *= -1;
 				pathingTo_ += (2 * pathingDir_);
 			}
@@ -38,15 +33,16 @@ void Separity::PathFollow::update(const uint32_t& deltaTime) {
 			pathingTo_ = (pathingTo_ + 1) % path_.size();
 
 		// Rotar
-		transform_->lookAt(path_[pathingTo_]);
+		transform_->lookAt({path_[pathingTo_].x, transform_->getPosition().y,
+		                    path_[pathingTo_].z});
+
+		rigidBody_->setLinearVelocity({0, 0, 0});
 	}
 
 	// Fuerza
-	Spyutils::Vector3 dir = path_[pathingTo_] - transform_->getPosition();
 	dir.normalize();
-	dir.y = 0;
-	//dir *= velocity_;
-	rigidBody_->applyImpulse(dir);
+	dir *= velocity_;
+	rigidBody_->setLinearVelocity({dir.x, 0, dir.z});
 }
 
 void Separity::PathFollow::initComponent() {
