@@ -11,3 +11,4 @@
 #include "RigidbodyCreator.h"
 #include "TransformCreator.h"
 #include "BehaviourCreator.h"
+#include "ButtonCreator.h"
