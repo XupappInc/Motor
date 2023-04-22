@@ -59,11 +59,6 @@ void Separity::LuaManager::registerClasses() {
 	    .addFunction("onCollisionStay", &Behaviour::onCollisionStay)
 	    .addProperty("entity", &Behaviour::ent_)
 	    .endClass();
-	
-	luabridge::getGlobalNamespace(L_)
-	    .beginClass<Entity>("Entity")
-	    .addFunction("getTag", &Entity::getTag)
-	    .endClass();
 }
 
 Separity::Behaviour* Separity::LuaManager::loadScript(std::string name, Entity* ent) {

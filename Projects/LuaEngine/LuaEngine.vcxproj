@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\LuaEngine\Behaviour.cpp" />
     <ClCompile Include="..\..\Src\LuaEngine\BehaviourCreator.cpp" />
-    <ClCompile Include="..\..\Src\LuaEngine\LuaEngine.cpp" />
     <ClCompile Include="..\..\Src\LuaEngine\LuaManager.cpp" />
     <ClCompile Include="..\..\Src\LuaEngine\PathFollow.cpp" />
   </ItemGroup>
