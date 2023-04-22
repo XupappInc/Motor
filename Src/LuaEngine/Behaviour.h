@@ -2,6 +2,12 @@
 #ifndef BEHAVIOUR_H
 #define BEHAVIOUR_H
 
+#ifdef _SEPARITY_EXPORT_
+#define _SEPARITY_EXPORT_ __declspec(dllexport)
+#else
+#define _SEPARITY_EXPORT_ __declspec(dllimport)
+#endif
+
 #include <Component.h>
 
 namespace luabridge {

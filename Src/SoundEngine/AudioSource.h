@@ -1,6 +1,13 @@
 #pragma once
 #ifndef __AUDIO_SOURCE_H__
 #define __AUDIO_SOURCE_H__
+
+#ifdef _SEPARITY_EXPORT_
+#define _SEPARITY_EXPORT_ __declspec(dllexport)
+#else
+#define _SEPARITY_EXPORT_ __declspec(dllimport)
+#endif
+
 #include "AudioComponent.h"
 
 #include <iostream>

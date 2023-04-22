@@ -2,6 +2,12 @@
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
 
+#ifdef _SEPARITY_EXPORT_
+#define _SEPARITY_EXPORT_ __declspec(dllexport)
+#else
+#define _SEPARITY_EXPORT_ __declspec(dllimport)
+#endif
+
 #define SDL_MAIN_HANDLED
 #include <SDL.h>
 

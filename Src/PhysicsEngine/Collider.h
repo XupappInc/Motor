@@ -1,6 +1,13 @@
 #pragma once
 #ifndef __COLLIDER_H__
 #define __COLLIDER_H__
+
+#ifdef _SEPARITY_EXPORT_
+#define _SEPARITY_EXPORT_ __declspec(dllexport)
+#else
+#define _SEPARITY_EXPORT_ __declspec(dllimport)
+#endif
+
 #include "PhysicsComponent.h"
 
 namespace Spyutils {

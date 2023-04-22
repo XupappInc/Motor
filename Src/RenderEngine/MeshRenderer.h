@@ -2,6 +2,11 @@
 #ifndef __MESH_RENDERER_H__
 #define __MESH_RENDERER_H__
 
+#ifdef _SEPARITY_EXPORT_
+#define _SEPARITY_EXPORT_ __declspec(dllexport)
+#else
+#define _SEPARITY_EXPORT_ __declspec(dllimport)
+#endif
 
 #include "RenderComponent.h"
 

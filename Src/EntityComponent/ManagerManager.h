@@ -2,6 +2,12 @@
 #ifndef __MANAGER_MANAGER_H__
 #define __MANAGER_MANAGER_H__
 
+#ifdef _SEPARITY_EXPORT_
+#define _SEPARITY_EXPORT_ __declspec(dllexport)
+#else
+#define _SEPARITY_EXPORT_ __declspec(dllimport)
+#endif
+
 #include "Manager.h"
 
 #include <map>

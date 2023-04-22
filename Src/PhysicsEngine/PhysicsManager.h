@@ -1,6 +1,13 @@
 #pragma once
 #ifndef __PHYSICS_MANAGER_H__
 #define __PHYSICS_MANAGER_H__
+
+#ifdef _SEPARITY_EXPORT_
+#define _SEPARITY_EXPORT_ __declspec(dllexport)
+#else
+#define _SEPARITY_EXPORT_ __declspec(dllimport)
+#endif
+
 #include "Manager.h"
 class btDynamicsWorld;
 class btBroadphaseInterface;
