@@ -6,6 +6,8 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "RigidBody.h"
+#include "Animator.h"
+#include "AudioSource.h"
 #include "LuaManager.h"
 
 Separity::GetComponentWrapper::GetComponentWrapper() {
@@ -14,14 +16,15 @@ Separity::GetComponentWrapper::GetComponentWrapper() {
 
 Separity::GetComponentWrapper::~GetComponentWrapper() {}
 
-Separity::RigidBody* Separity::GetComponentWrapper::getRigidBody(Entity* ent) {
-	return ent->getComponent<RigidBody>();
-}
-
-Separity::Transform* Separity::GetComponentWrapper::getTransform(Entity* ent) {
-	return ent->getComponent<Transform>();
-}
-
 void Separity::GetComponentWrapper::registerInLua() {
-	
+	luabridge::getGlobalNamespace(L)
+	    .beginClass<Entity>("Entity")
+	    .addFunction("getTag", &Entity::getTag)
+	    // aqui hay que definir todos los getters de los componentes a mano
+	    .addFunction("getTransform", &Entity::getComponent<Transform>)
+	    .addFunction("getRigidBody", &Entity::getComponent<RigidBody>)
+	    .addFunction("getAnimator", &Entity::getComponent<Animator>)
+	    .addFunction("getAudioComponent", &Entity::getComponent<AudioComponent>)
+		//...
+	    .endClass();
 }

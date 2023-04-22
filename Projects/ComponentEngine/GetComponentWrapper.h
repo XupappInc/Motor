@@ -13,9 +13,6 @@ namespace Separity {
 		GetComponentWrapper();
 		~GetComponentWrapper();
 
-		RigidBody* getRigidBody(Entity* ent);
-		Transform* getTransform(Entity* ent);
-
 		private:
 		void registerInLua();
 
