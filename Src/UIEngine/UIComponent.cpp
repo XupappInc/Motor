@@ -2,9 +2,11 @@
 #include "InputManager.h"
 #include "UIManager.h"
 #include "checkML.h"
+#include "Vector.h"
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
-#include <OgreOverlayManager.h>
+#include <OgreOverlayManager.h> 
+#include <OgreTextAreaOverlayElement.h>
 
 int Separity::UIComponent::numUIElements = 0;
 

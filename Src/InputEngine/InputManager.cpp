@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#include <SDL.h>
+
 #include "checkML.h"
 
 template<typename T>

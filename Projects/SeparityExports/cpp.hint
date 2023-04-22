@@ -1,0 +1,2 @@
+#define SEPARITYEXPORTS_API __declspec(dllexport)
+#define SEPARITYEXPORTS_API __declspec(dllimport)
