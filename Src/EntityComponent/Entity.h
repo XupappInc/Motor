@@ -2,6 +2,12 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
+#ifdef _SEPARITY_EXPORT_
+#define _SEPARITY_EXPORT_ __declspec(dllexport)
+#else
+#define _SEPARITY_EXPORT_ __declspec(dllimport)
+#endif
+
 #include "Component.h"
 #include "Manager.h"
 #include "ec.h"
