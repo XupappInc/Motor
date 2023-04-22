@@ -26,8 +26,8 @@ namespace Separity {
 		/// Se crea un componente AudioSource con parámetros audioRoute, que es
 		/// donde está ubicado dicho audio, audioName, que es el nombre del
 		/// audio con el que se guardará, y también isMusic que es un string que
-		/// es true o false y luego se comparala y pasará dicho booleano
-		/// dependiendo de ese string readParam("route", L, audioRoute);
+		/// es true o false y luego se comparará y pasará dicho booleano
+		/// dependiendo de dicho string
 		/// </summary>
 		/// <param name="L"></param>
 		/// <param name="ent"></param>

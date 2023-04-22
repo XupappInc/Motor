@@ -10,11 +10,23 @@ namespace Separity {
 
 	class AnimatorCreator : public CCreator {
 		public:
+		/// <summary>
+		/// Creador de AnimatorCreator, vacío de predeterminado
+		/// </summary>
 		AnimatorCreator();
 		~AnimatorCreator() = default;
 
+		/// <summary>
+		/// Registra en Lua, un tipo de componente en este caso el tipo
+		/// AnimatorCreator y las funciones correspondientes que queramos
+		/// </summary>
 		void registerInLua() override;
 
+		/// <summary>
+		/// Se crea un componente Animator sin parametros
+		/// </summary>
+		/// <param name="L"></param>
+		/// <param name="ent"></param>
 		void createComponent(lua_State* L, Separity::Entity* ent) override;
 	};
 };  // namespace Separity
