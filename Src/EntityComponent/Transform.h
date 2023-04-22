@@ -3,14 +3,12 @@
 #define __TRANSFORM_H__
 #include "Component.h"
 #include "Vector.h"
-
 #include <spyQuaternion.h>
 #include <vector>
 namespace Ogre {
 	class SceneManager;
 	class SceneNode;
 }  // namespace Ogre
-
 namespace Separity {
 	enum typeOR { LOCAL, GLOBAL
 	};
