@@ -45,7 +45,9 @@ void Separity::LuaManager::initLua() {
 	luaL_openlibs(L_);
 
 	registerClasses();
+}
 
+void Separity::LuaManager::registerClasses() {
 	// Registramos la clase base y sus funciones miembro
 	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Behaviour>("Behaviour")
@@ -57,17 +59,14 @@ void Separity::LuaManager::initLua() {
 	    .addFunction("onCollisionStay", &Behaviour::onCollisionStay)
 	    .addProperty("entity", &Behaviour::ent_)
 	    .endClass();
-}
-
-void Separity::LuaManager::registerClasses() {
+	
 	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Entity>("Entity")
 	    .addFunction("getTag", &Entity::getTag)
-	    //.addFunction("getTransform", &Entity::getComponent<Transform>)
 	    .endClass();
 }
 
-void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
+Separity::Behaviour* Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 	// Cargamos el script de Lua desde un archivo
 	std::string path = "Assets/Scripts/" + name + ".lua";
 	luaL_dofile(L_, path.c_str());
@@ -84,6 +83,8 @@ void Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 	    new luabridge::LuaRef(luabridge::getGlobal(L_, (name + "Lua").c_str()));
 
 	behaviourScript->setLuaScript(behaviourLua);
+
+	return behaviourScript;
 }
 
 lua_State* Separity::LuaManager::getLuaState() { return L_; }
