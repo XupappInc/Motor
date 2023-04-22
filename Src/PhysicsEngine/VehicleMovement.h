@@ -8,6 +8,8 @@ namespace Spyutils {
 }
 
 class btDynamicsWorld;
+class btRaycastVehicle;
+class btVehicleRaycaster;
 namespace Separity {
 	class RigidBody;
 	/// <summary>
@@ -46,6 +48,8 @@ namespace Separity {
 		float mass_;
 		btDynamicsWorld* world_;
 		RigidBody* rb_;
+		btRaycastVehicle* vehicle_;
+		btVehicleRaycaster* vehicleRayCaster_;
 	};
 }  // namespace Separity
 #endif __VEHICLE_MOVEMENT_H__
