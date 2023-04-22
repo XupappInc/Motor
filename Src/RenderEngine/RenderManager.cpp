@@ -225,6 +225,12 @@ Ogre::SceneManager* Separity::RenderManager::getSceneManager() {
 	return sceneMgr_;
 }
 
+void Separity::RenderManager::setCamera(Camera* camera) { 
+	camera_ = camera; }
+
+Separity::Camera* Separity::RenderManager::getCamera() { 
+	return camera_; }
+
 void Separity::RenderManager::clean() {
 	saveConfiguration();
 	closedown();

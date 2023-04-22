@@ -28,66 +28,69 @@ Separity::SceneManager* Separity::SceneManager::getInstance() {
 bool Separity::SceneManager::loadScene(const std::string& root) {
 	lua_State* L = luaL_newstate();
 
+	bool success = true;
+
 	int scriptLoadStatus = luaL_dofile(L, root.c_str());
 
-	// define error reporter for any Lua error
 	if(scriptLoadStatus != 0) {
-		std::cerr << "[LUA ERROR] " << lua_tostring(L, -1) << std::endl;
-
-		// remove error message from Lua state
+		std::cerr << "Error al cargar la escena: " << 
+			lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1);
-	} else {
-		std::cout << "Entidades:\n";
-		lua_getglobal(L, "Entities");
 
+		success = false;
+
+	} else {
+		//std::cout << "Entidades:\n";
+		lua_getglobal(L, "Entities");
 
 		EntityManager* em = Separity::EntityManager::getInstance();
 
-		int cont = 0;
-
 		lua_pushnil(L);
-		/*EntityManager* entManager = Separity::EntityManager::getInstance();*/
 		while(lua_next(L, -2)) {
 			std::string entityName = " ";
 			if(lua_isstring(L, -2)) {
 				entityName = lua_tostring(L, -2, NULL);
-				std::cout << " " << entityName << ":\n";
+				//std::cout << " " << entityName << ":\n";
 			}
 
 			if(lua_istable(L, -1)) {
 				Entity* entity = em->addEntity(_grp_GENERAL);
 				if(entityName != " ")
 					entity->setTag(entityName);
-				cont++;
+
 
 				lua_pushnil(L);  // Poner la primera key en la pila
 				while(lua_next(L, -2)) {
 					if(lua_isstring(L, -2)) {
 						std::string component = lua_tostring(L, -2, NULL);
-						// std::cout << "  " << component << "\n";
+						//std::cout << "  " << component << "\n";
 
-						factory_->createComponent(component, L, entity);
+						if(!factory_->createComponent(component, L, entity)) {
+							std::cout << "El Componente " << component
+							          << " de la entidad " << entityName
+							          << " no se ha cargado correctamente\n";
+
+							success = false;
+						}
 					}
 					lua_pop(L, 1);
 				}
 			}
 			lua_pop(L, 1);
 		}
-
-		std::cout << "Entidades Creadas:" << cont << "\n";
 	}
 
 	lua_close(L);
 
-	return false;
+	return success;
 }
 
 bool Separity::SceneManager::changeScene(const std::string& root) {
 	EntityManager::getInstance()->deleteEntities();
 	ManagerManager::getInstance()->pseudoClean();
-	loadScene(root);
+	bool success = loadScene(root);
 	ManagerManager::getInstance()->initComponents();
-	return true;
+	return success;
 }
 
 Separity::SceneManager::SceneManager() {

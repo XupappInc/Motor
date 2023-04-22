@@ -180,7 +180,7 @@ int main() {
 			}
 			if(inputManager->isKeyDown('r')) {
 
-				sceneMenager->changeScene("Assets/Scenes/scene2.lua");
+				sceneMenager->changeScene("Assets/Scenes/scene.lua");
 
 				// Entity* MusicInstance =
 				// entityManager->addEntity(_grp_GENERAL);

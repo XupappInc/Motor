@@ -18,7 +18,8 @@ void Separity::AudioListenerCreator::registerInLua() {
 	    .endClass();
 }
 
-void Separity::AudioListenerCreator::createComponent(lua_State* L,
+bool Separity::AudioListenerCreator::createComponent(lua_State* L,
                                                      Separity::Entity* ent) {
-	 ent->addComponent<AudioListener>();
+	ent->addComponent<AudioListener>();
+	return true;
 }

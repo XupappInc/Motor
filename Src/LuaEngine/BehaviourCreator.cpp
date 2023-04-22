@@ -10,11 +10,13 @@ void Separity::BehaviourCreator::registerInLua() {
 
 }
 
-void Separity::BehaviourCreator::createComponent(lua_State* L,
+bool Separity::BehaviourCreator::createComponent(lua_State* L,
                                                  Separity::Entity* ent) {
 
     std::string s;
 	if(readParam("name", L, s)) {
 		Separity::LuaManager::getInstance()->loadScript(s, ent);
+		return true;
 	}
+	return false;
 }

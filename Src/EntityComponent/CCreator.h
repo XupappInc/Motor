@@ -17,11 +17,11 @@ namespace Separity {
 
 		virtual void registerInLua() {};
 
-		virtual void createComponent(lua_State* L, Separity::Entity* ent) = 0;
+		virtual bool createComponent(lua_State* L, Separity::Entity* ent) = 0;
 
 		protected:
 
-		bool readArray(const std::string& paramName, lua_State* L, float* data);
+		bool readArray(const std::string& paramName, lua_State* L, float* data, int n = 3);
 
 		bool readParam(const std::string& paramName, lua_State* L, std::string& param);
 		bool readParam(const std::string& paramName, lua_State* L, int& param);

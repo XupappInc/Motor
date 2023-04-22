@@ -73,7 +73,7 @@ namespace Separity {
 
 		private:
 		Ogre::SceneNode* meshRenderer_;
-		Ogre::SceneManager* sceneManager_;
+		Ogre::SceneManager* ogreSceneManager_;
 		Ogre::Entity* entity_;
 	};
 };  // namespace Separity

@@ -7,13 +7,13 @@ using namespace Separity;
 
 Separity::ColliderCreator::ColliderCreator() {}
 
-void Separity::ColliderCreator::createComponent(lua_State* L,
+bool Separity::ColliderCreator::createComponent(lua_State* L,
                                              Separity::Entity* ent) {
 
     
-
     float data[3] = {};
-    readArray("dim", L, data);
+	if(!readArray("dim", L, data))
+		return false;
 
     colliderParams params;
     params.colShape = CUBE; 
@@ -21,7 +21,11 @@ void Separity::ColliderCreator::createComponent(lua_State* L,
     params.height = data[1];
     params.depth = data[2];
     params.offsetY = 0;
+	params.offsetX = 0;
+	params.offsetZ = 0;
     params.isTrigger = false;
 
     Collider* col = ent->addComponent<Collider>(params);
+
+    return true;
 }

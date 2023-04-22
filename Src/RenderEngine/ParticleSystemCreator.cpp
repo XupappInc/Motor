@@ -14,12 +14,15 @@ void Separity::ParticleSystemCreator::registerInLua() {
 	luabridge::getGlobalNamespace(L).beginClass<ParticleSystem>("particleSystem").endClass();
 }
 
-void Separity::ParticleSystemCreator::createComponent(lua_State* L,
+bool Separity::ParticleSystemCreator::createComponent(lua_State* L,
                                                       Separity::Entity* ent) {
 	std::string name, particleName;
 
-	readParam("name", L, name);
-	readParam("particleName", L, particleName);
-
-	ent->addComponent<ParticleSystem>(name, particleName);
+	if(readParam("name", L, name) &&
+	   readParam("particleName", L, particleName)) {
+		ent->addComponent<ParticleSystem>(name, particleName);
+		return true;
+	}
+		
+	return false;
 }

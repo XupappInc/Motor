@@ -18,7 +18,7 @@ namespace Separity {
 		ComponentFactory();
 		~ComponentFactory();
 
-		void createComponent(const std::string& CName, lua_State* L,
+		bool createComponent(const std::string& CName, lua_State* L,
 		                      Separity::Entity* ent);
 
 		void addCreator(const std::string& CName, CCreator* CCreator);

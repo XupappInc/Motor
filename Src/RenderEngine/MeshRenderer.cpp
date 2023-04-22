@@ -10,23 +10,23 @@
 using namespace Separity;
 
 Separity::MeshRenderer::MeshRenderer(std::string meshName) : RenderComponent() {
-	Separity::RenderManager* render = Separity::RenderManager::getInstance();
+
 	// se accede al sceneManager
-	sceneManager_ = render->getSceneManager();
-	meshRenderer_ = sceneManager_->getRootSceneNode()->createChildSceneNode();
-	entity_ = sceneManager_->createEntity(meshName);
+	ogreSceneManager_ = Separity::RenderManager::getInstance()->getSceneManager();
+	entity_ = ogreSceneManager_->createEntity(meshName);
+	meshRenderer_ = ogreSceneManager_->getRootSceneNode()->createChildSceneNode();	
 	meshRenderer_->attachObject(entity_);
 }
 
 void Separity::MeshRenderer::initComponent() {}
 
 Separity::MeshRenderer::~MeshRenderer() {
-	sceneManager_->destroyMovableObject(entity_);
-	sceneManager_->destroySceneNode(meshRenderer_);
+	ogreSceneManager_->destroyMovableObject(entity_);
+	ogreSceneManager_->destroySceneNode(meshRenderer_);
 
 	entity_ = nullptr;
 	meshRenderer_ = nullptr;
-	sceneManager_ = nullptr;
+	ogreSceneManager_ = nullptr;
 }
 
 void Separity::MeshRenderer::render() {

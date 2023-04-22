@@ -27,6 +27,8 @@ Separity::Camera::Camera() : tr_(nullptr), RenderComponent() {
 
 	viewport_ = rm->getOgreWindow()->addViewport(camera_);
 	viewport_->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));
+
+	rm->setCamera(this);
 }
 
 Separity::Camera::~Camera() {

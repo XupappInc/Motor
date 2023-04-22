@@ -14,16 +14,16 @@ Separity::ComponentFactory::~ComponentFactory() {
 		delete cc.second;
 }
 
-void Separity::ComponentFactory::createComponent(const std::string& CName,
+bool Separity::ComponentFactory::createComponent(const std::string& CName,
                                              lua_State* L,
                                              Separity::Entity* ent) {
 
 	if(!creators_.count(CName)) {
-		std::cerr << "Te falta el Creador de " << CName
-		          << " por incluir en la Factory"
-		          << "\n";
+		std::cerr << "El componente " << CName << " no existe\n";
+		return false;
+
 	} else {
-		creators_[CName]->createComponent(L, ent);
+		return creators_[CName]->createComponent(L, ent);
 	}
 }
 

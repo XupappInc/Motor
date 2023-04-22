@@ -5,19 +5,22 @@
 Separity::CCreator::CCreator() {}
 
 bool Separity::CCreator::readArray(const std::string& paramName, lua_State* L,
-                                   float* data) {
+                                   float* data, int n) {
 
 	if(lua_getfield(L, -1, paramName.c_str()) && lua_istable(L, -2)) {
 
 		lua_pushnil(L);
 		int i = 0;
 		while(lua_next(L, -2)) {
-			data[i++] = lua_tonumber(L, -1);
+			float d = lua_tonumber(L, -1);
 			lua_pop(L, 1);
+			if(i < n)
+				data[i] = d;				
+			i++;		
 		}
 		lua_pop(L, 1);
 
-		return true;
+		return i == n;
 	}
 	lua_pop(L, 1);
 	return false;

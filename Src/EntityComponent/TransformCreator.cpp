@@ -23,19 +23,22 @@ void Separity::TransformCreator::registerInLua() {
 	    .endClass();
 }
 
-void Separity::TransformCreator::createComponent(lua_State* L,
+bool Separity::TransformCreator::createComponent(lua_State* L,
                                               Separity::Entity* ent) {
 
+	bool success = true;
 
 	Transform* tr = ent->getComponent<Transform>();  // addComponent<Transform>();
 	float data[4] = {};
 
-	readArray("pos", L, data);
+	success &= readArray("pos", L, data);
 	tr->setPosition(data[0], data[1], data[2]);
-	readArray("rot", L, data);
+	success &= readArray("rot", L, data, 4);
 	tr->setRotationQ(data[3], data[0], data[1], data[2]);
-	readArray("scale", L, data);
+	success &= readArray("scale", L, data);
 	tr->setScale(data[0], data[1], data[2]);
+
+	return success;
 }
 
 

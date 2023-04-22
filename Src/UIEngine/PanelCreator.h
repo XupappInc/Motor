@@ -31,7 +31,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="L"></param>
 		/// <param name="ent"></param>
-		void createComponent(lua_State* L, Separity::Entity* ent) override;
+		bool createComponent(lua_State* L, Separity::Entity* ent) override;
 	};
 };  // namespace Separity
 

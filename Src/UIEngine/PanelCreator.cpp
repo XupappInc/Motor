@@ -14,17 +14,21 @@ void Separity::PanelCreator::registerInLua() {
 	luabridge::getGlobalNamespace(L).beginClass<Panel>("panel").endClass();
 }
 
-void Separity::PanelCreator::createComponent(lua_State* L,
+bool Separity::PanelCreator::createComponent(lua_State* L,
                                              Separity::Entity* ent) {
 	int x, y, width, height;
 	std::string material, name;
 
-	readParam("name", L, name);
-	readParam("x", L, x);
-	readParam("y", L, y);
-	readParam("width", L, width);
-	readParam("height", L, height);
-	readParam("material", L, material);
+	if(readParam("name", L, name) && 
+		readParam("x", L, x) && 
+		readParam("y", L, y) && 
+		readParam("width", L, width) && 
+		readParam("height", L, height) && 
+		readParam("material", L, material)) {
+	
+		ent->addComponent<Panel>(name, x, y, width, height, material);
+		return true;
+	}
 
-	ent->addComponent<Panel>(name, x, y, width, height, material);
+	return false;
 }

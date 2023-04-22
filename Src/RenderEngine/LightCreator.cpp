@@ -9,22 +9,32 @@ Separity::LightCreator::LightCreator() {}
 
 void Separity::LightCreator::registerInLua() {}
 
-void Separity::LightCreator::createComponent(lua_State* L, Separity::Entity* ent) {
-
+bool Separity::LightCreator::createComponent(lua_State* L, Separity::Entity* ent) {
 
 	std::string type = std::string();
-	readParam("type", L, type);
+	if(!readParam("type", L, type))
+		return false;
 
-	Light* light = nullptr;
-	if(type == "SPOT") {
-		 light = ent->addComponent<Separity::Light>(SPOTLIGHT);	
-	} else if(type == "SUN") {
-		 light = ent->addComponent<Separity::Light>(DIRECTIONAL_LIGHT);	
+	LightType lightType;
+	
+	if(type == "SUN" || type == "POINT") {
+		lightType = POINT_LIGHT;	
+	}
+	else if(type == "SPOT") {
+		lightType = SPOTLIGHT;
+	}
+	else if(type == "AREA") {
+		lightType = DIRECTIONAL_LIGHT;
+	} 
+	else {
+		return false;
 	}
 
 	float data[3] = {};
 	if(readArray("color", L, data)) {
-		 light->setDiffuse(Spyutils::Vector3(data[0], data[1], data[2]));
+		Light* light = ent->addComponent<Light>(lightType);
+		light->setDiffuse(Spyutils::Vector3(data[0], data[1], data[2]));
+		return true;
 	}
 	
 }

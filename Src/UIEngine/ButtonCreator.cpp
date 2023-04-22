@@ -15,20 +15,23 @@ void Separity::ButtonCreator::registerInLua() {
 	    .endClass();
 }
 
-void Separity::ButtonCreator::createComponent(lua_State* L,
-             
-                                 Separity::Entity* ent) {
+bool Separity::ButtonCreator::createComponent(lua_State* L, Separity::Entity* ent) {
+
 	int x, y, width, height;
 	std::string texture, overlayName;
 
-	readParam("overlay", L, overlayName);
-	readParam("x", L, x);
-	readParam("y", L, y);
-	readParam("width", L, width);
-	readParam("height", L, height);
-	readParam("texture", L, texture);
+	if(readParam("overlay", L, overlayName) && 
+		readParam("x", L, x) &&
+		readParam("y", L, y) && 
+		readParam("width", L, width) &&
+		readParam("height", L, height) && 
+		readParam("texture", L, texture)) {
 
-	ent->addComponent<Button>(overlayName, x, y, width, height, texture);
+		ent->addComponent<Button>(overlayName, x, y, width, height, texture);
+		return true;
+	}
+
+	return false;	
 }
 
 

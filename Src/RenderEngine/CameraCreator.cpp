@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "Entity.h"
 #include "LuaManager.h"
+#include "RenderManager.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
@@ -16,8 +17,12 @@ void Separity::CameraCreator::registerInLua() {
 	    .endClass();
 }
 
-void Separity::CameraCreator::createComponent(lua_State* L,
+bool Separity::CameraCreator::createComponent(lua_State* L,
                                               Separity::Entity* ent) {
 
+	if(RenderManager::getInstance()->getCamera() != nullptr)
+		return false;
+
 	ent->addComponent<Camera>();
+	return true;
 }

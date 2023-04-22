@@ -31,7 +31,6 @@ namespace Separity {
 
 		static SceneManager* getInstance();
 
-
 		protected:
 		SceneManager();
 

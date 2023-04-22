@@ -21,6 +21,8 @@ namespace Ogre {
 class SDL_Window;
 
 namespace Separity {
+
+	class Camera;
 	/// <summary>
 	/// Clase que gestiona el renderizado del motor
 	/// </summary>
@@ -95,6 +97,9 @@ namespace Separity {
 		/// </returns>
 		Ogre::SceneManager* getSceneManager();
 
+		void setCamera(Camera* camera);
+		Camera* getCamera();
+
 		void clean() override;
 
 		private:
@@ -119,6 +124,7 @@ namespace Separity {
 		Ogre::Root* ogreRoot_;
 		Ogre::SceneManager* sceneMgr_;
 		Ogre::ConfigFile* configFile_;
+		Camera* camera_;
 
 		int screenW_;
 		int screenH_;

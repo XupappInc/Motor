@@ -18,18 +18,18 @@ void Separity::AudioSourceCreator::registerInLua() {
 	    .endClass();
 }
 
-void Separity::AudioSourceCreator::createComponent(lua_State* L,
+bool Separity::AudioSourceCreator::createComponent(lua_State* L,
                                                    Separity::Entity* ent) {
-	std::string audioRoute, audioName, isMusic;
-	bool isMusicBoolean;
+	std::string audioRoute, audioName;
+	int isMusicBoolean;
 
-	readParam("route", L, audioRoute);
-	readParam("name", L, audioName);
-	readParam("isMusic", L, isMusic);
-
-	if(isMusic == "true")
-		isMusicBoolean = true;
-	else
-		isMusicBoolean = false;
-	ent->addComponent<AudioSource>(audioRoute, audioName, isMusicBoolean);
+	if(readParam("route", L, audioRoute) 
+		&& readParam("name", L, audioName) 
+		&& readParam("isMusic", L, isMusicBoolean)) {
+	
+		ent->addComponent<AudioSource>(audioRoute, audioName, isMusicBoolean);
+		return true;
+	}
+		
+	return false;
 }
