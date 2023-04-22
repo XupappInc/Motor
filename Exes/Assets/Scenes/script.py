@@ -64,17 +64,19 @@ for obj in scene.objects:
     
     for prop_name in obj.keys(): 
         
-        lua_string += "\t\t" + prop_name + " = {\n" 
-        if (prop_name  == "collider"):
-            dimension = obj.dimensions
-            lua_string += "\t\t\t" + "dim = {" + str(dimension.x) + ", " + str(dimension.z) + ", " + str(dimension.y) + "},\n"
-                
+        if (prop_name!="als"):
         
-        else:
-            prop_value = obj[prop_name]                 
-            lua_string += "\t\t\t" + str(prop_value) + "\n"  
-                
-        lua_string += "\t\t},\n" 
+            lua_string += "\t\t" + prop_name + " = {\n" 
+            if (prop_name  == "collider"):
+                dimension = obj.dimensions
+                lua_string += "\t\t\t" + "dim = {" + str(dimension.x) + ", " + str(dimension.z) + ", " + str(dimension.y) + "},\n"
+                    
+            
+            else:
+                prop_value = obj[prop_name]                 
+                lua_string += "\t\t\t" + str(prop_value) + "\n"  
+                    
+            lua_string += "\t\t},\n" 
     
     
 
@@ -86,7 +88,7 @@ lua_string = lua_string[:-2]
 lua_string += "\n}"
 
 # Abre un archivo para escritura y guarda el diccionario en formato JSON con indentación
-with open("scene.lua", "w") as file:
+with open("scene4.lua", "w") as file:
     file.write(lua_string)
     
 

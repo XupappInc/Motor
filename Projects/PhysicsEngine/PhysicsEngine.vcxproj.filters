@@ -36,10 +36,10 @@
     <ClCompile Include="..\..\Src\PhysicsEngine\CollisionCallback.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsComponent.cpp">
+    <ClCompile Include="..\..\Src\PhysicsEngine\VehicleMovement.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\PhysicsEngine\VehicleMovement.cpp">
+    <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsComponent.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

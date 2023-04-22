@@ -24,12 +24,12 @@ void Separity::VehicleMovement::initComponent() {
 	    Separity::PhysicsManager::getInstance();
 	world_ = physicsManager->getWorld();
 
-	//btVehicleRaycaster* vehicleRayCaster =
-	//    new btDefaultVehicleRaycaster(world_);
+	btVehicleRaycaster* vehicleRayCaster =
+	    new btDefaultVehicleRaycaster(world_);
 
-	//btRaycastVehicle::btVehicleTuning tuning;
-	//btRaycastVehicle* vehicle = new btRaycastVehicle(
-	//    tuning, rb_->getBulletRigidBody(), vehicleRayCaster);
+	btRaycastVehicle::btVehicleTuning tuning;
+	btRaycastVehicle* vehicle = new btRaycastVehicle(
+	    tuning, rb_->getBulletRigidBody(), vehicleRayCaster);
 }
 
 void Separity::VehicleMovement::steering(int dir) {}

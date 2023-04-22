@@ -7,9 +7,9 @@ namespace Spyutils {
 	class Vector3;
 }
 
+class btDynamicsWorld;
 namespace Separity {
 	class RigidBody;
-	class btDynamicsWorld;
 	/// <summary>
 	/// Componente rigidbody
 	/// </summary>
