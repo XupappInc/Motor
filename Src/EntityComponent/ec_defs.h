@@ -24,7 +24,8 @@
 		_TEXT, \
 		_PANEL, \
 		_PATH_FOLLOW, \
-		_VEHICLE_MOVEMENT
+		_VEHICLE_MOVEMENT, \
+		_SOUND_COMPONENT
 		 
 
 /// <summary>

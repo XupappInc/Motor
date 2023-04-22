@@ -7,6 +7,8 @@
 namespace Separity {
 	class AudioComponent : public Separity::Component {
 		public:
+		__CMPTYPE_DECL__(Separity::_SOUND)
+		__CMPID_DECL__(Separity::_SOUND_COMPONENT)
 		AudioComponent();
 		virtual ~AudioComponent();
 	};
