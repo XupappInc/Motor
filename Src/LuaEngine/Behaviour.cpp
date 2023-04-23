@@ -5,6 +5,7 @@
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
+#include <iostream>
 
 Separity::Behaviour::Behaviour() : behaviourLua_(nullptr) {
 	mngr_ = Separity::LuaManager::getInstance();
@@ -24,7 +25,11 @@ void Separity::Behaviour::setLuaScript(luabridge::LuaRef* behaviourLua) {
 void Separity::Behaviour::update(const uint32_t& deltaTime) {
 	luabridge::LuaRef updateLua = (*behaviourLua_)["update"];
 	if(updateLua.isFunction()) {
-		updateLua();
+		try {
+			updateLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 	}
 }
 

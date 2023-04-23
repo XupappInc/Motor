@@ -43,6 +43,8 @@
 #include "VirtualTimer.h"
 #include "checkML.h"
 
+#include "GetComponentWrapper.h"
+
 #include <Windows.h>
 #include <iostream>
 #include <utility>
@@ -60,6 +62,10 @@ int main() {
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	EntityManager* entityManager = Separity::EntityManager::getInstance();
 	UIManager* uiManager = Separity::UIManager::getInstance();
+
+	LuaManager* luaManager = Separity::LuaManager::getInstance();
+
+	//GetComponentWrapper::registerInLua();
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("scene.lua");
