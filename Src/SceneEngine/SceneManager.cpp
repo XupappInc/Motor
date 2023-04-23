@@ -7,7 +7,7 @@
 #include "EntityManager.h"
 #include "ManagerManager.h"
 #include "EntityManager.h"
-
+#include "LuaManager.h"
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 #include <iostream>
@@ -21,8 +21,16 @@ void Separity::SceneManager::clean() {
 	close();
 }
 
+void Separity::SceneManager::prueba() { std::cout << "Otra prueba matenme\n"; }
+
 Separity::SceneManager* Separity::SceneManager::getInstance() {
 	return static_cast<SceneManager*>(instance());
+}
+
+void Separity::SceneManager::update(const uint32_t& deltaTime) {
+	if(!changeScene_)
+		return;
+	changeScene(sceneName_);
 }
 
 bool Separity::SceneManager::loadScene(const std::string& root) {
@@ -30,7 +38,7 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 
 	bool success = true;
 
-	int scriptLoadStatus = luaL_dofile(L, root.c_str());
+	int scriptLoadStatus = luaL_dofile(L, ("Assets/Scenes/" + root).c_str());
 
 	if(scriptLoadStatus != 0) {
 		std::cerr << "Error al cargar la escena: " << 
@@ -85,15 +93,21 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 	return success;
 }
 
-bool Separity::SceneManager::changeScene(const std::string& root) {
+void Separity::SceneManager::changeScene(const std::string& root) {
+
 	EntityManager::getInstance()->deleteEntities();
 	ManagerManager::getInstance()->pseudoClean();
-	bool success = loadScene(root);
+	loadScene(root);
 	ManagerManager::getInstance()->initComponents();
-	return success;
+	changeScene_ = false;
 }
 
-Separity::SceneManager::SceneManager() {
+void Separity::SceneManager::luaChangeScene(const std::string& root) {
+	changeScene_ = true;
+	sceneName_ = root;
+}
+
+Separity::SceneManager::SceneManager() : changeScene_(false), sceneName_("") {
 	ManagerManager::getInstance()->addManager(_SCENE, this);
 
 	factory_ = new ComponentFactory();
@@ -111,4 +125,14 @@ Separity::SceneManager::SceneManager() {
 	factory_->addCreator("button", new ButtonCreator());
 	factory_->addCreator("panel", new PanelCreator());
 	factory_->addCreator("text", new TextCreator());
+	
+	//Registrar en lua
+	lua_State* L = LuaManager::getInstance()->getLuaState();
+	luabridge::getGlobalNamespace(L)
+	    .beginClass<SceneManager>("SceneManager")
+	    .addFunction("prueba", &SceneManager::prueba)
+	    .addFunction("changeScene", &SceneManager::luaChangeScene)
+	    .endClass();
+
+	luabridge::setGlobal(L,this, "SceneManager");
 }

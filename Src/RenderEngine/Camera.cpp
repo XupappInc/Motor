@@ -37,6 +37,7 @@ Separity::Camera::~Camera() {
 	sm->destroyCamera(camera_);
 	sm->destroySceneNode(cameraNode_);
 	rm->getOgreWindow()->removeViewport(viewport_->getZOrder());
+	rm->setCamera(nullptr);
 }
 
 void Separity::Camera::update(const uint32_t& deltaTime) { 	

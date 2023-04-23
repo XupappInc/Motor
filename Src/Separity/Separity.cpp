@@ -1,12 +1,12 @@
 // Separity.cpp : Este archivo contiene la función "main". La ejecución del
 // programa comienza y termina ahí.
-//#include <Windows.h>
+// #include <Windows.h>
 //
-//#ifdef _DEBUG
-//HMODULE hinstLib = LoadLibrary(TEXT("Separity_Game_d"));
-//#else
-//HMODULE hinstLib = LoadLibrary(TEXT("Separity_Game"));
-//#endif  // DEBUG
+// #ifdef _DEBUG
+// HMODULE hinstLib = LoadLibrary(TEXT("Separity_Game_d"));
+// #else
+// HMODULE hinstLib = LoadLibrary(TEXT("Separity_Game"));
+// #endif  // DEBUG
 
 #include "Entity.h"
 
@@ -15,16 +15,16 @@
 #include "AudioListener.h"
 #include "AudioSource.h"
 #include "Behaviour.h"
+#include "Button.h"
 #include "Camera.h"
 #include "Collider.h"
 #include "Light.h"
 #include "MeshRenderer.h"
+#include "Panel.h"
 #include "ParticleSystem.h"
 #include "RigidBody.h"
-#include "Transform.h"
-#include "Button.h"
-#include "Panel.h"
 #include "Text.h"
+#include "Transform.h"
 #include "VehicleMovement.h"
 
 // Managers
@@ -38,10 +38,10 @@
 #include "SceneManager.h"
 #include "UIManager.h"
 // Utils
-//#include "checkML.h"
 #include "Random.h"
 #include "Separity.h"
 #include "VirtualTimer.h"
+#include "checkML.h"
 
 #include "GetComponentWrapper.h"
 
@@ -68,7 +68,7 @@ int main() {
 	//GetComponentWrapper::registerInLua();
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
-	sceneMenager->loadScene("Assets/Scenes/scene.lua");
+	sceneMenager->loadScene("scene.lua");
 
 	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
@@ -87,8 +87,8 @@ int main() {
 
 	Entity* sinbad3 = entityManager->addEntity(_grp_GENERAL);
 	sinbad->addChild(sinbad3);
-	sinbad3->getComponent<Transform>()->translate({0,5,0});
-	//sinbad3->getComponent<Transform>()->roll(90);
+	sinbad3->getComponent<Transform>()->translate({0, 5, 0});
+	// sinbad3->getComponent<Transform>()->roll(90);
 	sinbad3->addComponent<MeshRenderer>("Sinbad.mesh");
 
 	colliderParams params;
@@ -121,16 +121,85 @@ int main() {
 	cam_tr->pitch(-30);
 	Camera* cam_cam = camera->addComponent<Camera>();
 
-
 	Entity* button = entityManager->addEntity(_grp_GENERAL);
-	//Text* txt =
-	//    button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100, 200,
-	//                               50, "Holi", Spyutils::Vector3(0, 0, 1));
+	// Text* txt =
+	//     button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100,
+	//     200,
+	//                                50, "Holi", Spyutils::Vector3(0, 0, 1));
 	/* Button* but =
 	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
 	                                          "World_ap.15");*/
 
-	
+	//// RUEDAS
+	//Entity* rueda0 = entityManager->addEntity(_grp_GENERAL);
+	//rueda0->getComponent<Transform>()->translate({-0.8, 8, -0.5});
+	//rueda0->getComponent<Transform>()->setScale(0.1);
+	//rueda0->getComponent<Transform>()->pitch(90);
+	//rueda0->getComponent<Transform>()->roll(90);
+	//rueda0->addComponent<MeshRenderer>("rueda.mesh");
+
+	//colliderParams paramsRueda0;
+	//paramsRueda0.colShape = CYLINDER;
+	//paramsRueda0.height = 0.2;
+	//paramsRueda0.width = 0.5;
+	//paramsRueda0.depth = 0.5;
+	//paramsRueda0.isTrigger = false;
+
+	//rueda0->addComponent<Collider>(paramsRueda0);
+	//rueda0->addComponent<RigidBody>(DYNAMIC, 5);
+
+	//Entity* rueda1 = entityManager->addEntity(_grp_GENERAL);
+	//rueda1->getComponent<Transform>()->translate({0.8, 8, -0.5});
+	//rueda1->getComponent<Transform>()->setScale(0.1);
+	//rueda1->getComponent<Transform>()->pitch(-90);
+	//rueda1->getComponent<Transform>()->roll(90);
+	//rueda1->addComponent<MeshRenderer>("rueda.mesh");
+
+	//colliderParams paramsRueda1;
+	//paramsRueda1.colShape = CYLINDER;
+	//paramsRueda1.height = 0.2;
+	//paramsRueda1.width = 0.5;
+	//paramsRueda1.depth = 0.5;
+	//paramsRueda1.isTrigger = false;
+
+	//rueda1->addComponent<Collider>(paramsRueda1);
+	//rueda1->addComponent<RigidBody>(DYNAMIC, 5);
+
+	//Entity* rueda2 = entityManager->addEntity(_grp_GENERAL);
+	//rueda2->getComponent<Transform>()->translate({-0.8, 8, 0.5});
+	//rueda2->getComponent<Transform>()->setScale(0.1);
+	//rueda2->getComponent<Transform>()->pitch(90);
+	//rueda2->getComponent<Transform>()->roll(90);
+	//rueda2->addComponent<MeshRenderer>("rueda.mesh");
+
+	//colliderParams paramsRueda2;
+	//paramsRueda2.colShape = CYLINDER;
+	//paramsRueda2.height = 0.2;
+	//paramsRueda2.width = 0.5;
+	//paramsRueda2.depth = 0.5;
+	//paramsRueda2.isTrigger = false;
+
+	//rueda2->addComponent<Collider>(paramsRueda2);
+	//rueda2->addComponent<RigidBody>(DYNAMIC, 5);
+
+	//Entity* rueda3 = entityManager->addEntity(_grp_GENERAL);
+	//rueda3->getComponent<Transform>()->translate({0.8, 8, 0.5});
+	//rueda3->getComponent<Transform>()->setScale(0.1);
+	//rueda3->getComponent<Transform>()->pitch(-90);
+	//rueda3->getComponent<Transform>()->roll(90);
+	//rueda3->addComponent<MeshRenderer>("rueda.mesh");
+
+	//colliderParams paramsRueda3;
+	//paramsRueda3.colShape = CYLINDER;
+	//paramsRueda3.height = 0.2;
+	//paramsRueda3.width = 0.5;
+	//paramsRueda3.depth = 0.5;
+	//paramsRueda3.isTrigger = false;
+
+	//rueda3->addComponent<Collider>(paramsRueda3);
+	//rueda3->addComponent<RigidBody>(DYNAMIC, 5);
+
+	// VEHICULO
 	Entity* coche = entityManager->addEntity(_grp_GENERAL);
 	coche->getComponent<Transform>()->translate({0, 10, 0});
 	coche->getComponent<Transform>()->setScale(1);
@@ -148,7 +217,6 @@ int main() {
 	coche->addComponent<RigidBody>(DYNAMIC, 100);
 	coche->addChild(camera);
 	cam_tr->setPosition(0, 15, 5);
-
 
 	mm->initComponents();
 
@@ -196,7 +264,7 @@ int main() {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);
 			}
 			if(inputManager->isKeyDown('t')) {
-				sceneMenager->changeScene("Assets/Scenes/scene.lua");
+				sceneMenager->changeScene("scene.lua");
 
 				camera = entityManager->addEntity(_grp_GENERAL);
 				cam_tr = camera->getComponent<
@@ -208,7 +276,7 @@ int main() {
 			}
 			if(inputManager->isKeyDown('r')) {
 
-				sceneMenager->changeScene("Assets/Scenes/scene.lua");
+				sceneMenager->changeScene("scene.lua");
 
 				// Entity* MusicInstance =
 				// entityManager->addEntity(_grp_GENERAL);
@@ -219,36 +287,36 @@ int main() {
 				//                                                    "callmemaybe",
 				//                                                    false);
 
-				//Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
-				//sinbad->getComponent<Transform>()->translate({0, 60, 0});
-				//sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
+				// Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
+				// sinbad->getComponent<Transform>()->translate({0, 60, 0});
+				// sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 
-				//colliderParams params;
-				//params.colShape = CUBE;
-				//params.height = 10;
-				//params.width = 5;
-				//params.depth = 5;
-				//params.isTrigger = false;
+				// colliderParams params;
+				// params.colShape = CUBE;
+				// params.height = 10;
+				// params.width = 5;
+				// params.depth = 5;
+				// params.isTrigger = false;
 
-				//sinbad->addComponent<Collider>(params);
-				//sinbad->addComponent<RigidBody>(DYNAMIC, 10);
-				//auto animSinbad = sinbad->addComponent<Animator>();
+				// sinbad->addComponent<Collider>(params);
+				// sinbad->addComponent<RigidBody>(DYNAMIC, 10);
+				// auto animSinbad = sinbad->addComponent<Animator>();
 
-				//Separity::LuaManager::getInstance()->loadScript("prueba",
-				//                                                sinbad);
+				// Separity::LuaManager::getInstance()->loadScript("prueba",
+				//                                                 sinbad);
 
-				//Entity* luz = entityManager->addEntity(_grp_GENERAL);
-				//auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
-				//luzGlobal->setDiffuse({0.7, 0.7, 0.7});
-				//auto luzTr = luz->getComponent<Transform>();
-				//luzTr->translate({0, 100, 0});
+				// Entity* luz = entityManager->addEntity(_grp_GENERAL);
+				// auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
+				// luzGlobal->setDiffuse({0.7, 0.7, 0.7});
+				// auto luzTr = luz->getComponent<Transform>();
+				// luzTr->translate({0, 100, 0});
 
-				//Entity* luzAux = entityManager->addEntity(_grp_GENERAL);
-				//auto luzAux1 = luzAux->addComponent<Light>(DIRECTIONAL_LIGHT);
-				//auto luzTr2 = luzAux->getComponent<Transform>();
-				//luzTr2->translate({0, 100, 0});
-				//luzAux1->setDirection({0, 0, -1});
-				//luzAux1->setDiffuse({0.5, 0, 0.5});
+				// Entity* luzAux = entityManager->addEntity(_grp_GENERAL);
+				// auto luzAux1 =
+				// luzAux->addComponent<Light>(DIRECTIONAL_LIGHT); auto luzTr2 =
+				// luzAux->getComponent<Transform>(); luzTr2->translate({0, 100,
+				// 0}); luzAux1->setDirection({0, 0, -1});
+				// luzAux1->setDiffuse({0.5, 0, 0.5});
 
 				camera = entityManager->addEntity(_grp_GENERAL);
 				cam_tr = camera->getComponent<
@@ -256,11 +324,11 @@ int main() {
 				cam_tr->setPosition(0, 20, 30);
 				cam_tr->pitch(-30);
 				cam_cam = camera->addComponent<Camera>();
-				cam_cam->initComponent();		
+				cam_cam->initComponent();
 			}
 			if(inputManager->isKeyDown('v')) {
-			    auto trsi = sinbad->getComponent<Transform>();
-			    trsi->setScale(20);
+				auto trsi = sinbad->getComponent<Transform>();
+				trsi->setScale(20);
 			}
 			/*if(inputManager->isKeyDown('l')) {
 			    animSinbad->playAnim("Dance", false);

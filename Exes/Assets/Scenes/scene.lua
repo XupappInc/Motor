@@ -1064,5 +1064,19 @@ Entities = {
 			color = {0.7697426080703735, 1.0, 0.12786714732646942},
 			type = "SPOT"
 		}
+	},
+	BotonPrueba={
+		button = {
+			overlay = "BotonMenu",
+			x = 200,
+			y = 200,
+			width = 200,
+			height = 200,
+			texture = "World_ap.15"
+		},
+		script={
+			name="buttonMenu"
+		}
 	}
+	
 }

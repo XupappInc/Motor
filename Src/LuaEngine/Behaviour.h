@@ -42,7 +42,7 @@ namespace Separity {
 		/// <summary>
 		/// El destructor se encarga de borrar el puntero de LuaRef
 		/// </summary>
-		~Behaviour();
+		virtual ~Behaviour();
 
 		/// <summary>
 		/// Asigna valor a la LuaRef que se corresponde al script .lua
