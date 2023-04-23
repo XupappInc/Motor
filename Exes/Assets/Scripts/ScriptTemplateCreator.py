@@ -11,7 +11,7 @@ def writeTemplate(script, name):
     # definicion de clase de Lua
     script.write("--Definicion de la clase en Lua\n" +
                  nameCap + " = {}\n\n" + 
-                 nameCap + ".__index = Prueba\n\n")
+                 nameCap + ".__index = "+ nameCap +"\n\n")
     
     # constructor de clase
     script.write("--Constructor de la clase en Lua\n" +

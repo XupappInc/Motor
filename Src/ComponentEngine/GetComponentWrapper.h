@@ -12,10 +12,8 @@ namespace Separity {
 		public:
 		GetComponentWrapper();
 		~GetComponentWrapper();
+		static void registerInLua();
 
 		private:
-		void registerInLua();
-
-		lua_State* L;
 	};
 }  // namespace Separity

@@ -11,12 +11,12 @@
 #include "LuaManager.h"
 
 Separity::GetComponentWrapper::GetComponentWrapper() {
-	L = LuaManager::getInstance()->getLuaState();
 }
 
 Separity::GetComponentWrapper::~GetComponentWrapper() {}
 
 void Separity::GetComponentWrapper::registerInLua() {
+	auto L = LuaManager::getInstance()->getLuaState();
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<Entity>("Entity")
 	    .addFunction("getTag", &Entity::getTag)
@@ -25,6 +25,6 @@ void Separity::GetComponentWrapper::registerInLua() {
 	    .addFunction("getRigidBody", &Entity::getComponent<RigidBody>)
 	    .addFunction("getAnimator", &Entity::getComponent<Animator>)
 	    .addFunction("getAudioComponent", &Entity::getComponent<AudioComponent>)
-		//...
+	    //...
 	    .endClass();
 }

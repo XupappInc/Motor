@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GetComponentWrapper.h" />
+    <ClCompile Include="..\..\Src\ComponentEngine\GetComponentWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GetComponentWrapper.cpp" />
+    <ClInclude Include="..\..\Src\ComponentEngine\GetComponentWrapper.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

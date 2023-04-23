@@ -38,10 +38,12 @@
 #include "SceneManager.h"
 #include "UIManager.h"
 // Utils
-#include "checkML.h"
+//#include "checkML.h"
 #include "Random.h"
 #include "Separity.h"
 #include "VirtualTimer.h"
+
+#include "GetComponentWrapper.h"
 
 #include <Windows.h>
 #include <iostream>
@@ -60,6 +62,10 @@ int main() {
 	InputManager* inputManager = Separity::InputManager::getInstance();
 	EntityManager* entityManager = Separity::EntityManager::getInstance();
 	UIManager* uiManager = Separity::UIManager::getInstance();
+
+	LuaManager* luaManager = Separity::LuaManager::getInstance();
+
+	//GetComponentWrapper::registerInLua();
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("Assets/Scenes/scene.lua");

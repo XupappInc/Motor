@@ -13,6 +13,7 @@ function Prueba:update()
     -- print('Se llama al update del script de Lua')
     -- local s = prueba.entity:getTag()
     -- print(s)
+    -- local entity = prueba.entity;
 end
 
 function Prueba:onCollisionEnter()
