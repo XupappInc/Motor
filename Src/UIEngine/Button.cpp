@@ -36,7 +36,7 @@ Separity::Button::Button(std::string overlayName, float xPos, float yPos,
 	rightPosition = leftPosition + width;
 }
 void Separity::Button::update(const uint32_t& deltaTime) {
-	if(inputManager->isMouseButtonDown(InputManager::LEFT)) {
+	/* if(inputManager->isMouseButtonDown(InputManager::LEFT)) {
 		std::pair<int, int> mousePosition = inputManager->getMousePos();
 		if(mousePosition.first < rightPosition &&
 		   mousePosition.first > leftPosition &&
@@ -44,6 +44,6 @@ void Separity::Button::update(const uint32_t& deltaTime) {
 		   mousePosition.second < bottomPosition) {
 			std::cout << "Button clicked!\n";
 		}
-	}
+	}*/
 }
 Separity::Button::~Button() { }

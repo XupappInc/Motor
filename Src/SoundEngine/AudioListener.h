@@ -2,16 +2,10 @@
 #ifndef __AUDIO_LISTENER_H__
 #define __AUDIO_LISTENER_H__       
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
-
 #include "AudioComponent.h"
 	
 namespace Separity {
-	class AudioListener : public Separity::AudioComponent {
+	class _SEPARITY_API_ AudioListener : public Separity::AudioComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_SOUND)
 		__CMPID_DECL__(Separity::_AUDIO_LISTENER)

@@ -4,7 +4,7 @@
 
 #include <LinearMath\btIDebugDraw.h>
 #include <vector>
-
+#include "SeparityExports/SeparityApi.h"
 namespace Ogre {
 	class SceneManager;
 	class ManualObject;
@@ -15,7 +15,7 @@ namespace Separity {
 	/// <summary>
 	/// Clase que se encarga de dibujar los colliders de bullet
 	/// </summary>
-	class PhysicsDebugDrawer : public btIDebugDraw {
+	class _SEPARITY_API_ PhysicsDebugDrawer : public btIDebugDraw {
 		
 		public:
 		PhysicsDebugDrawer(Ogre::SceneManager* sceneMgr);

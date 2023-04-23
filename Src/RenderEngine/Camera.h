@@ -2,12 +2,6 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
-
 #include "RenderComponent.h"
 
 namespace Ogre {
@@ -25,7 +19,7 @@ namespace Separity {
 	/// Componente cámara, desde la que se renderiza el espacio.
 	/// Solo puede haber una por escena.
 	/// </summary>
-	class Camera : public Separity::RenderComponent {
+	class _SEPARITY_API_ Camera : public Separity::RenderComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_CAMERA)

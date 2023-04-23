@@ -8,7 +8,7 @@ class lua_State;
 
 namespace Separity {
 
-	class TextCreator : public CCreator {
+	class _SEPARITY_API_ TextCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de textCreator, vacío de predeterminado

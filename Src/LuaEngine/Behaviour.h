@@ -1,14 +1,9 @@
 #pragma once
 #ifndef BEHAVIOUR_H
 #define BEHAVIOUR_H
+#include "SeparityExports/SeparityApi.h"
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
-
-#include <Component.h>
+#include <EntityComponent/Component.h>
 
 namespace luabridge {
 	class LuaRef;
@@ -21,7 +16,7 @@ namespace Separity {
 	/// en Lua y se utilizara esta clase para poder gestionar su ciclo de vida y
 	/// llamada a metodos en C++.
 	/// </summary>
-	class Behaviour : public Component {
+	class _SEPARITY_API_ Behaviour : public Component {
 		friend class LuaManager;
 
 		public:

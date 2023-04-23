@@ -8,7 +8,7 @@ class lua_State;
 
 namespace Separity {
 
-	class AudioSourceCreator : public CCreator {
+	class _SEPARITY_API_ AudioSourceCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de AudioSource, vacío de predeterminado

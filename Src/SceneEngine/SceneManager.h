@@ -2,11 +2,7 @@
 #ifndef __SCENE_MANAGER_H__
 #define __SCENE_MANAGER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityExports/SeparityApi.h"
 
 #include "Manager.h"
 
@@ -17,7 +13,8 @@ namespace Separity {
 	class Entity;
 	class ComponentFactory;
 
-	class SceneManager : public Separity::Manager,
+	class _SEPARITY_API_ SceneManager
+	    : public Separity::Manager,
 	                     public Singleton<Separity::SceneManager> {
 		friend Singleton<Separity::SceneManager>;
 

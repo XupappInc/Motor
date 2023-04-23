@@ -15,7 +15,7 @@ namespace Separity {
 	/// <summary>
 	/// Componente rigidbody
 	/// </summary>
-	class VehicleMovement : public Separity::PhysicsComponent {
+	class _SEPARITY_API_ VehicleMovement : public Separity::PhysicsComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_VEHICLE_MOVEMENT)

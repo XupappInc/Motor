@@ -8,7 +8,7 @@ class lua_State;
 
 namespace Separity {
 
-	class CameraCreator : public CCreator {
+	class _SEPARITY_API_ CameraCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de CameraCreator, vacío de predeterminado

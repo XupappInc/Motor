@@ -8,7 +8,7 @@ class lua_State;
 
 namespace Separity {
 
-	class ColliderCreator : public CCreator {
+	class _SEPARITY_API_ ColliderCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de ColliderCreator, vacío de predeterminado

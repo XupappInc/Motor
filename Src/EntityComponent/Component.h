@@ -3,6 +3,7 @@
 #define __COMPONENT_H__
 
 #include "ec.h"
+#include "SeparityExports/SeparityApi.h"
 
 namespace Separity{
 
@@ -12,7 +13,7 @@ namespace Separity{
 	/// archivo ec_defs.h, para así poder asignarlos con facilidad a un
 	/// array</para>
 	/// </summary>
-	class Component {
+	class _SEPARITY_API_ Component {
 		public:
 		Component();
 

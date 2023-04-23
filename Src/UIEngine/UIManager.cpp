@@ -1,7 +1,7 @@
 #include "UIManager.h"
 
 #include "../SeparityUtils/checkML.h"
-#include "RenderManager.h"
+#include "RenderEngine/RenderManager.h"
 #include "UIComponent.h"
 #include "ManagerManager.h"
 #include <OgreLogManager.h>

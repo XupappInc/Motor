@@ -8,7 +8,7 @@ class lua_State;
 
 namespace Separity {
 
-	class RigidbodyCreator : public CCreator {
+	class _SEPARITY_API_ RigidbodyCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de RigidbodyCreator, vacío de predeterminado

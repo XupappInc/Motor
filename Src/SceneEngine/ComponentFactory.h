@@ -4,7 +4,7 @@
 
 #include <string>
 #include <unordered_map>
-
+#include "SeparityExports/SeparityApi.h"
 class lua_State;
 
 namespace Separity {
@@ -12,7 +12,7 @@ namespace Separity {
 	class Entity;
 	class CCreator;
 
-	class ComponentFactory {
+	class _SEPARITY_API_ ComponentFactory {
 
 		public:
 		ComponentFactory();

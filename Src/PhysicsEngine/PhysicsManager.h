@@ -2,12 +2,7 @@
 #ifndef __PHYSICS_MANAGER_H__
 #define __PHYSICS_MANAGER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
-
+#include "SeparityExports/SeparityApi.h"
 #include "Manager.h"
 class btDynamicsWorld;
 class btBroadphaseInterface;
@@ -20,7 +15,8 @@ namespace Ogre {
 }  // namespace Ogre
 namespace Separity {
 	class PhysicsDebugDrawer;
-	class PhysicsManager : public Separity::Manager,
+	class _SEPARITY_API_ PhysicsManager
+	    : public Separity::Manager,
 	                       public Singleton<Separity::PhysicsManager> {
 		friend Singleton<PhysicsManager>;
 

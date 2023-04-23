@@ -8,7 +8,7 @@ class lua_State;
 
 namespace Separity {
 
-	class PanelCreator : public CCreator {
+	class _SEPARITY_API_ PanelCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de panelCreator, vacío de predeterminado

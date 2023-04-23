@@ -21,7 +21,7 @@ namespace Ogre {
 //Clase que crea textos para la UI
 namespace Separity {
 	class Panel;	
-	class Text : public Separity::UIComponent {
+	class _SEPARITY_API_ Text : public Separity::UIComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_UI)
 		__CMPID_DECL__(Separity::_TEXT)

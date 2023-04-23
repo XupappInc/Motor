@@ -1,9 +1,9 @@
 #include "LuaManager.h"
 
-#include "ManagerManager.h"
+#include "EntityComponent/ManagerManager.h"
 
-#include "Transform.h"
-#include "Entity.h"
+#include "EntityComponent/Transform.h"
+#include "EntityComponent/Entity.h"
 #include "Behaviour.h"
 
 

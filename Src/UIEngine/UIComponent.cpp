@@ -8,13 +8,13 @@
 #include <OgreOverlayManager.h> 
 #include <OgreTextAreaOverlayElement.h>
 
-int Separity::UIComponent::numUIElements = 0;
+//int Separity::UIComponent::numUIElements = 0;
 
 Separity::UIComponent::UIComponent() {
 	mngr_ = Separity::UIManager::getInstance();
 	overlayManager = Ogre::OverlayManager::getSingletonPtr();
-	inputManager = Separity::InputManager::getInstance();
-	numUIElements++;
+	//inputManager = Separity::InputManager::getInstance();
+	 numUIElements++;
 }
 
 Separity::UIComponent::~UIComponent() {}

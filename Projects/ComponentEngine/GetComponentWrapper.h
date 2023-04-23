@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-
+#include "SeparityExports/SeparityApi.h"
 class lua_State;
 
 namespace Separity {
@@ -8,7 +8,7 @@ namespace Separity {
 	class RigidBody;
 	class Transform;
 
-	class GetComponentWrapper : public Component {
+	class _SEPARITY_API_ GetComponentWrapper : public Component {
 		public:
 		GetComponentWrapper();
 		~GetComponentWrapper();

@@ -2,13 +2,13 @@
 #ifndef __BEHAVIOUR_CREATOR_H__
 #define __BEHAVIOUR_CREATOR_H__
 
-#include "CCreator.h"
-
+#include "EntityComponent/CCreator.h"
+#include "SeparityExports/SeparityApi.h"
 class lua_State;
 
 namespace Separity {
 
-	class BehaviourCreator : public CCreator {
+	class _SEPARITY_API_ BehaviourCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de BehaviourCreator, vacío de predeterminado

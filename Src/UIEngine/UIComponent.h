@@ -20,8 +20,8 @@ namespace Spyutils {
 }
 // Clase base de la que heredan todos los elementos de la UI
 namespace Separity {
-	class InputManager;
-	class UIComponent : public Separity::Component {
+	//class InputManager;
+	class _SEPARITY_API_ UIComponent : public Separity::Component {
 		public:
 		/// <summary>
 		/// Constructora de la clase
@@ -95,10 +95,10 @@ namespace Separity {
 		Ogre::OverlayContainer* overlayContainer;
 
 		// Control de los elementos de la UI
-		static int numUIElements;
+		 int numUIElements;
 
 		//Input para los eventos de los botones
-		InputManager* inputManager;
+		//InputManager* inputManager;
 	};
 }  // namespace Separity
 #endif  // !__UI_COMPONENT_H__

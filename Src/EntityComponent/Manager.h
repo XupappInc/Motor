@@ -2,8 +2,10 @@
 #ifndef __MANAGER_TEMPLATE_H__
 #define __MANAGER_TEMPLATE_H__
 
+
 #include "Singleton.h"
 #include "ec.h"
+#include "SeparityExports/SeparityApi.h"
 
 #include <vector>
 
@@ -11,7 +13,7 @@ namespace Separity {
 
 	class Component;
 
-	class Manager  {
+	class _SEPARITY_API_ Manager {
 
 		public:
 

@@ -2,19 +2,13 @@
 #ifndef __PANEL_H__
 #define __PANEL_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
-
 #include "UIComponent.h"
 
 #include <string>
 
 // Paneles que incluyen los elementos de la UI que se quieran mostrar
 namespace Separity {
-	class Panel : public UIComponent {
+	class _SEPARITY_API_ Panel : public UIComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_UI)
 		__CMPID_DECL__(Separity::_PANEL)

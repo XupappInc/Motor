@@ -2,13 +2,9 @@
 #ifndef __LUA_MANAGER_H__
 #define __LUA_MANAGER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityExports/SeparityApi.h"
 
-#include "Manager.h"
+#include "EntityComponent/Manager.h"
 
 #include <string>
 
@@ -19,7 +15,7 @@ namespace Separity {
 	/// <summary>
 	/// Clase encargada de gestionar la maquina virtual de Lua y los scripts de comportamiento
 	/// </summary>
-	class LuaManager : public Separity::Manager,
+	class _SEPARITY_API_ LuaManager : public Separity::Manager,
 	                   public Singleton<Separity::LuaManager> {
 		friend Singleton<LuaManager>;
 

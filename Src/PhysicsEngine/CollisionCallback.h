@@ -4,13 +4,14 @@
 
 #include <btBulletDynamicsCommon.h>
 #include <unordered_set>
-
+#include "SeparityExports/SeparityApi.h"
 class btRigidBody;
 
 namespace Separity {
 	class RigidBody;
 
-	class CollisionCallback : public btCollisionWorld::ContactResultCallback {
+	class _SEPARITY_API_ CollisionCallback
+	    : public btCollisionWorld::ContactResultCallback {
 		public:
 		/// <summary>
 		/// Crea un collision callback para que llame a los eventos del rigidbody

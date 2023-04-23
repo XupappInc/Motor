@@ -4,11 +4,13 @@
 
 #define spyPI 3.14159265358979323846 /* pi */
 
+#include "SeparityExports/SeparityApi.h"
+
 namespace Spyutils {
 	/// <summary>
 	/// Clase que abstrae algunas operaciones matemáticas para todo el proyecto.
 	/// </summary>
-	class Math {
+	class _SEPARITY_API_ Math {
 		public:
 		// static const double PI;
 		/// <summary>
