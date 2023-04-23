@@ -1,7 +1,5 @@
 #include "ManagerManager.h"
 
-
-
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
@@ -37,10 +35,6 @@ void Separity::ManagerManager::addManager(cmpType_type type, Manager* manager) {
 
 Separity::Manager* Separity::ManagerManager::getManager(cmpType_type type) {		
 	return managers_[type];
-}
-
-int Separity::ManagerManager::nManagers() { 
-	return managers_.size(); 
 }
 
 void Separity::ManagerManager::clean() {	
