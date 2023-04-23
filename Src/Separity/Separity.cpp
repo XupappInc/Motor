@@ -209,15 +209,19 @@ int main() {
 
 	coche->addComponent<Collider>(paramsCoche);
 	coche->addComponent<RigidBody>(DYNAMIC, 100);
-	//coche->addChild(camera);
-	//cam_tr->setPosition(0, 15, 5);
+	
 
 	mm->initComponents();
+
+	 
 
 	Camera* cam_cam = RenderManager::getInstance()->getCamera();
 	Entity* camera = cam_cam->getEntity();
 	Transform* cam_tr = camera->getComponent<Transform>();
-	//cam_tr->pitch(-90);	
+	//cam_tr->pitch(-90);
+
+	coche->addChild(camera);
+	cam_tr->setPosition(0, 15, 5);
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
