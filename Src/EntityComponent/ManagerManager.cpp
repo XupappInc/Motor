@@ -52,8 +52,7 @@ void Separity::ManagerManager::clean() {
 
 void Separity::ManagerManager::pseudoClean() {
 	for(auto m = managers_.begin(); m != managers_.end(); ) {
-		if(m->first != _SCENE && m->first != _ENTITY 
-			&& m->first != _INPUT && m->first != _RENDER) {
+		if(m->first != _SCENE && m->first != _INPUT && m->first != _RENDER) {
 			auto aux = m;
 			aux++;
 			m->second->clean();

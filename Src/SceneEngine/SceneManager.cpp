@@ -95,7 +95,6 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 
 void Separity::SceneManager::changeScene(const std::string& root) {
 
-	EntityManager::getInstance()->deleteEntities();
 	ManagerManager::getInstance()->pseudoClean();
 	loadScene(root);
 	ManagerManager::getInstance()->initComponents();

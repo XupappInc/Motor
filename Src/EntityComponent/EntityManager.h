@@ -35,17 +35,16 @@ namespace Separity {
 		/// <params>Acepta una lista de argumentos (si hay) para ser pasados al
 		/// constructor (Id del grupo).</params>
 		Entity* addEntity(grpId_type gID);
+
+		void clean() override;
+
+		private:
 		/// <summary>
 		/// Borra todas las entidades que hay guardadas en el vector llamando a
 		/// su destructor
 		/// </summary>
 		void deleteEntities();
 
-		void clean() override;
-
-		void debug();
-
-		private:
 		std::vector<Entity*> allEntities_;
 	};
 }  // namespace Separity
