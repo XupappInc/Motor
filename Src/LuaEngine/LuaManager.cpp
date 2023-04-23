@@ -57,6 +57,10 @@ void Separity::LuaManager::registerClasses() {
 	    .addFunction("onCollisionEnter", &Behaviour::onCollisionEnter)
 	    .addFunction("onCollisionExit", &Behaviour::onCollisionExit)
 	    .addFunction("onCollisionStay", &Behaviour::onCollisionStay)
+	    .addFunction("onButtonClick", &Behaviour::onButtonClick)
+	    .addFunction("onButtonReleased", &Behaviour::onButtonReleased)
+	    .addFunction("onButtonHover", &Behaviour::onButtonHover)
+	    .addFunction("onButtonUnhover", &Behaviour::onButtonUnhover)
 	    .addProperty("entity", &Behaviour::ent_)
 	    .endClass();
 }
@@ -71,6 +75,8 @@ Separity::Behaviour* Separity::LuaManager::loadScript(std::string name, Entity* 
 
 	behaviourScript->initComponent();
 
+	//luabridge::push(L_, behaviourScript);
+	//lua_setglobal(L_, name.c_str());
 	luabridge::setGlobal(L_, behaviourScript, name.c_str());
 
 	// Obtenemos el objeto behaviour desde Lua
