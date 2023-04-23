@@ -20,6 +20,7 @@ namespace Ogre {
 }  // namespace Ogre
 namespace Separity {
 	class PhysicsDebugDrawer;
+	class RigidBody;
 	class PhysicsManager : public Separity::Manager,
 	                       public Singleton<Separity::PhysicsManager> {
 		friend Singleton<PhysicsManager>;
@@ -52,6 +53,16 @@ namespace Separity {
 		/// <returns>El mundo donde sucede la simulación</returns>
 		btDynamicsWorld* getWorld();
 		
+		/// <summary>
+		/// Añade el componente al vector, si es un rigidBody lo añade al vector de rigidBodies
+		/// </summary>
+		/// <param name="cmp">Componente que se quiere añadir al manager</param>
+		void addComponent(Component* cmp) override;
+
+		void initComponents() override;
+
+		void removeComponent(Separity::Component* cmp) override;
+
 		void clean() override;
 		
 		private:
@@ -71,6 +82,8 @@ namespace Separity {
 		btSequentialImpulseConstraintSolver* solver_;
 		btDefaultCollisionConfiguration* collisionConfiguration_;
 		PhysicsDebugDrawer* debugDrawer_;
+
+		std::vector<Separity::RigidBody*> rigidBodies_;
 	};
 }  // namespace Separity
 
