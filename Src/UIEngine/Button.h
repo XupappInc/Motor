@@ -29,7 +29,8 @@ namespace Separity {
 		/// Constructora de la clase Boton
 		/// </summary>
 		Button(std::string overlayName, float xPos, float yPos, float width,
-		       float height, std::string textureName);
+		       float height, std::string iniTex, std::string hoverTex = "",
+		       std::string clickedTex = "");
 
 		void initComponent() override;
 		void update(const uint32_t& deltaTime = 0) override;
@@ -62,11 +63,14 @@ namespace Separity {
 		/// Cambia la textura del boton
 		/// </summary>
 		void changeButtonTexture(std::string textureName);
+
 		private:
 		Ogre::Overlay* overlayElement_;
 		int n_;
 		Behaviour* behaviour_;
-		std::string textureName_;
+		std::string iniTex_;
+		std::string hoverTex_;
+		std::string clickedTex_;
 		// posiciones limite del botón
 		int topPosition_;
 		int bottomPosition_;
@@ -74,6 +78,7 @@ namespace Separity {
 		int rightPosition_;
 		bool hovering_;
 		bool clicked_;
+		
 	};
 }  // namespace Separity
 

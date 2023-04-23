@@ -158,4 +158,42 @@ material World_ap.19 {
         }
     }
 }
+material hoverMat {
+    receive_shadows on
+    technique {
+        pass {
+            diffuse 0.708738 0.698972 0.680835 1.0
+            specular 0.552786 0.0 0 0 0
+            rtshader_system {
+                lighting_stage metal_roughness
+                texturing_stage late_add_blend
+            }
+
+            texture_unit {
+                texture spotlight_image.png
+                tex_address_mode wrap
+                colour_op modulate
+            }
+        }
+    }
+}
+material clickedMat {
+    receive_shadows on
+    technique {
+        pass {
+            diffuse 0.708738 0.698972 0.680835 1.0
+            specular 0.552786 0.0 0 0 0
+            rtshader_system {
+                lighting_stage metal_roughness
+                texturing_stage late_add_blend
+            }
+
+            texture_unit {
+                texture checker.png
+                tex_address_mode wrap
+                colour_op modulate
+            }
+        }
+    }
+}
 
