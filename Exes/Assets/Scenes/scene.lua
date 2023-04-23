@@ -1081,7 +1081,9 @@ Entities = {
 			y = 200,
 			width = 200,
 			height = 200,
-			texture = "World_ap.15"
+			iniTex = "World_ap.15",
+			hoverTex="hoverMat",
+			clickedTex="clickedMat"
 		},
 		script={
 			name="buttonMenu"
