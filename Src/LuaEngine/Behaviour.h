@@ -9,6 +9,7 @@
 #endif
 
 #include <Component.h>
+#include <string>
 
 namespace luabridge {
 	class LuaRef;
@@ -32,13 +33,13 @@ namespace Separity {
 		/// Constructor vacio, asigna nullptr a la LuaRef, sera necesario
 		/// asignarla posteriormente con setLuaScript()
 		/// </summary>
-		Behaviour();
+		Behaviour(std::string name);
 		/// <summary>
 		/// Construye un Behaviour con la LuaRef se le pase
 		/// </summary>
 		/// <param name="behaviourLua">LuaRef del script .lua que se desea
 		/// vincular a esta clase</param>
-		Behaviour(luabridge::LuaRef* behaviourLua);
+		Behaviour(std::string name, luabridge::LuaRef* behaviourLua);
 		/// <summary>
 		/// El destructor se encarga de borrar el puntero de LuaRef
 		/// </summary>
@@ -108,6 +109,10 @@ namespace Separity {
 		/// pudiendo usarlo para llamar a todos sus metodos en esta clase
 		/// </summary>
 		luabridge::LuaRef* behaviourLua_;
+		/// <summary>
+		/// Nombre del script
+		/// </summary>
+		std::string name_;
 	};
 }  // namespace Separity
 

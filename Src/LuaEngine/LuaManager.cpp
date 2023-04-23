@@ -62,6 +62,7 @@ void Separity::LuaManager::registerClasses() {
 	    .addFunction("onButtonHover", &Behaviour::onButtonHover)
 	    .addFunction("onButtonUnhover", &Behaviour::onButtonUnhover)
 	    .addProperty("entity", &Behaviour::ent_)
+	    .addProperty("name", &Behaviour::name_)
 	    .endClass();
 }
 
@@ -71,7 +72,7 @@ Separity::Behaviour* Separity::LuaManager::loadScript(std::string name, Entity* 
 	luaL_dofile(L_, path.c_str());
 
 	// Creamos una instancia de Behaviour y la pasamos al script
-	Behaviour* behaviourScript = ent->addComponent<Behaviour>();
+	Behaviour* behaviourScript = ent->addComponent<Behaviour>(name);
 
 	behaviourScript->initComponent();
 
