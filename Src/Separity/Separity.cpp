@@ -78,7 +78,7 @@ int main() {
 	sinbad->getComponent<Transform>()->translate({-15, 60, 12});
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
 
-	luaManager->loadScript("prueba", sinbad);
+	//luaManager->loadScript("prueba", sinbad);
 
 	Entity* guile = entityManager->addEntity(_grp_GENERAL);
 	guile->getComponent<Transform>()->translate({0, 10, 12});
