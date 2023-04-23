@@ -18,6 +18,7 @@ namespace Ogre {
 }
 
 namespace Separity {
+	class Behaviour;
 	class Panel;
 	class Button : public Separity::UIComponent {
 		public:
@@ -30,22 +31,46 @@ namespace Separity {
 		Button(std::string overlayName, float xPos, float yPos, float width,
 		       float height, std::string textureName);
 
-		// bool isClicked(float xMouse, float yMouse);
+		void initComponent() override;
 		void update(const uint32_t& deltaTime = 0) override;
 		///< summary>
 		/// Destructora de la clase Boton
 		/// </summary>
 		~Button();
+		/// <summary>
+		/// Metodo que se llama cuando se hace click en el boton
+		/// </summary>
+		void onButtonClick();
+		/// <summary>
+		/// Metodo que se llama cuando ya no se hace click en el boton
+		/// </summary>
+		void onButtonReleased();
+		/// <summary>
+		/// Metodo que se llama la primera vez que se pone el raton sobre el
+		/// boton
+		/// </summary>
+		void onButtonHover();
+		/// <summary>
+		/// Metodo que se llama cuando el raton sale del boton
+		/// </summary>
+		void onButtonUnhover();
+		/// <summary>
+		/// Comprueba si el ratón está en los límites del botón
+		/// </summary>
+		void checkMousePos();
 
 		private:
 		Ogre::Overlay* overlayElement;
 		int n;
+		Behaviour* behaviour_;
 
 		// posiciones limite del botón
 		int topPosition;
 		int bottomPosition;
 		int leftPosition;
 		int rightPosition;
+		bool hovering;
+		bool clicked;
 	};
 }  // namespace Separity
 

@@ -1,5 +1,7 @@
 #include "Button.h"
 
+#include "Behaviour.h"
+#include "Entity.h"
 #include "InputManager.h"
 #include "checkML.h"
 
@@ -35,15 +37,50 @@ Separity::Button::Button(std::string overlayName, float xPos, float yPos,
 	leftPosition = xPos;
 	rightPosition = leftPosition + width;
 }
-void Separity::Button::update(const uint32_t& deltaTime) {
+Separity::Button::~Button() {}
+void Separity::Button::initComponent() {
+	behaviour_ = ent_->getComponent<Behaviour>();
+}
+void Separity::Button::update(const uint32_t& deltaTime) { checkMousePos(); }
+
+void Separity::Button::onButtonClick() {
+	if(!hovering)
+		return;
 	if(inputManager->isMouseButtonDown(InputManager::LEFT)) {
-		std::pair<int, int> mousePosition = inputManager->getMousePos();
-		if(mousePosition.first < rightPosition &&
-		   mousePosition.first > leftPosition &&
-		   mousePosition.second > topPosition &&
-		   mousePosition.second < bottomPosition) {
-			std::cout << "Button clicked!\n";
-		}
+		clicked = true;
+		if(behaviour_ != nullptr)
+			behaviour_->onButtonClick();
 	}
 }
-Separity::Button::~Button() { }
+void Separity::Button::onButtonReleased() {
+	if(!hovering)
+		return;
+	if(!inputManager->isMouseButtonDown(InputManager::LEFT)) {
+		clicked = false;
+		if(behaviour_ != nullptr)
+			behaviour_->onButtonReleased();
+	}
+}
+
+void Separity::Button::onButtonHover() {
+
+}
+
+void Separity::Button::onButtonUnhover() {}
+
+//bool Separity::Button::isButtonHovering() {
+//	behaviour_->isButtonHovering();
+//	return hovering;
+//}
+
+void Separity::Button::checkMousePos() {
+	std::pair<int, int> mousePosition = inputManager->getMousePos();
+	if(mousePosition.first < rightPosition &&
+	   mousePosition.first > leftPosition &&
+	   mousePosition.second > topPosition &&
+	   mousePosition.second < bottomPosition) {
+		hovering = true;
+	} else
+		hovering = false;
+	onButtonClick();
+}

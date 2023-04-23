@@ -62,7 +62,7 @@ int main() {
 	UIManager* uiManager = Separity::UIManager::getInstance();
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
-	sceneMenager->loadScene("Assets/Scenes/scene.lua");
+	sceneMenager->loadScene("scene.lua");
 
 	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
@@ -190,7 +190,7 @@ int main() {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);
 			}
 			if(inputManager->isKeyDown('t')) {
-				sceneMenager->changeScene("Assets/Scenes/scene.lua");
+				sceneMenager->changeScene("scene.lua");
 
 				camera = entityManager->addEntity(_grp_GENERAL);
 				cam_tr = camera->getComponent<
@@ -202,7 +202,7 @@ int main() {
 			}
 			if(inputManager->isKeyDown('r')) {
 
-				sceneMenager->changeScene("Assets/Scenes/scene.lua");
+				sceneMenager->changeScene("scene.lua");
 
 				// Entity* MusicInstance =
 				// entityManager->addEntity(_grp_GENERAL);
