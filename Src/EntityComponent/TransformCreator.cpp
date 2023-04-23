@@ -21,6 +21,31 @@ void Separity::TransformCreator::registerInLua() {
 	    .addFunction("roll", &Transform::roll)
 	    .addFunction("lookAt", &Transform::lookAt)
 	    .endClass();
+
+	luabridge::getGlobalNamespace(L)
+	    .beginClass<Spyutils::Vector3>("Vector3")
+	    .addConstructor<void (*)(float, float, float)>()
+	    .addProperty("x", &Spyutils::Vector3::x)
+	    .addProperty("y", &Spyutils::Vector3::y)
+	    .addProperty("z", &Spyutils::Vector3::z)
+	    .addFunction("__index", &Spyutils::Vector3::operator[])
+	    .addFunction("__add", &Spyutils::Vector3::operator+)
+	    .addFunction("__sub", &Spyutils::Vector3::operator-)
+	    .addFunction("__eq", &Spyutils::Vector3::operator==)
+	    .addFunction("magnitude", &Spyutils::Vector3::magnitude)
+	    .addFunction("normalize", &Spyutils::Vector3::normalize)
+	    .addFunction("distance", &Spyutils::Vector3::distance)
+	    .endClass();
+
+	luabridge::getGlobalNamespace(L).beginClass<Spyutils::spyQuaternion>("Quaternion")
+	    .addConstructor<void (*)(float, float, float)>()
+	    .addConstructor<void (*)(float, float, float, float)>()
+	    .addProperty("w", &Spyutils::spyQuaternion::w)
+	    .addProperty("x", &Spyutils::spyQuaternion::x)
+	    .addProperty("y", &Spyutils::spyQuaternion::y)
+	    .addProperty("z", &Spyutils::spyQuaternion::z)
+	    .addFunction("toEulerAngles", &Spyutils::spyQuaternion::toEulerAngles)
+	    .endClass();
 }
 
 bool Separity::TransformCreator::createComponent(lua_State* L,

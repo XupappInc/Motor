@@ -63,9 +63,7 @@ int main() {
 	EntityManager* entityManager = Separity::EntityManager::getInstance();
 	UIManager* uiManager = Separity::UIManager::getInstance();
 
-	LuaManager* luaManager = Separity::LuaManager::getInstance();
-
-	//GetComponentWrapper::registerInLua();
+	GetComponentWrapper::registerInLua();
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("scene.lua");
@@ -79,6 +77,8 @@ int main() {
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({-15, 60, 12});
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
+
+	luaManager->loadScript("prueba", sinbad);
 
 	Entity* guile = entityManager->addEntity(_grp_GENERAL);
 	guile->getComponent<Transform>()->translate({0, 10, 12});
@@ -302,8 +302,8 @@ int main() {
 				// sinbad->addComponent<RigidBody>(DYNAMIC, 10);
 				// auto animSinbad = sinbad->addComponent<Animator>();
 
-				// Separity::LuaManager::getInstance()->loadScript("prueba",
-				//                                                 sinbad);
+				 Separity::LuaManager::getInstance()->loadScript("prueba",
+				                                                 sinbad);
 
 				// Entity* luz = entityManager->addEntity(_grp_GENERAL);
 				// auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);

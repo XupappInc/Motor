@@ -55,7 +55,11 @@ void Separity::Behaviour::onCollisionEnter(Entity* other) {
 		// crea la variable global other de forma temporal, para que lo pueda
 		// utilizar el script
 		luabridge::setGlobal(L, other, "other");
-		collisionEnterLua();
+		try {
+			collisionEnterLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 		// quita la variable global de la pila de Lua
 		luabridge::getGlobal(L, "other");
 	}
@@ -69,7 +73,11 @@ void Separity::Behaviour::onCollisionExit(Entity* other) {
 		// crea la variable global other de forma temporal, para que lo pueda
 		// utilizar el script
 		luabridge::setGlobal(L, other, "other");
-		collisionExitLua(other);
+		try {
+			collisionExitLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 		// quita la variable global de la pila de Lua
 		luabridge::getGlobal(L, "other");
 	}
@@ -83,7 +91,11 @@ void Separity::Behaviour::onCollisionStay(Entity* other) {
 		// crea la variable global other de forma temporal, para que lo pueda
 		// utilizar el script
 		luabridge::setGlobal(L, other, "other");
-		collisionStayLua(other);
+		try {
+			collisionStayLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 		// quita la variable global de la pila de Lua
 		luabridge::getGlobal(L, "other");
 	}
@@ -97,7 +109,8 @@ void Separity::Behaviour::onButtonClick() {
 }
 
 void Separity::Behaviour::onButtonReleased() {
-	luabridge::LuaRef onButtonReleasedLua = (*behaviourLua_)["onButtonReleased"];
+	luabridge::LuaRef onButtonReleasedLua =
+	    (*behaviourLua_)["onButtonReleased"];
 	if(onButtonReleasedLua.isFunction()) {
 		onButtonReleasedLua();
 	}

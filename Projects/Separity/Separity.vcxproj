@@ -22,6 +22,9 @@
     <ClCompile Include="..\..\Src\Separity\Separity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ComponentEngine\ComponentEngine.vcxproj">
+      <Project>{320a1405-4212-4d54-a550-de42dfc19239}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\EntityComponent\EntityComponent.vcxproj">
       <Project>{329ebb57-bbe0-45ce-861b-a6d9a3d28279}</Project>
     </ProjectReference>
