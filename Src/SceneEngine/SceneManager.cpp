@@ -1,12 +1,12 @@
 ﻿#include "SceneManager.h"
 
 #include "CCreatorHeaders.h"
-#include "Component.h"
 #include "ComponentFactory.h"
+
 #include "Entity.h"
 #include "EntityManager.h"
-#include "ManagerManager.h"
 
+#include "ManagerManager.h"
 #include "LuaManager.h"
 
 #include <lua.hpp>
@@ -18,19 +18,42 @@ using namespace Separity;
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
+Separity::SceneManager* Separity::SceneManager::getInstance() {
+	return static_cast<SceneManager*>(instance());
+}
+
+Separity::SceneManager::SceneManager()
+    : changeScene_(false), sceneName_(std::string()) {
+	ManagerManager::getInstance()->addManager(_SCENE, this);
+
+	factory_ = new ComponentFactory();
+	factory_->addCreator("transform", new TransformCreator());
+	factory_->addCreator("collider", new ColliderCreator());
+	factory_->addCreator("rigidbody", new RigidbodyCreator());
+	factory_->addCreator("meshRenderer", new MeshRendererCreator());
+	factory_->addCreator("light", new LightCreator());
+	factory_->addCreator("audioListener", new AudioListenerCreator());
+	factory_->addCreator("audioSource", new AudioSourceCreator());
+	factory_->addCreator("camera", new CameraCreator());
+	factory_->addCreator("particleSystem", new ParticleSystemCreator());
+	factory_->addCreator("animator", new AnimatorCreator());
+	factory_->addCreator("script", new BehaviourCreator());
+	factory_->addCreator("button", new ButtonCreator());
+	factory_->addCreator("panel", new PanelCreator());
+	factory_->addCreator("text", new TextCreator());
+
+	registerChangeSceneInLua();
+}
+
 void Separity::SceneManager::clean() { 
 	delete factory_;
 	close();
 }
 
-Separity::SceneManager* Separity::SceneManager::getInstance() {
-	return static_cast<SceneManager*>(instance());
-}
-
 void Separity::SceneManager::update(const uint32_t& deltaTime) {
 	if(!changeScene_)
 		return;
-	changeScene(sceneName_);
+	changeScene();
 }
 
 bool Separity::SceneManager::loadScene(const std::string& root) {
@@ -93,10 +116,10 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 	return success;
 }
 
-void Separity::SceneManager::changeScene(const std::string& root) {
+void Separity::SceneManager::changeScene() {
 
 	ManagerManager::getInstance()->pseudoClean();
-	loadScene(root);
+	loadScene(sceneName_);
 	ManagerManager::getInstance()->initComponents();
 	registerChangeSceneInLua();
 	changeScene_ = false;
@@ -105,28 +128,6 @@ void Separity::SceneManager::changeScene(const std::string& root) {
 void Separity::SceneManager::luaChangeScene(const std::string& root) {
 	changeScene_ = true;
 	sceneName_ = root;
-}
-
-Separity::SceneManager::SceneManager() : changeScene_(false), sceneName_("") {
-	ManagerManager::getInstance()->addManager(_SCENE, this);
-
-	factory_ = new ComponentFactory();
-	factory_->addCreator("transform", new TransformCreator());
-	factory_->addCreator("collider", new ColliderCreator());
-	factory_->addCreator("rigidbody", new RigidbodyCreator());
-	factory_->addCreator("meshRenderer", new MeshRendererCreator());
-	factory_->addCreator("light", new LightCreator());
-	factory_->addCreator("audioListener", new AudioListenerCreator());
-	factory_->addCreator("audioSource", new AudioSourceCreator());
-	factory_->addCreator("camera", new CameraCreator());
-	factory_->addCreator("particleSystem", new ParticleSystemCreator());
-	factory_->addCreator("animator", new AnimatorCreator());
-	factory_->addCreator("script", new BehaviourCreator());
-	factory_->addCreator("button", new ButtonCreator());
-	factory_->addCreator("panel", new PanelCreator());
-	factory_->addCreator("text", new TextCreator());
-	
-	registerChangeSceneInLua();
 }
 
 void Separity::SceneManager::registerChangeSceneInLua() {
