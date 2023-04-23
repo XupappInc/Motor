@@ -9,12 +9,6 @@
 // Clase exportada del DLL
 class _SEPARITY_API_ CSeparityExports {
 	public:
-	CSeparityExports(void);
+	CSeparityExports();
 	// TODO: agregar métodos aquí.
 };
-
-class _SEPARITY_API_ test {
-	public:
-	test();
-};
-

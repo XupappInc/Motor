@@ -1,12 +1,14 @@
 // SeparityExports.cpp : Define las funciones exportadas del archivo DLL.
 //
-
-#include "pch.h"
-#include "framework.h"
 #include "SeparityExports.h"
+#include "pch.h"
 
 #include <iostream>
 #include "Entity.h"
+#include "Component.h"
+
+#include "Behaviour.h"
+
 
 // Componentes
 #include "Animator.h"
@@ -26,26 +28,23 @@
 #include "spyQuaternion.h"
 
 // Managers
-#include "audiomanager.h"
-#include "entitymanager.h"
+#include "AudioManager.h"
+#include "EntityManager.h"
 //#include "inputmanager.h"
-#include "luamanager.h"
-#include "managermanager.h"
-#include "physicsmanager.h"
-#include "rendermanager.h"
-#include "scenemanager.h"
-#include "uimanager.h"
+#include "LuaManager.h"
+#include "ManagerManager.h"
+#include "PhysicsManager.h"
+#include "RenderManager.h"
+#include "SceneManager.h"
+#include "UIManager.h"
 //// Utils
 #include "Random.h"
 #include "VirtualTimer.h"
 
-void main() { std::cout << "Creando librería dinámica del motor\n"; }
+#include <Windows.h>
+#include <iostream>
+#include <utility>
 
 
 // Constructor de clase exportada.
-CSeparityExports::CSeparityExports()
-{
-    return;
-}
-
-test::test() {}
+CSeparityExports::CSeparityExports() { std::cout << "Hola" << std::endl; }
