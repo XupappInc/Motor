@@ -22,13 +22,11 @@
     <ClCompile Include="..\..\Src\LuaEngine\Behaviour.cpp" />
     <ClCompile Include="..\..\Src\LuaEngine\BehaviourCreator.cpp" />
     <ClCompile Include="..\..\Src\LuaEngine\LuaManager.cpp" />
-    <ClCompile Include="..\..\Src\LuaEngine\PathFollow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\LuaEngine\Behaviour.h" />
     <ClInclude Include="..\..\Src\LuaEngine\BehaviourCreator.h" />
     <ClInclude Include="..\..\Src\LuaEngine\LuaManager.h" />
-    <ClInclude Include="..\..\Src\LuaEngine\PathFollow.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
