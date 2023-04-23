@@ -1,8 +1,8 @@
 #pragma once
-#include <SDL.h>
-#include <cstdint>
 #ifndef __VIRTUAL_TIMER_H__
 #define __VIRTUAL_TIMER_H__
+#include <SDL.h>
+#include <cstdint>
 #include "SeparityExports/SeparityApi.h"
 
 namespace Spyutils {

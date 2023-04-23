@@ -23,21 +23,21 @@
 #include "RigidBody.h"
 #include "Text.h"
 #include "Transform.h"
+#include "spyQuaternion.h"
 
 // Managers
-#include "AudioManager.h"
-#include "EntityManager.h"
-//#include "InputManager.h"
-//#include "LuaManager.h"
-#include "ManagerManager.h"
-#include "PhysicsManager.h"
-#include "RenderManager.h"
-#include "SceneManager.h"
-#include "UIManager.h"
-// Utils
+#include "audiomanager.h"
+#include "entitymanager.h"
+//#include "inputmanager.h"
+#include "luamanager.h"
+#include "managermanager.h"
+#include "physicsmanager.h"
+#include "rendermanager.h"
+#include "scenemanager.h"
+#include "uimanager.h"
+//// Utils
 #include "Random.h"
-//#include "VirtualTimer.h"
-//#include "checkML.h"
+#include "VirtualTimer.h"
 
 void main() { std::cout << "Creando librería dinámica del motor\n"; }
 
