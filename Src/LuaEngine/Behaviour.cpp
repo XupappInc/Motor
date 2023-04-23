@@ -83,3 +83,31 @@ void Separity::Behaviour::onCollisionStay(Entity* other) {
 		luabridge::getGlobal(L, "other");
 	}
 }
+
+void Separity::Behaviour::onButtonClick() {
+	luabridge::LuaRef onButtonClickLua = (*behaviourLua_)["onButtonClick"];
+	if(onButtonClickLua.isFunction()) {
+		onButtonClickLua();
+	}
+}
+
+void Separity::Behaviour::onButtonReleased() {
+	luabridge::LuaRef onButtonReleasedLua = (*behaviourLua_)["onButtonReleased"];
+	if(onButtonReleasedLua.isFunction()) {
+		onButtonReleasedLua();
+	}
+}
+
+void Separity::Behaviour::onButtonHover() {
+	luabridge::LuaRef onButtonHoverLua = (*behaviourLua_)["onButtonHover"];
+	if(onButtonHoverLua.isFunction()) {
+		onButtonHoverLua();
+	}
+}
+
+void Separity::Behaviour::onButtonUnhover() {
+	luabridge::LuaRef onButtonUnhoverLua = (*behaviourLua_)["onButtonUnhover"];
+	if(onButtonUnhoverLua.isFunction()) {
+		onButtonUnhoverLua();
+	}
+}

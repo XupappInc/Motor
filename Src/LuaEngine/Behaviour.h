@@ -85,6 +85,22 @@ namespace Separity {
 		/// </summary>
 		/// <param name="other">Entidad con la que ha colisionado</param>
 		virtual void onCollisionStay(Entity* other);
+		/// <summary>
+		/// Metodo que se llama cuando se hace click en el boton
+		/// </summary>
+		virtual void onButtonClick();
+		/// <summary>
+		/// Metodo que se llama cuando ya no se hace click en el boton
+		/// </summary>
+		virtual void onButtonReleased();
+		/// <summary>
+		/// Metodo que se llama la primera vez que se pone el raton sobre el boton
+		/// </summary>
+		virtual void onButtonHover();
+		/// <summary>
+		/// Metodo que se llama cuando el raton sale del boton
+		/// </summary>
+		virtual void onButtonUnhover();
 
 		protected:
 		/// <summary>
