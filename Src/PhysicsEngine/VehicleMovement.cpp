@@ -88,7 +88,17 @@ void Separity::VehicleMovement::acelerar(int dir) {
 	/*vehicle_->applyEngineForce(btScalar(dir), 2);
 	vehicle_->applyEngineForce(btScalar(dir), 3);*/
 	
-	rb_->applyImpulse(Spyutils::Vector3(0, 0, dir * -10 -5));
+	Spyutils::Vector3 global;
+	global = ent_->getComponent<Transform>()->getRotation();
+	Spyutils::Vector3 local;
+	local.x = cos(global.y) * cos(global.z);
+	local.y = -cos(global.x) * sin(global.z) +
+	          sin(global.x) * sin(global.y) * cos(global.z);
+	local.z = sin(global.x) * sin(global.z) +
+	          cos(global.x) * sin(global.y) * cos(global.z);
+	
+	Spyutils::Vector3 impulso(0, 0, dir * -10 - 5);
+	rb_->applyImpulse(impulso);
 }
 
 void Separity::VehicleMovement::frenar() {
