@@ -4,7 +4,7 @@
 #include "checkML.h"
 
 Separity::Component::Component()
-    : ent_(nullptr), mngr_(nullptr), active_(true) {}
+    : ent_(nullptr), mngr_(nullptr), active_(true), cId_(0) {}
 
 Separity::Component::~Component() {
 	if(mngr_ != NULL)
@@ -30,3 +30,7 @@ void Separity::Component::preUpdate() {}
 void Separity::Component::update(const uint32_t& deltaTime) {}
 
 void Separity::Component::render() {}
+
+void Separity::Component::setID(cmpId_type id) { cId_ = id; }
+
+Separity::cmpId_type Separity::Component::getID() { return cId_; }

@@ -29,13 +29,13 @@ namespace Separity {
 		/// Añade un componente al manager
 		/// </summary>
 		/// <param name="cmp">Componente que se quiere a�adir</param>
-		void addComponent(Separity::Component* cmp);
+		virtual void addComponent(Separity::Component* cmp);
 		/// <summary>
 		/// Quita un componente del manager
 		/// </summary>
 		/// <param name="cmp">Componente que se quiere quitar del
 		/// manager</param>
-		void removeComponent(Separity::Component* cmp);
+		virtual void removeComponent(Separity::Component* cmp);
 		/// <summary>
 		/// Funcion que se llama para eliminar el manager
 		/// manager</param>

@@ -7,12 +7,12 @@
 #include <LuaBridge/LuaBridge.h>
 #include <iostream>
 
-Separity::Behaviour::Behaviour() : behaviourLua_(nullptr) {
+Separity::Behaviour::Behaviour(std::string name) : behaviourLua_(nullptr), name_(name) {
 	mngr_ = Separity::LuaManager::getInstance();
 }
 
-Separity::Behaviour::Behaviour(luabridge::LuaRef* behaviourLua)
-    : behaviourLua_(behaviourLua) {
+Separity::Behaviour::Behaviour(std::string name, luabridge::LuaRef* behaviourLua)
+    : behaviourLua_(behaviourLua), name_(name) {
 	mngr_ = Separity::LuaManager::getInstance();
 }
 

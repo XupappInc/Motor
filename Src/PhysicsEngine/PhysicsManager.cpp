@@ -86,17 +86,21 @@ void Separity::PhysicsManager::deleteWorld() {
 void PhysicsManager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
 		c->preUpdate();
+	}
 
-		// test de colisiones de cada rigidbody con todo el mundo fisico
-		auto rb = dynamic_cast<Separity::RigidBody*>(c);
+	if(world_ != nullptr)
+		world_->stepSimulation(deltaTime);
+
+	for(Separity::Component* c : cmps_) {
+		c->update(deltaTime);
+	}
+
+	for(RigidBody* rb : rigidBodies_) {
 		if(rb != nullptr)
 			world_->contactTest(rb->getBulletRigidBody(),
 			                    *rb->getCollisionCallback());
-	}
-	if(world_ != nullptr)
-		world_->stepSimulation(deltaTime);
-	for(Separity::Component* c : cmps_) {
-		c->update();
+
+		rb->update(deltaTime);
 	}
 
 	if(debug_)
@@ -104,6 +108,40 @@ void PhysicsManager::update(const uint32_t& deltaTime) {
 }
 
 btDynamicsWorld* PhysicsManager::getWorld() { return world_; }
+
+void Separity::PhysicsManager::addComponent(Component* cmp) {
+	assert(cmp != nullptr);
+
+	if(cmp->getID() == _RIGID_BODY) {
+		rigidBodies_.push_back(static_cast<RigidBody*>(cmp));
+		return;
+	}
+
+	cmps_.push_back(cmp);
+}
+
+void Separity::PhysicsManager::initComponents() {
+	for(Separity::Component* c : cmps_) c->initComponent();
+
+	for(Separity::RigidBody* rb : rigidBodies_) rb->initComponent();
+}
+
+void Separity::PhysicsManager::removeComponent(Separity::Component* cmp) {
+
+	assert(cmp != nullptr);
+
+	if(cmp->getID() == _RIGID_BODY) 
+	{
+		auto iter_rb = std::find(rigidBodies_.begin(), rigidBodies_.end(), cmp);
+
+		rigidBodies_.erase(iter_rb);
+		return;
+	}
+
+	auto iter = std::find(cmps_.begin(), cmps_.end(), cmp);
+
+	cmps_.erase(iter);
+}
 
 void Separity::PhysicsManager::clean() {
 	deleteWorld();

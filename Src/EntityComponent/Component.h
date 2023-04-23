@@ -62,11 +62,24 @@ namespace Separity{
 		/// </summary>
 		virtual void render();
 
+		/// <summary>
+		/// Asigna el Id del compoente
+		/// </summary>
+		/// <param name="id">Id del componente, registrada previamente en ec_defs.h</param>
+		void setID(cmpId_type id);
+		/// <summary>
+		/// Obtiene el Id del componente
+		/// </summary>
+		/// <returns>Id del componente, registrada previamente en ec_defs.h</returns>
+		cmpId_type getID();
+
 		protected:
 		Entity* ent_;
 		Manager* mngr_;
 
 		bool active_;
+
+		cmpId_type cId_;
 	};
 
 }  // namespace Separity
