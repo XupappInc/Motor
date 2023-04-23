@@ -4,11 +4,7 @@
 // que use este archivo DLL. De este modo, otros proyectos cuyos archivos de código fuente incluyan el archivo verán
 // interpretan que las funciones SEPARITYEXPORTS_API se importan de un archivo DLL, mientras que este archivo DLL interpreta los símbolos
 // definidos en esta macro como si fueran exportados.
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_API_ __declspec(dllexport)
-#else
-#define _SEPARITY_API_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
 
 // Clase exportada del DLL
 class _SEPARITY_API_ CSeparityExports {
