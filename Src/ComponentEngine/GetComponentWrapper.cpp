@@ -9,6 +9,7 @@
 #include "Animator.h"
 #include "AudioSource.h"
 #include "LuaManager.h"
+#include "Button.h"
 
 Separity::GetComponentWrapper::GetComponentWrapper() {
 }
@@ -25,6 +26,7 @@ void Separity::GetComponentWrapper::registerInLua() {
 	    .addFunction("getRigidBody", &Entity::getComponent<RigidBody>)
 	    .addFunction("getAnimator", &Entity::getComponent<Animator>)
 	    .addFunction("getAudioComponent", &Entity::getComponent<AudioComponent>)
+	    .addFunction("getButtonComponent", &Entity::getComponent<Button>)
 	    //...
 	    .endClass();
 }

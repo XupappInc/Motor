@@ -40,10 +40,23 @@ function buttonMenu:onCollisionExit()
 
 end
 
---Metodo OnButtonClicked, llamado al salir de una colision
+--Metodo OnButtonClicked
 function buttonMenu:onButtonClick()
 	print("Has pulsado para ir al menú\n");
+	--SceneManager:changeScene("scene2.lua");
+end
+function buttonMenu:onButtonReleased()
+	print("Has dejado de pulsar para ir al menú\n");
 	SceneManager:changeScene("scene2.lua");
+end
+--Metodo OnButtonHover
+function buttonMenu:onButtonHover()
+	print("Has puesto el cursor para ir al menu\n");	
+end
+--Metodo OnButtonUnhover
+function buttonMenu:onButtonUnhover()
+	print("Has quitado el cursor para ir al menu\n");
+	
 end
 --Variable global de la clase (para Luabridge)
 buttonMenuLua = buttonMenu:new()

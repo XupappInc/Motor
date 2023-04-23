@@ -14,14 +14,15 @@
 Separity::Button::Button(std::string overlayName, float xPos, float yPos,
                          float width, float height, std::string textureName)
     : UIComponent() {
-	n = 0;
+	n_ = 0;
+	textureName_ = textureName;
 	overlayContainer = static_cast<Ogre::OverlayContainer*>(
 	    overlayManager->createOverlayElement(
 	        "Panel", overlayName + std::to_string(numUIElements)));
 	overlayContainer->setMetricsMode(Ogre::GMM_PIXELS);
 	overlayContainer->setPosition(xPos, yPos);
 	overlayContainer->setDimensions(width, height);
-	overlayContainer->setMaterialName(textureName);
+	overlayContainer->setMaterialName(textureName_);
 	// Creo un elemento overlay para añadirle el panel
 	overlayElement =
 	    overlayManager->create("over" + std::to_string(numUIElements));
@@ -56,13 +57,12 @@ void Separity::Button::onButtonReleased() {
 	if(!hovering_)
 		return;
 	if(clicked_) {
-		if(!inputManager->isMouseButtonDown(InputManager::LEFT)) {
+		if(inputManager->isMouseButtonUp(InputManager::LEFT)) {
 			clicked_ = false;
 			if(behaviour_ != nullptr)
 				behaviour_->onButtonReleased();
 		}
 	}
-	
 }
 
 void Separity::Button::onButtonHover() {
@@ -72,7 +72,7 @@ void Separity::Button::onButtonHover() {
 
 void Separity::Button::onButtonUnhover() {
 	if(behaviour_ != nullptr)
-		behaviour_->onButtonHover();}
+		behaviour_->onButtonUnhover();}
 
 void Separity::Button::checkMousePos() {
 	std::pair<int, int> mousePosition = inputManager->getMousePos();
@@ -89,4 +89,10 @@ void Separity::Button::checkMousePos() {
 		hovering_ = false;
 		onButtonUnhover();
 	}
+}
+
+void Separity::Button::changeButtonTexture(std::string textureName) 
+{
+	textureName_ = textureName;
+	overlayContainer->setMaterialName(textureName_);
 }
