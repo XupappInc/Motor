@@ -2,13 +2,15 @@
 #ifndef __PARTICLE_SYSTEM_CREATOR_H__
 #define __PARTICLE_SYSTEM_CREATOR_H__
 
+#include "SeparityApi.h"
+
 #include "CCreator.h"
 
 class lua_State;
 
 namespace Separity {
 
-	class ParticleSystemCreator : public CCreator {
+	class _SEPARITY_API_ ParticleSystemCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de ParticleSystemCreator, vacío de predeterminado

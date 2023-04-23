@@ -4,6 +4,7 @@
 
 #include "Singleton.h"
 #include "ec.h"
+#include "SeparityApi.h"
 
 #include <vector>
 
@@ -11,7 +12,7 @@ namespace Separity {
 
 	class Component;
 
-	class Manager  {
+	class _SEPARITY_API_ Manager {
 
 		public:
 

@@ -2,13 +2,14 @@
 #ifndef __PANEL_CREATOR_H__
 #define __PANEL_CREATOR_H__
 
+#include "SeparityApi.h"
 #include "CCreator.h"
 
 class lua_State;
 
 namespace Separity {
 
-	class PanelCreator : public CCreator {
+	class _SEPARITY_API_ PanelCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de panelCreator, vacío de predeterminado

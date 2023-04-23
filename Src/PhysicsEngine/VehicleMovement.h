@@ -2,6 +2,7 @@
 #ifndef __VEHICLE_MOVEMENT_H__
 #define __VEHICLE_MOVEMENT_H__
 #include "PhysicsComponent.h"
+#include "SeparityApi.h"
 
 namespace Spyutils {
 	class Vector3;
@@ -15,7 +16,7 @@ namespace Separity {
 	/// <summary>
 	/// Componente rigidbody
 	/// </summary>
-	class VehicleMovement : public Separity::PhysicsComponent {
+	class _SEPARITY_API_ VehicleMovement : public Separity::PhysicsComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_VEHICLE_MOVEMENT)

@@ -2,14 +2,9 @@
 #ifndef __TRANSFORM_H__
 #define __TRANSFORM_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
-
 #include "Component.h"
 #include "Vector.h"
+#include "SeparityApi.h"
 #include <spyQuaternion.h>
 #include <vector>
 namespace Ogre {
@@ -19,7 +14,7 @@ namespace Ogre {
 namespace Separity {
 	enum typeOR { LOCAL, GLOBAL
 	};
-	class Transform : public Separity::Component {
+	class _SEPARITY_API_ Transform : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_ENTITY)
 		__CMPID_DECL__(Separity::_TRANSFORM)

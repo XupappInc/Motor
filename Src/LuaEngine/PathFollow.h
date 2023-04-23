@@ -3,6 +3,7 @@
 #define __PATH_FOLLOW_H__
 
 #include "Behaviour.h"
+#include "SeparityApi.h"
 #include <vector>
 
 namespace Spyutils {
@@ -13,7 +14,7 @@ namespace Separity {
 	class Transform;
 	class RigidBody;
 
-	class PathFollow : public Separity::Behaviour {
+	class _SEPARITY_API_ PathFollow : public Separity::Behaviour {
 		public:
 		__CMPTYPE_DECL__(Separity::_SCRIPT)
 		__CMPID_DECL__(Separity::_PATH_FOLLOW)

@@ -1,6 +1,7 @@
 #pragma once
 #ifndef __COMPONENT_FACTORY_H__
 #define __COMPONENT_FACTORY_H__
+#include "SeparityApi.h"
 
 #include <string>
 #include <unordered_map>
@@ -12,7 +13,7 @@ namespace Separity {
 	class Entity;
 	class CCreator;
 
-	class ComponentFactory {
+	class _SEPARITY_API_ ComponentFactory {
 
 		public:
 		ComponentFactory();

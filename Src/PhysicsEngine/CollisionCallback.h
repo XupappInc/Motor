@@ -1,6 +1,7 @@
 #pragma once
 #ifndef COLLISION_CALLBACK_H
 #define COLLISION_CALLBACK_H
+#include "SeparityApi.h"
 
 #include <btBulletDynamicsCommon.h>
 #include <unordered_set>
@@ -10,7 +11,8 @@ class btRigidBody;
 namespace Separity {
 	class RigidBody;
 
-	class CollisionCallback : public btCollisionWorld::ContactResultCallback {
+	class _SEPARITY_API_ CollisionCallback
+	    : public btCollisionWorld::ContactResultCallback {
 		public:
 		/// <summary>
 		/// Crea un collision callback para que llame a los eventos del rigidbody

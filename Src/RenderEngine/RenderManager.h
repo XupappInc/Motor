@@ -2,11 +2,8 @@
 #ifndef __RENDER_MANAGER_H__
 #define __RENDER_MANAGER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
+
 
 #include "Manager.h"
 
@@ -26,7 +23,8 @@ namespace Separity {
 	/// <summary>
 	/// Clase que gestiona el renderizado del motor
 	/// </summary>
-	class RenderManager : public Separity::Manager,
+	class _SEPARITY_API_ RenderManager
+	    : public Separity::Manager,
 	                      public Singleton<Separity::RenderManager> {
 		friend Singleton<RenderManager>;
 

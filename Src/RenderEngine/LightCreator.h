@@ -3,12 +3,13 @@
 #define __LIGHT_CREATOR_H__
 
 #include "CCreator.h"
+#include "SeparityApi.h"
 
 class lua_State;
 
 namespace Separity {
 
-	class LightCreator : public CCreator {
+	class _SEPARITY_API_ LightCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de LightCreator, vacío de predeterminado

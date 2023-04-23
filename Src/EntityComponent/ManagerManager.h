@@ -2,12 +2,7 @@
 #ifndef __MANAGER_MANAGER_H__
 #define __MANAGER_MANAGER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
-
+#include "SeparityApi.h"
 #include "Manager.h"
 
 #include <map>
@@ -19,7 +14,8 @@ namespace Separity {
 
 	class CCreator;
 
-	class ManagerManager : public Separity::Manager,
+	class _SEPARITY_API_ ManagerManager
+	    : public Separity::Manager,
 	                       public Singleton<Separity::ManagerManager> {
 		friend Singleton<Separity::ManagerManager>;
 

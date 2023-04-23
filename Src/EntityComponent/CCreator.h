@@ -3,14 +3,14 @@
 #define __CREATOR_H__
 
 #include <string>
-
+#include "SeparityApi.h"
 class lua_State;
 
 namespace Separity {
 
 	class Entity;
 
-	class CCreator {
+	class _SEPARITY_API_ CCreator {
 		public:
 		CCreator();
 		~CCreator() = default;

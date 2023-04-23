@@ -2,11 +2,7 @@
 #ifndef __RIGIDBODY_H__
 #define __RIGIDBODY_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
 
 #include "PhysicsComponent.h"
 
@@ -44,7 +40,7 @@ namespace Separity {
 	/// <summary>
 	/// Componente rigidbody
 	/// </summary>
-	class RigidBody : public Separity::PhysicsComponent {
+	class _SEPARITY_API_ RigidBody : public Separity::PhysicsComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_RIGID_BODY)

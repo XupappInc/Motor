@@ -2,13 +2,15 @@
 #ifndef __AUDIO_SOURCE_CREATOR_H__
 #define __AUDIO_SOURCE_CREATOR_H__
 
+#include "SeparityApi.h"
+
 #include "CCreator.h"
 
 class lua_State;
 
 namespace Separity {
 
-	class AudioSourceCreator : public CCreator {
+	class _SEPARITY_API_ AudioSourceCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de AudioSource, vacío de predeterminado

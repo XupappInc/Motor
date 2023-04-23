@@ -3,12 +3,12 @@
 #define __TRANSFORM_CREATOR_H__
 
 #include "CCreator.h"
-
+#include "SeparityApi.h"
 class lua_State;
 
 namespace Separity {
 
-	class TransformCreator : public CCreator {
+	class _SEPARITY_API_ TransformCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de TransformCreator, vacío de predeterminado

@@ -2,11 +2,7 @@
 #ifndef __UI_MANAGER_H__
 #define __UI_MANAGER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
 
 #include "Manager.h"
 namespace Ogre {
@@ -15,7 +11,7 @@ namespace Ogre {
 }  // namespace Ogre
 
 namespace Separity {
-	class UIManager : public Separity::Manager,
+	class _SEPARITY_API_ UIManager : public Separity::Manager,
 	                  public Singleton<Separity::UIManager> {
 
 		public:

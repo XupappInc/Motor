@@ -18,11 +18,53 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityComponent\EntityComponent.vcxproj">
+      <Project>{329ebb57-bbe0-45ce-861b-a6d9a3d28279}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\InputEngine\InputEngine.vcxproj">
+      <Project>{1814229a-90cd-4e29-ad55-9f4b3469feba}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\LuaEngine\LuaEngine.vcxproj">
+      <Project>{7399cfd5-ab3d-4ff8-9f8e-1f65df3d20b6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PhysicsEngine\PhysicsEngine.vcxproj">
+      <Project>{80d74851-5b1e-4e94-afc3-1a47dc02b746}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\RenderEngine\RenderEngine.vcxproj">
+      <Project>{8345d80d-3b1b-47fa-b148-8e85f601fa3c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SceneEngine\SceneEngine.vcxproj">
+      <Project>{fed5137f-89c6-4b50-bebe-00a79a330bfd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SeparityUtils\SeparityUtils.vcxproj">
+      <Project>{7731a740-4db7-4577-b8ca-b5379736c8ec}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SoundEngine\SoundEngine.vcxproj">
+      <Project>{df088ade-5655-4282-bcb8-f9bf9bab9acd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\UIEngine\UIEngine.vcxproj">
+      <Project>{cc70ea3d-ae4a-4198-9a29-39dff9d166c9}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Src\SeparityExports\dllmain.cpp" />
+    <ClCompile Include="..\..\Src\SeparityExports\Exports.cpp" />
+    <ClCompile Include="..\..\Src\SeparityExports\pch.cpp" />
+    <ClCompile Include="..\..\Src\SeparityExports\SeparityExports.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\SeparityExports\Exports.h" />
+    <ClInclude Include="..\..\Src\SeparityExports\framework.h" />
+    <ClInclude Include="..\..\Src\SeparityExports\pch.h" />
+    <ClInclude Include="..\..\Src\SeparityExports\SeparityApi.h" />
+    <ClInclude Include="..\..\Src\SeparityExports\SeparityExports.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f171331a-5962-45df-8743-79ec3aa82402}</ProjectGuid>
-    <RootNamespace>SeparityExports</RootNamespace>
+    <ProjectGuid>{70BEBF48-4F24-4AB3-B54A-C08F2FB18B3E}</ProjectGuid>
+    <RootNamespace>Separity</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,35 +112,39 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>SeparityExports_d</TargetName>
-    <OutDir>$(SolutionDir)Lib\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Temp\$(Platform)\$(Configuration)\</IntDir>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>SeparityExports</TargetName>
+    <OutDir>$(SolutionDir)lib\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)\$(Platform)\$(Configuration)</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>SeparityExports</TargetName>
+    <OutDir>$(SolutionDir)lib\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)\$(Platform)\$(Configuration)</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)lib\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)\$(Platform)\$(Configuration)</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>SeparityExports</TargetName>
-    <OutDir>$(SolutionDir)Lib\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Temp\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)lib\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;SEPARITYEXPORTS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SEPARITY_EXPORT_;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencias\FMOD\build\lib;$(SolutionDir)Dependencias\Ogre\build\Dependencies\lib;$(SolutionDir)Dependencias\Ogre\build\lib\$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\RelWithDebInfo;$(SolutionDir)Dependencias\bullet3d\build\lib\$(ConfigurationName);$(SolutionDir)Dependencias\LuaBridge2\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;OgreMain_d.lib;Bullet3Common_Debug.lib;Lua54_d.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -107,33 +153,33 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;SEPARITYEXPORTS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SEPARITY_EXPORT_;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencias\FMOD\build\lib;$(SolutionDir)Dependencias\Ogre\build\Dependencies\lib;$(SolutionDir)Dependencias\Ogre\build\lib\$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\RelWithDebInfo;$(SolutionDir)Dependencias\bullet3d\build\lib\$(ConfigurationName);$(SolutionDir)Dependencias\LuaBridge2\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;OgreMain.lib;Bullet3Common.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;Lua54.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_SEPARITY_EXPORT_;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SEPARITY_EXPORT_;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\EntityComponent;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\bullet3d\Src\src;$(SolutionDir)Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencias\FMOD\build\lib;$(SolutionDir)Dependencias\Ogre\build\Dependencies\lib;$(SolutionDir)Dependencias\Ogre\build\lib\$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\RelWithDebInfo;$(SolutionDir)Dependencias\bullet3d\build\lib\$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\lib\Debug;$(SolutionDir)Dependencias\LuaBridge\build\lib\$(ConfigurationName)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;OgreMain_d.lib;OgreOverlay_d.lib;Bullet3Common_Debug.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;Lua54_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,38 +188,19 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_SEPARITY_EXPORT_;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SEPARITY_EXPORT_;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\EntityComponent;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\bullet3d\Src\src;$(SolutionDir)Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencias\FMOD\build\lib;$(SolutionDir)Dependencias\Ogre\build\Dependencies\lib;$(SolutionDir)Dependencias\Ogre\build\lib\$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\RelWithDebInfo;$(SolutionDir)Dependencias\bullet3d\build\lib\$(ConfigurationName);$(SolutionDir)Dependencias\LuaBridge\build\lib\$(ConfigurationName)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;OgreMain.lib;OgreOverlay.lib;Bullet3Common.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;Lua54.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Src\SeparityExports\dllmain.cpp" />
-    <ClCompile Include="..\..\Src\SeparityExports\pch.cpp" />
-    <ClCompile Include="..\..\Src\SeparityExports\SeparityExports.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Src\SeparityExports\framework.h" />
-    <ClInclude Include="..\..\Src\SeparityExports\pch.h" />
-    <ClInclude Include="..\..\Src\SeparityExports\SeparityExports.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Separity\Separity.vcxproj">
-      <Project>{5faa58ed-00c9-4f27-a620-03044d17ca3d}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

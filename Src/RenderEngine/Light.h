@@ -1,12 +1,7 @@
 #pragma once
 #ifndef __LIGHT_H__
 #define __LIGHT_H__
-
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
 
 #include "RenderComponent.h"
 #include "Vector.h"
@@ -22,7 +17,7 @@ namespace Separity {
 	/// <summary>
 	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
 	/// </summary>
-	class Light : public Separity::RenderComponent {
+	class _SEPARITY_API_ Light : public Separity::RenderComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_LIGHT)

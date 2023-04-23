@@ -1,6 +1,7 @@
 #pragma once
 #ifndef __AUDIO_LISTENER_CREATOR_H__
 #define __AUDIO_LISTENER_CREATOR_H__
+#include "SeparityApi.h"
 
 #include "CCreator.h"
 
@@ -8,7 +9,7 @@ class lua_State;
 
 namespace Separity {
 
-	class AudioListenerCreator : public CCreator {
+	class _SEPARITY_API_ AudioListenerCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de AudioListener, vacío de predeterminado

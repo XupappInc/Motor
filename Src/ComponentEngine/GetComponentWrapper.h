@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "SeparityApi.h"
 
 class lua_State;
 
@@ -11,7 +12,7 @@ namespace Separity {
 	/// <summary>
 	/// Clase encargada de registrar todos los getters de componentes desde Entity en Lua
 	/// </summary>
-	class GetComponentWrapper : public Component {
+	class _SEPARITY_API_ GetComponentWrapper : public Component {
 		public:
 		GetComponentWrapper();
 		~GetComponentWrapper();

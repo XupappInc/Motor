@@ -2,18 +2,14 @@
 #ifndef __ENTITY_MANAGER_H__
 #define __ENTITY_MANAGER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
-
+#include "SeparityApi.h"
 #include "Manager.h"
 
 #include <vector>
 namespace Separity {
 
-	class EntityManager : public Separity::Manager,
+	class _SEPARITY_API_ EntityManager
+	    : public Separity::Manager,
 	                      public Singleton<Separity::EntityManager> {
 		friend Singleton<Separity::EntityManager>;
 

@@ -2,13 +2,15 @@
 #ifndef __BUTTON_CREATOR_H__
 #define __BUTTON_CREATOR_H__
 
+#include "SeparityApi.h"
+
 #include "CCreator.h"
 
 class lua_State;
 
 namespace Separity {
 
-	class ButtonCreator : public CCreator {
+	class _SEPARITY_API_ ButtonCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de buttonCreator, vacío de predeterminado

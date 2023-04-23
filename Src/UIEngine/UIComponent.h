@@ -2,6 +2,7 @@
 #ifndef __UI_COMPONENT_H__
 #define __UI_COMPONENT_H__
 #include "Component.h"
+#include "SeparityApi.h"
 
 #include <utility>
 #include <string>
@@ -20,7 +21,7 @@ namespace Spyutils {
 }
 // Clase base de la que heredan todos los elementos de la UI
 namespace Separity {
-	class InputManager;
+	class _SEPARITY_API_ InputManager;
 	class UIComponent : public Separity::Component {
 		public:
 		/// <summary>

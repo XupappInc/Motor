@@ -2,10 +2,12 @@
 #ifndef __RENDER_COMPONENT_H__
 #define __RENDER_COMPONENT_H__
 
+#include "SeparityApi.h"
+
 #include "Component.h"
 
 namespace Separity {
-	class RenderComponent : public Separity::Component {
+	class _SEPARITY_API_ RenderComponent : public Separity::Component {
 		public:
 		RenderComponent();
 		virtual ~RenderComponent();

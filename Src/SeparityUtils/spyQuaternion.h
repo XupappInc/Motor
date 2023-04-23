@@ -2,6 +2,7 @@
 #ifndef __SPYQUATERNION_H__
 #define __SPYQUATERNION_H__
   
+#include "SeparityApi.h"
 
 class btQuaternion;
 namespace Ogre {
@@ -17,7 +18,7 @@ namespace Spyutils {
 	///
 	/// Se utiliza el template para usar el Vector3 con floats, doubles, ints...
 	/// </summary>
-	class spyQuaternion {
+	class _SEPARITY_API_ spyQuaternion {
 		public:
 		float w,x, y, z;
 		spyQuaternion();

@@ -2,11 +2,8 @@
 #ifndef __ANIMATOR_H__
 #define __ANIMATOR_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
+
 
 #include "RenderComponent.h"
 
@@ -22,7 +19,7 @@ namespace Separity {
 
 	class MeshRenderer;
 
-	class Animator : public Separity::RenderComponent {
+	class _SEPARITY_API_ Animator : public Separity::RenderComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_ANIMATOR)

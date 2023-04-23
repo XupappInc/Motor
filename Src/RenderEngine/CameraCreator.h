@@ -1,6 +1,7 @@
 #pragma once
 #ifndef __CAMERA_CREATOR_H__
 #define __CAMERA_CREATOR_H__
+#include "SeparityApi.h"
 
 #include "CCreator.h"
 
@@ -8,7 +9,7 @@ class lua_State;
 
 namespace Separity {
 
-	class CameraCreator : public CCreator {
+	class _SEPARITY_API_ CameraCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de CameraCreator, vacío de predeterminado

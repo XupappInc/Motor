@@ -1,6 +1,7 @@
 #pragma once
 #ifndef __VECTOR3_H__
 #define __VECTOR3_H__
+#include "SeparityApi.h"
 
 namespace Spyutils {
 	/// <summary>
@@ -10,7 +11,7 @@ namespace Spyutils {
 	///
 	/// Se utiliza el template para usar el Vector3 con floats, doubles, ints...
 	/// </summary>
-	class Vector3 {
+	class _SEPARITY_API_ Vector3 {
 		public:
 		float x, y, z;
 		Vector3(float x = 0, float y = 0, float z = 0);

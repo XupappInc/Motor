@@ -1,6 +1,7 @@
 #pragma once
 #ifndef __MESH_RENDERER_CREATOR_H__
 #define __MESH_RENDERER_CREATOR_H__
+#include "SeparityApi.h"
 
 #include "CCreator.h"
 
@@ -8,7 +9,7 @@ class lua_State;
 
 namespace Separity {
 
-	class MeshRendererCreator : public CCreator {
+	class _SEPARITY_API_ MeshRendererCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de MeshRendererCreator, vacío de predeterminado

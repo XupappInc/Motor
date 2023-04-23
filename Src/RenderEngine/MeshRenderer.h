@@ -2,11 +2,8 @@
 #ifndef __MESH_RENDERER_H__
 #define __MESH_RENDERER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
+
 
 #include "RenderComponent.h"
 
@@ -22,7 +19,7 @@ namespace Separity {
 	/// <summary>
 	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
 	/// </summary>
-	class MeshRenderer : public Separity::RenderComponent {
+	class _SEPARITY_API_ MeshRenderer : public Separity::RenderComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_MESH_RENDERER)

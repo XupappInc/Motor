@@ -2,17 +2,14 @@
 #ifndef __RANDOM_H__
 #define __RANDOM_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
+
 
 namespace Spyutils {
 	/// <summary>
 	/// Clase para generar números aleatorios
 	/// </summary>
-	class Random {
+	class _SEPARITY_API_ Random {
 		public:
 		Random();
 		~Random();

@@ -1,12 +1,8 @@
 #pragma once
 #ifndef __SCENE_MANAGER_H__
 #define __SCENE_MANAGER_H__
+#include "SeparityApi.h"
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
 
 #include "Manager.h"
 
@@ -21,7 +17,8 @@ namespace Separity {
 	/// Este manager se encarga de cargar todos las entidades y componentes 
 	/// de la escena, además de gestionar el cambio de escena
 	/// </summary>
-	class SceneManager : public Separity::Manager,
+	class _SEPARITY_API_ SceneManager
+	    : public Separity::Manager,
 	                     public Singleton<Separity::SceneManager> {
 		friend Singleton<Separity::SceneManager>;
 

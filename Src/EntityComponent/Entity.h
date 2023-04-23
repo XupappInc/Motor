@@ -2,15 +2,10 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
-
 #include "Component.h"
 #include "Manager.h"
 #include "ec.h"
+#include "SeparityApi.h"
 
 #include <array>
 #include <bitset>
@@ -33,7 +28,7 @@ namespace Separity {
 	/// pertenecer a un manager.</para>
 	/// </summary>
 	///
-	class Entity {
+	class _SEPARITY_API_ Entity {
 		public:
 		Entity(Separity::grpId_type gId);
 		int s;

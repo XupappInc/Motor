@@ -4,17 +4,13 @@
 #ifndef __VIRTUAL_TIMER_H__
 #define __VIRTUAL_TIMER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
 
 namespace Spyutils {
 	/// <summary>
 	/// Clase que crea un timer virtual utilizando sdl
 	/// </summary>
-	class VirtualTimer {
+	class _SEPARITY_API_ VirtualTimer {
 		public:
 
 		VirtualTimer();

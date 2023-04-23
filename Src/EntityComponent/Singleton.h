@@ -2,6 +2,7 @@
 #ifndef __SINGLETON_H__
 #define __SINGLETON_H__
 
+#include "SeparityApi.h"
 #include <cassert>
 #include <memory>
 ///< summary>
@@ -9,7 +10,7 @@
 /// </summary>
 
 template<typename T>
-class Singleton {
+class _SEPARITY_API_ Singleton {
 	protected:
 	/// <summary>
 	/// Constructor de la clase protected para poder usarla desde una

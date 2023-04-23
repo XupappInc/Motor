@@ -1,12 +1,8 @@
 #pragma once
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
-
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+ 
+#include "SeparityApi.h"
 
 #define SDL_MAIN_HANDLED
 
@@ -18,7 +14,8 @@
 #include "Manager.h"
 
 namespace Separity {
-	class InputManager : public Separity::Manager,
+	class _SEPARITY_API_ InputManager
+	    : public Separity::Manager,
 	                     public Singleton<Separity::InputManager> {
 		friend Singleton<Separity::InputManager>;
 

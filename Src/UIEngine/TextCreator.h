@@ -3,12 +3,13 @@
 #define __TEXT_CREATOR_H__
 
 #include "CCreator.h"
+#include "SeparityApi.h"
 
 class lua_State;
 
 namespace Separity {
 
-	class TextCreator : public CCreator {
+	class _SEPARITY_API_ TextCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de textCreator, vacío de predeterminado

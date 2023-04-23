@@ -2,11 +2,7 @@
 #ifndef __AUDIO_MANAGER_H__
 #define __AUDIO_MANAGER_H__
 
-#ifdef _SEPARITY_EXPORT_
-#define _SEPARITY_EXPORT_ __declspec(dllexport)
-#else
-#define _SEPARITY_EXPORT_ __declspec(dllimport)
-#endif
+#include "SeparityApi.h"
 
 #include "Manager.h"
 
@@ -24,7 +20,8 @@ namespace FMOD {
 
 namespace Separity {
 	class AudioSource;
-	class AudioManager : public Separity::Manager,
+	class _SEPARITY_API_ AudioManager
+	    : public Separity::Manager,
 	                     public Singleton<Separity::AudioManager> {
 		friend Singleton<AudioManager>;
 

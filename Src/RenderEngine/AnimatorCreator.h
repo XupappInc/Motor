@@ -1,6 +1,7 @@
 #pragma once
 #ifndef __ANIMATOR_CREATOR_H__
 #define __ANIMATOR_CREATOR_H__
+#include "SeparityApi.h"
 
 #include "CCreator.h"
 
@@ -8,7 +9,7 @@ class lua_State;
 
 namespace Separity {
 
-	class AnimatorCreator : public CCreator {
+	class _SEPARITY_API_ AnimatorCreator : public CCreator {
 		public:
 		/// <summary>
 		/// Creador de AnimatorCreator, vacío de predeterminado
