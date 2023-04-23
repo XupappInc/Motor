@@ -65,12 +65,12 @@ namespace Separity {
 		Behaviour* behaviour_;
 
 		// posiciones limite del botón
-		int topPosition;
-		int bottomPosition;
-		int leftPosition;
-		int rightPosition;
-		bool hovering;
-		bool clicked;
+		int topPosition_;
+		int bottomPosition_;
+		int leftPosition_;
+		int rightPosition_;
+		bool hovering_;
+		bool clicked_;
 	};
 }  // namespace Separity
 

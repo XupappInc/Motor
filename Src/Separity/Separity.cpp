@@ -213,8 +213,6 @@ int main() {
 
 	mm->initComponents();
 
-	 
-
 	Camera* cam_cam = RenderManager::getInstance()->getCamera();
 	Entity* camera = cam_cam->getEntity();
 	Transform* cam_tr = camera->getComponent<Transform>();
@@ -293,7 +291,7 @@ int main() {
 		if(waitTime > 0)
 			Sleep(waitTime);
 	}
-	entityManager->deleteEntities();  // no tocar
+
 	mm->clean();
 	delete timer;
 

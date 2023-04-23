@@ -15,7 +15,12 @@ Separity::VehicleMovement::VehicleMovement() : PhysicsComponent() {
 	world_ = nullptr;
 }
 
-Separity::VehicleMovement::~VehicleMovement() {}
+Separity::VehicleMovement::~VehicleMovement() {
+	delete vehicleRayCaster_;
+	vehicleRayCaster_ = nullptr;
+	delete vehicle_;
+	vehicle_=nullptr;
+}
 
 void Separity::VehicleMovement::initComponent() {
 	rb_ = ent_->getComponent<RigidBody>();

@@ -4,6 +4,7 @@
 #include "Entity.h"
 
 #include "Transform.h"
+
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
@@ -38,17 +39,9 @@ void Separity::EntityManager::deleteEntities() {
 }
 
 void Separity::EntityManager::clean() { 
-	
-	//deleteEntities();
-	close(); 
-}
 
-void Separity::EntityManager::debug() {
-	for(auto i : allEntities_) {
-		Transform* tr = i->getComponent<Transform>();
-		std::cout << tr->getRotationQ().x << " " << tr->getRotationQ().y << " " 
-		          << tr->getPosition().z << " " << tr->getRotationQ().w << "\n";
-	}
+	deleteEntities();
+	close(); 
 }
 
 
