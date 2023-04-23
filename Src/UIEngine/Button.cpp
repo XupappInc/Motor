@@ -31,11 +31,11 @@ Separity::Button::Button(std::string overlayName, float xPos, float yPos,
 
 	// Posiciones necesarias para el input de ratón
 	//  top + height
-	topPosition = yPos;
-	bottomPosition = topPosition + height;
+	topPosition_ = yPos;
+	bottomPosition_ = topPosition_ + height;
 	// left+ width
-	leftPosition = xPos;
-	rightPosition = leftPosition + width;
+	leftPosition_ = xPos;
+	rightPosition_ = leftPosition_ + width;
 }
 Separity::Button::~Button() {}
 void Separity::Button::initComponent() {
@@ -44,43 +44,49 @@ void Separity::Button::initComponent() {
 void Separity::Button::update(const uint32_t& deltaTime) { checkMousePos(); }
 
 void Separity::Button::onButtonClick() {
-	if(!hovering)
+	if(!hovering_)
 		return;
 	if(inputManager->isMouseButtonDown(InputManager::LEFT)) {
-		clicked = true;
+		clicked_ = true;
 		if(behaviour_ != nullptr)
 			behaviour_->onButtonClick();
 	}
 }
 void Separity::Button::onButtonReleased() {
-	if(!hovering)
+	if(!hovering_)
 		return;
-	if(!inputManager->isMouseButtonDown(InputManager::LEFT)) {
-		clicked = false;
-		if(behaviour_ != nullptr)
-			behaviour_->onButtonReleased();
+	if(clicked_) {
+		if(!inputManager->isMouseButtonDown(InputManager::LEFT)) {
+			clicked_ = false;
+			if(behaviour_ != nullptr)
+				behaviour_->onButtonReleased();
+		}
 	}
+	
 }
 
 void Separity::Button::onButtonHover() {
-
+	if(behaviour_ != nullptr)
+		behaviour_->onButtonHover();
 }
 
-void Separity::Button::onButtonUnhover() {}
-
-//bool Separity::Button::isButtonHovering() {
-//	behaviour_->isButtonHovering();
-//	return hovering;
-//}
+void Separity::Button::onButtonUnhover() {
+	if(behaviour_ != nullptr)
+		behaviour_->onButtonHover();}
 
 void Separity::Button::checkMousePos() {
 	std::pair<int, int> mousePosition = inputManager->getMousePos();
-	if(mousePosition.first < rightPosition &&
-	   mousePosition.first > leftPosition &&
-	   mousePosition.second > topPosition &&
-	   mousePosition.second < bottomPosition) {
-		hovering = true;
-	} else
-		hovering = false;
-	onButtonClick();
+	if(mousePosition.first < rightPosition_ &&
+	   mousePosition.first > leftPosition_ &&
+	   mousePosition.second > topPosition_ &&
+	   mousePosition.second < bottomPosition_) {
+		hovering_ = true;
+		onButtonHover();
+		onButtonClick();
+		onButtonReleased();
+
+	} else {
+		hovering_ = false;
+		onButtonUnhover();
+	}
 }
