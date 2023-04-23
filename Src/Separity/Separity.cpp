@@ -25,6 +25,7 @@
 #include "Button.h"
 #include "Panel.h"
 #include "Text.h"
+#include "VehicleMovement.h"
 
 // Managers
 #include "AudioManager.h"
@@ -111,7 +112,6 @@ int main() {
 	Entity* camera = entityManager->addEntity(_grp_GENERAL);
 	Transform* cam_tr =
 	    camera->getComponent<Transform>();  // addComponent<Transform>();
-	cam_tr->setPosition(0, 20, 30);
 	cam_tr->pitch(-30);
 	Camera* cam_cam = camera->addComponent<Camera>();
 
@@ -123,6 +123,25 @@ int main() {
 	/* Button* but =
 	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
 	                                          "World_ap.15");*/
+
+	
+	Entity* coche = entityManager->addEntity(_grp_GENERAL);
+	coche->getComponent<Transform>()->translate({0, 10, 0});
+	coche->getComponent<Transform>()->setScale(1);
+	coche->addComponent<MeshRenderer>("Cube.001.mesh");
+	VehicleMovement* coche_vehiculo = coche->addComponent<VehicleMovement>();
+
+	colliderParams paramsCoche;
+	paramsCoche.colShape = CUBE;
+	paramsCoche.height = 2;
+	paramsCoche.width = 2;
+	paramsCoche.depth = 3;
+	paramsCoche.isTrigger = false;
+
+	coche->addComponent<Collider>(paramsCoche);
+	coche->addComponent<RigidBody>(DYNAMIC, 100);
+	coche->addChild(camera);
+	cam_tr->setPosition(0, 15, 5);
 
 
 	mm->initComponents();
@@ -141,16 +160,19 @@ int main() {
 			quit = true;
 		} else {
 			if(inputManager->isKeyHeld('a')) {
-				cam_tr->translate(Spyutils::Vector3(-1, 0, 0));
+				coche_vehiculo->girar(-1);
 			}
 			if(inputManager->isKeyHeld('d')) {
-				cam_tr->translate(Spyutils::Vector3(1, 0, 0));
+				coche_vehiculo->girar(1);
 			}
 			if(inputManager->isKeyHeld('w')) {
-				cam_tr->translate(Spyutils::Vector3(0,1, 0));
+				coche_vehiculo->acelerar(1);
 			}
 			if(inputManager->isKeyHeld('s')) {
-				cam_tr->translate(Spyutils::Vector3(0, -1, 0));
+				coche_vehiculo->acelerar(-1);
+			}
+			if(inputManager->isKeyHeld(InputManager::SPACE)) {
+				coche_vehiculo->frenar();
 			}
 			if(inputManager->isKeyHeld(InputManager::ARROW_LEFT)) {
 				cam_tr->yaw(0.1f);

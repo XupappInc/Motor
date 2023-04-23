@@ -29,12 +29,12 @@ namespace Separity {
 		/// </summary>
 		/// <param name="dir">Entre -1 y 1, siendo -1 izquierda y 1
 		/// derecha</param>
-		void steering(int dir);
+		void girar(int dir);
 		/// <summary>
 		/// Acelera hacia delante o hacia atrás
 		/// <param name="dir">Entre -1 y 1, siendo -1 atrás y 1 adelante</param>
 		/// </summary>
-		void acelerar(bool dir);
+		void acelerar(int dir);
 		/// <summary>
 		/// Gestiona el freno del vehículo
 		/// </summary>
