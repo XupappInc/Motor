@@ -8,6 +8,7 @@
 #include "Transform.h"
 #include "Vector.h"
 #include "spyQuaternion.h"
+
 #include <btBulletDynamicsCommon.h>
 #include <spyMath.h>
 // #include "checkML.h"
@@ -30,7 +31,7 @@ Separity::RigidBody::~RigidBody() {
 
 void Separity::RigidBody::initComponent() {
 	tr_ = ent_->getComponent<Transform>();
-	//btTr_ = new btTransform();
+	// btTr_ = new btTransform();
 	assert(tr_ != nullptr);
 
 	auto collider = ent_->getComponent<Collider>();
@@ -40,18 +41,13 @@ void Separity::RigidBody::initComponent() {
 
 	Spyutils::Vector3 spyPos = tr_->getPosition();
 	btVector3 pos = btVector3(spyPos.x, spyPos.y, spyPos.z);
-	//btTr_->setOrigin(pos);
-	btQuaternion rotRad =
-	    {tr_->getRotation().y, tr_->getRotation().x,
-	      tr_->getRotation().z};
-	//btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
-	//btTr_->setRotation(rotRad);
+	// btTr_->setOrigin(pos);
+	btQuaternion rotRad = {tr_->getRotation().y, tr_->getRotation().x,
+	                       tr_->getRotation().z};
+	// btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
+	// btTr_->setRotation(rotRad);
 
-
-	btTr_ = new btTransform(
-	    btQuaternion(rotRad),
-	    btVector3(pos));
-
+	btTr_ = new btTransform(btQuaternion(rotRad), btVector3(pos));
 
 	btDefaultMotionState* motionState = new btDefaultMotionState(*btTr_);
 
@@ -112,6 +108,12 @@ void Separity::RigidBody::setLinearVelocity(Spyutils::Vector3 vel) {
 	btVector3 velocidad(vel.x, vel.y, vel.z);
 	rb_->setLinearVelocity(velocidad);
 }
+Spyutils::Vector3 Separity::RigidBody::getLinearVelocity() {
+	btVector3 vel = rb_->getLinearVelocity();
+	Spyutils::Vector3 velocidad((float) vel.x(), (float) vel.y(),
+	                            (float) vel.z());
+	return velocidad;
+}
 
 void Separity::RigidBody::setAngularVelocity(Spyutils::Vector3 vel) {
 	btVector3 velocidad(vel.x, vel.y, vel.z);
@@ -150,12 +152,13 @@ void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
 
 void Separity::RigidBody::preUpdate() {
 	btTransform trans;
-	//cogemos el transform del rb
+	// cogemos el transform del rb
 	rb_->getMotionState()->getWorldTransform(trans);
 	/* auto scale_ = tr_->getScale();
 	rb_->getCollisionShape()->setLocalScaling({scale_.x, scale_.y, scale_.z});*/
-	//modificamos el tr de rb con el transform
-	trans.setOrigin({tr_->getPosition().x, tr_->getPosition().y, tr_->getPosition().z});
+	// modificamos el tr de rb con el transform
+	trans.setOrigin(
+	    {tr_->getPosition().x, tr_->getPosition().y, tr_->getPosition().z});
 	// modificamos la rotación de rb con el transform
 	//
 	trans.setRotation(tr_->getRotationQ().spyQuaterniomToBullet());
@@ -168,15 +171,14 @@ void Separity::RigidBody::update(const uint32_t& deltaTime) {
 	if(tipo_ == STATIC)
 		return;
 	btTransform trans;
-	//posición del rb al tr
+	// posición del rb al tr
 	trans = rb_->getWorldTransform();
 	tr_->setPosition(
 	    {trans.getOrigin().x(), trans.getOrigin().y(), trans.getOrigin().z()});
 	btQuaternion rot = rb_->getWorldTransform().getRotation();
 	// update transform position and rotation
-	
-	tr_->setRotationQ(rot.w(), rot.x() ,rot.y(), rot.z());
-	
+
+	tr_->setRotationQ(rot.w(), rot.x(), rot.y(), rot.z());
 }
 
 void Separity::RigidBody::setDamping(float linear, float angular) {
