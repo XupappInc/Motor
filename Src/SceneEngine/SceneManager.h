@@ -24,12 +24,12 @@ namespace Separity {
 		public:
 
 		void update(const uint32_t& deltaTime) override;
+
 		bool loadScene(const std::string& root);
 
 		void changeScene(const std::string& root);
-		void luaChangeScene(const std::string& root);
+		
 		void clean() override;
-		void prueba();
 
 		static SceneManager* getInstance();
 
@@ -37,6 +37,10 @@ namespace Separity {
 		SceneManager();
 
 		private:
+
+		void luaChangeScene(const std::string& root);
+
+		void registerChangeSceneInLua();
 
 		ComponentFactory* factory_;
 		bool changeScene_=false;

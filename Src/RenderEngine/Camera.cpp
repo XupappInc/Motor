@@ -52,6 +52,7 @@ void Separity::Camera::initComponent() {
 	else {
 		Transform* tr = ent_->getComponent<Transform>();
 		//auto node = tr->getNode();
+		tr->pitch(-90);
 		cameraNode_->attachObject(camera_);
 	}
 		

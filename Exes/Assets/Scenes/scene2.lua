@@ -18,6 +18,9 @@ Entities = {
 		},
 		meshRenderer = {
 			meshName = "Sphere"
+		},
+		collider = {
+			dim = {2.4268059730529785, 1.9999998807907104, 1.9999992847442627},
 		}
 	},
 	Cube = {
@@ -28,6 +31,28 @@ Entities = {
 		},
 		meshRenderer = {
 			meshName = "Cube.001"
+		}
+	},
+	Camera = {
+		transform = {
+			pos = {0.0, 0.0, 11.440458297729492},
+			rot = {0.7071068286895752, 0.0, 0.0, 0.7071067094802856},
+			scale = {1.0, 1.0, 1.0}
+		},
+		camera = {
+		}
+	},
+	BotonPrueba={
+		button = {
+			overlay = "BotonMenu",
+			x = 200,
+			y = 200,
+			width = 100,
+			height = 100,
+			texture = "World_ap.15"
+		},
+		script={
+			name="sceneButton"
 		}
 	}
 }

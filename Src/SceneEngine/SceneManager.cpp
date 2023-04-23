@@ -6,10 +6,12 @@
 #include "Entity.h"
 #include "EntityManager.h"
 #include "ManagerManager.h"
-#include "EntityManager.h"
+
 #include "LuaManager.h"
+
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
+
 #include <iostream>
 
 using namespace Separity;
@@ -20,8 +22,6 @@ void Separity::SceneManager::clean() {
 	delete factory_;
 	close();
 }
-
-void Separity::SceneManager::prueba() { std::cout << "Otra prueba matenme\n"; }
 
 Separity::SceneManager* Separity::SceneManager::getInstance() {
 	return static_cast<SceneManager*>(instance());
@@ -99,6 +99,7 @@ void Separity::SceneManager::changeScene(const std::string& root) {
 	ManagerManager::getInstance()->pseudoClean();
 	loadScene(root);
 	ManagerManager::getInstance()->initComponents();
+	registerChangeSceneInLua();
 	changeScene_ = false;
 }
 
@@ -126,13 +127,16 @@ Separity::SceneManager::SceneManager() : changeScene_(false), sceneName_("") {
 	factory_->addCreator("panel", new PanelCreator());
 	factory_->addCreator("text", new TextCreator());
 	
-	//Registrar en lua
+	registerChangeSceneInLua();
+}
+
+void Separity::SceneManager::registerChangeSceneInLua() {
+
 	lua_State* L = LuaManager::getInstance()->getLuaState();
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<SceneManager>("SceneManager")
-	    .addFunction("prueba", &SceneManager::prueba)
 	    .addFunction("changeScene", &SceneManager::luaChangeScene)
 	    .endClass();
 
-	luabridge::setGlobal(L,this, "SceneManager");
+	luabridge::setGlobal(L, this, "SceneManager");
 }
