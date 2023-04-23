@@ -28,7 +28,7 @@ void Separity::GetComponentWrapper::registerInLua() {
 	    .addFunction("getRigidBody", &Entity::getComponent<RigidBody>)
 	    .addFunction("getAnimator", &Entity::getComponent<Animator>)
 	    .addFunction("getBehaviour", &Entity::getComponent<Behaviour>)
-	    .addFunction("getButtonComponent", &Entity::getComponent<Button>)
+	    .addFunction("getButton", &Entity::getComponent<Button>)
 	    //...
 	    .endClass();
 }

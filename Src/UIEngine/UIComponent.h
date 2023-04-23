@@ -71,7 +71,11 @@ namespace Separity {
 		/// GMM_RELATIVE,(posiciones de 0.0 a 1.0)
 		/// </summary>
 		void setMetrics(Ogre::GuiMetricsMode const& mode);
-
+		/// <summary>
+		/// Poner visible el overlay
+		/// </summary>
+		/// <param name="visible">booleano para ponerlo visible</param>
+		void setVisible();
 		// getters de las configuraciones del elemento
 		bool isVisible();
 		float getZorder();

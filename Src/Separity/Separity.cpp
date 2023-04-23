@@ -66,7 +66,7 @@ int main() {
 	GetComponentWrapper::registerInLua();
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
-	sceneMenager->loadScene("menuScene.lua");
+	sceneMenager->loadScene("scene.lua");
 
 	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 

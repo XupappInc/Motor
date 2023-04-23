@@ -17,12 +17,14 @@ end
 
 --Metodo Start, llamado tras Awake
 function buttonMenu:start()
-
+	
 end
 
 --Metodo Update, llamado en cada frame
 function buttonMenu:update()
 	--print("Update boton");
+	local butt=buttonMenu.entity:getButton();
+	butt:setVisible();
 end
 
 --Metodo OnCollisionEnter, llamado al comenzar una colision

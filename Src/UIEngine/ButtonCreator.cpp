@@ -12,6 +12,7 @@ void Separity::ButtonCreator::registerInLua() {
 	lua_State* L = Separity::LuaManager::getInstance()->getLuaState();
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<Button>("button")
+	    .addFunction("setVisible", &Button::setVisible)
 	    .endClass();
 }
 

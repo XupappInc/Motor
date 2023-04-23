@@ -93,6 +93,8 @@ void Separity::RenderManager::loadResources() {
 }
 
 void Separity::RenderManager::render() {
+	if(!active_)
+		return;
 	for(Separity::Component* c : cmps_) {
 		c->render();
 	}

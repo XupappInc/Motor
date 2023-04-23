@@ -46,7 +46,11 @@ namespace Separity {
 		/// para que puedan acceder los otros managers que hereden de esta clase
 		/// </summary>
 		~Manager();
-
+		/// <summary>
+		/// Activa el manager
+		/// </summary>
+		/// <param name="active">booleano que activa el manager</param>
+		void setActive(bool active);
 		protected:
 		/// <summary>
 		/// Constructor de la clase, protected
@@ -56,6 +60,7 @@ namespace Separity {
 
 		// Componentes del manager
 		std::vector<Separity::Component*> cmps_;
+		bool active_=true;
 	};
 };  // namespace Separity
 

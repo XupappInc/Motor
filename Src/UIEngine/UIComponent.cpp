@@ -77,6 +77,10 @@ void Separity::UIComponent::setMetrics(Ogre::GuiMetricsMode const& mode) {
 	overlayContainer->setMetricsMode(mode);
 }
 
+void Separity::UIComponent::setVisible() {
+	overlayElement->setVisible(false);
+}
+
 bool Separity::UIComponent::isVisible() { return overlayElement->isVisible(); }
 
 float Separity::UIComponent::getZorder() { return overlayElement->getZOrder(); }

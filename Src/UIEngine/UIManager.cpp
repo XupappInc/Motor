@@ -38,6 +38,7 @@ Separity::UIManager* Separity::UIManager::getInstance() {
 void Separity::UIManager::render() {}
 
 void Separity::UIManager::update(const uint32_t& deltaTime) {
+
 	for(Separity::Component* c : cmps_) {
 		c->update(deltaTime);
 	}

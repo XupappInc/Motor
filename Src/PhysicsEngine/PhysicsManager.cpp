@@ -84,6 +84,8 @@ void Separity::PhysicsManager::deleteWorld() {
 }
 
 void PhysicsManager::update(const uint32_t& deltaTime) {
+	if(!active_)
+		return;
 	for(Separity::Component* c : cmps_) {
 		c->preUpdate();
 	}
