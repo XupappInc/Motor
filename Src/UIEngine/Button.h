@@ -58,19 +58,22 @@ namespace Separity {
 		/// Comprueba si el ratón está en los límites del botón
 		/// </summary>
 		void checkMousePos();
-
+		/// <summary>
+		/// Cambia la textura del boton
+		/// </summary>
+		void changeButtonTexture(std::string textureName);
 		private:
-		Ogre::Overlay* overlayElement;
-		int n;
+		Ogre::Overlay* overlayElement_;
+		int n_;
 		Behaviour* behaviour_;
-
+		std::string textureName_;
 		// posiciones limite del botón
-		int topPosition;
-		int bottomPosition;
-		int leftPosition;
-		int rightPosition;
-		bool hovering;
-		bool clicked;
+		int topPosition_;
+		int bottomPosition_;
+		int leftPosition_;
+		int rightPosition_;
+		bool hovering_;
+		bool clicked_;
 	};
 }  // namespace Separity
 
