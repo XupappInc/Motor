@@ -68,6 +68,11 @@ namespace Separity {
 		/// <param name="vel">La velocidad que queremos que se aplique</param>
 		void setLinearVelocity(Spyutils::Vector3 vel);
 		/// <summary>
+		/// La velocidad lineal del rigidbody
+		/// </summary>
+		/// <param name="vel">La velocidad lineal</param>
+		Spyutils::Vector3 getLinearVelocity();
+		/// <summary>
 		/// Establece una velocidad angular
 		/// </summary>
 		/// <param name="vel">La velocidad que queremos que se aplique</param>
