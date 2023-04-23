@@ -37,6 +37,7 @@ void Separity::VehicleMovement::initComponent() {
 	btScalar suspensionRestLength(0.6);     // Longitud de la suspensión
 	btScalar wheelRadius(0.5);              // Radio de la rueda
 
+
 	//vehicle_->addWheel(connectionPointCS0, wheelDirectionCS0, wheelAxleCS,
 	//                   suspensionRestLength, wheelRadius, tuning, true);
 	//vehicle_->addWheel(connectionPointCS0 * btVector3(-1, 1, 1),
@@ -72,13 +73,13 @@ void Separity::VehicleMovement::frenar() {
 
 void Separity::VehicleMovement::update(const uint32_t& deltaTime) {
 
-	//for(int i = 0; i < vehicle_->getNumWheels(); i++) {
-	//	btWheelInfo& wheel = vehicle_->getWheelInfo(i);
-	//	vehicle_->updateWheelTransformsWS(wheel, false);
-	//	btVehicleRaycaster::btVehicleRaycasterResult result;
-	//	vehicleRayCaster_->castRay(wheel.m_worldTransform.getOrigin(),
-	//	                   wheel.m_worldTransform.getOrigin() -
-	//	        btVector3(0, wheel.m_suspensionRestLength1, 0),
-	//	    result);
-	//}
+	for(int i = 0; i < vehicle_->getNumWheels(); i++) {
+		btWheelInfo& wheel = vehicle_->getWheelInfo(i);
+		vehicle_->updateWheelTransformsWS(wheel, false);
+		btVehicleRaycaster::btVehicleRaycasterResult result;
+		vehicleRayCaster_->castRay(wheel.m_worldTransform.getOrigin(),
+		                   wheel.m_worldTransform.getOrigin() -
+		        btVector3(0, wheel.m_suspensionRestLength1, 0),
+		    result);
+	}
 }
