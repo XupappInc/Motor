@@ -115,12 +115,6 @@ int main() {
 	luzAux1->setDirection({0, 0, -1});
 	luzAux1->setDiffuse({0.5, 0, 0.5});
 
-	Entity* camera = entityManager->addEntity(_grp_GENERAL);
-	Transform* cam_tr =
-	    camera->getComponent<Transform>();  // addComponent<Transform>();
-	cam_tr->pitch(-30);
-	Camera* cam_cam = camera->addComponent<Camera>();
-
 	Entity* button = entityManager->addEntity(_grp_GENERAL);
 	// Text* txt =
 	//     button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100,
@@ -215,16 +209,31 @@ int main() {
 
 	coche->addComponent<Collider>(paramsCoche);
 	coche->addComponent<RigidBody>(DYNAMIC, 100);
-	coche->addChild(camera);
-	cam_tr->setPosition(0, 15, 5);
+	
 
 	mm->initComponents();
+
+	 
+
+	Camera* cam_cam = RenderManager::getInstance()->getCamera();
+	Entity* camera = cam_cam->getEntity();
+	Transform* cam_tr = camera->getComponent<Transform>();
+	//cam_tr->pitch(-90);
+
+	coche->addChild(camera);
+	cam_tr->setPosition(0, 15, 5);
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
 	bool quit = false;
 
 	while(!quit) {
+
+		cam_cam = RenderManager::getInstance()->getCamera();
+		camera = cam_cam->getEntity();
+		cam_tr = camera->getComponent<Transform>();
+
+
 		timer->reset();
 
 		int xMouse = inputManager->getMousePos().first;
@@ -262,69 +271,6 @@ int main() {
 			}
 			if(inputManager->isKeyDown('c')) {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);
-			}
-			if(inputManager->isKeyDown('t')) {
-				sceneMenager->changeScene("scene.lua");
-
-				camera = entityManager->addEntity(_grp_GENERAL);
-				cam_tr = camera->getComponent<
-				    Transform>();  // addComponent<Transform>();
-				cam_tr->setPosition(0, 20, 30);
-				cam_tr->pitch(-30);
-				cam_cam = camera->addComponent<Camera>();
-				cam_cam->initComponent();
-			}
-			if(inputManager->isKeyDown('r')) {
-
-				sceneMenager->changeScene("scene.lua");
-
-				// Entity* MusicInstance =
-				// entityManager->addEntity(_grp_GENERAL);
-
-				// Entity* listener = entityManager->addEntity(_grp_GENERAL);
-				// auto* sonido =
-				// listener->addComponent<AudioSource>("Assets//piano.wav",
-				//                                                    "callmemaybe",
-				//                                                    false);
-
-				// Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
-				// sinbad->getComponent<Transform>()->translate({0, 60, 0});
-				// sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
-
-				// colliderParams params;
-				// params.colShape = CUBE;
-				// params.height = 10;
-				// params.width = 5;
-				// params.depth = 5;
-				// params.isTrigger = false;
-
-				// sinbad->addComponent<Collider>(params);
-				// sinbad->addComponent<RigidBody>(DYNAMIC, 10);
-				// auto animSinbad = sinbad->addComponent<Animator>();
-
-				 Separity::LuaManager::getInstance()->loadScript("prueba",
-				                                                 sinbad);
-
-				// Entity* luz = entityManager->addEntity(_grp_GENERAL);
-				// auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
-				// luzGlobal->setDiffuse({0.7, 0.7, 0.7});
-				// auto luzTr = luz->getComponent<Transform>();
-				// luzTr->translate({0, 100, 0});
-
-				// Entity* luzAux = entityManager->addEntity(_grp_GENERAL);
-				// auto luzAux1 =
-				// luzAux->addComponent<Light>(DIRECTIONAL_LIGHT); auto luzTr2 =
-				// luzAux->getComponent<Transform>(); luzTr2->translate({0, 100,
-				// 0}); luzAux1->setDirection({0, 0, -1});
-				// luzAux1->setDiffuse({0.5, 0, 0.5});
-
-				camera = entityManager->addEntity(_grp_GENERAL);
-				cam_tr = camera->getComponent<
-				    Transform>();  // addComponent<Transform>();
-				cam_tr->setPosition(0, 20, 30);
-				cam_tr->pitch(-30);
-				cam_cam = camera->addComponent<Camera>();
-				cam_cam->initComponent();
 			}
 			if(inputManager->isKeyDown('v')) {
 				auto trsi = sinbad->getComponent<Transform>();

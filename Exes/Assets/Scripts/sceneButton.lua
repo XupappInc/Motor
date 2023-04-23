@@ -1,49 +1,50 @@
 --Definicion de la clase en Lua
-buttonMenu = {}
+sceneButton = {}
 
-buttonMenu.__index = buttonMenu
+sceneButton.__index = sceneButton
 
 --Constructor de la clase en Lua
-function buttonMenu:new()
+function sceneButton:new()
 	local obj={}
-	setmetatable(obj, buttonMenu)
+	setmetatable(obj, sceneButton)
 	return obj
 end
 
 --Metodo Awake, llamado al comienzo de la ejecucion
-function buttonMenu:awake()
+function sceneButton:awake()
 
 end
 
 --Metodo Start, llamado tras Awake
-function buttonMenu:start()
+function sceneButton:start()
 
 end
 
 --Metodo Update, llamado en cada frame
-function buttonMenu:update()
-	--print("Update boton");
+function sceneButton:update()
+
 end
 
 --Metodo OnCollisionEnter, llamado al comenzar una colision
-function buttonMenu:onCollisionEnter()
+function sceneButton:onCollisionEnter()
 
 end
 
 --Metodo OnCollisionStay, llamado mientras se mantenga una colision
-function buttonMenu:onCollisionStay()
+function sceneButton:onCollisionStay()
 
 end
 
 --Metodo OnCollisionExit, llamado al salir de una colision
-function buttonMenu:onCollisionExit()
+function sceneButton:onCollisionExit()
 
 end
 
 --Metodo OnButtonClicked, llamado al salir de una colision
-function buttonMenu:onButtonClick()
-	print("Has pulsado para ir al menú\n");
-	SceneManager:changeScene("scene2.lua");
+function sceneButton:onButtonClick()
+	print("Has pulsado para ir a la escena\n");
+	SceneManager:changeScene("scene.lua");
 end
+
 --Variable global de la clase (para Luabridge)
-buttonMenuLua = buttonMenu:new()
+sceneButtonLua = sceneButton:new()
