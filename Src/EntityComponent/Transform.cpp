@@ -108,9 +108,9 @@ void Separity::Transform::setRotationQ(float rotationW, float rotationX,
 		Spyutils::spyQuaternion q_final = rotationQ_ * q_relative;*/
 		tr->setPosition(rotacion);
 		auto rotchild = tr->getRotationQ();
-		rotchild.rotate(dif.getRotation().x, {1, 0, 0});
-		rotchild.rotate(dif.getRotation().y, {0, 1, 0});
-		rotchild.rotate(dif.getRotation().z, {0, 0, 1});
+		rotchild.rotateGlobal(dif.getRotation().x, {1, 0, 0});
+		rotchild.rotateGlobal(dif.getRotation().y, {0, 1, 0});
+		rotchild.rotateGlobal(dif.getRotation().z, {0, 0, 1});
 		tr->setRotationQ(rotchild.w, rotchild.x, rotchild.y, rotchild.z);
 	}
 }
