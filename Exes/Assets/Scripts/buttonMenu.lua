@@ -23,8 +23,8 @@ end
 --Metodo Update, llamado en cada frame
 function buttonMenu:update()
 	--print("Update boton");
-	local butt=buttonMenu.entity:getButton();
-	butt:setVisible();
+	--local butt=buttonMenu.entity:getButton();
+	--butt:setVisible();
 end
 
 --Metodo OnCollisionEnter, llamado al comenzar una colision
@@ -49,7 +49,7 @@ function buttonMenu:onButtonClick()
 end
 function buttonMenu:onButtonReleased()
 	print("Has dejado de pulsar para ir al menú\n");
-	SceneManager:changeScene("scene2.lua");
+	SceneManager:changeScene("scene.lua");
 end
 --Metodo OnButtonHover
 function buttonMenu:onButtonHover()

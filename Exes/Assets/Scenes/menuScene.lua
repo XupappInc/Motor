@@ -8,13 +8,13 @@ Entities = {
 		camera = {
 		}
 	},
-	Menu={
+	Play={
 		button = {
-			overlay = "BotonMenu",
-			x = 200,
-			y = 200,
-			width = 200,
-			height = 200,
+			overlay = "BotonPlay",
+			x = 400,
+			y = 400,
+			width = 512,
+			height = 140,
 			iniTex = "iniMat",
 			hoverTex="hoverMat",
 			clickedTex="clickedMat"
@@ -23,14 +23,29 @@ Entities = {
 			name="buttonMenu"
 		}
 	},
+	Quit={
+		button = {
+			overlay = "BotonQuit",
+			x = 0,
+			y = 0,
+			width = 256,
+			height = 140,
+			iniTex = "QuitIni",
+			hoverTex="QuitHover",
+			clickedTex="QuitClick"
+		},
+		script={
+			name="quitMenu"
+		}
+	},
 	Imagee={
 		image = {
 			overlay = "Imagen",
-			x = 0,
-			y = 0,
+			x = 950,
+			y = 700,
 			width = 100,
 			height = 100,
-			texture = "menu"
+			texture = "crazyU"
 		}
 	}
 }

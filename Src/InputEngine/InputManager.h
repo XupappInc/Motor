@@ -389,7 +389,7 @@ namespace Separity {
 		/// </summary>
 		void handleWindowEvent();
 
-		
+		void registerChangeSceneInLua();
 		SDL_Event event;
 
 		//keyboard

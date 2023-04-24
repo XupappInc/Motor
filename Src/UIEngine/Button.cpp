@@ -84,7 +84,10 @@ void Separity::Button::onButtonUnhover() {
 		behaviour_->onButtonUnhover();
 }
 
-void Separity::Button::checkMousePos() {
+void Separity::Button::checkMousePos()
+{ 
+	if(!isVisible()) return;
+
 	std::pair<int, int> mousePosition = inputManager->getMousePos();
 	if(mousePosition.first < rightPosition_ &&
 	   mousePosition.first > leftPosition_ &&
@@ -97,11 +100,13 @@ void Separity::Button::checkMousePos() {
 
 	} else {
 		hovering_ = false;
+		clicked_ = false;
 		onButtonUnhover();
 	}
 }
 
 void Separity::Button::changeButtonTexture(std::string textureName) {
+
 	if(textureName == "")
 		return;
 	std::string newTex = "";

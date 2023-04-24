@@ -48,6 +48,7 @@
 #include <Windows.h>
 #include <iostream>
 #include <utility>
+//#include"Text.h"
 
 const uint32_t FRAMERATE = 60;
 const uint32_t FRAMETIME = 1000 / FRAMERATE;
@@ -67,7 +68,7 @@ int main() {
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("scene.lua");
-
+	
 	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
 	// Entity* listener = entityManager->addEntity(_grp_GENERAL);
@@ -77,7 +78,11 @@ int main() {
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({-15, 60, 12});
 	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
-
+	//sinbad->addComponent<Text>(
+	//    "texto", "fuentePrueba",
+	//                           0, 0, 10,
+	//                           10, "hola",
+	//                           Spyutils::Vector3(1,1,1));
 	//luaManager->loadScript("prueba", sinbad);
 
 	Entity* guile = entityManager->addEntity(_grp_GENERAL);

@@ -1073,20 +1073,18 @@ Entities = {
 		},
 		camera = {
 		}
-	},
-	BotonPrueba={
-		button = {
-			overlay = "BotonMenu",
-			x = 200,
-			y = 200,
-			width = 200,
-			height = 200,
-			iniTex = "World_ap.15",
-			hoverTex="hoverMat",
-			clickedTex="clickedMat"
-		},
-		script={
-			name="buttonMenu"
-		}
 	}
+	-- ,
+	-- BotonPrueba={
+	-- 	button = {
+	-- 		overlay = "BotonVuelta",
+	-- 		x = 200,
+	-- 		y = 200,
+	-- 		width = 200,
+	-- 		height = 200,
+	-- 		iniTex = "World_ap.15",
+	-- 		hoverTex="hoverMat",
+	-- 		clickedTex="clickedMat"
+	-- 	}
+	-- }
 }
