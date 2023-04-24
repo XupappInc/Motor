@@ -65,8 +65,8 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 	int scriptLoadStatus = luaL_dofile(L, ("Assets/Scenes/" + root).c_str());
 
 	if(scriptLoadStatus != 0) {
-		std::cerr << "Error al cargar la escena: " << 
-			lua_tostring(L, -1) << std::endl;
+		std::cerr << "[SPY ERROR]: The scene could not be loaded correctly: " << 
+			lua_tostring(L, -1) << "\n";
 		lua_pop(L, 1);
 
 		success = false;
@@ -98,9 +98,9 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 						//std::cout << "  " << component << "\n";
 
 						if(!factory_->createComponent(component, L, entity)) {
-							std::cout << "El Componente " << component
-							          << " de la entidad " << entityName
-							          << " no se ha cargado correctamente\n";
+							std::cerr << "[SPY ERROR]: Component " << component
+							          << " of entity " << entityName
+							          << " has not been loaded correctly\n";
 
 							success = false;
 						}
@@ -114,16 +114,22 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 
 	lua_close(L);
 
+	if(!success)
+		ManagerManager::getInstance()->shutDown();
+
 	return success;
 }
 
 void Separity::SceneManager::changeScene() {
 
 	ManagerManager::getInstance()->pseudoClean();
-	loadScene(sceneName_);
-	ManagerManager::getInstance()->initComponents();
-	registerChangeSceneInLua();
-	changeScene_ = false;
+	if(loadScene(sceneName_)) {
+		ManagerManager::getInstance()->initComponents();
+		registerChangeSceneInLua();
+		changeScene_ = false;
+	} else {
+		ManagerManager::getInstance()->shutDown();
+	}
 }
 
 void Separity::SceneManager::luaChangeScene(const std::string& root) {

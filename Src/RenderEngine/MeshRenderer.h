@@ -16,6 +16,9 @@ namespace Ogre {
 }  // namespace Ogre
 
 namespace Separity {
+
+	class Transform;
+
 	/// <summary>
 	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
 	/// </summary>
@@ -30,7 +33,7 @@ namespace Separity {
 		/// </summary>
 		/// <param name="sceneManager">Manager de la escena</param>
 		/// <param name="meshName">Nombre de la malla</param>
-		MeshRenderer(std::string meshName);
+		MeshRenderer();
 
 		void initComponent() override;
 	
@@ -44,9 +47,9 @@ namespace Separity {
 		/// <summary>
 		///
 		/// </summary>
-		void render() override;
+		void update(const uint32_t& deltaTime) override;
 
-		void setTexture(const std::string& name);
+		void setMesh(const std::string& name);
 
 		/// <summary>
 		/// <para>Activa/desactiva el nodo que contiene la malla para parar su
@@ -69,9 +72,10 @@ namespace Separity {
 		Ogre::Entity* getOgreEntity();
 
 		private:
-		Ogre::SceneNode* meshRenderer_;
+		Ogre::SceneNode* node_;
 		Ogre::SceneManager* ogreSceneManager_;
 		Ogre::Entity* entity_;
+		Separity::Transform* tr_;
 	};
 };  // namespace Separity
 

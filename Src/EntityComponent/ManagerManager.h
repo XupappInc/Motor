@@ -64,6 +64,9 @@ namespace Separity {
 		/// </summary>
 		void clean() override;	
 
+		bool quit();
+		void shutDown();
+
 		static ManagerManager* getInstance();
 
 		protected:
@@ -74,6 +77,7 @@ namespace Separity {
 
 		private:
 		std::map<cmpType_type, Manager*> managers_;
+		bool quit_;
 	};
 }  
 
