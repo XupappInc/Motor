@@ -43,6 +43,8 @@ namespace Separity {
 		/// Llama al método render de todos los componentes
 		/// </summary>
 		void render() override;
+		int getWindowWidth();
+		int getWindowHeight();
 		/// <summary>
 		/// Ejecuta el método renderOneframe de Ogre que actualiza todos los
 		/// renders

@@ -9,9 +9,17 @@
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayElement.h>
 #include <OgreOverlayManager.h>
+#include"RenderManager.h"
 #include <iostream>
 Separity::Image::Image(std::string overlayName, float xPos, float yPos,
                        float width, float height, std::string texture) {
+	auto render = RenderManager::getInstance();
+	int w = render->getWindowWidth();
+	int h = render->getWindowHeight();
+	int xx = w * xPos / 100;
+	int yy = h * yPos / 100;
+	xPos = xx - (width / 2);
+	yPos = yy - (height / 2);
 
     texture_ = texture;
 	overlayContainer = static_cast<Ogre::OverlayContainer*>(

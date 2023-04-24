@@ -104,6 +104,10 @@ void Separity::RenderManager::render() {
 	// ogreRoot_->renderOneFrame(deltaTime);
 }
 
+int Separity::RenderManager::getWindowWidth() { return screenW_; }
+
+int Separity::RenderManager::getWindowHeight() { return screenH_; }
+
 void Separity::RenderManager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
 		c->update(deltaTime);

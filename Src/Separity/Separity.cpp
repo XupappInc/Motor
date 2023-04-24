@@ -121,10 +121,9 @@ int main() {
 	luzAux1->setDiffuse({0.5, 0, 0.5});
 
 	Entity* button = entityManager->addEntity(_grp_GENERAL);
-	// Text* txt =
-	//     button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100,
-	//     200,
-	//                                50, "Holi", Spyutils::Vector3(0, 0, 1));
+	 Text* txt =
+	     button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100,
+	     200,50, "Holi", Spyutils::Vector3(1, 1, 1));
 	/* Button* but =
 	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
 	                                          "World_ap.15");*/
