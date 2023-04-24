@@ -12,85 +12,92 @@ int Separity::UIComponent::numUIElements = 0;
 
 Separity::UIComponent::UIComponent() {
 	mngr_ = Separity::UIManager::getInstance();
-	overlayManager = Ogre::OverlayManager::getSingletonPtr();
+	overlayManager_ = Ogre::OverlayManager::getSingletonPtr();
 	inputManager = Separity::InputManager::getInstance();
 	numUIElements++;
 }
 
-Separity::UIComponent::~UIComponent() {}
+Separity::UIComponent::~UIComponent() {
+	overlayManager_->destroyOverlayElement(overlayContainer_);
+	overlayManager_->destroy(overlayElement_);
+	overlayContainer_ = nullptr;
+	overlayElement_ = nullptr;
+	overlayManager_ = nullptr;
+	numUIElements--;
+}
 
-void Separity::UIComponent::show() { overlayElement->show(); }
+void Separity::UIComponent::show() { overlayElement_->show(); }
 
-void Separity::UIComponent::hide() { overlayElement->hide(); }
+void Separity::UIComponent::hide() { overlayElement_->hide(); }
 
 void Separity::UIComponent::setZorder(float pos) {
-	overlayElement->setZOrder(pos);
+	overlayElement_->setZOrder(pos);
 }
 
 void Separity::UIComponent::setCaption(std::string const& caption) {
-	overlayContainer->setCaption(caption);
+	overlayContainer_->setCaption(caption);
 }
 
 void Separity::UIComponent::setColor(Spyutils::Vector3 const& color) {
-	overlayContainer->setColour(Ogre::ColourValue(color.x, color.y, color.z));
+	overlayContainer_->setColour(Ogre::ColourValue(color.x, color.y, color.z));
 }
 
 void Separity::UIComponent::setDimensions(float width, float height) {
-	overlayContainer->setDimensions(width, height);
+	overlayContainer_->setDimensions(width, height);
 }
 
 void Separity::UIComponent::setWidth(float width) {
-	overlayContainer->setWidth(width);
+	overlayContainer_->setWidth(width);
 }
 
 void Separity::UIComponent::setHeigth(float heigth) {
-	overlayContainer->setHeight(heigth);
+	overlayContainer_->setHeight(heigth);
 }
 
 void Separity::UIComponent::setHorizontalAligment(
     Ogre::GuiHorizontalAlignment const& hAligment) {
-	overlayContainer->setHorizontalAlignment(hAligment);
+	overlayContainer_->setHorizontalAlignment(hAligment);
 }
 
 void Separity::UIComponent::setVerticalAligment(
     Ogre::GuiVerticalAlignment const& vAligment) {
-	overlayContainer->setVerticalAlignment(vAligment);
+	overlayContainer_->setVerticalAlignment(vAligment);
 }
 
 void Separity::UIComponent::setPosition(float xPos, float yPos) {
-	overlayContainer->setPosition(xPos, yPos);
+	overlayContainer_->setPosition(xPos, yPos);
 }
 
 void Separity::UIComponent::setTopPosition(float yPos) {
-	overlayContainer->setTop(yPos);
+	overlayContainer_->setTop(yPos);
 }
 
 void Separity::UIComponent::setLeftPosition(float xPos) {
-	overlayContainer->setLeft(xPos);
+	overlayContainer_->setLeft(xPos);
 }
 
 void Separity::UIComponent::setMaterial(std::string const& matName) {
-	overlayContainer->setMaterialName(matName);
+	overlayContainer_->setMaterialName(matName);
 }
 
 void Separity::UIComponent::setMetrics(Ogre::GuiMetricsMode const& mode) {
-	overlayContainer->setMetricsMode(mode);
+	overlayContainer_->setMetricsMode(mode);
 }
 
 void Separity::UIComponent::setVisible() {
-	overlayElement->setVisible(false);
+	overlayElement_->setVisible(false);
 }
 
-bool Separity::UIComponent::isVisible() { return overlayElement->isVisible(); }
+bool Separity::UIComponent::isVisible() { return overlayElement_->isVisible(); }
 
-float Separity::UIComponent::getZorder() { return overlayElement->getZOrder(); }
+float Separity::UIComponent::getZorder() { return overlayElement_->getZOrder(); }
 
 std::string const& Separity::UIComponent::getCaption() {
-	return overlayContainer->getCaption();
+	return overlayContainer_->getCaption();
 }
 
 Spyutils::Vector3 const& Separity::UIComponent::getColor() {
-	Ogre::ColourValue color = overlayContainer->getColour();
+	Ogre::ColourValue color = overlayContainer_->getColour();
 	return Spyutils::Vector3(color.r, color.g, color.a);
 }
 
@@ -98,19 +105,19 @@ std::pair<float, float> const& Separity::UIComponent::getDimensions() {
 	return std::pair<float, float>(getWidth(), getHeight());
 }
 
-float Separity::UIComponent::getWidth() { return overlayContainer->getWidth(); }
+float Separity::UIComponent::getWidth() { return overlayContainer_->getWidth(); }
 
 float Separity::UIComponent::getHeight() {
-	return overlayContainer->getHeight();
+	return overlayContainer_->getHeight();
 }
 
 Ogre::GuiHorizontalAlignment const&
 Separity::UIComponent::getHorizontalAligment() {
-	return overlayContainer->getHorizontalAlignment();
+	return overlayContainer_->getHorizontalAlignment();
 }
 
 Ogre::GuiVerticalAlignment const& Separity::UIComponent::getVerticalAligment() {
-	return overlayContainer->getVerticalAlignment();
+	return overlayContainer_->getVerticalAlignment();
 }
 
 std::pair<float, float> const& Separity::UIComponent::getPosition() {
@@ -118,17 +125,17 @@ std::pair<float, float> const& Separity::UIComponent::getPosition() {
 }
 
 float Separity::UIComponent::getTopPosition() {
-	return overlayContainer->getTop();
+	return overlayContainer_->getTop();
 }
 
 float Separity::UIComponent::getLeftPosition() {
-	return overlayContainer->getLeft();
+	return overlayContainer_->getLeft();
 }
 
 std::string const& Separity::UIComponent::getMaterialName() {
-	return overlayContainer->getMaterialName();
+	return overlayContainer_->getMaterialName();
 }
 
 Ogre::GuiMetricsMode const& Separity::UIComponent::getMetrics() {
-	return overlayContainer->getMetricsMode();
+	return overlayContainer_->getMetricsMode();
 }

@@ -28,19 +28,19 @@ Separity::Button::Button(std::string overlayName, float xPos, float yPos,
 	hoverTex_ = hoverTex;
 	clickedTex_ = clickedTex;
 
-	overlayContainer = static_cast<Ogre::OverlayContainer*>(
-	    overlayManager->createOverlayElement(
+	overlayContainer_ = static_cast<Ogre::OverlayContainer*>(
+	    overlayManager_->createOverlayElement(
 	        "Panel", overlayName + std::to_string(numUIElements)));
-	overlayContainer->setMetricsMode(Ogre::GMM_PIXELS);
-	overlayContainer->setPosition(xPos, yPos);
-	overlayContainer->setDimensions(width, height);
-	overlayContainer->setMaterialName(iniTex_);
+	overlayContainer_->setMetricsMode(Ogre::GMM_PIXELS);
+	overlayContainer_->setPosition(xPos, yPos);
+	overlayContainer_->setDimensions(width, height);
+	overlayContainer_->setMaterialName(iniTex_);
 	// Creo un elemento overlay para añadirle el panel
-	overlayElement =
-	    overlayManager->create("over" + std::to_string(numUIElements));
-	overlayElement->add2D(overlayContainer);
+	overlayElement_ =
+	    overlayManager_->create("over" + std::to_string(numUIElements));
+	overlayElement_->add2D(overlayContainer_);
 
-	overlayElement->show();
+	overlayElement_->show();
 
 	// Posiciones necesarias para el input de ratón
 	//  top + height
@@ -127,5 +127,5 @@ void Separity::Button::changeButtonTexture(std::string textureName) {
 		newTex = clickedTex_;
 	}
 
-	overlayContainer->setMaterialName(newTex);
+	overlayContainer_->setMaterialName(newTex);
 }

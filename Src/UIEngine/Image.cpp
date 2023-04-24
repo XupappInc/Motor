@@ -11,6 +11,8 @@
 #include <OgreOverlayManager.h>
 #include"RenderManager.h"
 #include <iostream>
+#include "checkML.h"
+
 Separity::Image::Image(std::string overlayName, float xPos, float yPos,
                        float width, float height, std::string texture) {
 	auto render = RenderManager::getInstance();
@@ -22,18 +24,18 @@ Separity::Image::Image(std::string overlayName, float xPos, float yPos,
 	yPos = yy - (height / 2);
 
     texture_ = texture;
-	overlayContainer = static_cast<Ogre::OverlayContainer*>(
-	    overlayManager->createOverlayElement(
+	overlayContainer_ = static_cast<Ogre::OverlayContainer*>(
+	    overlayManager_->createOverlayElement(
 	        "Panel", overlayName + std::to_string(numUIElements)));
-	overlayContainer->setMetricsMode(Ogre::GMM_PIXELS);
-	overlayContainer->setPosition(xPos, yPos);
-	overlayContainer->setDimensions(width, height);
-	overlayContainer->setMaterialName(texture_);
+	overlayContainer_->setMetricsMode(Ogre::GMM_PIXELS);
+	overlayContainer_->setPosition(xPos, yPos);
+	overlayContainer_->setDimensions(width, height);
+	overlayContainer_->setMaterialName(texture_);
 	// Creo un elemento overlay para añadirle el panel
-	overlayElement =
-	    overlayManager->create("over" + std::to_string(numUIElements));
-	overlayElement->add2D(overlayContainer);
-	overlayElement->show();
+	overlayElement_ =
+	    overlayManager_->create("over" + std::to_string(numUIElements));
+	overlayElement_->add2D(overlayContainer_);
+	overlayElement_->show();
 
 }
 

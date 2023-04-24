@@ -32,11 +32,10 @@ namespace Separity {
 		///<summary>
 		/// Destructora de la clase Texto
 		/// </summary>
-		~Text();
+		virtual ~Text();
 
 		private:
-		Ogre::TextAreaOverlayElement* overlayText;
-		Ogre::Overlay* overlayElement;
+		Ogre::TextAreaOverlayElement* overlayText_;
 		
 	};
 }  // namespace Separity
