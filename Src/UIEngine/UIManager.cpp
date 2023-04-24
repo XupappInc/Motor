@@ -27,8 +27,7 @@ void Separity::UIManager::initUi() {
 	RenderManager* rM = Separity::RenderManager::getInstance();
 	SDL_Window* window = rM->getSDLWindow();
 	
-	overSystem = new Ogre::OverlaySystem();
-	rM->getSceneManager()->addRenderQueueListener(overSystem);
+	overSystem = Separity::RenderManager::getInstance()->getOverlay();
 }
 
 Separity::UIManager* Separity::UIManager::getInstance() {

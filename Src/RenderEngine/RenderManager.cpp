@@ -16,6 +16,10 @@
 #include <SDL_syswm.h>
 #include <fstream>
 #include <iostream>
+#include <OgreOverlay.h>
+#include <OgreOverlayContainer.h>
+#include <OgreOverlayManager.h>
+#include <OgreOverlaySystem.h>
 
 #include "MeshRendererCreator.h"
 #include "LightCreator.h"
@@ -62,6 +66,8 @@ void Separity::RenderManager::init() {
 	}
 
 	sceneMgr_ = ogreRoot_->createSceneManager();
+	overlaySystem_ = new Ogre::OverlaySystem();
+	sceneMgr_->addRenderQueueListener(overlaySystem_);
 
 	loadResources();
 }
@@ -213,6 +219,10 @@ void Separity::RenderManager::createSDLWindow() {
 	ogreWindow_ = ogreRoot_->initialise(false, "Ogre Render");
 	ogreWindow_ = ogreRoot_->createRenderWindow("Ogre Render", screenW_,
 	                                            screenH_, false, &misc);
+}
+
+Ogre::OverlaySystem* Separity::RenderManager::getOverlay() {
+	return overlaySystem_;
 }
 
 SDL_Window* Separity::RenderManager::getSDLWindow() { return sdlWindow_; }
