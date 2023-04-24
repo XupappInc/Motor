@@ -1074,17 +1074,17 @@ Entities = {
 		camera = {
 		}
 	}
-	-- ,
-	-- BotonPrueba={
-	-- 	button = {
-	-- 		overlay = "BotonVuelta",
-	-- 		x = 200,
-	-- 		y = 200,
-	-- 		width = 200,
-	-- 		height = 200,
-	-- 		iniTex = "World_ap.15",
-	-- 		hoverTex="hoverMat",
-	-- 		clickedTex="clickedMat"
-	-- 	}
-	-- }
+	,
+	BotonPrueba={
+		button = {
+			overlay = "BotonVuelta",
+			x = 200,
+			y = 200,
+			width = 200,
+			height = 200,
+			iniTex = "World_ap.15",
+			hoverTex="hoverMat",
+			clickedTex="clickedMat"
+		}
+	}
 }

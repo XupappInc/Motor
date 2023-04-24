@@ -42,8 +42,8 @@ end
 
 --Metodo OnButtonClicked, llamado al salir de una colision
 function sceneButton:onButtonClick()
-	print("Has pulsado para ir a la escena\n");
-	SceneManager:changeScene("scene.lua");
+	--print("Has pulsado para ir a la escena\n");
+	SceneManager:changeScene("menuScene.lua");
 end
 
 --Variable global de la clase (para Luabridge)
