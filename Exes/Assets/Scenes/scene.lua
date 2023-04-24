@@ -1085,6 +1085,8 @@ Entities = {
 			iniTex = "World_ap.15",
 			hoverTex="hoverMat",
 			clickedTex="clickedMat"
+		},script={
+			name="sceneButton"
 		}
 	}
 }

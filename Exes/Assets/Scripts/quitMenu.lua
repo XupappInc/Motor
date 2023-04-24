@@ -48,8 +48,7 @@ function quitMenu:onButtonClick()
 	--SceneManager:changeScene("scene2.lua");
 end
 function quitMenu:onButtonReleased()
-	
-	SceneManager:changeScene("scene.lua");
+	InputManager:setCloseWindow();
 end
 --Metodo OnButtonHover
 function quitMenu:onButtonHover()

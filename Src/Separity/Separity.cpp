@@ -235,11 +235,8 @@ int main() {
 		camera = cam_cam->getEntity();
 		cam_tr = camera->getComponent<Transform>();
 
-
 		timer->reset();
 
-		int xMouse = inputManager->getMousePos().first;
-		int yMouse = inputManager->getMousePos().second;
 		if(inputManager->isKeyDown(InputManager::ESCAPE) ||
 		   inputManager->closeWindowEvent()) {
 			quit = true;
