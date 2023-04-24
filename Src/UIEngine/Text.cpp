@@ -7,43 +7,54 @@
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayManager.h>
 #include <OgreTextAreaOverlayElement.h>
+#include "checkML.h"
+
 
 Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
                      float yPos, float width, float height,
                      std::string textContent, Spyutils::Vector3 textColor)
     : UIComponent() {
 	// Creo el area del texto
-	overlayText = static_cast<Ogre::TextAreaOverlayElement*>(
-	    overlayManager->createOverlayElement(
-	        "TextArea", overlayName + std::to_string(numUIElements)));
+	overlayText_ = static_cast<Ogre::TextAreaOverlayElement*>(
+	    overlayManager_->createOverlayElement(
+	        "TextArea",
+	        overlayName + "_text_area_" + std::to_string(numUIElements)));
 
-	/*Ogre::FontPtr mFont =
-	    Ogre::FontManager::getSingleton().create("fuentePrueba", "Fonts");
-	mFont->setType(Ogre::FT_TRUETYPE);
-	mFont->setSource("Assets/fonts/OpenSans.ttf");
-	mFont->setParameter("size", "26");
-	mFont->setParameter("resolution", "96");
-	mFont->load();*/
-
-	/*Ogre::FontManager& fontMgr = Ogre::FontManager::getSingleton();
-	fontMgr.parseFont("path/to/fontdef/file.fontdef", "MyFontName");*/
-
-	
 	// Set de las opciones del texto
-	overlayText->setMetricsMode(Ogre::GMM_PIXELS);
-	overlayText->setPosition(xPos, yPos);
-	overlayText->setDimensions(width, height);
-	//overlayText->setCaption(textContent);
-	overlayText->setCharHeight(16);
-	
-	overlayText->setFontName(fontType);
-	overlayText->setColourTop(
+	overlayText_->setMetricsMode(Ogre::GMM_PIXELS);
+	overlayText_->setPosition(0, 0);
+	overlayText_->setDimensions(width, height);
+	overlayText_->setCharHeight(16);
+	overlayText_->setCaption(textContent);
+	overlayText_->setFontName(fontType);
+	overlayText_->setColourTop(
 	    Ogre::ColourValue(textColor.x, textColor.y, textColor.z));
-	overlayText->setColourBottom(
+	overlayText_->setColourBottom(
 	    Ogre::ColourValue(textColor.x, textColor.y, textColor.z));
 
-	overlayElement =
-	    overlayManager->create(overlayName + "_overlay_" + std::to_string(numUIElements));
-	overlayElement->show();
+	// Crear un contenedor de superposición y agregar el elemento de texto
+	overlayContainer_ = static_cast<Ogre::OverlayContainer*>(
+	    overlayManager_->createOverlayElement(
+	        "Panel", overlayName + std::to_string(numUIElements)));
+	overlayContainer_->setMetricsMode(Ogre::GMM_PIXELS);
+	overlayContainer_->setPosition(xPos, yPos);
+	overlayContainer_->setDimensions(width, height);
+	overlayContainer_->addChild(overlayText_);
+	
+	// Creo un elemento overlay para añadirle el panel
+	overlayElement_ =
+	    overlayManager_->create("over" + std::to_string(numUIElements));
+	overlayElement_->add2D(overlayContainer_);
+	overlayElement_->show();
+
+	overlayElement_->hide();
+	overlayElement_->remove2D(overlayContainer_);
+	overlayContainer_->removeChild(overlayText_->getName());
+	overlayManager_->destroyOverlayElement(overlayText_);
 }
-Separity::Text::~Text() {  }
+Separity::Text::~Text() { 
+	
+	/*overlayContainer_->removeChild(overlayText_->getName());
+	overlayManager_->destroyOverlayElement(overlayText_);
+	overlayText_ = nullptr;*/
+}

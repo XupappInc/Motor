@@ -61,7 +61,6 @@ namespace Separity {
 		void changeButtonTexture(std::string textureName);
 
 		private:
-		Ogre::Overlay* overlayElement_;
 		int n_;
 		Behaviour* behaviour_;
 		std::string iniTex_;
