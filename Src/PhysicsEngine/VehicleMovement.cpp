@@ -19,7 +19,7 @@ Separity::VehicleMovement::~VehicleMovement() {
 	delete vehicleRayCaster_;
 	vehicleRayCaster_ = nullptr;
 	delete vehicle_;
-	vehicle_=nullptr;
+	vehicle_ = nullptr;
 }
 
 void Separity::VehicleMovement::initComponent() {
@@ -85,24 +85,35 @@ void Separity::VehicleMovement::initComponent() {
 void Separity::VehicleMovement::girar(int dir) {
 	// vehicle_->setSteeringValue(dir, 0);
 	// vehicle_->setSteeringValue(dir, 1);
-	 
-	rb_->applyTorque(Spyutils::Vector3(0, dir * -50,0));
+
+	rb_->applyTorque(Spyutils::Vector3(0, dir * -50, 0));
 }
 
 void Separity::VehicleMovement::acelerar(int dir) {
 	/*vehicle_->applyEngineForce(btScalar(dir), 2);
 	vehicle_->applyEngineForce(btScalar(dir), 3);*/
-	
-	Spyutils::Vector3 global;
-	global = ent_->getComponent<Transform>()->getRotation();
-	Spyutils::Vector3 local;
-	local.x = cos(global.y) * cos(global.z);
-	local.y = -cos(global.x) * sin(global.z) +
-	          sin(global.x) * sin(global.y) * cos(global.z);
-	local.z = sin(global.x) * sin(global.z) +
-	          cos(global.x) * sin(global.y) * cos(global.z);
-	
-	Spyutils::Vector3 impulso(0, 0, dir * -10 - 5);
+
+	// Calcular la dirección de la fuerza en función de la rotación del objeto
+	float angle =
+	    ent_->getComponent<Transform>()->getRotationQ().getRotation().y;
+	float forceMagnitude = dir * 10;
+	float forceX = forceMagnitude * cos(angle);  // componente x de la fuerza
+	float forceZ = forceMagnitude * sin(angle);  // componente y de la fuerza
+
+	// Normalizar el vector de dirección de la fuerza
+	float magnitude = -sqrt(forceX * forceX + forceZ * forceZ);
+	if(dir < 0)
+		magnitude *= -1;
+	forceX /= magnitude;
+	forceZ /= magnitude;
+
+	// Multiplicar el vector de dirección de la fuerza por la magnitud de la
+	// fuerza
+	forceX *= forceMagnitude;
+	forceZ *= forceMagnitude;
+
+	Spyutils::Vector3 impulso(-forceZ, 0, forceX);
+
 	rb_->applyImpulse(impulso);
 }
 
@@ -111,7 +122,7 @@ void Separity::VehicleMovement::frenar() {
 	vehicle_->setBrake(1, 1);
 	vehicle_->setBrake(1, 2);
 	vehicle_->setBrake(1, 3);*/
-	rb_->setLinearVelocity(rb_->getLinearVelocity()*0.9);
+	rb_->setLinearVelocity(rb_->getLinearVelocity() * 0.9);
 }
 
 void Separity::VehicleMovement::update(const uint32_t& deltaTime) {
