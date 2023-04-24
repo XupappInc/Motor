@@ -31,7 +31,7 @@ namespace Separity {
 		/// <param name="name">Nombre del script, sin extension</param>
 		/// <param name="ent">Entidad a la que añadir el Behaviour</param>
 		/// <returns>El Behaviour creado</returns>
-		Behaviour* loadScript(std::string name, Entity* ent);
+		bool loadScript(std::string name, Entity* ent);
 
 		/// <summary>
 		/// Metodo que devuelve el lua_State de este manager. Encargado de
