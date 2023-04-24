@@ -38,7 +38,7 @@ Entities = {
 			name="quitMenu"
 		}
 	},
-	Imagee={
+	Image={
 		image = {
 			overlay = "Imagen",
 			x = 950,

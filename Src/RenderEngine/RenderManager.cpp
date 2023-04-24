@@ -157,6 +157,8 @@ void Separity::RenderManager::saveConfiguration() {
 }
 
 void Separity::RenderManager::closedown() {
+
+
 	ogreRoot_->queueEndRendering();
 
 	ogreWindow_ = nullptr;
