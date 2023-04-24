@@ -284,6 +284,10 @@ namespace Separity {
 		/// Devuelve true cuando el usuario ha pulsado la X de la ventana
 		/// </summary>
 		bool closeWindowEvent();
+		/// <summary>
+		/// Se llama para cerrar la ventana de sdl (en el boto de quit del menu por ejemplo)
+		/// </summary>
+		void setCloseWindow();
 
 		//singleton/manager functions
 
@@ -389,7 +393,7 @@ namespace Separity {
 		/// </summary>
 		void handleWindowEvent();
 
-		void registerChangeSceneInLua();
+		void registerQuitInLua();
 		SDL_Event event;
 
 		//keyboard

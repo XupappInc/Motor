@@ -27,6 +27,7 @@ Separity::InputManager::InputManager() {
 	clearState();
 
 	ManagerManager::getInstance()->addManager(_INPUT, this);
+	registerQuitInLua();
 }
 
 void Separity::InputManager::clean() { close(); }
@@ -369,11 +370,13 @@ void Separity::InputManager::handleWindowEvent() {
 bool Separity::InputManager::closeWindowEvent() { 
 	return isCloseWindowEvent_; }
 
-void Separity::InputManager::registerChangeSceneInLua() {
+void Separity::InputManager::setCloseWindow() { isCloseWindowEvent_ = true; }
+
+void Separity::InputManager::registerQuitInLua() {
 	lua_State* L = LuaManager::getInstance()->getLuaState();
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<InputManager>("InputManager")
-	    .addFunction("changeScene", &InputManager::closeWindowEvent)
+	    .addFunction("setCloseWindow", &InputManager::setCloseWindow)
 	    .endClass();
 
 	luabridge::setGlobal(L, this, "InputManager");
