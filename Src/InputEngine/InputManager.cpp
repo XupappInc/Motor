@@ -4,12 +4,12 @@
 
 #include <iostream>
 
-#include <SDL.h>
+#include "LuaManager.h"
+
+#include <lua.hpp>
+#include <LuaBridge/LuaBridge.h>
 
 #include "checkML.h"
-//#include <lua.hpp>
-//#include <LuaBridge/LuaBridge.h>
-
 
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
@@ -370,11 +370,11 @@ bool Separity::InputManager::closeWindowEvent() {
 	return isCloseWindowEvent_; }
 
 void Separity::InputManager::registerChangeSceneInLua() {
-	/*lua_State* L = LuaManager::getInstance()->getLuaState();
+	lua_State* L = LuaManager::getInstance()->getLuaState();
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<InputManager>("InputManager")
 	    .addFunction("changeScene", &InputManager::closeWindowEvent)
 	    .endClass();
 
-	luabridge::setGlobal(L, this, "InputManager");*/
+	luabridge::setGlobal(L, this, "InputManager");
 }
