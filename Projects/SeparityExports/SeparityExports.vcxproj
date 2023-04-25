@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ComponentEngine\ComponentEngine.vcxproj">
+      <Project>{320a1405-4212-4d54-a550-de42dfc19239}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\EntityComponent\EntityComponent.vcxproj">
       <Project>{329ebb57-bbe0-45ce-861b-a6d9a3d28279}</Project>
     </ProjectReference>
@@ -173,7 +176,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_SEPARITY_EXPORT_;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\bullet3d\Src\src;$(SolutionDir)Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\ComponentEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\bullet3d\Src\src;$(SolutionDir)Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -190,7 +193,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_SEPARITY_EXPORT_;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\bullet3d\Src\src;$(SolutionDir)Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\Ogre\Src\Components\Overlay\include;$(SolutionDir)Dependencias\Ogre\Src\OgreMain\include;$(SolutionDir)Dependencias\Ogre\build\include;$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include-config-$(ConfigurationName);$(SolutionDir)Dependencias\Ogre\build\SDL2-build\include;$(SolutionDir)Src\SceneEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\ComponentEngine;$(SolutionDir)Src\InputEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Dependencias\bullet3d\Src\src;$(SolutionDir)Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

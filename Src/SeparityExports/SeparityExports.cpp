@@ -26,7 +26,7 @@
 #include "Text.h"
 #include "Transform.h"
 #include "spyQuaternion.h"
-
+#include "GetComponentWrapper.h"
 // Managers
 #include "AudioManager.h"
 #include "EntityManager.h"
