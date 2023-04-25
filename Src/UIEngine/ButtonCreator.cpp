@@ -18,7 +18,8 @@ void Separity::ButtonCreator::registerInLua() {
 
 bool Separity::ButtonCreator::createComponent(lua_State* L, Separity::Entity* ent) {
 
-	int x, y, width, height,zorder;
+	int x, y, width, height;
+	int zorder = 0;
 	std::string iniTex, hoverTex = "", clickedTex = "", overlayName;
 	
 	if(readParam("overlay", L, overlayName) && 
@@ -27,6 +28,7 @@ bool Separity::ButtonCreator::createComponent(lua_State* L, Separity::Entity* en
 		readParam("width", L, width) &&
 		readParam("height", L, height) && 
 		readParam("iniTex", L, iniTex)) {
+
 		readParam("zorder", L, zorder);
 		readParam("hoverTex", L, hoverTex);
 		readParam("clickedTex", L, clickedTex);

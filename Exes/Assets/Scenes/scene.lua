@@ -998,7 +998,7 @@ Entities = {
 			hoverTex="hoverMat",
 			clickedTex="clickedMat"
 		},script={
-			name="sceneButton"
+			name = "sceneButton"
 		}
 	}
 }

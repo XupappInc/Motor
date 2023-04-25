@@ -48,12 +48,12 @@ end
 --Metodo OnButtonReleased, llamado al soltar el boton de esta entidad
 function soundButton:onButtonReleased()
 	if volumeOn then
-        --print('volume is off now\n')
-		AudioManager::turnOffVolume();
+        print('volume is off now\n')
+		AudioManager:turnOffVolume();
 		volumeOn=false;
     else
-        --print('volume is on now\n')
-		AudioManager::turnOnVolume();
+        print('volume is on now\n')
+		AudioManager:turnOnVolume();
 		volumeOn=true;
 
     end

@@ -25,8 +25,6 @@ void Separity::AudioManager::start() {
 	musics_ = new std::unordered_map<std::string, FMOD::Sound*>();
 	channels_ = new std::unordered_map<std::string, FMOD::Channel*>();
 
-	ManagerManager::getInstance()->addManager(_SOUND, this);
-
 	// Initialization of the manager
 	//  Create an instance of the FMOD system
 	FMOD_RESULT result = FMOD::System_Create(&system_);
@@ -58,7 +56,9 @@ void Separity::AudioManager::start() {
 	system_->createSoundGroup("musicGroup", &musicGroup_);
 	musicGroup_->setVolume(100);
 
+
 	lua_State* L = LuaManager::getInstance()->getLuaState();
+
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<AudioManager>("AudioManager")
 	    .addFunction("turnOffVolume", &AudioManager::pauseAllChannels)
@@ -66,7 +66,6 @@ void Separity::AudioManager::start() {
 	    .endClass();
 
 	luabridge::setGlobal(L, this, "AudioManager");
-
 }
 
 inline Separity::AudioManager::AudioManager() {
@@ -75,6 +74,7 @@ inline Separity::AudioManager::AudioManager() {
 	soundGroup_ = nullptr;
 	musicGroup_ = nullptr;
 	firstListener = true;
+
 	ManagerManager::getInstance()->addManager(_SOUND, this);
 }
 
@@ -86,6 +86,7 @@ Separity::AudioManager* Separity::AudioManager::getInstance() {
 
 void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
                                        float maxDistance) {
+
 	FMOD::Channel* temporalChannel = nullptr;
 	FMOD::Sound* temporalSound = nullptr;
 	// Comprueba si esta en la lista de sonidos o de m�sica para coger dicho

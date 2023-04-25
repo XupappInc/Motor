@@ -37,8 +37,8 @@ Entities = {
 			clickedTex="clickedMat",
 			zorder=2
 		},
-		script={
-			name="soundButton"
+		script = {
+			name = "soundButton"
 		}
 	},
 	Quit={
