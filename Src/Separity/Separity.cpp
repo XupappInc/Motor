@@ -202,7 +202,7 @@ int main() {
 	Transform* cocheTr = coche->getComponent<Transform>();
 	cocheTr->translate({0, 10, 0});
 	cocheTr->setScale(1);
-	coche->addComponent<MeshRenderer>()->setMesh("Cube.001.mesh");
+	coche->addComponent<MeshRenderer>()->setMesh("Bus1.mesh");
 	VehicleMovement* coche_vehiculo = coche->addComponent<VehicleMovement>();
 
 	colliderParams paramsCoche;
