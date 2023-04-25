@@ -76,7 +76,7 @@ int main() {
 	
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
-	sceneMenager->loadScene("scene.lua");
+	sceneMenager->loadScene("menuScene.lua");
 	
 	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 

@@ -34,7 +34,7 @@ void Separity::RenderManager::start() {
 Separity::RenderManager::RenderManager() {
 	sdlWindow_ = nullptr;
 	// Tamaño ventana
-	screenW_ = 1024;
+	screenW_ = 102;
 	screenH_ = 768;
 
 	sceneMgr_ = nullptr;
@@ -141,6 +141,8 @@ void Separity::RenderManager::resizeWindow(int w, int h) {
 void Separity::RenderManager::fullScreen(bool full) {
 	if(full) {
 		SDL_SetWindowFullscreen(sdlWindow_, SDL_WINDOW_FULLSCREEN);
+		
+		
 
 	} else {
 		SDL_SetWindowFullscreen(sdlWindow_, 0);

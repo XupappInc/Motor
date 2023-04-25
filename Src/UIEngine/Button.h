@@ -25,7 +25,7 @@ namespace Separity {
 		/// Constructora de la clase Boton
 		/// </summary>
 		Button(std::string overlayName, float xPos, float yPos, float width,
-		       float height, std::string iniTex, std::string hoverTex = "",
+		       float height, std::string iniTex,int zorder=0,std::string hoverTex = "",
 		       std::string clickedTex = "");
 
 		void initComponent() override;
@@ -73,6 +73,7 @@ namespace Separity {
 		int rightPosition_;
 		bool hovering_;
 		bool clicked_;
+		int zorder_;
 		
 	};
 }  // namespace Separity
