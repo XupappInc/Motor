@@ -53,13 +53,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\SeparityExports\dllmain.cpp" />
     <ClCompile Include="..\..\Src\SeparityExports\Exports.cpp" />
-    <ClCompile Include="..\..\Src\SeparityExports\pch.cpp" />
     <ClCompile Include="..\..\Src\SeparityExports\SeparityExports.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\SeparityExports\Exports.h" />
     <ClInclude Include="..\..\Src\SeparityExports\framework.h" />
-    <ClInclude Include="..\..\Src\SeparityExports\pch.h" />
     <ClInclude Include="..\..\Src\SeparityExports\SeparityApi.h" />
     <ClInclude Include="..\..\Src\SeparityExports\SeparityExports.h" />
   </ItemGroup>

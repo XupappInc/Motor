@@ -20,17 +20,16 @@ bool debug_ = true;
 bool debug_ = false;
 #endif  // _DEBUG
 
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;
-using namespace Separity;
+std::unique_ptr<Separity::PhysicsManager>
+    Singleton<Separity::PhysicsManager>::_INSTANCE_;
 
-PhysicsManager::PhysicsManager() {
+Separity::PhysicsManager::PhysicsManager() {
 	ManagerManager::getInstance()->addManager(_PHYSICS, this);
 
 	initWorld();
 }
 
-void PhysicsManager::initWorld() {
+void Separity::PhysicsManager::initWorld() {
 	broadphase_ = new btDbvtBroadphase();
 	collisionConfiguration_ = new btDefaultCollisionConfiguration();
 	dispatcher_ = new btCollisionDispatcher(collisionConfiguration_);
@@ -83,7 +82,7 @@ void Separity::PhysicsManager::deleteWorld() {
 	}
 }
 
-void PhysicsManager::update(const uint32_t& deltaTime) {
+void Separity::PhysicsManager::update(const uint32_t& deltaTime) {
 	if(!active_)
 		return;
 	for(Separity::Component* c : cmps_) {
@@ -118,7 +117,7 @@ void PhysicsManager::update(const uint32_t& deltaTime) {
 		debug();
 }
 
-btDynamicsWorld* PhysicsManager::getWorld() { return world_; }
+btDynamicsWorld* Separity::PhysicsManager::getWorld() { return world_; }
 
 void Separity::PhysicsManager::addComponent(Component* cmp) {
 	assert(cmp != nullptr);
@@ -163,6 +162,6 @@ void Separity::PhysicsManager::clean() {
 	close();
 }
 
-PhysicsManager* PhysicsManager::getInstance() {
-	return static_cast<PhysicsManager*>(instance());
+Separity::PhysicsManager* Separity::PhysicsManager::getInstance() {
+	return static_cast<Separity::PhysicsManager*>(instance());
 }

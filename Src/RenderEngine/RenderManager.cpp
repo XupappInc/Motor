@@ -22,8 +22,8 @@
 #include <fstream>
 #include <iostream>
 
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+std::unique_ptr<Separity::RenderManager>
+    Singleton<Separity::RenderManager>::_INSTANCE_;
 
 Separity::RenderManager::RenderManager() {
 	sdlWindow_ = nullptr;

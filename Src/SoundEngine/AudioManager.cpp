@@ -12,8 +12,8 @@
 
 #include <unordered_map>
 #define M_PI 3.141592
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+
+std::unique_ptr<Separity::AudioManager> Singleton<Separity::AudioManager>::_INSTANCE_;
 
 inline Separity::AudioManager::AudioManager() {
 	buffer_ = nullptr;

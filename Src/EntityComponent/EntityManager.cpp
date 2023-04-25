@@ -5,8 +5,7 @@
 
 #include "Transform.h"
 
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+std::unique_ptr<Separity::EntityManager> Singleton<Separity::EntityManager>::_INSTANCE_;
 
 inline Separity::EntityManager::EntityManager() {
 	ManagerManager::getInstance()->addManager(_ENTITY, this);

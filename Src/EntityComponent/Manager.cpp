@@ -4,6 +4,8 @@
 
 #include <cassert>
 
+std::unique_ptr<Separity::Manager> Singleton<Separity::Manager>::_INSTANCE_;
+
 void Separity::Manager::initComponents() { 
 	for(Separity::Component* c : cmps_)
 		c->initComponent(); }
@@ -39,6 +41,3 @@ Separity::Manager::~Manager() {}
 void Separity::Manager::setActive(bool active) { active_ = active; }
 
 void Separity::Manager::reset() {}
-
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;

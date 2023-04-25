@@ -11,8 +11,7 @@
 
 #include "checkML.h"
 
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+std::unique_ptr<Separity::InputManager> Singleton<Separity::InputManager>::_INSTANCE_;
 
 void Separity::InputManager::reset() { registerQuitInLua(); }
 

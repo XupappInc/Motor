@@ -7,7 +7,6 @@
 #include "Manager.h"
 namespace Ogre {
 	class OverlaySystem;
-	class OverlayManager;
 }  // namespace Ogre
 
 namespace Separity {
@@ -39,11 +38,14 @@ namespace Separity {
 		/// Método update que hereda de manager
 		/// </summary>
 		void update(const uint32_t& deltaTime) override;
-
+		
+		/// <summary>
+		/// limpia componentes
+		/// </summary>
 		void clean() override;
+		
 		private:
 		Ogre::OverlaySystem* overSystem;
-		Ogre::OverlayManager* overManager;
 	};
 }  // namespace Separity
 #endif  //!__UI_MANAGER_H__

@@ -1,21 +1,13 @@
 #include "UIManager.h"
 
-#include "../SeparityUtils/checkML.h"
+#include "checkML.h"
 #include "RenderManager.h"
-#include "UIComponent.h"
+#include "Component.h"
 #include "ManagerManager.h"
-#include <OgreLogManager.h>
 #include <OgreOverlay.h>
-#include <OgreOverlayContainer.h>
-#include <OgreOverlayManager.h>
-#include <OgreOverlaySystem.h>
-#include <OgreSceneManager.h>
-#include <SDL.h>
 #include <iostream>
-#include <vector>
 
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+std::unique_ptr<Separity::UIManager> Singleton<Separity::UIManager>::_INSTANCE_;
 
 inline Separity::UIManager::UIManager() { 
 	ManagerManager::getInstance()->addManager(_UI, this);
