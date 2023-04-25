@@ -26,7 +26,7 @@ namespace Separity {
 		/// Constructora de la clase Image
 		/// </summary>
 		Image(std::string overlayName, float xPos, float yPos, float width,
-		       float height, std::string texture);
+		       float height, std::string texture,int zorder=0);
 		void initComponent() override;
 		///< summary>
 		/// Destructora de la clase Image

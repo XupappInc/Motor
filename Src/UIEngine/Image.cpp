@@ -14,7 +14,8 @@
 #include "checkML.h"
 
 Separity::Image::Image(std::string overlayName, float xPos, float yPos,
-                       float width, float height, std::string texture) {
+                       float width, float height, std::string texture,
+                       int zorder) {
 	auto render = RenderManager::getInstance();
 	int w = render->getWindowWidth();
 	int h = render->getWindowHeight();
@@ -36,6 +37,7 @@ Separity::Image::Image(std::string overlayName, float xPos, float yPos,
 	    overlayManager_->create("over" + std::to_string(numUIElements));
 	overlayElement_->add2D(overlayContainer_);
 	overlayElement_->show();
+	setZorder(zorder);
 
 }
 

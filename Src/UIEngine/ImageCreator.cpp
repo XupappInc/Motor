@@ -13,14 +13,14 @@ void Separity::ImageCreator::registerInLua() {
 
 bool Separity::ImageCreator::createComponent(lua_State* L,
                                               Separity::Entity* ent) {
-	int x, y, width, height;
+	int x, y, width, height,zorder;
 	std::string texture, overlayName;
 
 	if(readParam("overlay", L, overlayName) && readParam("x", L, x) &&
 	   readParam("y", L, y) && readParam("width", L, width) &&
 	   readParam("height", L, height) && readParam("texture", L, texture)) {
-		
-		ent->addComponent<Image>(overlayName, x, y, width, height, texture);
+		readParam("zorder", L, zorder);
+		ent->addComponent<Image>(overlayName, x, y, width, height, texture,zorder);
 		return true;
 	}
 

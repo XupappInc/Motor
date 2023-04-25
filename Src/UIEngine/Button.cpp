@@ -14,7 +14,7 @@
 
 Separity::Button::Button(std::string overlayName, float xPos, float yPos,
                          float width, float height, std::string iniTex,
-                         std::string hoverTex, std::string clickedTex)
+                         int zorder,std::string hoverTex, std::string clickedTex)
     : UIComponent() {
 	auto render = RenderManager::getInstance();
 	int w = render->getWindowWidth();
@@ -27,7 +27,7 @@ Separity::Button::Button(std::string overlayName, float xPos, float yPos,
 	iniTex_ = iniTex;
 	hoverTex_ = hoverTex;
 	clickedTex_ = clickedTex;
-
+	
 	overlayContainer_ = static_cast<Ogre::OverlayContainer*>(
 	    overlayManager_->createOverlayElement(
 	        "Panel", overlayName + std::to_string(numUIElements)));
@@ -41,7 +41,7 @@ Separity::Button::Button(std::string overlayName, float xPos, float yPos,
 	overlayElement_->add2D(overlayContainer_);
 
 	overlayElement_->show();
-
+	setZorder(zorder);
 	// Posiciones necesarias para el input de ratón
 	//  top + height
 	topPosition_ = yPos;
