@@ -26,7 +26,6 @@
 #include "Text.h"
 #include "Transform.h"
 #include "VehicleMovement.h"
-#include "VehicleCamera.h"
 
 // Managers
 #include "AudioManager.h"
@@ -155,7 +154,7 @@ int main() {
 
 	coche->addChild(camera);
 	Spyutils::Vector3 posCoche = cocheTr->getPosition();
-	cam_tr->setPosition(posCoche.x,posCoche.y+2,posCoche.z+6.5);
+	cam_tr->setPosition(posCoche.x,posCoche.y+3,posCoche.z+7.5);
 	cam_tr->pitch(20);
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();

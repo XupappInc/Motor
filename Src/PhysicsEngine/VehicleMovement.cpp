@@ -54,6 +54,17 @@ void Separity::VehicleMovement::girar(int dir) {
 		cameraOffset_ -= 0.02;
 		cameraTr_->translate(Spyutils::Vector3(0, 0, -0.02));
 	}
+	if(rb_->getLinearVelocity().magnitude() > 0.1){
+		if(dir > 0 && cameraRot_ > -10) {
+			cameraRot_ -= 0.15;
+			cameraTr_->yaw(-0.15);
+			cameraTr_->roll(-0.15 / 2);
+		} else if(dir < 0 && cameraRot_ < 10) {
+			cameraRot_ += 0.15;
+			cameraTr_->yaw(0.15);
+			cameraTr_->roll(0.15 / 2);
+		}
+}
 }
 
 void Separity::VehicleMovement::acelerar(int dir) {
@@ -106,5 +117,14 @@ void Separity::VehicleMovement::update(const uint32_t& deltaTime) {
 	if(cameraOffset_ > 0) {
 		cameraOffset_ -= 0.005;
 		cameraTr_->translate(Spyutils::Vector3(0, 0, -0.005));
+	}
+	if(cameraRot_ > 1) {
+		cameraRot_ -= 0.05;
+		cameraTr_->yaw(-0.05);
+		cameraTr_->roll(-0.05 / 2);
+	} else if(cameraRot_ < -1) {
+		cameraRot_ += 0.05;
+		cameraTr_->yaw(0.05);
+		cameraTr_->roll(0.05 / 2);
 	}
 }

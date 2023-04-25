@@ -46,6 +46,7 @@ namespace Separity {
 		RigidBody* rb_;
 		Transform* cameraTr_;
 		float cameraOffset_ = 0;
+		float cameraRot_ = 0;
 	};
 }  // namespace Separity
 #endif __VEHICLE_MOVEMENT_H__
