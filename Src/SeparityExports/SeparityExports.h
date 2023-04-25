@@ -17,7 +17,7 @@ namespace Separity {
 		/// Inicialización de los managers para que los pueda usar el juego
 		/// se llama a este método desde el juego
 		/// </summary>
-		void initMotor();
+		static void initMotor();
 		// TODO: agregar métodos aquí.
 	};
 }  // namespace Separity

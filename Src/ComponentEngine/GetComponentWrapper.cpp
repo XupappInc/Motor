@@ -28,7 +28,7 @@ Separity::GetComponentWrapper::~GetComponentWrapper() {}
 
 void Separity::GetComponentWrapper::registerInLua() {
 	auto L = LuaManager::getInstance()->getLuaState();
-	luabridge::getGlobalNamespace(L)
+  	luabridge::getGlobalNamespace(L)
 	    .beginClass<Entity>("Entity")
 	    .addFunction("getTag", &Entity::getTag)
 	    // aqui hay que definir todos los getters de los componentes a mano
