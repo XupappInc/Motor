@@ -152,6 +152,13 @@ int main() {
 	
 
 
+
+
+	
+
+
+
+
 	coche->addChild(camera);
 	Spyutils::Vector3 posCoche = cocheTr->getPosition();
 	cam_tr->setPosition(posCoche.x,posCoche.y+3,posCoche.z+7.5);
@@ -160,7 +167,11 @@ int main() {
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
 
+	bool rot = true;
+
+
 	mm->initComponents();
+
 
 	while(!mm->quit() && !InputManager::getInstance()->closeWindowEvent()) {
 
@@ -182,9 +193,24 @@ int main() {
 			}
 			if(inputManager->isKeyHeld('w')) {
 				coche_vehiculo->acelerar(1);
+			
 			}
 			if(inputManager->isKeyHeld('s')) {
 				coche_vehiculo->acelerar(-1);
+				auto quate=cam_tr->getRotationQ();
+				if(rot) {
+					quate.rotateGlobal(180, {0, 1, 0});
+					cam_tr->setRotationQ(quate.w, quate.x, quate.y, quate.z);
+					rot = false;
+				}
+				
+
+			}
+			if(inputManager->isKeyUp('s')) {
+				rot = true;
+				auto quate = cam_tr->getRotationQ();
+				quate.rotateGlobal(180, {0, 1, 0});
+				cam_tr->setRotationQ(quate.w, quate.x, quate.y, quate.z);
 			}
 			if(inputManager->isKeyHeld(InputManager::SPACE)) {
 				coche_vehiculo->frenar();
