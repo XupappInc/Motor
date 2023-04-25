@@ -89,6 +89,14 @@ void PhysicsManager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
 		c->preUpdate();
 	}
+	for(RigidBody* rb : rigidBodies_) {
+		
+		if(rb != nullptr)
+			world_->contactTest(rb->getBulletRigidBody(),
+			                    *rb->getCollisionCallback());
+
+		rb->preUpdate();
+	}
 
 	if(world_ != nullptr)
 		world_->stepSimulation(deltaTime);
@@ -98,6 +106,7 @@ void PhysicsManager::update(const uint32_t& deltaTime) {
 	}
 
 	for(RigidBody* rb : rigidBodies_) {
+	
 		if(rb != nullptr)
 			world_->contactTest(rb->getBulletRigidBody(),
 			                    *rb->getCollisionCallback());

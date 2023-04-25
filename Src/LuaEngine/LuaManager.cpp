@@ -66,15 +66,14 @@ void Separity::LuaManager::registerClasses() {
 	    .endClass();
 }
 
-Separity::Behaviour* Separity::LuaManager::loadScript(std::string name, Entity* ent) {
+bool Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 	// Cargamos el script de Lua desde un archivo
 	std::string path = "Assets/Scripts/" + name + ".lua";
-	luaL_dofile(L_, path.c_str());
+	if(luaL_dofile(L_, path.c_str()))
+		return false;
 
 	// Creamos una instancia de Behaviour y la pasamos al script
 	Behaviour* behaviourScript = ent->addComponent<Behaviour>(name);
-
-	behaviourScript->initComponent();
 
 	//luabridge::push(L_, behaviourScript);
 	//lua_setglobal(L_, name.c_str());
@@ -86,7 +85,7 @@ Separity::Behaviour* Separity::LuaManager::loadScript(std::string name, Entity* 
 
 	behaviourScript->setLuaScript(behaviourLua);
 
-	return behaviourScript;
+	return true;
 }
 
 lua_State* Separity::LuaManager::getLuaState() { return L_; }

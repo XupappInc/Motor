@@ -48,6 +48,7 @@
 #include <Windows.h>
 #include <iostream>
 #include <utility>
+//#include"Text.h"
 
 const uint32_t FRAMERATE = 60;
 const uint32_t FRAMETIME = 1000 / FRAMERATE;
@@ -67,7 +68,7 @@ int main() {
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
 	sceneMenager->loadScene("scene.lua");
-
+	
 	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
 	// Entity* listener = entityManager->addEntity(_grp_GENERAL);
@@ -76,20 +77,24 @@ int main() {
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({-15, 60, 12});
-	sinbad->addComponent<MeshRenderer>("Sinbad.mesh");
-
+	sinbad->addComponent<MeshRenderer>()->setMesh("Sinbad.mesh");
+	//sinbad->addComponent<Text>(
+	//    "texto", "fuentePrueba",
+	//                           0, 0, 10,
+	//                           10, "hola",
+	//                           Spyutils::Vector3(1,1,1));
 	//luaManager->loadScript("prueba", sinbad);
 
 	Entity* guile = entityManager->addEntity(_grp_GENERAL);
 	guile->getComponent<Transform>()->translate({0, 10, 12});
 	guile->getComponent<Transform>()->setScale(3);
-	guile->addComponent<MeshRenderer>("guille.mesh");
+	guile->addComponent<MeshRenderer>()->setMesh("guille.mesh");
 
 	Entity* sinbad3 = entityManager->addEntity(_grp_GENERAL);
 	sinbad->addChild(sinbad3);
 	sinbad3->getComponent<Transform>()->translate({0, 5, 0});
 	// sinbad3->getComponent<Transform>()->roll(90);
-	sinbad3->addComponent<MeshRenderer>("Sinbad.mesh");
+	sinbad3->addComponent<MeshRenderer>()->setMesh("Sinbad.mesh");
 
 	colliderParams params;
 	params.colShape = CUBE;
@@ -116,10 +121,9 @@ int main() {
 	luzAux1->setDiffuse({0.5, 0, 0.5});
 
 	Entity* button = entityManager->addEntity(_grp_GENERAL);
-	// Text* txt =
-	//     button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100,
-	//     200,
-	//                                50, "Holi", Spyutils::Vector3(0, 0, 1));
+	 Text* txt =
+	     button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100,
+	     200,50, "Holi", Spyutils::Vector3(1, 1, 1));
 	/* Button* but =
 	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
 	                                          "World_ap.15");*/
@@ -197,7 +201,7 @@ int main() {
 	Entity* coche = entityManager->addEntity(_grp_GENERAL);
 	coche->getComponent<Transform>()->translate({0, 10, 0});
 	coche->getComponent<Transform>()->setScale(1);
-	coche->addComponent<MeshRenderer>("Cube.001.mesh");
+	coche->addComponent<MeshRenderer>()->setMesh("Cube.001.mesh");
 	VehicleMovement* coche_vehiculo = coche->addComponent<VehicleMovement>();
 
 	colliderParams paramsCoche;
@@ -223,22 +227,18 @@ int main() {
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
-	bool quit = false;
 
-	while(!quit) {
+	while(!mm->quit()) {
 
 		cam_cam = RenderManager::getInstance()->getCamera();
 		camera = cam_cam->getEntity();
 		cam_tr = camera->getComponent<Transform>();
 
-
 		timer->reset();
 
-		int xMouse = inputManager->getMousePos().first;
-		int yMouse = inputManager->getMousePos().second;
 		if(inputManager->isKeyDown(InputManager::ESCAPE) ||
 		   inputManager->closeWindowEvent()) {
-			quit = true;
+			mm->shutDown();
 		} else {
 			if(inputManager->isKeyHeld('a')) {
 				coche_vehiculo->girar(-1);

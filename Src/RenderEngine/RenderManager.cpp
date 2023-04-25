@@ -1,14 +1,19 @@
 #include "RenderManager.h"
 
-#include "ManagerManager.h"
-
 #include "Entity.h"
+#include "LightCreator.h"
+#include "ManagerManager.h"
 #include "MeshRenderer.h"
+#include "MeshRendererCreator.h"
 #include "checkML.h"
 
 #include <OgreConfigFile.h>
 #include <OgreEntity.h>
 #include <OgreFileSystemLayer.h>
+#include <OgreOverlay.h>
+#include <OgreOverlayContainer.h>
+#include <OgreOverlayManager.h>
+#include <OgreOverlaySystem.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
 #include <OgreViewport.h>
@@ -16,9 +21,6 @@
 #include <SDL_syswm.h>
 #include <fstream>
 #include <iostream>
-
-#include "MeshRendererCreator.h"
-#include "LightCreator.h"
 
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
@@ -33,13 +35,12 @@ Separity::RenderManager::RenderManager() {
 	ogreRoot_ = nullptr;
 	ogreWindow_ = nullptr;
 	configFile_ = nullptr;
+	overlaySystem_ = nullptr;
 
 	ManagerManager::getInstance()->addManager(_RENDER, this);
 
 	init();
 }
-
-
 
 void Separity::RenderManager::init() {
 	//// Inicializar SDL
@@ -62,6 +63,8 @@ void Separity::RenderManager::init() {
 	}
 
 	sceneMgr_ = ogreRoot_->createSceneManager();
+	overlaySystem_ = new Ogre::OverlaySystem();
+	sceneMgr_->addRenderQueueListener(overlaySystem_);
 
 	loadResources();
 }
@@ -100,6 +103,10 @@ void Separity::RenderManager::render() {
 	}
 	// ogreRoot_->renderOneFrame(deltaTime);
 }
+
+int Separity::RenderManager::getWindowWidth() { return screenW_; }
+
+int Separity::RenderManager::getWindowHeight() { return screenH_; }
 
 void Separity::RenderManager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
@@ -151,6 +158,10 @@ void Separity::RenderManager::saveConfiguration() {
 }
 
 void Separity::RenderManager::closedown() {
+	
+	sceneMgr_->removeRenderQueueListener(overlaySystem_);
+	delete overlaySystem_;
+
 	ogreRoot_->queueEndRendering();
 
 	ogreWindow_ = nullptr;
@@ -215,6 +226,10 @@ void Separity::RenderManager::createSDLWindow() {
 	                                            screenH_, false, &misc);
 }
 
+Ogre::OverlaySystem* Separity::RenderManager::getOverlay() {
+	return overlaySystem_;
+}
+
 SDL_Window* Separity::RenderManager::getSDLWindow() { return sdlWindow_; }
 
 Ogre::RenderWindow* Separity::RenderManager::getOgreWindow() {
@@ -227,23 +242,19 @@ Ogre::SceneManager* Separity::RenderManager::getSceneManager() {
 	return sceneMgr_;
 }
 
-void Separity::RenderManager::setCamera(Camera* camera) { 
-	camera_ = camera; }
+void Separity::RenderManager::setCamera(Camera* camera) { camera_ = camera; }
 
-Separity::Camera* Separity::RenderManager::getCamera() { 
-	return camera_; }
+Separity::Camera* Separity::RenderManager::getCamera() { return camera_; }
 
 void Separity::RenderManager::clean() {
 	saveConfiguration();
 	closedown();
 
 	if(ogreRoot_ != nullptr) {
-		delete ogreRoot_;  // genera un error destroy movable object en
-		                   // SceneManager de Ogre
+		delete ogreRoot_;  
 		ogreRoot_ = nullptr;
 	}
 	SDL_Quit();
 
-	close(); 
+	close();
 }
-

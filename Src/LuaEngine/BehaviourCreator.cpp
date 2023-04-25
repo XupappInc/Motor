@@ -2,6 +2,8 @@
 
 #include "LuaManager.h"
 
+#include <iostream>
+
 Separity::BehaviourCreator::BehaviourCreator() {
 
 }
@@ -15,8 +17,11 @@ bool Separity::BehaviourCreator::createComponent(lua_State* L,
 
     std::string s;
 	if(readParam("name", L, s)) {
-		Separity::LuaManager::getInstance()->loadScript(s, ent);
-		return true;
+		if(Separity::LuaManager::getInstance()->loadScript(s, ent)) {
+			return true;
+		}
+						
+		std::cerr << "[SPY ERROR]: Script " << s << " not found\n";			
 	}
 	return false;
 }

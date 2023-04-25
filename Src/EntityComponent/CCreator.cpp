@@ -2,6 +2,8 @@
 
 #include <lua.hpp>
 
+#include <iostream>
+
 Separity::CCreator::CCreator() {}
 
 bool Separity::CCreator::readArray(const std::string& paramName, lua_State* L,
@@ -22,6 +24,7 @@ bool Separity::CCreator::readArray(const std::string& paramName, lua_State* L,
 
 		return i == n;
 	}
+	std::cerr << "[SPY ERROR]: Param " << paramName << " does not exist\n";	
 	lua_pop(L, 1);
 	return false;
 }
@@ -31,6 +34,7 @@ bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
 
 	if(!lua_getfield(L, -1, paramName.c_str())) {
 		lua_pop(L, 1);
+		std::cerr << "[SPY ERROR]: Param " << paramName << " does not exist\n";	
 		return false;
 	}		
 	param = lua_tostring(L, -1);
@@ -44,6 +48,7 @@ bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
 
 	if(!lua_getfield(L, -1, paramName.c_str())) {
 		lua_pop(L, 1);
+		std::cerr << "[SPY ERROR]: Param " << paramName << " does not exist\n";
 		return false;
 	}
 	param = lua_tointeger(L, -1);

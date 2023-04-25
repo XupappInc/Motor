@@ -23,8 +23,8 @@ end
 --Metodo Update, llamado en cada frame
 function buttonMenu:update()
 	--print("Update boton");
-	local butt=buttonMenu.entity:getButton();
-	butt:setVisible();
+	--local butt=buttonMenu.entity:getButton();
+	--butt:setVisible();
 end
 
 --Metodo OnCollisionEnter, llamado al comenzar una colision
@@ -44,20 +44,20 @@ end
 
 --Metodo OnButtonClicked
 function buttonMenu:onButtonClick()
-	print("Has pulsado para ir al menú\n");
+	--print("Has pulsado para ir al menú\n");
 	--SceneManager:changeScene("scene2.lua");
 end
 function buttonMenu:onButtonReleased()
-	print("Has dejado de pulsar para ir al menú\n");
-	SceneManager:changeScene("scene2.lua");
+	--print("Has dejado de pulsar para ir al menú\n");
+	SceneManager:changeScene("scene.lua");
 end
 --Metodo OnButtonHover
 function buttonMenu:onButtonHover()
-	print("Has puesto el cursor para ir al menu\n");	
+	--print("Has puesto el cursor para ir al menu\n");	
 end
 --Metodo OnButtonUnhover
 function buttonMenu:onButtonUnhover()
-	print("Has quitado el cursor para ir al menu\n");
+	--print("Has quitado el cursor para ir al menu\n");
 	
 end
 --Variable global de la clase (para Luabridge)

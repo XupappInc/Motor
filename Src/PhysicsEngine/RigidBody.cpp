@@ -151,6 +151,7 @@ void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
 }
 
 void Separity::RigidBody::preUpdate() {
+
 	btTransform trans;
 	// cogemos el transform del rb
 	rb_->getMotionState()->getWorldTransform(trans);
@@ -167,6 +168,7 @@ void Separity::RigidBody::preUpdate() {
 }
 
 void Separity::RigidBody::update(const uint32_t& deltaTime) {
+
 	collisionCallback_->update();
 	if(tipo_ == STATIC)
 		return;

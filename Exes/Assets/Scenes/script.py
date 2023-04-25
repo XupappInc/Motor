@@ -48,15 +48,6 @@ for obj in scene.objects:
         
         lua_string += "\t\tmeshRenderer = {\n" 
         
-        if obj.material_slots:
-            # Accede al primer slot de material
-            first_material_slot = obj.material_slots[0]
-            # Accede al nombre del material en el primer slot
-            first_material_name = first_material_slot.name
-            first_material_name = first_material_name.replace(" ", "_")
-            lua_string += "\t\t\t" + "textureName = \"" + first_material_name + "\",\n"
-            
-        
         lua_string += "\t\t\t" + "meshName = \"" + obj.data.name + "\"\n"      
         lua_string += "\t\t},\n"  
 
@@ -88,7 +79,7 @@ lua_string = lua_string[:-2]
 lua_string += "\n}"
 
 # Abre un archivo para escritura y guarda el diccionario en formato JSON con indentación
-with open("scene4.lua", "w") as file:
+with open("scene.lua", "w") as file:
     file.write(lua_string)
     
 

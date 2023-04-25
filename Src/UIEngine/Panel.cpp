@@ -4,27 +4,29 @@
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayElement.h>
 #include <OgreOverlayManager.h>
+#include "checkML.h"
+
 
 Separity::Panel::Panel(std::string name, float xPos, float yPos,
                            float width, float height, std::string materialName)
     : UIComponent() {
-	overlayContainer = static_cast<Ogre::OverlayContainer*>(
-	    overlayManager->createOverlayElement(
+	overlayContainer_ = static_cast<Ogre::OverlayContainer*>(
+	    overlayManager_->createOverlayElement(
 	        "Panel", name + std::to_string(numUIElements)));
-	overlayContainer->setMetricsMode(Ogre::GMM_PIXELS);
-	overlayContainer->setPosition(xPos, yPos);
-	overlayContainer->setDimensions(width, height);
+	overlayContainer_->setMetricsMode(Ogre::GMM_PIXELS);
+	overlayContainer_->setPosition(xPos, yPos);
+	overlayContainer_->setDimensions(width, height);
 
 	// Compruebo si se le quiere meter o no un material al panel
 	if(materialName != "")
-		overlayContainer->setMaterialName(materialName);
+		overlayContainer_->setMaterialName(materialName);
 
 	// Creo un elemento overlay para añadirle el panel
-	overlayElement =
-	    overlayManager->create("over" + std::to_string(numUIElements));
-	overlayElement->add2D(overlayContainer);
+	overlayElement_ =
+	    overlayManager_->create("over" + std::to_string(numUIElements));
+	overlayElement_->add2D(overlayContainer_);
 
-	overlayElement->show();
+	overlayElement_->show();
 }
 
 

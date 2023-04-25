@@ -95,9 +95,9 @@ namespace Separity {
 		protected:
 		// Managers y elementos de Ogre necesarios para el control y uso de la
 		// UI
-		Ogre::OverlayManager* overlayManager;
-		Ogre::Overlay* overlayElement;
-		Ogre::OverlayContainer* overlayContainer;
+		Ogre::OverlayManager* overlayManager_;
+		Ogre::Overlay* overlayElement_;
+		Ogre::OverlayContainer* overlayContainer_;
 
 		// Control de los elementos de la UI
 		static int numUIElements;

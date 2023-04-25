@@ -19,7 +19,7 @@ bool Separity::ComponentFactory::createComponent(const std::string& CName,
                                              Separity::Entity* ent) {
 
 	if(!creators_.count(CName)) {
-		std::cerr << "El componente " << CName << " no existe\n";
+		std::cerr << "[SPY ERROR]: Component " << CName << " does not exist\n";
 		return false;
 
 	} else {

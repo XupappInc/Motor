@@ -2,10 +2,8 @@
 #ifndef __RENDER_MANAGER_H__
 #define __RENDER_MANAGER_H__
 
-#include "SeparityApi.h"
-
-
 #include "Manager.h"
+#include "SeparityApi.h"
 
 namespace Ogre {
 	class Root;
@@ -13,6 +11,7 @@ namespace Ogre {
 	class SceneManager;
 	class ConfigFile;
 	class SceneNode;
+	class OverlaySystem;
 }  // namespace Ogre
 
 class SDL_Window;
@@ -25,7 +24,7 @@ namespace Separity {
 	/// </summary>
 	class _SEPARITY_API_ RenderManager
 	    : public Separity::Manager,
-	                      public Singleton<Separity::RenderManager> {
+	      public Singleton<Separity::RenderManager> {
 		friend Singleton<RenderManager>;
 
 		public:
@@ -44,6 +43,8 @@ namespace Separity {
 		/// Llama al método render de todos los componentes
 		/// </summary>
 		void render() override;
+		int getWindowWidth();
+		int getWindowHeight();
 		/// <summary>
 		/// Ejecuta el método renderOneframe de Ogre que actualiza todos los
 		/// renders
@@ -100,6 +101,12 @@ namespace Separity {
 
 		void clean() override;
 
+		/// <summary>
+		/// Devuelve el overlay de Ogre
+		/// </summary>
+		/// <returns>overlay de Ogre</returns>
+		Ogre::OverlaySystem* getOverlay();
+
 		private:
 		/// <summary>
 		/// Inicializa SDL y una raíz proyecto de ogre. Invoca los métodos para
@@ -122,6 +129,7 @@ namespace Separity {
 		Ogre::Root* ogreRoot_;
 		Ogre::SceneManager* sceneMgr_;
 		Ogre::ConfigFile* configFile_;
+		Ogre::OverlaySystem* overlaySystem_;
 		Camera* camera_;
 
 		int screenW_;

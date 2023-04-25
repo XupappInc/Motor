@@ -25,7 +25,7 @@ void Separity::ManagerManager::render() {
 	}
 }
 
-Separity::ManagerManager::ManagerManager() {
+Separity::ManagerManager::ManagerManager() : quit_(false) {
 	managers_ = std::map<cmpType_type, Manager*>();
 }
 
@@ -42,6 +42,14 @@ void Separity::ManagerManager::clean() {
 		m.second->clean();
 	}
 	close();
+}
+
+bool Separity::ManagerManager::quit() { 
+	return quit_; 
+}
+
+void Separity::ManagerManager::shutDown() { 
+	quit_ = true; 
 }
 
 void Separity::ManagerManager::pseudoClean() {

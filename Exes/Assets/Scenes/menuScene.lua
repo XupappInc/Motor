@@ -8,13 +8,29 @@ Entities = {
 		camera = {
 		}
 	},
-	Menu={
+	Floor_6 = {
+		transform = {
+			pos = {-0.6212728023529053, 1.8466160297393799, -7.592611312866211},
+			rot = {1.0, 0.0, -0.0, -1.6292068494294654e-07},
+			scale = {0.01795569434762001, 0.01795569434762001, 0.01795569434762001}
+		},
+		meshRenderer = {
+			meshName = "Mesh.098"
+		},
+		collider = {
+			dim = {39.052555084228516, 4.317275047302246, 39.07554626464844},
+		},
+		rigidbody = {
+			type = 2
+		}
+	},
+	Play={
 		button = {
-			overlay = "BotonMenu",
-			x = 200,
-			y = 200,
-			width = 200,
-			height = 200,
+			overlay = "BotonPlay",
+			x = 50,
+			y = 50,
+			width = 512,
+			height = 140,
 			iniTex = "iniMat",
 			hoverTex="hoverMat",
 			clickedTex="clickedMat"
@@ -23,14 +39,29 @@ Entities = {
 			name="buttonMenu"
 		}
 	},
-	Imagee={
+	Quit={
+		button = {
+			overlay = "BotonQuit",
+			x = 0,
+			y = 50,
+			width = 256,
+			height = 140,
+			iniTex = "QuitIni",
+			hoverTex="QuitHover",
+			clickedTex="QuitClick"
+		},
+		script={
+			name="quitMenu"
+		}
+	},
+	Image={
 		image = {
 			overlay = "Imagen",
-			x = 0,
+			x = 50,
 			y = 0,
 			width = 100,
 			height = 100,
-			texture = "menu"
+			texture = "crazyU"
 		}
 	}
 }

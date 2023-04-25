@@ -35,7 +35,6 @@ namespace Separity {
 		
 
 		private:
-		Ogre::Overlay* overlayElement_;
 		Behaviour* behaviour_;
 		std::string texture_;
 	};
