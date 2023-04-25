@@ -29,6 +29,11 @@ namespace Separity {
 		/// </summary>
 		static void createAllManagers();
 
+		/// <summary>
+		/// Cierra todos los managers
+		/// </summary>
+		static void closeAllManagers();
+
 		private:
 	};
 }  // namespace Separity

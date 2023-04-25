@@ -53,12 +53,17 @@
 const uint32_t FRAMERATE = 60;
 const uint32_t FRAMETIME = 1000 / FRAMERATE;
 
+//Necesario para el DPI Awareness (escalado de 125% de windows)
+#include <ShellScalingApi.h>
+#pragma comment(lib, "Shcore.lib")	
+
 using namespace std;
 using namespace Separity;
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	
+	// Necesario para el DPI Awareness (escalado de 125% de windows)
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
 
 	GetComponentWrapper::createAllManagers();
 
@@ -125,9 +130,10 @@ int main() {
 	luzAux1->setDiffuse({0.5, 0, 0.5});*/
 
 	Entity* button = entityManager->addEntity(_grp_GENERAL);
-	 Text* txt =
-	     button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100,
-	     200,50, "Holi", Spyutils::Vector3(1, 1, 1));
+	//Text* txt =
+	//    button->addComponent<Text>("TextoPrueba", "fuentePrueba", 100, 100,
+	//    200,50, "Holi", Spyutils::Vector3(1, 1, 1));
+
 	/* Button* but =
 	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
 	                                          "World_ap.15");*/
