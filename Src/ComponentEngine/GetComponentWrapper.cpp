@@ -12,6 +12,11 @@
 #include "Behaviour.h"
 
 #include "LuaManager.h"
+#include "AudioManager.h"
+#include "InputManager.h"
+#include "RenderManager.h"
+#include "PhysicsManager.h"
+#include "UIManager.h"
 
 Separity::GetComponentWrapper::GetComponentWrapper() {
 }
@@ -31,4 +36,13 @@ void Separity::GetComponentWrapper::registerInLua() {
 	    .addFunction("getButton", &Entity::getComponent<Button>)
 	    //...
 	    .endClass();
+}
+
+void Separity::GetComponentWrapper::createAllManagers() {
+	LuaManager::instance();
+	InputManager::instance();
+	AudioManager::instance();
+	PhysicsManager::instance();
+	UIManager::instance();
+	RenderManager::instance();
 }

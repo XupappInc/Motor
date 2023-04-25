@@ -228,7 +228,7 @@ int main() {
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
 
-	while(!mm->quit()) {
+	while(!mm->quit() && !InputManager::getInstance()->closeWindowEvent()) {
 
 		cam_cam = RenderManager::getInstance()->getCamera();
 		camera = cam_cam->getEntity();

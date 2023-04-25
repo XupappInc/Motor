@@ -13,7 +13,7 @@ void Separity::ManagerManager::initComponents() {
 	}
 }
 
-void Separity::ManagerManager::update(const uint32_t& deltaTime) { 
+void Separity::ManagerManager::update(const uint32_t& deltaTime) {
 	for(auto m : managers_) {
 		m.second->update(deltaTime);
 	}
@@ -33,34 +33,41 @@ void Separity::ManagerManager::addManager(cmpType_type type, Manager* manager) {
 	managers_[type] = manager;
 }
 
-Separity::Manager* Separity::ManagerManager::getManager(cmpType_type type) {		
+Separity::Manager* Separity::ManagerManager::getManager(cmpType_type type) {
 	return managers_[type];
 }
 
-void Separity::ManagerManager::clean() {	
+void Separity::ManagerManager::clean() {
 	for(auto m : managers_) {
 		m.second->clean();
 	}
 	close();
 }
 
-bool Separity::ManagerManager::quit() { 
-	return quit_; 
+void Separity::ManagerManager::initManagers() {
+	for(auto m : managers_) {
+		
+	}
 }
 
-void Separity::ManagerManager::shutDown() { 
-	quit_ = true; 
-}
+bool Separity::ManagerManager::quit() { return quit_; }
+
+void Separity::ManagerManager::shutDown() { quit_ = true; }
 
 void Separity::ManagerManager::pseudoClean() {
-	for(auto m = managers_.begin(); m != managers_.end(); ) {
+	for(auto m = managers_.begin(); m != managers_.end();) {
 		if(m->first != _SCENE && m->first != _INPUT && m->first != _RENDER) {
 			auto aux = m;
 			aux++;
 			m->second->clean();
 			managers_.erase(m);
 			m = aux;
-		} else m++;		
+		} else {
+			m++;
+		}
 	}
+	//for(auto m = managers_.begin(); m != managers_.end();) {
+	//	m->second->reset();
+	//	m++;
+	//}
 }
-

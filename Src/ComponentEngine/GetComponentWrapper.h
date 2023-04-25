@@ -1,4 +1,7 @@
 #pragma once
+#ifndef GET_CMP_WRAPPER
+#define GET_CMP_WRAPPER
+
 #include "Component.h"
 #include "SeparityApi.h"
 
@@ -21,6 +24,13 @@ namespace Separity {
 		/// </summary>
 		static void registerInLua();
 
+		/// <summary>
+		/// Crea todos los managers
+		/// </summary>
+		static void createAllManagers();
+
 		private:
 	};
 }  // namespace Separity
+
+#endif  // !GET_CMP_WRAPPER

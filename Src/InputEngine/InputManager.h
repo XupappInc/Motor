@@ -297,7 +297,10 @@ namespace Separity {
 		/// privadas onFunction()
 		/// </summary>
 		virtual void update(const uint32_t& deltaTime) override;
-
+		/// <summary>
+		/// Reseea la instancia de este manager en LUA
+		/// </summary>
+		void reset() override;
 		static InputManager* getInstance();
 
 		void clean() override;
