@@ -5,7 +5,7 @@ material MaterialCiudad {
         pass {
             diffuse 1.0 1.0 1.0 1.0
             specular 0.552786 0.0 0 0 0
-
+            lighting off
             // additional maps - requires RTSS
             rtshader_system {
                 lighting_stage metal_roughness
@@ -27,7 +27,7 @@ material MaterialCarretera {
         pass {
             diffuse 1.0 1.0 1.0 1.0
             specular 0.844675 0.5 0 0 0
-
+            lighting off
             // additional maps - requires RTSS
             rtshader_system {
                 lighting_stage normal_map PolygonCity_Road_Normal.png

@@ -49,10 +49,14 @@ end
 function soundButton:onButtonReleased()
 	if volumeOn then
         print('volume is off now\n')
+		butt=soundButton.entity:getButton();
+		butt:changeButtonTexture("noVolume","noVolume","noVolume");	
 		AudioManager:turnOffVolume();
 		volumeOn=false;
     else
         print('volume is on now\n')
+		butt=soundButton.entity:getButton();
+		butt:changeButtonTexture("volumeIni","volumeHover","volumeClick");	
 		AudioManager:turnOnVolume();
 		volumeOn=true;
 

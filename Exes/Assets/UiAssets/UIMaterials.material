@@ -146,4 +146,70 @@ material londres {
         }
     }
 }
+material volumeIni {
+    receive_shadows on
+    technique {
+        pass {
+                lighting off
+                scene_blend alpha_blend
+                depth_write off
+                diffuse vertexcolour
+            texture_unit {
+                texture audioIni.png
+                tex_address_mode clamp
+                
+            }
+        }
+    }
+}
+material volumeHover {
+    receive_shadows on
+    technique {
+        pass {
+                lighting off
+                scene_blend alpha_blend
+                depth_write off
+                diffuse vertexcolour
+            texture_unit {
+                texture audioHover.png
+                tex_address_mode clamp
+                
+            }
+        }
+    }
+}
+
+material volumeClick {
+    receive_shadows on
+    technique {
+        pass {
+                lighting off
+                scene_blend alpha_blend
+                depth_write off
+                diffuse vertexcolour
+            texture_unit {
+                texture audioClick.png
+                tex_address_mode clamp
+                
+            }
+        }
+    }
+}
+
+material noVolume {
+    receive_shadows on
+    technique {
+        pass {
+                lighting off
+                scene_blend alpha_blend
+                depth_write off
+                diffuse vertexcolour
+            texture_unit {
+                texture audioNoAudio.png
+                tex_address_mode clamp
+                
+            }
+        }
+    }
+}
 
