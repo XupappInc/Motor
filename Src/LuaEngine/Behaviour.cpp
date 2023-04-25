@@ -36,14 +36,22 @@ void Separity::Behaviour::update(const uint32_t& deltaTime) {
 void Separity::Behaviour::start() {
 	luabridge::LuaRef startLua = (*behaviourLua_)["start"];
 	if(startLua.isFunction()) {
-		startLua();
+		try {
+			startLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 	}
 }
 
 void Separity::Behaviour::awake() {
 	luabridge::LuaRef awakeLua = (*behaviourLua_)["awake"];
 	if(awakeLua.isFunction()) {
-		awakeLua();
+		try {
+			awakeLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 	}
 }
 
@@ -104,7 +112,11 @@ void Separity::Behaviour::onCollisionStay(Entity* other) {
 void Separity::Behaviour::onButtonClick() {
 	luabridge::LuaRef onButtonClickLua = (*behaviourLua_)["onButtonClick"];
 	if(onButtonClickLua.isFunction()) {
-		onButtonClickLua();
+		try {
+			onButtonClickLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 	}
 }
 
@@ -112,20 +124,32 @@ void Separity::Behaviour::onButtonReleased() {
 	luabridge::LuaRef onButtonReleasedLua =
 	    (*behaviourLua_)["onButtonReleased"];
 	if(onButtonReleasedLua.isFunction()) {
-		onButtonReleasedLua();
+		try {
+			onButtonReleasedLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 	}
 }
 
 void Separity::Behaviour::onButtonHover() {
 	luabridge::LuaRef onButtonHoverLua = (*behaviourLua_)["onButtonHover"];
 	if(onButtonHoverLua.isFunction()) {
-		onButtonHoverLua();
+		try {
+			onButtonHoverLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 	}
 }
 
 void Separity::Behaviour::onButtonUnhover() {
 	luabridge::LuaRef onButtonUnhoverLua = (*behaviourLua_)["onButtonUnhover"];
 	if(onButtonUnhoverLua.isFunction()) {
-		onButtonUnhoverLua();
+		try {
+			onButtonUnhoverLua();
+		} catch(luabridge::LuaException e) {
+			std::cout << e.what() << "\n";
+		}
 	}
 }
