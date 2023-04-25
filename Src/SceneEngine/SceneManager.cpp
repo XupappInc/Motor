@@ -9,6 +9,8 @@
 #include "ManagerManager.h"
 #include "LuaManager.h"
 
+#include "GetComponentWrapper.h"
+
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 
@@ -17,6 +19,8 @@
 using namespace Separity;
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+
+void Separity::SceneManager::reset() { registerChangeSceneInLua(); }
 
 Separity::SceneManager* Separity::SceneManager::getInstance() {
 	return static_cast<SceneManager*>(instance());
@@ -124,6 +128,8 @@ void Separity::SceneManager::changeScene() {
 
 	ManagerManager::getInstance()->pseudoClean();
 	if(loadScene(sceneName_)) {
+		GetComponentWrapper::createAllManagers();
+
 		ManagerManager::getInstance()->initComponents();
 		registerChangeSceneInLua();
 		changeScene_ = false;

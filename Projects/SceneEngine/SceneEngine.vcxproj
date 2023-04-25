@@ -27,6 +27,11 @@
     <ClInclude Include="..\..\Src\SceneEngine\ComponentFactory.h" />
     <ClInclude Include="..\..\Src\SceneEngine\SceneManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComponentEngine\ComponentEngine.vcxproj">
+      <Project>{320a1405-4212-4d54-a550-de42dfc19239}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -134,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_SEPARITY_EXPORT_;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityExports;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\UIEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityExports;$(SolutionDir)Src\SeparityUtils;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Src\PhysicsEngine;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\SoundEngine;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\UIEngine;$(SolutionDir)Src\ComponentEngine</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

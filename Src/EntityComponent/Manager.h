@@ -51,6 +51,10 @@ namespace Separity {
 		/// </summary>
 		/// <param name="active">booleano que activa el manager</param>
 		void setActive(bool active);
+		/// <summary>
+		/// Resetea las instancias de los managers en LUA
+		/// </summary>
+		virtual void reset();
 		protected:
 		/// <summary>
 		/// Constructor de la clase, protected

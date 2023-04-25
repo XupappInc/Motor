@@ -38,5 +38,7 @@ Separity::Manager::~Manager() {}
 
 void Separity::Manager::setActive(bool active) { active_ = active; }
 
+void Separity::Manager::reset() {}
+
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;

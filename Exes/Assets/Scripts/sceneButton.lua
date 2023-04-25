@@ -47,7 +47,7 @@ function sceneButton:onButtonClick()
 end
 
 function sceneButton:onButtonReleased()
-	print("vuelvo")
+
 	SceneManager:changeScene("menuScene.lua");
 	
 end

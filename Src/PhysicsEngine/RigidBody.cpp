@@ -128,6 +128,7 @@ void Separity::RigidBody::applyTorque(Spyutils::Vector3 torq) {
 void Separity::RigidBody::applyImpulse(Spyutils::Vector3 impul) {
 	btVector3 fuerza(impul.x, impul.y, impul.z);
 	btVector3 posicion(0, 0, 0);
+	rb_->activate(true);
 	rb_->applyImpulse(fuerza, posicion);
 }
 void Separity::RigidBody::setGravity(Spyutils::Vector3 g) {

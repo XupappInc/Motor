@@ -14,6 +14,8 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
+void Separity::InputManager::reset() { registerQuitInLua(); }
+
 Separity::InputManager* Separity::InputManager::getInstance() {
 	return static_cast<InputManager*>(instance());
 }

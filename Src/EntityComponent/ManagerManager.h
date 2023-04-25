@@ -64,6 +64,11 @@ namespace Separity {
 		/// </summary>
 		void clean() override;	
 
+		/// <summary>
+		/// Inicializa todos los managers
+		/// </summary>
+		void initManagers();
+
 		bool quit();
 		void shutDown();
 
