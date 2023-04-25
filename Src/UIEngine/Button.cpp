@@ -129,3 +129,11 @@ void Separity::Button::changeButtonTexture(std::string textureName) {
 
 	overlayContainer_->setMaterialName(newTex);
 }
+
+void Separity::Button::changeTextures(std::string iniTex, std::string hoverTex,
+                                      std::string clickedTex) {
+
+	iniTex_ = iniTex;
+	hoverTex_ = hoverTex;
+	clickedTex_ = clickedTex;
+}

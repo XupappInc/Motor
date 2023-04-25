@@ -59,7 +59,8 @@ namespace Separity {
 		/// Cambia la textura del boton
 		/// </summary>
 		void changeButtonTexture(std::string textureName);
-
+		void changeTextures(std::string iniTex, std::string hoverTex,
+		                    std::string clickedTex);
 		private:
 		int n_;
 		Behaviour* behaviour_;
