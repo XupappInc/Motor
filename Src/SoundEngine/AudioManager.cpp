@@ -6,11 +6,14 @@
 #include "Entity.h"
 #include "ManagerManager.h"
 #include "Transform.h"
-#include "checkML.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
+#include "LuaManager.h"
 
+#include <lua.hpp>
+#include <LuaBridge/LuaBridge.h>
 #include <unordered_map>
+#include "checkML.h"
 #define M_PI 3.141592
 
 std::unique_ptr<Separity::AudioManager> Singleton<Separity::AudioManager>::_INSTANCE_;
@@ -54,6 +57,16 @@ void Separity::AudioManager::start() {
 	soundGroup_->setVolume(100);
 	system_->createSoundGroup("musicGroup", &musicGroup_);
 	musicGroup_->setVolume(100);
+
+	lua_State* L = LuaManager::getInstance()->getLuaState();
+	luabridge::getGlobalNamespace(L)
+	    .beginClass<AudioManager>("AudioManager")
+	    .addFunction("turnOffVolume", &AudioManager::pauseAllChannels)
+	    .addFunction("turnOnVolume", &AudioManager::resumeAllChannels)
+	    .endClass();
+
+	luabridge::setGlobal(L, this, "AudioManager");
+
 }
 
 inline Separity::AudioManager::AudioManager() {

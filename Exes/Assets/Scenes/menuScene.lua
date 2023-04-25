@@ -38,7 +38,7 @@ Entities = {
 			zorder=2
 		},
 		script={
-			name="buttonMenu"
+			name="soundButton"
 		}
 	},
 	Quit={
