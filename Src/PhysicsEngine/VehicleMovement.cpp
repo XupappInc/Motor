@@ -41,7 +41,7 @@ void Separity::VehicleMovement::initComponent() {
 void Separity::VehicleMovement::girar(int dir) {
 	rotando_ = true;
 	rb_->applyTorque(Spyutils::Vector3(
-	    0, dir * -1 * rb_->getLinearVelocity().magnitude(), 0));
+	    0, dir * -1 * rb_->getLinearVelocity().magnitude()*2, 0));
 
 	// Calcular la dirección de la fuerza en función de la rotación del
 	// objeto
