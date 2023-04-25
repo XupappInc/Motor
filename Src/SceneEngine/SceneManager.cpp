@@ -16,9 +16,7 @@
 
 #include <iostream>
 
-using namespace Separity;
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+std::unique_ptr<Separity::SceneManager> Singleton<Separity::SceneManager>::_INSTANCE_;
 
 Separity::SceneManager* Separity::SceneManager::getInstance() {
 	return static_cast<SceneManager*>(instance());

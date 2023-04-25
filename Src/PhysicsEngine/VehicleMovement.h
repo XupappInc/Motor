@@ -7,21 +7,18 @@
 namespace Spyutils {
 	class Vector3;
 }
-
-class btDynamicsWorld;
-class btRaycastVehicle;
-class btVehicleRaycaster;
 namespace Separity {
 	class RigidBody;
+	class Transform;
 	/// <summary>
-	/// Componente rigidbody
+	/// Componente VehicleMovement
 	/// </summary>
 	class _SEPARITY_API_ VehicleMovement : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_VEHICLE_MOVEMENT)
 
-		VehicleMovement();
+		VehicleMovement(Transform* cameraTr);
 		~VehicleMovement();
 
 		void initComponent() override;
@@ -46,11 +43,10 @@ namespace Separity {
 		void update(const uint32_t& deltaTime) override;
 
 		private:
-		float mass_;
-		btDynamicsWorld* world_;
 		RigidBody* rb_;
-		btRaycastVehicle* vehicle_;
-		btVehicleRaycaster* vehicleRayCaster_;
+		Transform* cameraTr_;
+		float cameraOffset_ = 0;
+		float cameraRot_ = 0;
 	};
 }  // namespace Separity
 #endif __VEHICLE_MOVEMENT_H__

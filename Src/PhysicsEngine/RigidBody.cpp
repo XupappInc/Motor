@@ -119,6 +119,12 @@ void Separity::RigidBody::setAngularVelocity(Spyutils::Vector3 vel) {
 	btVector3 velocidad(vel.x, vel.y, vel.z);
 	rb_->setAngularVelocity(velocidad);
 }
+Spyutils::Vector3 Separity::RigidBody::getAngularVelocity() {
+	btVector3 vel = rb_->getAngularVelocity();
+	Spyutils::Vector3 velocidad((float) vel.x(), (float) vel.y(),
+	                            (float) vel.z());
+	return velocidad;
+}
 
 void Separity::RigidBody::applyTorque(Spyutils::Vector3 torq) {
 	btVector3 torque(torq.x, torq.y, torq.z);

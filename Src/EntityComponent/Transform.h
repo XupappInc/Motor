@@ -52,8 +52,9 @@ namespace Separity {
 		/// <param name="rotationY">grados eje y</param>
 		/// <param name="rotationZ">grados de ejez</param>
 		void setRotation(float rotationX, float rotationY, float rotationZ);
-		void setRotationQ(float rotationX, float rotationY, float rotationZ,
-		                  float rotationW);
+		void setRotationQ(float rotationW,float rotationX, float rotationY,
+		                  float rotationZ
+		                );
 		/// <summary>
 		/// geter de la rotación en un Vector3
 		/// </summary>

@@ -74,6 +74,11 @@ namespace Separity {
 		/// <param name="vel">La velocidad que queremos que se aplique</param>
 		void setAngularVelocity(Spyutils::Vector3 vel);
 		/// <summary>
+		/// La velocidad angular del rigidbody
+		/// </summary>
+		/// <param name="vel">La velocidad angular</param>
+		Spyutils::Vector3 getAngularVelocity();
+		/// <summary>
 		/// Aplica una fuerza que no se aplica sobre el centro del rigidbody
 		/// </summary>
 		/// <param name="torq">La fuerza que se aplica</param>

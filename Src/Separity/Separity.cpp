@@ -132,82 +132,17 @@ int main() {
 	    button->addComponent<Button>("BotonPrueba", 200, 200, 200, 200,
 	                                          "World_ap.15");*/
 
-	//// RUEDAS
-	//Entity* rueda0 = entityManager->addEntity(_grp_GENERAL);
-	//rueda0->getComponent<Transform>()->translate({-0.8, 8, -0.5});
-	//rueda0->getComponent<Transform>()->setScale(0.1);
-	//rueda0->getComponent<Transform>()->pitch(90);
-	//rueda0->getComponent<Transform>()->roll(90);
-	//rueda0->addComponent<MeshRenderer>("rueda.mesh");
+	Camera* cam_cam = RenderManager::getInstance()->getCamera();
+	Entity* camera = cam_cam->getEntity();
+	Transform* cam_tr = camera->getComponent<Transform>();
 
-	//colliderParams paramsRueda0;
-	//paramsRueda0.colShape = CYLINDER;
-	//paramsRueda0.height = 0.2;
-	//paramsRueda0.width = 0.5;
-	//paramsRueda0.depth = 0.5;
-	//paramsRueda0.isTrigger = false;
-
-	//rueda0->addComponent<Collider>(paramsRueda0);
-	//rueda0->addComponent<RigidBody>(DYNAMIC, 5);
-
-	//Entity* rueda1 = entityManager->addEntity(_grp_GENERAL);
-	//rueda1->getComponent<Transform>()->translate({0.8, 8, -0.5});
-	//rueda1->getComponent<Transform>()->setScale(0.1);
-	//rueda1->getComponent<Transform>()->pitch(-90);
-	//rueda1->getComponent<Transform>()->roll(90);
-	//rueda1->addComponent<MeshRenderer>("rueda.mesh");
-
-	//colliderParams paramsRueda1;
-	//paramsRueda1.colShape = CYLINDER;
-	//paramsRueda1.height = 0.2;
-	//paramsRueda1.width = 0.5;
-	//paramsRueda1.depth = 0.5;
-	//paramsRueda1.isTrigger = false;
-
-	//rueda1->addComponent<Collider>(paramsRueda1);
-	//rueda1->addComponent<RigidBody>(DYNAMIC, 5);
-
-	//Entity* rueda2 = entityManager->addEntity(_grp_GENERAL);
-	//rueda2->getComponent<Transform>()->translate({-0.8, 8, 0.5});
-	//rueda2->getComponent<Transform>()->setScale(0.1);
-	//rueda2->getComponent<Transform>()->pitch(90);
-	//rueda2->getComponent<Transform>()->roll(90);
-	//rueda2->addComponent<MeshRenderer>("rueda.mesh");
-
-	//colliderParams paramsRueda2;
-	//paramsRueda2.colShape = CYLINDER;
-	//paramsRueda2.height = 0.2;
-	//paramsRueda2.width = 0.5;
-	//paramsRueda2.depth = 0.5;
-	//paramsRueda2.isTrigger = false;
-
-	//rueda2->addComponent<Collider>(paramsRueda2);
-	//rueda2->addComponent<RigidBody>(DYNAMIC, 5);
-
-	//Entity* rueda3 = entityManager->addEntity(_grp_GENERAL);
-	//rueda3->getComponent<Transform>()->translate({0.8, 8, 0.5});
-	//rueda3->getComponent<Transform>()->setScale(0.1);
-	//rueda3->getComponent<Transform>()->pitch(-90);
-	//rueda3->getComponent<Transform>()->roll(90);
-	//rueda3->addComponent<MeshRenderer>("rueda.mesh");
-
-	//colliderParams paramsRueda3;
-	//paramsRueda3.colShape = CYLINDER;
-	//paramsRueda3.height = 0.2;
-	//paramsRueda3.width = 0.5;
-	//paramsRueda3.depth = 0.5;
-	//paramsRueda3.isTrigger = false;
-
-	//rueda3->addComponent<Collider>(paramsRueda3);
-	//rueda3->addComponent<RigidBody>(DYNAMIC, 5);
-
-	// VEHICULO
+	// BUS
 	Entity* coche = entityManager->addEntity(_grp_GENERAL);
 	Transform* cocheTr = coche->getComponent<Transform>();
 	cocheTr->translate({0, 10, 0});
 	cocheTr->setScale(1);
 	coche->addComponent<MeshRenderer>()->setMesh("Bus1.mesh");
-	VehicleMovement* coche_vehiculo = coche->addComponent<VehicleMovement>();
+	VehicleMovement* coche_vehiculo = coche->addComponent<VehicleMovement>(cam_tr);
 
 	colliderParams paramsCoche;
 	paramsCoche.colShape = CUBE;
@@ -219,19 +154,27 @@ int main() {
 	coche->addComponent<Collider>(paramsCoche);
 	coche->addComponent<RigidBody>(DYNAMIC, 100);
 	
-	mm->initComponents();
 
-	Camera* cam_cam = RenderManager::getInstance()->getCamera();
-	Entity* camera = cam_cam->getEntity();
-	Transform* cam_tr = camera->getComponent<Transform>();
-	//cam_tr->pitch(-90);
+
+
+	
+
+
+
 
 	coche->addChild(camera);
 	Spyutils::Vector3 posCoche = cocheTr->getPosition();
-	cam_tr->setPosition(posCoche.x,posCoche.y+5,posCoche.z+7);
+	cam_tr->setPosition(posCoche.x,posCoche.y+3,posCoche.z+7.5);
+	cam_tr->pitch(20);
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;
+
+	bool rot = true;
+
+
+	mm->initComponents();
+
 
 	while(!mm->quit() && !InputManager::getInstance()->closeWindowEvent()) {
 
@@ -253,24 +196,27 @@ int main() {
 			}
 			if(inputManager->isKeyHeld('w')) {
 				coche_vehiculo->acelerar(1);
+			
 			}
 			if(inputManager->isKeyHeld('s')) {
 				coche_vehiculo->acelerar(-1);
+				auto quate=cam_tr->getRotationQ();
+				if(rot) {
+					quate.rotateGlobal(180, {0, 1, 0});
+					cam_tr->setRotationQ(quate.w, quate.x, quate.y, quate.z);
+					rot = false;
+				}
+				
+
+			}
+			if(inputManager->isKeyUp('s')) {
+				rot = true;
+				auto quate = cam_tr->getRotationQ();
+				quate.rotateGlobal(180, {0, 1, 0});
+				cam_tr->setRotationQ(quate.w, quate.x, quate.y, quate.z);
 			}
 			if(inputManager->isKeyHeld(InputManager::SPACE)) {
 				coche_vehiculo->frenar();
-			}
-			if(inputManager->isKeyHeld(InputManager::ARROW_LEFT)) {
-				cam_tr->yaw(0.1f);
-			}
-			if(inputManager->isKeyHeld(InputManager::ARROW_RIGHT)) {
-				cam_tr->yaw(-0.1f);
-			}
-			if(inputManager->isKeyHeld(InputManager::ARROW_UP)) {
-				cam_tr->translate(Spyutils::Vector3(0, 0, -1));
-			}
-			if(inputManager->isKeyHeld(InputManager::ARROW_DOWN)) {
-				cam_tr->translate(Spyutils::Vector3(0, 0, 1));
 			}
 			if(inputManager->isKeyDown('c')) {
 				RenderManager::getInstance()->resizeWindow(1920, 1080);

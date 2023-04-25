@@ -1,7 +1,7 @@
 #include "ManagerManager.h"
 
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+std::unique_ptr<Separity::ManagerManager>
+    Singleton<Separity::ManagerManager>::_INSTANCE_;
 
 Separity::ManagerManager* Separity::ManagerManager::getInstance() {
 	return static_cast<ManagerManager*>(instance());

@@ -12,8 +12,7 @@
 
 #include <iostream>
 
-template<typename T>
-std::unique_ptr<T> Singleton<T>::_INSTANCE_;
+std::unique_ptr<Separity::LuaManager> Singleton<Separity::LuaManager>::_INSTANCE_;
 
 Separity::LuaManager* Separity::LuaManager::getInstance() {
 	return static_cast<LuaManager*>(instance());
