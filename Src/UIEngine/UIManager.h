@@ -45,11 +45,6 @@ namespace Separity {
 		void start() override;
 
 		
-		/// <summary>
-		/// limpia componentes
-		/// </summary>
-		void clean() override;
-		
 		private:
 		Ogre::OverlaySystem* overSystem;
 	};

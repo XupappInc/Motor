@@ -34,10 +34,6 @@ Separity::PhysicsManager::PhysicsManager() {
 	ManagerManager::getInstance()->addManager(_PHYSICS, this);	
 }
 
-PhysicsManager::PhysicsManager() {
-	ManagerManager::getInstance()->addManager(_PHYSICS, this);	
-}
-
 void Separity::PhysicsManager::initWorld() {
 	broadphase_ = new btDbvtBroadphase();
 	collisionConfiguration_ = new btDefaultCollisionConfiguration();

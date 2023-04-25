@@ -10,7 +10,6 @@
 
 Separity::VehicleMovement::VehicleMovement(Transform* cameraTr) {
 	cameraTr_ = cameraTr;
-	world_ = nullptr;
 }
 
 Separity::VehicleMovement::~VehicleMovement() {}
