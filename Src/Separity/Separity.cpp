@@ -80,9 +80,9 @@ int main() {
 	
 	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
-	 Entity* listener = entityManager->addEntity(_grp_GENERAL);
+	/* Entity* listener = entityManager->addEntity(_grp_GENERAL);
 	 auto* sonido = listener->addComponent<AudioSource>("Assets//piano.wav",
-	                                                    "callmemaybe", false);
+	                                                    "callmemaybe", false);*/
 
 	Entity* sinbad = entityManager->addEntity(_grp_GENERAL);
 	sinbad->getComponent<Transform>()->translate({-15, 60, 12});
