@@ -30,7 +30,7 @@ namespace Separity {
 
 		void initComponent() override;
 		void update(const uint32_t& deltaTime = 0) override;
-		///< summary>
+		///<summary>
 		/// Destructora de la clase Boton
 		/// </summary>
 		~Button();

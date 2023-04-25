@@ -20,7 +20,7 @@ namespace Separity {
 		Panel(std::string name, float xPos, float yPos, float width,
 		        float height, std::string materialName = "");
 
-		///< summary>
+		///<summary>
 		/// Destructora de la clase UIPanel
 		///  </summary>
 		~Panel();

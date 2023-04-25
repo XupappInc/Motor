@@ -5,7 +5,7 @@
 #include "SeparityApi.h"
 #include <cassert>
 #include <memory>
-///< summary>
+///<summary>
 /// Clase que implementa el patrón de diseño Singleton
 /// </summary>
 
@@ -51,13 +51,13 @@ class _SEPARITY_API_ Singleton {
 		}
 		return _INSTANCE_.get();
 	}
-	///< summary>
+	///<summary>
 	/// Método para cerrar en orden los singleton que dependan unos de otros
-	///  </summary>
+	///</summary>
 	static void close() { _INSTANCE_.reset(); }
 
 	private:
-	///< summary>
+	///<summary>
 	/// Ninguna otra clase puede acceder a la instancia de una clase
 	/// singleton.
 	/// unique_ptr es un smart poninter que proporciona métodos para el
