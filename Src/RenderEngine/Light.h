@@ -3,7 +3,7 @@
 #define __LIGHT_H__
 #include "SeparityApi.h"
 
-#include "RenderComponent.h"
+#include "Component.h"
 #include "Vector.h"
 enum LightType {
 	POINT_LIGHT,DIRECTIONAL_LIGHT,SPOTLIGHT
@@ -17,7 +17,7 @@ namespace Separity {
 	/// <summary>
 	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
 	/// </summary>
-	class _SEPARITY_API_ Light : public Separity::RenderComponent {
+	class _SEPARITY_API_ Light : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_LIGHT)

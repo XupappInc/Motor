@@ -13,6 +13,12 @@ void Separity::ManagerManager::initComponents() {
 	}
 }
 
+void Separity::ManagerManager::start() {
+	for(auto m : managers_) {
+		m.second->start();
+	}
+}
+
 void Separity::ManagerManager::update(const uint32_t& deltaTime) {
 	for(auto m : managers_) {
 		m.second->update(deltaTime);
@@ -41,7 +47,7 @@ void Separity::ManagerManager::clean() {
 	for(auto m : managers_) {
 		m.second->clean();
 	}
-	close();
+	//close();
 }
 
 void Separity::ManagerManager::initManagers() {
@@ -54,20 +60,3 @@ bool Separity::ManagerManager::quit() { return quit_; }
 
 void Separity::ManagerManager::shutDown() { quit_ = true; }
 
-void Separity::ManagerManager::pseudoClean() {
-	for(auto m = managers_.begin(); m != managers_.end();) {
-		if(m->first != _SCENE && m->first != _INPUT && m->first != _RENDER) {
-			auto aux = m;
-			aux++;
-			m->second->clean();
-			managers_.erase(m);
-			m = aux;
-		} else {
-			m++;
-		}
-	}
-	//for(auto m = managers_.begin(); m != managers_.end();) {
-	//	m->second->reset();
-	//	m++;
-	//}
-}

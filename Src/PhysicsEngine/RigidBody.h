@@ -4,7 +4,7 @@
 
 #include "SeparityApi.h"
 
-#include "PhysicsComponent.h"
+#include "Component.h"
 
 #include <unordered_set>
 
@@ -40,7 +40,7 @@ namespace Separity {
 	/// <summary>
 	/// Componente rigidbody
 	/// </summary>
-	class _SEPARITY_API_ RigidBody : public Separity::PhysicsComponent {
+	class _SEPARITY_API_ RigidBody : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_RIGID_BODY)

@@ -24,6 +24,8 @@ namespace Separity {
 
 		void addCreator(const std::string& CName, CCreator* CCreator);
 
+		void registerInLua();
+
 		private:
 			
 		std::unordered_map<std::string, CCreator*> creators_;

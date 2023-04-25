@@ -5,7 +5,7 @@
 #include "SeparityApi.h"
 
 
-#include "RenderComponent.h"
+#include "Component.h"
 
 #include <string>
 #include <unordered_map>
@@ -19,7 +19,7 @@ namespace Separity {
 
 	class MeshRenderer;
 
-	class _SEPARITY_API_ Animator : public Separity::RenderComponent {
+	class _SEPARITY_API_ Animator : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_ANIMATOR)

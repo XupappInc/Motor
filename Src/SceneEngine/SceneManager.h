@@ -56,15 +56,11 @@ namespace Separity {
 		/// </summary>
 		void changeScene();
 
-		/// <summary>
-		/// Destruye la factoría
-		/// </summary>
-		void clean() override;
-		/// <summary>
-		/// Reseea la instancia de este manager en LUA
-		/// </summary>
-		void reset() override;
+		void start() override;
+
 		static SceneManager* getInstance();
+
+		~SceneManager();
 
 		protected:
 

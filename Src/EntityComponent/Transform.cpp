@@ -9,7 +9,7 @@ using namespace std;
 Separity::Transform::Transform()
     : position_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0),
       rotationQ_(0, 0, 0) {
-	mngr_ = Separity::EntityManager::getInstance();
+
 }
 
 vector<vector<float>>

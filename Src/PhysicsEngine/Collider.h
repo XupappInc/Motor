@@ -5,7 +5,7 @@
 #include "SeparityApi.h"
 
 
-#include "PhysicsComponent.h"
+#include "Component.h"
 
 namespace Spyutils {
 	class Vector3;
@@ -31,7 +31,7 @@ namespace Separity {
 		bool isTrigger = false;
 	};
 
-	class _SEPARITY_API_ Collider : public Separity::PhysicsComponent {
+	class _SEPARITY_API_ Collider : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_COLLIDER)

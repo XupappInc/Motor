@@ -8,7 +8,7 @@
 Separity::PathFollow::PathFollow(std::vector<Spyutils::Vector3> const& path)
     : path_(path), pathingTo_(0), velocity_(1.0f), stopped_(false),
       rigidBody_(nullptr), transform_(nullptr),
-      pathingType_(PathingType::DEFAULT), pathingDir_(1), PhysicsComponent() {}
+      pathingType_(PathingType::DEFAULT), pathingDir_(1) {}
 
 Separity::PathFollow::~PathFollow() {}
 

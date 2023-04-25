@@ -5,7 +5,7 @@
 
 #include "SeparityApi.h"
 
-#include "RenderComponent.h"
+#include "Component.h"
 #include "Vector.h"
 #include <string>
 
@@ -19,7 +19,7 @@ namespace Separity {
 	/// <summary>
 	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
 	/// </summary>
-	class _SEPARITY_API_ ParticleSystem : public Separity::RenderComponent {
+	class _SEPARITY_API_ ParticleSystem : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_PARTICLE_SYSTEM)

@@ -24,10 +24,14 @@ template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 using namespace Separity;
 
-PhysicsManager::PhysicsManager() {
-	ManagerManager::getInstance()->addManager(_PHYSICS, this);
+void Separity::PhysicsManager::start() { 
+	Separity::Manager::start();
 
-	initWorld();
+	initWorld(); 
+}
+
+PhysicsManager::PhysicsManager() {
+	ManagerManager::getInstance()->addManager(_PHYSICS, this);	
 }
 
 void PhysicsManager::initWorld() {
@@ -39,8 +43,11 @@ void PhysicsManager::initWorld() {
 	                                     collisionConfiguration_);
 	world_->setGravity(btVector3(0, -10, 0));
 
-	if(debug_)
+	if(debug_) {
+		
 		initDebug();
+	}
+		
 }
 
 void Separity::PhysicsManager::initDebug() {
@@ -155,12 +162,14 @@ void Separity::PhysicsManager::removeComponent(Separity::Component* cmp) {
 }
 
 void Separity::PhysicsManager::clean() {
+	Separity::Manager::clean();
+
+	rigidBodies_.clear();
+
 	deleteWorld();
 
 	if(debugDrawer_ != nullptr)
 		delete debugDrawer_;
-
-	close();
 }
 
 PhysicsManager* PhysicsManager::getInstance() {

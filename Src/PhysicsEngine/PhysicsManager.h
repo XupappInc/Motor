@@ -24,6 +24,7 @@ namespace Separity {
 		friend Singleton<PhysicsManager>;
 
 		public:
+		
 		/// <summary>
 		/// Constructor de la clase
 		/// </summary>
@@ -60,6 +61,8 @@ namespace Separity {
 		void initComponents() override;
 
 		void removeComponent(Separity::Component* cmp) override;
+
+		void start() override;
 
 		void clean() override;
 		

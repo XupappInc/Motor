@@ -34,8 +34,8 @@
 /// </summary>
 #define _CMPS_TYPES_ \
 		_ENTITY, \
-		_INPUT, \
 		_SCRIPT, \
+		_INPUT, \
 		_PHYSICS, \
 		_UI, \
 		_RENDER, \

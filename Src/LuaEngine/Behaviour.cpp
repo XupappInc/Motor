@@ -8,12 +8,10 @@
 #include <iostream>
 
 Separity::Behaviour::Behaviour(std::string name) : behaviourLua_(nullptr), name_(name) {
-	mngr_ = Separity::LuaManager::getInstance();
 }
 
 Separity::Behaviour::Behaviour(std::string name, luabridge::LuaRef* behaviourLua)
     : behaviourLua_(behaviourLua), name_(name) {
-	mngr_ = Separity::LuaManager::getInstance();
 }
 
 Separity::Behaviour::~Behaviour() { delete behaviourLua_; }

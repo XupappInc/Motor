@@ -14,11 +14,28 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
-void Separity::InputManager::reset() { registerQuitInLua(); }
-
 Separity::InputManager* Separity::InputManager::getInstance() {
 	return static_cast<InputManager*>(instance());
 }
+
+void Separity::InputManager::start() { 
+	Separity::Manager::start(); 
+	
+	lua_State* L = LuaManager::getInstance()->getLuaState();
+	luabridge::getGlobalNamespace(L)
+	    .beginClass<InputManager>("InputManager")
+	    .addFunction("setCloseWindow", &InputManager::setCloseWindow)
+	    .endClass();
+
+	luabridge::setGlobal(L, this, "InputManager");
+}
+
+void Separity::InputManager::clean() { 
+	Separity::Manager::clean(); 
+
+	kbState_ = std::unordered_map<uint8_t, uint8_t>();
+}
+
 
 Separity::InputManager::InputManager() {
 	event = SDL_Event();
@@ -28,11 +45,8 @@ Separity::InputManager::InputManager() {
 	triggerDeadzone_ = 0;
 	clearState();
 
-	ManagerManager::getInstance()->addManager(_INPUT, this);
-	registerQuitInLua();
+	ManagerManager::getInstance()->addManager(_INPUT, this);	
 }
-
-void Separity::InputManager::clean() { close(); }
 
 void Separity::InputManager::update(const uint32_t& deltaTime) { 
 
@@ -374,12 +388,3 @@ bool Separity::InputManager::closeWindowEvent() {
 
 void Separity::InputManager::setCloseWindow() { isCloseWindowEvent_ = true; }
 
-void Separity::InputManager::registerQuitInLua() {
-	lua_State* L = LuaManager::getInstance()->getLuaState();
-	luabridge::getGlobalNamespace(L)
-	    .beginClass<InputManager>("InputManager")
-	    .addFunction("setCloseWindow", &InputManager::setCloseWindow)
-	    .endClass();
-
-	luabridge::setGlobal(L, this, "InputManager");
-}

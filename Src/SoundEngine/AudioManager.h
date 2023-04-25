@@ -26,6 +26,7 @@ namespace Separity {
 		friend Singleton<AudioManager>;
 
 		public:
+
 		/// <summary>
 		/// Constructor de AudioManager, inicializa todas las variables, inicia
 		/// el sistema de sonido, crea todas sus caracteristicas
@@ -105,6 +106,9 @@ namespace Separity {
 		FMOD::SoundGroup* musicGroup_;
 		FMOD::SoundGroup* soundGroup_;
 		bool firstListener;
+
+		
+		void start() override;
 
 		void clean() override;
 

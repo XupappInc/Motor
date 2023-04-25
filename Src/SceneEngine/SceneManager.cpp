@@ -20,10 +20,12 @@ using namespace Separity;
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
-void Separity::SceneManager::reset() { registerChangeSceneInLua(); }
-
 Separity::SceneManager* Separity::SceneManager::getInstance() {
 	return static_cast<SceneManager*>(instance());
+}
+
+Separity::SceneManager::~SceneManager() { 
+	delete factory_; 
 }
 
 Separity::SceneManager::SceneManager()
@@ -47,12 +49,7 @@ Separity::SceneManager::SceneManager()
 	factory_->addCreator("panel", new PanelCreator());
 	factory_->addCreator("text", new TextCreator());
 
-	registerChangeSceneInLua();
-}
-
-void Separity::SceneManager::clean() { 
-	delete factory_;
-	close();
+	
 }
 
 void Separity::SceneManager::update(const uint32_t& deltaTime) {
@@ -126,16 +123,21 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 
 void Separity::SceneManager::changeScene() {
 
-	ManagerManager::getInstance()->pseudoClean();
-	if(loadScene(sceneName_)) {
-		GetComponentWrapper::createAllManagers();
-
+	ManagerManager::getInstance()->clean();
+	ManagerManager::getInstance()->start();
+	if(loadScene(sceneName_)) {		
 		ManagerManager::getInstance()->initComponents();
-		registerChangeSceneInLua();
 		changeScene_ = false;
 	} else {
 		ManagerManager::getInstance()->shutDown();
 	}
+}
+
+void Separity::SceneManager::start() { 
+	Separity::Manager::start(); 
+
+	registerChangeSceneInLua();
+	factory_->registerInLua();
 }
 
 void Separity::SceneManager::luaChangeScene(const std::string& root) {

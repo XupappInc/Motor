@@ -6,7 +6,7 @@
 
 using namespace Separity;
 
-AudioListener::AudioListener() : AudioComponent() {
+AudioListener::AudioListener() {
 	AudioManager* audioManager = AudioManager::getInstance();
 	if(audioManager->firstListener) {
 		audioManager->firstListener = false;

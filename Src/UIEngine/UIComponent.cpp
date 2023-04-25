@@ -11,7 +11,7 @@
 int Separity::UIComponent::numUIElements = 0;
 
 Separity::UIComponent::UIComponent() {
-	mngr_ = Separity::UIManager::getInstance();
+
 	overlayManager_ = Ogre::OverlayManager::getSingletonPtr();
 	inputManager = Separity::InputManager::getInstance();
 	numUIElements++;

@@ -4,9 +4,16 @@
 
 #include <cassert>
 
+void Separity::Manager::start() {
+	if(started_)
+		return;
+	started_ = true;
+}
+
 void Separity::Manager::initComponents() { 
 	for(Separity::Component* c : cmps_)
-		c->initComponent(); }
+		c->initComponent(); 
+}
 
 void Separity::Manager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
@@ -30,6 +37,11 @@ void Separity::Manager::removeComponent(Separity::Component* cmp) {
 	auto iter = std::find(cmps_.begin(), cmps_.end(), cmp);
 
 	cmps_.erase(iter);
+}
+
+void Separity::Manager::clean() { 
+	cmps_.clear(); 
+	started_ = false;
 }
 
 Separity::Manager::Manager() {}

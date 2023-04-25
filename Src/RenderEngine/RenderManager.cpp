@@ -25,6 +25,12 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
+void Separity::RenderManager::start() { 
+	Separity::Manager::start(); 
+	
+	
+}
+
 Separity::RenderManager::RenderManager() {
 	sdlWindow_ = nullptr;
 	// Tamaño ventana
@@ -230,6 +236,17 @@ Ogre::OverlaySystem* Separity::RenderManager::getOverlay() {
 	return overlaySystem_;
 }
 
+Separity::RenderManager::~RenderManager() {
+	saveConfiguration();
+	closedown();
+
+	if(ogreRoot_ != nullptr) {
+		delete ogreRoot_;
+		ogreRoot_ = nullptr;
+	}
+	SDL_Quit();
+}
+
 SDL_Window* Separity::RenderManager::getSDLWindow() { return sdlWindow_; }
 
 Ogre::RenderWindow* Separity::RenderManager::getOgreWindow() {
@@ -246,15 +263,4 @@ void Separity::RenderManager::setCamera(Camera* camera) { camera_ = camera; }
 
 Separity::Camera* Separity::RenderManager::getCamera() { return camera_; }
 
-void Separity::RenderManager::clean() {
-	saveConfiguration();
-	closedown();
 
-	if(ogreRoot_ != nullptr) {
-		delete ogreRoot_;  
-		ogreRoot_ = nullptr;
-	}
-	SDL_Quit();
-
-	close();
-}

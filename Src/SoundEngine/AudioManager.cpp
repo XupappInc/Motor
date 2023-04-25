@@ -15,20 +15,17 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
-inline Separity::AudioManager::AudioManager() {
-	buffer_ = nullptr;
-	system_ = nullptr;
+void Separity::AudioManager::start() {
+	Separity::Manager::start();
+
 	sounds_ = new std::unordered_map<std::string, FMOD::Sound*>();
 	musics_ = new std::unordered_map<std::string, FMOD::Sound*>();
 	channels_ = new std::unordered_map<std::string, FMOD::Channel*>();
-	soundGroup_ = nullptr;
-	musicGroup_ = nullptr;
-	firstListener = true;
 
 	ManagerManager::getInstance()->addManager(_SOUND, this);
 
-	//Initialization of the manager
-	// Create an instance of the FMOD system
+	// Initialization of the manager
+	//  Create an instance of the FMOD system
 	FMOD_RESULT result = FMOD::System_Create(&system_);
 	FMODErrorChecker(&result);
 	// Initialize the FMOD system with 32 channels and normal settings
@@ -57,6 +54,14 @@ inline Separity::AudioManager::AudioManager() {
 	soundGroup_->setVolume(100);
 	system_->createSoundGroup("musicGroup", &musicGroup_);
 	musicGroup_->setVolume(100);
+}
+
+inline Separity::AudioManager::AudioManager() {
+	buffer_ = nullptr;
+	system_ = nullptr;
+	soundGroup_ = nullptr;
+	musicGroup_ = nullptr;
+	firstListener = true;
 }
 
 
@@ -150,6 +155,8 @@ void Separity::AudioManager::update3DListener(int listenerNumber,
 }
 
 void Separity::AudioManager::clean() { 
+	Separity::Manager::clean();
+
 	sounds_->clear();
 	musics_->clear();
 	delete[] buffer_;
@@ -167,8 +174,6 @@ void Separity::AudioManager::clean() {
 	sounds_ = nullptr;
 	musics_ = nullptr;
 	system_ = nullptr;
-
-	close(); 
 }
 
 void Separity::AudioManager::stopAllChannels() {

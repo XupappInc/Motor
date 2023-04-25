@@ -58,16 +58,20 @@ using namespace Separity;
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	ManagerManager* mm = Separity::ManagerManager::getInstance();
+	
 
-	InputManager* inputManager = Separity::InputManager::getInstance();
-	EntityManager* entityManager = Separity::EntityManager::getInstance();
-	UIManager* uiManager = Separity::UIManager::getInstance();
+	GetComponentWrapper::createAllManagers();
 
 	GetComponentWrapper::registerInLua();
 
+	ManagerManager* mm = Separity::ManagerManager::getInstance();
+	InputManager* inputManager = Separity::InputManager::getInstance();
+	EntityManager* entityManager = Separity::EntityManager::getInstance();;
+
+	
+
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
-	sceneMenager->loadScene("scene4.lua");
+	sceneMenager->loadScene("scene.lua");
 	
 	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
@@ -215,7 +219,6 @@ int main() {
 	coche->addComponent<Collider>(paramsCoche);
 	coche->addComponent<RigidBody>(DYNAMIC, 100);
 	
-
 	mm->initComponents();
 
 	Camera* cam_cam = RenderManager::getInstance()->getCamera();

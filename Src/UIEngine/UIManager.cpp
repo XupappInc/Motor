@@ -17,9 +17,15 @@
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 
+void Separity::UIManager::start() { 
+	Separity::Manager::start();
+
+
+	initUi(); 
+}
+
 inline Separity::UIManager::UIManager() { 
 	ManagerManager::getInstance()->addManager(_UI, this);
-	initUi();
 }
 
 void Separity::UIManager::initUi() {
@@ -44,7 +50,3 @@ void Separity::UIManager::update(const uint32_t& deltaTime) {
 }
 
 
-
-void Separity::UIManager::clean() {
-	close();
-}

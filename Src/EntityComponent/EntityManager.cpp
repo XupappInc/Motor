@@ -29,6 +29,12 @@ Separity::Entity* Separity::EntityManager::addEntity(grpId_type gID) {
 	return e;
 }
 
+void Separity::EntityManager::clean() { 
+	Separity::Manager::clean();
+
+	deleteEntities();
+}
+
 void Separity::EntityManager::deleteEntities() {
 
 	for(int i = 0; i < allEntities_.size(); i++) {
@@ -38,10 +44,5 @@ void Separity::EntityManager::deleteEntities() {
 	allEntities_.clear();
 }
 
-void Separity::EntityManager::clean() { 
-
-	deleteEntities();
-	close(); 
-}
 
 

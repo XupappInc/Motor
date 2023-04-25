@@ -10,7 +10,7 @@
 using namespace Separity;
 
 Separity::MeshRenderer::MeshRenderer() : 
-	RenderComponent(), entity_(nullptr), tr_(nullptr) {
+	entity_(nullptr), tr_(nullptr) {
 
 	ogreSceneManager_ = Separity::RenderManager::getInstance()->getSceneManager();	
 	node_ = ogreSceneManager_->getRootSceneNode()->createChildSceneNode();		

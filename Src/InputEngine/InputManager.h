@@ -297,11 +297,10 @@ namespace Separity {
 		/// privadas onFunction()
 		/// </summary>
 		virtual void update(const uint32_t& deltaTime) override;
-		/// <summary>
-		/// Reseea la instancia de este manager en LUA
-		/// </summary>
-		void reset() override;
+
 		static InputManager* getInstance();
+
+		void start() override;
 
 		void clean() override;
 
@@ -396,7 +395,6 @@ namespace Separity {
 		/// </summary>
 		void handleWindowEvent();
 
-		void registerQuitInLua();
 		SDL_Event event;
 
 		//keyboard

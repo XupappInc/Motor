@@ -75,12 +75,12 @@ namespace Separity{
 		cmpId_type getID();
 
 		protected:
-		Entity* ent_;
-		Manager* mngr_;
-
-		bool active_;
 
 		cmpId_type cId_;
+
+		Entity* ent_;
+
+		bool active_;		
 	};
 
 }  // namespace Separity

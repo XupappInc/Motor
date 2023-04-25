@@ -11,7 +11,7 @@
 
 //  #include "checkML.h"
 
-Separity::VehicleMovement::VehicleMovement() : PhysicsComponent() {
+Separity::VehicleMovement::VehicleMovement()  {
 	world_ = nullptr;
 }
 

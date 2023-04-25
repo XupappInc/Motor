@@ -4,7 +4,7 @@
 
 #include "SeparityApi.h"
 
-#include "AudioComponent.h"
+#include "Component.h"
 
 #include <iostream>
 namespace FMOD {
@@ -12,7 +12,7 @@ namespace FMOD {
 	class Channel;
 }  // namespace FMOD
 namespace Separity {
-	class _SEPARITY_API_ AudioSource : public Separity::AudioComponent {
+	class _SEPARITY_API_ AudioSource : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_SOUND)
 		__CMPID_DECL__(Separity::_AUDIO_SOURCE)

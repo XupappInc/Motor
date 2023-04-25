@@ -16,6 +16,9 @@ namespace Separity {
 
 		public:
 
+
+		virtual void start();
+
 		virtual void initComponents();
 		/// <summary>
 		/// Llama al preUpdate de todos los componentes del manager, después
@@ -40,7 +43,7 @@ namespace Separity {
 		/// <summary>
 		/// Funcion que se llama para eliminar el manager
 		/// manager</param>
-		virtual void clean() = 0;
+		virtual void clean();
 		/// <summary>
 		/// Destructor de la clase, protected
 		/// para que puedan acceder los otros managers que hereden de esta clase
@@ -64,7 +67,9 @@ namespace Separity {
 
 		// Componentes del manager
 		std::vector<Separity::Component*> cmps_;
-		bool active_=true;
+		bool active_ = true;
+
+		bool started_ = false;
 	};
 };  // namespace Separity
 

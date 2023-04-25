@@ -2,7 +2,7 @@
 #ifndef __PATH_FOLLOW_H__
 #define __PATH_FOLLOW_H__
 
-#include "PhysicsComponent.h"
+#include "Component.h"
 #include "SeparityApi.h"
 #include <vector>
 
@@ -14,7 +14,7 @@ namespace Separity {
 	class Transform;
 	class RigidBody;
 
-	class _SEPARITY_API_ PathFollow : public Separity::PhysicsComponent {
+	class _SEPARITY_API_ PathFollow : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_PATH_FOLLOW)

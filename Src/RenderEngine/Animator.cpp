@@ -7,7 +7,7 @@
 #include <OgreEntity.h>
 
 
-Separity::Animator::Animator() : RenderComponent() {}
+Separity::Animator::Animator() {}
 
 Separity::Animator::~Animator() { 
 	

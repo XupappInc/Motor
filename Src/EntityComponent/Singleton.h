@@ -32,13 +32,13 @@ class _SEPARITY_API_ Singleton {
 	// Targs se refere a cualquier cantidad y tipo de argumentos que pueda
 	// pedir el init o la constructora de la clase que lo vaya a utilizar
 	template<typename... Targs>
-	///< summary>
+	/// <summary>
 	/// Métodos init e instance que van a utilizar las clases que usen
 	/// singleton.
-	///  Singleton puede acceder a las constructoras pero las demás clases
-	///  no. Comprueban si la instancia es null y la "resetea", generándola
-	///  desde 0 para luego devolverla
-	///  </summary>
+	/// Singleton puede acceder a las constructoras pero las demás clases
+	/// no. Comprueban si la instancia es null y la "resetea", generándola
+	/// desde 0 para luego devolverla
+	/// </summary>
 	static T* init(Targs&&... args) {
 		assert(_INSTANCE_.get() == nullptr);
 		_INSTANCE_.reset(new T(std::forward<Targs>(args)...));

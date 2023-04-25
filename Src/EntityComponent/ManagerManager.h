@@ -21,6 +21,8 @@ namespace Separity {
 
 		public:
 
+		void start() override;
+		
 		/// <summary>
 		/// Llama al update() de todos los managers registrados
 		/// </summary>
@@ -51,12 +53,6 @@ namespace Separity {
 		/// <param name="type">: tipo del manager</param>
 		/// <returns>el manager del tipo pedido</returns>
 		Manager* getManager(cmpType_type type);
-
-		/// <summary>
-		/// Utilizado por el cambio de escena, limpia únicamente los managers necesarios
-		/// para continuar con la ejecucíon del juego
-		/// </summary>
-		void pseudoClean();
 
 		/// <summary>
 		/// Elimina todos los managers de la escena y con ellos, todos los objetos.

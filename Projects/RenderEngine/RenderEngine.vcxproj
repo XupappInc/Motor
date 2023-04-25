@@ -29,7 +29,6 @@
     <ClCompile Include="..\..\Src\RenderEngine\MeshRendererCreator.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\ParticleSystem.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\ParticleSystemCreator.cpp" />
-    <ClCompile Include="..\..\Src\RenderEngine\RenderComponent.cpp" />
     <ClCompile Include="..\..\Src\RenderEngine\RenderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,7 +42,6 @@
     <ClInclude Include="..\..\Src\RenderEngine\MeshRendererCreator.h" />
     <ClInclude Include="..\..\Src\RenderEngine\ParticleSystem.h" />
     <ClInclude Include="..\..\Src\RenderEngine\ParticleSystemCreator.h" />
-    <ClInclude Include="..\..\Src\RenderEngine\RenderComponent.h" />
     <ClInclude Include="..\..\Src\RenderEngine\RenderManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

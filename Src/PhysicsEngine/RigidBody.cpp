@@ -16,7 +16,7 @@
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)
     : mass_(mass), tipo_(tipo), colliderShape_(nullptr),
       triedToGetBehaviour_(false), rb_(nullptr), btTr_(nullptr), tr_(nullptr),
-      behaviour_(nullptr), collisionCallback_(nullptr), PhysicsComponent() {}
+      behaviour_(nullptr), collisionCallback_(nullptr) {}
 
 Separity::RigidBody::~RigidBody() {
 	delete btTr_;

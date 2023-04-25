@@ -46,7 +46,10 @@ namespace Separity {
 		/// </summary>
 		/// <returns>La instancia a este Manager, que es un singleton</returns>
 		static LuaManager* getInstance();
+
 		void clean() override;
+		void start() override;
+
 
 		protected:
 		LuaManager();

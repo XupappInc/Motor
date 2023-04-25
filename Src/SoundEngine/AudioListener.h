@@ -4,10 +4,10 @@
 
 #include "SeparityApi.h"
 
-#include "AudioComponent.h"
+#include "Component.h"
 	
 namespace Separity {
-	class _SEPARITY_API_ AudioListener : public Separity::AudioComponent {
+	class _SEPARITY_API_ AudioListener : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_SOUND)
 		__CMPID_DECL__(Separity::_AUDIO_LISTENER)

@@ -4,13 +4,10 @@
 #include "checkML.h"
 
 Separity::Component::Component()
-    : ent_(nullptr), mngr_(nullptr), active_(true), cId_(0) {}
+    : ent_(nullptr), active_(true), cId_(0) {}
 
 Separity::Component::~Component() {
-	if(mngr_ != NULL)
-		mngr_->removeComponent(this);
-	ent_ = nullptr;
-	mngr_ = nullptr;
+
 }
 
 void Separity::Component::setContext(Entity* ent) {

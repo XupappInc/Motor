@@ -12,7 +12,7 @@
 #include <spyMath.h>
 
 
-Separity::Camera::Camera() : tr_(nullptr), RenderComponent() {
+Separity::Camera::Camera() : tr_(nullptr) {
 
 	Separity::RenderManager* rm = Separity::RenderManager::getInstance();
 	Ogre::SceneManager* sm = rm->getSceneManager();

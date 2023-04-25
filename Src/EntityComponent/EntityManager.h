@@ -13,6 +13,8 @@ namespace Separity {
 	                      public Singleton<Separity::EntityManager> {
 		friend Singleton<Separity::EntityManager>;
 
+		
+
 		public:
 		/// <summary>
 		/// Contructor por defecto de la clase
@@ -32,7 +34,7 @@ namespace Separity {
 		/// constructor (Id del grupo).</params>
 		Entity* addEntity(grpId_type gID);
 
-		void clean() override;
+		void clean();
 
 		private:
 		/// <summary>

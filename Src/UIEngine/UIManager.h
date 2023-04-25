@@ -15,6 +15,9 @@ namespace Separity {
 	                  public Singleton<Separity::UIManager> {
 
 		public:
+
+		
+
 		/// <summary>
 		/// Constructora de la clase
 		/// </summary>
@@ -40,7 +43,8 @@ namespace Separity {
 		/// </summary>
 		void update(const uint32_t& deltaTime) override;
 
-		void clean() override;
+		void start() override;
+
 		private:
 		Ogre::OverlaySystem* overSystem;
 		Ogre::OverlayManager* overManager;

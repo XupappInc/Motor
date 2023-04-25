@@ -19,19 +19,21 @@ Separity::LuaManager* Separity::LuaManager::getInstance() {
 	return static_cast<LuaManager*>(instance());
 }
 
-void Separity::LuaManager::clean() {
+void Separity::LuaManager::start() { 
+	Separity::Manager::start(); 
 
-	cmps_.clear();
-	// Liberamos el estado de Lua
+	initLua();
+}
+
+void Separity::LuaManager::clean() { 
+	Separity::Manager::clean(); 
+
 	lua_close(L_);
-
-	close();
+	L_ = nullptr;
 }
 
 Separity::LuaManager::LuaManager() : L_(nullptr) {
 	ManagerManager::getInstance()->addManager(_SCRIPT, this);
-
-	initLua();
 }
 
 void Separity::LuaManager::initLua() {
