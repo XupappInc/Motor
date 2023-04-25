@@ -47,13 +47,24 @@ void Separity::GetComponentWrapper::createAllManagers() {
 	InputManager::instance();
 	SceneManager::instance();
 	
-	
-
 	RenderManager::instance();
 	PhysicsManager::instance();
 	AudioManager::instance();
 	UIManager::instance();	
 
 	ManagerManager::getInstance()->start();
-	
+}
+
+void Separity::GetComponentWrapper::closeAllManagers() {
+	EntityManager::close();
+	LuaManager::close();
+	InputManager::close();
+	SceneManager::close();
+
+	RenderManager::close();
+	PhysicsManager::close();
+	AudioManager::close();
+	UIManager::close();
+
+	ManagerManager::close();
 }
