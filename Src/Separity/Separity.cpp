@@ -71,12 +71,12 @@ int main() {
 
 	ManagerManager* mm = Separity::ManagerManager::getInstance();
 	InputManager* inputManager = Separity::InputManager::getInstance();
-	EntityManager* entityManager = Separity::EntityManager::getInstance();;
+	EntityManager* entityManager = Separity::EntityManager::getInstance();
 
 	
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
-	sceneMenager->loadScene("menuScene.lua");
+	sceneMenager->loadScene("scene4.lua");
 	
 	 Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
