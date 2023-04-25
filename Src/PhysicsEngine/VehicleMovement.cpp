@@ -5,6 +5,7 @@
 #include "Rigidbody.h"
 #include "Transform.h"
 #include "Vector.h"
+#include "spyMath.h"
 
 #include <BulletDynamics/Vehicle/btRaycastVehicle.h>
 #include <btBulletDynamicsCommon.h>
@@ -35,70 +36,54 @@ void Separity::VehicleMovement::initComponent() {
 	btRaycastVehicle::btVehicleTuning tuning;
 	vehicle_ = new btRaycastVehicle(tuning, rb_->getBulletRigidBody(),
 	                                vehicleRayCaster_);
-
-	// btVector3 connectionPointCS0 =
-	//     btVector3(0.0, 1.2, -2.0);  // posición de conexión de la rueda
-	// btVector3 wheelDirectionCS0 =
-	//     btVector3(0.0, -1.0, 0.0);  // dirección de la rueda
-	// btVector3 wheelAxleCS = btVector3(-1.0, 0.0, 0.0);  // eje de la rueda
-	// btScalar suspensionRestLength = 0.2;   // longitud de la suspensión
-	// btScalar wheelRadius = 0.5;            // radio de la rueda
-	// btScalar suspensionStiffness = 20.0;   // rigidez de la suspensión
-	// btScalar suspensionDamping = 2.3;      // amortiguación de la suspensión
-	// btScalar suspensionCompression = 4.4;  // compresión de la suspensión
-	// btScalar wheelFriction = 1000;         // fricción de la rueda
-	// btScalar rollInfluence = 0.1;          // influencia en el balanceo
-	// btWheelInfo wheelInfo =
-	//     vehicle_->addWheel(connectionPointCS0, wheelDirectionCS0,
-	//     wheelAxleCS,
-	//                         suspensionRestLength, wheelRadius, tuning, true);
-	// wheelInfo.m_suspensionStiffness = suspensionStiffness;
-	// wheelInfo.m_wheelsDampingRelaxation = suspensionDamping;
-	// wheelInfo.m_wheelsDampingCompression = suspensionCompression;
-	// wheelInfo.m_frictionSlip = wheelFriction;
-	// wheelInfo.m_rollInfluence = rollInfluence;
-
-	//// Agregar las ruedas delanteras
-	// btVector3 connectionPointCS0(
-	//     1.2, 1.0, 1.0);  // Punto de conexión de la rueda con el vehículo
-	// btVector3 wheelDirectionCS0(0, -1, 0);  // Dirección de la rueda
-	// btVector3 wheelAxleCS(-1, 0, 0);        // Eje de la rueda
-	// btScalar suspensionRestLength(0.6);     // Longitud de la suspensión
-	// btScalar wheelRadius(0.5);              // Radio de la rueda
-
-	// vehicle_->addWheel(connectionPointCS0, wheelDirectionCS0, wheelAxleCS,
-	//                    suspensionRestLength, wheelRadius, tuning, true);
-	// vehicle_->addWheel(connectionPointCS0 * btVector3(-1, 1, 1),
-	//                    wheelDirectionCS0, wheelAxleCS, suspensionRestLength,
-	//                    wheelRadius, tuning, true);
-
-	//// Agregar las ruedas traseras
-	// btVector3 connectionPointCS1(-1.2, 1.0, 1.0);
-
-	// vehicle_->addWheel(connectionPointCS1, wheelDirectionCS0, wheelAxleCS,
-	//                    suspensionRestLength, wheelRadius, tuning, false);
-	// vehicle_->addWheel(connectionPointCS1 * btVector3(-1, 1, 1),
-	//                    wheelDirectionCS0, wheelAxleCS, suspensionRestLength,
-	//                    wheelRadius, tuning, false);
 }
 
 void Separity::VehicleMovement::girar(int dir) {
-	// vehicle_->setSteeringValue(dir, 0);
-	// vehicle_->setSteeringValue(dir, 1);
+	rotando_ = true;
+	rb_->applyTorque(Spyutils::Vector3(
+	    0, dir * -1 * rb_->getLinearVelocity().magnitude(), 0));
 
-	rb_->applyTorque(Spyutils::Vector3(0, dir * -50, 0));
+	// Calcular la dirección de la fuerza en función de la rotación del
+	// objeto
+	float angle =
+	    -ent_->getComponent<Transform>()->getRotationQ().getRotation().y;
+
+	float angleRad = Spyutils::Math::toRadians(angle);
+
+	float forceMagnitude = rb_->getLinearVelocity().magnitude() * 100;
+	float forceX = forceMagnitude * sin(angleRad);  // componente x de la fuerza
+	float forceZ = forceMagnitude * cos(angleRad);  // componente y de la fuerza
+
+	// Normalizar el vector de dirección de la fuerza
+	float magnitude = -sqrt(forceX * forceX + forceZ * forceZ);
+	forceX /= magnitude;
+	forceZ /= magnitude;
+
+	// Multiplicar el vector de dirección de la fuerza por la magnitud de la
+	// fuerza
+	forceX *= forceMagnitude;
+	forceZ *= forceMagnitude;
+
+	Spyutils::Vector3 impulso(-forceX, 0, forceZ);
+
+	rb_->setLinearVelocity(rb_->getLinearVelocity() * 0.97);
+	rb_->addForce(impulso);
 }
 
 void Separity::VehicleMovement::acelerar(int dir) {
-	/*vehicle_->applyEngineForce(btScalar(dir), 2);
-	vehicle_->applyEngineForce(btScalar(dir), 3);*/
-
 	// Calcular la dirección de la fuerza en función de la rotación del objeto
 	float angle =
-	    ent_->getComponent<Transform>()->getRotationQ().getRotation().y;
-	float forceMagnitude = dir * 10;
-	float forceX = forceMagnitude * cos(angle);  // componente x de la fuerza
-	float forceZ = forceMagnitude * sin(angle);  // componente y de la fuerza
+	    -ent_->getComponent<Transform>()->getRotationQ().getRotation().y;
+
+	float angleRad = Spyutils::Math::toRadians(angle);
+
+	float forceMagnitude = dir;
+	if(dir > 0)
+		forceMagnitude = dir * 30;
+	else
+		forceMagnitude = dir * 10;
+	float forceX = forceMagnitude * sin(angleRad);  // componente x de la fuerza
+	float forceZ = forceMagnitude * cos(angleRad);  // componente y de la fuerza
 
 	// Normalizar el vector de dirección de la fuerza
 	float magnitude = -sqrt(forceX * forceX + forceZ * forceZ);
@@ -112,28 +97,16 @@ void Separity::VehicleMovement::acelerar(int dir) {
 	forceX *= forceMagnitude;
 	forceZ *= forceMagnitude;
 
-	Spyutils::Vector3 impulso(-forceZ, 0, forceX);
+	Spyutils::Vector3 impulso(-forceX, 0, forceZ);
 
 	rb_->applyImpulse(impulso);
 }
 
 void Separity::VehicleMovement::frenar() {
-	/*vehicle_->setBrake(1, 0);
-	vehicle_->setBrake(1, 1);
-	vehicle_->setBrake(1, 2);
-	vehicle_->setBrake(1, 3);*/
-	rb_->setLinearVelocity(rb_->getLinearVelocity() * 0.9);
+	rb_->setLinearVelocity(rb_->getLinearVelocity() * 0.95);
 }
 
 void Separity::VehicleMovement::update(const uint32_t& deltaTime) {
-	for(int i = 0; i < vehicle_->getNumWheels(); i++) {
-		btWheelInfo& wheel = vehicle_->getWheelInfo(i);
-		vehicle_->updateWheelTransform(0, false);
-		// btVehicleRaycaster::btVehicleRaycasterResult result;
-		// vehicleRayCaster_->castRay(wheel.m_worldTransform.getOrigin(),
-		//                    wheel.m_worldTransform.getOrigin() -
-		//         btVector3(0, wheel.m_suspensionRestLength1, 0),
-		//     result);
-	}
-	// vehicle_->updateVehicle(deltaTime);
+	rb_->setLinearVelocity(rb_->getLinearVelocity() * 0.999);
+	rb_->setAngularVelocity(rb_->getAngularVelocity() * 0.99);
 }

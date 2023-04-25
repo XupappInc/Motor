@@ -51,6 +51,8 @@ namespace Separity {
 		RigidBody* rb_;
 		btRaycastVehicle* vehicle_;
 		btVehicleRaycaster* vehicleRayCaster_;
+	
+		bool rotando_ = false;
 	};
 }  // namespace Separity
 #endif __VEHICLE_MOVEMENT_H__
