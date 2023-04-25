@@ -67,7 +67,7 @@ int main() {
 	GetComponentWrapper::registerInLua();
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
-	sceneMenager->loadScene("scene.lua");
+	sceneMenager->loadScene("scene4.lua");
 	
 	// Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
@@ -107,7 +107,7 @@ int main() {
 	sinbad->addComponent<RigidBody>(DYNAMIC, 10);
 	auto animSinbad = sinbad->addComponent<Animator>();
 
-	Entity* luz = entityManager->addEntity(_grp_GENERAL);
+	/*Entity* luz = entityManager->addEntity(_grp_GENERAL);
 	auto luzGlobal = luz->addComponent<Light>(DIRECTIONAL_LIGHT);
 	luzGlobal->setDiffuse({0.7, 0.7, 0.7});
 	auto luzTr = luz->getComponent<Transform>();
@@ -118,7 +118,7 @@ int main() {
 	auto luzTr2 = luzAux->getComponent<Transform>();
 	luzTr2->translate({0, 100, 0});
 	luzAux1->setDirection({0, 0, -1});
-	luzAux1->setDiffuse({0.5, 0, 0.5});
+	luzAux1->setDiffuse({0.5, 0, 0.5});*/
 
 	Entity* button = entityManager->addEntity(_grp_GENERAL);
 	 Text* txt =
@@ -199,9 +199,10 @@ int main() {
 
 	// VEHICULO
 	Entity* coche = entityManager->addEntity(_grp_GENERAL);
-	coche->getComponent<Transform>()->translate({0, 10, 0});
-	coche->getComponent<Transform>()->setScale(1);
-	coche->addComponent<MeshRenderer>()->setMesh("Cube.001.mesh");
+	Transform* cocheTr = coche->getComponent<Transform>();
+	cocheTr->translate({0, 10, 0});
+	cocheTr->setScale(1);
+	coche->addComponent<MeshRenderer>()->setMesh("Bus1.mesh");
 	VehicleMovement* coche_vehiculo = coche->addComponent<VehicleMovement>();
 
 	colliderParams paramsCoche;
@@ -223,7 +224,8 @@ int main() {
 	//cam_tr->pitch(-90);
 
 	coche->addChild(camera);
-	cam_tr->setPosition(0, 15, 5);
+	Spyutils::Vector3 posCoche = cocheTr->getPosition();
+	cam_tr->setPosition(posCoche.x,posCoche.y+5,posCoche.z+7);
 
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 	uint32_t deltaTime = 0;

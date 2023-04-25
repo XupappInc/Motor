@@ -47,13 +47,17 @@ Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,
 	overlayElement_->add2D(overlayContainer_);
 	overlayElement_->show();
 
+	//overlayElement_->hide();
+	//overlayElement_->remove2D(overlayContainer_);
+	//overlayContainer_->removeChild(overlayText_->getName());
+	//overlayManager_->destroyOverlayElement(overlayText_);
+}
+Separity::Text::~Text() { 
+	
 	overlayElement_->hide();
 	overlayElement_->remove2D(overlayContainer_);
 	overlayContainer_->removeChild(overlayText_->getName());
 	overlayManager_->destroyOverlayElement(overlayText_);
-}
-Separity::Text::~Text() { 
-	
 	/*overlayContainer_->removeChild(overlayText_->getName());
 	overlayManager_->destroyOverlayElement(overlayText_);
 	overlayText_ = nullptr;*/

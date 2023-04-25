@@ -2,7 +2,7 @@ Entities = {
 	Light = {
 		transform = {
 			pos = {4.076245307922363, 5.903861999511719, -1.0054539442062378},
-			rot = {0.16907575726509094, 0.7558803558349609, -0.27217137813568115, 0.570947527885437},
+			rot = {0.36299651861190796, 0.7485859990119934, -0.07867267727851868, 0.5492388010025024},
 			scale = {1.0, 1.0, 1.0}
 		},
 		light = {
@@ -12,13 +12,18 @@ Entities = {
 	},
 	SM_Bld_Apartment_01 = {
 		transform = {
-			pos = {0.0, 0.0, -0.0},
+			pos = {1.2452728748321533, 0.7482438087463379, -1.253498911857605},
 			rot = {0.7071067690849304, 0.0, -0.0, 0.7071068286895752},
 			scale = {0.4980705678462982, 0.4980705678462982, 0.4980705678462982}
 		},
 		meshRenderer = {
-			textureName = "lambert377",
 			meshName = "Mesh"
+		},
+		collider = {
+			dim = {2.4903528690338135, 2.5877747535705566, 1.4942116737365723},
+		},
+		rigidbody = {
+			type = 2
 		}
 	},
 	SM_Env_Sidewalk_01 = {
@@ -28,7 +33,6 @@ Entities = {
 			scale = {0.499408483505249, 0.499408483505249, 0.499408483505249}
 		},
 		meshRenderer = {
-			textureName = "lambert1.001",
 			meshName = "Mesh.001"
 		}
 	},
@@ -39,7 +43,6 @@ Entities = {
 			scale = {0.41332826018333435, 0.41332826018333435, 0.41332826018333435}
 		},
 		meshRenderer = {
-			textureName = "lambert3",
 			meshName = "Mesh.005"
 		}
 	},
@@ -50,7 +53,6 @@ Entities = {
 			scale = {0.48391225934028625, 0.48391225934028625, 0.48391225934028625}
 		},
 		meshRenderer = {
-			textureName = "lambert1.002",
 			meshName = "Mesh.006"
 		}
 	},
@@ -61,7 +63,6 @@ Entities = {
 			scale = {0.5217331647872925, 0.5217331647872925, 0.5217331647872925}
 		},
 		meshRenderer = {
-			textureName = "lambert1.003",
 			meshName = "Mesh.008"
 		}
 	},
@@ -72,14 +73,13 @@ Entities = {
 			scale = {0.5583922863006592, 0.5583922863006592, 0.5583922863006592}
 		},
 		meshRenderer = {
-			textureName = "lambert1.004",
 			meshName = "Mesh.009"
 		}
 	},
 	Camera = {
 		transform = {
 			pos = {0.0, 0.0, -0.0},
-			rot = {0.47943010926246643, -0.35599786043167114, 0.22140951454639435, 0.7709670066833496},
+			rot = {0.7071067690849304, 0.0, -0.0, 0.7071067690849304},
 			scale = {1.0, 1.0, 1.0}
 		},
 		camera = {
@@ -92,7 +92,6 @@ Entities = {
 			scale = {-0.4836762547492981, -0.4836762547492981, -0.4836762547492981}
 		},
 		meshRenderer = {
-			textureName = "lambert1",
 			meshName = "Mesh.004"
 		}
 	},
@@ -103,7 +102,6 @@ Entities = {
 			scale = {0.519815981388092, 0.519815981388092, 0.519815981388092}
 		},
 		meshRenderer = {
-			textureName = "lambert1.005",
 			meshName = "Mesh.007"
 		}
 	},
@@ -114,11 +112,7 @@ Entities = {
 			scale = {0.4882009029388428, 0.4882009029388428, 0.4882009029388428}
 		},
 		meshRenderer = {
-			textureName = "lambert5",
 			meshName = "Mesh.012"
-		},
-		currentUVSet = {
-			map1
 		}
 	},
 	SM_Env_Tree_01 = {
@@ -128,7 +122,6 @@ Entities = {
 			scale = {0.8161892890930176, 0.8161892890930176, 0.8161892890930176}
 		},
 		meshRenderer = {
-			textureName = "lambert1.006",
 			meshName = "Mesh.013"
 		}
 	},
@@ -139,7 +132,6 @@ Entities = {
 			scale = {0.8161892890930176, 0.8161892890930176, 0.8161892890930176}
 		},
 		meshRenderer = {
-			textureName = "lambert1.007",
 			meshName = "Mesh.014"
 		}
 	},
@@ -150,7 +142,6 @@ Entities = {
 			scale = {0.7150607109069824, 0.7150607109069824, 0.7150607109069824}
 		},
 		meshRenderer = {
-			textureName = "lambert1.008",
 			meshName = "Mesh.015"
 		}
 	},
@@ -161,7 +152,6 @@ Entities = {
 			scale = {0.514667809009552, 0.514667809009552, 0.514667809009552}
 		},
 		meshRenderer = {
-			textureName = "lambert1.009",
 			meshName = "Mesh.016"
 		}
 	},
@@ -172,7 +162,6 @@ Entities = {
 			scale = {0.514667809009552, 0.514667809009552, 0.514667809009552}
 		},
 		meshRenderer = {
-			textureName = "lambert1.010",
 			meshName = "Mesh.017"
 		}
 	},
@@ -183,7 +172,6 @@ Entities = {
 			scale = {0.514667809009552, 0.514667809009552, 0.514667809009552}
 		},
 		meshRenderer = {
-			textureName = "lambert1.011",
 			meshName = "Mesh.018"
 		}
 	},
@@ -194,7 +182,6 @@ Entities = {
 			scale = {0.514667809009552, 0.514667809009552, 0.514667809009552}
 		},
 		meshRenderer = {
-			textureName = "lambert1.012",
 			meshName = "Mesh.019"
 		}
 	},
@@ -205,7 +192,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.004",
 			meshName = "Mesh.020"
 		}
 	},
@@ -216,7 +202,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.005",
 			meshName = "Mesh.021"
 		}
 	},
@@ -227,7 +212,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.006",
 			meshName = "Mesh.022"
 		}
 	},
@@ -238,7 +222,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.007",
 			meshName = "Mesh.023"
 		}
 	},
@@ -249,7 +232,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.008",
 			meshName = "Mesh.024"
 		}
 	},
@@ -260,7 +242,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.009",
 			meshName = "Mesh.025"
 		}
 	},
@@ -271,7 +252,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.010",
 			meshName = "Mesh.026"
 		}
 	},
@@ -282,7 +262,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.011",
 			meshName = "Mesh.027"
 		}
 	},
@@ -293,7 +272,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.012",
 			meshName = "Mesh.028"
 		}
 	},
@@ -304,7 +282,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.013",
 			meshName = "Mesh.029"
 		}
 	},
@@ -315,7 +292,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.014",
 			meshName = "Mesh.030"
 		}
 	},
@@ -326,7 +302,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.015",
 			meshName = "Mesh.031"
 		}
 	},
@@ -337,7 +312,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.016",
 			meshName = "Mesh.033"
 		}
 	},
@@ -348,7 +322,6 @@ Entities = {
 			scale = {0.5273774266242981, 0.5273774266242981, 0.5273774266242981}
 		},
 		meshRenderer = {
-			textureName = "blinn269.017",
 			meshName = "Mesh.034"
 		}
 	},
@@ -359,7 +332,6 @@ Entities = {
 			scale = {0.5564895272254944, 0.5564895272254944, 0.5564895272254944}
 		},
 		meshRenderer = {
-			textureName = "lambert1.014",
 			meshName = "Mesh.035"
 		}
 	},
@@ -370,7 +342,6 @@ Entities = {
 			scale = {0.5307559370994568, 0.5307559370994568, 0.5307559370994568}
 		},
 		meshRenderer = {
-			textureName = "lambert1.015",
 			meshName = "Mesh.036"
 		}
 	},
@@ -381,7 +352,6 @@ Entities = {
 			scale = {1.0, 1.0, 1.0}
 		},
 		meshRenderer = {
-			textureName = "lambert1.016",
 			meshName = "Mesh.038"
 		}
 	},
@@ -392,7 +362,6 @@ Entities = {
 			scale = {-0.2988187074661255, -0.2988187074661255, -0.2988187074661255}
 		},
 		meshRenderer = {
-			textureName = "lambert1.016",
 			meshName = "Mesh.037"
 		}
 	},
@@ -403,7 +372,6 @@ Entities = {
 			scale = {-0.2988187074661255, -0.2988187074661255, -0.2988187074661255}
 		},
 		meshRenderer = {
-			textureName = "lambert2",
 			meshName = "Mesh.039"
 		}
 	},
@@ -414,7 +382,6 @@ Entities = {
 			scale = {0.6836143136024475, 0.6836143136024475, 0.6836143136024475}
 		},
 		meshRenderer = {
-			textureName = "lambert2.001",
 			meshName = "Mesh.041"
 		}
 	},
@@ -425,7 +392,6 @@ Entities = {
 			scale = {0.6660562753677368, 0.6660562753677368, 0.6660562753677368}
 		},
 		meshRenderer = {
-			textureName = "lambert1.018",
 			meshName = "Mesh.043"
 		}
 	},
@@ -436,7 +402,6 @@ Entities = {
 			scale = {0.6282830834388733, 0.6282830834388733, 0.6282830834388733}
 		},
 		meshRenderer = {
-			textureName = "lambert1.018",
 			meshName = "Mesh.042"
 		}
 	},
@@ -447,7 +412,6 @@ Entities = {
 			scale = {0.6593250036239624, 0.6593250036239624, 0.6593250036239624}
 		},
 		meshRenderer = {
-			textureName = "lambert1.019",
 			meshName = "Mesh.044"
 		}
 	},
@@ -458,7 +422,6 @@ Entities = {
 			scale = {0.6593250036239624, 0.6593250036239624, 0.6593250036239624}
 		},
 		meshRenderer = {
-			textureName = "lambert1.020",
 			meshName = "Mesh.045"
 		}
 	},
