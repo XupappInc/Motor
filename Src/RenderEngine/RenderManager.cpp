@@ -22,6 +22,11 @@
 #include <fstream>
 #include <iostream>
 
+#include "EntityManager.h"
+
+#include "Transform.h"
+#include "Camera.h"
+
 std::unique_ptr<Separity::RenderManager>
     Singleton<Separity::RenderManager>::_INSTANCE_;
 
@@ -29,6 +34,19 @@ void Separity::RenderManager::start() {
 	Separity::Manager::start(); 
 	
 	
+}
+
+void Separity::RenderManager::initComponents() {
+
+	if(camera_ == nullptr) {
+		Entity* entity = EntityManager::getInstance()->addEntity(_grp_GENERAL);
+		camera_ = entity->addComponent<Camera>();
+		Transform* tr = entity->getComponent<Transform>();
+		tr->setPosition(0, 0, 0);
+		tr->setRotation(0, 0, 0);
+	}
+
+	Separity::Manager::initComponents();
 }
 
 Separity::RenderManager::RenderManager() {
@@ -42,6 +60,8 @@ Separity::RenderManager::RenderManager() {
 	ogreWindow_ = nullptr;
 	configFile_ = nullptr;
 	overlaySystem_ = nullptr;
+
+	camera_ = nullptr;
 
 	ManagerManager::getInstance()->addManager(_RENDER, this);
 

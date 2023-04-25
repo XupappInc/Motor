@@ -8,6 +8,8 @@
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 
+#include <iostream>
+
 Separity::CameraCreator::CameraCreator() {}
 
 void Separity::CameraCreator::registerInLua() {
@@ -20,8 +22,11 @@ void Separity::CameraCreator::registerInLua() {
 bool Separity::CameraCreator::createComponent(lua_State* L,
                                               Separity::Entity* ent) {
 
-	if(RenderManager::getInstance()->getCamera() != nullptr)
+	if(RenderManager::getInstance()->getCamera() != nullptr) {
+		std::cerr << "[SPY ERROR]: Multiple cameras in the project\n";
 		return false;
+	}
+		
 
 	ent->addComponent<Camera>();
 	return true;

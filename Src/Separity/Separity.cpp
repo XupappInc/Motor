@@ -71,12 +71,12 @@ int main() {
 
 	ManagerManager* mm = Separity::ManagerManager::getInstance();
 	InputManager* inputManager = Separity::InputManager::getInstance();
-	EntityManager* entityManager = Separity::EntityManager::getInstance();;
+	EntityManager* entityManager = Separity::EntityManager::getInstance();
 
 	
 
 	SceneManager* sceneMenager = Separity::SceneManager::getInstance();
-	sceneMenager->loadScene("menuScene.lua");
+	sceneMenager->loadScene("scene.lua");
 	
 	 Entity* MusicInstance = entityManager->addEntity(_grp_GENERAL);
 
@@ -160,13 +160,6 @@ int main() {
 	coche->addComponent<Collider>(paramsCoche);
 	coche->addComponent<RigidBody>(DYNAMIC, 100);
 	
-
-
-
-	
-
-
-
 
 	coche->addChild(camera);
 	Spyutils::Vector3 posCoche = cocheTr->getPosition();

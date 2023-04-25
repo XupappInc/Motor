@@ -70,8 +70,11 @@ void Separity::LuaManager::registerClasses() {
 bool Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 	// Cargamos el script de Lua desde un archivo
 	std::string path = "Assets/Scripts/" + name + ".lua";
-	if(luaL_dofile(L_, path.c_str()))
+	if(luaL_dofile(L_, path.c_str())) {
+		std::cerr << "[SPY ERROR]: Failed to load script: " << lua_tostring(L_, -1) << "\n";
 		return false;
+	}
+		
 
 	// Creamos una instancia de Behaviour y la pasamos al script
 	Behaviour* behaviourScript = ent->addComponent<Behaviour>(name);

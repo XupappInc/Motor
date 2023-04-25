@@ -28,8 +28,8 @@ namespace Separity {
 		friend Singleton<RenderManager>;
 
 		public:
-
 		
+		void initComponents() override;
 		/// <summary>
 		/// Contructor por defecto de la clase
 		/// </summary>
@@ -102,6 +102,7 @@ namespace Separity {
 		Camera* getCamera();
 
 		void start() override;
+
 
 		/// <summary>
 		/// Devuelve el overlay de Ogre
