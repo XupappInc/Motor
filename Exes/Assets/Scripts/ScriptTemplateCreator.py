@@ -40,7 +40,19 @@ def writeTemplate(script, name):
     script.write("--Metodo OnCollisionExit, llamado al salir de una colision\n" + 
                  "function " + nameCap + ":onCollisionExit()\n\n"
                  "end\n\n")
-    
+    script.write("--Metodo OnButtonClick, llamado al pulsar el boton de esta entidad\n" + 
+                 "function " + nameCap + ":onButtonClick()\n\n"
+                 "end\n\n")
+    script.write("--Metodo OnButtonReleased, llamado al soltar el boton de esta entidad\n" + 
+                 "function " + nameCap + ":onButtonReleased()\n\n"
+                 "end\n\n")
+    script.write("--Metodo OnButtonHover, llamado al posar el raton sobre el boton de esta entidad\n" + 
+                 "function " + nameCap + ":onButtonHover()\n\n"
+                 "end\n\n")
+    script.write("--Metodo OnButtonUnhover, llamado al dejar de posar el raton sobre el boton de esta entidad\n" + 
+                 "function " + nameCap + ":onButtonUnhover()\n\n"
+                 "end\n\n")
+
     # variable global clase
     script.write("--Variable global de la clase (para Luabridge)\n" + 
                  name + "Lua = " + nameCap + ":new()\n")
