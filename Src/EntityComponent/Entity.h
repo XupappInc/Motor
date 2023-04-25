@@ -169,7 +169,7 @@ namespace Separity {
 		/// <summary>
 		/// Devuelve si existe un componente con el identificador T::id
 		/// </summary>
-		/// <returns>True si existe el componente, false en caso
+		/// <returns>True si existe el componente, falssssssssssssssssssse en caso
 		/// contrario</returns>
 		template<typename T>
 		bool hasComponent() {
