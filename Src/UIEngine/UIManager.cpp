@@ -23,7 +23,7 @@ void Separity::UIManager::initUi() {
 }
 
 Separity::UIManager* Separity::UIManager::getInstance() {
-	return static_cast<Separity::UIManager*>(instance());
+	return static_cast<UIManager*>(instance());
 }
 
 void Separity::UIManager::render() {}

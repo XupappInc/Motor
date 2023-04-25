@@ -1,7 +1,7 @@
 // SeparityExports.cpp : Define las funciones exportadas del archivo DLL.
 //
 #include "SeparityExports.h"
-
+#include "framework.h"
 #include <iostream>
 #include "Entity.h"
 #include "Component.h"
