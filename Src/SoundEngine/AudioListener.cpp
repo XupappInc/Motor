@@ -1,6 +1,6 @@
 #include "AudioListener.h"
 #include "Transform.h"
-#include "Entity.h"
+#include "EntityComponent\Entity.h"
 #include "AudioManager.h"
 #include "fmod.hpp"
 

@@ -2,18 +2,19 @@
 
 #include "AudioListener.h"
 #include "AudioSource.h"
-#include "Component.h"
-#include "Entity.h"
-#include "ManagerManager.h"
-#include "Transform.h"
+#include "EntityComponent\Component.h"
+#include "EntityComponent\Entity.h"
+#include "EntityComponent\ManagerManager.h"
+#include "EntityComponent\Transform.h"
+#include "LuaEngine\LuaManager.h"
+#include "SeparityUtils\checkML.h"
+
 #include "fmod.hpp"
 #include "fmod_errors.h"
-#include "LuaManager.h"
-
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 #include <unordered_map>
-#include "checkML.h"
+
 #define M_PI 3.141592
 
 std::unique_ptr<Separity::AudioManager> Singleton<Separity::AudioManager>::_INSTANCE_;
