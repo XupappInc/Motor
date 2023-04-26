@@ -1,10 +1,5 @@
 #include "AudioListener.h"
-<<<<<<< HEAD
 
-=======
-#include "Transform.h"
-#include "Entity.h"
->>>>>>> parent of 14d2930b (Cambiados directorios de inclusion SoundEngine)
 #include "AudioManager.h"
 #include "EntityComponent\Transform.h"
 #include "EntityComponent\Entity.h"

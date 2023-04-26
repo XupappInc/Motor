@@ -143,7 +143,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_SEPARITY_EXPORT_;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityExports;$(SolutionDir)src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\;$(SolutionDir)Src\SeparityExports;$(SolutionDir)src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,7 +160,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_SEPARITY_EXPORT_;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityExports;$(SolutionDir)src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\;$(SolutionDir)Src\SeparityExports;$(SolutionDir)src\SeparityUtils;$(SolutionDir)Src\EntityComponent;$(SolutionDir)Dependencias\FMOD\src;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
