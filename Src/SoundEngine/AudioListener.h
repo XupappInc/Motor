@@ -2,9 +2,8 @@
 #ifndef __AUDIO_LISTENER_H__
 #define __AUDIO_LISTENER_H__       
 
-#include "SeparityApi.h"
-
-#include "Component.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 	
 namespace Separity {
 	class _SEPARITY_API_ AudioListener : public Separity::Component {

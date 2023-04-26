@@ -4,7 +4,7 @@
 #ifndef __VIRTUAL_TIMER_H__
 #define __VIRTUAL_TIMER_H__
 
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
 
 namespace Spyutils {
 	/// <summary>

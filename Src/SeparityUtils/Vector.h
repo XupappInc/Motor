@@ -1,7 +1,7 @@
 #pragma once
 #ifndef __VECTOR3_H__
 #define __VECTOR3_H__
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
 
 namespace Spyutils {
 	/// <summary>

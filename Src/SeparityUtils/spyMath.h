@@ -3,7 +3,7 @@
 #define __SPYMATH_H__
 
 #define spyPI 3.14159265358979323846 /* pi */
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
 
 namespace Spyutils {
 	/// <summary>

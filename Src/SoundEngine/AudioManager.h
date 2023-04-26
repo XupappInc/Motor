@@ -2,9 +2,8 @@
 #ifndef __AUDIO_MANAGER_H__
 #define __AUDIO_MANAGER_H__
 
-#include "SeparityApi.h"
-
-#include "Manager.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Manager.h"
 
 #include <iostream>
 #include <unordered_map>

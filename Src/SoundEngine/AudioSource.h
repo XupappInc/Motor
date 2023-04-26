@@ -2,11 +2,11 @@
 #ifndef __AUDIO_SOURCE_H__
 #define __AUDIO_SOURCE_H__
 
-#include "SeparityApi.h"
-
-#include "Component.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 
 #include <iostream>
+
 namespace FMOD {
 	class Sound;
 	class Channel;

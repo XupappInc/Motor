@@ -2,7 +2,7 @@
 #ifndef __RANDOM_H__
 #define __RANDOM_H__
 
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
 
 
 namespace Spyutils {

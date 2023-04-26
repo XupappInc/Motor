@@ -2,7 +2,7 @@
 #ifndef __SPYQUATERNION_H__
 #define __SPYQUATERNION_H__
   
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
 
 class btQuaternion;
 namespace Ogre {

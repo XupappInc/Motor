@@ -9,6 +9,7 @@
 #include <OgreMath.h>
 #include <OgreVector3.h>
 #include <math.h>
+
 Spyutils::spyQuaternion::spyQuaternion() : spyQuaternion(0, 0, 0) {}
 Spyutils::spyQuaternion::spyQuaternion(float x, float y, float z) {
 	double cy = cos(z * Ogre::Math::PI / 180.0 / 2.0);
