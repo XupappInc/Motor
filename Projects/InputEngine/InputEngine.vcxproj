@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\InputEngine\InputManager.cpp" />
+    <ClCompile Include="..\..\Src\InputEngine\InputWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\InputEngine\InputManager.h" />
+    <ClInclude Include="..\..\Src\InputEngine\InputWrapper.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
