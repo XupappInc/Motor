@@ -257,7 +257,7 @@
 // }
 #include <Windows.h>
 #include <iostream>
-#include "SeparityExports.h"
+#include "SeparityExports\SeparityExports.h"
 typedef bool(__cdecl* GameEntryPoint)();
 int main() {
 

@@ -1,7 +1,8 @@
 #pragma once
 #ifndef __COMPONENT_FACTORY_H__
 #define __COMPONENT_FACTORY_H__
-#include "SeparityApi.h"
+
+#include "SeparityExports\SeparityApi.h"
 
 #include <string>
 #include <unordered_map>

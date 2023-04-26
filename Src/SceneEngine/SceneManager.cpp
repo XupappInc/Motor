@@ -2,14 +2,12 @@
 
 #include "CCreatorHeaders.h"
 #include "ComponentFactory.h"
+#include "EntityComponent\Entity.h"
+#include "EntityComponent\EntityManager.h"
+#include "EntityComponent\ManagerManager.h"
+#include "LuaEngine\LuaManager.h"
+#include "ComponentEngine\GetComponentWrapper.h"
 
-#include "Entity.h"
-#include "EntityManager.h"
-
-#include "ManagerManager.h"
-#include "LuaManager.h"
-
-#include "GetComponentWrapper.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>

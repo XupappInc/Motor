@@ -1,10 +1,9 @@
 #pragma once
 #ifndef __SCENE_MANAGER_H__
 #define __SCENE_MANAGER_H__
-#include "SeparityApi.h"
 
-
-#include "Manager.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Manager.h"
 
 #include <string>
 

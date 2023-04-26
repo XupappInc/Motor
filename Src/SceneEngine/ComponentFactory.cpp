@@ -1,6 +1,6 @@
 #include "ComponentFactory.h"
 
-#include "CCreator.h"
+#include "EntityComponent\CCreator.h"
 
 #include <iostream>
 
