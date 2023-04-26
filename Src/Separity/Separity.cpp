@@ -258,8 +258,16 @@
 #include <Windows.h>
 #include <iostream>
 #include "SeparityExports\SeparityExports.h"
+
+//Necesario para el DPI Awareness (escalado de 125% de windows)
+ #include <ShellScalingApi.h>
+ #pragma comment(lib, "Shcore.lib")
+
 typedef bool(__cdecl* GameEntryPoint)();
 int main() {
+
+	// Necesario para el DPI Awareness (escalado de 125% de windows)
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
 
 /*
 	// Necesario para el DPI Awareness (escalado de 125% de windows)
