@@ -30,7 +30,7 @@ void Separity::AudioManager::start() {
 	FMOD_RESULT result = FMOD::System_Create(&system_);
 	FMODErrorChecker(&result);
 	// Initialize the FMOD system with 32 channels and normal settings
-	result = system_->init(32, FMOD_3D, 0);
+	result = system_->init(100, FMOD_3D, 0);
 	FMODErrorChecker(&result);
 	result = system_->set3DSettings(1.0f, 1.0f, 1.0f);
 	FMODErrorChecker(&result);
