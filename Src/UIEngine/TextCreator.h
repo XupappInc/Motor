@@ -2,8 +2,8 @@
 #ifndef __TEXT_CREATOR_H__
 #define __TEXT_CREATOR_H__
 
-#include "CCreator.h"
-#include "SeparityApi.h"
+#include "EntityComponent\CCreator.h"
+#include "SeparityExports\SeparityApi.h"
 
 class lua_State;
 

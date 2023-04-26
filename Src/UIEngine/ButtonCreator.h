@@ -2,9 +2,9 @@
 #ifndef __BUTTON_CREATOR_H__
 #define __BUTTON_CREATOR_H__
 
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\CCreator.h"
 
-#include "CCreator.h"
 
 class lua_State;
 

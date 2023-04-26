@@ -1,13 +1,13 @@
 #include "Text.h"
 
 #include "Panel.h"
+#include "SeparityUtils\checkML.h"
 
 #include <OgreFontManager.h>
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayManager.h>
 #include <OgreTextAreaOverlayElement.h>
-#include "checkML.h"
 
 
 Separity::Text::Text(std::string overlayName, std::string fontType, float xPos,

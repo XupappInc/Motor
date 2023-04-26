@@ -1,12 +1,9 @@
 #pragma once
-
-
 #ifndef __IMAGE_H__
 #define __IMAGE_H__
 
-
-#include"SeparityApi.h"
 #include "UIComponent.h"
+#include"SeparityExports\SeparityApi.h"
 
 #include <string>
 

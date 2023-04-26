@@ -1,11 +1,11 @@
 #include "TextCreator.h"
 
 #include "Text.h"
-#include "Entity.h"
+#include "EntityComponent\Entity.h"
+#include "LuaEngine\LuaManager.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
-#include "LuaManager.h"
 
 Separity::TextCreator::TextCreator() {}
 

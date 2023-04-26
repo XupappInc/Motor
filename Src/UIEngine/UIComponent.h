@@ -1,8 +1,9 @@
 #pragma once
 #ifndef __UI_COMPONENT_H__
 #define __UI_COMPONENT_H__
-#include "Component.h"
-#include "SeparityApi.h"
+
+#include "EntityComponent\Component.h"
+#include "SeparityExports\SeparityApi.h"
 
 #include <utility>
 #include <string>

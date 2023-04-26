@@ -2,13 +2,12 @@
 #ifndef __TEXT_H__
 #define __TEXT_H__
 
-#include "SeparityApi.h"
-
 #include "UIComponent.h"
+#include "SeparityExports\SeparityApi.h"
+#include <SeparityUtils\Vector.h>
 
 #include <string>
 #include <utility>
-#include <Vector.h>
 
 namespace Ogre {
 	class TextAreaOverlayElement;

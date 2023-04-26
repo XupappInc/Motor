@@ -392,6 +392,7 @@ int main() {
 #else
 	HMODULE hinstLib = LoadLibrary(TEXT("SeparityGame.dll"));
 #endif
+	
 	if(hinstLib != NULL) {
 		std::cout << "Librería cargada!\n";
 		GameEntryPoint entryPoint;

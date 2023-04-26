@@ -1,9 +1,8 @@
-
 #pragma once
 #ifndef __IMAGE_CREATOR_H__
 #define __IMAGE_CREATOR_H__
 
-#include "CCreator.h"
+#include "EntityComponent\CCreator.h"
 
 class lua_State;
 

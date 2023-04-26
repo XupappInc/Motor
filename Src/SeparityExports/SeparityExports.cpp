@@ -48,12 +48,5 @@
 Separity::CSeparityExports::CSeparityExports() { std::cout << "Hola" << std::endl; }
 
 void Separity::CSeparityExports::initMotor() { 
-	Separity::ManagerManager* mM = Separity::ManagerManager::getInstance();
-	Separity::UIManager* uiM = Separity::UIManager::getInstance();
-	Separity::EntityManager* eM = Separity::EntityManager::getInstance();
-	Separity::SceneManager* sM = Separity::SceneManager::getInstance();
-	Separity::PhysicsManager* pM = Separity::PhysicsManager::getInstance();
-	Separity::RenderManager* rM = Separity::RenderManager::getInstance();
-	Separity::AudioManager* aM = Separity::AudioManager::getInstance();
-	Separity::LuaManager* lM = Separity::LuaManager::getInstance();
+	Separity::GetComponentWrapper::createAllManagers();
 }

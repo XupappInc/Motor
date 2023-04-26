@@ -1,9 +1,10 @@
 #include "UIManager.h"
 
-#include "checkML.h"
-#include "RenderManager.h"
-#include "Component.h"
-#include "ManagerManager.h"
+#include "SeparityUtils\checkML.h"
+#include "RenderEngine\RenderManager.h"
+#include "EntityComponent\Component.h"
+#include "EntityComponent\ManagerManager.h"
+
 #include <OgreOverlay.h>
 #include <iostream>
 

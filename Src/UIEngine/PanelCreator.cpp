@@ -1,11 +1,11 @@
 #include "PanelCreator.h"
 
 #include "Panel.h"
-#include "Entity.h"
+#include "EntityComponent\Entity.h"
+#include "LuaEngine\LuaManager.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
-#include "LuaManager.h"
 
 Separity::PanelCreator::PanelCreator() {}
 

@@ -1,8 +1,10 @@
 #include "UIComponent.h"
-#include "InputManager.h"
+
 #include "UIManager.h"
-#include "checkML.h"
-#include "Vector.h"
+#include "InputEngine\InputManager.h"
+#include "SeparityUtils\checkML.h"
+#include "SeparityUtils\Vector.h"
+
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayManager.h> 

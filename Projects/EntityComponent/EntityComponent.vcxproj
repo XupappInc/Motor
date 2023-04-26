@@ -165,7 +165,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_SEPARITY_EXPORT_;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityExports;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\SeparityUtils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Src\SeparityExports;$(SolutionDir)Dependencias\LuaBridge\Src\Tests\Lua\lua-5.4.4\src;$(SolutionDir)Dependencias\LuaBridge\Src\Source;$(SolutionDir)Src\LuaEngine;$(SolutionDir)Src\RenderEngine;$(SolutionDir)Src\SeparityUtils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

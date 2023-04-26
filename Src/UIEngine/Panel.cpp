@@ -4,7 +4,8 @@
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayElement.h>
 #include <OgreOverlayManager.h>
-#include "checkML.h"
+
+#include "SeparityUtils\checkML.h"
 
 
 Separity::Panel::Panel(std::string name, float xPos, float yPos,

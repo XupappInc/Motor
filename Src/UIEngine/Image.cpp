@@ -1,17 +1,16 @@
 #include "Image.h"
 
-#include "Behaviour.h"
-#include "Entity.h"
-#include "InputManager.h"
-#include "checkML.h"
+#include "LuaEngine\Behaviour.h"
+#include "EntityComponent\Entity.h"
+#include "InputEngine\InputManager.h"
+#include"RenderEngine\RenderManager.h"
+#include "SeparityUtils\checkML.h"
 
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayElement.h>
 #include <OgreOverlayManager.h>
-#include"RenderManager.h"
 #include <iostream>
-#include "checkML.h"
 
 Separity::Image::Image(std::string overlayName, float xPos, float yPos,
                        float width, float height, std::string texture,

@@ -1,10 +1,8 @@
 #pragma once
-
 #ifndef __BUTTON_H__
 #define __BUTTON_H__
 
-#include "SeparityApi.h"
-
+#include "SeparityExports\SeparityApi.h"
 #include "UIComponent.h"
 
 #include <string>
@@ -25,12 +23,12 @@ namespace Separity {
 		/// Constructora de la clase Boton
 		/// </summary>
 		Button(std::string overlayName, float xPos, float yPos, float width,
-		       float height, std::string iniTex,int zorder=0,std::string hoverTex = "",
-		       std::string clickedTex = "");
+		       float height, std::string iniTex, int zorder = 0,
+		       std::string hoverTex = "", std::string clickedTex = "");
 
 		void initComponent() override;
 		void update(const uint32_t& deltaTime = 0) override;
-		///<summary>
+		///< summary>
 		/// Destructora de la clase Boton
 		/// </summary>
 		~Button();
@@ -61,6 +59,7 @@ namespace Separity {
 		void changeButtonTexture(std::string textureName);
 		void changeTextures(std::string iniTex, std::string hoverTex,
 		                    std::string clickedTex);
+
 		private:
 		int n_;
 		Behaviour* behaviour_;
@@ -75,7 +74,6 @@ namespace Separity {
 		bool hovering_;
 		bool clicked_;
 		int zorder_;
-		
 	};
 }  // namespace Separity
 

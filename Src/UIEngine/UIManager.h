@@ -2,9 +2,9 @@
 #ifndef __UI_MANAGER_H__
 #define __UI_MANAGER_H__
 
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Manager.h"
 
-#include "Manager.h"
 namespace Ogre {
 	class OverlaySystem;
 }  // namespace Ogre
