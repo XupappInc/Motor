@@ -1,25 +1,23 @@
 #include "InputManager.h"
 
-#include "ManagerManager.h"
-
-#include <iostream>
-
 #include "LuaManager.h"
+#include "ManagerManager.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 
-#include "checkML.h"
+#include "InputWrapper.h"
 
-std::unique_ptr<Separity::InputManager> Singleton<Separity::InputManager>::_INSTANCE_;
+std::unique_ptr<Separity::InputManager>
+    Singleton<Separity::InputManager>::_INSTANCE_;
 
 Separity::InputManager* Separity::InputManager::getInstance() {
 	return static_cast<InputManager*>(instance());
 }
 
-void Separity::InputManager::start() { 
-	Separity::Manager::start(); 
-	
+void Separity::InputManager::start() {
+	Separity::Manager::start();
+
 	lua_State* L = LuaManager::getInstance()->getLuaState();
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<InputManager>("InputManager")
@@ -29,29 +27,30 @@ void Separity::InputManager::start() {
 	luabridge::setGlobal(L, this, "InputManager");
 }
 
-void Separity::InputManager::clean() { 
-	Separity::Manager::clean(); 
+void Separity::InputManager::clean() {
+	Separity::Manager::clean();
 
 	kbState_ = std::unordered_map<uint8_t, uint8_t>();
 }
 
+Separity::InputManager::~InputManager() { 
+	delete inputWrapper_; 
+}
 
 Separity::InputManager::InputManager() {
-	event = SDL_Event();
+	inputWrapper_ = new Separity::InputWrapper();
 	kbState_ = std::unordered_map<uint8_t, uint8_t>();
-	gamepad_ = nullptr;
 	joystickDeadzone_ = 0;
 	triggerDeadzone_ = 0;
 	clearState();
 
-	ManagerManager::getInstance()->addManager(_INPUT, this);	
+	ManagerManager::getInstance()->addManager(_INPUT, this);
 }
 
-void Separity::InputManager::update(const uint32_t& deltaTime) { 
-
+void Separity::InputManager::update(const uint32_t& deltaTime) {
 	clearState();
-	while(SDL_PollEvent(&event)) {
-		switch(event.type) {
+	while(SDL_PollEvent(inputWrapper_->getEvent())) {
+		switch(inputWrapper_->getEvent()->type) {
 			case SDL_KEYDOWN:
 				onKeyDown();
 				break;
@@ -69,7 +68,7 @@ void Separity::InputManager::update(const uint32_t& deltaTime) {
 				break;
 			case SDL_WINDOWEVENT:
 				handleWindowEvent();
-				break;		
+				break;
 			case SDL_CONTROLLERBUTTONDOWN:
 				onControllerButtonChange(DOWN);
 				break;
@@ -91,45 +90,39 @@ void Separity::InputManager::update(const uint32_t& deltaTime) {
 	}
 }
 
-bool Separity::InputManager::keyDownEvent() { 
-	return isKeyDownEvent_; 
-}
+bool Separity::InputManager::keyDownEvent() { return isKeyDownEvent_; }
 
-bool Separity::InputManager::keyUpEvent() { 
-	return isKeyUpEvent_; 
-}
+bool Separity::InputManager::keyUpEvent() { return isKeyUpEvent_; }
 
 bool Separity::InputManager::isKeyDown(char key) {
-	return isKeyDown(SDL_GetScancodeFromKey(key));
+	return kbState_[SDL_GetScancodeFromKey(key)] == DOWN;
 }
 
-bool Separity::InputManager::isKeyHeld(char key) { 
-	return isKeyHeld(SDL_GetScancodeFromKey(key));
+bool Separity::InputManager::isKeyHeld(char key) {
+	return kbState_[SDL_GetScancodeFromKey(key)] == DOWN ||
+	       kbState_[SDL_GetScancodeFromKey(key)] == HELD;
 }
 
 bool Separity::InputManager::isKeyUp(char key) {
-	return isKeyUp(SDL_GetScancodeFromKey(key));
+	return kbState_[SDL_GetScancodeFromKey(key)] == UP;
 }
 
-bool Separity::InputManager::isKeyDown(SPECIALKEY key) { 
-	return isKeyDown((SDL_Scancode) key); 
+bool Separity::InputManager::isKeyDown(SPECIALKEY key) {
+	return kbState_[(SDL_Scancode) key] == DOWN;
 }
 
-bool Separity::InputManager::isKeyHeld(SPECIALKEY key) { 
-	return isKeyHeld((SDL_Scancode) key);
+bool Separity::InputManager::isKeyHeld(SPECIALKEY key) {
+	return kbState_[(SDL_Scancode) key] == DOWN ||
+	       kbState_[(SDL_Scancode) key] == HELD;
 }
 
-bool Separity::InputManager::isKeyUp(SPECIALKEY key) { 
-	return isKeyUp((SDL_Scancode) key);
+bool Separity::InputManager::isKeyUp(SPECIALKEY key) {
+	return kbState_[(SDL_Scancode) key] == UP;
 }
 
-bool Separity::InputManager::mouseMotionEvent() { 
-	return isMouseMotionEvent_; 
-}
+bool Separity::InputManager::mouseMotionEvent() { return isMouseMotionEvent_; }
 
-bool Separity::InputManager::mouseButtonEvent() { 
-	return isMouseButtonEvent_; 
-}
+bool Separity::InputManager::mouseButtonEvent() { return isMouseButtonEvent_; }
 
 bool Separity::InputManager::isMouseButtonDown(MOUSEBUTTON b) {
 	return mbState_[b] == DOWN;
@@ -139,8 +132,8 @@ bool Separity::InputManager::isMouseButtonHeld(MOUSEBUTTON b) {
 	return mbState_[b] == DOWN || mbState_[b] == HELD;
 }
 
-bool Separity::InputManager::isMouseButtonUp(MOUSEBUTTON b) { 
-	return mbState_[b] == UP; 
+bool Separity::InputManager::isMouseButtonUp(MOUSEBUTTON b) {
+	return mbState_[b] == UP;
 }
 
 const std::pair<int, int>& Separity::InputManager::getMousePos() {
@@ -178,42 +171,29 @@ void Separity::InputManager::clearState() {
 	}
 }
 
-void Separity::InputManager::onKeyDown() { 
-
-	SDL_Scancode key = event.key.keysym.scancode;
+void Separity::InputManager::onKeyDown() {
+	SDL_Scancode key = inputWrapper_->getEvent()->key.keysym.scancode;
 	if(!kbState_.count(key) || kbState_[key] != HELD)
 		kbState_[key] = DOWN;
 
-	isKeyDownEvent_ = true; 
+	isKeyDownEvent_ = true;
 }
 
-void Separity::InputManager::onKeyUp() { 
-	kbState_[event.key.keysym.scancode] = UP;
+void Separity::InputManager::onKeyUp() {
+	kbState_[inputWrapper_->getEvent()->key.keysym.scancode] = UP;
 
-	isKeyUpEvent_ = true; 
-}
-
-bool Separity::InputManager::isKeyDown(SDL_Scancode key) {
-	return kbState_[key] == DOWN;
-}
-
-bool Separity::InputManager::isKeyHeld(SDL_Scancode key) { 
-	return kbState_[key] == DOWN || kbState_[key] == HELD;
-}
-
-bool Separity::InputManager::isKeyUp(SDL_Scancode key) {
-	return kbState_[key] == UP;
+	isKeyUpEvent_ = true;
 }
 
 void Separity::InputManager::onMouseMotion() {
 	isMouseMotionEvent_ = true;
-	mousePos_.first = event.motion.x;
-	mousePos_.second = event.motion.y;
+	mousePos_.first = inputWrapper_->getEvent()->motion.x;
+	mousePos_.second = inputWrapper_->getEvent()->motion.y;
 }
 
 void Separity::InputManager::onMouseButtonChange(STATE state) {
 	isMouseButtonEvent_ = true;
-	switch(event.button.button) {
+	switch(inputWrapper_->getEvent()->button.button) {
 		case SDL_BUTTON_LEFT:
 			mbState_[LEFT] = state;
 			break;
@@ -229,79 +209,76 @@ void Separity::InputManager::onMouseButtonChange(STATE state) {
 }
 
 void Separity::InputManager::onControllerAdded() {
-
 	// Si conectamos un nuevo mando lo cogemos si no tenemos ninguno
-	if(gamepad_ == nullptr) {
 
+	if(inputWrapper_->getGamepad() == nullptr) {
 		std::cout << "Mando conectado\n";
-		gamepad_ = SDL_GameControllerOpen(0);
+		inputWrapper_->setGamepad(SDL_GameControllerOpen(0)); 
 
 		if(!SDL_IsGameController(0)) {
-
 			std::cout << "El mando no me vale\n";
-			onControllerRemoved();			
-		} 
-		else {
+			onControllerRemoved();
+		} else {
 			// Imprimir información sobre el mando
-			std::cout << "Info mando: " 
-				<< SDL_GameControllerName(gamepad_) << "\n";		       
-			std::cout << "Numero de botones: " 
-				<< SDL_CONTROLLER_BUTTON_MAX << "\n";
+			std::cout << "Info mando: "
+			          << SDL_GameControllerName(inputWrapper_->getGamepad())
+			          << "\n";
+			std::cout << "Numero de botones: " << SDL_CONTROLLER_BUTTON_MAX
+			          << "\n";
 		}
 	}
 }
 
 void Separity::InputManager::onControllerRemoved() {
 	// Si se desconecta el mando usado, lo cerramos
-	if(gamepad_ != nullptr) {
 
+	SDL_GameController* gamepad = inputWrapper_->getGamepad();
+
+	if(gamepad != nullptr) {
 		std::cout << "Mando desconectado\n";
-		SDL_GameControllerClose(gamepad_);
-		gamepad_ = nullptr;		
+		SDL_GameControllerClose(gamepad);
+		inputWrapper_->setGamepad(nullptr);
 	}
 }
 
 void Separity::InputManager::onControllerButtonChange(STATE state) {
-	gpState_[event.cbutton.button] = state;
+	gpState_[inputWrapper_->getEvent()->cbutton.button] = state;
 }
 
 void Separity::InputManager::onAxisMotion() {
+	Sint16 value = inputWrapper_->getEvent()->caxis.value;
 
-	Sint16 value = event.caxis.value;
-
-	switch(event.caxis.axis) {
+	switch(inputWrapper_->getEvent()->caxis.axis) {
 		case SDL_CONTROLLER_AXIS_LEFTX:
-			isLeftJoystickEvent_ = 
-				deadzoneChecker(leftAxis_.first, value, joystickDeadzone_);
+			isLeftJoystickEvent_ =
+			    deadzoneChecker(leftAxis_.first, value, joystickDeadzone_);
 			break;
 		case SDL_CONTROLLER_AXIS_LEFTY:
-			isLeftJoystickEvent_ = 
-				deadzoneChecker(leftAxis_.second, value, joystickDeadzone_);
+			isLeftJoystickEvent_ =
+			    deadzoneChecker(leftAxis_.second, value, joystickDeadzone_);
 			break;
 		case SDL_CONTROLLER_AXIS_RIGHTX:
-			isRightJoystickEvent_ = 
-				deadzoneChecker(rightAxis_.first, value, joystickDeadzone_);
+			isRightJoystickEvent_ =
+			    deadzoneChecker(rightAxis_.first, value, joystickDeadzone_);
 			break;
 		case SDL_CONTROLLER_AXIS_RIGHTY:
-			isRightJoystickEvent_ = 
-				deadzoneChecker(rightAxis_.second, value, joystickDeadzone_);
+			isRightJoystickEvent_ =
+			    deadzoneChecker(rightAxis_.second, value, joystickDeadzone_);
 			break;
 		case SDL_CONTROLLER_AXIS_TRIGGERLEFT:
 			if(deadzoneChecker(triggers_.first, value, triggerDeadzone_)) {
 				if(gpState_[LT] != HELD)
 					gpState_[LT] = DOWN;
-			} 
-			else if(gpState_[LT] != RELEASED) {
-					gpState_[LT] = UP;
+			} else if(gpState_[LT] != RELEASED) {
+				gpState_[LT] = UP;
 			}
 			break;
 		case SDL_CONTROLLER_AXIS_TRIGGERRIGHT:
 			if(deadzoneChecker(triggers_.second, value, triggerDeadzone_)) {
 				if(gpState_[RT] != HELD)
 					gpState_[RT] = DOWN;
-			} 
-			else if(gpState_[RT] != RELEASED) {		
-					gpState_[RT] = UP;
+			} else if(gpState_[RT] != RELEASED) {
+				gpState_[RT] = UP;
 			}
 			break;
 		default:
@@ -309,18 +286,16 @@ void Separity::InputManager::onAxisMotion() {
 	}
 }
 
-bool Separity::InputManager::deadzoneChecker(float& data, Sint16 value, Sint16 deadzone) {
-
+bool Separity::InputManager::deadzoneChecker(float& data, int16_t value,
+                                             int16_t deadzone) {
 	if(value > deadzone) {
 		data = (float) value / SDL_MAX_SINT16;
 		return true;
-	} 
-	else if(value < -deadzone) {	
+	} else if(value < -deadzone) {
 		value = std::max((Sint16) (-SDL_MAX_SINT16), value);
 		data = (float) value / SDL_MAX_SINT16;
 		return true;
-	}
-	else {
+	} else {
 		data = 0.0f;
 		return false;
 	}
@@ -338,11 +313,13 @@ bool Separity::InputManager::isControllerButtonUp(GAMEPADBUTTON b) {
 	return gpState_[b] == UP;
 }
 
-bool Separity::InputManager::leftJoystickEvent() { 
-	return isLeftJoystickEvent_; }
+bool Separity::InputManager::leftJoystickEvent() {
+	return isLeftJoystickEvent_;
+}
 
-bool Separity::InputManager::rightJoystickEvent() { 
-	return isRightJoystickEvent_; }
+bool Separity::InputManager::rightJoystickEvent() {
+	return isRightJoystickEvent_;
+}
 
 const std::pair<float, float>& Separity::InputManager::getLeftAxis() {
 	return leftAxis_;
@@ -364,16 +341,12 @@ void Separity::InputManager::setTriggerDeadzone(int deadzone) {
 	triggerDeadzone_ = std::max(Sint16(0), (Sint16) deadzone);
 }
 
-int Separity::InputManager::getJoystickDeadzone() { 
-	return joystickDeadzone_; 
-}
+int Separity::InputManager::getJoystickDeadzone() { return joystickDeadzone_; }
 
-int Separity::InputManager::getTriggerDeadzone() {
-	return triggerDeadzone_; 
-}
+int Separity::InputManager::getTriggerDeadzone() { return triggerDeadzone_; }
 
 void Separity::InputManager::handleWindowEvent() {
-	switch(event.window.event) {
+	switch(inputWrapper_->getEvent()->window.event) {
 		case SDL_WINDOWEVENT_CLOSE:
 			isCloseWindowEvent_ = true;
 			break;
@@ -382,8 +355,6 @@ void Separity::InputManager::handleWindowEvent() {
 	}
 }
 
-bool Separity::InputManager::closeWindowEvent() { 
-	return isCloseWindowEvent_; }
+bool Separity::InputManager::closeWindowEvent() { return isCloseWindowEvent_; }
 
 void Separity::InputManager::setCloseWindow() { isCloseWindowEvent_ = true; }
-

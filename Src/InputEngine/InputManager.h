@@ -1,113 +1,111 @@
 #pragma once
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
- 
+
+
+
+
+#include "EntityComponent\Manager.h"
 #include "SeparityExports\SeparityApi.h"
-
-#define SDL_MAIN_HANDLED
-
-#include <SDL.h>
 
 #include <array>
 #include <unordered_map>
 
-#include "EntityComponent\Manager.h"
-
 namespace Separity {
+
+	class InputWrapper;
+
 	class _SEPARITY_API_ InputManager
 	    : public Separity::Manager,
-	                     public Singleton<Separity::InputManager> {
+	      public Singleton<Separity::InputManager> {
 		friend Singleton<Separity::InputManager>;
 
 		public:
-
-		enum MOUSEBUTTON : uint8_t { 
-			LEFT = 0, 
-			MIDDLE = 1, 
-			RIGHT = 2 };
+		enum MOUSEBUTTON : uint8_t { LEFT = 0, MIDDLE = 1, RIGHT = 2 };
 
 		enum GAMEPADBUTTON : uint8_t {
-			A = SDL_CONTROLLER_BUTTON_A,
-			B = SDL_CONTROLLER_BUTTON_B,
-			X = SDL_CONTROLLER_BUTTON_X,
-			Y = SDL_CONTROLLER_BUTTON_Y,
-			BACK = SDL_CONTROLLER_BUTTON_BACK,
-			GUIDE = SDL_CONTROLLER_BUTTON_GUIDE,
-			START = SDL_CONTROLLER_BUTTON_START,
-			JOYSTICK_LEFT = SDL_CONTROLLER_BUTTON_LEFTSTICK,
-			JOYSTICK_RIGHT = SDL_CONTROLLER_BUTTON_RIGHTSTICK,
-			LB = SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
-			RB = SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
-			DPAD_UP = SDL_CONTROLLER_BUTTON_DPAD_UP,
-			DPAD_DOWN = SDL_CONTROLLER_BUTTON_DPAD_DOWN,
-			DPAD_LEFT = SDL_CONTROLLER_BUTTON_DPAD_LEFT,
-			DPAD_RIGHT = SDL_CONTROLLER_BUTTON_DPAD_RIGHT,
+			A,
+			B,
+			X,
+			Y,
+			BACK,
+			GUIDE,
+			START,
+			JOYSTICK_LEFT,
+			JOYSTICK_RIGHT,
+			LB,
+			RB,
+			DPAD_UP,
+			DPAD_DOWN,
+			DPAD_LEFT,
+			DPAD_RIGHT,
 			LT,
 			RT,
 			LAST
 		};
 
 		enum SPECIALKEY : uint8_t {
-			RETURN = SDL_SCANCODE_RETURN,
-			ESCAPE = SDL_SCANCODE_ESCAPE,
-			BACKSPACE = SDL_SCANCODE_BACKSPACE,
-			TAB = SDL_SCANCODE_TAB,
-			SPACE = SDL_SCANCODE_SPACE,
-			MINUS = SDL_SCANCODE_MINUS,
-			EQUALS = SDL_SCANCODE_EQUALS,
-			LEFTBRACKET = SDL_SCANCODE_LEFTBRACKET,
-			RIGHTBRACKET = SDL_SCANCODE_RIGHTBRACKET,
-			BACKSLASH = SDL_SCANCODE_BACKSLASH,
-			NONUSHASH = SDL_SCANCODE_NONUSHASH,
-			SEMICOLON = SDL_SCANCODE_SEMICOLON,
-			APOSTROPHE = SDL_SCANCODE_APOSTROPHE,
-			GRAVE = SDL_SCANCODE_GRAVE,
-			COMMA = SDL_SCANCODE_COMMA,
-			PERIOD = SDL_SCANCODE_PERIOD,
-			SLASH = SDL_SCANCODE_SLASH,
-			CAPSLOCK = SDL_SCANCODE_CAPSLOCK,
-			F1 = SDL_SCANCODE_F1,
-			F2 = SDL_SCANCODE_F2,
-			F3 = SDL_SCANCODE_F3,
-			F4 = SDL_SCANCODE_F4,
-			F5 = SDL_SCANCODE_F5,
-			F6 = SDL_SCANCODE_F6,
-			F7 = SDL_SCANCODE_F7,
-			F8 = SDL_SCANCODE_F8,
-			F9 = SDL_SCANCODE_F9,
-			F10 = SDL_SCANCODE_F10,
-			F11 = SDL_SCANCODE_F11,
-			F12 = SDL_SCANCODE_F12,
-			PRINTSCREEN = SDL_SCANCODE_PRINTSCREEN,
-			SCROLLLOCK = SDL_SCANCODE_SCROLLLOCK,
-			PAUSE = SDL_SCANCODE_PAUSE,
-			INSERT = SDL_SCANCODE_INSERT,
-			HOME = SDL_SCANCODE_HOME,
-			PAGEUP = SDL_SCANCODE_PAGEUP,
-			DELETE = SDL_SCANCODE_DELETE,
-			END = SDL_SCANCODE_END,
-			PAGEDOWN = SDL_SCANCODE_PAGEDOWN,
-			ARROW_RIGHT = SDL_SCANCODE_RIGHT,
-			ARROW_LEFT = SDL_SCANCODE_LEFT,
-			ARROW_DOWN = SDL_SCANCODE_DOWN,
-			ARROW_UP = SDL_SCANCODE_UP,
-			NUMLOCKCLEAR = SDL_SCANCODE_NUMLOCKCLEAR,
-			KP_DIVIDE = SDL_SCANCODE_KP_DIVIDE,
-			KP_MULTIPLY = SDL_SCANCODE_KP_MULTIPLY,
-			KP_MINUS = SDL_SCANCODE_KP_MINUS,
-			KP_PLUS = SDL_SCANCODE_KP_PLUS, 
-			LCTRL = SDL_SCANCODE_LCTRL,
-			RCTRL = SDL_SCANCODE_RCTRL,
-			LSHIFT = SDL_SCANCODE_LSHIFT,
-			RSHIFT = SDL_SCANCODE_RSHIFT,
-			LALT = SDL_SCANCODE_LALT,
-			RALT = SDL_SCANCODE_RALT
+			RETURN = 40,
+			ESCAPE,
+			BACKSPACE,
+			TAB,
+			SPACE,
+			MINUS,
+			EQUALS,
+			LEFTBRACKET,
+			RIGHTBRACKET,
+			BACKSLASH,
+			NONUSHASH,
+			SEMICOLON,
+			APOSTROPHE,
+			GRAVE,
+			COMMA,
+			PERIOD,
+			SLASH,
+			CAPSLOCK,
+			F1,
+			F2,
+			F3,
+			F4,
+			F5,
+			F6,
+			F7,
+			F8,
+			F9,
+			F10,
+			F11,
+			F12,
+			PRINTSCREEN,
+			SCROLLLOCK,
+			PAUSE,
+			INSERT,
+			HOME,
+			PAGEUP,
+			DELETE,
+			END,
+			PAGEDOWN,
+			ARROW_RIGHT,
+			ARROW_LEFT,
+			ARROW_DOWN,
+			ARROW_UP,
+			NUMLOCKCLEAR,
+			KP_DIVIDE,
+			KP_MULTIPLY,
+			KP_MINUS,
+			KP_PLUS,
+
+			LCTRL = 224,
+			LSHIFT = 225,
+			LALT = 226,
+			RCTRL = 228,		
+			RSHIFT = 229,		
+			RALT = 230
 		};
 
 		// keyboard
 
 		/// <returns>
-		/// True si se está pulsando 
+		/// True si se está pulsando
 		/// al menos una tecla del teclado
 		/// </returns>
 		bool keyDownEvent();
@@ -126,14 +124,14 @@ namespace Separity {
 		bool isKeyDown(char key);
 
 		/// <returns>
-		/// True mientras 
+		/// True mientras
 		/// la tecla esté pulsada
 		/// </returns>
 		/// <param name="key">: Tecla Normal (0-9 y a-z)</param>
 		bool isKeyHeld(char key);
 
 		/// <returns>
-		/// True en el primer frame 
+		/// True en el primer frame
 		/// en el que la tecla es liberada
 		/// </returns>
 		/// <param name="key">: Tecla Normal (0-9 y a-z)</param>
@@ -163,7 +161,7 @@ namespace Separity {
 		// mouse
 
 		/// <returns>
-		/// True si el ratón 
+		/// True si el ratón
 		/// ha cambiado de posición
 		/// </returns>
 		bool mouseMotionEvent();
@@ -196,16 +194,16 @@ namespace Separity {
 		bool isMouseButtonUp(MOUSEBUTTON b);
 
 		/// <returns>
-		/// Par (X, Y) de 
+		/// Par (X, Y) de
 		/// la posición del ratón en la pantalla.
 		/// </returns>
-		/// <summary> 
+		/// <summary>
 		/// (0, 0) está en la esquina superior izquierda.
 		/// X es positivo hacia abajo e Y, hacia la derecha
 		/// </summary>
 		const std::pair<int, int>& getMousePos();
 
-		//game controller
+		// game controller
 
 		/// <returns>
 		/// True cuando el Joystick izquierdo cambia de posición
@@ -221,21 +219,24 @@ namespace Separity {
 		/// True en el primer frame
 		/// en el que el botón del Game Controller es pulsado
 		/// </returns>
-		/// <param name="b">: Botón del Game Controller (macros GAMEPADBUTTON)</param>
+		/// <param name="b">: Botón del Game Controller (macros
+		/// GAMEPADBUTTON)</param>
 		bool isControllerButtonDown(GAMEPADBUTTON b);
 
 		/// <returns>
 		/// True mientras
 		/// el botón del Game Controller esté pulsado
 		/// </returns>
-		/// <param name="b">: Botón del Game Controller (macros GAMEPADBUTTON)</param>
+		/// <param name="b">: Botón del Game Controller (macros
+		/// GAMEPADBUTTON)</param>
 		bool isControllerButtonHeld(GAMEPADBUTTON b);
 
 		/// <returns>
 		/// True en el primer frame
 		/// en el que el botón del Game Controller es liberado
 		/// </returns>
-		/// <param name="b">: Botón del Game Controller (macros GAMEPADBUTTON)</param>
+		/// <param name="b">: Botón del Game Controller (macros
+		/// GAMEPADBUTTON)</param>
 		bool isControllerButtonUp(GAMEPADBUTTON b);
 
 		/// <returns>
@@ -250,22 +251,24 @@ namespace Separity {
 		/// </returns>
 		const std::pair<float, float>& getRightAxis();
 
-		/// <returns> 
-		/// Par (Trigger Izquierdo, Trigger Derecho) del valor analógico de ambos gatillos
-		/// (valor entre 0 y 1)
+		/// <returns>
+		/// Par (Trigger Izquierdo, Trigger Derecho) del valor analógico de
+		/// ambos gatillos (valor entre 0 y 1)
 		/// </returns>
 		const std::pair<float, float>& getTriggers();
 
 		/// <summary>
 		/// Esblece la zona muerta de ambos Joysticks
 		/// </summary>
-		/// <param name="deadzone">: Nuevo valor de la Deadzone (0 - 32767)</param>
+		/// <param name="deadzone">: Nuevo valor de la Deadzone (0 -
+		/// 32767)</param>
 		void setJoystickDeadzone(int deadzone);
 
 		/// <summary>
 		/// Esblece la zona muerta de ambos gatillos
 		/// </summary>
-		/// <param name="deadzone">: Nuevo valor de la Deadzone (0 - 32767)</param>
+		/// <param name="deadzone">: Nuevo valor de la Deadzone (0 -
+		/// 32767)</param>
 		void setTriggerDeadzone(int deadzone);
 
 		/// <returns>
@@ -278,23 +281,24 @@ namespace Separity {
 		/// </returns>
 		int getTriggerDeadzone();
 
-		//window events
+		// window events
 
 		/// <summary>
 		/// Devuelve true cuando el usuario ha pulsado la X de la ventana
 		/// </summary>
 		bool closeWindowEvent();
 		/// <summary>
-		/// Se llama para cerrar la ventana de sdl (en el boto de quit del menu por ejemplo)
+		/// Se llama para cerrar la ventana de sdl (en el boto de quit del menu
+		/// por ejemplo)
 		/// </summary>
 		void setCloseWindow();
 
-		//singleton/manager functions
+		// singleton/manager functions
 
 		/// <summary>
-		/// Limpia los estados anteriores y gestiona los eventos entrantes en ese frame para
-		/// actualizar los nuevos estados del imput y actualizar los flags con las funciones
-		/// privadas onFunction()
+		/// Limpia los estados anteriores y gestiona los eventos entrantes en
+		/// ese frame para actualizar los nuevos estados del imput y actualizar
+		/// los flags con las funciones privadas onFunction()
 		/// </summary>
 		virtual void update(const uint32_t& deltaTime) override;
 
@@ -304,12 +308,12 @@ namespace Separity {
 
 		void clean() override;
 
-		protected:
+		~InputManager();
 
+		protected:
 		InputManager();
 
 		private:
-
 		enum STATE : uint8_t {
 			RELEASED = 0,
 			DOWN = 1,
@@ -319,24 +323,10 @@ namespace Separity {
 
 		/// <summary>
 		/// Gestiona el cambio de estados de los botones de teclado, mando y
-		/// ratón (DOWN -> HELD y UP -> RELEASE). Resetea las flags de los eventos
+		/// ratón (DOWN -> HELD y UP -> RELEASE). Resetea las flags de los
+		/// eventos
 		/// </summary>
 		void clearState();
-
-		/// <summary>
-		/// Método auxiliar para las funciones isKeyDown()
-		/// </summary>
-		bool isKeyDown(SDL_Scancode key);
-
-		/// <summary>
-		/// Método auxiliar para las funciones isKeyHeld()
-		/// </summary>
-		bool isKeyHeld(SDL_Scancode key);
-
-		/// <summary>
-		/// Método auxiliar para las funciones isKeyUp()
-		/// </summary>
-		bool isKeyUp(SDL_Scancode key);
 
 		/// <summary>
 		/// Actualiza el estado de las teclas del teclado
@@ -346,7 +336,7 @@ namespace Separity {
 		/// <summary>
 		/// Actualiza el estado de las teclas del teclado
 		/// </summary>
-		void onKeyUp();	
+		void onKeyUp();
 
 		/// <summary>
 		/// Actualiza la posición del ratón
@@ -381,51 +371,51 @@ namespace Separity {
 
 		/// <summary>
 		/// Método auxiliar para onAxisMotion.
-		/// Trunca el valor real de los Joysticks y Triggers 
+		/// Trunca el valor real de los Joysticks y Triggers
 		/// si se encuentran dentro de la zona muerta.
 		/// Transforma el nuevo valor en un número entre 1 y -1
 		/// </summary>
 		/// <returns>
-		/// Si se ha producido realmente movimiento en consecuencia a la zona muerta 
+		/// Si se ha producido realmente movimiento en consecuencia a la zona
+		/// muerta
 		/// </returns>
-		bool deadzoneChecker(float& data, Sint16 value, Sint16 deadzone);
+		bool deadzoneChecker(float& data, int16_t value, int16_t deadzone);
 
 		/// <summary>
 		/// Gestiona los eventos de ventana
 		/// </summary>
 		void handleWindowEvent();
 
-		SDL_Event event;
-
-		//keyboard
+		// keyboard
 
 		bool isKeyUpEvent_;
 		bool isKeyDownEvent_;
 		std::unordered_map<uint8_t, uint8_t> kbState_;
 
-		//mouse
+		// mouse
 
 		bool isMouseMotionEvent_;
 		bool isMouseButtonEvent_;
 		std::pair<int, int> mousePos_;
 		std::array<uint8_t, 3> mbState_;
 
-		//game controller
-	
+		// game controller
+
 		bool isLeftJoystickEvent_;
 		bool isRightJoystickEvent_;
-		Sint16 joystickDeadzone_;
+		int16_t joystickDeadzone_;
 		std::pair<float, float> leftAxis_;
 		std::pair<float, float> rightAxis_;
-		Sint16 triggerDeadzone_;
+		int16_t triggerDeadzone_;
 		std::pair<float, float> triggers_;
 		std::array<uint8_t, GAMEPADBUTTON::LAST> gpState_;
-		SDL_GameController* gamepad_;
 
-		//window
+		// window
 
 		bool isCloseWindowEvent_;
-	};
-}
 
-#endif  __INPUT_MANAGER_H__
+		InputWrapper* inputWrapper_;
+	};
+}  // namespace Separity
+
+#endif __INPUT_MANAGER_H__
