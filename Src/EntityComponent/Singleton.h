@@ -2,7 +2,8 @@
 #ifndef __SINGLETON_H__
 #define __SINGLETON_H__
 
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
+
 #include <cassert>
 #include <memory>
 ///<summary>

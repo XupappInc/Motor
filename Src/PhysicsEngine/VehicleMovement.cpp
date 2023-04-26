@@ -1,10 +1,10 @@
 #include "VehicleMovement.h"
 
-#include "Entity.h"
 #include "Rigidbody.h"
-#include "Transform.h"
-#include "Vector.h"
-#include "spyMath.h"
+#include "EntityComponent\Entity.h"
+#include "EntityComponent\Transform.h"
+#include "SeparityUtils\Vector.h"
+#include "SeparityUtils\spyMath.h"
 
 //  #include "checkML.h"
 

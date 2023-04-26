@@ -1,7 +1,7 @@
 #include "ColliderCreator.h"
 
 #include "Collider.h"
-#include "Entity.h"
+#include "EntityComponent\Entity.h"
 
 using namespace Separity;
 

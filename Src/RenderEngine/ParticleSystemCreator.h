@@ -2,9 +2,8 @@
 #ifndef __PARTICLE_SYSTEM_CREATOR_H__
 #define __PARTICLE_SYSTEM_CREATOR_H__
 
-#include "SeparityApi.h"
-
-#include "CCreator.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\CCreator.h"
 
 class lua_State;
 

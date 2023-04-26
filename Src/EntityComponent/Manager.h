@@ -2,9 +2,9 @@
 #ifndef __MANAGER_TEMPLATE_H__
 #define __MANAGER_TEMPLATE_H__
 
+#include "SeparityExports\SeparityApi.h"
 #include "Singleton.h"
 #include "ec.h"
-#include "SeparityApi.h"
 
 #include <vector>
 

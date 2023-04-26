@@ -2,10 +2,10 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
+#include "SeparityExports\SeparityApi.h"
 #include "Component.h"
 #include "Manager.h"
 #include "ec.h"
-#include "SeparityApi.h"
 
 #include <array>
 #include <bitset>

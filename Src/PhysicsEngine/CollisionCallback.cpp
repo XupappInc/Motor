@@ -1,4 +1,5 @@
 #include "CollisionCallback.h"
+
 #include "RigidBody.h"
 
 Separity::CollisionCallback::CollisionCallback(RigidBody* rb) : rigidBody_(rb) {}

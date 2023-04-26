@@ -1,7 +1,8 @@
 #pragma once
 #ifndef COLLISION_CALLBACK_H
 #define COLLISION_CALLBACK_H
-#include "SeparityApi.h"
+
+#include "SeparityExports\SeparityApi.h"
 
 #include <btBulletDynamicsCommon.h>
 #include <unordered_set>

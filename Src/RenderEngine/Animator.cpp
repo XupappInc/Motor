@@ -1,7 +1,7 @@
 #include "Animator.h"
 
-#include "Entity.h"
 #include "MeshRenderer.h"
+#include "EntityComponent\Entity.h"
 
 #include <OgreAnimationState.h>
 #include <OgreEntity.h>

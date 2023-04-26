@@ -2,8 +2,8 @@
 #ifndef __PATH_FOLLOW_H__
 #define __PATH_FOLLOW_H__
 
-#include "Component.h"
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 #include <vector>
 
 namespace Spyutils {

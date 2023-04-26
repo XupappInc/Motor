@@ -1,8 +1,7 @@
 #include "EntityManager.h"
+
 #include "ManagerManager.h"
-
 #include "Entity.h"
-
 #include "Transform.h"
 
 std::unique_ptr<Separity::EntityManager> Singleton<Separity::EntityManager>::_INSTANCE_;

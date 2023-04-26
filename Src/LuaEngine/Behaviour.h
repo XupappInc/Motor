@@ -2,8 +2,9 @@
 #ifndef BEHAVIOUR_H
 #define BEHAVIOUR_H
 
-#include "SeparityApi.h"
-#include <Component.h>
+#include "SeparityExports\SeparityApi.h"
+#include <EntityComponent\Component.h>
+
 #include <string>
 
 namespace luabridge {

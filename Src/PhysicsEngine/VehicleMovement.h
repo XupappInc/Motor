@@ -1,8 +1,9 @@
 #pragma once
 #ifndef __VEHICLE_MOVEMENT_H__
 #define __VEHICLE_MOVEMENT_H__
-#include "Component.h"
-#include "SeparityApi.h"
+
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 
 namespace Spyutils {
 	class Vector3;

@@ -2,10 +2,8 @@
 #ifndef __COLLIDER_H__
 #define __COLLIDER_H__
 
-#include "SeparityApi.h"
-
-
-#include "Component.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 
 namespace Spyutils {
 	class Vector3;

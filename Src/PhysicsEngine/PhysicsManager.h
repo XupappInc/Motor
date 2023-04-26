@@ -2,10 +2,9 @@
 #ifndef __PHYSICS_MANAGER_H__
 #define __PHYSICS_MANAGER_H__
 
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Manager.h"
 
-
-#include "Manager.h"
 class btDynamicsWorld;
 class btBroadphaseInterface;
 class btCollisionDispatcher;

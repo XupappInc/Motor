@@ -1,10 +1,10 @@
 #include "Light.h"
 
-#include "Entity.h"
 #include "OgreLight.h"
 #include "OgreSceneManager.h"
 #include "RenderManager.h"
-#include "Transform.h"
+#include "EntityComponent\Entity.h"
+#include "EntityComponent\Transform.h"
 
 Separity::Light::Light(LightType type) : visible_(true), Component() {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();

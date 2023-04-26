@@ -1,16 +1,16 @@
 #include "RigidBody.h"
 
-#include "Behaviour.h"
 #include "Collider.h"
 #include "CollisionCallback.h"
-#include "Entity.h"
 #include "PhysicsManager.h"
-#include "Transform.h"
-#include "Vector.h"
-#include "spyQuaternion.h"
+#include "EntityComponent\Transform.h"
+#include "LuaEngine\Behaviour.h"
+#include "EntityComponent\Entity.h"
+#include "SeparityUtils\Vector.h"
+#include "SeparityUtils\spyQuaternion.h"
 
+#include <SeparityUtils\spyMath.h>
 #include <btBulletDynamicsCommon.h>
-#include <spyMath.h>
 // #include "checkML.h"
 
 Separity::RigidBody::RigidBody(typeRb tipo, float mass)

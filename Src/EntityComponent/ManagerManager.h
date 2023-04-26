@@ -2,7 +2,7 @@
 #ifndef __MANAGER_MANAGER_H__
 #define __MANAGER_MANAGER_H__
 
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
 #include "Manager.h"
 
 #include <map>

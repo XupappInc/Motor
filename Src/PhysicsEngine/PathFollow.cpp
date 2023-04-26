@@ -1,9 +1,9 @@
 #include "PathFollow.h"
 
-#include "Entity.h"
 #include "RigidBody.h"
-#include "Transform.h"
-#include "Vector.h"
+#include "EntityComponent\Entity.h"
+#include "EntityComponent\Transform.h"
+#include "SeparityUtils\Vector.h"
 
 Separity::PathFollow::PathFollow(std::vector<Spyutils::Vector3> const& path)
     : path_(path), pathingTo_(0), velocity_(1.0f), stopped_(false),

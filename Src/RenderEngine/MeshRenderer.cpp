@@ -1,9 +1,8 @@
 #include "MeshRenderer.h"
 
 #include "RenderManager.h"
-
-#include "Entity.h"
-#include "Transform.h"
+#include "EntityComponent\Entity.h"
+#include "EntityComponent\Transform.h"
 
 #include <Ogre.h>
 

@@ -1,11 +1,10 @@
 #include "AudioSourceCreator.h"
 
 #include "AudioSource.h"
-#include "EntityComponent\Entity.h"
-#include "LuaEngine\LuaManager.h"
-
-#include <LuaBridge/LuaBridge.h>
+#include "Entity.h"
+#include "LuaManager.h"
 #include <lua.hpp>
+#include <LuaBridge/LuaBridge.h>
 
 
 using namespace Separity;

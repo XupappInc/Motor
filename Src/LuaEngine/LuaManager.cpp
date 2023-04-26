@@ -1,15 +1,12 @@
 #include "LuaManager.h"
-
-#include "ManagerManager.h"
-
-#include "Transform.h"
-#include "Entity.h"
 #include "Behaviour.h"
 
+#include "EntityComponent\ManagerManager.h"
+#include "EntityComponent\Transform.h"
+#include "EntityComponent\Entity.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
-
 #include <iostream>
 
 std::unique_ptr<Separity::LuaManager> Singleton<Separity::LuaManager>::_INSTANCE_;

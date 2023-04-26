@@ -1,11 +1,14 @@
 #include "RenderManager.h"
 
-#include "Entity.h"
+#include "Camera.h"
+#include "EntityComponent\Entity.h"
+#include "EntityComponent\ManagerManager.h"
 #include "LightCreator.h"
-#include "ManagerManager.h"
 #include "MeshRenderer.h"
 #include "MeshRendererCreator.h"
-#include "checkML.h"
+#include "SeparityUtils\checkML.h"
+#include "EntityComponent\EntityManager.h"
+#include "EntityComponent\Transform.h"
 
 #include <OgreConfigFile.h>
 #include <OgreEntity.h>
@@ -22,10 +25,6 @@
 #include <fstream>
 #include <iostream>
 
-#include "EntityManager.h"
-
-#include "Transform.h"
-#include "Camera.h"
 
 std::unique_ptr<Separity::RenderManager>
     Singleton<Separity::RenderManager>::_INSTANCE_;

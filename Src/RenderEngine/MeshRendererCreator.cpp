@@ -1,7 +1,7 @@
 #include "MeshRendererCreator.h"
 
-#include "Entity.h"
 #include "MeshRenderer.h"
+#include "EntityComponent\Entity.h"
 
 #include <iostream>
 

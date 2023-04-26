@@ -2,10 +2,10 @@
 
 #include "Transform.h"
 #include "Entity.h"
+#include "LuaEngine\LuaManager.h"
 
 #include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
-#include "LuaManager.h"
 
 using namespace Separity;
 

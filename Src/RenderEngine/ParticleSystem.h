@@ -3,10 +3,9 @@
 #ifndef __PARTICLE_SYSTEM_H__
 #define __PARTICLE_SYSTEM_H__
 
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 
-#include "Component.h"
-#include "Vector.h"
 #include <string>
 
 namespace Ogre {
@@ -56,7 +55,6 @@ namespace Separity {
 		/// <returns>devuelve true si esta visible y false si no lo
 		/// está</returns>
 		bool isVisible();
-		
 
 		private:
 		Ogre::SceneNode* particleNode_;

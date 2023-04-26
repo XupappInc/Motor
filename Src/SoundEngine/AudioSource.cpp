@@ -1,11 +1,9 @@
 #include "AudioSource.h"
 
 #include "AudioManager.h"
-#include "EntityComponent\Entity.h"
-#include "EntityComponent\Transform.h"
-
+#include "Entity.h"
+#include "Transform.h"
 #include "fmod.hpp"
-
 using namespace Separity;
 
 AudioSource::AudioSource(std::string audioRoute, std::string audioName,

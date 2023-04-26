@@ -2,8 +2,8 @@
 #ifndef GET_CMP_WRAPPER
 #define GET_CMP_WRAPPER
 
-#include "Component.h"
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 
 class lua_State;
 

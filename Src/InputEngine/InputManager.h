@@ -2,7 +2,7 @@
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
  
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
 
 #define SDL_MAIN_HANDLED
 
@@ -11,7 +11,7 @@
 #include <array>
 #include <unordered_map>
 
-#include "Manager.h"
+#include "EntityComponent\Manager.h"
 
 namespace Separity {
 	class _SEPARITY_API_ InputManager

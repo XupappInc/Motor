@@ -2,9 +2,10 @@
 #ifndef PHYSICS_DEBUG_DRAWER_H
 #define PHYSICS_DEBUG_DRAWER_H
 
+#include "SeparityExports\SeparityApi.h"
+
 #include <LinearMath\btIDebugDraw.h>
 #include <vector>
-#include "SeparityApi.h"
 
 namespace Ogre {
 	class SceneManager;

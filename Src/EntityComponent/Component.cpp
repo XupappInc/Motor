@@ -1,7 +1,7 @@
 #include "Component.h"
 
 #include "Manager.h"
-#include "checkML.h"
+#include "SeparityUtils\checkML.h"
 
 Separity::Component::Component()
     : ent_(nullptr), active_(true), cId_(0) {}

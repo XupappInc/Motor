@@ -1,9 +1,8 @@
 #include "LightCreator.h"
 
-#include "Entity.h"
 #include "Light.h"
-
-#include "Vector.h"
+#include "EntityComponent\Entity.h"
+#include "SeparityUtils\Vector.h"
 
 Separity::LightCreator::LightCreator() {}
 

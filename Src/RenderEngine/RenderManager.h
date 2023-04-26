@@ -2,8 +2,8 @@
 #ifndef __RENDER_MANAGER_H__
 #define __RENDER_MANAGER_H__
 
-#include "Manager.h"
-#include "SeparityApi.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Manager.h"
 
 namespace Ogre {
 	class Root;
@@ -28,7 +28,6 @@ namespace Separity {
 		friend Singleton<RenderManager>;
 
 		public:
-		
 		void initComponents() override;
 		/// <summary>
 		/// Contructor por defecto de la clase
@@ -102,7 +101,6 @@ namespace Separity {
 		Camera* getCamera();
 
 		void start() override;
-
 
 		/// <summary>
 		/// Devuelve el overlay de Ogre

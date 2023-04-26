@@ -1,10 +1,10 @@
 #pragma once
 #ifndef __LIGHT_H__
 #define __LIGHT_H__
-#include "SeparityApi.h"
 
-#include "Component.h"
-#include "Vector.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
+#include "SeparityUtils/Vector.h"
 enum LightType {
 	POINT_LIGHT,DIRECTIONAL_LIGHT,SPOTLIGHT
 };
@@ -12,6 +12,7 @@ namespace Ogre {
 	class Light;
 	class SceneNode;
 }  // namespace Ogre
+
 namespace Separity {
 	class Transform;
 	/// <summary>

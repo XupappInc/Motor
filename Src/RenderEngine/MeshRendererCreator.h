@@ -1,9 +1,9 @@
 #pragma once
 #ifndef __MESH_RENDERER_CREATOR_H__
 #define __MESH_RENDERER_CREATOR_H__
-#include "SeparityApi.h"
 
-#include "CCreator.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\CCreator.h"
 
 class lua_State;
 

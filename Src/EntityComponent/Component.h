@@ -2,8 +2,8 @@
 #ifndef __COMPONENT_H__
 #define __COMPONENT_H__
 
+#include "SeparityExports\SeparityApi.h"
 #include "ec.h"
-#include "SeparityApi.h"
 
 namespace Separity{
 

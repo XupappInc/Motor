@@ -1,15 +1,13 @@
 #include "PhysicsManager.h"
 
 #include "ColliderCreator.h"
-#include "ManagerManager.h"
 #include "RigidbodyCreator.h"
-
-// #include "checkML.h"
 #include "CollisionCallback.h"
-#include "Component.h"
 #include "PhysicsDebugDrawer.h"
-#include "RenderManager.h"
 #include "RigidBody.h"
+#include "EntityComponent\ManagerManager.h"
+#include "EntityComponent\Component.h"
+#include "RenderEngine\RenderManager.h"
 
 #include <OgreRoot.h>
 #include <btBulletDynamicsCommon.h>

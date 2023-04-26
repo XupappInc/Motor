@@ -1,6 +1,6 @@
 #include "Behaviour.h"
 
-#include "Entity.h"
+#include "EntityComponent\Entity.h"
 #include "LuaManager.h"
 
 #include <lua.hpp>

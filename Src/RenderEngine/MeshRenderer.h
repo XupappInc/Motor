@@ -2,10 +2,8 @@
 #ifndef __MESH_RENDERER_H__
 #define __MESH_RENDERER_H__
 
-#include "SeparityApi.h"
-
-
-#include "Component.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 
 #include <string>
 

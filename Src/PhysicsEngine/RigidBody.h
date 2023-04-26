@@ -2,9 +2,8 @@
 #ifndef __RIGIDBODY_H__
 #define __RIGIDBODY_H__
 
-#include "SeparityApi.h"
-
-#include "Component.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 
 #include <unordered_set>
 

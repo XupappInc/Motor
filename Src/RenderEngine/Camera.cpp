@@ -1,15 +1,14 @@
 #include "Camera.h"
 
-#include "Transform.h"
-#include "Entity.h"
 #include "RenderManager.h"
-
+#include "EntityComponent\Transform.h"
+#include "EntityComponent\Entity.h"
+#include <SeparityUtils\spyMath.h>
 
 #include "OgreCamera.h"
 #include "OgreSceneManager.h"
 #include "OgreRenderWindow.h"
 #include "OgreViewport.h"
-#include <spyMath.h>
 
 
 Separity::Camera::Camera() : tr_(nullptr) {

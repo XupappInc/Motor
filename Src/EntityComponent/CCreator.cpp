@@ -1,7 +1,6 @@
 #include "CCreator.h"
 
 #include <lua.hpp>
-
 #include <iostream>
 
 Separity::CCreator::CCreator() {}

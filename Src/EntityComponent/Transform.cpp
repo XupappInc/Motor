@@ -2,8 +2,9 @@
 
 #include "Entity.h"
 #include "EntityManager.h"
-#include "Vector.h"
-#include "spyMath.h"
+#include "SeparityUtils\Vector.h"
+#include "SeparityUtils\spyMath.h"
+
 using namespace std;
 // #include "checkML.h"
 Separity::Transform::Transform()

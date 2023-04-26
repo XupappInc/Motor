@@ -2,10 +2,8 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-#include "SeparityApi.h"
-
-
-#include "Component.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 
 namespace Ogre {
 	class Camera;

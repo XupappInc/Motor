@@ -2,8 +2,9 @@
 #ifndef __TRANSFORM_CREATOR_H__
 #define __TRANSFORM_CREATOR_H__
 
+#include "SeparityExports\SeparityApi.h"
 #include "CCreator.h"
-#include "SeparityApi.h"
+
 class lua_State;
 
 namespace Separity {

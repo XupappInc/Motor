@@ -1,6 +1,6 @@
 #include "Collider.h"
 
-#include "Vector.h"
+#include "SeparityUtils\Vector.h"
 
 #include <btBulletDynamicsCommon.h>
 

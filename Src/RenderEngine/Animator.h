@@ -2,10 +2,8 @@
 #ifndef __ANIMATOR_H__
 #define __ANIMATOR_H__
 
-#include "SeparityApi.h"
-
-
-#include "Component.h"
+#include "SeparityExports\SeparityApi.h"
+#include "EntityComponent\Component.h"
 
 #include <string>
 #include <unordered_map>

@@ -2,8 +2,9 @@
 #ifndef __CREATOR_H__
 #define __CREATOR_H__
 
+#include "SeparityExports\SeparityApi.h"
 #include <string>
-#include "SeparityApi.h"
+
 class lua_State;
 
 namespace Separity {

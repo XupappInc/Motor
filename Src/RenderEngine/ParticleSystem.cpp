@@ -1,12 +1,14 @@
 #include "ParticleSystem.h"
-#include "Entity.h"
+
+#include "RenderManager.h"
+#include "EntityComponent\Entity.h"
+#include "EntityComponent\Transform.h"
+
 #include <OgreParticleSystem.h>
 #include<OgreKeyFrame.h>
 #include<OgreBillboard.h>
 #include<OgreBillboardSet.h>
 #include <OgreSceneManager.h>
-#include "RenderManager.h"
-#include "Transform.h"
 
 
 Separity::ParticleSystem::ParticleSystem(std::string name,

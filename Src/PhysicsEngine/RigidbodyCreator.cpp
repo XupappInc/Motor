@@ -2,8 +2,8 @@
 
 #include "Rigidbody.h"
 #include "Collider.h"
-#include "Entity.h"
-#include "Vector.h"
+#include "EntityComponent\Entity.h"
+#include "SeparityUtils\Vector.h"
 
 Separity::RigidbodyCreator::RigidbodyCreator() {}
 

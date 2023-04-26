@@ -1,11 +1,9 @@
 #include "Entity.h"
 
 #include "ManagerManager.h"
-
 #include "Transform.h"
-#include "Vector.h"
-
-#include "checkML.h"
+#include "SeparityUtils\Vector.h"
+#include "SeparityUtils\checkML.h"
 
 #include <algorithm>
 
