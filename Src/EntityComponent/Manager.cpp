@@ -53,3 +53,9 @@ Separity::Manager::~Manager() {}
 void Separity::Manager::setActive(bool active) { active_ = active; }
 
 void Separity::Manager::reset() {}
+
+void Separity::Manager::startComponent() {
+	for(auto comp :cmps_) {
+		comp->start();
+	}
+}

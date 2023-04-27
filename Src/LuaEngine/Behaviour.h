@@ -56,7 +56,7 @@ namespace Separity {
 		/// <summary>
 		/// Start se llama tras awake, al comienzo de la ejecucion
 		/// </summary>
-		virtual void start();
+		virtual void start() override;
 		/// <summary>
 		/// Update se llama en cada frame
 		/// </summary>
@@ -98,7 +98,6 @@ namespace Separity {
 		/// Metodo que se llama cuando el raton sale del boton
 		/// </summary>
 		virtual void onButtonUnhover();
-
 		protected:
 		/// <summary>
 		/// LuaRef del script. Esta clase representa el script .lua en C++,

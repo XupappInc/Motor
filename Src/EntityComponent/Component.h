@@ -64,6 +64,10 @@ namespace Separity{
 		virtual void render();
 
 		/// <summary>
+		/// Método start del componente
+		/// </summary>
+		virtual void start();
+		/// <summary>
 		/// Asigna el Id del compoente
 		/// </summary>
 		/// <param name="id">Id del componente, registrada previamente en ec_defs.h</param>

@@ -11,6 +11,9 @@ void Separity::ManagerManager::initComponents() {
 	for(auto m : managers_) {
 		m.second->initComponents();
 	}
+	for(auto m : managers_) {
+		m.second->startComponent();
+	}
 }
 
 void Separity::ManagerManager::start() {

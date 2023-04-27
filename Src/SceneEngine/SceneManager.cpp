@@ -122,6 +122,7 @@ void Separity::SceneManager::changeScene() {
 	ManagerManager::getInstance()->clean();
 	ManagerManager::getInstance()->start();
 	if(loadScene(sceneName_)) {		
+		GetComponentWrapper::registerInLua();
 		ManagerManager::getInstance()->initComponents();
 		changeScene_ = false;
 	} else {

@@ -58,6 +58,11 @@ namespace Separity {
 		/// Resetea las instancias de los managers en LUA
 		/// </summary>
 		virtual void reset();
+		/// <summary>
+		/// Llama al start de todos los componentes
+		/// </summary>
+		virtual void startComponent();
+
 		protected:
 		/// <summary>
 		/// Constructor de la clase, protected
