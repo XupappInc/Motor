@@ -54,8 +54,8 @@ namespace Separity {
 		/// <param name="audioSource"></param>
 		/// <param name="minDistance"></param>
 		/// <param name="maxDistance"></param>
-		void playAudio(AudioSource* audioSource, float minDistance,
-		               float maxDistance);
+		/*void playAudio(AudioSource* audioSource, float minDistance,
+		               float maxDistance);*/
 		/// <summary>
 		/// Para la reproducción de todos los canales
 		/// sistema
