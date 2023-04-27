@@ -50,7 +50,7 @@ void Separity::LuaManager::registerClasses() {
 	luabridge::getGlobalNamespace(L_)
 	    .beginClass<Behaviour>("Behaviour")
 	    .addFunction("update", &Behaviour::update)
-	    .addFunction("start", &Behaviour::initComponent)
+	    .addFunction("start", &Behaviour::start)
 	    .addFunction("awake", &Behaviour::awake)
 	    .addFunction("onCollisionEnter", &Behaviour::onCollisionEnter)
 	    .addFunction("onCollisionExit", &Behaviour::onCollisionExit)
