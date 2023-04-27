@@ -1,5 +1,5 @@
 #include "VirtualTimer.h"
-
+#include <cstdint>
 #include <SDL.h>
 
 Spyutils::VirtualTimer::VirtualTimer() { reset(); }

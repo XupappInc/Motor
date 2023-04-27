@@ -33,7 +33,6 @@ bld/
 [Tt]emp/
 [Ee]xes/*
 [Ll]ib
-![Ee]xes/assets
 ![Ee]xes/*.cfg
 [Dd]ependencias/Ogre/Build
 [Dd]ependencias/ImGUI/build

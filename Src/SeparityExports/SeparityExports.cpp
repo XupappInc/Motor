@@ -34,9 +34,9 @@
 #include "SceneEngine\SceneManager.h"
 #include "UIEngine\UIManager.h"
 
-//// Utils
+// Utils
 #include "SeparityUtils\Random.h"
-#include "SeparityUtils\VirtualTimer.h"
+#include "SeparityUtils/VirtualTimer.h"
 
 #include <Windows.h>
 #include <iostream>

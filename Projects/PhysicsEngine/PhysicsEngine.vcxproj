@@ -27,7 +27,6 @@
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsManager.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\RigidBody.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\RigidbodyCreator.cpp" />
-    <ClCompile Include="..\..\Src\PhysicsEngine\VehicleMovement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PhysicsEngine\Collider.h" />
@@ -38,7 +37,6 @@
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsManager.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\RigidBody.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\RigidbodyCreator.h" />
-    <ClInclude Include="..\..\Src\PhysicsEngine\VehicleMovement.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

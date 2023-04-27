@@ -2,9 +2,9 @@
 #ifndef __VIRTUAL_TIMER_H__
 #define __VIRTUAL_TIMER_H__
 
-#include <cstdint>
 #include "SeparityExports\SeparityApi.h"
 
+typedef unsigned int uint32_t;
 namespace Spyutils {
 	/// <summary>
 	/// Clase que crea un timer virtual utilizando sdl
