@@ -24,10 +24,9 @@
 		_TEXT, \
 		_PANEL, \
 		_PATH_FOLLOW, \
-		_VEHICLE_MOVEMENT, \
-		_VEHICLE_CAMERA, \
 		_SOUND_COMPONENT, \
-		_IMAGE
+		_IMAGE, \
+		_GAME_COMPONENT
 		 
 
 /// <summary>
