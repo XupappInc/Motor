@@ -56,7 +56,10 @@ namespace Separity {
 		/// <summary>
 		/// Start se llama tras awake, al comienzo de la ejecucion
 		/// </summary>
+
 		virtual void start() override;
+
+		virtual void initComponent() override;
 		/// <summary>
 		/// Update se llama en cada frame
 		/// </summary>

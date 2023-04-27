@@ -31,7 +31,7 @@ void Separity::Behaviour::update(const uint32_t& deltaTime) {
 	}
 }
 
-void Separity::Behaviour::start() {
+void Separity::Behaviour::initComponent() {
 	luabridge::LuaRef startLua = (*behaviourLua_)["start"];
 	if(startLua.isFunction()) {
 		try {
