@@ -59,7 +59,6 @@ namespace Separity {
 
 		virtual void start() override;
 
-		virtual void initComponent() override;
 		/// <summary>
 		/// Update se llama en cada frame
 		/// </summary>
