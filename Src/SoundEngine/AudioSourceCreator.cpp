@@ -22,12 +22,16 @@ bool Separity::AudioSourceCreator::createComponent(lua_State* L,
                                                    Separity::Entity* ent) {
 	std::string audioRoute, audioName;
 	int isMusicBoolean;
-
+	bool sendBool;
 	if(readParam("route", L, audioRoute) 
 		&& readParam("name", L, audioName) 
 		&& readParam("isMusic", L, isMusicBoolean)) {
 	
-		ent->addComponent<AudioSource>(audioRoute, audioName, isMusicBoolean);
+		if(isMusicBoolean == 1)
+			sendBool = true;
+		else
+			sendBool = false;
+		ent->addComponent<AudioSource>(audioRoute, audioName, sendBool);
 		return true;
 	}
 		
