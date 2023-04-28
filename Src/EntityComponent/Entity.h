@@ -2,20 +2,19 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
-#include "SeparityExports\SeparityApi.h"
 #include "Component.h"
 #include "Manager.h"
+#include "SeparityExports\SeparityApi.h"
 #include "ec.h"
 
 #include <array>
 #include <bitset>
 #include <cassert>
+#include <iostream>
 #include <vector>
 
-#include <iostream>
-
 namespace Spyutils {
-	class Vector3;		
+	class Vector3;
 }
 
 namespace Separity {
@@ -45,28 +44,33 @@ namespace Separity {
 			for(Component* c : currCmps_) delete c;
 			/*if(parent)
 			delete parent;*/
-			//for(Entity* ch : childs_) delete ch;
+			// for(Entity* ch : childs_) delete ch;
 		}
+		
 		/// <summary>
 		/// acceso a los hijops de la entidad
 		/// </summary>
 		/// <returns>vector de entidades</returns>
 		std::vector<Entity*> getChildren() const;
+		
 		/// <summary>
-		/// acceso al padre 
+		/// acceso al padre
 		/// </summary>
 		/// <returns>la entidad del padre</returns>
-		Entity* getParent() const;
+		Separity::Entity* getParent() const;
+		
 		/// <summary>
 		/// Añade un hijo a la entidad
 		/// </summary>
 		/// <param name="child">hijo a añadir</param>
 		void addChild(Entity* child);
+		
 		/// <summary>
 		/// elimina el hijo de la entidad
 		/// </summary>
 		/// <param name="child">hijo a elinar</param>
-		void removeChild( Entity* child);
+		void removeChild(Entity* child);
+		
 		/// <summary>
 		/// Cada entidad sabe el manager al que pertenece, usamos este metodos
 		/// para asignar el contexto
@@ -120,7 +124,7 @@ namespace Separity {
 			if(m != nullptr)
 				m->addComponent(c);
 			c->setContext(this);
-			
+
 			cmps_[cId] = c;
 			currCmps_.push_back(c);
 
@@ -166,11 +170,12 @@ namespace Separity {
 
 			return static_cast<T*>(cmps_[cId]);
 		}
+		
 		/// <summary>
 		/// Devuelve si existe un componente con el identificador T::id
 		/// </summary>
-		/// <returns>True si existe el componente, falssssssssssssssssssse en caso
-		/// contrario</returns>
+		/// <returns>True si existe el componente, falssssssssssssssssssse en
+		/// caso contrario</returns>
 		template<typename T>
 		bool hasComponent() {
 			constexpr cmpId_type cId = T::id;
@@ -178,35 +183,36 @@ namespace Separity {
 
 			return cmps_[cId] != nullptr;
 		}
-		
+
 		/// <summary>
 		/// Devuelve el grupo de la entidad
 		/// </summary>
 		/// <returns>El grupo al que pertenece la entidad (gId)</returns>
 		Separity::grpId_type getGroupId();
-		
+
 		/// <summary>
 		/// Getter para conseguir un tag
 		/// </summary>
 		/// <returns></returns>
 		std::string getTag();
+		
 		/// <summary>
 		/// Setter para poner el nombre del tag
 		/// </summary>
 		void setTag(std::string name);
+
 		private:
+		Separity::Manager* getManager(cmpType_type type);
 
-		Manager* getManager(cmpType_type type);
-
-		Manager* mngr_;
+		Separity::Manager* mngr_;
 		std::array<Component*, maxComponentId> cmps_;
 		std::vector<Component*> currCmps_;
 		bool alive_;
 		bool active_;
 		Separity::grpId_type gId_;
-		Entity* parent = nullptr;
+		Separity::Entity* parent = nullptr;
 		std::vector<Entity*> childs_;
-		Transform* entTr_;
+		Separity::Transform* entTr_;
 		std::string tag_;
 	};
 }  // namespace Separity

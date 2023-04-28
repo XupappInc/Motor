@@ -3,16 +3,11 @@
 #include "Manager.h"
 #include "SeparityUtils\checkML.h"
 
-Separity::Component::Component()
-    : ent_(nullptr), active_(true), cId_(0) {}
+Separity::Component::Component() : ent_(nullptr), active_(true), cId_(0) {}
 
-Separity::Component::~Component() {
+Separity::Component::~Component() {}
 
-}
-
-void Separity::Component::setContext(Entity* ent) {
-	ent_ = ent;
-}
+void Separity::Component::setContext(Entity* ent) { ent_ = ent; }
 
 void Separity::Component::setActive(bool set) { active_ = set; }
 

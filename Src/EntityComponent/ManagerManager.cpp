@@ -50,16 +50,14 @@ void Separity::ManagerManager::clean() {
 	for(auto m : managers_) {
 		m.second->clean();
 	}
-	//close();
+	// close();
 }
 
 void Separity::ManagerManager::initManagers() {
 	for(auto m : managers_) {
-		
 	}
 }
 
 bool Separity::ManagerManager::quit() { return quit_; }
 
 void Separity::ManagerManager::shutDown() { quit_ = true; }
-

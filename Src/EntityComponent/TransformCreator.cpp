@@ -1,8 +1,8 @@
 #include "TransformCreator.h"
 
-#include "Transform.h"
 #include "Entity.h"
 #include "LuaEngine\LuaManager.h"
+#include "Transform.h"
 
 #include <lua.hpp>
 #include <LuaBridge.h>
@@ -37,7 +37,8 @@ void Separity::TransformCreator::registerInLua() {
 	    .addFunction("distance", &Spyutils::Vector3::distance)
 	    .endClass();
 
-	luabridge::getGlobalNamespace(L).beginClass<Spyutils::spyQuaternion>("Quaternion")
+	luabridge::getGlobalNamespace(L)
+	    .beginClass<Spyutils::spyQuaternion>("Quaternion")
 	    .addConstructor<void (*)(float, float, float)>()
 	    .addConstructor<void (*)(float, float, float, float)>()
 	    .addProperty("w", &Spyutils::spyQuaternion::w)
@@ -49,11 +50,11 @@ void Separity::TransformCreator::registerInLua() {
 }
 
 bool Separity::TransformCreator::createComponent(lua_State* L,
-                                              Separity::Entity* ent) {
-
+                                                 Separity::Entity* ent) {
 	bool success = true;
 
-	Transform* tr = ent->getComponent<Transform>();  // addComponent<Transform>();
+	Transform* tr =
+	    ent->getComponent<Transform>();  // addComponent<Transform>();
 	float data[4] = {};
 
 	success &= readArray("pos", L, data);
@@ -65,15 +66,3 @@ bool Separity::TransformCreator::createComponent(lua_State* L,
 
 	return success;
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -12,9 +12,8 @@ void Separity::Manager::start() {
 	started_ = true;
 }
 
-void Separity::Manager::initComponents() { 
-	for(Separity::Component* c : cmps_)
-		c->initComponent(); 
+void Separity::Manager::initComponents() {
+	for(Separity::Component* c : cmps_) c->initComponent();
 }
 
 void Separity::Manager::update(const uint32_t& deltaTime) {
@@ -26,8 +25,7 @@ void Separity::Manager::update(const uint32_t& deltaTime) {
 	}
 }
 
-void Separity::Manager::render() {
-}
+void Separity::Manager::render() {}
 
 void Separity::Manager::addComponent(Separity::Component* cmp) {
 	assert(cmp != nullptr);
@@ -41,8 +39,8 @@ void Separity::Manager::removeComponent(Separity::Component* cmp) {
 	cmps_.erase(iter);
 }
 
-void Separity::Manager::clean() { 
-	cmps_.clear(); 
+void Separity::Manager::clean() {
+	cmps_.clear();
 	started_ = false;
 }
 
@@ -55,7 +53,7 @@ void Separity::Manager::setActive(bool active) { active_ = active; }
 void Separity::Manager::reset() {}
 
 void Separity::Manager::startComponent() {
-	for(auto comp :cmps_) {
+	for(auto comp : cmps_) {
 		comp->start();
 	}
 }

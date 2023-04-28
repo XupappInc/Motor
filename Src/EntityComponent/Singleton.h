@@ -6,10 +6,10 @@
 
 #include <cassert>
 #include <memory>
-///<summary>
+
+///< summary>
 /// Clase que implementa el patrón de diseño Singleton
 /// </summary>
-
 template<typename T>
 class _SEPARITY_API_ Singleton {
 	protected:
@@ -24,10 +24,12 @@ class _SEPARITY_API_ Singleton {
 	/// Borrados atributos que permiten copiar o duplicar la clase que va a
 	/// ser singleton
 	/// </summary>
-
 	Singleton<T>& operator=(const Singleton<T>& o) = delete;
 	Singleton(const Singleton<T>& o) = delete;
 
+	/// <summary>
+	/// Destructora de la clase
+	/// </summary>
 	virtual ~Singleton() {};
 
 	// Targs se refere a cualquier cantidad y tipo de argumentos que pueda
@@ -46,19 +48,25 @@ class _SEPARITY_API_ Singleton {
 		return _INSTANCE_.get();
 	}
 
+	/// <summary>
+	/// Devuelve la instancia del singleton (en caso de no estar creada, se
+	/// inicializa)
+	/// </summary>
+	/// <returns>Instancia del singleton</returns>
 	static T* instance() {
 		if(_INSTANCE_.get() == nullptr) {
 			init();
 		}
 		return _INSTANCE_.get();
 	}
-	///<summary>
+
+	///< summary>
 	/// Método para cerrar en orden los singleton que dependan unos de otros
 	///</summary>
 	static void close() { _INSTANCE_.reset(); }
 
 	private:
-	///<summary>
+	///< summary>
 	/// Ninguna otra clase puede acceder a la instancia de una clase
 	/// singleton.
 	/// unique_ptr es un smart poninter que proporciona métodos para el
@@ -67,7 +75,8 @@ class _SEPARITY_API_ Singleton {
 	static std::unique_ptr<T> _INSTANCE_;
 };
 /// <summary>
-/// Declaración de la instancia (esto hay que ponerlo solo en los .cpp de los archivos que sean singleton)
+/// Declaración de la instancia (esto hay que ponerlo solo en los .cpp de los
+/// archivos que sean singleton)
 ///		template<typename T>
 ///		std::unique_ptr<T> Singleton<T>::_INSTANCE_;
 /// </summary>

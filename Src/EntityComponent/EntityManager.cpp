@@ -1,10 +1,11 @@
 #include "EntityManager.h"
 
-#include "ManagerManager.h"
 #include "Entity.h"
+#include "ManagerManager.h"
 #include "Transform.h"
 
-std::unique_ptr<Separity::EntityManager> Singleton<Separity::EntityManager>::_INSTANCE_;
+std::unique_ptr<Separity::EntityManager>
+    Singleton<Separity::EntityManager>::_INSTANCE_;
 
 inline Separity::EntityManager::EntityManager() {
 	ManagerManager::getInstance()->addManager(_ENTITY, this);
@@ -14,7 +15,7 @@ Separity::EntityManager* Separity::EntityManager::getInstance() {
 	return static_cast<EntityManager*>(instance());
 }
 
-Separity::Entity* Separity::EntityManager::addEntity(grpId_type gID) {	
+Separity::Entity* Separity::EntityManager::addEntity(grpId_type gID) {
 	// constexpr
 	grpId_type gId = gID;
 	// constexpr hdlrId hdlrId = T::;
@@ -27,20 +28,15 @@ Separity::Entity* Separity::EntityManager::addEntity(grpId_type gID) {
 	return e;
 }
 
-void Separity::EntityManager::clean() { 
+void Separity::EntityManager::clean() {
 	Separity::Manager::clean();
 
 	deleteEntities();
 }
 
 void Separity::EntityManager::deleteEntities() {
-
 	for(int i = 0; i < allEntities_.size(); i++) {
-
 		delete allEntities_[i];
 	}
 	allEntities_.clear();
 }
-
-
-

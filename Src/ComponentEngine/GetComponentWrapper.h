@@ -2,25 +2,22 @@
 #ifndef GET_CMP_WRAPPER
 #define GET_CMP_WRAPPER
 
-#include "SeparityExports\SeparityApi.h"
 #include "EntityComponent\Component.h"
-
-class lua_State;
+#include "SeparityExports\SeparityApi.h"
 
 namespace Separity {
 
-	class RigidBody;
-	class Transform;
-
 	/// <summary>
-	/// Clase encargada de registrar todos los getters de componentes desde Entity en Lua
+	/// Clase encargada de registrar todos los getters de componentes desde
+	/// Entity en Lua
 	/// </summary>
-	class _SEPARITY_API_ GetComponentWrapper : public Component {
+	class _SEPARITY_API_ GetComponentWrapper : public Separity::Component {
 		public:
 		GetComponentWrapper();
 		~GetComponentWrapper();
 		/// <summary>
-		/// Metodo que registra los getters de cada componente que se vaya a utilizar en Lua
+		/// Metodo que registra los getters de cada componente que se vaya a
+		/// utilizar en Lua
 		/// </summary>
 		static void registerInLua();
 
@@ -33,8 +30,6 @@ namespace Separity {
 		/// Cierra todos los managers
 		/// </summary>
 		static void closeAllManagers();
-
-		private:
 	};
 }  // namespace Separity
 

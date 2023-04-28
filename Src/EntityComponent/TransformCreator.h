@@ -2,8 +2,8 @@
 #ifndef __TRANSFORM_CREATOR_H__
 #define __TRANSFORM_CREATOR_H__
 
-#include "SeparityExports\SeparityApi.h"
 #include "CCreator.h"
+#include "SeparityExports\SeparityApi.h"
 
 class lua_State;
 
@@ -30,8 +30,9 @@ namespace Separity {
 		/// rotación de un quaternión y por último para los valores x,y,z de la
 		/// escala
 		/// </summary>
-		/// <param name="L"></param>
-		/// <param name="ent"></param>
+		/// <param name="L">Referencia a la tabla de Lua</param>
+		/// <param name="ent">Entidad a la que asignar el componente
+		/// cread</param>
 		bool createComponent(lua_State* L, Separity::Entity* ent) override;
 	};
 };  // namespace Separity
