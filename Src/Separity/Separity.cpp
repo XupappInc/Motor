@@ -20,7 +20,7 @@ int main() {
 #endif
 	
 	if(hinstLib != NULL) {
-		std::cout << "Librería cargada!\n";
+		std::cout << "Libreria cargada!\n";
 		GameEntryPoint entryPoint;
 		entryPoint = (GameEntryPoint) GetProcAddress(hinstLib, "start");
 		if(entryPoint != NULL) {
