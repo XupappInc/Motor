@@ -10,6 +10,7 @@
 namespace Separity {
 
 	class Entity;
+	class CCreator;
 	class ComponentFactory;
 
 	/// <summary>
@@ -54,6 +55,8 @@ namespace Separity {
 		/// con la destrucción del LuaManager en pseudoClean()
 		/// </summary>
 		void changeScene();
+
+		void addComponentCreator(const std::string& name, CCreator* creator);
 
 		void start() override;
 
