@@ -4,7 +4,7 @@
 #include "Entity.h"
 
 #include <lua.hpp>
-#include <LuaBridge/LuaBridge.h>
+#include <LuaBridge.h>
 #include "LuaManager.h"
 
 using namespace Separity;

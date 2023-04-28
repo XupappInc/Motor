@@ -1,2 +1,2 @@
-start /wait cmd /c "buildLibraries.bat"
+call buildLibraries.bat
 call buildSeparity.bat

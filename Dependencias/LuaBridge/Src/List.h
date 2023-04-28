@@ -1,81 +1,51 @@
-// https://github.com/kunitoki/LuaBridge3
-// Copyright 2020, Lucio Asnaghi
+// https://github.com/vinniefalco/LuaBridge
 // Copyright 2020, Dmitry Tarakanov
 // SPDX-License-Identifier: MIT
 
 #pragma once
 
-#include "detail/Stack.h"
+#include <LuaBridge/detail/Stack.h>
 
 #include <list>
 
 namespace luabridge {
 
-//=================================================================================================
-/**
- * @brief Stack specialization for `std::array`.
- */
-template <class T>
+template<class T>
 struct Stack<std::list<T>>
 {
-    using Type = std::list<T>;
-    
-    [[nodiscard]] static bool push(lua_State* L, const Type& list, std::error_code& ec)
+    static void push(lua_State* L, std::list<T> const& list)
     {
-#if LUABRIDGE_SAFE_STACK_CHECKS
-        if (! lua_checkstack(L, 3))
-        {
-            ec = makeErrorCode(ErrorCode::LuaStackOverflow);
-            return false;
-        }
-#endif
-
-        const int initialStackSize = lua_gettop(L);
-
         lua_createtable(L, static_cast<int>(list.size()), 0);
-
-        auto it = list.cbegin();
-        for (lua_Integer tableIndex = 1; it != list.cend(); ++tableIndex, ++it)
+        typename std::list<T>::const_iterator item = list.begin();
+        for (std::size_t i = 1; i <= list.size(); ++i)
         {
-            lua_pushinteger(L, tableIndex);
-
-            std::error_code errorCode;
-            if (! Stack<T>::push(L, *it, errorCode))
-            {
-                ec = errorCode;
-                lua_pop(L, lua_gettop(L) - initialStackSize);
-                return false;
-            }
-
+            lua_pushinteger(L, static_cast<lua_Integer>(i));
+            Stack<T>::push(L, *item);
             lua_settable(L, -3);
+            ++item;
         }
-        
-        return true;
     }
 
-    [[nodiscard]] static Type get(lua_State* L, int index)
+    static std::list<T> get(lua_State* L, int index)
     {
         if (!lua_istable(L, index))
-            luaL_error(L, "#%d argument must be a table", index);
-
-        Type list;
-
-        int absIndex = lua_absindex(L, index);
-        lua_pushnil(L);
-
-        while (lua_next(L, absIndex) != 0)
         {
-            list.emplace_back(Stack<T>::get(L, -1));
-            lua_pop(L, 1);
+            luaL_error(L, "#%d argument must be a table", index);
         }
 
+        std::list<T> list;
+
+        int const absindex = lua_absindex(L, index);
+        lua_pushnil(L);
+        while (lua_next(L, absindex) != 0)
+        {
+            list.push_back(Stack<T>::get(L, -1));
+            lua_pop(L, 1);
+        }
         return list;
     }
 
-    [[nodiscard]] static bool isInstance(lua_State* L, int index)
-    {
-        return lua_istable(L, index);
-    }
+    static bool isInstance(lua_State* L, int index) { return lua_istable(L, index); }
 };
 
 } // namespace luabridge

@@ -6,7 +6,7 @@
 #include "EntityComponent\Entity.h"
 
 #include <lua.hpp>
-#include <LuaBridge/LuaBridge.h>
+#include <LuaBridge.h>
 #include <iostream>
 
 std::unique_ptr<Separity::LuaManager> Singleton<Separity::LuaManager>::_INSTANCE_;

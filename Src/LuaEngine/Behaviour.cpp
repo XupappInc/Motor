@@ -4,7 +4,7 @@
 #include "LuaManager.h"
 
 #include <lua.hpp>
-#include <LuaBridge/LuaBridge.h>
+#include <LuaBridge.h>
 #include <iostream>
 
 Separity::Behaviour::Behaviour(std::string name) : behaviourLua_(nullptr), name_(name) {

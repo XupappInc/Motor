@@ -1,7 +1,7 @@
 #include "GetComponentWrapper.h"
 
-#include "lua.hpp"
-#include "LuaBridge/LuaBridge.h"
+#include <lua.hpp>
+#include <LuaBridge.h>
 
 #include "EntityComponent\Entity.h"
 #include "EntityComponent\Transform.h"

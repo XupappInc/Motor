@@ -11,7 +11,7 @@
 #include "LuaManager.h"
 
 #include <lua.hpp>
-#include <LuaBridge/LuaBridge.h>
+#include <LuaBridge.h>
 #include <unordered_map>
 #include "checkML.h"
 #define M_PI 3.141592
