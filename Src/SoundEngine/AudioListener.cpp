@@ -10,17 +10,18 @@ using namespace Separity;
 
 AudioListener::AudioListener() {
 	AudioManager* audioManager = AudioManager::getInstance();
-	if(audioManager->firstListener) {
-		audioManager->firstListener = false;
+	if(audioManager->getFirstListener()) {
+		audioManager->setFirstListener(false);
 		listenerNumber_ = 0;
 	} else {
 		int f = 0;
-		FMOD_RESULT result = audioManager->system_->get3DNumListeners(&f);
+		FMOD_RESULT result = audioManager->getSystem()->get3DNumListeners(&f);
 		audioManager->FMODErrorChecker(&result);
 		listenerNumber_ = f;
-		result = audioManager->system_->set3DNumListeners(listenerNumber_ + 1);
+		result =
+		    audioManager->getSystem()->set3DNumListeners(listenerNumber_ + 1);
 		audioManager->FMODErrorChecker(&result);
-		result = audioManager->system_->get3DNumListeners(&f);
+		result = audioManager->getSystem()->get3DNumListeners(&f);
 		audioManager->FMODErrorChecker(&result);
 	}
 	audioManager = nullptr;
@@ -28,7 +29,7 @@ AudioListener::AudioListener() {
 
 Separity::AudioListener::~AudioListener() {
 	AudioManager* audioManager = AudioManager::getInstance();
-	audioManager->firstListener = true;
+	audioManager->setFirstListener(true);
 }
 
 void Separity::AudioListener::update(const uint32_t& deltaTime) {

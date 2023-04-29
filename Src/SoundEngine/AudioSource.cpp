@@ -17,17 +17,17 @@ AudioSource::AudioSource(std::string audioRoute, std::string audioName,
 	FMOD_RESULT result;
 	isMusic_ = isMusic;
 	if(isMusic) {
-		result = audioManager->system_->createSound(
+		result = audioManager->getSystem()->createSound(
 		    audioRoute.c_str(), FMOD_3D | FMOD_LOOP_NORMAL, nullptr, &sound_);
 		audioManager->FMODErrorChecker(&result);
-		audioManager->musics_->emplace(audioName, sound_);
-		sound_->setSoundGroup(audioManager->musicGroup_);
+		audioManager->getMusics_()->emplace(audioName, sound_);
+		sound_->setSoundGroup(audioManager->getMusicGroup_());
 	} else {
-		result = audioManager->system_->createSound(
+		result = audioManager->getSystem()->createSound(
 		    audioRoute.c_str(), FMOD_3D | FMOD_DEFAULT, nullptr, &sound_);
 		audioManager->FMODErrorChecker(&result);
-		audioManager->sounds_->emplace(audioName, sound_);
-		sound_->setSoundGroup(audioManager->soundGroup_);
+		audioManager->getSounds_()->emplace(audioName, sound_);
+		sound_->setSoundGroup(audioManager->getSoundGroup_());
 	}
 	audioName_ = audioName;
 	// Se pone el puntero a nullptr
@@ -44,18 +44,18 @@ AudioSource::~AudioSource() {
 	if(channel_ && !isPlaying) {
 		channel_->isPlaying(&isPlaying);
 		if(!isPlaying) {
-			auto iterator = audioManager->channels_->find(audioName_);
-			audioManager->channels_->erase(iterator);
+			auto iterator = audioManager->getChannels_()->find(audioName_);
+			audioManager->getChannels_()->erase(iterator);
 			channel_ = nullptr;
 			playing_ = false;
 		}
 	}
 	if(isMusic_) {
-		auto iterator = audioManager->musics_->find(audioName_);
-		audioManager->musics_->erase(iterator);
+		auto iterator = audioManager->getMusics_()->find(audioName_);
+		audioManager->getMusics_()->erase(iterator);
 	} else {
-		auto iterator = audioManager->sounds_->find(audioName_);
-		audioManager->sounds_->erase(iterator);
+		auto iterator = audioManager->getSounds_()->find(audioName_);
+		audioManager->getSounds_()->erase(iterator);
 	}
 	sound_->release();
 }
@@ -80,8 +80,8 @@ void Separity::AudioSource::update(const uint32_t& deltaTime) {
 	if(channel_ && !isPlaying) {
 		channel_->isPlaying(&isPlaying);
 		if(!isPlaying) {
-			auto iterator = audioManager->channels_->find(audioName_);
-			audioManager->channels_->erase(iterator);
+			auto iterator = audioManager->getChannels_()->find(audioName_);
+			audioManager->getChannels_()->erase(iterator);
 			channel_ = nullptr;
 			playing_ = false;
 		}
@@ -95,7 +95,7 @@ void Separity::AudioSource::update(const uint32_t& deltaTime) {
 		                               tr->getPosition().z};
 		// Comprobación extra para ver si está sonando, es decir en el map de
 		// channels
-		if(audioManager->channels_->count(audioName_)) {
+		if(audioManager->getChannels_()->count(audioName_)) {
 			FMOD_RESULT result = channel_->set3DAttributes(&pos, nullptr);
 			audioManager->FMODErrorChecker(&result);
 		}

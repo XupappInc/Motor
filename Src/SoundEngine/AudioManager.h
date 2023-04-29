@@ -98,20 +98,35 @@ namespace Separity {
 		                      FMOD_VECTOR* vel = nullptr,
 		                      FMOD_VECTOR* forward = nullptr,
 		                      FMOD_VECTOR* up = nullptr);
-		FMOD::System* system_;
-		std::unordered_map<std::string, FMOD::Sound*>* sounds_;
-		std::unordered_map<std::string, FMOD::Sound*>* musics_;
-		std::unordered_map<std::string, FMOD::Channel*>* channels_;
-		FMOD::SoundGroup* musicGroup_;
-		FMOD::SoundGroup* soundGroup_;
-		bool firstListener;
-
+		FMOD::System* getSystem();
+		void setSystem(FMOD::System* sys);
+		std::unordered_map<std::string, FMOD::Sound*>* getSounds_();
+		void setSounds_(std::unordered_map<std::string, FMOD::Sound*>*sound);
+		std::unordered_map<std::string, FMOD::Sound*>* getMusics_();
+		void setMuics(std::unordered_map<std::string, FMOD::Sound*>*musics);
+		std::unordered_map<std::string, FMOD::Channel*>* getChannels_();
+		FMOD::SoundGroup* getMusicGroup_();
+		void setMusicGroup_(FMOD::SoundGroup* musicGroup);
+		FMOD::SoundGroup* getSoundGroup_();
+		void setSoundGroup_(FMOD::SoundGroup* sound);
+		bool getFirstListener();
+		void setFirstListener(bool first);
 		
 		void start() override;
 
 		void clean() override;
 
 		private:
+		FMOD::System* system_;
+		std::unordered_map<std::string, FMOD::Sound*>* musics_;
+		std::unordered_map<std::string, FMOD::Sound*>* sounds_;
+		std::unordered_map<std::string, FMOD::Channel*>* channels_;
+		FMOD::SoundGroup* musicGroup_;
+		FMOD::SoundGroup* soundGroup_;
+		bool firstListener_;
+
+
+
 		float* buffer_;
 	};
 }  // namespace Separity
