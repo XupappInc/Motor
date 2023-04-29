@@ -11,7 +11,10 @@ Separity::AnimatorCreator::AnimatorCreator() {}
 
 void Separity::AnimatorCreator::registerInLua() {
 	lua_State* L = Separity::LuaManager::getInstance()->getLuaState();
-	luabridge::getGlobalNamespace(L).beginClass<Animator>("animator").endClass();
+	luabridge::getGlobalNamespace(L)
+	    .beginClass<Animator>("animator")
+	    .addFunction("playAnim",&Animator::playAnim)
+		.endClass();
 }
 
 bool Separity::AnimatorCreator::createComponent(lua_State* L,
