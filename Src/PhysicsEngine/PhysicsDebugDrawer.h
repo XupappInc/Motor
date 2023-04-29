@@ -62,7 +62,6 @@ namespace Separity {
 		private:
 	
 		Ogre::SceneNode* node_;
-		Ogre::SceneManager* ogreSceneManager_;
 
 		DebugDrawModes debugMode_;
 
