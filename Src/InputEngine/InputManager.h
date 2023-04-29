@@ -2,9 +2,6 @@
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
 
-
-
-
 #include "EntityComponent\Manager.h"
 #include "SeparityExports\SeparityApi.h"
 

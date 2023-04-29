@@ -43,8 +43,4 @@
 
 
 // Constructor de clase exportada.
-Separity::CSeparityExports::CSeparityExports() { std::cout << "Hola" << std::endl; }
-
-void Separity::CSeparityExports::initMotor() { 
-	Separity::GetComponentWrapper::createAllManagers();
-}
+Separity::CSeparityExports::CSeparityExports() {  }

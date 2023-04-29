@@ -12,6 +12,7 @@ namespace Separity {
 	// Clase exportada del DLL
 	class _SEPARITY_API_ CSeparityExports {
 		public:
+		
 		CSeparityExports();
 		/// <summary>
 		/// Inicialización de los managers para que los pueda usar el juego
