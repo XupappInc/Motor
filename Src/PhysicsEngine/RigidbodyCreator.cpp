@@ -21,18 +21,14 @@ void Separity::RigidbodyCreator::registerInLua() {
 bool Separity::RigidbodyCreator::createComponent(lua_State* L,
                                                  Separity::Entity* ent) {
 	int type = 0;
-	if(!readParam("type", L, type))
-		return false;
-	int mass = 0;
-	if(!readParam("mass", L, mass))
-		return false;
-	float data[3] = {};
-
-	if(!readArray("dim", L, data))
-		return false;
-	int trigger;
-	if(!readParam("trigger", L, trigger))
-		return false;
+	readParam("type", L, type);
+	int mass = 10;
+	readParam("mass", L, mass);
+	float data[3] = {2,2,2};
+	readArray("dim", L, data);
+	int trigger=1;
+	readParam("trigger", L, trigger);
+		
 	colliderParams params;
 	params.colShape = CUBE;
 	params.width = data[0];
