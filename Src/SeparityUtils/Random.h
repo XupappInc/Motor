@@ -4,7 +4,6 @@
 
 #include "SeparityExports\SeparityApi.h"
 
-
 namespace Spyutils {
 	/// <summary>
 	/// Clase para generar números aleatorios

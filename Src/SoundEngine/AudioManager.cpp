@@ -74,7 +74,7 @@ inline Separity::AudioManager::AudioManager() {
 	system_ = nullptr;
 	soundGroup_ = nullptr;
 	musicGroup_ = nullptr;
-	firstListener = true;
+	firstListener_ = true;
 
 	ManagerManager::getInstance()->addManager(_SOUND, this);
 }
@@ -168,6 +168,57 @@ void Separity::AudioManager::update3DListener(int listenerNumber,
 	FMOD_RESULT result =
 	    system_->set3DListenerAttributes(listenerNumber, pos, vel, forward, up);
 	FMODErrorChecker(&result);
+}
+
+FMOD::System* Separity::AudioManager::getSystem() { return system_; }
+
+void Separity::AudioManager::setSystem(FMOD::System* sys) { system_ = sys; }
+
+std::unordered_map<std::string, FMOD::Sound*>*
+Separity::AudioManager::getSounds_() {
+	return nullptr;
+}
+
+void Separity::AudioManager::setSounds_(
+    std::unordered_map<std::string, FMOD::Sound*>* sound) {
+	sounds_ = sound;
+}
+
+std::unordered_map<std::string, FMOD::Sound*>*
+Separity::AudioManager::getMusics_() {
+	return musics_;
+}
+
+void Separity::AudioManager::setMuics(
+    std::unordered_map<std::string, FMOD::Sound*>* musics) {
+	musics_ = musics;
+}
+
+std::unordered_map<std::string, FMOD::Channel*>*
+Separity::AudioManager::getChannels_() {
+	return channels_;
+}
+
+FMOD::SoundGroup* Separity::AudioManager::getMusicGroup_() {
+	return musicGroup_;
+}
+
+void Separity::AudioManager::setMusicGroup_(FMOD::SoundGroup* musicGroup) {
+	musicGroup_ = musicGroup;
+}
+
+FMOD::SoundGroup* Separity::AudioManager::getSoundGroup_() {
+	return soundGroup_;
+}
+
+void Separity::AudioManager::setSoundGroup_(FMOD::SoundGroup* sound) {
+	soundGroup_ = sound;
+}
+
+bool Separity::AudioManager::getFirstListener() { return firstListener_; }
+
+void Separity::AudioManager::setFirstListener(bool first) {
+	firstListener_ = first;
 }
 
 void Separity::AudioManager::clean() { 

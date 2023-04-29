@@ -26,7 +26,7 @@ void Separity::Animator::update(const uint32_t& deltaTime) {
 		Ogre::AnimationState* anim = it->second;
 		if(anim != nullptr) {
 			if(anim->getEnabled()) {
-				anim->addTime(deltaTime / 1000.f);
+				anim->addTime(1000.f / 1000.f);
 			}
 		}
 	}
