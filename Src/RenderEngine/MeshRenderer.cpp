@@ -11,41 +11,41 @@ using namespace Separity;
 Separity::MeshRenderer::MeshRenderer() : 
 	entity_(nullptr), tr_(nullptr) {
 
-	ogreSceneManager_ = Separity::RenderManager::getInstance()->getSceneManager();	
-	node_ = ogreSceneManager_->getRootSceneNode()->createChildSceneNode();		
+	node_ = Separity::RenderManager::getInstance()->getOgreSceneManager()
+	            ->getRootSceneNode()->createChildSceneNode();
 }
 
 void Separity::MeshRenderer::initComponent() {
 	tr_ = ent_->getComponent<Transform>();
 }
 
-Separity::MeshRenderer::~MeshRenderer() {
-	if(entity_ != nullptr)
-		ogreSceneManager_->destroyMovableObject(entity_);
-	ogreSceneManager_->destroySceneNode(node_);
-}
-
 void Separity::MeshRenderer::update(const uint32_t& deltaTime) {
-
 	node_->setPosition(tr_->getPosition().x, tr_->getPosition().y,
-	                           tr_->getPosition().z);
+	                   tr_->getPosition().z);
 
 	Spyutils::spyQuaternion rot = tr_->getRotationQ();
 	node_->setOrientation(rot.spyQuaterniomToOgre());
 
-	node_->setScale(tr_->getScale().x, tr_->getScale().y,
-	                        tr_->getScale().z);
+	node_->setScale(tr_->getScale().x, tr_->getScale().y, tr_->getScale().z);
+}
+
+Separity::MeshRenderer::~MeshRenderer() {
+
+	Ogre::SceneManager* ogreSceneManager =
+	    Separity::RenderManager::getInstance()->getOgreSceneManager();
+
+	if(entity_ != nullptr)
+		ogreSceneManager->destroyMovableObject(entity_);
+	ogreSceneManager->destroySceneNode(node_);
 }
 
 void Separity::MeshRenderer::setMesh(const std::string& name) {
-	entity_ = ogreSceneManager_->createEntity(name);
+	entity_ = Separity::RenderManager::getInstance()->getOgreSceneManager()->createEntity(name);
 	node_->attachObject(entity_);
 }
 
-void Separity::MeshRenderer::setActive(bool set) {
-	node_->setVisible(set);
+void Separity::MeshRenderer::setActive(bool b) {
+	node_->setVisible(b); 
 }
 
-Ogre::SceneNode* Separity::MeshRenderer::getNode() { return node_; }
 
-Ogre::Entity* Separity::MeshRenderer::getOgreEntity() { return entity_; }

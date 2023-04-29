@@ -20,7 +20,7 @@ namespace Separity {
 	class _SEPARITY_API_ PhysicsDebugDrawer : public btIDebugDraw {
 		
 		public:
-		PhysicsDebugDrawer(Ogre::SceneManager* sceneMgr);
+		PhysicsDebugDrawer();
 		~PhysicsDebugDrawer();
 
 		/// <summary>
@@ -60,11 +60,13 @@ namespace Separity {
 		int getDebugMode() const override;
 
 		private:
-		Ogre::SceneManager* sceneMngr_;
-		DebugDrawModes debugMode_;
-		Ogre::SceneNode* debugNode_;
+	
+		Ogre::SceneNode* node_;
+		Ogre::SceneManager* ogreSceneManager_;
 
-		std::vector<Ogre::ManualObject*> lines_;
+		DebugDrawModes debugMode_;
+
+		std::vector<Ogre::ManualObject*> lines_;	
 	};
 }  // namespace Separity
 

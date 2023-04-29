@@ -16,13 +16,22 @@ void Separity::ParticleSystemCreator::registerInLua() {
 
 bool Separity::ParticleSystemCreator::createComponent(lua_State* L,
                                                       Separity::Entity* ent) {
-	std::string name, particleName;
+	std::string systemName, particleName;
 
-	if(readParam("name", L, name) &&
+	if(readParam("name", L, systemName) &&
 	   readParam("particleName", L, particleName)) {
-		ent->addComponent<ParticleSystem>(name, particleName);
+
+		ParticleSystem* particleSystem = ent->addComponent<ParticleSystem>();
+
+		try {
+			particleSystem->setParticleSystem(systemName, particleName);
+		} catch(const std::exception&) {
+			std::cerr << "[SPY ERROR]: Particle System " << systemName
+			          << " or Texture << " << particleName
+			          << " not found\n ";
+			return false;
+		}
 		return true;
-	}
-		
+	}	
 	return false;
 }

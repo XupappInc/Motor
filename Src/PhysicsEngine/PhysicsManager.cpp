@@ -49,8 +49,7 @@ void Separity::PhysicsManager::initWorld() {
 }
 
 void Separity::PhysicsManager::initDebug() {
-	debugDrawer_ = new PhysicsDebugDrawer(
-	    Separity::RenderManager::getInstance()->getSceneManager());
+	debugDrawer_ = new PhysicsDebugDrawer();
 	debugDrawer_->setDebugMode(btIDebugDraw::DBG_DrawWireframe |
 	                           btIDebugDraw::DBG_DrawAabb);
 	world_->setDebugDrawer(debugDrawer_);

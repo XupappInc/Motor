@@ -4,73 +4,93 @@
 
 #include "SeparityExports\SeparityApi.h"
 #include "EntityComponent\Component.h"
-#include "SeparityUtils/Vector.h"
+#include "SeparityUtils\Vector.h"
+
 enum LightType {
-	POINT_LIGHT,DIRECTIONAL_LIGHT,SPOTLIGHT
+	POINT_LIGHT,
+	DIRECTIONAL_LIGHT,
+	SPOTLIGHT
 };
+
 namespace Ogre {
 	class Light;
 	class SceneNode;
-}  // namespace Ogre
+}  
 
 namespace Separity {
+
 	class Transform;
+
 	/// <summary>
-	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
+	/// Componente que se encarga de gestionar una luz de la escena.
 	/// </summary>
 	class _SEPARITY_API_ Light : public Separity::Component {
+
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_LIGHT)
 
 		/// <summary>
-		/// Constructora de luz
+		/// Crea el nodo y la entidad de Ogre.
+		/// Inicializa la entidad (luz de Ogre) según el tipo que reciba.
 		/// </summary>
-		/// <param name="type">Tipo de luz que pueden ser POINT_LIGHT,DIRECTIONAL_LIGHT,SPOTLIGHT </param>
+		/// <param name="type">: tipo de luz: POINT_LIGHT, DIRECTIONAL_LIGHT, SPOTLIGHT </param>
 		Light(LightType type);
-		/// <summary>
-		/// Destructora de light
-		/// </summary>
-		~Light();
 
 		/// <summary>
-		/// render de Light que cuando se cambia el transform la luz tambien cambia
+		/// Consigue la referencia del Transform de la entidad.
 		/// </summary>
-		void render() override;
+		void initComponent() override;
+
 		/// <summary>
-		/// inicializacion del componente de la luz
+		/// Cambia la posición de la luz respecto a su Transform.
 		/// </summary>
-	    void initComponent()override;
+		void update(const uint32_t& deltaTime) override;
+
 		/// <summary>
-		/// activa y desactiva la luz
+		/// Destruye el nodo y la entidad de Ogre.
 		/// </summary>
-		/// <param name="set">si esta a true se activa y a false se desactiva</param>
+		~Light();
+		
+		/// <summary>
+		/// Activa/Desactiva la luz.
+		/// </summary>
+		/// <param name="set"></param>
 		void setVisible(bool set);
+
 		/// <summary>
-		/// comprueba que la luz sea visible o no
+		/// Comprueba si la luz es visible o no.
 		/// </summary>
-		/// <returns>devuelve tru si esta visible y false si no lo está</returns>
+		/// <returns> El estado de la luz</returns>
 		bool isVisible();
+
 		/// <summary>
-		/// Cambia el color de la luz
+		/// Cambia la componente difusa (color) de la luz.
 		/// </summary>
-		/// <param name="dif">Vector3 de color</param>
+		/// <param name="dif">: Vector3 del color</param>
 		void setDiffuse(Spyutils::Vector3 dif);
+
 		/// <summary>
-		/// Cambia el brillo de la luz
+		/// Cambia el brillo de la luz.
 		/// </summary>
-		/// <param name="specular">Vector3 de brillo</param>
+		/// <param name="specular">: Vector3 del brillo</param>
 		void setSpecular(Spyutils::Vector3 specular);
+
 		/// <summary>
-		/// setea la direccion de la luz
+		/// Establece la dirección de la luz.
 		/// </summary>
-		/// <param name="specular"></param>
+		/// <param name="specular">: Vector3 de la dirección</param>
 		void setDirection(Spyutils::Vector3 specular);
+
 		private:
-		Ogre::SceneNode* lightNode_;
+
+		Ogre::SceneNode* node_;
 		Ogre::Light* light_;
-		bool visible_;
+
 		Transform* tr_;
+
+		bool visible_;
+		
 	};
 }  // namespace Separity
 

@@ -1,61 +1,55 @@
 #include "Camera.h"
 
 #include "RenderManager.h"
-#include "EntityComponent\Transform.h"
 #include "EntityComponent\Entity.h"
-#include <SeparityUtils\spyMath.h>
+#include "EntityComponent\Transform.h"
+#include "SeparityUtils\spyMath.h"
 
-#include "OgreCamera.h"
-#include "OgreSceneManager.h"
-#include "OgreRenderWindow.h"
-#include "OgreViewport.h"
-
+#include <OgreCamera.h>
+#include <OgreSceneManager.h>
+#include <OgreRenderWindow.h>
+#include <OgreViewport.h>
 
 Separity::Camera::Camera() : tr_(nullptr) {
 
-	Separity::RenderManager* rm = Separity::RenderManager::getInstance();
-	Ogre::SceneManager* sm = rm->getSceneManager();
+	Separity::RenderManager* renderManager = Separity::RenderManager::getInstance();
+	Ogre::SceneManager* ogreSceneManager = renderManager->getOgreSceneManager();
 
-	camera_ = sm->createCamera("Camera");
+	camera_ = ogreSceneManager->createCamera("Camera");
 	camera_->setNearClipDistance(1);
 	camera_->setFarClipDistance(10000);
 	camera_->setAutoAspectRatio(true);
 
-	cameraNode_ = sm->getRootSceneNode()->createChildSceneNode();
-	
-
-	viewport_ = rm->getOgreWindow()->addViewport(camera_);
+	viewport_ = renderManager->getOgreWindow()->addViewport(camera_);
 	viewport_->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));
 
-	rm->setCamera(this);
-}
+	node_ = ogreSceneManager->getRootSceneNode()->createChildSceneNode();
+	node_->attachObject(camera_);
 
-Separity::Camera::~Camera() {
-	Separity::RenderManager* rm = Separity::RenderManager::getInstance();
-	Ogre::SceneManager* sm = rm->getSceneManager();
-	sm->destroyCamera(camera_);
-	sm->destroySceneNode(cameraNode_);
-	rm->getOgreWindow()->removeViewport(viewport_->getZOrder());
-	rm->setCamera(nullptr);
-}
-
-void Separity::Camera::update(const uint32_t& deltaTime) { 	
-	readTransform(); 
+	renderManager->setCamera(this);
 }
 
 void Separity::Camera::initComponent() {
 	tr_ = ent_->getComponent<Transform>();
-	if(tr_ == nullptr) {
-		throw std::runtime_error("Entity doesn't have Transform Component\n");
-	}		
-	else {
-		Transform* tr = ent_->getComponent<Transform>();
-		//auto node = tr->getNode();
-		tr->pitch(-90);
-		cameraNode_->attachObject(camera_);
-	}
-		
+	tr_->pitch(-90);
+}
 
+void Separity::Camera::update(const uint32_t& deltaTime) {
+	node_->setPosition(tr_->getPosition().x, tr_->getPosition().y,
+	                   tr_->getPosition().z);
+
+	Spyutils::spyQuaternion rot = tr_->getRotationQ();
+	node_->setOrientation(rot.spyQuaterniomToOgre());
+}
+
+Separity::Camera::~Camera() {
+
+	Separity::RenderManager* renderManager = Separity::RenderManager::getInstance();
+	Ogre::SceneManager* ogreSceneManager = renderManager->getOgreSceneManager();
+	ogreSceneManager->destroyCamera(camera_);
+	ogreSceneManager->destroySceneNode(node_);
+	renderManager->getOgreWindow()->removeViewport(viewport_->getZOrder());
+	renderManager->setCamera(nullptr);
 }
 
 void Separity::Camera::zoom(float zoom) { 
@@ -76,25 +70,6 @@ Ogre::Degree Separity::Camera::zoomChecker(Ogre::Degree&& zoom) {
 	return zoom;
 }
 
-void Separity::Camera::readTransform() {
-	Transform* tr = ent_->getComponent<Transform>();
-
-	assert(tr != nullptr);
-
-	cameraNode_->setPosition(tr->getPosition().x, tr->getPosition().y,
-	                           tr->getPosition().z);
-	/*Ogre::Matrix3 matrix;
-	matrix.FromEulerAnglesYXZ(
-	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().y)),
-	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().x)),
-	    Ogre::Radian(Spyutils::Math::toRadians(tr->getRotation().z)));
-	Ogre::Quaternion rot(matrix);*/
-	Spyutils::spyQuaternion rot = tr->getRotationQ();
-	cameraNode_->setOrientation(rot.spyQuaterniomToOgre());
-
-	cameraNode_->setScale(tr->getScale().x, tr->getScale().y,
-	                        tr->getScale().z);
-}
 
 
 

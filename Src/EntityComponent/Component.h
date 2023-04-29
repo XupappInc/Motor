@@ -67,11 +67,6 @@ namespace Separity {
 		virtual void update(const uint32_t& deltaTime = 0);
 
 		/// <summary>
-		/// Metodo render del componente, por defecto no hace nada
-		/// </summary>
-		virtual void render();
-
-		/// <summary>
 		/// Método start del componente
 		/// </summary>
 		virtual void start();

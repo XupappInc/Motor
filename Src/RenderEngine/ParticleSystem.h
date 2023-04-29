@@ -14,53 +14,67 @@ namespace Ogre {
 }  // namespace Ogre
 
 namespace Separity {
+
 	class Transform;
+
 	/// <summary>
-	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
+	/// Gestiona un sistema de partículas.
 	/// </summary>
 	class _SEPARITY_API_ ParticleSystem : public Separity::Component {
+
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_PARTICLE_SYSTEM)
 
 		/// <summary>
-		/// constructora de particle system
+		/// Construye el nodo de Ogre.
 		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="name_paricle"></param>
-		ParticleSystem(std::string name,std::string name_paricle);
+		ParticleSystem();
+
+		/// <summary>
+		/// Consigue la referencia del Transform de la entidad.
+		/// </summary>
+		void initComponent() override;
+
+		/// <summary>
+		/// Cambia la posición del sistema de partículas a la entidad.
+		/// </summary>
+		void update(const uint32_t& deltaTime) override;
+
 		/// <summary>
 		/// Destructora de particleSystem
 		/// </summary>
-		~ParticleSystem();
+		~ParticleSystem();	
 
 		/// <summary>
-		/// render de ParticlSystem que cuando se cambia el transform de tambien
-		/// cambia
+		/// Crea el sistema de partículas de ogre,
+		/// teniendo en cuanta la lógica del sistema y la textura a renderizar.
 		/// </summary>
-		void render() override;
+		/// <param name="systemName">: nombre del sistema de parículas</param>
+		/// <param name="particleName">: nombre de la textura de la partícula</param>
+		void setParticleSystem(const std::string& systemName, const std::string& particleName);
+		
 		/// <summary>
-		/// inicializacion del componente de la partileSystem
+		/// Activa/Desactiva el sistema de partículas.
 		/// </summary>
-		void initComponent() override;
-		/// <summary>
-		/// activa y desactiva el particleSystem
-		/// </summary>
-		/// <param name="set">si esta a true se acativa y a false se
-		/// desactiva</param>
+		/// <param name="set"></param>
+		/// 
 		void setVisible(bool set);
+
 		/// <summary>
-		/// comprueba que el particleSystem sea visible o no
+		/// Comprueba si el sistema de partículas es visible o no.
 		/// </summary>
-		/// <returns>devuelve true si esta visible y false si no lo
-		/// está</returns>
+		/// <returns> El estado de la luz</returns>
 		bool isVisible();
 
 		private:
-		Ogre::SceneNode* particleNode_;
-		Ogre::ParticleSystem* partSys_;
-		bool visible_;
+
+		Ogre::SceneNode* node_;
+		Ogre::ParticleSystem* particleSystem_;
+		
 		Transform* tr_;
+
+		bool visible_;
 	};
 }  // namespace Separity
 

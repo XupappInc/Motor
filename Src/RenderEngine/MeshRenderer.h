@@ -8,7 +8,6 @@
 #include <string>
 
 namespace Ogre {
-	class SceneManager;
 	class SceneNode;
 	class Entity;
 }  // namespace Ogre
@@ -18,62 +17,53 @@ namespace Separity {
 	class Transform;
 
 	/// <summary>
-	/// <para>Componente que se encarga de crear una malla y renderizarla</para>
+	/// Componente que se encarga de crear una malla y renderizarla.
 	/// </summary>
 	class _SEPARITY_API_ MeshRenderer : public Separity::Component {
+
+		friend class Animator;
+
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_MESH_RENDERER)
 
 		/// <summary>
-		/// <para>Construye una entidad con la malla "meshName" y lo
-		/// añade a un nodo hijo del nodo principal para su renderización</para>
+		/// Construye el nodo de Ogre.
 		/// </summary>
-		/// <param name="sceneManager">Manager de la escena</param>
-		/// <param name="meshName">Nombre de la malla</param>
 		MeshRenderer();
 
+		/// <summary>
+		/// Consigue la referencia del Transform de la entidad.
+		/// </summary>
 		void initComponent() override;
-	
 
 		/// <summary>
-		/// <para>Destruye el nodo que contiene la entidad creada a partir de la
-		/// malla</para>
+		/// Cambia la posición, rotación y escala de la malla respecto a su Transform.
+		/// </summary>
+		void update(const uint32_t& deltaTime) override;
+	
+		/// <summary>
+		/// Destruye la entidad de Ogre y el nodo que la contiene.
 		/// </summary>
 		~MeshRenderer();
 
 		/// <summary>
-		///
+		/// Crea la entidad de Ogre, asignándole una malla.
 		/// </summary>
-		void update(const uint32_t& deltaTime) override;
-
+		/// <param name="name">: nombre de la malla</param>
 		void setMesh(const std::string& name);
 
 		/// <summary>
-		/// <para>Activa/desactiva el nodo que contiene la malla para parar su
-		/// renderización</para>
+		/// <para>Activa/desactiva el nodo que contiene la malla para parar su renderización</para>
 		/// </summary>
-		/// <param name="set">Indica si se va activar/desactivar la
-		/// renderización del nodo</param>
-		void setActive(bool set);
-
-		/// <summary>
-		/// <para>Getter del nodo que contiene la entidad</para>
-		/// </summary>
-		/// <returns>Devuelve el nodo</returns>
-		Ogre::SceneNode* getNode();
-
-		/// <summary>
-		/// <para>Getter de la entidad creada</para>
-		/// </summary>
-		/// <returns>Devuelve la entidad</returns>
-		Ogre::Entity* getOgreEntity();
+		/// <param name="b">Indica si se va activar/desactivar la renderización del nodo</param>
+		void setActive(bool b);
 
 		private:
+
 		Ogre::SceneNode* node_;
-		Ogre::SceneManager* ogreSceneManager_;
 		Ogre::Entity* entity_;
-		Separity::Transform* tr_;
+		Transform* tr_;
 	};
 };  // namespace Separity
 

@@ -34,11 +34,6 @@ namespace Separity {
 		virtual void update(const uint32_t& deltaTime);
 
 		/// <summary>
-		/// Llama al update de todos los componentes
-		/// </summary>
-		virtual void render();
-
-		/// <summary>
 		/// Añade un componente al manager
 		/// </summary>
 		/// <param name="cmp">Componente que se quiere a�adir</param>

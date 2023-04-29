@@ -28,12 +28,6 @@ void Separity::ManagerManager::update(const uint32_t& deltaTime) {
 	}
 }
 
-void Separity::ManagerManager::render() {
-	for(auto m : managers_) {
-		m.second->render();
-	}
-}
-
 Separity::ManagerManager::ManagerManager() : quit_(false) {
 	managers_ = std::map<cmpType_type, Manager*>();
 }

@@ -31,11 +31,6 @@ namespace Separity {
 		void update(const uint32_t& deltaTime) override;
 
 		/// <summary>
-		/// Llama render() de todos los componentes
-		/// </summary>
-		void render() override;
-
-		/// <summary>
 		/// LLama al initComponents() de todos los managers registrados
 		/// </summary>
 		void initComponents() override;

@@ -5,56 +5,53 @@
 #include "EntityComponent\Transform.h"
 
 #include <OgreParticleSystem.h>
-#include<OgreKeyFrame.h>
-#include<OgreBillboard.h>
-#include<OgreBillboardSet.h>
 #include <OgreSceneManager.h>
 
+Separity::ParticleSystem::ParticleSystem()
+     : visible_(true), tr_(nullptr), particleSystem_(nullptr) {
 
-Separity::ParticleSystem::ParticleSystem(std::string name,
-                                         std::string name_particle):
-    visible_(true) {
-	Separity::RenderManager* render = Separity::RenderManager::getInstance();
-	// se accede al sceneManager
-	Ogre::SceneManager* s = render->getSceneManager();
+	node_ = Separity::RenderManager::getInstance()->getOgreSceneManager()
+				->getRootSceneNode()->createChildSceneNode();	
+}
 
-	particleNode_ = s->getRootSceneNode()->createChildSceneNode();
+void Separity::ParticleSystem::initComponent() {
+	tr_ = ent_->getComponent<Transform>();
+}
 
-	partSys_ = s->createParticleSystem(name,name_particle);
-	partSys_->setEmitting(true);
-	partSys_->setVisible(true);
-
-	particleNode_->attachObject(partSys_);
+void Separity::ParticleSystem::update(const uint32_t& deltaTime) {
+	auto pos = tr_->getPosition();
+	node_->setPosition(Ogre::Real(pos.x), Ogre::Real(pos.y),
+	                        Ogre::Real(pos.z));
 }
 
 Separity::ParticleSystem::~ParticleSystem() {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();
-	Ogre::SceneManager* s = render->getSceneManager();
+	Ogre::SceneManager* s = render->getOgreSceneManager();
 	
-	s->destroyParticleSystem(partSys_);
-	s->destroySceneNode(particleNode_);
+	s->destroyParticleSystem(particleSystem_);
+	s->destroySceneNode(node_);
 }
 
-void Separity::ParticleSystem::render() {
-	if(tr_) {
-		auto pos = tr_->getPosition();
-		particleNode_->setPosition(Ogre::Real(pos.x), Ogre::Real(pos.y),
-		                        Ogre::Real(pos.z));
-	}
-}
-void Separity::ParticleSystem::initComponent() {
-	tr_ = ent_->getComponent<Transform>();
-	if(tr_) {
-		auto pos = tr_->getPosition();
-		particleNode_->setPosition(Ogre::Real(pos.x), Ogre::Real(pos.y),
-		                        Ogre::Real(pos.z));
-	}
+void Separity::ParticleSystem::setParticleSystem(
+    const std::string& systemName, const std::string& particleName) {
+
+	particleSystem_ = Separity::RenderManager::getInstance()->getOgreSceneManager()
+	                      ->createParticleSystem(systemName, particleName);
+	particleSystem_->setEmitting(true);
+	particleSystem_->setVisible(true);
+
+	node_->attachObject(particleSystem_);
 }
 
-void Separity::ParticleSystem::setVisible(bool set) { particleNode_->setVisible(set);
-	partSys_->setVisible(set);
+void Separity::ParticleSystem::setVisible(bool set) { 
+	visible_ = set;
+	node_->setVisible(visible_);
+	particleSystem_->setVisible(visible_);
 }
-bool Separity::ParticleSystem::isVisible() { return visible_; }
+
+bool Separity::ParticleSystem::isVisible() { 
+	return visible_; 
+}
 
 
 
