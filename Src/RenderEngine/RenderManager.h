@@ -152,12 +152,6 @@ namespace Separity {
 		Ogre::RenderWindow* getOgreWindow();
 
 		/// <summary>
-		/// Devuelve el overlay de Ogre
-		/// </summary>
-		/// <returns> Overlay de Ogre</returns>
-		Ogre::OverlaySystem* getOverlay();
-
-		/// <summary>
 		/// Getter del SceneManager de Ogre
 		/// </summary>
 		/// <returns> Puntero al SceneManager de Ogre creado
@@ -169,7 +163,6 @@ namespace Separity {
 
 		SDL_Window* sdlWindow_;
 		Ogre::RenderWindow* ogreWindow_;
-		Ogre::OverlaySystem* ogreOverlaySystem_;
 		Ogre::Root* ogreRoot_;
 		Ogre::SceneManager* ogreSceneManager_;
 		Ogre::ConfigFile* configFile_;

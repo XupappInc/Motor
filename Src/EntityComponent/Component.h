@@ -64,7 +64,7 @@ namespace Separity {
 		/// <summary>
 		/// Metodo update del componente, por defecto no hace nada
 		/// </summary>
-		virtual void update(const uint32_t& deltaTime = 0);
+		virtual void update(const uint32_t& deltaTime);
 
 		/// <summary>
 		/// Método start del componente

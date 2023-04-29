@@ -142,7 +142,7 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 
 void Separity::AudioManager::update(const uint32_t& deltaTime) {
 	for(Separity::Component* c : cmps_) {
-		c->update();
+		c->update(deltaTime);
 	}
 	FMOD_RESULT result = system_->update();
 	FMODErrorChecker(&result);

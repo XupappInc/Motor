@@ -59,10 +59,11 @@ void Separity::GetComponentWrapper::closeAllManagers() {
 	InputManager::close();
 	SceneManager::close();
 
-	RenderManager::close();
+	
 	PhysicsManager::close();
 	AudioManager::close();
 	UIManager::close();
+	RenderManager::close();
 
 	ManagerManager::close();
 }

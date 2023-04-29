@@ -8,15 +8,9 @@
 #include "Camera.h"
 
 #include <OgreConfigFile.h>
-#include <OgreEntity.h>
 #include <OgreFileSystemLayer.h>
-#include <OgreOverlay.h>
-#include <OgreOverlayContainer.h>
-#include <OgreOverlayManager.h>
-#include <OgreOverlaySystem.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
-#include <OgreViewport.h>
 #include <SDL.h>
 #include <SDL_syswm.h>
 
@@ -89,8 +83,6 @@ void Separity::RenderManager::initRenderManager() {
 	}
 
 	ogreSceneManager_ = ogreRoot_->createSceneManager();
-	ogreOverlaySystem_ = new Ogre::OverlaySystem();
-	ogreSceneManager_->addRenderQueueListener(ogreOverlaySystem_);
 }
 
 void Separity::RenderManager::createWindow() {
@@ -159,8 +151,7 @@ void Separity::RenderManager::loadResources() {
 }
 
 void Separity::RenderManager::closeRenderManager() {
-	ogreSceneManager_->removeRenderQueueListener(ogreOverlaySystem_);
-	delete ogreOverlaySystem_;
+	
 
 	ogreRoot_->queueEndRendering();
 
@@ -239,10 +230,6 @@ SDL_Window* Separity::RenderManager::getSDLWindow() {
 
 Ogre::RenderWindow* Separity::RenderManager::getOgreWindow() {
 	return ogreWindow_;
-}
-
-Ogre::OverlaySystem* Separity::RenderManager::getOverlay() {
-	return ogreOverlaySystem_;
 }
 
 Ogre::SceneManager* Separity::RenderManager::getOgreSceneManager() {
