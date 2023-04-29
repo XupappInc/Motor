@@ -23,7 +23,8 @@ namespace Separity {
 	    : public Separity::Manager,
 	                     public Singleton<Separity::AudioManager> {
 		friend Singleton<AudioManager>;
-
+		friend class AudioSource;
+		friend class AudioListener;
 		public:
 
 		/// <summary>
@@ -85,6 +86,15 @@ namespace Separity {
 		/// Quita la pausa de todos los canales
 		/// </summary>
 		void resumeAllChannels();
+		
+		bool getFirstListener();
+		void setFirstListener(bool first);
+		
+		void start() override;
+
+		void clean() override;
+
+		private:
 		/// <summary>
 		/// Actualiza la posición del listener, que tiene un listenerNumber con
 		/// una pos dada, una vel dada, y una dirección forward y up dadas
@@ -98,25 +108,64 @@ namespace Separity {
 		                      FMOD_VECTOR* vel = nullptr,
 		                      FMOD_VECTOR* forward = nullptr,
 		                      FMOD_VECTOR* up = nullptr);
+		/// <summary>
+		/// geter del sistema
+		/// </summary>
+		/// <returns></returns>
 		FMOD::System* getSystem();
+		/// <summary>
+		/// seter del sistema
+		/// </summary>
+		/// <param name="sys"></param>
 		void setSystem(FMOD::System* sys);
+		/// <summary>
+		/// geter de Sounds_
+		/// </summary>
+		/// <returns>Sounds_</returns>
 		std::unordered_map<std::string, FMOD::Sound*>* getSounds_();
-		void setSounds_(std::unordered_map<std::string, FMOD::Sound*>*sound);
+		/// <summary>
+		/// seter de Sounds_
+		/// </summary>
+		/// <param name="sound"></param>
+		void setSounds_(std::unordered_map<std::string, FMOD::Sound*>* sound);
+		/// <summary>
+		/// Geter de Musics
+		/// </summary>
+		/// <returns></returns>
 		std::unordered_map<std::string, FMOD::Sound*>* getMusics_();
-		void setMuics(std::unordered_map<std::string, FMOD::Sound*>*musics);
+		/// <summary>
+		/// seter de Musics_
+		/// </summary>
+		/// <param name="musics"></param>
+		void setMuics(std::unordered_map<std::string, FMOD::Sound*>* musics);
+		/// <summary>
+		/// geter de Channels_
+		/// </summary>
+		/// <returns>Channels_</returns>
 		std::unordered_map<std::string, FMOD::Channel*>* getChannels_();
+		/// <summary>
+		/// geter de MusicGroup_
+		/// </summary>
+		/// <returns></returns>
 		FMOD::SoundGroup* getMusicGroup_();
+		/// <summary>
+		/// seter de Music Groups
+		/// </summary>
+		/// <param name="musicGroup"></param>
 		void setMusicGroup_(FMOD::SoundGroup* musicGroup);
+		/// <summary>
+		/// geter de SoundGroup
+		/// </summary>
+		/// <returns></returns>
 		FMOD::SoundGroup* getSoundGroup_();
+		/// <summary>
+		/// seter de SoundGroup
+		/// </summary>
+		/// <param name="sound"></param>
 		void setSoundGroup_(FMOD::SoundGroup* sound);
-		bool getFirstListener();
-		void setFirstListener(bool first);
-		
-		void start() override;
 
-		void clean() override;
 
-		private:
+
 		FMOD::System* system_;
 		std::unordered_map<std::string, FMOD::Sound*>* musics_;
 		std::unordered_map<std::string, FMOD::Sound*>* sounds_;
