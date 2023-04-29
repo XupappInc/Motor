@@ -21,7 +21,7 @@ namespace Separity {
 	    : public Separity::Manager,
 	                       public Singleton<Separity::PhysicsManager> {
 		friend Singleton<PhysicsManager>;
-
+		friend class RigidBody;
 		public:
 		
 		/// <summary>
@@ -45,27 +45,37 @@ namespace Separity {
 		/// Método update que actualiza la simulación física del mundo
 		/// </summary>
 		virtual void update(const uint32_t& deltaTime) override;
-		/// <summary>
-		///	Obtiene un puntero del mundo de bullet
-		/// </summary>
-		/// <returns>El mundo donde sucede la simulación</returns>
-		btDynamicsWorld* getWorld();
+		
 		
 		/// <summary>
 		/// Añade el componente al vector, si es un rigidBody lo añade al vector de rigidBodies
 		/// </summary>
 		/// <param name="cmp">Componente que se quiere añadir al manager</param>
 		void addComponent(Component* cmp) override;
-
+		/// <summary>
+		/// inicializa todos los componentes
+		/// </summary>
 		void initComponents() override;
-
+		/// <summary>
+		/// elimina el componente
+		/// </summary>
+		/// <param name="cmp">componente a eliminar</param>
 		void removeComponent(Separity::Component* cmp) override;
-
+		/// <summary>
+		/// hace el start de las fisicas
+		/// </summary>
 		void start() override;
-
+		/// <summary>
+		/// borra todos los componentes y rigidbodys
+		/// </summary>
 		void clean() override;
 		
 		private:
+		/// <summary>
+		///	Obtiene un puntero del mundo de bullet
+		/// </summary>
+		/// <returns>El mundo donde sucede la simulación</returns>
+		btDynamicsWorld* getWorld();
 		/// <summary>
 		/// Crea un mundo dinámico discreto de bullet
 		/// </summary>

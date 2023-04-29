@@ -30,7 +30,6 @@ Separity::SceneManager::SceneManager()
 
 	factory_ = new ComponentFactory();
 	factory_->addCreator("transform", new TransformCreator());
-	factory_->addCreator("collider", new ColliderCreator());
 	factory_->addCreator("rigidbody", new RigidbodyCreator());
 	factory_->addCreator("meshRenderer", new MeshRendererCreator());
 	factory_->addCreator("light", new LightCreator());

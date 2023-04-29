@@ -7,7 +7,6 @@
 #include "RenderEngine\ParticleSystemCreator.h"
 #include "SoundEngine\AudioListenerCreator.h"
 #include "SoundEngine\AudioSourceCreator.h"
-#include "PhysicsEngine\ColliderCreator.h"
 #include "PhysicsEngine\RigidbodyCreator.h"
 #include "EntityComponent\TransformCreator.h"
 #include "LuaEngine\BehaviourCreator.h"

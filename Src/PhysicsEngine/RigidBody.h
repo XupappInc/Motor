@@ -13,6 +13,7 @@ namespace Spyutils {
 class btRigidBody;
 class btCollisionShape;
 class btTransform;
+class btCompoundShape;
 
 namespace Separity {
 	class Transform;
@@ -27,14 +28,21 @@ namespace Separity {
 		KINEMATIC,
 		STATIC,
 	};
+	/// <summary>
+	/// Formas basicas del collider
+	/// </summary>
+	enum colliderShape { CUBE, SPHERE, CAPSULE, CYLINDER, CONE };
 
 	/// <summary>
-	/// Parámetros para pasarle al rigidbody
+	/// Parametros usados para crear un collider
 	/// </summary>
-	struct rbParams {
-		float mass = 1.0;
-		typeRb tipo;
+	struct colliderParams {
+		colliderShape colShape;
+		float height = 0, width = 0, depth = 0, radius = 0;
+		float offsetX = 0, offsetY = 0, offsetZ = 0;
+		bool isTrigger = false;
 	};
+
 
 	/// <summary>
 	/// Componente rigidbody
@@ -44,7 +52,7 @@ namespace Separity {
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_RIGID_BODY)
 
-		RigidBody(typeRb tipo, float mass = 0);
+		RigidBody(typeRb tipo, float mass, colliderParams col);
 		~RigidBody();
 
 		void initComponent() override;
@@ -148,18 +156,20 @@ namespace Separity {
 		CollisionCallback* getCollisionCallback();
 
 		private:
+		void createCollider();
 		Transform* tr_;
 		btTransform* btTr_;
 		float mass_;
 		typeRb tipo_;
 		btRigidBody* rb_;
-
+		bool trigger_;
 		Behaviour* behaviour_;
 		bool triedToGetBehaviour_;
-
-		btCollisionShape* colliderShape_;
-
+		Spyutils::Vector3* offset_;
+		
+		colliderParams colParams_;
 		CollisionCallback* collisionCallback_;
+		btCompoundShape* collisonShape_;
 	};
 }  // namespace Separity
 #endif __RIGIDBODY_H__

@@ -19,8 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\PhysicsEngine\Collider.cpp" />
-    <ClCompile Include="..\..\Src\PhysicsEngine\ColliderCreator.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\CollisionCallback.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PathFollow.cpp" />
     <ClCompile Include="..\..\Src\PhysicsEngine\PhysicsDebugDrawer.cpp" />
@@ -29,8 +27,6 @@
     <ClCompile Include="..\..\Src\PhysicsEngine\RigidbodyCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\PhysicsEngine\Collider.h" />
-    <ClInclude Include="..\..\Src\PhysicsEngine\ColliderCreator.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\CollisionCallback.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\PathFollow.h" />
     <ClInclude Include="..\..\Src\PhysicsEngine\PhysicsDebugDrawer.h" />

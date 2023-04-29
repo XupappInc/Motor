@@ -1,6 +1,5 @@
 #include "PhysicsManager.h"
 
-#include "ColliderCreator.h"
 #include "RigidbodyCreator.h"
 #include "CollisionCallback.h"
 #include "PhysicsDebugDrawer.h"
@@ -94,11 +93,6 @@ void Separity::PhysicsManager::update(const uint32_t& deltaTime) {
 		c->preUpdate();
 	}
 	for(RigidBody* rb : rigidBodies_) {
-		
-		if(rb != nullptr)
-			world_->contactTest(rb->getBulletRigidBody(),
-			                    *rb->getCollisionCallback());
-
 		rb->preUpdate();
 	}
 
@@ -110,11 +104,6 @@ void Separity::PhysicsManager::update(const uint32_t& deltaTime) {
 	}
 
 	for(RigidBody* rb : rigidBodies_) {
-	
-		if(rb != nullptr)
-			world_->contactTest(rb->getBulletRigidBody(),
-			                    *rb->getCollisionCallback());
-
 		rb->update(deltaTime);
 	}
 

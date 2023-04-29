@@ -16,7 +16,6 @@
 #include "SoundEngine\AudioListener.h"
 #include "SoundEngine\AudioSource.h"
 #include "LuaEngine\Behaviour.h"
-#include "PhysicsEngine\Collider.h"
 #include "PhysicsEngine\RigidBody.h"
 #include "EntityComponent\Transform.h"
 #include "UIEngine\Panel.h"
