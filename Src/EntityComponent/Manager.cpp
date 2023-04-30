@@ -15,10 +15,6 @@ void Separity::Manager::initComponents() {
 }
 
 void Separity::Manager::update(const uint32_t& deltaTime) {
-	
-	for(Separity::Component* c : cmps_) {
-		c->preUpdate();
-	}
 	for(Separity::Component* c : cmps_) {
 		c->update(deltaTime);
 	}

@@ -2,8 +2,8 @@
 #ifndef __PHYSICS_MANAGER_H__
 #define __PHYSICS_MANAGER_H__
 
-#include "SeparityExports\SeparityApi.h"
 #include "EntityComponent\Manager.h"
+#include "SeparityExports\SeparityApi.h"
 
 class btDynamicsWorld;
 class btBroadphaseInterface;
@@ -13,83 +13,88 @@ class btDefaultCollisionConfiguration;
 
 namespace Ogre {
 	class SceneManager;
-}  // namespace Ogre
+}
+
 namespace Separity {
 	class PhysicsDebugDrawer;
 	class RigidBody;
 	class _SEPARITY_API_ PhysicsManager
 	    : public Separity::Manager,
-	                       public Singleton<Separity::PhysicsManager> {
+	      public Singleton<Separity::PhysicsManager> {
 		friend Singleton<PhysicsManager>;
 
 		friend class RigidBody;
 
 		public:
-		
-		
-		/// <summary>
-		/// Obtiene la instancia del Manager de físicas
-		/// </summary>
-		/// <returns>La instancia del Manager</returns>
+
 		static PhysicsManager* getInstance();
+
 		/// <summary>
-		/// Dibuja el debug
-		/// </summary>
-		void debug();
-		/// <summary>
-		/// Borra el mundo de bullet y los objetos de este
-		/// </summary>
-		void deleteWorld();
-		/// <summary>
-		/// Método update que actualiza la simulación física del mundo
+		/// LLama primero a los preUpdates de de los componentes.
+		/// Prioriza los demás componentes de física a los RigidBodies.
 		/// </summary>
 		virtual void update(const uint32_t& deltaTime) override;
-		
-		
+
 		/// <summary>
-		/// Añade el componente al vector, si es un rigidBody lo añade al vector de rigidBodies
+		/// Añade el componente al vector, si es un 
+		/// RigidBody, lo añade a su vector propio.
 		/// </summary>
-		/// <param name="cmp">Componente que se quiere añadir al manager</param>
+		/// <param name="cmp">: componente a añadir</param>
 		void addComponent(Component* cmp) override;
+
 		/// <summary>
-		/// inicializa todos los componentes
+		/// Inicializa los componentes, priorizando el resto 
+		/// de componentes a los Rigidbodies. 
 		/// </summary>
 		void initComponents() override;
+
 		/// <summary>
-		/// elimina el componente
+		/// Elimina el componente, teniendo en cuenta si es un Rigidbody.
 		/// </summary>
-		/// <param name="cmp">componente a eliminar</param>
+		/// <param name="cmp">: componente a eliminar</param>
 		void removeComponent(Separity::Component* cmp) override;
+
 		/// <summary>
-		/// hace el start de las fisicas
+		/// Inicializa el mundo físico (y el debug).
 		/// </summary>
 		void start() override;
+
 		/// <summary>
-		/// borra todos los componentes y rigidbodys
+		/// Borra el mundo físico (y el debug).
 		/// </summary>
 		void clean() override;
 
 		protected:
-		/// <summary>
-		/// Constructor de la clase
-		/// </summary>
+
 		PhysicsManager();
-		
+
 		private:
+
 		/// <summary>
 		///	Obtiene un puntero del mundo de bullet
 		/// </summary>
-		/// <returns>El mundo donde sucede la simulación</returns>
+		/// <returns>El mundo físico de bullet</returns>
 		btDynamicsWorld* getWorld();
+
 		/// <summary>
-		/// Crea un mundo dinámico discreto de bullet
+		/// Crea un mundo dinámico discreto de bullet.
 		/// </summary>
-		void initWorld();
+		void initPhysicsWorld();
+
 		/// <summary>
-		/// Crea el DebugDrawer y lo añade al bullet
+		/// Borra el mundo de bullet y los objetos de este.
+		/// </summary>
+		void deletePhysicsWorld();
+
+		/// <summary>
+		/// Crea el DebugDrawer y lo añade al bullet.
 		/// </summary>
 		void initDebug();
-		
+
+		/// <summary>
+		/// Dibuja las cajas de colisiones.
+		/// </summary>
+		void drawDebug();
 
 		btDynamicsWorld* world_;
 		btBroadphaseInterface* broadphase_;
