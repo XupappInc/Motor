@@ -166,6 +166,7 @@ namespace Separity {
 		Ogre::Root* ogreRoot_;
 		Ogre::SceneManager* ogreSceneManager_;
 		Ogre::ConfigFile* configFile_;
+		Ogre::OverlaySystem* ogreOverlaySystem_;
 		
 		Camera* camera_;	
 	};

@@ -79,7 +79,7 @@ void Separity::RenderManager::initRenderManager() {
 
 	// Crear raiz de ogre
 	ogreRoot_ = new Ogre::Root(pluginPath);
-	Ogre::OverlaySystem* a = new Ogre::OverlaySystem();
+	ogreOverlaySystem_ = new Ogre::OverlaySystem();
 	// Si hay una configuración de antes se utiliza esa y 
 	// si no, se muestra undiálogo para configuración
 	if(ogreRoot_->restoreConfig() || ogreRoot_->showConfigDialog(nullptr)) {
@@ -87,6 +87,7 @@ void Separity::RenderManager::initRenderManager() {
 	}
 
 	ogreSceneManager_ = ogreRoot_->createSceneManager();
+	ogreSceneManager_->addRenderQueueListener(ogreOverlaySystem_);
 }
 
 void Separity::RenderManager::createWindow() {
@@ -156,7 +157,10 @@ void Separity::RenderManager::loadResources() {
 
 void Separity::RenderManager::closeRenderManager() {
 	
-
+	ogreSceneManager_->removeRenderQueueListener(ogreOverlaySystem_);
+	delete ogreOverlaySystem_;
+	ogreOverlaySystem_ = nullptr;
+	
 	ogreRoot_->queueEndRendering();
 
 	ogreWindow_ = nullptr;
