@@ -91,11 +91,6 @@ namespace Separity {
 		/// </summary>
 		void initDebug();
 
-		/// <summary>
-		/// Dibuja las cajas de colisiones.
-		/// </summary>
-		void drawDebug();
-
 		btDynamicsWorld* world_;
 		btBroadphaseInterface* broadphase_;
 		btCollisionDispatcher* dispatcher_;

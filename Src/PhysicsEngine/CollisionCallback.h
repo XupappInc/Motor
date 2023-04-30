@@ -15,6 +15,7 @@ namespace Separity {
 	class _SEPARITY_API_ CollisionCallback
 	    : public btCollisionWorld::ContactResultCallback {
 		public:
+
 		/// <summary>
 		/// Crea un collision callback para que llame a los eventos del rigidbody
 		/// </summary>

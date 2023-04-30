@@ -78,14 +78,9 @@ void Separity::PhysicsManager::update(const uint32_t& deltaTime) {
 	}
 
 #ifdef _DEBUG
-	drawDebug();
+	world_->debugDrawWorld();
 #else
 #endif
-}
-
-void Separity::PhysicsManager::drawDebug() {
-	debugDrawer_->clearLines();
-	world_->debugDrawWorld();
 }
 
 void Separity::PhysicsManager::clean() {

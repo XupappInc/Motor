@@ -88,6 +88,17 @@ namespace Separity {
 		/// es un entero / False e.o.c</returns>
 		bool readParam(const std::string& paramName, lua_State* L, float& param);
 
+		/// <summary>
+		/// Lee la entrada "paramName" de la tabla "lua_state" y se lo asigna a
+		/// "param"
+		/// </summary>
+		/// <param name="paramName">Entrada de la tabla (bool)</param>
+		/// <param name="L">Referencia a la tabla de Lua</param>
+		/// <param name="param">Parámetro al que se le asigna la entrada
+		/// "paramName"</param> <returns>True si la entrada existe en la tabla y
+		/// es un entero / False e.o.c</returns>
+		bool readParam(const std::string& paramName, lua_State* L, bool& param);
+
 	};
 };  // namespace Separity
 

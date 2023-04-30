@@ -1,71 +1,59 @@
 #include "RigidBody.h"
-#include "CollisionCallback.h"
-#include "PhysicsManager.h"
+
+#include "EntityComponent\Entity.h"
 #include "EntityComponent\Transform.h"
 #include "LuaEngine\Behaviour.h"
-#include "EntityComponent\Entity.h"
-#include "SeparityUtils\Vector.h"
-#include "SeparityUtils\spyQuaternion.h"
-#include <btBulletDynamicsCommon.h>
-#include <SeparityUtils\spyMath.h>
-#include <btBulletDynamicsCommon.h>
-// #include "checkML.h"
+#include "PhysicsManager.h"
+#include "CollisionCallback.h"
 
-Separity::RigidBody::RigidBody(typeRb tipo, float mass,
-                               Separity::colliderParams col)
-    : mass_(mass), tipo_(tipo), collisonShape_(nullptr),
-      triedToGetBehaviour_(false), rb_(nullptr), btTr_(nullptr), tr_(nullptr),
-      behaviour_(nullptr), collisionCallback_(nullptr),colParams_(col),offset_(nullptr) {}
+#include <btBulletDynamicsCommon.h>
+
+Separity::RigidBody::RigidBody(colliderParams& col, int tipo, float mass)
+    : mass_(mass), tipo_((Separity::typeRb) tipo), collisonShape_(nullptr),
+      rb_(nullptr), btTr_(nullptr), tr_(nullptr), behaviour_(nullptr),
+      collisionCallback_(nullptr), colParams_(col){}
 
 Separity::RigidBody::~RigidBody() {
-	delete btTr_;
-	btTr_ = nullptr;
-	// delete rb_; no borrar, se borra en el physics manager
-	rb_ = nullptr;
 	for(int i = 0; i < collisonShape_->getNumChildShapes(); ++i) {
 		btCollisionShape* s = collisonShape_->getChildShape(i);
 		collisonShape_->removeChildShape(s);
 		delete s;
 	}
+
+	delete btTr_;
 	delete collisonShape_;
-	collisonShape_ = nullptr;
 	delete collisionCallback_;
+
+	collisonShape_ = nullptr;
 	collisionCallback_ = nullptr;
-	delete offset_;
-	offset_ = nullptr;
+	btTr_ = nullptr;
 }
 
 void Separity::RigidBody::initComponent() {
 	tr_ = ent_->getComponent<Transform>();
-
-	assert(tr_ != nullptr);
+	behaviour_ = ent_->getComponent<Behaviour>();
 
 	createCollider();
 
 	// transform de bullet
 	Spyutils::Vector3 spyPos = tr_->getPosition();
 	btVector3 pos = btVector3(spyPos.x, spyPos.y, spyPos.z);
-	// btTr_->setOrigin(pos);
-	btQuaternion rotRad = {tr_->getRotation().y, tr_->getRotation().x,
-	                       tr_->getRotation().z};
-	// btQuaternion q = btQuaternion(rotRad.y(), rotRad.x(), rotRad.z());
-	// btTr_->setRotation(rotRad);
+	btQuaternion rot = {tr_->getRotation().y, tr_->getRotation().x,
+	                    tr_->getRotation().z};
 
-	btTr_ = new btTransform(btQuaternion(rotRad), btVector3(pos));
+	btTr_ = new btTransform(btQuaternion(rot), btVector3(pos));
 
 	btDefaultMotionState* motionState = new btDefaultMotionState(*btTr_);
 
-	Spyutils::Vector3 escala = tr_->getScale();
-
 	// collider de bullet
 	btCollisionShape* collisionShape = collisonShape_;
-
-	btVector3 localInertia(0, 0, 0);  // Tensor de inercia local
-	if(tipo_ == DYNAMIC)
+	btVector3 localInertia = btVector3();  // Tensor de inercia local
+	if(tipo_ == DYNAMIC) {
 		collisionShape->calculateLocalInertia(
 		    mass_, localInertia);  // Calcula el tensor de inercia local
-	else
+	} else {
 		mass_ = 0;
+	}
 
 	// rigidbody de bullet
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(
@@ -76,6 +64,9 @@ void Separity::RigidBody::initComponent() {
 		case STATIC:
 			rb_->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
 			break;
+		case KINEMATIC:
+			rb_->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+			break;
 		case DYNAMIC:
 			rb_->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
 			break;
@@ -83,18 +74,17 @@ void Separity::RigidBody::initComponent() {
 			break;
 	}
 
-	rb_->getWorldTransform().setRotation(rotRad);
-	// anadimos una referncia a esta clase dentro del rb de Bullet
-	rb_->setUserPointer(this);
-	// anade el rigidbody al mundo fisico
-	Separity::PhysicsManager* s = Separity::PhysicsManager::getInstance();
-	s->getWorld()->addRigidBody(rb_);
-	// si el collider es un trigger desactiva el contacto
-	if(trigger_) {
+	rb_->getWorldTransform().setRotation(rot);
+
+	if(colParams_.isTrigger) {
 		rb_->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
-	} else
+	} else {
 		rb_->setCollisionFlags(rb_->getCollisionFlags() |
 		                       btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+	}
+
+	rb_->setUserPointer(this);
+	Separity::PhysicsManager::getInstance()->getWorld()->addRigidBody(rb_);
 
 	collisionCallback_ = new CollisionCallback(this);
 }
@@ -154,18 +144,16 @@ void Separity::RigidBody::scaleRb(Spyutils::Vector3 s) {
 	collisionShape->calculateLocalInertia(mass_, inertia);
 }
 
-void Separity::RigidBody::rotateRb(Spyutils::Vector3 s) {
-	btVector3 rot = {(btScalar) btRadians(s.x), (btScalar) btRadians(s.y),
-	                 (btScalar) btRadians(s.z)};
+void Separity::RigidBody::rotateRb(Spyutils::Vector3 r) {
+	btVector3 rot = {(btScalar) btRadians(r.x), (btScalar) btRadians(r.y),
+	                 (btScalar) btRadians(r.z)};
 	rb_->getWorldTransform().setRotation(
 	    btQuaternion(rot.y(), rot.x(), rot.z()));
 }
 
 void Separity::RigidBody::preUpdate() {
-
 	Separity::PhysicsManager::getInstance()->getWorld()->contactTest(
-	    this->getBulletRigidBody(),
-	                           *this->getCollisionCallback());
+	    this->getBulletRigidBody(), *this->getCollisionCallback());
 	btTransform trans;
 	// cogemos el transform del rb
 	rb_->getMotionState()->getWorldTransform(trans);
@@ -200,16 +188,7 @@ void Separity::RigidBody::setDamping(float linear, float angular) {
 
 btRigidBody* Separity::RigidBody::getBulletRigidBody() { return rb_; }
 
-void Separity::RigidBody::tryToGetBehaviour() {
-	if(!triedToGetBehaviour_) {
-		triedToGetBehaviour_ = true;
-		behaviour_ = ent_->getComponent<Behaviour>();
-	}
-}
-
 void Separity::RigidBody::onCollisionEnter(RigidBody* other) {
-	tryToGetBehaviour();
-
 	if(behaviour_ != nullptr) {
 		auto ent = other->getEntity();
 		behaviour_->onCollisionEnter(ent);
@@ -217,8 +196,6 @@ void Separity::RigidBody::onCollisionEnter(RigidBody* other) {
 }
 
 void Separity::RigidBody::onCollisionExit(RigidBody* other) {
-	tryToGetBehaviour();
-
 	if(behaviour_ != nullptr) {
 		auto ent = other->getEntity();
 		behaviour_->onCollisionExit(ent);
@@ -226,11 +203,6 @@ void Separity::RigidBody::onCollisionExit(RigidBody* other) {
 }
 
 void Separity::RigidBody::onCollisionStay(RigidBody* other) {
-	if(!triedToGetBehaviour_) {
-		triedToGetBehaviour_ = true;
-		behaviour_ = ent_->getComponent<Behaviour>();
-	}
-
 	if(behaviour_ != nullptr) {
 		auto ent = other->getEntity();
 		behaviour_->onCollisionStay(ent);
@@ -247,37 +219,32 @@ void Separity::RigidBody::createCollider() {
 	btCollisionShape* shape;
 	switch(colParams_.colShape) {
 		case CUBE:
-			shape = new btBoxShape(btVector3(colParams_.width / 2,
-			                                 colParams_.height / 2,
-			                                 colParams_.depth / 2));
+			shape = new btBoxShape(btVector3(colParams_.dimension[0] / 2,
+			                                 colParams_.dimension[1] / 2,
+			                                 colParams_.dimension[2] / 2));
 			break;
 		case SPHERE:
 			shape = new btSphereShape(colParams_.radius);
 			break;
 		case CAPSULE:
-			shape = new btCapsuleShape(colParams_.radius, colParams_.height);
+			shape =
+			    new btCapsuleShape(colParams_.radius, colParams_.dimension[1]);
 			break;
 		case CYLINDER:
-			shape = new btCylinderShape(btVector3(colParams_.width / 2,
-			                                      colParams_.height / 2,
-			                                      colParams_.depth / 2));
+			shape = new btCylinderShape(btVector3(colParams_.dimension[0] / 2,
+			                                      colParams_.dimension[1] / 2,
+			                                      colParams_.dimension[2] / 2));
 			break;
 		case CONE:
-			shape = new btConeShape(colParams_.radius, colParams_.height);
+			shape = new btConeShape(colParams_.radius, colParams_.dimension[1]);
 			break;
 		default:
 			shape = new btBoxShape(btVector3(1, 1, 1));
 			break;
 	}
 
-	offset_ = new Spyutils::Vector3(colParams_.offsetX, colParams_.offsetY,
-	                                colParams_.offsetZ);
 	btTransform offsetTransform;
 	offsetTransform.setIdentity();
-	offsetTransform.setOrigin(btVector3(offset_->x, offset_->y, offset_->z));
+	offsetTransform.setOrigin(btVector3(colParams_.offset[0], colParams_.offset[1], colParams_.offset[2]));
 	collisonShape_->addChildShape(offsetTransform, shape);
-
-	// colliderShape_ = shape;
-
-	trigger_ = colParams_.isTrigger;
 }
