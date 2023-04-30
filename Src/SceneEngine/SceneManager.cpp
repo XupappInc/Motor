@@ -119,7 +119,6 @@ void Separity::SceneManager::changeScene() {
 	ManagerManager::getInstance()->clean();
 	ManagerManager::getInstance()->start();
 	if(loadScene(sceneName_)) {		
-		GetComponentWrapper::registerInLua();
 		ManagerManager::getInstance()->initComponents();
 		changeScene_ = false;
 	} else {
@@ -137,6 +136,7 @@ void Separity::SceneManager::start() {
 
 	registerChangeSceneInLua();
 	factory_->registerInLua();
+	GetComponentWrapper::registerInLua();
 }
 
 void Separity::SceneManager::luaChangeScene(const std::string& root) {

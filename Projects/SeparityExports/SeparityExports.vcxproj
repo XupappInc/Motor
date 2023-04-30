@@ -52,13 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\SeparityExports\dllmain.cpp" />
-    <ClCompile Include="..\..\Src\SeparityExports\SeparityExports.cpp" />
+    <ClCompile Include="..\..\Src\SeparityExports\HMODULEWrapper.cpp" />
     <ClCompile Include="..\..\Src\SeparityExports\SeparitySetup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\SeparityExports\framework.h" />
+    <ClInclude Include="..\..\Src\SeparityExports\HMODULEWrapper.h" />
     <ClInclude Include="..\..\Src\SeparityExports\SeparityApi.h" />
-    <ClInclude Include="..\..\Src\SeparityExports\SeparityExports.h" />
     <ClInclude Include="..\..\Src\SeparityExports\SeparitySetup.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

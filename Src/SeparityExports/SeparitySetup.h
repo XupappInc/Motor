@@ -1,17 +1,13 @@
 #pragma once
-
 #ifndef __SEPARITY_SETUP_H__
 #define __SEPARITY_SETUP_H__
+
 #include "SeparityExports/SeparityApi.h"
-#include <cstdint>
 
-const uint32_t FRAMERATE = 60;
-const uint32_t FRAMETIME = 1000 / FRAMERATE;
-
-namespace Spyutils {
-	class VirtualTimer;
-}
 namespace Separity {
+
+	class HMODULEWrapper;
+
 	class _SEPARITY_API_ SeparitySetup {
 
 		public:
@@ -23,7 +19,11 @@ namespace Separity {
 		void initGame();
 		void init();
 		void update();
-		void close();		
+		void close();	
+
+		private:
+
+		HMODULEWrapper* game;
 	};
 }
 

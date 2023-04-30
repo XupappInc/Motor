@@ -20,16 +20,6 @@ namespace Separity {
 		/// utilizar en Lua
 		/// </summary>
 		static void registerInLua();
-
-		/// <summary>
-		/// Crea todos los managers
-		/// </summary>
-		static void createAllManagers();
-
-		/// <summary>
-		/// Cierra todos los managers
-		/// </summary>
-		static void closeAllManagers();
 	};
 }  // namespace Separity
 
