@@ -11,8 +11,11 @@
 #include <OgreFileSystemLayer.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
+#include <OgreOverlaySystem.h>
 #include <SDL.h>
 #include <SDL_syswm.h>
+
+#include <OgreFontManager.h>
 
 #include <fstream>
 
@@ -76,7 +79,7 @@ void Separity::RenderManager::initRenderManager() {
 
 	// Crear raiz de ogre
 	ogreRoot_ = new Ogre::Root(pluginPath);
-
+	Ogre::OverlaySystem* a = new Ogre::OverlaySystem();
 	// Si hay una configuración de antes se utiliza esa y 
 	// si no, se muestra undiálogo para configuración
 	if(ogreRoot_->restoreConfig() || ogreRoot_->showConfigDialog(nullptr)) {

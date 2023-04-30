@@ -7,6 +7,7 @@
 
 #include <OgreOverlaySystem.h>
 #include <OgreSceneManager.h>
+#include <OgreFontManager.h>
 
 std::unique_ptr<Separity::UIManager> Singleton<Separity::UIManager>::_INSTANCE_;
 
@@ -17,7 +18,8 @@ Separity::UIManager* Separity::UIManager::getInstance() {
 void Separity::UIManager::start() {
 	Separity::Manager::start();
 
-	ogreOverlaySystem_ = new Ogre::OverlaySystem();
+	ogreOverlaySystem_ = Ogre::OverlaySystem::getSingletonPtr();
+
 	Separity::RenderManager::getInstance()
 	    ->getOgreSceneManager()
 	    ->addRenderQueueListener(ogreOverlaySystem_);
