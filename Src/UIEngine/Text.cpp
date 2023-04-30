@@ -1,6 +1,5 @@
 #include "Text.h"
 
-#include "Panel.h"
 #include "SeparityUtils\checkML.h"
 
 #include <OgreFontManager.h>

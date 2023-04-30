@@ -13,7 +13,6 @@ namespace Ogre {
 
 namespace Separity {
 	class Behaviour;
-	class Panel;
 	class _SEPARITY_API_ Image : public Separity::UIComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_UI)

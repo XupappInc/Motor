@@ -14,7 +14,6 @@ namespace Ogre {
 namespace Separity {
 
 	class Behaviour;
-	class Panel;
 
 	struct ButtonParams {
 		std::string overlayName = std::string();

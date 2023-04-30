@@ -11,6 +11,5 @@
 #include "EntityComponent\TransformCreator.h"
 #include "LuaEngine\BehaviourCreator.h"
 #include "UIEngine\ButtonCreator.h"
-#include "UIEngine\PanelCreator.h"
 #include "UIEngine\TextCreator.h"
 #include "UIEngine\ImageCreator.h"
