@@ -24,6 +24,8 @@ namespace Separity {
 		/// </summary>
 		void registerClasses();
 
+		void initComponents() override;
+
 		/// <summary>
 		/// Carga el script y crea un Behaviour al que asociarlo, tambien se
 		/// encarga de añadirlo a este manager y a su entidad

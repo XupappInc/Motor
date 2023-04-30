@@ -67,9 +67,14 @@ namespace Separity {
 		virtual void update(const uint32_t& deltaTime);
 
 		/// <summary>
-		/// Método start del componente
+		/// Metodo start del componente
 		/// </summary>
 		virtual void start();
+
+		/// <summary>
+		/// Metodo awake del componente
+		/// </summary>
+		virtual void awake();
 
 		/// <summary>
 		/// Asigna el Id del compoente

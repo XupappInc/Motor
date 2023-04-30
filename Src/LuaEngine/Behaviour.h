@@ -52,7 +52,7 @@ namespace Separity {
 		/// Awake se llama tras la creacion de todos los scripts, como primer
 		/// metodo
 		/// </summary>
-		virtual void awake();
+		virtual void awake() override;
 		/// <summary>
 		/// Start se llama tras awake, al comienzo de la ejecucion
 		/// </summary>
