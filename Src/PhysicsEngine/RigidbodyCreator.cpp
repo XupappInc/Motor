@@ -26,7 +26,7 @@ bool Separity::RigidbodyCreator::createComponent(lua_State* L,
 	readParam("mass", L, mass);
 	float data[3] = {2,2,2};
 	readArray("dim", L, data);
-	int trigger=1;
+	int trigger=0;
 	readParam("trigger", L, trigger);
 		
 	colliderParams params;
