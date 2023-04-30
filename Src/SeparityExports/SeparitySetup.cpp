@@ -14,6 +14,13 @@ typedef bool(__cdecl* GameEntryPoint)();
 
 Separity::SeparitySetup::SeparitySetup() {}
 
+Separity::SeparitySetup::~SeparitySetup() {}
+
+
+void Separity::SeparitySetup::initEngine() {
+	Separity::GetComponentWrapper::createAllManagers();	
+}
+
 void Separity::SeparitySetup::initGame() {
 #ifdef _DEBUG
 	HMODULE hinstLib = LoadLibrary(TEXT("SeparityGame_d.dll"));
@@ -36,32 +43,38 @@ void Separity::SeparitySetup::initGame() {
 	FreeLibrary(hinstLib);
 }
 
-void Separity::SeparitySetup::initManagers() {
-	Separity::GetComponentWrapper::createAllManagers();
+void Separity::SeparitySetup::init() {
+
+	Separity::ManagerManager::getInstance()->start();
 	Separity::GetComponentWrapper::registerInLua();
 	Separity::SceneManager::getInstance()->loadScene("scene.lua");
 	Separity::ManagerManager::getInstance()->initComponents();
 }
 
 void Separity::SeparitySetup::update() {
+
 	uint16_t deltaTime = 0;
-
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
-	while(!Separity::ManagerManager::getInstance()->quit() &&
-	      !Separity::InputManager::getInstance()->closeWindowEvent()) {
-		if(Separity::InputManager::getInstance()->isKeyDown(
-		       Separity::InputManager::ESCAPE)) {
+
+	Separity::ManagerManager* mm = Separity::ManagerManager::getInstance();
+	Separity::InputManager* im = Separity::InputManager::getInstance();
+
+	while(!mm->quit() && !im->closeWindowEvent()) {
+
+
+		if(im->isKeyDown(Separity::InputManager::ESCAPE)) 
 			Separity::ManagerManager::getInstance()->shutDown();
-		}
+		else {
+			Separity::ManagerManager::getInstance()->update(deltaTime);
 
-		Separity::ManagerManager::getInstance()->update(deltaTime);
+			deltaTime = timer->currTime();
+			int waitTime = FRAMETIME - deltaTime;
 
-		deltaTime = timer->currTime();
-		int waitTime = FRAMETIME - deltaTime;
-
-		if(waitTime > 0)
-			Sleep(waitTime);
+			if(waitTime > 0)
+				Sleep(waitTime);
+		}	
 	}
+
 	delete timer;
 }
 

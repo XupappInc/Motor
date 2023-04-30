@@ -43,8 +43,6 @@ Separity::SceneManager::SceneManager()
 	factory_->addCreator("image", new ImageCreator());
 	factory_->addCreator("panel", new PanelCreator());
 	factory_->addCreator("text", new TextCreator());
-
-	
 }
 
 void Separity::SceneManager::update(const uint32_t& deltaTime) {

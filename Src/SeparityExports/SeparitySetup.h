@@ -13,10 +13,15 @@ namespace Spyutils {
 }
 namespace Separity {
 	class _SEPARITY_API_ SeparitySetup {
+
 		public:
+
 		SeparitySetup();
+		~SeparitySetup();
+
+		void initEngine();	
 		void initGame();
-		void initManagers();
+		void init();
 		void update();
 		void close();		
 	};
