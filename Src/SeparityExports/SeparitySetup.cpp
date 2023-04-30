@@ -47,8 +47,8 @@ void Separity::SeparitySetup::initGame() {
 
 	if(game->hmodule != NULL) {
 		std::cout << "Libreria cargada!\n";
-		GameEntryPoint entryPoint;
-		entryPoint = (GameEntryPoint) GetProcAddress(game->hmodule, "start");
+		GameEntryPoint entryPoint =
+		    (GameEntryPoint) GetProcAddress(game->hmodule, "start");
 		if(entryPoint != NULL) {
 			entryPoint();
 		} else {
@@ -56,15 +56,17 @@ void Separity::SeparitySetup::initGame() {
 		}
 	} else {
 		std::cout << "No esta la dll del juego :(\n";
-	}
-	
+	}	
 }
 
 void Separity::SeparitySetup::init() {
 
-	Separity::ManagerManager::getInstance()->start();
-	Separity::SceneManager::getInstance()->loadScene("scene.lua");
-	Separity::ManagerManager::getInstance()->initComponents();
+	Separity::SceneManager* sm = Separity::SceneManager::getInstance();
+	Separity::ManagerManager* mm = Separity::ManagerManager::getInstance();
+
+	mm->start();
+	sm->loadScene(sm->getSceneName());
+	mm->initComponents();
 }
 
 void Separity::SeparitySetup::update() {

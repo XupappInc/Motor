@@ -58,6 +58,10 @@ namespace Separity {
 
 		void addComponentCreator(const std::string& name, CCreator* creator);
 
+		void setFirstScene(const std::string& name);
+
+		const std::string& getSceneName();
+
 		void start() override;
 
 		static SceneManager* getInstance();

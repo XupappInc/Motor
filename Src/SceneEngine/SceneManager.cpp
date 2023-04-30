@@ -131,6 +131,14 @@ void Separity::SceneManager::addComponentCreator(const std::string& name,
 	factory_->addCreator(name, creator);
 }
 
+void Separity::SceneManager::setFirstScene(const std::string& name) {
+	sceneName_ = name;
+}
+
+const std::string& Separity::SceneManager::getSceneName() { 
+	return sceneName_; 
+}
+
 void Separity::SceneManager::start() { 
 	Separity::Manager::start(); 
 
