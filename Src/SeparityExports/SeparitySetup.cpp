@@ -1,7 +1,7 @@
 #include "SeparitySetup.h"
 
-#include "EntityComponent/EntityManager.h"
 #include "EntityComponent/ManagerManager.h"
+#include "EntityComponent/EntityManager.h"
 #include "LuaEngine/LuaManager.h"
 #include "InputEngine/InputManager.h"
 #include "PhysicsEngine/PhysicsManager.h"

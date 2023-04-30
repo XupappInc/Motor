@@ -48,10 +48,11 @@ namespace Separity {
 		static LuaManager* getInstance();
 
 		void clean() override;
+
 		void start() override;
 
-
 		protected:
+
 		LuaManager();
 
 		private:

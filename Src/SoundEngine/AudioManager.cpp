@@ -69,7 +69,7 @@ void Separity::AudioManager::start() {
 	luabridge::setGlobal(L, this, "AudioManager");
 }
 
-inline Separity::AudioManager::AudioManager() {
+Separity::AudioManager::AudioManager() {
 	buffer_ = nullptr;
 	system_ = nullptr;
 	soundGroup_ = nullptr;

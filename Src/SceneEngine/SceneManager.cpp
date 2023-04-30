@@ -27,6 +27,7 @@ Separity::SceneManager::~SceneManager() {
 Separity::SceneManager::SceneManager()
     : changeScene_(false), sceneName_(std::string()) {
 	ManagerManager::getInstance()->addManager(_SCENE, this);
+	mustStart_ = true;
 
 	factory_ = new ComponentFactory();
 	factory_->addCreator("transform", new TransformCreator());
@@ -108,8 +109,14 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 
 	lua_close(L);
 
+
+	ManagerManager* mm = ManagerManager::getInstance();
 	if(!success)
-		ManagerManager::getInstance()->shutDown();
+		mm->shutDown();
+	else
+		std::cout << "Managers inicializados: " << mm->nStartedManagers() << "\n";
+
+
 
 	return success;
 }

@@ -30,6 +30,7 @@ void Separity::LuaManager::clean() {
 
 Separity::LuaManager::LuaManager() : L_(nullptr) {
 	ManagerManager::getInstance()->addManager(_SCRIPT, this);
+	mustStart_ = true;
 }
 
 void Separity::LuaManager::initLua() {

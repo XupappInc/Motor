@@ -58,20 +58,12 @@ namespace Separity {
 		~Manager();
 
 		/// <summary>
-		/// Activa el manager
-		/// </summary>
-		/// <param name="active">booleano que activa el manager</param>
-		void setActive(bool active);
-
-		/// <summary>
-		/// Resetea las instancias de los managers en LUA
-		/// </summary>
-		virtual void reset();
-
-		/// <summary>
 		/// Llama al start de todos los componentes
 		/// </summary>
 		virtual void startComponent();
+
+
+		bool mustStart();
 
 		protected:
 		/// <summary>
@@ -82,8 +74,9 @@ namespace Separity {
 
 		// Componentes del manager
 		std::vector<Separity::Component*> cmps_;
-		bool active_ = true;
-		bool started_ = false;
+
+		bool mustStart_ = false;
+
 	};
 };  // namespace Separity
 

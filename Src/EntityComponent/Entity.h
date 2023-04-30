@@ -115,12 +115,13 @@ namespace Separity {
 			// borra el componente actual si existe uno del mismo tipo
 			removeComponent<T>();
 
-			// crea, inicializa y añade el nuevo componente
-			Component* c = new T(std::forward<Ts>(args)...);
-			c->setID(cId);
-
+			// obtengo el manager correspondiente
 			uint8_t cType = T::type;
 			Manager* m = getManager(cType);
+
+			// crea, inicializa y añade el nuevo componente
+			Component* c = new T(std::forward<Ts>(args)...);
+			c->setID(cId);	
 			if(m != nullptr)
 				m->addComponent(c);
 			c->setContext(this);

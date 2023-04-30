@@ -45,6 +45,7 @@ Separity::InputManager::InputManager() {
 	clearState();
 
 	ManagerManager::getInstance()->addManager(_INPUT, this);
+	mustStart_ = true;
 }
 
 void Separity::InputManager::update(const uint32_t& deltaTime) {

@@ -26,6 +26,7 @@ Separity::RenderManager* Separity::RenderManager::getInstance() {
 Separity::RenderManager::RenderManager() : camera_(nullptr) {
 
 	ManagerManager::getInstance()->addManager(_RENDER, this);
+	mustStart_ = true;
 
 	initRenderManager();
 	loadResources();

@@ -58,11 +58,6 @@ namespace Separity {
 		void clean() override;
 
 		/// <summary>
-		/// Inicializa todos los managers
-		/// </summary>
-		void initManagers();
-
-		/// <summary>
 		/// Devuelve si el flag "quit" está a true
 		/// </summary>
 		/// <returns>Valor de "quit"</returns>
@@ -79,6 +74,8 @@ namespace Separity {
 		/// <returns>Instancia del ManagerManager</returns>
 		static ManagerManager* getInstance();
 
+		int nStartedManagers();
+
 		protected:
 		/// <summary>
 		/// Inicializa el map en el que se guardarán todos los managers
@@ -87,6 +84,7 @@ namespace Separity {
 
 		private:
 		std::map<cmpType_type, Manager*> managers_;
+		std::map<cmpType_type, Manager*> startedManagers_;
 		bool quit_;
 	};
 }  // namespace Separity

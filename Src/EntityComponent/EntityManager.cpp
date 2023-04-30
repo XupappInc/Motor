@@ -9,6 +9,7 @@ std::unique_ptr<Separity::EntityManager>
 
 inline Separity::EntityManager::EntityManager() {
 	ManagerManager::getInstance()->addManager(_ENTITY, this);
+	mustStart_ = true;
 }
 
 Separity::EntityManager* Separity::EntityManager::getInstance() {

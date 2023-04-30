@@ -7,29 +7,40 @@ Separity::ManagerManager* Separity::ManagerManager::getInstance() {
 	return static_cast<ManagerManager*>(instance());
 }
 
+int Separity::ManagerManager::nStartedManagers() { 
+	return startedManagers_.size(); 
+}
+
 void Separity::ManagerManager::initComponents() {
-	for(auto m : managers_) {
+	for(auto m : startedManagers_) {
 		m.second->initComponents();
 	}
-	for(auto m : managers_) {
+	for(auto m : startedManagers_) {
 		m.second->startComponent();
 	}
 }
 
 void Separity::ManagerManager::start() {
 	for(auto m : managers_) {
-		m.second->start();
+		if(m.second->mustStart()) {					
+			startedManagers_[m.first] = m.second;
+			m.second->start();
+		}		
 	}
 }
 
 void Separity::ManagerManager::update(const uint32_t& deltaTime) {
-	for(auto m : managers_) {
-		m.second->update(deltaTime);
+
+	auto it = startedManagers_.begin();
+	for(it; it->first != _SCENE; ++it) {
+		it->second->update(deltaTime);
 	}
+	it->second->update(deltaTime);
 }
 
 Separity::ManagerManager::ManagerManager() : quit_(false) {
 	managers_ = std::map<cmpType_type, Manager*>();
+	startedManagers_ = std::map<cmpType_type, Manager*>();
 }
 
 void Separity::ManagerManager::addManager(cmpType_type type, Manager* manager) {
@@ -37,19 +48,20 @@ void Separity::ManagerManager::addManager(cmpType_type type, Manager* manager) {
 }
 
 Separity::Manager* Separity::ManagerManager::getManager(cmpType_type type) {
-	return managers_[type];
+	if(!startedManagers_.count(type)) {
+		managers_[type]->start();
+		startedManagers_[type] = managers_[type];	
+	}
+
+	return startedManagers_[type];
 }
 
 void Separity::ManagerManager::clean() {
-	for(auto m : managers_) {
+	for(auto m : startedManagers_) {
 		m.second->clean();
 	}
-	// close();
-}
-
-void Separity::ManagerManager::initManagers() {
-	for(auto m : managers_) {
-	}
+	startedManagers_.clear();
+	startedManagers_ = std::map<cmpType_type, Manager*>();
 }
 
 bool Separity::ManagerManager::quit() { return quit_; }

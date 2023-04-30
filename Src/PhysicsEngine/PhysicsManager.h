@@ -21,13 +21,12 @@ namespace Separity {
 	    : public Separity::Manager,
 	                       public Singleton<Separity::PhysicsManager> {
 		friend Singleton<PhysicsManager>;
+
 		friend class RigidBody;
+
 		public:
 		
-		/// <summary>
-		/// Constructor de la clase
-		/// </summary>
-		inline PhysicsManager();
+		
 		/// <summary>
 		/// Obtiene la instancia del Manager de físicas
 		/// </summary>
@@ -69,6 +68,12 @@ namespace Separity {
 		/// borra todos los componentes y rigidbodys
 		/// </summary>
 		void clean() override;
+
+		protected:
+		/// <summary>
+		/// Constructor de la clase
+		/// </summary>
+		PhysicsManager();
 		
 		private:
 		/// <summary>

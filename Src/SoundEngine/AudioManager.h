@@ -27,11 +27,7 @@ namespace Separity {
 		friend class AudioListener;
 
 		public:
-		/// <summary>
-		/// Constructor de AudioManager, inicializa todas las variables, inicia
-		/// el sistema de sonido, crea todas sus caracteristicas
-		/// </summary>
-		inline AudioManager();
+		
 		/// <summary>
 		/// Método que devuelve una instancia de si mismo, es decir
 		/// AudioManager, si ya existiera devuelve dicha instancia, si no
@@ -74,6 +70,13 @@ namespace Separity {
 		void start() override;
 
 		void clean() override;
+
+		protected:
+		/// <summary>
+		/// Constructor de AudioManager, inicializa todas las variables, inicia
+		/// el sistema de sonido, crea todas sus caracteristicas
+		/// </summary>
+		inline AudioManager();
 
 		private:
 		/// <summary>
