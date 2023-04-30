@@ -85,3 +85,22 @@ bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
 
 	return true;
 }
+
+bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
+                                   float& param) {
+	if(!lua_getfield(L, -1, paramName.c_str())) {
+		lua_pop(L, 1);
+		std::cerr << "[SPY ERROR]: Param " << paramName << " does not exist\n";
+		return false;
+	}
+	if(!lua_isnumber(L, -1)) {
+		lua_pop(L, 1);
+		std::cerr << "[SPY ERROR]: Param " << paramName
+		          << " has an incorrect format\n";
+		return false;
+	}
+	param = lua_tonumber(L, -1);
+	lua_pop(L, 1);
+
+	return true;
+}

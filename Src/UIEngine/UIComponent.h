@@ -17,9 +17,11 @@ namespace Ogre {
 	enum GuiHorizontalAlignment;
 	enum GuiVerticalAlignment;
 }  // namespace Ogre
+
 namespace Spyutils {
 	class Vector3;
 }
+
 // Clase base de la que heredan todos los elementos de la UI
 namespace Separity {
 	class _SEPARITY_API_ InputManager;

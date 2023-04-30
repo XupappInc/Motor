@@ -37,8 +37,9 @@ namespace Separity {
 	/// Parametros usados para crear un collider
 	/// </summary>
 	struct colliderParams {
-		colliderShape colShape;
-		float height = 0, width = 0, depth = 0, radius = 0;
+		colliderShape colShape = colliderShape();
+		float height = 0, width = 0, depth = 0;
+		float radius = 0;
 		float offsetX = 0, offsetY = 0, offsetZ = 0;
 		bool isTrigger = false;
 	};

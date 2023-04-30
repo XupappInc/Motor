@@ -12,51 +12,58 @@
 #include <OgreOverlayManager.h>
 #include <iostream>
 
-Separity::Button::Button(std::string overlayName, float xPos, float yPos,
-                         float width, float height, std::string iniTex,
-                         int zorder,std::string hoverTex, std::string clickedTex)
-    : UIComponent() {
-	auto render = RenderManager::getInstance();
-	int w = render->getWindowWidth();
-	int h = render->getWindowHeight();
-	int xx = w * xPos / 100;
-	int yy = h * yPos / 100;
-	xPos = xx-(width/2);
-	yPos = yy - (height / 2);
-	n_ = 0;
-	iniTex_ = iniTex;
-	hoverTex_ = hoverTex;
-	clickedTex_ = clickedTex;
+Separity::Button::Button(ButtonParams& params) : UIComponent() {
+
+	auto renderManager = RenderManager::getInstance();
+	int w = renderManager->getWindowWidth();
+	int h = renderManager->getWindowHeight();
+
+	int xx = w * params.xPos / 100;
+	int yy = h * params.yPos / 100;
+
+	params.xPos = xx - (params.width / 2);
+	params.yPos = yy - (params.height / 2);
+
+	iniTex_ = params.iniTex;
+	hoverTex_ = params.hoverTex;
+	clickedTex_ = params.clickedTex;
 	
 	overlayContainer_ = static_cast<Ogre::OverlayContainer*>(
 	    overlayManager_->createOverlayElement(
-	        "Panel", overlayName + std::to_string(numUIElements)));
-	overlayContainer_->setMetricsMode(Ogre::GMM_PIXELS);
-	overlayContainer_->setPosition(xPos, yPos);
-	overlayContainer_->setDimensions(width, height);
-	overlayContainer_->setMaterialName(iniTex_);
-	// Creo un elemento overlay para añadirle el panel
-	overlayElement_ =
-	    overlayManager_->create("over" + std::to_string(numUIElements));
-	overlayElement_->add2D(overlayContainer_);
+	        "Panel", params.overlayName + std::to_string(numUIElements)));
 
+	overlayContainer_->setMetricsMode(Ogre::GMM_PIXELS);
+	overlayContainer_->setPosition(params.xPos, params.yPos);
+	overlayContainer_->setDimensions(params.width, params.height);
+	overlayContainer_->setMaterialName(iniTex_);
+	overlayElement_ = overlayManager_->create("over" + std::to_string(numUIElements));
+	overlayElement_->add2D(overlayContainer_);
 	overlayElement_->show();
-	setZorder(zorder);
+
+	setZorder(params.zOrder);
+
 	// Posiciones necesarias para el input de ratón
-	//  top + height
-	topPosition_ = yPos;
-	bottomPosition_ = topPosition_ + height;
-	// left+ width
-	leftPosition_ = xPos;
-	rightPosition_ = leftPosition_ + width;
+	// top + height
+	topPosition_ = params.yPos;
+	bottomPosition_ = topPosition_ + params.height;
+	// left + width
+	leftPosition_ = params.xPos;
+	rightPosition_ = leftPosition_ + params.width;
 }
-Separity::Button::~Button() {}
+
+Separity::Button::~Button() {
+}
+
 void Separity::Button::initComponent() {
 	behaviour_ = ent_->getComponent<Behaviour>();
 }
-void Separity::Button::update(const uint32_t& deltaTime) { checkMousePos(); }
+
+void Separity::Button::update(const uint32_t& deltaTime) { 
+	checkMousePos(); 
+}
 
 void Separity::Button::onButtonClick() {
+
 	if(!hovering_)
 		return;
 	if(!clicked_ && inputManager->isMouseButtonDown(InputManager::LEFT)) {
@@ -66,7 +73,9 @@ void Separity::Button::onButtonClick() {
 			behaviour_->onButtonClick();
 	}
 }
+
 void Separity::Button::onButtonReleased() {
+
 	if(!hovering_)
 		return;
 	if(clicked_) {
@@ -80,6 +89,7 @@ void Separity::Button::onButtonReleased() {
 }
 
 void Separity::Button::onButtonHover() {
+
 	if(!clicked_)
 		changeButtonTexture(hoverTex_);
 	if(behaviour_ != nullptr)
@@ -87,6 +97,7 @@ void Separity::Button::onButtonHover() {
 }
 
 void Separity::Button::onButtonUnhover() {
+
 	changeButtonTexture(iniTex_);
 	if(behaviour_ != nullptr)
 		behaviour_->onButtonUnhover();
@@ -94,9 +105,11 @@ void Separity::Button::onButtonUnhover() {
 
 void Separity::Button::checkMousePos()
 { 
-	if(!isVisible()) return;
+	if(!isVisible()) 
+		return;
 
 	std::pair<int, int> mousePosition = inputManager->getMousePos();
+
 	if(mousePosition.first < rightPosition_ &&
 	   mousePosition.first > leftPosition_ &&
 	   mousePosition.second > topPosition_ &&
@@ -113,9 +126,9 @@ void Separity::Button::checkMousePos()
 	}
 }
 
-void Separity::Button::changeButtonTexture(std::string textureName) {
+void Separity::Button::changeButtonTexture(const std::string& textureName) {
 
-	if(textureName == "")
+	if(textureName == std::string())
 		return;
 	std::string newTex = "";
 	if(textureName == iniTex_) {
@@ -130,8 +143,9 @@ void Separity::Button::changeButtonTexture(std::string textureName) {
 	overlayContainer_->setMaterialName(newTex);
 }
 
-void Separity::Button::changeTextures(std::string iniTex, std::string hoverTex,
-                                      std::string clickedTex) {
+void Separity::Button::changeTextures(const std::string& iniTex,
+                                      const std::string& hoverTex,
+                                      const std::string& clickedTex) {
 
 	iniTex_ = iniTex;
 	hoverTex_ = hoverTex;

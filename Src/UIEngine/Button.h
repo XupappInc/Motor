@@ -12,68 +12,84 @@ namespace Ogre {
 }
 
 namespace Separity {
+
 	class Behaviour;
 	class Panel;
+
+	struct ButtonParams {
+		std::string overlayName = std::string();
+		float xPos = 0, yPos = 0;
+		int zOrder = 0;
+		float width = 0, height = 0;
+		std::string iniTex = std::string();
+		std::string hoverTex = std::string();
+		std::string clickedTex = std::string();
+	};
+
 	class _SEPARITY_API_ Button : public Separity::UIComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_UI)
 		__CMPID_DECL__(Separity::_BUTTON)
 
-		/// <summary>
-		/// Constructora de la clase Boton
-		/// </summary>
-		Button(std::string overlayName, float xPos, float yPos, float width,
-		       float height, std::string iniTex, int zorder = 0,
-		       std::string hoverTex = "", std::string clickedTex = "");
+		Button(ButtonParams& params);
 
 		void initComponent() override;
-		void update(const uint32_t& deltaTime = 0) override;
-		///< summary>
-		/// Destructora de la clase Boton
-		/// </summary>
+
+		void update(const uint32_t& deltaTime) override;
+
 		~Button();
+
 		/// <summary>
-		/// Metodo que se llama cuando se hace click en el boton
+		/// Cambia la textura principal del botón
 		/// </summary>
-		void onButtonClick();
+		void changeButtonTexture(const std::string& textureName);
+
 		/// <summary>
-		/// Metodo que se llama cuando ya no se hace click en el boton
+		/// Cambia todas las texturas del botón
 		/// </summary>
-		void onButtonReleased();
-		/// <summary>
-		/// Metodo que se llama la primera vez que se pone el raton sobre el
-		/// boton
-		/// </summary>
-		void onButtonHover();
-		/// <summary>
-		/// Metodo que se llama cuando el raton sale del boton
-		/// </summary>
-		void onButtonUnhover();
+		void changeTextures(const std::string& iniTex,
+		                    const std::string& hoverTex,
+		                    const std::string& clickedTex);
+
+		private:
+
 		/// <summary>
 		/// Comprueba si el ratón está en los límites del botón
 		/// </summary>
 		void checkMousePos();
-		/// <summary>
-		/// Cambia la textura del boton
-		/// </summary>
-		void changeButtonTexture(std::string textureName);
-		void changeTextures(std::string iniTex, std::string hoverTex,
-		                    std::string clickedTex);
 
-		private:
-		int n_;
+		/// <summary>
+		/// Metodo que se llama cuando se hace click en el botón
+		/// </summary>
+		void onButtonClick();
+
+		/// <summary>
+		/// Metodo que se llama cuando se termina click en el botón
+		void onButtonReleased();
+
+		/// <summary>
+		/// Metodo que se llama la primera vez que se pone el raton sobre el
+		/// botón
+		/// </summary>
+		void onButtonHover();
+
+		/// <summary>
+		/// Metodo que se llama cuando el raton sale del botón
+		/// </summary>
+		void onButtonUnhover();	
+
 		Behaviour* behaviour_;
 		std::string iniTex_;
 		std::string hoverTex_;
 		std::string clickedTex_;
-		// posiciones limite del botón
+
 		int topPosition_;
 		int bottomPosition_;
 		int leftPosition_;
 		int rightPosition_;
 		bool hovering_;
 		bool clicked_;
-		int zorder_;
+		int zOrder_;
 	};
 }  // namespace Separity
 
