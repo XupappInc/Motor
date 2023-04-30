@@ -23,6 +23,8 @@ void Separity::Component::update(const uint32_t& deltaTime) {}
 
 void Separity::Component::start() {}
 
+void Separity::Component::awake() {}
+
 void Separity::Component::setID(cmpId_type id) { cId_ = id; }
 
 Separity::cmpId_type Separity::Component::getID() { return cId_; }

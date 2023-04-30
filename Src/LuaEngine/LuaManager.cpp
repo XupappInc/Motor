@@ -65,6 +65,18 @@ void Separity::LuaManager::registerClasses() {
 	    .endClass();
 }
 
+void Separity::LuaManager::initComponents() {
+	for(auto c : cmps_) {
+		c->initComponent();
+	}
+	for(auto c : cmps_) {
+		c->awake();
+	}
+	for(auto c : cmps_) {
+		c->start();
+	}
+}
+
 bool Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 	// Cargamos el script de Lua desde un archivo
 	std::string path = "Assets/Scripts/" + name + ".lua";
