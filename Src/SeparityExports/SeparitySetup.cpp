@@ -74,7 +74,9 @@ void Separity::SeparitySetup::update() {
 	const uint32_t FRAMERATE = 60;
 	const uint32_t FRAMETIME = 1000 / FRAMERATE;
 
-	uint16_t deltaTime = 0;
+	uint32_t startTime = 0;
+	uint32_t deltaTime;
+
 	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
 
 	Separity::ManagerManager* mm = Separity::ManagerManager::getInstance();
@@ -82,18 +84,14 @@ void Separity::SeparitySetup::update() {
 
 	while(!mm->quit() && !im->closeWindowEvent()) {
 
+		deltaTime = timer->currTime() - startTime;
 
-		if(im->isKeyDown(Separity::InputManager::ESCAPE)) 
-			Separity::ManagerManager::getInstance()->shutDown();
-		else {
-			Separity::ManagerManager::getInstance()->update(deltaTime);
-
-			deltaTime = timer->currTime();
-			int waitTime = FRAMETIME - deltaTime;
-
-			if(waitTime > 0)
-				Sleep(waitTime);
-		}	
+		if(deltaTime >= FRAMETIME) {
+			mm->update(deltaTime);	
+			startTime = timer->currTime();
+		} else {
+			Sleep(FRAMETIME - deltaTime);
+		}
 	}
 
 	delete timer;
