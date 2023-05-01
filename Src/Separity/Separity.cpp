@@ -1,12 +1,11 @@
 #include "SeparityExports/SeparitySetup.h"
-// Necesario para el DPI Awareness (escalado de 125% de windows)
-#include <ShellScalingApi.h>
-#pragma comment(lib, "Shcore.lib")
+
+#include "SeparityUtils/checkML.h"
 
 int main() {
-	// Necesario para el DPI Awareness (escalado de 125% de windows)
-	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
 
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	
 	Separity::SeparitySetup* setUp = new Separity::SeparitySetup();
 
 	setUp->initEngine();

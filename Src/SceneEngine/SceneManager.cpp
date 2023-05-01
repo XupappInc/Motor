@@ -47,7 +47,7 @@ Separity::SceneManager::SceneManager()
 void Separity::SceneManager::update(const uint32_t& deltaTime) {
 	if(!changeScene_)
 		return;
-	changeScene();
+	doChangeScene();
 }
 
 bool Separity::SceneManager::loadScene(const std::string& root) {
@@ -122,16 +122,20 @@ bool Separity::SceneManager::loadScene(const std::string& root) {
 	lua_close(L);
 
 	ManagerManager* mm = ManagerManager::getInstance();
-	if(!success)
-		mm->shutDown();
-	else
+	if(!success) {
+		std::cerr << "[SPY ERROR]: Scene " << sceneName_
+		          << " failed to load correctly, shutting down separity\n";
+		mm->shutDown(); 
+	}	
+	else {
 		std::cout << "Managers inicializados: " << mm->nStartedManagers()
 		          << "\n";
+	}
 
 	return success;
 }
 
-void Separity::SceneManager::changeScene() {
+void Separity::SceneManager::doChangeScene() {
 	ManagerManager::getInstance()->clean();
 	ManagerManager::getInstance()->start();
 	if(loadScene(sceneName_)) {
@@ -145,8 +149,8 @@ void Separity::SceneManager::addComponentCreator(const std::string& name,
 	factory_->addCreator(name, creator);
 }
 
-void Separity::SceneManager::setFirstScene(const std::string& name) {
-	sceneName_ = name;
+void Separity::SceneManager::setFirstScene(const std::string& root) {
+	sceneName_ = root;
 }
 
 const std::string& Separity::SceneManager::getSceneName() { return sceneName_; }
@@ -159,7 +163,7 @@ void Separity::SceneManager::start() {
 	factory_->registerInLua();
 }
 
-void Separity::SceneManager::luaChangeScene(const std::string& root) {
+void Separity::SceneManager::changeScene(const std::string& root) {
 	changeScene_ = true;
 	sceneName_ = root;
 }
@@ -168,7 +172,7 @@ void Separity::SceneManager::registerChangeSceneInLua() {
 	lua_State* L = LuaManager::getInstance()->getLuaState();
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<SceneManager>("SceneManager")
-	    .addFunction("changeScene", &SceneManager::luaChangeScene)
+	    .addFunction("changeScene", &SceneManager::changeScene)
 	    .endClass();
 
 	luabridge::setGlobal(L, this, "SceneManager");

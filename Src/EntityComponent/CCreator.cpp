@@ -3,7 +3,7 @@
 #include <iostream>
 #include <lua.hpp>
 
-#define WARNING
+//#define WARNING
 
 Separity::CCreator::CCreator() {}
 

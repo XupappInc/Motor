@@ -17,6 +17,10 @@
 #include <SDL_syswm.h>
 #include <fstream>
 
+// Necesario para el DPI Awareness (escalado de 125% de windows)
+#include <ShellScalingApi.h>
+#pragma comment(lib, "Shcore.lib")
+
 std::unique_ptr<Separity::RenderManager>
     Singleton<Separity::RenderManager>::_INSTANCE_;
 
@@ -27,6 +31,9 @@ Separity::RenderManager* Separity::RenderManager::getInstance() {
 Separity::RenderManager::RenderManager() : camera_(nullptr) {
 	ManagerManager::getInstance()->addManager(_RENDER, this);
 	mustStart_ = true;
+
+	// Necesario para el DPI Awareness (escalado de 125% de windows)
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
 
 	initRenderManager();
 	loadResources();

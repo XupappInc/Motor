@@ -52,10 +52,10 @@ bool Separity::SeparitySetup::initGame() {
 		if(entryPoint != NULL) {
 			return entryPoint();
 		} else {
-			std::cout << "No he encontrado el metodo start\n";
+			std::cerr << "[SPY ERROR]: Start method not found in game dll\n";
 		}
 	} else {
-		std::cout << "No esta la dll del juego :(\n";
+		std::cerr << "[SPY ERROR]: The dll of the game does not exist\n";
 	}	
 	return true;
 }
@@ -66,8 +66,8 @@ void Separity::SeparitySetup::init() {
 	Separity::ManagerManager* mm = Separity::ManagerManager::getInstance();
 
 	mm->start();
-	sm->loadScene(sm->getSceneName());
-	mm->initComponents();
+	if (!sm->loadScene(sm->getSceneName()));
+		mm->initComponents();
 }
 
 void Separity::SeparitySetup::update() {
