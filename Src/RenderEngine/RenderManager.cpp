@@ -1,22 +1,20 @@
 #include "RenderManager.h"
 
-#include "SeparityUtils\checkML.h"
-#include "EntityComponent\ManagerManager.h"
-#include "EntityComponent\EntityManager.h"
-#include "EntityComponent\Entity.h"
-#include "EntityComponent\Transform.h"
 #include "Camera.h"
+#include "EntityComponent\Entity.h"
+#include "EntityComponent\EntityManager.h"
+#include "EntityComponent\ManagerManager.h"
+#include "EntityComponent\Transform.h"
+#include "SeparityUtils\checkML.h"
 
 #include <OgreConfigFile.h>
 #include <OgreFileSystemLayer.h>
+#include <OgreFontManager.h>
+#include <OgreOverlaySystem.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
-#include <OgreOverlaySystem.h>
 #include <SDL.h>
 #include <SDL_syswm.h>
-
-#include <OgreFontManager.h>
-
 #include <fstream>
 
 std::unique_ptr<Separity::RenderManager>
@@ -27,7 +25,6 @@ Separity::RenderManager* Separity::RenderManager::getInstance() {
 }
 
 Separity::RenderManager::RenderManager() : camera_(nullptr) {
-
 	ManagerManager::getInstance()->addManager(_RENDER, this);
 	mustStart_ = true;
 
@@ -40,9 +37,9 @@ void Separity::RenderManager::initComponents() {
 	if(camera_ == nullptr) {
 		Entity* entity = EntityManager::getInstance()->addEntity(_grp_GENERAL);
 		camera_ = entity->addComponent<Camera>();
-		Transform* tr = entity->getComponent<Transform>();
-		tr->setPosition(0, 0, 0);
-		tr->setRotation(0, 0, 0);
+
+		std::cerr
+		    << "[SPY WARNING]: No camera component exists in the scene, a default camera has been created\n";
 	}
 
 	Separity::Manager::initComponents();
@@ -80,7 +77,7 @@ void Separity::RenderManager::initRenderManager() {
 	// Crear raiz de ogre
 	ogreRoot_ = new Ogre::Root(pluginPath);
 	ogreOverlaySystem_ = new Ogre::OverlaySystem();
-	// Si hay una configuración de antes se utiliza esa y 
+	// Si hay una configuración de antes se utiliza esa y
 	// si no, se muestra undiálogo para configuración
 	if(ogreRoot_->restoreConfig() || ogreRoot_->showConfigDialog(nullptr)) {
 		createWindow();
@@ -156,11 +153,10 @@ void Separity::RenderManager::loadResources() {
 }
 
 void Separity::RenderManager::closeRenderManager() {
-	
 	ogreSceneManager_->removeRenderQueueListener(ogreOverlaySystem_);
 	delete ogreOverlaySystem_;
 	ogreOverlaySystem_ = nullptr;
-	
+
 	ogreRoot_->queueEndRendering();
 
 	ogreWindow_ = nullptr;
@@ -224,17 +220,11 @@ void Separity::RenderManager::fullScreen(bool full) {
 	                                              full ? "Yes" : "No");
 }
 
-void Separity::RenderManager::setCamera(Camera* camera) { 
-	camera_ = camera; 
-}
+void Separity::RenderManager::setCamera(Camera* camera) { camera_ = camera; }
 
-Separity::Camera* Separity::RenderManager::getCamera() { 
-	return camera_; 
-}
+Separity::Camera* Separity::RenderManager::getCamera() { return camera_; }
 
-SDL_Window* Separity::RenderManager::getSDLWindow() { 
-	return sdlWindow_; 
-}
+SDL_Window* Separity::RenderManager::getSDLWindow() { return sdlWindow_; }
 
 Ogre::RenderWindow* Separity::RenderManager::getOgreWindow() {
 	return ogreWindow_;
@@ -243,7 +233,3 @@ Ogre::RenderWindow* Separity::RenderManager::getOgreWindow() {
 Ogre::SceneManager* Separity::RenderManager::getOgreSceneManager() {
 	return ogreSceneManager_;
 }
-
-
-
-

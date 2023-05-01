@@ -51,14 +51,6 @@ namespace Separity {
 		/// Destructora de componente animator
 		/// </summary>
 		~Animator();
-		
-		/// <summary>
-		/// Guarda en una estrctura unordered_map todas las animaciones que
-		/// posee la malla. Se identifican con un key <string> que se
-		/// corresponde con el nombre de la animacion, y guarda un objeto
-		/// AnimationState correspondiente a la animacion en si
-		/// </summary>
-		void setUpAnims();
 
 		/// <summary>
 		/// Activa o desactiva una animacion
@@ -78,6 +70,14 @@ namespace Separity {
 		void setAnimLoop(std::string animName, bool loop = true);
 		
 		private:
+
+		/// <summary>
+		/// Guarda en una estrctura unordered_map todas las animaciones que
+		/// posee la malla. Se identifican con un key <string> que se
+		/// corresponde con el nombre de la animacion, y guarda un objeto
+		/// AnimationState correspondiente a la animacion en si
+		/// </summary>
+		bool setUpAnims();
 
 		Ogre::Entity* meshEntity_;
 		Ogre::AnimationStateSet* allStates_;

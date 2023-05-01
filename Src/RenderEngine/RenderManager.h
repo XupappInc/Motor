@@ -34,8 +34,6 @@ namespace Separity {
 		friend class ParticleSystem;
 		friend class PhysicsDebugDrawer;
 
-		friend class UIManager;
-
 		public:
 
 		/// <summary>

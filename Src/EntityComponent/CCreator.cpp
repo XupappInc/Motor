@@ -16,7 +16,7 @@ bool Separity::CCreator::readArray(const std::string& paramName, lua_State* L,
 			int i = 0;
 			while(lua_next(L, -2)) {
 				if(!lua_isnumber(L, -1)) {
-					std::cerr << "[SPY ERROR]: Param " << i + 1 << " in "
+					std::cerr << "[SPY WARNING]: Param " << i + 1 << " in "
 					          << paramName << " has an incorrect format\n";
 					n = 0;
 				}
@@ -32,17 +32,17 @@ bool Separity::CCreator::readArray(const std::string& paramName, lua_State* L,
 			if(i == n)
 				return true;
 			else {
-				std::cerr << "[SPY ERROR]: Param " << paramName
+				std::cerr << "[SPY WARNING]: Param " << paramName
 				          << " has an incorrect format\n";
 				return false;
 			}
 		}
-		std::cerr << "[SPY ERROR]: Param " << paramName
+		std::cerr << "[SPY WARNING]: Param " << paramName
 		          << " has an incorrect format\n";
 		lua_pop(L, 1);
 		return false;
 	}
-	std::cerr << "[SPY ERROR]: Param " << paramName << " does not exist\n";
+	std::cerr << "[SPY WARNING]: Param " << paramName << " does not exist\n";
 	lua_pop(L, 1);
 	return false;
 }
@@ -51,12 +51,12 @@ bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
                                    std::string& param) {
 	if(!lua_getfield(L, -1, paramName.c_str())) {
 		lua_pop(L, 1);
-		std::cerr << "[SPY ERROR]: Param " << paramName << " does not exist\n";
+		std::cerr << "[SPY WARNING]: Param " << paramName << " does not exist\n";
 		return false;
 	}
 	if(!lua_isstring(L, -1)) {
 		lua_pop(L, 1);
-		std::cerr << "[SPY ERROR]: Param " << paramName << " is not a string\n";
+		std::cerr << "[SPY WARNING]: Param " << paramName << " is not a string\n";
 		return false;
 	}
 
@@ -71,12 +71,12 @@ bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
                                    int& param) {
 	if(!lua_getfield(L, -1, paramName.c_str())) {
 		lua_pop(L, 1);
-		std::cerr << "[SPY ERROR]: Param " << paramName << " does not exist\n";
+		std::cerr << "[SPY WARNING]: Param " << paramName << " does not exist\n";
 		return false;
 	}
 	if(!lua_isnumber(L, -1)) {
 		lua_pop(L, 1);
-		std::cerr << "[SPY ERROR]: Param " << paramName
+		std::cerr << "[SPY WARNING]: Param " << paramName
 		          << " has an incorrect format\n";
 		return false;
 	}
@@ -90,12 +90,12 @@ bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
                                    float& param) {
 	if(!lua_getfield(L, -1, paramName.c_str())) {
 		lua_pop(L, 1);
-		std::cerr << "[SPY ERROR]: Param " << paramName << " does not exist\n";
+		std::cerr << "[SPY WARNING]: Param " << paramName << " does not exist\n";
 		return false;
 	}
 	if(!lua_isnumber(L, -1)) {
 		lua_pop(L, 1);
-		std::cerr << "[SPY ERROR]: Param " << paramName
+		std::cerr << "[SPY WARNING]: Param " << paramName
 		          << " has an incorrect format\n";
 		return false;
 	}
@@ -109,12 +109,12 @@ bool Separity::CCreator::readParam(const std::string& paramName, lua_State* L,
                                    bool& param) {
 	if(!lua_getfield(L, -1, paramName.c_str())) {
 		lua_pop(L, 1);
-		std::cerr << "[SPY ERROR]: Param " << paramName << " does not exist\n";
+		std::cerr << "[SPY WARNING]: Param " << paramName << " does not exist\n";
 		return false;
 	}
 	if(!lua_isboolean(L, -1)) {
 		lua_pop(L, 1);
-		std::cerr << "[SPY ERROR]: Param " << paramName
+		std::cerr << "[SPY WARNING]: Param " << paramName
 		          << " has an incorrect format\n";
 		return false;
 	}

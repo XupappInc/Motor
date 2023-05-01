@@ -127,9 +127,7 @@ void Separity::SceneManager::changeScene() {
 	if(loadScene(sceneName_)) {		
 		ManagerManager::getInstance()->initComponents();
 		changeScene_ = false;
-	} else {
-		ManagerManager::getInstance()->shutDown();
-	}
+	} 
 }
 
 void Separity::SceneManager::addComponentCreator(const std::string& name,

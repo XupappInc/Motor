@@ -54,7 +54,7 @@ bool Separity::TransformCreator::createComponent(lua_State* L,
 	bool success = true;
 
 	Transform* tr =
-	    ent->getComponent<Transform>();  // addComponent<Transform>();
+	    ent->getComponent<Transform>();  
 	float data[4] = {};
 
 	success &= readArray("pos", L, data);

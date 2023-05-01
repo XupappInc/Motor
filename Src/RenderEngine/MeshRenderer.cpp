@@ -48,4 +48,8 @@ void Separity::MeshRenderer::setActive(bool b) {
 	node_->setVisible(b); 
 }
 
+Ogre::Entity* Separity::MeshRenderer::getMeshOgreEntity() { 
+	return entity_; 
+}
+
 

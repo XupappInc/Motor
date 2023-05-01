@@ -21,8 +21,6 @@ namespace Separity {
 	/// </summary>
 	class _SEPARITY_API_ MeshRenderer : public Separity::Component {
 
-		friend class Animator;
-
 		public:
 		__CMPTYPE_DECL__(Separity::_RENDER)
 		__CMPID_DECL__(Separity::_MESH_RENDERER)
@@ -58,6 +56,14 @@ namespace Separity {
 		/// </summary>
 		/// <param name="b">Indica si se va activar/desactivar la renderización del nodo</param>
 		void setActive(bool b);
+
+		/// <summary>
+		/// Este método rompe la ocultación de Ogre al motor, pero
+		/// el componente Animator necesita acceder a la entidad y
+		/// preferimos reservar las clases amigas únicamente para los managers.
+		/// </summary>
+		/// <returns>La entidad de Ogre</returns>
+		Ogre::Entity* getMeshOgreEntity();
 
 		private:
 

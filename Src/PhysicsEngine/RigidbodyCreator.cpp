@@ -25,9 +25,11 @@ bool Separity::RigidbodyCreator::createComponent(lua_State* L,
 	float mass = 1.0f;
 	int type = STATIC;
 
-	readParam("shape", L, params.colShape);
-	readArray("dim", L, params.dimension);
+
+	if (!readArray("dim", L, params.dimension))
+		return false;
 	readArray("offset", L, params.offset);
+	readParam("shape", L, params.colShape);
 	readParam("trigger", L, params.isTrigger);
 	readParam("type", L, type);
 	readParam("mass", L, mass);
