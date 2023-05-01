@@ -45,7 +45,7 @@ Separity::EntityManager::getEntitiesByTag(std::string tag) {
 			ents.push_back(ent);
 	}
 	
-	return ents
+	return ents;
 }
 
 void Separity::EntityManager::deleteEntities() {
