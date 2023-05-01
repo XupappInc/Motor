@@ -43,6 +43,7 @@ Separity::SceneManager::SceneManager()
 	factory_->addCreator("button", new ButtonCreator());
 	factory_->addCreator("image", new ImageCreator());
 	factory_->addCreator("text", new TextCreator());
+	factory_->addCreator("pathFollow", new PathFollowCreator());
 }
 
 void Separity::SceneManager::update(const uint32_t& deltaTime) {

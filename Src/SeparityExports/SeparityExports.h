@@ -12,13 +12,15 @@ namespace Separity {
 	// Clase exportada del DLL
 	class _SEPARITY_API_ CSeparityExports {
 		public:
-		
 		CSeparityExports();
 		/// <summary>
 		/// Inicialización de los managers para que los pueda usar el juego
 		/// se llama a este método desde el juego
 		/// </summary>
 		static void initMotor();
-		// TODO: agregar métodos aquí.
+		///<summary>
+		///Update del motor
+		/// </summary>
+		static void update();		
 	};
 }  // namespace Separity

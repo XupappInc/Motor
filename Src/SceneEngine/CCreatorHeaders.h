@@ -13,3 +13,4 @@
 #include "UIEngine\ButtonCreator.h"
 #include "UIEngine\TextCreator.h"
 #include "UIEngine\ImageCreator.h"
+#include "PhysicsEngine\PathFollowCreator.h"

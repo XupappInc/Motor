@@ -5,6 +5,7 @@
 #include "SeparityExports/SeparityApi.h"
 #include "EntityComponent/CCreator.h"
 
+class lua_State;
 namespace Separity {
 	class _SEPARITY_API_ PathFollowCreator : public CCreator {
 		public:

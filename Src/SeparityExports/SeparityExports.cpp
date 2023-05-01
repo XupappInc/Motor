@@ -16,6 +16,7 @@
 #include "SoundEngine\AudioListener.h"
 #include "SoundEngine\AudioSource.h"
 #include "LuaEngine\Behaviour.h"
+#include "PhysicsEngine\Collider.h"
 #include "PhysicsEngine\RigidBody.h"
 #include "EntityComponent\Transform.h"
 #include "UIEngine\Panel.h"
@@ -32,7 +33,7 @@
 #include "EntityComponent\ManagerManager.h"
 #include "SceneEngine\SceneManager.h"
 #include "UIEngine\UIManager.h"
-
+#include "InputEngine/InputManager.h"
 // Utils
 #include "SeparityUtils\Random.h"
 #include "SeparityUtils/VirtualTimer.h"
@@ -43,4 +44,23 @@
 
 
 // Constructor de clase exportada.
-Separity::CSeparityExports::CSeparityExports() {  }
+Separity::CSeparityExports::CSeparityExports() { std::cout << "Hola" << std::endl; }
+
+void Separity::CSeparityExports::initMotor() { 
+	Separity::GetComponentWrapper::createAllManagers();
+}
+
+void Separity::CSeparityExports::update() {
+	//Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
+	//uint32_t deltaTime = 0;
+	////ManagerManager::getInstance()->initComponents();
+	//while(!ManagerManager::getInstance()->quit() &&
+	//      !InputManager::getInstance()->closeWindowEvent()) {
+	//	if(InputManager::getInstance()->isKeyDown(InputManager::ESCAPE) ||
+	//	   InputManager::getInstance()->closeWindowEvent()) {
+	//		ManagerManager::getInstance()->shutDown();
+	//	}
+	//	ManagerManager::getInstance()->update(deltaTime);
+	//	ManagerManager::getInstance()->render();
+	//}
+}
