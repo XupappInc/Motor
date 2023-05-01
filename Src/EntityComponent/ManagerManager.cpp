@@ -60,7 +60,6 @@ void Separity::ManagerManager::clean() {
 	for(auto m : startedManagers_) {
 		m.second->clean();
 	}
-	startedManagers_.clear();
 	startedManagers_ = std::map<cmpType_type, Manager*>();
 }
 

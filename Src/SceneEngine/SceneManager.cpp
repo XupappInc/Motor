@@ -1,8 +1,8 @@
 ﻿#include "SceneManager.h"
 
 #include "CCreatorHeaders.h"
-#include "ComponentEngine\GetComponentWrapper.h"
 #include "ComponentFactory.h"
+#include "ComponentEngine\GetComponentWrapper.h"
 #include "EntityComponent\Entity.h"
 #include "EntityComponent\EntityManager.h"
 #include "EntityComponent\ManagerManager.h"
