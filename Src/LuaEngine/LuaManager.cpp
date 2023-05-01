@@ -81,13 +81,10 @@ bool Separity::LuaManager::loadScript(std::string name, Entity* ent) {
 		std::cerr << "[SPY ERROR]: Failed to load script: " << lua_tostring(L_, -1) << "\n";
 		return false;
 	}
-		
 
 	// Creamos una instancia de Behaviour y la pasamos al script
 	Behaviour* behaviourScript = ent->addComponent<Behaviour>(name);
 
-	//luabridge::push(L_, behaviourScript);
-	//lua_setglobal(L_, name.c_str());
 	luabridge::setGlobal(L_, behaviourScript, name.c_str());
 
 	// Obtenemos el objeto behaviour desde Lua

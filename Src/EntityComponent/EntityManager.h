@@ -6,6 +6,7 @@
 #include "SeparityExports\SeparityApi.h"
 
 #include <vector>
+#include <string>
 namespace Separity {
 	/// <summary>
 	/// Clase para gestionar todas las entidades
@@ -41,6 +42,13 @@ namespace Separity {
 		/// manager)
 		/// </summary>
 		void clean();
+
+		/// <summary>
+		/// Devuelve todas las entitades cuya tag coincida con la proporcionada
+		/// </summary>
+		/// <param name="tag">Tag que se quiere buscar</param>
+		/// <returns>Un vector con las entitdades encontradas</returns>
+		std::vector<Entity*> getEntitiesByTag(std::string tag);
 
 		private:
 		/// <summary>
