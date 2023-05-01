@@ -235,7 +235,7 @@ void Separity::AudioManager::stopChannel(std::string audioName) {
 
 bool Separity::AudioManager::FMODErrorChecker(FMOD_RESULT* result) {
 	if(*result != FMOD_OK) {
-		printf("FMOD ERROR " + *result);
+		printf("[SPY ERROR]: " + *result);
 		return false;
 	}
 	return true;

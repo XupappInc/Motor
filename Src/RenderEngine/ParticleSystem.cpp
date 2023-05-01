@@ -28,7 +28,8 @@ Separity::ParticleSystem::~ParticleSystem() {
 	Separity::RenderManager* render = Separity::RenderManager::getInstance();
 	Ogre::SceneManager* s = render->getOgreSceneManager();
 	
-	s->destroyParticleSystem(particleSystem_);
+	if(particleSystem_ != nullptr)
+		s->destroyParticleSystem(particleSystem_);
 	s->destroySceneNode(node_);
 }
 

@@ -38,7 +38,7 @@ void Separity::SeparitySetup::initEngine() {
 	UIManager::instance();
 }
 
-void Separity::SeparitySetup::initGame() {
+bool Separity::SeparitySetup::initGame() {
 #ifdef _DEBUG
 	game->hmodule = LoadLibrary(TEXT("SeparityGame_d.dll"));
 #else
@@ -50,13 +50,14 @@ void Separity::SeparitySetup::initGame() {
 		GameEntryPoint entryPoint =
 		    (GameEntryPoint) GetProcAddress(game->hmodule, "start");
 		if(entryPoint != NULL) {
-			entryPoint();
+			return entryPoint();
 		} else {
 			std::cout << "No he encontrado el metodo start\n";
 		}
 	} else {
 		std::cout << "No esta la dll del juego :(\n";
 	}	
+	return true;
 }
 
 void Separity::SeparitySetup::init() {

@@ -6,13 +6,14 @@
 int main() {
 	// Necesario para el DPI Awareness (escalado de 125% de windows)
 	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
+
 	Separity::SeparitySetup* setUp = new Separity::SeparitySetup();
 
-
 	setUp->initEngine();
-	setUp->initGame();
-	setUp->init();
-	setUp->update();
+	if(setUp->initGame()) {
+		setUp->init();
+		setUp->update();
+	}	
 	setUp->close();
 
 	delete setUp;
