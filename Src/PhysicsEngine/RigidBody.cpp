@@ -109,6 +109,14 @@ Spyutils::Vector3 Separity::RigidBody::getLinearVelocity() {
 	return velocidad;
 }
 
+float Separity::RigidBody::getMagnitudeFromLinearVelocity() {
+	btVector3 vel = rb_->getLinearVelocity();
+	float magnitud =
+	    sqrt(vel.x() * vel.x() + vel.y() * vel.y() + vel.z() * vel.z());
+	std::cout << magnitud << "\n";
+	return magnitud;
+}
+
 void Separity::RigidBody::setAngularVelocity(Spyutils::Vector3 vel) {
 	btVector3 velocidad(vel.x, vel.y, vel.z);
 	rb_->setAngularVelocity(velocidad);
