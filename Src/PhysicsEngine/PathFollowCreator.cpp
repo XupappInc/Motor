@@ -28,7 +28,9 @@ bool Separity::PathFollowCreator::createComponent(lua_State* L,
 	float posiciones[3] = {0, 0, 0};
 	std::vector<Spyutils::Vector3> pos;
 	for(int i = 0; i < n; i++) {
-		if(!readArray("waypoint" + i, L, posiciones)) {
+		std::string wayp = "waypoint";
+		wayp += std::to_string(i);
+		if(!readArray(wayp, L, posiciones)) {
 			std::cout << "[SPY ERROR]: Waypoint num: " << i
 			          << " is undefined\n";
 			return false;
