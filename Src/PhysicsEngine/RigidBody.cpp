@@ -14,6 +14,10 @@ Separity::RigidBody::RigidBody(colliderParams& col, int tipo, float mass)
       collisionCallback_(nullptr), colParams_(col){}
 
 Separity::RigidBody::~RigidBody() {
+
+	if(btTr_ == nullptr)
+		return;
+
 	for(int i = 0; i < collisonShape_->getNumChildShapes(); ++i) {
 		btCollisionShape* s = collisonShape_->getChildShape(i);
 		collisonShape_->removeChildShape(s);
@@ -23,10 +27,6 @@ Separity::RigidBody::~RigidBody() {
 	delete btTr_;
 	delete collisonShape_;
 	delete collisionCallback_;
-
-	collisonShape_ = nullptr;
-	collisionCallback_ = nullptr;
-	btTr_ = nullptr;
 }
 
 void Separity::RigidBody::initComponent() {

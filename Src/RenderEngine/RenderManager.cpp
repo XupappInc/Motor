@@ -35,7 +35,7 @@ Separity::RenderManager::RenderManager() : camera_(nullptr) {
 void Separity::RenderManager::initComponents() {
 
 	if(camera_ == nullptr) {
-		Entity* entity = EntityManager::getInstance()->addEntity(_grp_GENERAL);
+		Entity* entity = EntityManager::getInstance()->addEntity();
 		camera_ = entity->addComponent<Camera>();
 
 		std::cerr

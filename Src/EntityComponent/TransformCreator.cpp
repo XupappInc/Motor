@@ -53,16 +53,22 @@ bool Separity::TransformCreator::createComponent(lua_State* L,
                                                  Separity::Entity* ent) {
 	bool success = true;
 
-	Transform* tr =
-	    ent->getComponent<Transform>();  
+	Transform* tr = ent->getComponent<Transform>();  
 	float data[4] = {};
 
 	success &= readArray("pos", L, data);
 	tr->setPosition(data[0], data[1], data[2]);
-	success &= readArray("rot", L, data, 4);
-	tr->setRotationQ(data[3], data[0], data[1], data[2]);
 	success &= readArray("scale", L, data);
 	tr->setScale(data[0], data[1], data[2]);
+	success &= readArray("rot", L, data, 4);
+	tr->setRotationQ(data[3], data[0], data[1], data[2]);
 
+	if(success) {
+		if(data[0] == 0 && data[1] == 0 && data[2] == 0 && data[3] == 0) {
+			success = false;
+			std::cerr << "[SPY ERROR]: Illegal quaternion\n";
+		}
+	}
+	
 	return success;
 }

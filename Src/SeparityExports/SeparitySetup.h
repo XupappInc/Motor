@@ -16,7 +16,7 @@ namespace Separity {
 		~SeparitySetup();
 
 		void initEngine();	
-		void initGame();
+		bool initGame();
 		void init();
 		void update();
 		void close();	

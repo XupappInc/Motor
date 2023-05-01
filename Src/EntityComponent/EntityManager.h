@@ -35,7 +35,7 @@ namespace Separity {
 		/// </summary>
 		/// <params>Acepta una lista de argumentos (si hay) para ser pasados al
 		/// constructor (Id del grupo).</params>
-		Entity* addEntity(grpId_type gID);
+		Entity* addEntity(grpId_type gID = _grp_GENERAL);
 
 		/// <summary>
 		/// Limpia el manager (borra entidades y componentes pertenecientes al
