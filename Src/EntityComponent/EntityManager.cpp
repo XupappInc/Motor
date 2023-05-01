@@ -35,6 +35,19 @@ void Separity::EntityManager::clean() {
 	deleteEntities();
 }
 
+std::vector<Separity::Entity*>
+Separity::EntityManager::getEntitiesByTag(std::string tag) {
+	
+	std::vector<Entity*> ents;
+
+	for(auto ent : allEntities_) {
+		if(ent->getTag() == tag)
+			ents.push_back(ent);
+	}
+	
+	return ents
+}
+
 void Separity::EntityManager::deleteEntities() {
 	for(int i = 0; i < allEntities_.size(); i++) {
 		delete allEntities_[i];
