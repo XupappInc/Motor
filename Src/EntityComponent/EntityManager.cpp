@@ -41,7 +41,7 @@ Separity::EntityManager::getEntitiesByTag(std::string tag) {
 	std::vector<Entity*> ents;
 
 	for(auto ent : allEntities_) {
-		if(ent->getTag() == tag)
+		if(ent->getTag().find(tag) != std::string::npos)
 			ents.push_back(ent);
 	}
 	
