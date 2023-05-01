@@ -82,6 +82,19 @@ void Separity::Transform::translate(Spyutils::Vector3 translation, typeOR TP) {
 
 Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
 
+void Separity::Transform::setRotation(float rotationX, float rotationY,
+                                      float rotationZ) {
+	rotation_ = Spyutils::Vector3(rotationX, rotationY, rotationZ);
+	rotationQ_ = {rotationX, rotationY, rotationZ};
+	// for(auto child : ent_->getChildren()) {
+	//	auto tr = child->getComponent<Transform>();
+	//	Spyutils::Vector3 rotacion =
+	//	    rotar(tr->getPosition(), position_, rotation_);
+	//	// tr->setPosition(rotacion);
+	//	Spyutils::Vector3 rot = rotation_;
+	//	tr->setRotation(rot.x, rot.y, rot.z);
+	// }
+}
 void Separity::Transform::setRotationQ(float rotationW, float rotationX,
                                        float rotationY, float rotationZ) {
 	auto initpadre = rotationQ_;

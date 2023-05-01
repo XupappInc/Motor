@@ -78,7 +78,7 @@ void Separity::PhysicsManager::update(const uint32_t& deltaTime) {
 	}
 
 #ifdef _DEBUG
-	//world_->debugDrawWorld();
+	world_->debugDrawWorld();
 #else
 #endif
 }
