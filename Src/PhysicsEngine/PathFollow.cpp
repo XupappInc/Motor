@@ -47,10 +47,8 @@ void Separity::PathFollow::update(const uint32_t& deltaTime) {
 
 void Separity::PathFollow::initComponent() {
 	transform_ = ent_->getComponent<Transform>();
-	assert(transform_ != nullptr);
 
 	rigidBody_ = ent_->getComponent<RigidBody>();
-	assert(rigidBody_ != nullptr);
 }
 
 void Separity::PathFollow::setStopped(bool stop) { stopped_ = stop; }

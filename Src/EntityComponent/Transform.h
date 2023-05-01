@@ -71,14 +71,8 @@ namespace Separity {
 		/// <param name="rotationX">grados del eje x</param>
 		/// <param name="rotationY">grados eje y</param>
 		/// <param name="rotationZ">grados de ejez</param>
-		void setRotation(float rotationX, float rotationY, float rotationZ);
 		void setRotationQ(float rotationW, float rotationX, float rotationY,
 		                  float rotationZ);
-		/// <summary>
-		/// geter de la rotación en un Vector3
-		/// </summary>
-		/// <returns></returns>
-		Spyutils::Vector3 getRotation();
 
 		/// <summary>
 		/// geter de la rotación en un Quaternion
