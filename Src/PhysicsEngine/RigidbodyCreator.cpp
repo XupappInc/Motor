@@ -14,7 +14,7 @@ void Separity::RigidbodyCreator::registerInLua() {
 	lua_State* L = Separity::LuaManager::getInstance()->getLuaState();
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<RigidBody>("rigidBody")
-	    .addFunction("getVelocity", &RigidBody::getLinearVelocity)
+	    .addFunction("getVelocity", &RigidBody::getMagnitudeFromLinearVelocity)
 	    .endClass();
 }
 

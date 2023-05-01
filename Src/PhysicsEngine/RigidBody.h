@@ -91,6 +91,12 @@ namespace Separity {
 		Spyutils::Vector3 getLinearVelocity();
 
 		/// <summary>
+		/// Getter de la magnitud de la velocidad del vector3 velocity
+		/// </summary>
+		/// <returns></returns>
+		float getMagnitudeFromLinearVelocity();
+
+		/// <summary>
 		/// Establece una velocidad angular.
 		/// </summary>
 		/// <param name="vel">: la velocidad que queremos que se aplique</param>
