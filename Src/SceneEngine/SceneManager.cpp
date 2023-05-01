@@ -149,8 +149,8 @@ void Separity::SceneManager::start() {
 	Separity::Manager::start(); 
 
 	registerChangeSceneInLua();
-	factory_->registerInLua();
 	GetComponentWrapper::registerInLua();
+	factory_->registerInLua();
 }
 
 void Separity::SceneManager::luaChangeScene(const std::string& root) {

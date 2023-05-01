@@ -15,6 +15,10 @@ void Separity::ManagerManager::initComponents() {
 	for(auto m : startedManagers_) {
 		m.second->initComponents();
 	}
+	for(auto m : startedManagers_) {
+		if(m.first == _SCRIPT)
+			m.second->startComponent();
+	}
 }
 
 void Separity::ManagerManager::start() {

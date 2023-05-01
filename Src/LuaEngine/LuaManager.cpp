@@ -72,9 +72,6 @@ void Separity::LuaManager::initComponents() {
 	for(auto c : cmps_) {
 		c->awake();
 	}
-	for(auto c : cmps_) {
-		c->start();
-	}
 }
 
 bool Separity::LuaManager::loadScript(std::string name, Entity* ent) {
