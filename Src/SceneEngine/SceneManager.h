@@ -24,6 +24,7 @@ namespace Separity {
 
 		public:
 
+		/// <returns>Devuelve la instancia del manager</returns>
 		static SceneManager* getInstance();
 
 		/// <summary>

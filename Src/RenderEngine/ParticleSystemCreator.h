@@ -9,6 +9,9 @@ class lua_State;
 
 namespace Separity {
 
+	/// <summary>
+	/// Clase para la creación de componentes de tipo ParticleSystem
+	/// </summary>
 	class _SEPARITY_API_ ParticleSystemCreator : public CCreator {
 		public:
 		/// <summary>

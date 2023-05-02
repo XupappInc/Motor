@@ -8,7 +8,9 @@
 class lua_State;
 
 namespace Separity {
-
+	/// <summary>
+	/// Clase para la creación de componentes de tipo Light
+	/// </summary>
 	class _SEPARITY_API_ LightCreator : public CCreator {
 		public:
 		/// <summary>

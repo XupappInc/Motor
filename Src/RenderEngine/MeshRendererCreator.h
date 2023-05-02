@@ -9,6 +9,9 @@ class lua_State;
 
 namespace Separity {
 
+	/// <summary>
+	/// Clase para la creación de componentes de tipo MeshRenderer
+	/// </summary>
 	class _SEPARITY_API_ MeshRendererCreator : public CCreator {
 		public:
 		/// <summary>

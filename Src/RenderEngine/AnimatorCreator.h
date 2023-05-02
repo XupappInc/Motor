@@ -8,7 +8,9 @@
 class lua_State;
 
 namespace Separity {
-
+	/// <summary>
+	/// Clase para la creación de componentes de tipo Animator
+	/// </summary>
 	class _SEPARITY_API_ AnimatorCreator : public CCreator {
 		public:
 		/// <summary>
