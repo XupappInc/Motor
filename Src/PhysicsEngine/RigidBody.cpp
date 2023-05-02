@@ -176,7 +176,6 @@ void Separity::RigidBody::preUpdate() {
 void Separity::RigidBody::update(const uint32_t& deltaTime) {
 	Separity::PhysicsManager::getInstance()->getWorld()->contactTest(
 	    this->getBulletRigidBody(), *this->getCollisionCallback());
-	collisionCallback_->update();
 	if(tipo_ == STATIC)
 		return;
 	btTransform trans;

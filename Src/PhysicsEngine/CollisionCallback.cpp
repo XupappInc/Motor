@@ -6,13 +6,6 @@ Separity::CollisionCallback::CollisionCallback(RigidBody* rb) : rigidBody_(rb) {
 
 Separity::CollisionCallback::~CollisionCallback() {}
 
-void Separity::CollisionCallback::update() {
-	// OnCollisionStay
-	for(auto c : collisionObjects_) {
-		c->onCollisionStay(rigidBody_);
-	}
-}
-
 btScalar Separity::CollisionCallback::addSingleResult(
     btManifoldPoint& cp, const btCollisionObjectWrapper* colObj0Wrap,
     int partId0, int index0, const btCollisionObjectWrapper* colObj1Wrap,
@@ -35,12 +28,16 @@ btScalar Separity::CollisionCallback::addSingleResult(
 		Separity::RigidBody* otherRB =
 		    static_cast<Separity::RigidBody*>(otherObject->getUserPointer());
 
-		// Esto es OnCollisionEnter
 		if(cp.getDistance() < 0) {
+			// Esto es OnCollisionEnter
 			if(collisionObjects_.find(otherRB) ==
 			   collisionObjects_.end()) {
 				collisionObjects_.insert(otherRB);
 				rigidBody_->onCollisionEnter(otherRB);
+			}
+			// Si se encuentra en el vector se llama a OnCollisionStay
+			else {
+				rigidBody_->onCollisionStay(otherRB);
 			}
 		}
 		// Esto es OnCollisionExit
