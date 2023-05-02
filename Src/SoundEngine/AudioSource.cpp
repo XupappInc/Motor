@@ -12,6 +12,7 @@ AudioSource::AudioSource(std::string audioRoute, std::string audioName,
 	AudioManager* audioManager = AudioManager::getInstance();
 	// Crea un audio con una songRoute y lo almacena en sound_
 
+	audioRoute = "Assets//Audio//" + audioRoute;
 	// Añade el audio a la lista de sonidos de música o de sonidos dependiendo
 	// de un booleano
 	FMOD_RESULT result;
