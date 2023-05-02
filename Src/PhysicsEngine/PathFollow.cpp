@@ -5,8 +5,9 @@
 #include "EntityComponent\Transform.h"
 #include "SeparityUtils\Vector.h"
 
-Separity::PathFollow::PathFollow(std::vector<Spyutils::Vector3> const& path)
-    : path_(path), pathingTo_(0), velocity_(13.0f), stopped_(false),
+Separity::PathFollow::PathFollow(
+    std::vector<Spyutils::Vector3> const& path,float velocity)
+    : path_(path), pathingTo_(0), velocity_(velocity), stopped_(false),
       rigidBody_(nullptr), transform_(nullptr),
       pathingType_(PathingType::CYCLIC), pathingDir_(1) {}
 

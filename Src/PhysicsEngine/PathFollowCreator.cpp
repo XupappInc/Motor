@@ -20,6 +20,7 @@ void Separity::PathFollowCreator::registerInLua() {
 
 bool Separity::PathFollowCreator::createComponent(lua_State* L,
                                                   Separity::Entity* ent) {
+	
 	int n = 0;
 	if(!readParam("nWaypoints", L, n)) {
 		std::cout << "[SPY ERROR]: Undefined number of waypoints\n";
@@ -38,6 +39,8 @@ bool Separity::PathFollowCreator::createComponent(lua_State* L,
 		pos.push_back(
 		    Spyutils::Vector3(posiciones[0], posiciones[1], posiciones[2]));
 	}
-	ent->addComponent<PathFollow>(pos);
+	int v = 10.0;
+	readParam("vel", L, v);
+	ent->addComponent<PathFollow>(pos,v);
 	return true;
 }
