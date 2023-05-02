@@ -8,6 +8,7 @@
 #include "RenderEngine\RenderManager.h"
 #include "SoundEngine\AudioSource.h"
 #include "UIEngine\Button.h"
+#include "UIEngine\Bar.h"
 #include "UIEngine\UIManager.h"
 
 #include "LuaEngine\LuaManager.h"
@@ -30,6 +31,7 @@ void Separity::GetComponentWrapper::registerInLua() {
 	    .addFunction("getAnimator", &Entity::getComponent<Animator>)
 	    .addFunction("getBehaviour", &Entity::getComponent<Behaviour>)
 	    .addFunction("getButton", &Entity::getComponent<Button>)
+	    .addFunction("getBar", &Entity::getComponent<Bar>)
 	    .addFunction("getAudio", &Entity::getComponent<AudioSource>)
 	    //...
 	    .endClass();
