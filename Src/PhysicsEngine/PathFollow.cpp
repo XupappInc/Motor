@@ -6,7 +6,7 @@
 #include "SeparityUtils\Vector.h"
 
 Separity::PathFollow::PathFollow(std::vector<Spyutils::Vector3> const& path)
-    : path_(path), pathingTo_(0), velocity_(1.0f), stopped_(false),
+    : path_(path), pathingTo_(0), velocity_(10.0f), stopped_(false),
       rigidBody_(nullptr), transform_(nullptr),
       pathingType_(PathingType::DEFAULT), pathingDir_(1) {}
 
