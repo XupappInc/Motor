@@ -1,12 +1,12 @@
- #include "PathFollow.h"
+#include "PathFollow.h"
 
-#include "RigidBody.h"
 #include "EntityComponent\Entity.h"
 #include "EntityComponent\Transform.h"
+#include "RigidBody.h"
 #include "SeparityUtils\Vector.h"
 
-Separity::PathFollow::PathFollow(
-    std::vector<Spyutils::Vector3> const& path,float velocity)
+Separity::PathFollow::PathFollow(std::vector<Spyutils::Vector3> const& path,
+                                 float velocity)
     : path_(path), pathingTo_(0), velocity_(velocity), stopped_(false),
       rigidBody_(nullptr), transform_(nullptr),
       pathingType_(PathingType::CYCLIC), pathingDir_(1) {}
@@ -48,6 +48,9 @@ void Separity::PathFollow::preUpdate() {
 void Separity::PathFollow::initComponent() {
 	transform_ = ent_->getComponent<Transform>();
 	assert(transform_ != nullptr);
+
+	transform_->lookAt({path_[pathingTo_].x, transform_->getPosition().y,
+	                    path_[pathingTo_].z});
 
 	rigidBody_ = ent_->getComponent<RigidBody>();
 	assert(rigidBody_ != nullptr);
