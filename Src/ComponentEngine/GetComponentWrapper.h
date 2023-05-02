@@ -13,7 +13,13 @@ namespace Separity {
 	/// </summary>
 	class _SEPARITY_API_ GetComponentWrapper : public Separity::Component {
 		public:
+		/// <summary>
+		/// Constructora de la clase
+		/// </summary>
 		GetComponentWrapper();
+		///<summary>
+		/// Destructor de la clase
+		/// </summary>
 		~GetComponentWrapper();
 		/// <summary>
 		/// Metodo que registra los getters de cada componente que se vaya a

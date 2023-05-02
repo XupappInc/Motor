@@ -18,6 +18,10 @@ namespace Ogre {
 namespace Separity {
 	class PhysicsDebugDrawer;
 	class RigidBody;
+
+	/// <summary>
+	/// Clase que gestiona la física del motor
+	/// </summary>
 	class _SEPARITY_API_ PhysicsManager
 	    : public Separity::Manager,
 	      public Singleton<Separity::PhysicsManager> {
@@ -27,6 +31,7 @@ namespace Separity {
 
 		public:
 
+		/// <returns>Instancia de PhysicsManager</returns>
 		static PhysicsManager* getInstance();
 
 		/// <summary>
@@ -65,7 +70,10 @@ namespace Separity {
 		void clean() override;
 
 		protected:
-
+		
+		/// <summary>
+		/// Constructora de la clase
+		/// </summary>
 		PhysicsManager();
 
 		private:

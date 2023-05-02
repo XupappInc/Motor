@@ -12,6 +12,10 @@ class btRigidBody;
 namespace Separity {
 	class RigidBody;
 
+	/// <summary>
+	/// Clase que se encarga de gestionar los eventos de colisiones de los
+	/// rigidbodies
+	/// </summary>
 	class _SEPARITY_API_ CollisionCallback
 	    : public btCollisionWorld::ContactResultCallback {
 		public:
