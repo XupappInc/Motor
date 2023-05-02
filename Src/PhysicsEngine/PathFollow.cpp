@@ -12,7 +12,7 @@ Separity::PathFollow::PathFollow(std::vector<Spyutils::Vector3> const& path)
 
 Separity::PathFollow::~PathFollow() {}
 
-void Separity::PathFollow::update(const uint32_t& deltaTime) {
+void Separity::PathFollow::preUpdate() {
 	if(stopped_)
 		return;
 

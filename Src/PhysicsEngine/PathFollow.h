@@ -31,7 +31,7 @@ namespace Separity {
 		/// <summary>
 		/// Método update heredado de Component
 		/// </summary>
-		void update(const uint32_t& deltaTime = 0) override;
+		void preUpdate() override;
 		/// <summary>
 		/// Método initComponent heredado de Component
 		/// </summary>
