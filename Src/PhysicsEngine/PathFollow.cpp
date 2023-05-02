@@ -38,10 +38,9 @@ void Separity::PathFollow::update(const uint32_t& deltaTime) {
 
 		rigidBody_->setLinearVelocity({0, 0, 0});
 	}
-
 	// Fuerza
 	dir.normalize();
-	dir *= velocity_;
+	dir = dir * velocity_;
 	rigidBody_->setLinearVelocity({dir.x, 0, dir.z});
 }
 
