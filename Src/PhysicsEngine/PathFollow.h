@@ -23,7 +23,7 @@ namespace Separity {
 		/// <summary>
 		/// Crea el componente pathfollow
 		/// </summary>
-		PathFollow(std::vector<Spyutils::Vector3> const& path);
+		PathFollow(std::vector<Spyutils::Vector3> const& path, float velocity);
 		/// <summary>
 		/// Destructora del componente
 		/// </summary>
