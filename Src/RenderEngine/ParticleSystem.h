@@ -57,15 +57,26 @@ namespace Separity {
 		/// <summary>
 		/// Activa/Desactiva el sistema de partículas.
 		/// </summary>
-		/// <param name="set"></param>
-		/// 
+		/// <param name="set">True para activar el sistema de particulas, false en caso contrario</param> 
 		void setVisible(bool set);
+
+		/// <summary>
+		/// Activa/Desactiva la emision de particulas del sistema
+		/// </summary>
+		/// <param name="set">True para activar la emision, false en caso contrario</param>
+		void setEmitting(bool set);
 
 		/// <summary>
 		/// Comprueba si el sistema de partículas es visible o no.
 		/// </summary>
-		/// <returns> El estado de la luz</returns>
+		/// <returns> El estado del sistema de particulas</returns>
 		bool isVisible();
+
+		/// <summary>
+		/// Comprueba si el sistema de particulas esta emitiendo particulas
+		/// </summary>
+		/// <returns>True si esta emitiendo, false en caso contrario</returns>
+		bool isEmitting();
 
 		private:
 
@@ -75,6 +86,7 @@ namespace Separity {
 		Transform* tr_;
 
 		bool visible_;
+		bool isEmitting_;
 	};
 }  // namespace Separity
 

@@ -11,6 +11,8 @@ namespace luabridge {
 	class LuaRef;
 }
 
+class lua_State;
+
 namespace Separity {
 
 	/// <summary>
@@ -113,6 +115,7 @@ namespace Separity {
 		/// pudiendo usarlo para llamar a todos sus metodos en esta clase
 		/// </summary>
 		luabridge::LuaRef* behaviourLua_;
+		lua_State* L_;
 		/// <summary>
 		/// Nombre del script
 		/// </summary>

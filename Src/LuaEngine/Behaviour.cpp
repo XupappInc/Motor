@@ -18,103 +18,106 @@ Separity::Behaviour::~Behaviour() { delete behaviourLua_; }
 
 void Separity::Behaviour::setLuaScript(luabridge::LuaRef* behaviourLua) {
 	behaviourLua_ = behaviourLua;
+	L_ = Separity::LuaManager::getInstance()->getLuaState();
 }
 
 void Separity::Behaviour::update(const uint32_t& deltaTime) {
 	luabridge::LuaRef updateLua = (*behaviourLua_)["update"];
 	if(updateLua.isFunction()) {
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			updateLua();
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
 void Separity::Behaviour::start() {
 	luabridge::LuaRef startLua = (*behaviourLua_)["start"];
 	if(startLua.isFunction()) {
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			startLua();
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
 void Separity::Behaviour::awake() {
 	luabridge::LuaRef awakeLua = (*behaviourLua_)["awake"];
 	if(awakeLua.isFunction()) {
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			awakeLua();
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
 void Separity::Behaviour::onCollisionEnter(Entity* other) {
 	luabridge::LuaRef collisionEnterLua = (*behaviourLua_)["onCollisionEnter"];
 	if(collisionEnterLua.isFunction()) {
-		auto L = Separity::LuaManager::getInstance()->getLuaState();
-
 		// crea la variable global other de forma temporal, para que lo pueda
 		// utilizar el script
-		luabridge::setGlobal(L, other, "other");
+		luabridge::setGlobal(L_, other, "other");
 		try {
 			collisionEnterLua();
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
 		// quita la variable global de la pila de Lua
-		luabridge::getGlobal(L, "other");
+		luabridge::getGlobal(L_, "other");
 	}
 }
 
 void Separity::Behaviour::onCollisionExit(Entity* other) {
 	luabridge::LuaRef collisionExitLua = (*behaviourLua_)["onCollisionExit"];
 	if(collisionExitLua.isFunction()) {
-		auto L = Separity::LuaManager::getInstance()->getLuaState();
-
 		// crea la variable global other de forma temporal, para que lo pueda
 		// utilizar el script
-		luabridge::setGlobal(L, other, "other");
+		luabridge::setGlobal(L_, other, "other");
 		try {
 			collisionExitLua();
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
 		// quita la variable global de la pila de Lua
-		luabridge::getGlobal(L, "other");
+		luabridge::getGlobal(L_, "other");
 	}
 }
 
 void Separity::Behaviour::onCollisionStay(Entity* other) {
 	luabridge::LuaRef collisionStayLua = (*behaviourLua_)["onCollisionStay"];
 	if(collisionStayLua.isFunction()) {
-		auto L = Separity::LuaManager::getInstance()->getLuaState();
-
 		// crea la variable global other de forma temporal, para que lo pueda
 		// utilizar el script
-		luabridge::setGlobal(L, other, "other");
+		luabridge::setGlobal(L_, other, "other");
 		try {
 			collisionStayLua();
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
 		// quita la variable global de la pila de Lua
-		luabridge::getGlobal(L, "other");
+		luabridge::getGlobal(L_, "other");
 	}
 }
 
 void Separity::Behaviour::onButtonClick() {
 	luabridge::LuaRef onButtonClickLua = (*behaviourLua_)["onButtonClick"];
 	if(onButtonClickLua.isFunction()) {
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			onButtonClickLua();
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
@@ -122,17 +125,20 @@ void Separity::Behaviour::onButtonReleased() {
 	luabridge::LuaRef onButtonReleasedLua =
 	    (*behaviourLua_)["onButtonReleased"];
 	if(onButtonReleasedLua.isFunction()) {
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			onButtonReleasedLua();
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
 void Separity::Behaviour::onButtonHover() {
 	luabridge::LuaRef onButtonHoverLua = (*behaviourLua_)["onButtonHover"];
 	if(onButtonHoverLua.isFunction()) {
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			onButtonHoverLua();
 		} catch(luabridge::LuaException e) {
@@ -144,11 +150,13 @@ void Separity::Behaviour::onButtonHover() {
 void Separity::Behaviour::onButtonUnhover() {
 	luabridge::LuaRef onButtonUnhoverLua = (*behaviourLua_)["onButtonUnhover"];
 	if(onButtonUnhoverLua.isFunction()) {
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			onButtonUnhoverLua();
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
