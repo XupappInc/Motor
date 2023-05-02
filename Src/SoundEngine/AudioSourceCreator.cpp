@@ -15,6 +15,7 @@ void Separity::AudioSourceCreator::registerInLua() {
 	lua_State* L = Separity::LuaManager::getInstance()->getLuaState();
 	luabridge::getGlobalNamespace(L)
 	    .beginClass<AudioSource>("audioSource")
+	    .addFunction("getAudioName", &AudioSource::getAudioName)
 	    .endClass();
 }
 

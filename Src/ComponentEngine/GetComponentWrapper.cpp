@@ -30,6 +30,7 @@ void Separity::GetComponentWrapper::registerInLua() {
 	    .addFunction("getAnimator", &Entity::getComponent<Animator>)
 	    .addFunction("getBehaviour", &Entity::getComponent<Behaviour>)
 	    .addFunction("getButton", &Entity::getComponent<Button>)
+	    .addFunction("getAudio", &Entity::getComponent<AudioSource>)
 	    //...
 	    .endClass();
 }
