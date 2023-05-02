@@ -6,6 +6,10 @@
 #include "EntityComponent\Manager.h"
 
 namespace Separity {
+
+	/// <summary>
+	/// Clase que gestiona la UI del motor
+	/// </summary>
 	class _SEPARITY_API_ UIManager : 
 		public Separity::Manager,
 	    public Singleton<Separity::UIManager> {

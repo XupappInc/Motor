@@ -9,6 +9,9 @@ class lua_State;
 
 namespace Separity {
 
+	/// <summary>
+	/// Clase para la creación de componentes de tipo Bar
+	/// </summary>
 	class BarCreator : public CCreator {
 		public:
 		/// <summary>

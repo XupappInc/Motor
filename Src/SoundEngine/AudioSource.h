@@ -12,6 +12,9 @@ namespace FMOD {
 	class Channel;
 }  // namespace FMOD
 namespace Separity {
+	/// <summary>
+	/// Clase que representa un emisor de sonido
+	/// </summary>
 	class _SEPARITY_API_ AudioSource : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_SOUND)

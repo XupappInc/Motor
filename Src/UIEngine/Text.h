@@ -13,8 +13,10 @@ namespace Ogre {
 	class TextAreaOverlayElement;
 }
 
-//Clase que crea textos para la UI
 namespace Separity {
+	/// <summary>
+	/// Clase que representa un texto en la interfaz
+	/// </summary>
 	class _SEPARITY_API_ Text : public Separity::UIComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_UI)

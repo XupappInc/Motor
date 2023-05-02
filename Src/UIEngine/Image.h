@@ -13,6 +13,10 @@ namespace Ogre {
 
 namespace Separity {
 	class Behaviour;
+
+	/// <summary>
+	/// Clase que representa una imágen en la UI
+	/// </summary>
 	class _SEPARITY_API_ Image : public Separity::UIComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_UI)
@@ -23,7 +27,12 @@ namespace Separity {
 		/// </summary>
 		Image(std::string overlayName, float xPos, float yPos, float width,
 		       float height, std::string texture,int zorder=0);
+		
+		/// <summary>
+		/// Inicializa el componente
+		/// </summary>
 		void initComponent() override;
+		
 		///<summary>
 		/// Destructora de la clase Image
 		/// </summary>

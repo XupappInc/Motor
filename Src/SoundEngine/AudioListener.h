@@ -6,6 +6,7 @@
 #include "EntityComponent\Component.h"
 	
 namespace Separity {
+
 	class _SEPARITY_API_ AudioListener : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_SOUND)

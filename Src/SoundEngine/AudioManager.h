@@ -19,6 +19,10 @@ namespace FMOD {
 
 namespace Separity {
 	class AudioSource;
+	
+	/// <summary>
+	/// Clase que gestiona el audio del motor
+	/// </summary>
 	class _SEPARITY_API_ AudioManager
 	    : public Separity::Manager,
 	      public Singleton<Separity::AudioManager> {
