@@ -12,6 +12,9 @@ namespace Separity {
 
 	class InputWrapper;
 
+	/// <summary>
+	/// Clase que gestiona la entrada de datos del usuario.
+	/// </summary>
 	class _SEPARITY_API_ InputManager
 	    : public Separity::Manager,
 	      public Singleton<Separity::InputManager> {
@@ -299,15 +302,30 @@ namespace Separity {
 		/// </summary>
 		virtual void update(const uint32_t& deltaTime) override;
 
+		/// <summary>
+		/// Devuelve la instancia única de la clase
+		/// </summary>
 		static InputManager* getInstance();
 
+		/// <summary>
+		/// Inicializa el manager
+		/// </summary>
 		void start() override;
 
+		/// <summary>
+		/// Limpia el manager
+		/// </summary>
 		void clean() override;
 
+		///<summary>
+		/// Destructora de la clase
+		/// </summary>
 		~InputManager();
 
 		protected:
+		/// <summary>
+		/// Constructora de la clase
+		/// </summary>
 		InputManager();
 
 		private:

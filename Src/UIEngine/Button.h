@@ -15,6 +15,9 @@ namespace Separity {
 
 	class Behaviour;
 
+	/// <summary>
+	/// Parámetros del botón
+	/// </summary>
 	struct ButtonParams {
 		std::string overlayName = std::string();
 		float xPos = 0, yPos = 0;
@@ -25,6 +28,9 @@ namespace Separity {
 		std::string clickedTex = std::string();
 	};
 
+	/// <summary>
+	/// Clase que representa un botón en la UI
+	/// </summary>
 	class _SEPARITY_API_ Button : public Separity::UIComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_UI)
@@ -32,8 +38,14 @@ namespace Separity {
 
 		Button(ButtonParams& params);
 
+		/// <summary>
+		/// Inicializa el componente
+		/// </summary>
 		void initComponent() override;
 
+		/// <summary>
+		/// Método update heredado de component
+		/// </summary>
 		void update(const uint32_t& deltaTime) override;
 
 		~Button();

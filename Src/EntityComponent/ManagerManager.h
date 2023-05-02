@@ -20,7 +20,9 @@ namespace Separity {
 		friend Singleton<Separity::ManagerManager>;
 
 		public:
-
+		/// <summary>
+		///Devuelve la instancia del singleton
+		///</summary>
 		static ManagerManager* getInstance();
 
 		/// <summary>

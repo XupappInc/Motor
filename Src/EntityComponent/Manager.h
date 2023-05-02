@@ -63,6 +63,7 @@ namespace Separity {
 		virtual void startComponent();
 
 
+		/// <returns>Devuelve si se debe llamar a "start" del manager</returns>
 		bool mustStart();
 
 		protected:

@@ -35,7 +35,6 @@
     <ClCompile Include="..\..\Src\EntityComponent\CCreator.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Component.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Entity.cpp" />
-    <ClCompile Include="..\..\Src\EntityComponent\EntityComponentMain.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\EntityManager.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\Manager.cpp" />
     <ClCompile Include="..\..\Src\EntityComponent\ManagerManager.cpp" />

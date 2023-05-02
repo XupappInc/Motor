@@ -8,6 +8,9 @@ class lua_State;
 
 namespace Separity {
 
+	/// <summary>
+	/// Clase para la creación de componentes de tipo Image
+	/// </summary>
 	class ImageCreator : public CCreator {
 		public:
 		/// <summary>

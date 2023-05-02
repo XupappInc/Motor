@@ -14,6 +14,10 @@ namespace Separity {
 	class Transform;
 	class RigidBody;
 
+	/// <summary>
+	/// Clase que representa un componente pathfollow. Su función es mover la
+	/// entidad a lo largo de un path
+	/// </summary>
 	class _SEPARITY_API_ PathFollow : public Separity::Component {
 		public:
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
@@ -29,7 +33,7 @@ namespace Separity {
 		/// </summary>
 		~PathFollow();
 		/// <summary>
-		/// Método update heredado de Component
+		/// Método preUpdate heredado de Component
 		/// </summary>
 		void preUpdate() override;
 		/// <summary>

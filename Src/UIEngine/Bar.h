@@ -13,6 +13,10 @@ namespace Ogre {
 
 namespace Separity {
 	class Behaviour;
+	
+	/// <summary>
+	/// Clase que representa una barra de progreso en la UI
+	/// </summary>
 	class _SEPARITY_API_ Bar : public Separity::UIComponent {
 		public:
 		__CMPTYPE_DECL__(Separity::_UI)
@@ -23,12 +27,24 @@ namespace Separity {
 		/// </summary>
 		Bar(std::string overlayName, float xPos, float yPos, float width,
 		      float height, std::string texture, int zorder = 0);
+
+		/// <summary>
+		/// Inicializa el componente
+		/// </summary>
 		void initComponent() override;
+		
 		///< summary>
 		/// Destructora de la clase BAR
 		/// </summary>
 		~Bar();
+		
+		/// <summary>
+		/// Cambia el porcentaje de la barra
+		/// </summary>
+		/// <param name="percentage"></param>
 		void setPercentage(float percentage);
+
+		
 		private:
 		Behaviour* behaviour_=nullptr;
 		std::string texture_;

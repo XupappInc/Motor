@@ -53,6 +53,9 @@ namespace Separity {
 		bool isTrigger = false;
 	};
 
+	/// <summary>
+	/// Clase que representa un RigidBody.
+	/// </summary>
 	class _SEPARITY_API_ RigidBody : public Separity::Component {
 
 		friend CollisionCallback;
@@ -61,10 +64,22 @@ namespace Separity {
 		__CMPTYPE_DECL__(Separity::_PHYSICS)
 		__CMPID_DECL__(Separity::_RIGID_BODY)
 
+		/// <summary>
+		/// Constructora de la clase
+		/// </summary>
+		/// <param name="col">Parámetros del collider</param>
+		/// <param name="tipo">Tipo del rigidbody (0->Dynamic,1->Kinematic,2->Static)</param>
+		/// <param name="mass">Masa del rigidbody</param>
 		RigidBody(colliderParams& col, int tipo, float mass);
 
+		///<summary>
+		/// Destructor de la clase
+		/// </summary>
 		~RigidBody();
 
+		/// <summary>
+		/// Inicializa el rigidbody y collider
+		/// </summary>
 		void initComponent() override;
 
 		/// <summary>

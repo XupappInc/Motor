@@ -203,6 +203,11 @@ namespace Separity {
 		void setTag(std::string name);
 
 		private:
+		/// <summary>
+		/// Devuelve el manager del tipo especificado
+		/// </summary>
+		/// <param name="type">tipo del manager</param>
+		/// <returns>El manager solicitado</returns>
 		Separity::Manager* getManager(cmpType_type type);
 
 		Separity::Manager* mngr_;

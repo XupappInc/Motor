@@ -10,6 +10,9 @@ class lua_State;
 
 namespace Separity {
 
+	/// <summary>
+	/// Clase para la creación de componentes de tipo Button
+	/// </summary>
 	class _SEPARITY_API_ ButtonCreator : public CCreator {
 		public:
 		/// <summary>

@@ -97,6 +97,7 @@ namespace Separity {
 
 		~RenderManager();
 
+		/// <returns>Devuelve el framerate del motor</returns>
 		unsigned int getFramerate();
 
 		protected:

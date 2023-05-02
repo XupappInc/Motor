@@ -15,6 +15,10 @@ namespace Separity {
 		/// Creador de TransformCreator, vacío de predeterminado
 		/// </summary>
 		TransformCreator();
+		
+		/// <summary>
+		/// Destructora de la clase
+		/// </summary>
 		~TransformCreator() = default;
 
 		/// <summary>
