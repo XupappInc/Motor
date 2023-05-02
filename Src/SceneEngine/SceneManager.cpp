@@ -45,9 +45,8 @@ Separity::SceneManager::SceneManager()
 }
 
 void Separity::SceneManager::update(const uint32_t& deltaTime) {
-	if(!changeScene_)
-		return;
-	doChangeScene();
+	if(changeScene_)
+		doChangeScene();
 }
 
 bool Separity::SceneManager::loadScene(const std::string& root) {

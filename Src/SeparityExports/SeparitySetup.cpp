@@ -19,6 +19,32 @@
 
 typedef bool(__cdecl* GameEntryPoint)();
 
+const uint32_t FRAMERATE = 60;
+const uint32_t FRAMETIME = 1000 / FRAMERATE;
+
+void Separity::SeparitySetup::update() {
+	uint32_t startTime = 0;
+	uint32_t deltaTime;
+
+	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
+
+	Separity::ManagerManager* mm = Separity::ManagerManager::getInstance();
+	Separity::InputManager* im = Separity::InputManager::getInstance();
+
+	while(!mm->quit() && !im->closeWindowEvent()) {
+		deltaTime = timer->currTime() - startTime;
+
+		if(deltaTime >= FRAMETIME) {
+			mm->update(deltaTime);
+			startTime = timer->currTime();
+		} else {
+			Sleep(FRAMETIME - deltaTime);
+		}
+	}
+
+	delete timer;
+}
+
 Separity::SeparitySetup::SeparitySetup() { 
 	game = new HMODULEWrapper(); 
 }
@@ -68,34 +94,6 @@ void Separity::SeparitySetup::init() {
 	mm->start();
 	if (!sm->loadScene(sm->getSceneName()));
 		mm->initComponents();
-}
-
-void Separity::SeparitySetup::update() {
-
-	const uint32_t FRAMERATE = 60;
-	const uint32_t FRAMETIME = 1000 / FRAMERATE;
-
-	uint32_t startTime = 0;
-	uint32_t deltaTime;
-
-	Spyutils::VirtualTimer* timer = new Spyutils::VirtualTimer();
-
-	Separity::ManagerManager* mm = Separity::ManagerManager::getInstance();
-	Separity::InputManager* im = Separity::InputManager::getInstance();
-
-	while(!mm->quit() && !im->closeWindowEvent()) {
-
-		deltaTime = timer->currTime() - startTime;
-
-		if(deltaTime >= FRAMETIME) {
-			mm->update(deltaTime);	
-			startTime = timer->currTime();
-		} else {
-			Sleep(FRAMETIME - deltaTime);
-		}
-	}
-
-	delete timer;
 }
 
 void Separity::SeparitySetup::close() {
