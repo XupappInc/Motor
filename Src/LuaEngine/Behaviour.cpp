@@ -151,3 +151,5 @@ void Separity::Behaviour::onButtonUnhover() {
 		}
 	}
 }
+
+luabridge::LuaRef* Separity::Behaviour::getBehaviourLua() { return behaviourLua_; }

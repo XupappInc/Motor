@@ -100,6 +100,13 @@ namespace Separity {
 		/// Metodo que se llama cuando el raton sale del boton
 		/// </summary>
 		virtual void onButtonUnhover();
+
+		/// <summary>
+		/// Devuelve la LuaRef al behaviour en Lua, requiere Luabridge, usar bajo responsabilidad
+		/// </summary>
+		/// <returns>Una LuaRef al script en Lua</returns>
+		luabridge::LuaRef* getBehaviourLua();
+
 		protected:
 		/// <summary>
 		/// LuaRef del script. Esta clase representa el script .lua en C++,
