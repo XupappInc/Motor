@@ -144,6 +144,7 @@ void Separity::Behaviour::onButtonHover() {
 		} catch(luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
