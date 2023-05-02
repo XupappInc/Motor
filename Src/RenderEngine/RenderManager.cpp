@@ -70,7 +70,12 @@ Separity::RenderManager::~RenderManager() {
 	SDL_Quit();
 }
 
+unsigned int Separity::RenderManager::getFramerate() { return FRAMERATE; }
+
 void Separity::RenderManager::initRenderManager() {
+	
+	FRAMERATE = 60;
+	
 	//// Inicializar SDL
 	if(!SDL_WasInit(SDL_INIT_EVERYTHING))
 		SDL_InitSubSystem(SDL_INIT_EVERYTHING);

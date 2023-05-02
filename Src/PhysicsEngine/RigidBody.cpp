@@ -113,7 +113,6 @@ float Separity::RigidBody::getMagnitudeFromLinearVelocity() {
 	btVector3 vel = rb_->getLinearVelocity();
 	float magnitud =
 	    sqrt(vel.x() * vel.x() + vel.y() * vel.y() + vel.z() * vel.z());
-	std::cout << magnitud << "\n";
 	return magnitud;
 }
 

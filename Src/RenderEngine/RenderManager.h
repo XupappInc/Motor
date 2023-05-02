@@ -97,6 +97,8 @@ namespace Separity {
 
 		~RenderManager();
 
+		unsigned int getFramerate();
+
 		protected:
 		/// <summary>
 		/// Contructor de la clase.
@@ -167,6 +169,8 @@ namespace Separity {
 		Ogre::OverlaySystem* ogreOverlaySystem_;
 		
 		Camera* camera_;	
+
+		unsigned int FRAMERATE;
 	};
 }  // namespace Separity
 

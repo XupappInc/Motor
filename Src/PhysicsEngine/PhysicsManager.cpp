@@ -4,6 +4,7 @@
 #include "PhysicsDebugDrawer.h"
 #include "CollisionCallback.h"
 #include "RigidBody.h"
+#include "RenderEngine/RenderManager.h"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -67,7 +68,10 @@ void Separity::PhysicsManager::update(const uint32_t& deltaTime) {
 		rb->preUpdate();
 	}
 
-	world_->stepSimulation(deltaTime);
+	unsigned int FRAMERATE =
+	    Separity::RenderManager::getInstance()->getFramerate();
+	
+	world_->stepSimulation(deltaTime / 1000.0f, 1, 1.0f / FRAMERATE);
 
 	for(Separity::Component* c : cmps_) {
 		c->update(deltaTime);
