@@ -26,7 +26,8 @@
 		_PATH_FOLLOW, \
 		_SOUND_COMPONENT, \
 		_IMAGE, \
-		_GAME_COMPONENT
+		_GAME_COMPONENT, \
+		_BAR
 		 
 
 /// <summary>

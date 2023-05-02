@@ -12,5 +12,6 @@
 #include "LuaEngine\BehaviourCreator.h"
 #include "UIEngine\ButtonCreator.h"
 #include "UIEngine\TextCreator.h"
+#include "UIEngine\BarCreator.h"
 #include "UIEngine\ImageCreator.h"
 #include "PhysicsEngine\PathFollowCreator.h"

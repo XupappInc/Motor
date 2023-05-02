@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\UIEngine\Bar.cpp" />
+    <ClCompile Include="..\..\Src\UIEngine\BarCreator.cpp" />
     <ClCompile Include="..\..\Src\UIEngine\Button.cpp" />
     <ClCompile Include="..\..\Src\UIEngine\ButtonCreator.cpp" />
     <ClCompile Include="..\..\Src\UIEngine\Image.cpp" />
@@ -29,6 +31,8 @@
     <ClCompile Include="..\..\Src\UIEngine\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\UIEngine\Bar.h" />
+    <ClInclude Include="..\..\Src\UIEngine\BarCreator.h" />
     <ClInclude Include="..\..\Src\UIEngine\Button.h" />
     <ClInclude Include="..\..\Src\UIEngine\ButtonCreator.h" />
     <ClInclude Include="..\..\Src\UIEngine\Image.h" />
