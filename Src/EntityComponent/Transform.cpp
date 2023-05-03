@@ -40,12 +40,12 @@ void Separity::Transform::update(const uint32_t& deltaTime) {
 
 Separity::Transform::~Transform() {}
 
-void Separity::Transform::setPosition(const Spyutils::Vector3& other) {
+void Separity::Transform::setPosition(Spyutils::Vector3 other) {
 	Spyutils::Vector3 posicionPadre = position_;
 	position_ = other;
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
-		tr->setPosition(tr->getPosition_p() + (position_ - posicionPadre));
+		tr->setPosition(tr->getPosition() + (other - posicionPadre));
 	}
 	hasChanged_ = true;
 }
@@ -53,22 +53,22 @@ void Separity::Transform::setPosition(float x, float y, float z) {
 	setPosition(Spyutils::Vector3(x, y, z));
 }
 
-void Separity::Transform::translate(const Spyutils::Vector3& translation, typeOR TP) {
+void Separity::Transform::translate(Spyutils::Vector3 translation, typeOR TP) {
 	Spyutils::Vector3 newPosition;
 	Spyutils::Vector3 posicionPadre = position_;
 	if(TP == LOCAL) {
 		vector<vector<float>> rotationMatrix =
 		    calculateRotationMatrix(rotationQ_.getRotation());
 
-		float tx_local = translation.x * rotationMatrix[0][0] +
-		                 translation.y * rotationMatrix[0][1] +
-		                 translation.z * rotationMatrix[0][2];
-		float ty_local = translation.x * rotationMatrix[1][0] +
-		                 translation.y * rotationMatrix[1][1] +
-		                 translation.z * rotationMatrix[1][2];
-		float tz_local = translation.x * rotationMatrix[2][0] +
-		                 translation.y * rotationMatrix[2][1] +
-		                 translation.z * rotationMatrix[2][2];
+		float tx_local = translation[0] * rotationMatrix[0][0] +
+		                 translation[1] * rotationMatrix[0][1] +
+		                 translation[2] * rotationMatrix[0][2];
+		float ty_local = translation[0] * rotationMatrix[1][0] +
+		                 translation[1] * rotationMatrix[1][1] +
+		                 translation[2] * rotationMatrix[1][2];
+		float tz_local = translation[0] * rotationMatrix[2][0] +
+		                 translation[1] * rotationMatrix[2][1] +
+		                 translation[2] * rotationMatrix[2][2];
 
 		newPosition = {position_[0] + tx_local, position_[1] + ty_local,
 		               position_[2] + tz_local};
@@ -81,13 +81,13 @@ void Separity::Transform::translate(const Spyutils::Vector3& translation, typeOR
 	position_ = newPosition;
 	for(auto child : ent_->getChildren()) {
 		auto tr = child->getComponent<Transform>();
-		tr->setPosition(tr->getPosition_p() + (newPosition - posicionPadre));
+		tr->setPosition(tr->getPosition() + (newPosition - posicionPadre));
 	}
 
 	hasChanged_ = true;
 }
 
-const Spyutils::Vector3& Separity::Transform::getPosition() { return position_; }
+Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
 
 void Separity::Transform::setRotationQ(float rotationW, float rotationX,
                                        float rotationY, float rotationZ) {
@@ -111,11 +111,9 @@ void Separity::Transform::setRotationQ(float rotationW, float rotationX,
 	hasChanged_ = true;
 }
 
-const Spyutils::Vector3& Separity::Transform::getRotation() { 
-	return rotation_; 
-}
+Spyutils::Vector3 Separity::Transform::getRotation() { return rotation_; }
 
-const Spyutils::spyQuaternion& Separity::Transform::getRotationQ() {
+Spyutils::spyQuaternion Separity::Transform::getRotationQ() {
 	return rotationQ_;
 }
 
@@ -194,11 +192,9 @@ void Separity::Transform::setScale(float scale) {
 	hasChanged_ = true;
 }
 
-const Spyutils::Vector3& Separity::Transform::getScale() {
-	return scale_; 
-}
+Spyutils::Vector3 Separity::Transform::getScale() { return scale_; }
 
-void Separity::Transform::lookAt(const Spyutils::Vector3& target) {
+void Separity::Transform::lookAt(Spyutils::Vector3 target) {
 	rotationQ_.lookAt(target, position_);
 }
 
@@ -206,17 +202,11 @@ bool Separity::Transform::hasChanged() {
 	return hasChanged_; 
 }
 
-Spyutils::Vector3& Separity::Transform::getPosition_p() { 
-	return position_; 
-}
-
-Spyutils::Vector3
-Separity::Transform::rotar(Spyutils::Vector3 posicion,
-                                             const Spyutils::Vector3& anclaje,
-												const Spyutils::Vector3& rotacion) {
-
-	Spyutils::Vector3 vector_rotacion = 
-		{posicion.x - anclaje.x, posicion.y - anclaje.y, posicion.z - anclaje.z};
+Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
+                                             Spyutils::Vector3 anclaje,
+                                             Spyutils::Vector3 rotacion) {
+	Spyutils::Vector3 vector_rotacion = {
+	    posicion.x - anclaje.x, posicion.y - anclaje.y, posicion.z - anclaje.z};
 
 	// Aplica la rotaci�n en pitch, yaw y roll
 	float pitch = Spyutils::Math::toRadians(rotacion.x);
@@ -239,6 +229,7 @@ Separity::Transform::rotar(Spyutils::Vector3 posicion,
 	     cos_pitch * sin_yaw * sin_roll - sin_pitch * cos_roll},
 	    {-sin_yaw, sin_pitch * cos_yaw, cos_pitch * cos_yaw}};
 
+	// Aplica la rotaci�n al vector de rotacion
 	Spyutils::Vector3 vector_rotado = {
 	    matriz_rotacion[0][0] * vector_rotacion.x +
 	        matriz_rotacion[0][1] * vector_rotacion.y +
@@ -253,12 +244,14 @@ Separity::Transform::rotar(Spyutils::Vector3 posicion,
 	// Calcula la nueva posicion a partir del vector rotado y el anclaje
 	posicion = {anclaje.x + vector_rotado.x, anclaje.y + vector_rotado.y,
 	            anclaje.z + vector_rotado.z};
-
+	Spyutils::Vector3 newpos = {Spyutils::Math::toDegrees(posicion.x),
+	                            Spyutils::Math::toDegrees(posicion.y),
+	                            Spyutils::Math::toDegrees(posicion.z)};
 	return posicion;
 }
 Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
-                                             const Spyutils::Vector3& anclaje,
-                                             const Spyutils::spyQuaternion& rotacion) {
+                                             Spyutils::Vector3 anclaje,
+                                             Spyutils::spyQuaternion rotacion) {
 	Spyutils::Vector3 vector_rotacion = {
 	    posicion.x - anclaje.x, posicion.y - anclaje.y, posicion.z - anclaje.z};
 
@@ -291,6 +284,8 @@ Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
 	// Calcula la nueva posicion a partir del vector rotado y el anclaje
 	posicion = {anclaje.x + vector_rotado.x, anclaje.y + vector_rotado.y,
 	            anclaje.z + vector_rotado.z};
-
+	Spyutils::Vector3 newpos = {Spyutils::Math::toDegrees(posicion.x),
+	                            Spyutils::Math::toDegrees(posicion.y),
+	                            Spyutils::Math::toDegrees(posicion.z)};
 	return posicion;
 }
