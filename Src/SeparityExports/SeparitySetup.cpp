@@ -92,7 +92,7 @@ void Separity::SeparitySetup::init() {
 	Separity::ManagerManager* mm = Separity::ManagerManager::getInstance();
 
 	mm->start();
-	if (!sm->loadScene(sm->getSceneName()));
+	if (sm->loadScene(sm->getSceneName()))
 		mm->initComponents();
 }
 

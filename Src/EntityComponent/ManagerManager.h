@@ -27,7 +27,7 @@ namespace Separity {
 
 		/// <summary>
 		/// Inicializa todos los managers que forman parte del corazón del motor.
-		/// Los demás managers se crean bajo demanda, dependiendo de los componentes que tenga la escena.
+		/// Los demás managers se inicializan bajo demanda, dependiendo de los componentes que tenga la escena.
 		/// </summary>
 		void start() override;
 

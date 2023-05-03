@@ -2,6 +2,7 @@
 
 #include "EntityComponent\Entity.h"
 #include "EntityComponent\Transform.h"
+#include "EntityComponent\ManagerManager.h"
 #include "RigidBody.h"
 #include "SeparityUtils\Vector.h"
 
@@ -46,14 +47,21 @@ void Separity::PathFollow::preUpdate() {
 }
 
 void Separity::PathFollow::initComponent() {
+
+	rigidBody_ = ent_->getComponent<RigidBody>();
+	if(rigidBody_ == nullptr) {
+		Separity::ManagerManager::getInstance()->shutDown();
+		std::cerr
+		    << "[SPY ERROR]: a pathfollow component could not be initialized correctly: "
+		    << "there is no rigidBody attached to the entity\n";
+		return;
+	}
+
+
 	transform_ = ent_->getComponent<Transform>();
-	assert(transform_ != nullptr);
 
 	transform_->lookAt({path_[pathingTo_].x, transform_->getPosition().y,
 	                    path_[pathingTo_].z});
-
-	rigidBody_ = ent_->getComponent<RigidBody>();
-	assert(rigidBody_ != nullptr);
 }
 
 void Separity::PathFollow::setStopped(bool stop) { stopped_ = stop; }
