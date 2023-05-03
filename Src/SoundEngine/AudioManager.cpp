@@ -52,9 +52,9 @@ void Separity::AudioManager::start() {
 	}
 
 	system_->createSoundGroup("soundGroup", &soundGroup_);
-	soundGroup_->setVolume(100);
+	soundGroup_->setVolume(0.9f);
 	system_->createSoundGroup("musicGroup", &musicGroup_);
-	musicGroup_->setVolume(100);
+	musicGroup_->setVolume(0.5f);
 
 
 	lua_State* L = LuaManager::getInstance()->getLuaState();
@@ -105,6 +105,11 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 	for(Separity::Component* c : cmps_) {
 		AudioSource* au = c->getEntity()->getComponent<AudioSource>();
 		if(au->getAudioName() == audioName) {
+			if(au->getPlayingState())
+			{
+				temporalChannel->stop();
+				return;
+			}
 			au->setPlayingState(true);
 			au->setChannel(temporalChannel);
 			break;
