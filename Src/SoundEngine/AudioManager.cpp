@@ -110,15 +110,29 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 				temporalChannel->stop();
 				return;
 			}
+		
 			au->setPlayingState(true);
 			au->setChannel(temporalChannel);
 			break;
 		}
 	}
+
+	float volumeValue = 0;
+
+	if(sounds_->count(audioName)) {
+		soundGroup_->getVolume(&volumeValue);
+		temporalChannel->setVolume(volumeValue);
+	}
+	else {
+		musicGroup_->getVolume(&volumeValue);
+		temporalChannel->setVolume(volumeValue);
+	}
+
 	// Se pone el modo del canal a false porque se pausa de base, y se pone el
 	// modo a FMOD_3D_LINEARROLLOFF para que el sonido sea inversamente
 	// proporcional a la distancia a la que se encuentra hasta maxDistance hasta
 	// volumen 0
+
 	temporalChannel->setPaused(false);
 	temporalChannel->setMode(FMOD_3D_LINEARROLLOFF);
 	temporalChannel->set3DMinMaxDistance(minDistance, maxDistance);
