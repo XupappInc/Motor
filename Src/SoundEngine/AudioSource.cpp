@@ -78,14 +78,12 @@ void Separity::AudioSource::update(const uint32_t& deltaTime) {
 	bool isPlaying = true;
 	// Comprueba si está sonando el sonido, si es así quita el canal del map de
 	// canales y pone el canal a null y el estado playing a false
+	channel_->isPlaying(&isPlaying);
 	if(channel_ && !isPlaying) {
-		channel_->isPlaying(&isPlaying);
-		if(!isPlaying) {
-			auto iterator = audioManager->getChannels_()->find(audioName_);
-			audioManager->getChannels_()->erase(iterator);
-			channel_ = nullptr;
-			playing_ = false;
-		}
+		auto iterator = audioManager->getChannels_()->find(audioName_);
+		audioManager->getChannels_()->erase(iterator);
+		channel_ = nullptr;
+		playing_ = false;
 	}
 	// Comprueba si está sonando, si está sonando coge el transform y mueve el
 	// sonido a la posición del transform
