@@ -52,7 +52,7 @@ void Separity::AudioManager::start() {
 	}
 
 	system_->createSoundGroup("soundGroup", &soundGroup_);
-	soundGroup_->setVolume(0.9f);
+	soundGroup_->setVolume(0.8f);
 	system_->createSoundGroup("musicGroup", &musicGroup_);
 	musicGroup_->setVolume(0.5f);
 
