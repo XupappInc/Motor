@@ -52,9 +52,9 @@ void Separity::AudioManager::start() {
 	}
 
 	system_->createSoundGroup("soundGroup", &soundGroup_);
-	soundGroup_->setVolume(100);
+	soundGroup_->setVolume(0.9f);
 	system_->createSoundGroup("musicGroup", &musicGroup_);
-	musicGroup_->setVolume(100);
+	musicGroup_->setVolume(0.5f);
 
 
 	lua_State* L = LuaManager::getInstance()->getLuaState();
@@ -105,15 +105,34 @@ void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
 	for(Separity::Component* c : cmps_) {
 		AudioSource* au = c->getEntity()->getComponent<AudioSource>();
 		if(au->getAudioName() == audioName) {
+			if(au->getPlayingState())
+			{
+				temporalChannel->stop();
+				return;
+			}
+		
 			au->setPlayingState(true);
 			au->setChannel(temporalChannel);
 			break;
 		}
 	}
+
+	float volumeValue = 0;
+
+	if(sounds_->count(audioName)) {
+		soundGroup_->getVolume(&volumeValue);
+		temporalChannel->setVolume(volumeValue);
+	}
+	else {
+		musicGroup_->getVolume(&volumeValue);
+		temporalChannel->setVolume(volumeValue);
+	}
+
 	// Se pone el modo del canal a false porque se pausa de base, y se pone el
 	// modo a FMOD_3D_LINEARROLLOFF para que el sonido sea inversamente
 	// proporcional a la distancia a la que se encuentra hasta maxDistance hasta
 	// volumen 0
+
 	temporalChannel->setPaused(false);
 	temporalChannel->setMode(FMOD_3D_LINEARROLLOFF);
 	temporalChannel->set3DMinMaxDistance(minDistance, maxDistance);
