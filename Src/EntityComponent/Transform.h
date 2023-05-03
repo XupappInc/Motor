@@ -34,6 +34,10 @@ namespace Separity {
 		std::vector<std::vector<float>>
 		calculateRotationMatrix(Spyutils::Vector3 rotation);
 
+		/// <summary>
+		/// Setea la variable "hasChanged" para que sea sobreescrita en cada iteración.
+		/// </summary>
+		/// <param name="deltaTime"></param>
 		void update(const uint32_t& deltaTime) override;
 
 		///< summary>
@@ -131,6 +135,7 @@ namespace Separity {
 		/// <param name="target">Punto al que mirar</param>
 		void lookAt(Spyutils::Vector3 target);
 
+		/// <returns>Si el transform ha sido modificado en esta iteración. Útil para el Render Manager.</returns>
 		bool hasChanged();
 
 		private:
