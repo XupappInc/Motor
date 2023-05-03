@@ -27,6 +27,7 @@ namespace Separity {
 	    : public Separity::Manager,
 	      public Singleton<Separity::AudioManager> {
 		friend Singleton<AudioManager>;
+
 		friend class AudioSource;
 		friend class AudioListener;
 

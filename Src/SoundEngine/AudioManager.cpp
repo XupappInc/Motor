@@ -156,7 +156,7 @@ void Separity::AudioManager::setSystem(FMOD::System* sys) { system_ = sys; }
 
 std::unordered_map<std::string, FMOD::Sound*>*
 Separity::AudioManager::getSounds_() {
-	return nullptr;
+	return sounds_;
 }
 
 void Separity::AudioManager::setSounds_(
