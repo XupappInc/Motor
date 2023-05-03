@@ -7,9 +7,10 @@
 std::unique_ptr<Separity::EntityManager>
     Singleton<Separity::EntityManager>::_INSTANCE_;
 
-inline Separity::EntityManager::EntityManager() {
+inline Separity::EntityManager::EntityManager() : firstFrame_(true) {
 	ManagerManager::getInstance()->addManager(_ENTITY, this);
 	mustStart_ = true;
+	
 }
 
 Separity::EntityManager* Separity::EntityManager::getInstance() {
@@ -33,6 +34,21 @@ void Separity::EntityManager::clean() {
 	Separity::Manager::clean();
 
 	deleteEntities();
+}
+
+void Separity::EntityManager::start() { 
+	Separity::Manager::start();
+
+	firstFrame_ = true;
+}
+
+void Separity::EntityManager::update(const uint32_t& deltaTime) { 
+	if(!firstFrame_) {
+		Separity::Manager::update(deltaTime);
+	} 
+	else {
+		firstFrame_ = false;
+	}
 }
 
 std::vector<Separity::Entity*>

@@ -20,6 +20,9 @@ void Separity::ParticleSystem::initComponent() {
 }
 
 void Separity::ParticleSystem::update(const uint32_t& deltaTime) {
+	if(!tr_->hasChanged())
+		return;
+
 	auto pos = tr_->getPosition();
 	node_->setPosition(Ogre::Real(pos.x), Ogre::Real(pos.y), Ogre::Real(pos.z));
 }

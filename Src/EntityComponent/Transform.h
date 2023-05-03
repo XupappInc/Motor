@@ -34,6 +34,8 @@ namespace Separity {
 		std::vector<std::vector<float>>
 		calculateRotationMatrix(Spyutils::Vector3 rotation);
 
+		void update(const uint32_t& deltaTime) override;
+
 		///< summary>
 		/// Destructora de la clase
 		///  </summary>
@@ -129,6 +131,8 @@ namespace Separity {
 		/// <param name="target">Punto al que mirar</param>
 		void lookAt(Spyutils::Vector3 target);
 
+		bool hasChanged();
+
 		private:
 		Spyutils::Vector3 rotar(Spyutils::Vector3 posicion,
 		                        Spyutils::Vector3 anclaje,
@@ -140,6 +144,8 @@ namespace Separity {
 		Spyutils::Vector3 rotation_;
 		Spyutils::spyQuaternion rotationQ_;
 		Spyutils::Vector3 scale_;
+
+		bool hasChanged_;
 	};
 
 }  // namespace Separity
