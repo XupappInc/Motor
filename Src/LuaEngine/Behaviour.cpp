@@ -66,6 +66,7 @@ void Separity::Behaviour::onCollisionEnter(Entity* other) {
 		// crea la variable global other de forma temporal, para que lo pueda
 		// utilizar el script
 		luabridge::setGlobal(L_, other, "other");
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			collisionEnterLua();
 		} catch(luabridge::LuaException e) {
@@ -73,6 +74,7 @@ void Separity::Behaviour::onCollisionEnter(Entity* other) {
 		}
 		// quita la variable global de la pila de Lua
 		luabridge::getGlobal(L_, "other");
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
@@ -82,6 +84,7 @@ void Separity::Behaviour::onCollisionExit(Entity* other) {
 		// crea la variable global other de forma temporal, para que lo pueda
 		// utilizar el script
 		luabridge::setGlobal(L_, other, "other");
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			collisionExitLua();
 		} catch(luabridge::LuaException e) {
@@ -89,6 +92,7 @@ void Separity::Behaviour::onCollisionExit(Entity* other) {
 		}
 		// quita la variable global de la pila de Lua
 		luabridge::getGlobal(L_, "other");
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
@@ -98,6 +102,7 @@ void Separity::Behaviour::onCollisionStay(Entity* other) {
 		// crea la variable global other de forma temporal, para que lo pueda
 		// utilizar el script
 		luabridge::setGlobal(L_, other, "other");
+		luabridge::setGlobal(L_, this, "this");
 		try {
 			collisionStayLua();
 		} catch(luabridge::LuaException e) {
@@ -105,6 +110,7 @@ void Separity::Behaviour::onCollisionStay(Entity* other) {
 		}
 		// quita la variable global de la pila de Lua
 		luabridge::getGlobal(L_, "other");
+		luabridge::getGlobal(L_, "this");
 	}
 }
 
