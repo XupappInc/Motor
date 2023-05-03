@@ -35,9 +35,6 @@ void Separity::Camera::initComponent() {
 }
 
 void Separity::Camera::update(const uint32_t& deltaTime) {
-	if(!tr_->hasChanged())
-		return;
-
 	node_->setPosition(tr_->getPosition().x, tr_->getPosition().y,
 	                   tr_->getPosition().z);
 

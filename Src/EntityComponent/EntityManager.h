@@ -41,11 +41,7 @@ namespace Separity {
 		/// Limpia el manager (borra entidades y componentes pertenecientes al
 		/// manager)
 		/// </summary>
-		void clean() override;
-
-		void start() override;
-
-		void update(const uint32_t& deltaTime) override;
+		void clean();
 
 		/// <summary>
 		/// Devuelve todas las entitades cuya tag coincida con la proporcionada
@@ -62,7 +58,6 @@ namespace Separity {
 		void deleteEntities();
 
 		std::vector<Entity*> allEntities_;
-		bool firstFrame_;
 	};
 }  // namespace Separity
 #endif __ENTITY_MANAGER_H__

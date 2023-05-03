@@ -20,9 +20,6 @@ void Separity::MeshRenderer::initComponent() {
 }
 
 void Separity::MeshRenderer::update(const uint32_t& deltaTime) {
-	if(!tr_->hasChanged())
-		return;
-
 	node_->setPosition(tr_->getPosition().x, tr_->getPosition().y,
 	                   tr_->getPosition().z);
 

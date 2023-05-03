@@ -9,7 +9,7 @@ using namespace std;
 // #include "checkML.h"
 Separity::Transform::Transform()
     : position_(0, 0, 0), scale_(1, 1, 1), rotation_(0, 0, 0),
-      rotationQ_(0, 0, 0), hasChanged_(true) {
+      rotationQ_(0, 0, 0) {
 
 }
 
@@ -34,10 +34,6 @@ Separity::Transform::calculateRotationMatrix(Spyutils::Vector3 rotation) {
 	return rotationMatrix;
 }
 
-void Separity::Transform::update(const uint32_t& deltaTime) {
-	hasChanged_ = false;
-}
-
 Separity::Transform::~Transform() {}
 
 void Separity::Transform::setPosition(Spyutils::Vector3 other) {
@@ -47,7 +43,6 @@ void Separity::Transform::setPosition(Spyutils::Vector3 other) {
 		auto tr = child->getComponent<Transform>();
 		tr->setPosition(tr->getPosition() + (other - posicionPadre));
 	}
-	hasChanged_ = true;
 }
 void Separity::Transform::setPosition(float x, float y, float z) {
 	setPosition(Spyutils::Vector3(x, y, z));
@@ -83,8 +78,6 @@ void Separity::Transform::translate(Spyutils::Vector3 translation, typeOR TP) {
 		auto tr = child->getComponent<Transform>();
 		tr->setPosition(tr->getPosition() + (newPosition - posicionPadre));
 	}
-
-	hasChanged_ = true;
 }
 
 Spyutils::Vector3 Separity::Transform::getPosition() { return position_; }
@@ -108,7 +101,6 @@ void Separity::Transform::setRotationQ(float rotationW, float rotationX,
 		rotchild.rotateGlobal(dif.getRotation().z, {0, 0, 1});
 		tr->setRotationQ(rotchild.w, rotchild.x, rotchild.y, rotchild.z);
 	}
-	hasChanged_ = true;
 }
 
 Spyutils::Vector3 Separity::Transform::getRotation() { return rotation_; }
@@ -130,8 +122,6 @@ void Separity::Transform::pitch(float degree, typeOR TP) {
 		tr->setPosition(rotacion);
 		tr->pitch(rotationQ_.getRotation().x + degree);
 	}
-
-	hasChanged_ = true;
 }
 
 void Separity::Transform::yaw(float degree, typeOR TP) {
@@ -147,8 +137,6 @@ void Separity::Transform::yaw(float degree, typeOR TP) {
 		tr->setPosition(rotacion);
 		tr->yaw(rotationQ_.getRotation().y + degree);
 	}
-
-	hasChanged_ = true;
 }
 
 void Separity::Transform::roll(float degree, typeOR TP) {
@@ -163,8 +151,6 @@ void Separity::Transform::roll(float degree, typeOR TP) {
 		tr->setPosition(rotacion);
 		tr->roll(rotationQ_.getRotation().z + degree);
 	}
-
-	hasChanged_ = true;
 }
 
 void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
@@ -184,22 +170,15 @@ void Separity::Transform::setScale(float scaleX, float scaleY, float scaleZ) {
 		// Dibujar el objeto hijo y sus objetos hijos
 		tr->setScale(scaleX, scaleY, scaleZ);
 	}
-
-	hasChanged_ = true;
 }
 void Separity::Transform::setScale(float scale) {
 	setScale(scale, scale, scale);
-	hasChanged_ = true;
 }
 
 Spyutils::Vector3 Separity::Transform::getScale() { return scale_; }
 
 void Separity::Transform::lookAt(Spyutils::Vector3 target) {
 	rotationQ_.lookAt(target, position_);
-}
-
-bool Separity::Transform::hasChanged() { 
-	return hasChanged_; 
 }
 
 Spyutils::Vector3 Separity::Transform::rotar(Spyutils::Vector3 posicion,
