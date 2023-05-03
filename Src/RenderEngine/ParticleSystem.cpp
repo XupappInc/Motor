@@ -8,7 +8,7 @@
 #include <OgreSceneManager.h>
 
 Separity::ParticleSystem::ParticleSystem()
-    : visible_(true), tr_(nullptr), particleSystem_(nullptr) {
+    : visible_(true), tr_(nullptr), particleSystem_(nullptr), isEmitting_(false) {
 	node_ = Separity::RenderManager::getInstance()
 	            ->getOgreSceneManager()
 	            ->getRootSceneNode()
@@ -20,6 +20,9 @@ void Separity::ParticleSystem::initComponent() {
 }
 
 void Separity::ParticleSystem::update(const uint32_t& deltaTime) {
+	if(!tr_->hasChanged())
+		return;
+
 	auto pos = tr_->getPosition();
 	node_->setPosition(Ogre::Real(pos.x), Ogre::Real(pos.y), Ogre::Real(pos.z));
 }

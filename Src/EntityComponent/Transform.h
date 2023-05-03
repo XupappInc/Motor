@@ -13,7 +13,7 @@ namespace Separity {
 	enum typeOR { LOCAL, GLOBAL };
 
 	/// <summary>
-	/// Componente que contiene la informaci�n de la posici�n, rotaci�n y escala
+	/// Componente que contiene la información de la posición, rotación y escala
 	/// de una entidad
 	/// </summary>
 	class _SEPARITY_API_ Transform : public Separity::Component {
@@ -27,15 +27,16 @@ namespace Separity {
 		Transform();
 
 		/// <summary>
-		/// Calcula la matriz de rotaci�n a partir de un vector de rotaci�n
+		/// Calcula la matriz de rotación a partir de un vector de rotación
 		/// </summary>
-		/// <param name="rotation">Vector de rotaci�n</param>
-		/// <returns>Matriz de rotaci�n</returns>
+		/// <param name="rotation">Vector de rotación</param>
+		/// <returns>Matriz de rotación</returns>
 		std::vector<std::vector<float>>
 		calculateRotationMatrix(Spyutils::Vector3 rotation);
 
 		/// <summary>
-		/// Setea la variable "hasChanged" para que sea sobreescrita en cada iteraci�n.
+		/// Setea la variable "hasChanged" para que sea sobreescrita en cada
+		/// iteración.
 		/// </summary>
 		/// <param name="deltaTime"></param>
 		void update(const uint32_t& deltaTime) override;
@@ -46,33 +47,33 @@ namespace Separity {
 		~Transform();
 
 		/// <summary>
-		/// Setear la posici�n del componente tranform
+		/// Setear la posición del componente tranform
 		/// </summary>
-		/// <param name="other">Vector3 de la posici�n</param>
+		/// <param name="other">Vector3 de la posición</param>
 		void setPosition(Spyutils::Vector3 other);
 
 		/// <summary>
-		/// Setear la posici�n del componente tranform
+		/// Setear la posición del componente tranform
 		/// </summary>
-		/// <param name="x">posici�n x</param>
-		/// <param name="y">posici�n y</param>
-		/// <param name="z">posici�n z</param>
+		/// <param name="x">posición x</param>
+		/// <param name="y">posición y</param>
+		/// <param name="z">posición z</param>
 		void setPosition(float x, float y, float z);
 
 		/// <summary>
-		/// Transladar la posici�n del transform
+		/// Transladar la posición del transform
 		/// </summary>
 		/// <param name="other">Vector3 para transladar</param>
 		void translate(Spyutils::Vector3 other, typeOR TP = LOCAL);
 
 		/// <summary>
-		/// Coger la posici�n del transform
+		/// Coger la posición del transform
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getPosition();
 
 		/// <summary>
-		/// Setetar l posici�n del transform.
+		/// Setetar l posición del transform.
 		/// </summary>
 		/// <param name="rotationX">grados del eje x</param>
 		/// <param name="rotationY">grados eje y</param>
@@ -80,13 +81,13 @@ namespace Separity {
 		void setRotationQ(float rotationW, float rotationX, float rotationY,
 		                  float rotationZ);
 		/// <summary>
-		/// geter de la rotaci�n en un Vector3
+		/// geter de la rotación en un Vector3
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::Vector3 getRotation();
 
 		/// <summary>
-		/// geter de la rotaci�n en un Quaternion
+		/// geter de la rotación en un Quaternion
 		/// </summary>
 		/// <returns></returns>
 		Spyutils::spyQuaternion getRotationQ();
@@ -135,7 +136,8 @@ namespace Separity {
 		/// <param name="target">Punto al que mirar</param>
 		void lookAt(Spyutils::Vector3 target);
 
-		/// <returns>Si el transform ha sido modificado en esta iteraci�n. �til para el Render Manager.</returns>
+		/// <returns>Si el transform ha sido modificado en esta iteración. Útil
+		/// para el Render Manager.</returns>
 		bool hasChanged();
 
 		private:
@@ -149,6 +151,8 @@ namespace Separity {
 		Spyutils::Vector3 rotation_;
 		Spyutils::spyQuaternion rotationQ_;
 		Spyutils::Vector3 scale_;
+
+		bool hasChanged_;
 	};
 
 }  // namespace Separity
