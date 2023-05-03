@@ -45,7 +45,7 @@ namespace Separity {
 		/// Setear la posición del componente tranform
 		/// </summary>
 		/// <param name="other">Vector3 de la posición</param>
-		void setPosition(Spyutils::Vector3 other);
+		void setPosition(const Spyutils::Vector3& other);
 
 		/// <summary>
 		/// Setear la posición del componente tranform
@@ -59,13 +59,13 @@ namespace Separity {
 		/// Transladar la posición del transform
 		/// </summary>
 		/// <param name="other">Vector3 para transladar</param>
-		void translate(Spyutils::Vector3 other, typeOR TP = LOCAL);
+		void translate(const Spyutils::Vector3& other, typeOR TP = LOCAL);
 
 		/// <summary>
 		/// Coger la posición del transform
 		/// </summary>
 		/// <returns></returns>
-		Spyutils::Vector3 getPosition();
+		const Spyutils::Vector3& getPosition();
 
 		/// <summary>
 		/// Setetar l posición del transform.
@@ -79,13 +79,13 @@ namespace Separity {
 		/// geter de la rotación en un Vector3
 		/// </summary>
 		/// <returns></returns>
-		Spyutils::Vector3 getRotation();
+		const Spyutils::Vector3& getRotation();
 
 		/// <summary>
 		/// geter de la rotación en un Quaternion
 		/// </summary>
 		/// <returns></returns>
-		Spyutils::spyQuaternion getRotationQ();
+		const Spyutils::spyQuaternion& getRotationQ();
 
 		/// <summary>
 		/// Rotacion en el eje x
@@ -123,23 +123,27 @@ namespace Separity {
 		/// geter de la escala del transform
 		/// </summary>
 		/// <returns></returns>
-		Spyutils::Vector3 getScale();
+		const Spyutils::Vector3& getScale();
 
 		/// <summary>
 		/// rota el transform para mirar hacia un punto
 		/// </summary>
 		/// <param name="target">Punto al que mirar</param>
-		void lookAt(Spyutils::Vector3 target);
+		void lookAt(const Spyutils::Vector3& target);
 
 		bool hasChanged();
 
 		private:
+
+	
+		Spyutils::Vector3& getPosition_p();
+
 		Spyutils::Vector3 rotar(Spyutils::Vector3 posicion,
-		                        Spyutils::Vector3 anclaje,
-		                        Spyutils::Vector3 rotacion);
+		                        const Spyutils::Vector3& anclaje,
+		                        const Spyutils::Vector3& rotacion);
 		Spyutils::Vector3 rotar(Spyutils::Vector3 posicion,
-		                        Spyutils::Vector3 anclaje,
-		                        Spyutils::spyQuaternion rotacion);
+		                        const Spyutils::Vector3& anclaje,
+		                        const Spyutils::spyQuaternion& rotacion);
 		Spyutils::Vector3 position_;
 		Spyutils::Vector3 rotation_;
 		Spyutils::spyQuaternion rotationQ_;
