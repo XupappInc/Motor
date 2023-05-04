@@ -176,7 +176,7 @@ namespace Separity {
 		std::unordered_map<std::string, FMOD::Channel*>* channels_;
 		FMOD::SoundGroup* musicGroup_;
 		FMOD::SoundGroup* soundGroup_;
-		bool firstListener_;
+		bool firstListener_, isPaused;
 
 		float* buffer_;
 	};

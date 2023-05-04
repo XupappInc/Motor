@@ -75,6 +75,7 @@ Separity::AudioManager::AudioManager() {
 	soundGroup_ = nullptr;
 	musicGroup_ = nullptr;
 	firstListener_ = true;
+	isPaused = false;
 
 	ManagerManager::getInstance()->addManager(_SOUND, this);
 }
@@ -87,56 +88,55 @@ Separity::AudioManager* Separity::AudioManager::getInstance() {
 
 void Separity::AudioManager::playAudio(std::string audioName, float minDistance,
                                        float maxDistance) {
+	if(!isPaused) {
+		FMOD::Channel* temporalChannel = nullptr;
+		FMOD::Sound* temporalSound = nullptr;
+		// Comprueba si esta en la lista de sonidos o de m�sica para coger dicho
+		// sonido y reproducirlo
+		if(sounds_->count(audioName))
+			temporalSound = sounds_->find(audioName)->second;
+		else if(musics_->count(audioName))
+			temporalSound = musics_->find(audioName)->second;
+		else
+			printf("No existe ese sonido");
+		FMOD_RESULT result =
+		    system_->playSound(temporalSound, nullptr, true, &temporalChannel);
+		FMODErrorChecker(&result);
 
-	FMOD::Channel* temporalChannel = nullptr;
-	FMOD::Sound* temporalSound = nullptr;
-	// Comprueba si esta en la lista de sonidos o de m�sica para coger dicho
-	// sonido y reproducirlo
-	if(sounds_->count(audioName))
-		temporalSound = sounds_->find(audioName)->second;
-	else if(musics_->count(audioName))
-		temporalSound = musics_->find(audioName)->second;
-	else
-		printf("No existe ese sonido");
-	FMOD_RESULT result =
-	    system_->playSound(temporalSound, nullptr, true, &temporalChannel);
-	FMODErrorChecker(&result);
+		for(Separity::Component* c : cmps_) {
+			AudioSource* au = c->getEntity()->getComponent<AudioSource>();
+			if(au->getAudioName() == audioName) {
+				if(au->getPlayingState()) {
+					temporalChannel->stop();
+					return;
+				}
 
-	for(Separity::Component* c : cmps_) {
-		AudioSource* au = c->getEntity()->getComponent<AudioSource>();
-		if(au->getAudioName() == audioName) {
-			if(au->getPlayingState())
-			{
-				temporalChannel->stop();
-				return;
+				au->setPlayingState(true);
+				au->setChannel(temporalChannel);
+				break;
 			}
-		
-			au->setPlayingState(true);
-			au->setChannel(temporalChannel);
-			break;
 		}
+
+		float volumeValue = 0;
+
+		if(sounds_->count(audioName)) {
+			soundGroup_->getVolume(&volumeValue);
+			temporalChannel->setVolume(volumeValue);
+		} else {
+			musicGroup_->getVolume(&volumeValue);
+			temporalChannel->setVolume(volumeValue);
+		}
+
+		// Se pone el modo del canal a false porque se pausa de base, y se pone
+		// el modo a FMOD_3D_LINEARROLLOFF para que el sonido sea inversamente
+		// proporcional a la distancia a la que se encuentra hasta maxDistance
+		// hasta volumen 0
+
+		temporalChannel->setPaused(false);
+		temporalChannel->setMode(FMOD_3D_LINEARROLLOFF);
+		temporalChannel->set3DMinMaxDistance(minDistance, maxDistance);
+		channels_->emplace(audioName, temporalChannel);
 	}
-
-	float volumeValue = 0;
-
-	if(sounds_->count(audioName)) {
-		soundGroup_->getVolume(&volumeValue);
-		temporalChannel->setVolume(volumeValue);
-	}
-	else {
-		musicGroup_->getVolume(&volumeValue);
-		temporalChannel->setVolume(volumeValue);
-	}
-
-	// Se pone el modo del canal a false porque se pausa de base, y se pone el
-	// modo a FMOD_3D_LINEARROLLOFF para que el sonido sea inversamente
-	// proporcional a la distancia a la que se encuentra hasta maxDistance hasta
-	// volumen 0
-
-	temporalChannel->setPaused(false);
-	temporalChannel->setMode(FMOD_3D_LINEARROLLOFF);
-	temporalChannel->set3DMinMaxDistance(minDistance, maxDistance);
-	channels_->emplace(audioName, temporalChannel);
 }
 
 void Separity::AudioManager::update(const uint32_t& deltaTime) {
@@ -151,12 +151,14 @@ void Separity::AudioManager::pauseAllChannels() {
 	for(auto& channelMap : *channels_) {
 		channelMap.second->setPaused(true);
 	}
+	isPaused = true;
 }
 
 void Separity::AudioManager::resumeAllChannels() {
 	for(auto& channelMap : *channels_) {
 		channelMap.second->setPaused(false);
 	}
+	isPaused = false;
 }
 
 void Separity::AudioManager::update3DListener(int listenerNumber,
