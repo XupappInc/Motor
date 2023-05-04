@@ -13,17 +13,28 @@ AudioSource::AudioSource(std::string audioRoute, std::string audioName,
 	// Crea un audio con una songRoute y lo almacena en sound_
 
 	audioRoute = "Assets//Audio//" + audioRoute;
+	
 	// Añade el audio a la lista de sonidos de música o de sonidos dependiendo
 	// de un booleano
 	FMOD_RESULT result;
 	isMusic_ = isMusic;
 	if(isMusic) {
+		// Cambia el nombre al audio si ya existe
+		while(audioManager->musics_->count(audioName)) {
+			audioName += "1";
+			std::cout << "cambiado nombre";
+		}
 		result = audioManager->getSystem()->createSound(
 		    audioRoute.c_str(), FMOD_3D | FMOD_LOOP_NORMAL, nullptr, &sound_);
 		audioManager->FMODErrorChecker(&result);
 		audioManager->getMusics_()->emplace(audioName, sound_);
 		sound_->setSoundGroup(audioManager->getMusicGroup_());
 	} else {
+		//Cambia el nombre al audio si ya existe
+		while(audioManager->sounds_->count(audioName)) {
+			audioName += "1";
+			std::cout << "cambiado nombre";
+		}
 		result = audioManager->getSystem()->createSound(
 		    audioRoute.c_str(), FMOD_3D | FMOD_DEFAULT, nullptr, &sound_);
 		audioManager->FMODErrorChecker(&result);
