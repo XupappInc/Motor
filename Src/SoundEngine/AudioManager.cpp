@@ -242,6 +242,7 @@ void Separity::AudioManager::clean() {
 	sounds_ = nullptr;
 	musics_ = nullptr;
 	system_ = nullptr;
+	isPaused = false;
 }
 
 void Separity::AudioManager::stopAllChannels() {
